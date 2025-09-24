@@ -1,0 +1,85 @@
+/* Reset & Base */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  color: #333;
+}
+
+a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+/* Layout */
+.container {
+  display: flex;
+  max-width: 960px;
+  margin: 40px auto;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.sidebar {
+  width: 200px;
+  background: #2c3e50;
+  color: #fff;
+  padding: 20px;
+}
+
+.sidebar a {
+  display: block;
+  margin-bottom: 10px;
+  color: #ecf0f1;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+table th {
+  background: #eee;
+}
+
+tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Form Styling */
+form input[type="text"],
+form textarea,
+form input[type="submit"] {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+form input[type="submit"] {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+  background: #2980b9;
+}
