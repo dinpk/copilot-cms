@@ -19,13 +19,20 @@
   </thead>
   <tbody>
     <?php
+	
+	$limit = 10;
+	$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+	$offset = ($page - 1) * $limit;
+	
+	
     $sql = "SELECT b.*, 
-  GROUP_CONCAT(a.title SEPARATOR ', ') AS assigned_articles
-  FROM books b
-  LEFT JOIN book_articles ba ON b.key_books = ba.key_books
-  LEFT JOIN articles a ON ba.key_articles = a.key_articles
-  GROUP BY b.key_books
-  ORDER BY b.entry_date_time DESC";
+	  GROUP_CONCAT(a.title SEPARATOR ', ') AS assigned_articles
+	  FROM books b
+	  LEFT JOIN book_articles ba ON b.key_books = ba.key_books
+	  LEFT JOIN articles a ON ba.key_articles = a.key_articles
+	  GROUP BY b.key_books
+	  ORDER BY b.entry_date_time DESC 
+	  LIMIT $limit OFFSET $offset";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
       echo "<tr>
@@ -43,11 +50,33 @@
         </td>
       </tr>";
     }
+	
+	$countResult = $conn->query("SELECT COUNT(*) AS total FROM books");
+	$totalRecords = $countResult->fetch_assoc()['total'];
+	$totalPages = ceil($totalRecords / $limit);
+	
     ?>
   </tbody>
 </table>
 
-<div id="assign-modal" style="display:none;"></div>
+
+
+<!-- Pager -->
+<div style="margin-top:20px;">
+  <?php if ($page > 1): ?>
+    <a href="?page=<?php echo $page - 1; ?>">⬅ Prev</a>
+  <?php endif; ?>
+
+  Page <?php echo $page; ?> of <?php echo $totalPages; ?>
+
+  <?php if ($page < $totalPages): ?>
+    <a href="?page=<?php echo $page + 1; ?>">Next ➡</a>
+  <?php endif; ?>
+</div>
+
+
+
+
 
 
 <!-- Modal Form — add / edit -->

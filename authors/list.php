@@ -17,7 +17,13 @@
   </thead>
   <tbody>
     <?php
-    $sql = "SELECT * FROM authors ORDER BY entry_date_time DESC";
+	
+	$limit = 10; // authors per page
+	$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+	$offset = ($page - 1) * $limit;
+
+	
+    $sql = "SELECT * FROM authors ORDER BY entry_date_time DESC LIMIT $limit OFFSET $offset";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
       echo "<tr>
@@ -32,9 +38,28 @@
         </td>
       </tr>";
     }
+
+	$countResult = $conn->query("SELECT COUNT(*) AS total FROM authors");
+	$totalRecords = $countResult->fetch_assoc()['total'];
+	$totalPages = ceil($totalRecords / $limit);
+	
     ?>
   </tbody>
 </table>
+
+
+<!-- Pager -->
+<div style="margin-top:20px;">
+  <?php if ($page > 1): ?>
+    <a href="?page=<?php echo $page - 1; ?>">⬅ Prev</a>
+  <?php endif; ?>
+
+  Page <?php echo $page; ?> of <?php echo $totalPages; ?>
+
+  <?php if ($page < $totalPages): ?>
+    <a href="?page=<?php echo $page + 1; ?>">Next ➡</a>
+  <?php endif; ?>
+</div>
 
 <!-- Modal Form -->
 <div id="modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);

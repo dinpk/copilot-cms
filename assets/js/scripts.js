@@ -18,6 +18,7 @@ function editItem(id, endpoint, fields) {
       });
       document.getElementById('modal').style.display = "block";
     });
+	document.getElementById("parent_id").value = data.parent_id;
 }
 
 function closeModal() {
