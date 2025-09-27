@@ -1,25 +1,14 @@
-<?php include '../db.php';
+<?php
+include '../db.php';
 
-$book_id = intval($_GET['book']);
-$query = trim($_GET['q']);
-$assigned = [];
+$q = $conn->real_escape_string($_GET['q'] ?? '');
+$book_id = intval($_GET['book_id']);
 
-$res = $conn->query("SELECT key_articles FROM book_articles WHERE key_books = $book_id");
-while ($row = $res->fetch_assoc()) {
-  $assigned[] = $row['key_articles'];
-}
+$result = $conn->query("SELECT key_articles, title FROM articles
+  WHERE MATCH(title, title_sub,content_type, categories, article_snippet, article_content) AGAINST ('$q*' IN BOOLEAN MODE)
+  AND key_articles NOT IN (SELECT key_articles FROM book_articles WHERE key_books = $book_id)
+  LIMIT 10");
 
-$sql = "SELECT key_articles, title FROM articles WHERE title LIKE ? ORDER BY sort ASC LIMIT 50";
-$stmt = $conn->prepare($sql);
-$search = "%$query%";
-$stmt->bind_param("s", $search);
-$stmt->execute();
-$result = $stmt->get_result();
-
-while ($a = $result->fetch_assoc()) {
-  $checked = in_array($a['key_articles'], $assigned) ? 'checked' : '';
-  echo "<label class='article-item'>
-    <input type='checkbox' name='key_articles[]' value='{$a['key_articles']}' $checked>
-    " . htmlspecialchars($a['title']) . "
-  </label><br>";
-}
+$articles = $result->fetch_all(MYSQLI_ASSOC);
+echo json_encode($articles);
+?>

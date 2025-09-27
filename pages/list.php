@@ -2,7 +2,12 @@
 <?php include '../layout.php'; ?>
 <?php startLayout("Pages List"); ?>
 
-<a href="#" onclick="openModal()">➕ Add New Page</a>
+<p><a href="#" onclick="openModal()">➕ Add New Page</a></p>
+
+<form method="get" style="margin-bottom:20px;">
+  <input type="text" name="q" placeholder="Search pages..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
+  <input type="submit" value="Search">
+</form>
 
 <table>
   <thead>
@@ -15,7 +20,13 @@
   </thead>
   <tbody>
     <?php
-    $sql = "SELECT * FROM pages ORDER BY entry_date_time DESC";
+	$q = $_GET['q'] ?? '';
+	$q = $conn->real_escape_string($q);
+    $sql = "SELECT * FROM pages";
+	if ($q !== '') {
+	  $sql .= " WHERE MATCH(title, page_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+	}
+	$sql .= " ORDER BY entry_date_time DESC";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
       echo "<tr>

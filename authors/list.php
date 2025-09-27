@@ -2,7 +2,12 @@
 <?php include '../layout.php'; ?>
 <?php startLayout("Authors List"); ?>
 
-<a href="#" onclick="openModal()">➕ Add New Author</a>
+<p><a href="#" onclick="openModal()">➕ Add New Author</a></p>
+
+<form method="get" style="margin-bottom:20px;">
+  <input type="text" name="q" placeholder="Search authors..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
+  <input type="submit" value="Search">
+</form>
 
 <table>
   <thead>
@@ -22,8 +27,15 @@
 	$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 	$offset = ($page - 1) * $limit;
 
+	// search
+	$q = $_GET['q'] ?? '';
+	$q = $conn->real_escape_string($q);
 	
-    $sql = "SELECT * FROM authors ORDER BY entry_date_time DESC LIMIT $limit OFFSET $offset";
+    $sql = "SELECT * FROM authors";
+	if ($q !== '') {
+	  $sql .= " WHERE MATCH(name,description,city,country,state) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+	}
+	$sql .= " ORDER BY entry_date_time DESC LIMIT $limit OFFSET $offset";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
       echo "<tr>
@@ -39,9 +51,13 @@
       </tr>";
     }
 
-	$countResult = $conn->query("SELECT COUNT(*) AS total FROM authors");
-	$totalRecords = $countResult->fetch_assoc()['total'];
-	$totalPages = ceil($totalRecords / $limit);
+	$countSql = "SELECT COUNT(*) AS total FROM authors";
+	if ($q !== '') {
+	  $countSql .= " WHERE MATCH(name,description,city,country,state) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+	}
+	$countResult = $conn->query($countSql);
+	$totalArticles = $countResult->fetch_assoc()['total'];
+	$totalPages = ceil($totalArticles / $limit);
 	
     ?>
   </tbody>
@@ -51,13 +67,13 @@
 <!-- Pager -->
 <div style="margin-top:20px;">
   <?php if ($page > 1): ?>
-    <a href="?page=<?php echo $page - 1; ?>">⬅ Prev</a>
+    <a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>">⬅ Prev</a>
   <?php endif; ?>
 
   Page <?php echo $page; ?> of <?php echo $totalPages; ?>
 
   <?php if ($page < $totalPages): ?>
-    <a href="?page=<?php echo $page + 1; ?>">Next ➡</a>
+    <a href="?page=<?php echo $page + 1; ?>&q=<?php echo urlencode($q); ?>">Next ➡</a>
   <?php endif; ?>
 </div>
 

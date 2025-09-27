@@ -18,7 +18,7 @@ h2 {
 /* Layout */
 .container {
   display: flex;
-  max-width: 960px;
+  max-width: 96%;
   margin: 40px auto;
   background: #fff;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);

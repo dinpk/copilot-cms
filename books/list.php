@@ -2,8 +2,12 @@
 <?php include '../layout.php'; ?>
 <?php startLayout("Books List"); ?>
 
-<a href="#" onclick="openModal()">➕ Add New Book</a>
+<p><a href="#" onclick="openModal()">➕ Add New Book</a></p>
 
+<form method="get" style="margin-bottom:20px;">
+  <input type="text" name="q" placeholder="Search books..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
+  <input type="submit" value="Search">
+</form>
 
 <table>
   <thead>
@@ -13,7 +17,6 @@
       <th>Publisher</th>
       <th>Year</th>
       <th>Status</th>
-	  <th>Assigned Articles</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -24,15 +27,14 @@
 	$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 	$offset = ($page - 1) * $limit;
 	
-	
-    $sql = "SELECT b.*, 
-	  GROUP_CONCAT(a.title SEPARATOR ', ') AS assigned_articles
-	  FROM books b
-	  LEFT JOIN book_articles ba ON b.key_books = ba.key_books
-	  LEFT JOIN articles a ON ba.key_articles = a.key_articles
-	  GROUP BY b.key_books
-	  ORDER BY b.entry_date_time DESC 
-	  LIMIT $limit OFFSET $offset";
+	// search
+	$q = $_GET['q'] ?? '';
+	$q = $conn->real_escape_string($q);
+	$sql = "SELECT * FROM books";
+	if ($q !== '') {
+	  $sql .= " WHERE MATCH(title,subtitle,publisher,description,author_name) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+	}
+	$sql .= " ORDER BY sort ASC, key_books DESC LIMIT $limit OFFSET $offset";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
       echo "<tr>
@@ -41,7 +43,6 @@
         <td>{$row['publisher']}</td>
         <td>{$row['publish_year']}</td>
         <td>{$row['status']}</td>
-		<td>" . htmlspecialchars($row['assigned_articles'] ?? '—') . "</td>
         <td>
           <a href='#' onclick='editItem({$row['key_books']}, \"get_book.php\", [\"title\",\"subtitle\",\"description\",\"cover_image_url\",\"url\",\"author_name\",\"publisher\",\"publish_year\",\"status\"])'>Edit</a> |
           <a href='delete.php?id={$row['key_books']}' onclick='return confirm(\"Delete this book?\")'>Delete</a> | 
@@ -51,9 +52,14 @@
       </tr>";
     }
 	
-	$countResult = $conn->query("SELECT COUNT(*) AS total FROM books");
-	$totalRecords = $countResult->fetch_assoc()['total'];
-	$totalPages = ceil($totalRecords / $limit);
+	// count records for pager
+	$countSql = "SELECT COUNT(*) AS total FROM books";
+	if ($q !== '') {
+	  $countSql .= " WHERE MATCH(title,subtitle,publisher,description,author_name) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+	}
+	$countResult = $conn->query($countSql);
+	$totalArticles = $countResult->fetch_assoc()['total'];
+	$totalPages = ceil($totalArticles / $limit);
 	
     ?>
   </tbody>
@@ -102,12 +108,17 @@
 
 
 <!-- Modal Form — assign articles -->
-<div id="assign-modal" style="display:none;">
-  <h3>Assign Articles to Book</h3>
-  <input type="text" id="search" placeholder="Search articles...">
-  <div id="article-list"></div>
-  <button onclick="saveAssignments()">Save</button>
-  <button onclick="closeModal()">Cancel</button>
+<div id="assign-modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
+  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;">
+  <h3 id="assign-modal-title">Assign Articles to Book</h3>
+
+  <form id="assign-form" method="post" action="assign_articles.php">
+    <input type="hidden" name="key_books" id="assign_book_id">
+    <input type="text" id="article_search" placeholder="Search articles..." oninput="filterArticles()"><br><br>
+    <div id="article-list" style="max-height:300px; overflow-y:auto;"></div>
+    <input type="submit" value="Save">
+    <button type="button" onclick="closeAssignModal()">Cancel</button>
+  </form>
 </div>
 
 

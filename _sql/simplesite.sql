@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 25, 2025 at 04:15 PM
+-- Generation Time: Sep 27, 2025 at 01:35 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -50,32 +50,56 @@ CREATE TABLE IF NOT EXISTS `articles` (
 --
 
 INSERT INTO `articles` (`key_articles`, `title`, `title_sub`, `article_snippet`, `article_content`, `content_type`, `url`, `banner_image_url`, `sort`, `categories`, `status`, `entry_date_time`, `update_date_time`) VALUES
-(1, 'Hello Worlds', 'sub title', ' snippet', 'content', 'article', 'my-url', '', 0, '', 'pm', '2025-09-23 20:14:17', '2025-09-24 03:57:19'),
-(2, 'The Rise of Minimal CMS', 'Streamlined Editorial Tools', 'Exploring how minimal CMS platforms empower editorial teams.', 'Full content of article 1...', 'article', 'minimal-cms', 'banner1.jpg', 1, 'Tech,Editorial', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(3, 'Designing for Editors', 'UI That Works', 'Why editorial-first design matters in publishing workflows.', 'Full content of article 2...', 'article', 'editorial-ui', 'banner2.jpg', 2, 'Design,Editorial', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(4, 'PHP Without Frameworks', 'Native Power', 'Building robust apps with native PHP and no frameworks.', 'Full content of article 3...', 'article', 'php-native', 'banner3.jpg', 3, 'Tech,Backend', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(5, 'Modular CRUD Systems', 'Scalable Architecture', 'How modular CRUD design improves maintainability.', 'Full content of article 4...', 'article', 'modular-crud', 'banner4.jpg', 4, 'Tech,Architecture', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(6, 'Debounce in Search', 'Performance Boosts', 'Using debounce to optimize search-triggered loading.', 'Full content of article 5...', 'article', 'debounce-search', 'banner5.jpg', 5, 'Tech,UX', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(7, 'Pagination Patterns', 'Smart Loading', 'Best practices for implementing pagination in CMS.', 'Full content of article 6...', 'article', 'pagination-patterns', 'banner6.jpg', 6, 'Tech,UX', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(8, 'Editorial Workflows', 'From Draft to Publish', 'Mapping out efficient editorial workflows.', 'Full content of article 7...', 'article', 'editorial-workflows', 'banner7.jpg', 7, 'Editorial,Workflow', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(9, 'Category Management', 'Organized Content', 'Tips for managing categories in publishing systems.', 'Full content of article 8...', 'article', 'category-management', 'banner8.jpg', 8, 'Editorial,Structure', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(10, 'Modal-Based Editing', 'Inline Efficiency', 'Using modals for quick article edits.', 'Full content of article 9...', 'article', 'modal-editing', 'banner9.jpg', 9, 'UX,Editorial', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(11, 'Search Optimization', 'Fast & Relevant', 'Improving search relevance and speed.', 'Full content of article 10...', 'article', 'search-optimization', 'banner10.jpg', 10, 'Tech,Search', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(12, 'Legacy CMS Refactor', 'Modernizing Systems', 'Strategies for refactoring legacy CMS platforms.', 'Full content of article 11...', 'article', 'legacy-refactor', 'banner11.jpg', 11, 'Tech,Legacy', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(13, 'Content Snippets', 'Reusable Blocks', 'Creating reusable content snippets.', 'Full content of article 12...', 'article', 'content-snippets', 'banner12.jpg', 12, 'Editorial,Blocks', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(14, 'Desktop-Only UI', 'Focused Design', 'Why desktop-first UI still matters.', 'Full content of article 13...', 'article', 'desktop-ui', 'banner13.jpg', 13, 'Design,UX', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(15, 'Error Reporting in PHP', 'Debugging Smartly', 'Enabling error reporting for better debugging.', 'Full content of article 14...', 'article', 'php-errors', 'banner14.jpg', 14, 'Tech,Debugging', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(16, 'SQL Troubleshooting', 'Root Cause Isolation', 'Finding and fixing SQL issues.', 'Full content of article 15...', 'article', 'sql-troubleshooting', 'banner15.jpg', 15, 'Tech,Database', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(17, 'Advanced Filters', 'Precision Tools', 'Adding advanced filters to editorial tools.', 'Full content of article 16...', 'article', 'advanced-filters', 'banner16.jpg', 16, 'UX,Editorial', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(18, 'Scalable CMS Design', 'Future-Proofing', 'Designing CMS for long-term scalability.', 'Full content of article 17...', 'article', 'scalable-cms', 'banner17.jpg', 17, 'Tech,Architecture', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(19, 'Collaborative Development', 'Step-by-Step Builds', 'Working with feedback-driven development.', 'Full content of article 18...', 'article', 'collab-dev', 'banner18.jpg', 18, 'Workflow,Team', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(20, 'Clean Code Practices', 'Maintainable Systems', 'Writing clean, maintainable PHP.', 'Full content of article 19...', 'article', 'clean-code', 'banner19.jpg', 19, 'Tech,Coding', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(21, 'UI Feedback Loops', 'Iterative Design', 'Using feedback to refine UI.', 'Full content of article 20...', 'article', 'ui-feedback', 'banner20.jpg', 20, 'UX,Design', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(22, 'CMS Testing Strategies', 'Catch the Bugs', 'Testing CMS workflows effectively.', 'Full content of article 21...', 'article', 'cms-testing', 'banner21.jpg', 21, 'Tech,QA', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(23, 'Content Assignment UX', 'Frictionless Flow', 'Improving article assignment UX.', 'Full content of article 22...', 'article', 'assignment-ux', 'banner22.jpg', 22, 'UX,Editorial', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(24, 'Banner Image Tips', 'Visual Impact', 'Choosing effective banner images.', 'Full content of article 23...', 'article', 'banner-tips', 'banner23.jpg', 23, 'Design,Visuals', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(25, 'URL Structuring', 'SEO & Clarity', 'Structuring article URLs for clarity and SEO.', 'Full content of article 24...', 'article', 'url-structure', 'banner24.jpg', 24, 'Tech,SEO', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
-(26, 'CMS Entry Points', 'Where It Begins', 'Designing intuitive entry points for editors.', 'Full content of article 25...', 'article', 'cms-entry', 'banner25.jpg', 25, 'UX,Editorial', 'pub', '2025-09-25 15:13:08', '2025-09-25 15:13:08');
+(1, 'Hello Worlds', 'sub title', ' snippet', 'content', 'article', 'my-url', '', 0, '', 'on', '2025-09-23 20:14:17', '2025-09-24 03:57:19'),
+(2, 'The Rise of Minimal CMS', 'Streamlined Editorial Tools', 'Exploring how minimal CMS platforms empower editorial teams.', 'Full content of article 1...', 'article', 'minimal-cms', 'banner1.jpg', 1, 'Tech,Editorial', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(3, 'Designing for Editors', 'UI That Works', 'Why editorial-first design matters in publishing workflows.', 'Full content of article 2 3 4', 'article', 'editorial-ui', 'banner2.jpg', 2, 'Design,Editorial', 'on', '2025-09-25 15:13:08', '2025-09-27 12:05:22'),
+(4, 'PHP Without Frameworks', 'Native Power', 'Building robust apps with native PHP and no frameworks.', 'Full content of article 3...', 'article', 'php-native', 'banner3.jpg', 3, 'Tech,Backend', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(5, 'Modular CRUD Systems', 'Scalable Architecture', 'How modular CRUD design improves maintainability.', 'Full content of article 4...', 'article', 'modular-crud', 'banner4.jpg', 4, 'Tech,Architecture', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(6, 'Debounce in Search', 'Performance Boosts', 'Using debounce to optimize search-triggered loading.', 'Full content of article 5...', 'article', 'debounce-search', 'banner5.jpg', 5, 'Tech,UX', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(7, 'Pagination Patterns', 'Smart Loading', 'Best practices for implementing pagination in CMS.', 'Full content of article 6...', 'article', 'pagination-patterns', 'banner6.jpg', 6, 'Tech,UX', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(8, 'Editorial Workflows', 'From Draft to Publish', 'Mapping out efficient editorial workflows.', 'Full content of article 7...', 'article', 'editorial-workflows', 'banner7.jpg', 7, 'Editorial,Workflow', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(9, 'Category Management', 'Organized Content', 'Tips for managing categories in publishing systems.', 'Full content of article 8...', 'article', 'category-management', 'banner8.jpg', 8, 'Editorial,Structure', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(10, 'Modal-Based Editing', 'Inline Efficiency', 'Using modals for quick article edits.', 'Full content of article 9...', 'article', 'modal-editing', 'banner9.jpg', 9, 'UX,Editorial', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(11, 'Search Optimization', 'Fast & Relevant', 'Improving search relevance and speed.', 'Full content of article 10...', 'article', 'search-optimization', 'banner10.jpg', 10, 'Tech,Search', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(12, 'Legacy CMS Refactor', 'Modernizing Systems', 'Strategies for refactoring legacy CMS platforms.', 'Full content of article 11...', 'article', 'legacy-refactor', 'banner11.jpg', 11, 'Tech,Legacy', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(13, 'Content Snippets', 'Reusable Blocks', 'Creating reusable content snippets.', 'Full content of article 12...', 'article', 'content-snippets', 'banner12.jpg', 12, 'Editorial,Blocks', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(14, 'Desktop-Only UI', 'Focused Design', 'Why desktop-first UI still matters.', 'Full content of article 13...', 'article', 'desktop-ui', 'banner13.jpg', 13, 'Design,UX', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(15, 'Error Reporting in PHP', 'Debugging Smartly', 'Enabling error reporting for better debugging.', 'Full content of article 14...', 'article', 'php-errors', 'banner14.jpg', 14, 'Tech,Debugging', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(16, 'SQL Troubleshooting', 'Root Cause Isolation', 'Finding and fixing SQL issues.', 'Full content of article 15...', 'article', 'sql-troubleshooting', 'banner15.jpg', 15, 'Tech,Database', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(17, 'Advanced Filters', 'Precision Tools', 'Adding advanced filters to editorial tools.', 'Full content of article 16...', 'article', 'advanced-filters', 'banner16.jpg', 16, 'UX,Editorial', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(18, 'Scalable CMS Design', 'Future-Proofing', 'Designing CMS for long-term scalability.', 'Full content of article 17...', 'article', 'scalable-cms', 'banner17.jpg', 17, 'Tech,Architecture', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(19, 'Collaborative Development', 'Step-by-Step Builds', 'Working with feedback-driven development.', 'Full content of article 18...', 'article', 'collab-dev', 'banner18.jpg', 18, 'Workflow,Team', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(20, 'Clean Code Practices', 'Maintainable Systems', 'Writing clean, maintainable PHP.', 'Full content of article 19...', 'article', 'clean-code', 'banner19.jpg', 19, 'Tech,Coding', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(21, 'UI Feedback Loops', 'Iterative Design', 'Using feedback to refine UI.', 'Full content of article 20...', 'article', 'ui-feedback', 'banner20.jpg', 20, 'UX,Design', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(22, 'CMS Testing Strategies', 'Catch the Bugs', 'Testing CMS workflows effectively.', 'Full content of article 21...', 'article', 'cms-testing', 'banner21.jpg', 21, 'Tech,QA', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(23, 'Content Assignment UX', 'Frictionless Flow', 'Improving article assignment UX.', 'Full content of article 22...', 'article', 'assignment-ux', 'banner22.jpg', 22, 'UX,Editorial', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(24, 'Banner Image Tips', 'Visual Impact', 'Choosing effective banner images.', 'Full content of article 23...', 'article', 'banner-tips', 'banner23.jpg', 23, 'Design,Visuals', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(25, 'URL Structuring', 'SEO & Clarity', 'Structuring article URLs for clarity and SEO.', 'Full content of article 24...', 'article', 'url-structure', 'banner24.jpg', 24, 'Tech,SEO', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08'),
+(26, 'CMS Entry Points', 'Where It Begins', 'Designing intuitive entry points for editors.', 'Full content of article 25...', 'article', 'cms-entry', 'banner25.jpg', 25, 'UX,Editorial', 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `article_authors`
+--
+
+DROP TABLE IF EXISTS `article_authors`;
+CREATE TABLE IF NOT EXISTS `article_authors` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key_articles` int(10) UNSIGNED NOT NULL,
+  `key_authors` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `key_articles` (`key_articles`),
+  KEY `key_authors` (`key_authors`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `article_authors`
+--
+
+INSERT INTO `article_authors` (`id`, `key_articles`, `key_authors`) VALUES
+(2, 8, 8),
+(3, 8, 6);
 
 -- --------------------------------------------------------
 
@@ -111,16 +135,16 @@ CREATE TABLE IF NOT EXISTS `authors` (
 
 INSERT INTO `authors` (`key_authors`, `name`, `email`, `phone`, `website`, `url`, `social_url_media1`, `social_url_media2`, `social_url_media3`, `city`, `state`, `country`, `image_url`, `description`, `status`, `entry_date_time`, `update_date_time`) VALUES
 (1, 'My First Author', 'ndin.pk@gmail.com', '571-247-7818', 'https://techurdu.org', 'ndin-pk', '', '', '', 'Gujranwala', 'Punjab', 'Pakistan', '', '', 'on', '2025-09-24 13:43:17', '2025-09-24 13:45:54'),
-(2, 'Amina Siddiqui', 'amina@contenthub.pk', '0300-1234567', 'https://aminasiddiqui.com', 'amina-siddiqui', 'https://twitter.com/aminasiddiqui', 'https://linkedin.com/in/aminasiddiqui', '', 'Karachi', 'Sindh', 'Pakistan', 'amina.jpg', 'Amina writes on digital culture and editorial ethics.', 'pub', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
-(3, 'Bilal Khan', 'bilal@techscribe.io', '0312-9876543', 'https://bilalkhan.dev', 'bilal-khan', 'https://github.com/bilalkhan', '', '', 'Lahore', 'Punjab', 'Pakistan', 'bilal.jpg', 'Bilal specializes in backend systems and CMS architecture.', 'pub', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
-(4, 'Sana Raza', 'sana@designjournal.org', '0333-1122334', 'https://sanaraza.art', 'sana-raza', 'https://instagram.com/sanaraza', 'https://behance.net/sanaraza', '', 'Islamabad', 'Capital', 'Pakistan', 'sana.jpg', 'Sana explores editorial design and user experience.', 'pub', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
-(5, 'Imran Qureshi', 'imran@datawrite.net', '0345-9988776', 'https://imranqureshi.net', 'imran-qureshi', 'https://twitter.com/imranqureshi', '', '', 'Multan', 'Punjab', 'Pakistan', 'imran.jpg', 'Imran writes about data-driven journalism and content strategy.', 'pub', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
-(6, 'Nida Farooq', 'nida@storycraft.pk', '0301-5566778', 'https://nidafarooq.com', 'nida-farooq', 'https://facebook.com/nidafarooq', 'https://linkedin.com/in/nidafarooq', '', 'Peshawar', 'KPK', 'Pakistan', 'nida.jpg', 'Nida focuses on narrative building and editorial workflows.', 'pub', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
-(7, 'Tariq Mehmood', 'tariq@codepen.pk', '0322-3344556', 'https://tariqmehmood.dev', 'tariq-mehmood', 'https://github.com/tariqmehmood', '', '', 'Faisalabad', 'Punjab', 'Pakistan', 'tariq.jpg', 'Tariq contributes on PHP optimization and modular design.', 'pub', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
-(8, 'Hina Javed', 'hina@uxpress.io', '0309-7788990', 'https://hinajaved.com', 'hina-javed', 'https://dribbble.com/hinajaved', 'https://linkedin.com/in/hinajaved', '', 'Rawalpindi', 'Punjab', 'Pakistan', 'hina.jpg', 'Hina writes about UX patterns and editorial tooling.', 'pub', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
-(9, 'Zeeshan Ali', 'zeeshan@devjournal.pk', '0315-6677889', 'https://zeeshanali.dev', 'zeeshan-ali', 'https://twitter.com/zeeshanali', '', '', 'Hyderabad', 'Sindh', 'Pakistan', 'zeeshan.jpg', 'Zeeshan covers CMS performance and SQL tuning.', 'pub', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
-(10, 'Fatima Noor', 'fatima@contentgrid.io', '0331-4455667', 'https://fatimanoor.com', 'fatima-noor', 'https://instagram.com/fatimanoor', 'https://linkedin.com/in/fatimanoor', '', 'Quetta', 'Balochistan', 'Pakistan', 'fatima.jpg', 'Fatima writes on editorial workflows and content curation.', 'pub', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
-(11, 'Usman Rafiq', 'usman@editorialtech.pk', '0340-2233445', 'https://usmanrafiq.dev', 'usman-rafiq', 'https://github.com/usmanrafiq', '', '', 'Sialkot', 'Punjab', 'Pakistan', 'usman.jpg', 'Usman focuses on scalable CMS and editorial automation.', 'pub', '2025-09-25 15:19:51', '2025-09-25 15:19:51');
+(2, 'Amina Siddiqui', 'amina@contenthub.pk', '0300-1234567', 'https://aminasiddiqui.com', 'amina-siddiqui', 'https://twitter.com/aminasiddiqui', 'https://linkedin.com/in/aminasiddiqui', '', 'Karachi', 'Sindh', 'Pakistan', 'amina.jpg', 'Amina writes on digital culture and editorial ethics.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
+(3, 'Bilal Khan', 'bilal@techscribe.io', '0312-9876543', 'https://bilalkhan.dev', 'bilal-khan', 'https://github.com/bilalkhan', '', '', 'Lahore', 'Punjab', 'Pakistan', 'bilal.jpg', 'Bilal specializes in backend systems and CMS architecture.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
+(4, 'Sana Raza', 'sana@designjournal.org', '0333-1122334', 'https://sanaraza.art', 'sana-raza', 'https://instagram.com/sanaraza', 'https://behance.net/sanaraza', '', 'Islamabad', 'Capital', 'Pakistan', 'sana.jpg', 'Sana explores editorial design and user experience.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
+(5, 'Imran Qureshi', 'imran@datawrite.net', '0345-9988776', 'https://imranqureshi.net', 'imran-qureshi', 'https://twitter.com/imranqureshi', '', '', 'Multan', 'Punjab', 'Pakistan', 'imran.jpg', 'Imran writes about data-driven journalism and content strategy.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
+(6, 'Nida Farooq', 'nida@storycraft.pk', '0301-5566778', 'https://nidafarooq.com', 'nida-farooq', 'https://facebook.com/nidafarooq', 'https://linkedin.com/in/nidafarooq', '', 'Peshawar', 'KPK', 'Pakistan', 'nida.jpg', 'Nida focuses on narrative building and editorial workflows.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
+(7, 'Tariq Mehmood', 'tariq@codepen.pk', '0322-3344556', 'https://tariqmehmood.dev', 'tariq-mehmood', 'https://github.com/tariqmehmood', '', '', 'Faisalabad', 'Punjab', 'Pakistan', 'tariq.jpg', 'Tariq contributes on PHP optimization and modular design.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
+(8, 'Hina Javed', 'hina@uxpress.io', '0309-7788990', 'https://hinajaved.com', 'hina-javed', 'https://dribbble.com/hinajaved', 'https://linkedin.com/in/hinajaved', '', 'Rawalpindi', 'Punjab', 'Pakistan', 'hina.jpg', 'Hina writes about UX patterns and editorial tooling.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
+(9, 'Zeeshan Ali', 'zeeshan@devjournal.pk', '0315-6677889', 'https://zeeshanali.dev', 'zeeshan-ali', 'https://twitter.com/zeeshanali', '', '', 'Hyderabad', 'Sindh', 'Pakistan', 'zeeshan.jpg', 'Zeeshan covers CMS performance and SQL tuning.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
+(10, 'Fatima Noor', 'fatima@contentgrid.io', '0331-4455667', 'https://fatimanoor.com', 'fatima-noor', 'https://instagram.com/fatimanoor', 'https://linkedin.com/in/fatimanoor', '', 'Quetta', 'Balochistan', 'Pakistan', 'fatima.jpg', 'Fatima writes on editorial workflows and content curation.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51'),
+(11, 'Usman Rafiq', 'usman@editorialtech.pk', '0340-2233445', 'https://usmanrafiq.dev', 'usman-rafiq', 'https://github.com/usmanrafiq', '', '', 'Sialkot', 'Punjab', 'Pakistan', 'usman.jpg', 'Usman focuses on scalable CMS and editorial automation.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51');
 
 -- --------------------------------------------------------
 
@@ -182,21 +206,21 @@ CREATE TABLE IF NOT EXISTS `books` (
 --
 
 INSERT INTO `books` (`key_books`, `title`, `subtitle`, `description`, `cover_image_url`, `url`, `author_name`, `publisher`, `publish_year`, `isbn`, `status`, `sort`, `entry_date_time`, `update_date_time`) VALUES
-(2, 'Designing Editorial Systems', 'Workflow & UX', 'A guide to building editorial systems that balance structure with usability.', 'cover1.jpg', 'designing-editorial-systems', 'Amina Siddiqui', 'ContentHub Press', '2021', '978-969-0010011', 'pub', 1, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(3, 'PHP for Publishers', 'Backend Essentials', 'Explores PHP techniques tailored for publishing platforms.', 'cover2.jpg', 'php-for-publishers', 'Bilal Khan', 'TechScribe Books', '2020', '978-969-0010012', 'pub', 2, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(4, 'Modular CMS Architecture', 'Scalable Design', 'Strategies for designing modular, maintainable CMS systems.', 'cover3.jpg', 'modular-cms-architecture', 'Tariq Mehmood', 'CodePen Publishing', '2022', '978-969-0010013', 'pub', 3, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(5, 'Editorial UX Patterns', 'Designing for Editors', 'Patterns and principles for editorial-first user interfaces.', 'cover4.jpg', 'editorial-ux-patterns', 'Sana Raza', 'DesignJournal Books', '2021', '978-969-0010014', 'pub', 4, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(6, 'CMS Debugging Handbook', 'Troubleshooting PHP & SQL', 'A practical guide to debugging CMS workflows.', 'cover5.jpg', 'cms-debugging-handbook', 'Imran Qureshi', 'DataWrite Publishing', '2019', '978-969-0010015', 'pub', 5, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(7, 'Content Strategy in Practice', 'Editorial Planning', 'Real-world strategies for content planning and execution.', 'cover6.jpg', 'content-strategy-practice', 'Nida Farooq', 'StoryCraft Books', '2023', '978-969-0010016', 'pub', 6, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(8, 'Scalable Publishing Systems', 'Future-Proof CMS', 'Designing CMS platforms that grow with editorial needs.', 'cover7.jpg', 'scalable-publishing-systems', 'Usman Rafiq', 'EditorialTech Press', '2022', '978-969-0010017', 'pub', 7, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(9, 'Clean Code for Editors', 'Maintainable PHP', 'Writing clean, maintainable code for editorial tools.', 'cover8.jpg', 'clean-code-editors', 'Bilal Khan', 'TechScribe Books', '2021', '978-969-0010018', 'pub', 8, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(10, 'Visual Content Design', 'Banner & Layouts', 'Designing impactful visuals for editorial platforms.', 'cover9.jpg', 'visual-content-design', 'Hina Javed', 'UXPress Publishing', '2020', '978-969-0010019', 'pub', 9, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(11, 'Advanced CMS Filters', 'Precision Tools', 'Implementing advanced filters for editorial workflows.', 'cover10.jpg', 'advanced-cms-filters', 'Zeeshan Ali', 'DevJournal Books', '2023', '978-969-0010020', 'pub', 10, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(12, 'Narrative Building', 'Storytelling in Publishing', 'Techniques for building compelling editorial narratives.', 'cover11.jpg', 'narrative-building', 'Fatima Noor', 'ContentGrid Press', '2021', '978-969-0010021', 'pub', 11, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(13, 'SEO for Editorial Teams', 'URL & Structure', 'Optimizing editorial content for search engines.', 'cover12.jpg', 'seo-editorial-teams', 'Usman Rafiq', 'EditorialTech Press', '2020', '978-969-0010022', 'pub', 12, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(14, 'CMS Testing Toolkit', 'QA for Editors', 'Testing strategies for editorial CMS workflows.', 'cover13.jpg', 'cms-testing-toolkit', 'Imran Qureshi', 'DataWrite Publishing', '2022', '978-969-0010023', 'pub', 13, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(15, 'Collaborative Publishing', 'Team-Based CMS', 'Building CMS systems for collaborative editorial teams.', 'cover14.jpg', 'collaborative-publishing', 'Nida Farooq', 'StoryCraft Books', '2023', '978-969-0010024', 'pub', 14, '2025-09-25 15:23:27', '2025-09-25 15:23:27'),
-(16, 'Desktop-First UI Design', 'Focused Editorial Tools', 'Why desktop-first design still matters in publishing.', 'cover15.jpg', 'desktop-ui-design', 'Sana Raza', 'DesignJournal Books', '2021', '978-969-0010025', 'pub', 15, '2025-09-25 15:23:27', '2025-09-25 15:23:27');
+(2, 'Designing Editorial Systems', 'Workflow & UX', 'A guide to building editorial systems that balance structure with usability.', 'cover1.jpg', 'designing-editorial-systems', 'Amina Siddiqui', 'ContentHub Press', '2021', '978-969-0010011', 'on', 1, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(3, 'PHP for Publishers', 'Backend Essentials', 'Explores PHP techniques tailored for publishing platforms.', 'cover2.jpg', 'php-for-publishers', 'Bilal Khan', 'TechScribe Books', '2020', '978-969-0010012', 'on', 2, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(4, 'Modular CMS Architecture', 'Scalable Design', 'Strategies for designing modular, maintainable CMS systems.', 'cover3.jpg', 'modular-cms-architecture', 'Tariq Mehmood', 'CodePen Publishing', '2022', '978-969-0010013', 'on', 3, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(5, 'Editorial UX Patterns', 'Designing for Editors', 'Patterns and principles for editorial-first user interfaces.', 'cover4.jpg', 'editorial-ux-patterns', 'Sana Raza', 'DesignJournal Books', '2021', '978-969-0010014', 'on', 4, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(6, 'CMS Debugging Handbook', 'Troubleshooting PHP & SQL', 'A practical guide to debugging CMS workflows.', 'cover5.jpg', 'cms-debugging-handbook', 'Imran Qureshi', 'DataWrite Publishing', '2019', '978-969-0010015', 'on', 5, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(7, 'Content Strategy in Practice', 'Editorial Planning', 'Real-world strategies for content planning and execution.', 'cover6.jpg', 'content-strategy-practice', 'Nida Farooq', 'StoryCraft Books', '2023', '978-969-0010016', 'on', 6, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(8, 'Scalable Publishing Systems', 'Future-Proof CMS', 'Designing CMS platforms that grow with editorial needs.', 'cover7.jpg', 'scalable-publishing-systems', 'Usman Rafiq', 'EditorialTech Press', '2022', '978-969-0010017', 'on', 7, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(9, 'Clean Code for Editors', 'Maintainable PHP', 'Writing clean, maintainable code for editorial tools.', 'cover8.jpg', 'clean-code-editors', 'Bilal Khan', 'TechScribe Books', '2021', '978-969-0010018', 'on', 8, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(10, 'Visual Content Design', 'Banner & Layouts', 'Designing impactful visuals for editorial platforms.', 'cover9.jpg', 'visual-content-design', 'Hina Javed', 'UXPress Publishing', '2020', '978-969-0010019', 'on', 9, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(11, 'Advanced CMS Filters', 'Precision Tools', 'Implementing advanced filters for editorial workflows.', 'cover10.jpg', 'advanced-cms-filters', 'Zeeshan Ali', 'DevJournal Books', '2023', '978-969-0010020', 'on', 10, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(12, 'Narrative Building', 'Storytelling in Publishing', 'Techniques for building compelling editorial narratives.', 'cover11.jpg', 'narrative-building', 'Fatima Noor', 'ContentGrid Press', '2021', '978-969-0010021', 'on', 11, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(13, 'SEO for Editorial Teams', 'URL & Structure', 'Optimizing editorial content for search engines.', 'cover12.jpg', 'seo-editorial-teams', 'Usman Rafiq', 'EditorialTech Press', '2020', '978-969-0010022', 'on', 12, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(14, 'CMS Testing Toolkit', 'QA for Editors', 'Testing strategies for editorial CMS workflows.', 'cover13.jpg', 'cms-testing-toolkit', 'Imran Qureshi', 'DataWrite Publishing', '2022', '978-969-0010023', 'on', 13, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(15, 'Collaborative Publishing', 'Team-Based CMS', 'Building CMS systems for collaborative editorial teams.', 'cover14.jpg', 'collaborative-publishing', 'Nida Farooq', 'StoryCraft Books', '2023', '978-969-0010024', 'on', 14, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(16, 'Desktop-First UI Design', 'Focused Editorial Tools', 'Why desktop-first design still matters in publishing.', 'cover15.jpg', 'desktop-ui-design', 'Sana Raza', 'DesignJournal Books', '2021', '978-969-0010025', 'on', 15, '2025-09-25 15:23:27', '2025-09-26 18:45:53');
 
 -- --------------------------------------------------------
 
@@ -213,14 +237,26 @@ CREATE TABLE IF NOT EXISTS `book_articles` (
   PRIMARY KEY (`key_book_articles`),
   UNIQUE KEY `unique_pair` (`key_books`,`key_articles`),
   KEY `key_articles` (`key_articles`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `book_articles`
 --
 
 INSERT INTO `book_articles` (`key_book_articles`, `key_books`, `key_articles`, `sort_order`) VALUES
-(4, 1, 1, 0);
+(4, 1, 1, 0),
+(12, 5, 24, 0),
+(11, 5, 21, 0),
+(10, 5, 10, 0),
+(9, 5, 7, 0),
+(25, 7, 8, 0),
+(28, 3, 3, 0),
+(26, 3, 1, 0),
+(27, 3, 24, 0),
+(30, 4, 3, 0),
+(29, 3, 4, 0),
+(31, 4, 4, 0),
+(32, 4, 7, 0);
 
 -- --------------------------------------------------------
 
@@ -246,26 +282,26 @@ CREATE TABLE IF NOT EXISTS `categories` (
 
 INSERT INTO `categories` (`key_categories`, `name`, `description`, `url`, `sort`, `status`, `entry_date_time`) VALUES
 (1, 'Education', '', 'category/education', 1, 'on', '2025-09-23 20:20:39'),
-(2, 'Editorial Design', 'Design principles tailored for editorial platforms.', 'editorial-design', 1, 'pub', '2025-09-25 15:25:13'),
-(3, 'CMS Architecture', 'Structural and modular design of content systems.', 'cms-architecture', 2, 'pub', '2025-09-25 15:25:13'),
-(4, 'PHP Development', 'Native PHP techniques for backend publishing tools.', 'php-development', 3, 'pub', '2025-09-25 15:25:13'),
-(5, 'UX Patterns', 'User experience strategies for editorial workflows.', 'ux-patterns', 4, 'pub', '2025-09-25 15:25:13'),
-(6, 'Content Strategy', 'Planning and organizing editorial content.', 'content-strategy', 5, 'pub', '2025-09-25 15:25:13'),
-(7, 'Debugging & QA', 'Troubleshooting and testing publishing systems.', 'debugging-qa', 6, 'pub', '2025-09-25 15:25:13'),
-(8, 'Search Optimization', 'Improving search relevance and performance.', 'search-optimization', 7, 'pub', '2025-09-25 15:25:13'),
-(9, 'Modular Design', 'Reusable components and scalable architecture.', 'modular-design', 8, 'pub', '2025-09-25 15:25:13'),
-(10, 'Visual Design', 'Banner images, layout, and visual storytelling.', 'visual-design', 9, 'pub', '2025-09-25 15:25:13'),
-(11, 'Publishing Workflow', 'From draft to publish—editorial flow management.', 'publishing-workflow', 10, 'pub', '2025-09-25 15:25:13'),
-(12, 'Database Tuning', 'Optimizing SQL queries and schema for CMS.', 'database-tuning', 11, 'pub', '2025-09-25 15:25:13'),
-(13, 'SEO & URLs', 'Structuring URLs and metadata for search engines.', 'seo-urls', 12, 'pub', '2025-09-25 15:25:13'),
-(14, 'Team Collaboration', 'Tools and practices for editorial teamwork.', 'team-collaboration', 13, 'pub', '2025-09-25 15:25:13'),
-(15, 'Desktop UI', 'Designing for desktop-first editorial tools.', 'desktop-ui', 14, 'pub', '2025-09-25 15:25:13'),
-(16, 'Content Curation', 'Selecting and organizing high-quality content.', 'content-curation', 15, 'pub', '2025-09-25 15:25:13'),
-(17, 'Performance Optimization', 'Speed and efficiency in CMS systems.', 'performance-optimization', 16, 'pub', '2025-09-25 15:25:13'),
-(18, 'Advanced Filters', 'Precision filtering tools for editors.', 'advanced-filters', 17, 'pub', '2025-09-25 15:25:13'),
-(19, 'Legacy Systems', 'Modernizing and refactoring old CMS platforms.', 'legacy-systems', 18, 'pub', '2025-09-25 15:25:13'),
-(20, 'Narrative Building', 'Crafting compelling editorial stories.', 'narrative-building', 19, 'pub', '2025-09-25 15:25:13'),
-(21, 'Editorial Automation', 'Automating repetitive editorial tasks.', 'editorial-automation', 20, 'pub', '2025-09-25 15:25:13');
+(2, 'Editorial Design', 'Design principles tailored for editorial platforms.', 'editorial-design', 1, 'on', '2025-09-25 15:25:13'),
+(3, 'CMS Architecture', 'Structural and modular design of content systems.', 'cms-architecture', 2, 'on', '2025-09-25 15:25:13'),
+(4, 'PHP Development', 'Native PHP techniques for backend publishing tools.', 'php-development', 3, 'on', '2025-09-25 15:25:13'),
+(5, 'UX Patterns', 'User experience strategies for editorial workflows.', 'ux-patterns', 4, 'on', '2025-09-25 15:25:13'),
+(6, 'Content Strategy', 'Planning and organizing editorial content.', 'content-strategy', 5, 'on', '2025-09-25 15:25:13'),
+(7, 'Debugging & QA', 'Troubleshooting and testing publishing systems.', 'debugging-qa', 6, 'on', '2025-09-25 15:25:13'),
+(8, 'Search Optimization', 'Improving search relevance and performance.', 'search-optimization', 7, 'on', '2025-09-25 15:25:13'),
+(9, 'Modular Design', 'Reusable components and scalable architecture.', 'modular-design', 8, 'on', '2025-09-25 15:25:13'),
+(10, 'Visual Design', 'Banner images, layout, and visual storytelling.', 'visual-design', 9, 'on', '2025-09-25 15:25:13'),
+(11, 'Publishing Workflow', 'From draft to publish—editorial flow management.', 'publishing-workflow', 10, 'on', '2025-09-25 15:25:13'),
+(12, 'Database Tuning', 'Optimizing SQL queries and schema for CMS.', 'database-tuning', 11, 'on', '2025-09-25 15:25:13'),
+(13, 'SEO & URLs', 'Structuring URLs and metadata for search engines.', 'seo-urls', 12, 'on', '2025-09-25 15:25:13'),
+(14, 'Team Collaboration', 'Tools and practices for editorial teamwork.', 'team-collaboration', 13, 'on', '2025-09-25 15:25:13'),
+(15, 'Desktop UI', 'Designing for desktop-first editorial tools.', 'desktop-ui', 14, 'on', '2025-09-25 15:25:13'),
+(16, 'Content Curation', 'Selecting and organizing high-quality content.', 'content-curation', 15, 'on', '2025-09-25 15:25:13'),
+(17, 'Performance Optimization', 'Speed and efficiency in CMS systems.', 'performance-optimization', 16, 'on', '2025-09-25 15:25:13'),
+(18, 'Advanced Filters', 'Precision filtering tools for editors.', 'advanced-filters', 17, 'on', '2025-09-25 15:25:13'),
+(19, 'Legacy Systems', 'Modernizing and refactoring old CMS platforms.', 'legacy-systems', 18, 'on', '2025-09-25 15:25:13'),
+(20, 'Narrative Building', 'Crafting compelling editorial stories.', 'narrative-building', 19, 'on', '2025-09-25 15:25:13'),
+(21, 'Editorial Automation', 'Automating repetitive editorial tasks.', 'editorial-automation', 20, 'on', '2025-09-25 15:25:13');
 
 -- --------------------------------------------------------
 
@@ -290,12 +326,12 @@ CREATE TABLE IF NOT EXISTS `main_menu` (
 --
 
 INSERT INTO `main_menu` (`key_main_menu`, `parent_id`, `title`, `url`, `sort`, `status`, `entry_date_time`) VALUES
-(3, 0, 'Books', 'books', 1, 'pub', '2025-09-25 15:32:44'),
-(4, 0, 'Articles', 'articles', 2, 'pub', '2025-09-25 15:32:44'),
-(5, 4, 'Categories', 'book-categories', 1, 'pub', '2025-09-25 15:32:44'),
-(6, 3, 'Authors', 'book-authors', 2, 'pub', '2025-09-25 15:32:44'),
-(7, 4, 'Editorial', 'articles-editorial', 1, 'pub', '2025-09-25 15:32:44'),
-(8, 3, 'Tech', 'articles-tech', 2, 'pub', '2025-09-25 15:32:44'),
+(3, 0, 'Books', 'books', 1, 'on', '2025-09-25 15:32:44'),
+(4, 0, 'Articles', 'articles', 2, 'on', '2025-09-25 15:32:44'),
+(5, 4, 'Categories', 'book-categories', 1, 'on', '2025-09-25 15:32:44'),
+(6, 3, 'Authors', 'book-authors', 2, 'on', '2025-09-25 15:32:44'),
+(7, 4, 'Editorial', 'articles-editorial', 1, 'on', '2025-09-25 15:32:44'),
+(8, 3, 'Tech', 'articles-tech', 2, 'on', '2025-09-25 15:32:44'),
 (9, 0, 'Departments', 'departments', 3, 'on', '2025-09-25 16:08:48'),
 (10, 9, 'Education', 'education-department', 0, 'on', '2025-09-25 16:09:10');
 
@@ -324,16 +360,16 @@ CREATE TABLE IF NOT EXISTS `pages` (
 
 INSERT INTO `pages` (`key_pages`, `banner_image_url`, `title`, `page_content`, `url`, `status`, `entry_date_time`, `update_date_time`) VALUES
 (1, '', 'My First page', 'content of the very first page', 'url-of-the-first-page', 'on', '2025-09-24 13:35:42', '2025-09-24 13:35:51'),
-(2, 'banner-home.jpg', 'Home', 'Welcome to our editorial platform. Discover articles, books, and more.', 'home', 'pub', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(3, 'banner-about.jpg', 'About Us', 'We build tools that empower editorial teams through clean design and modular workflows.', 'about-us', 'pub', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(4, 'banner-contact.jpg', 'Contact', 'Reach out to us via email or social media. We value your feedback.', 'contact', 'pub', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(5, 'banner-privacy.jpg', 'Privacy Policy', 'This page outlines how we handle user data and respect privacy.', 'privacy-policy', 'pub', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(6, 'banner-terms.jpg', 'Terms of Use', 'By using this site, you agree to our terms and conditions.', 'terms-of-use', 'pub', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(7, 'banner-authors.jpg', 'Authors', 'Meet the contributors who shape our editorial voice.', 'authors', 'pub', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(8, 'banner-books.jpg', 'Books', 'Explore our curated collection of publishing and design books.', 'books', 'pub', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(9, 'banner-categories.jpg', 'Categories', 'Browse content by editorial categories and themes.', 'categories', 'pub', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(10, 'banner-editorial.jpg', 'Editorial Philosophy', 'Our approach to content creation, curation, and publishing.', 'editorial-philosophy', 'pub', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(11, 'banner-feedback.jpg', 'Feedback', 'Tell us what you think. Help us improve the platform.', 'feedback', 'pub', '2025-09-25 15:27:07', '2025-09-25 15:27:07');
+(2, 'banner-home.jpg', 'Home', 'Welcome to our editorial platform. Discover articles, books, and more.', 'home', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
+(3, 'banner-about.jpg', 'About Us', 'We build tools that empower editorial teams through clean design and modular workflows.', 'about-us', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
+(4, 'banner-contact.jpg', 'Contact', 'Reach out to us via email or social media. We value your feedback.', 'contact', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
+(5, 'banner-privacy.jpg', 'Privacy Policy', 'This page outlines how we handle user data and respect privacy.', 'privacy-policy', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
+(6, 'banner-terms.jpg', 'Terms of Use', 'By using this site, you agree to our terms and conditions.', 'terms-of-use', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
+(7, 'banner-authors.jpg', 'Authors', 'Meet the contributors who shape our editorial voice.', 'authors', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
+(8, 'banner-books.jpg', 'Books', 'Explore our curated collection of publishing and design books.', 'books', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
+(9, 'banner-categories.jpg', 'Categories', 'Browse content by editorial categories and themes.', 'categories', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
+(10, 'banner-editorial.jpg', 'Editorial Philosophy', 'Our approach to content creation, curation, and publishing.', 'editorial-philosophy', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
+(11, 'banner-feedback.jpg', 'Feedback', 'Tell us what you think. Help us improve the platform.', 'feedback', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07');
 
 -- --------------------------------------------------------
 
@@ -363,6 +399,35 @@ CREATE TABLE IF NOT EXISTS `settings` (
 
 INSERT INTO `settings` (`key_settings`, `site_name`, `site_slogan`, `logo1_url`, `logo2_url`, `base_url`, `banner_height`, `footer_content`, `snippet_size`, `items_on_page`, `template_folder`, `entry_date_time`) VALUES
 (1, 'My First Sites', '', '', '', '', '300', '', '500', '50', 'templates/basic', '2025-09-23 20:25:46');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `articles`
+--
+ALTER TABLE `articles` ADD FULLTEXT KEY `title` (`title`,`title_sub`,`content_type`,`categories`,`article_snippet`,`article_content`);
+
+--
+-- Indexes for table `authors`
+--
+ALTER TABLE `authors` ADD FULLTEXT KEY `name` (`name`,`description`,`city`,`country`,`state`);
+
+--
+-- Indexes for table `books`
+--
+ALTER TABLE `books` ADD FULLTEXT KEY `title` (`title`,`subtitle`,`publisher`,`description`,`author_name`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories` ADD FULLTEXT KEY `name` (`name`,`description`);
+
+--
+-- Indexes for table `pages`
+--
+ALTER TABLE `pages` ADD FULLTEXT KEY `title` (`title`,`page_content`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

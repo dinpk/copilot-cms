@@ -2,7 +2,13 @@
 <?php include '../layout.php'; ?>
 <?php startLayout("Categories List"); ?>
 
-<a href="#" onclick="openModal()">➕ Add New Category</a>
+<p><a href="#" onclick="openModal()">➕ Add New Category</a></p>
+
+<form method="get" style="margin-bottom:20px;">
+  <input type="text" name="q" placeholder="Search categories..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
+  <input type="submit" value="Search">
+</form>
+
 
 <table>
   <thead>
@@ -16,7 +22,15 @@
   </thead>
   <tbody>
     <?php
-    $sql = "SELECT * FROM categories ORDER BY sort ASC";
+	$q = $_GET['q'] ?? '';
+	$q = $conn->real_escape_string($q);
+
+	$sql = "SELECT * FROM categories";
+	if ($q !== '') {
+	  $sql .= " WHERE MATCH(name, description) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+	}
+	$sql .= " ORDER BY sort ASC";
+	
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
       echo "<tr>

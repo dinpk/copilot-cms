@@ -27,36 +27,78 @@ function closeModal() {
 
 
 // Book-Article Assignment
-
 function openAssignModal(bookId) {
-  fetch(`assign_articles_modal.php?book=${bookId}`)
-    .then(res => res.text())
-    .then(html => {
-      document.getElementById('assign-modal').innerHTML = html;
+  document.getElementById('assign_book_id').value = bookId;
+  document.getElementById('article-list').innerHTML = '';
+
+  // Fetch book title
+  fetch('get_book_title.php?book_id=' + bookId)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById('assign-modal-title').textContent = `Assign Articles to “${data.title}”`;
+    });
+
+  // Fetch assigned articles
+  fetch('get_assigned_articles.php?book_id=' + bookId)
+    .then(res => res.json())
+    .then(data => {
+      let html = '';
+      data.forEach(article => {
+        html += `<label><input type="checkbox" name="article_ids[]" value="${article.key_articles}" checked> ${article.title}</label><br>`;
+      });
+      document.getElementById('article-list').innerHTML = html;
       document.getElementById('assign-modal').style.display = 'block';
     });
 }
 
-function saveAssignments() {
-  const form = document.getElementById('assign-form');
-  fetch('assign_articles_save.php', {
-    method: 'POST',
-    body: new FormData(form)
-  }).then(() => location.reload());
+
+
+function closeAssignModal() {
+  document.getElementById('assign-modal').style.display = 'none';
 }
 
 function filterArticles() {
-  const query = document.getElementById('article-search').value.toLowerCase();
-  document.querySelectorAll('.article-item').forEach(item => {
-    item.style.display = item.textContent.toLowerCase().includes(query) ? 'block' : 'none';
-  });
-}
+  const query = document.getElementById('article_search').value;
+  const bookId = document.getElementById('assign_book_id').value;
 
-function searchArticles(bookId) {
-  const query = document.getElementById('article-search').value;
-  fetch(`search_articles.php?book=${bookId}&q=${encodeURIComponent(query)}`)
-    .then(res => res.text())
-    .then(html => {
+  if (query.length < 4) return;
+
+  // Clear previous search results (but keep already assigned ones)
+  const assignedLabels = Array.from(document.querySelectorAll('#article-list input:checked'))
+  .map(input => input.closest('label').outerHTML);
+
+  fetch('search_articles.php?q=' + encodeURIComponent(query) + '&book_id=' + bookId)
+    .then(res => res.json())
+    .then(data => {
+      let html = assignedLabels.join(''); // preserve checked items
+      data.forEach(article => {
+        html += `<p><label><input type="checkbox" name="article_ids[]" value="${article.key_articles}"> ${article.title}</label></p>`;
+      });
       document.getElementById('article-list').innerHTML = html;
     });
 }
+
+
+
+
+
+// Article-Author Assignment
+function openAuthorModal(articleId) {
+  document.getElementById('author_article_id').value = articleId;
+  fetch('get_authors.php?article_id=' + articleId)
+    .then(res => res.json())
+    .then(data => {
+      let html = '';
+      data.authors.forEach(author => {
+        const checked = data.assigned.includes(author.key_authors) ? 'checked' : '';
+        html += `<label><input type="checkbox" name="author_ids[]" value="${author.key_authors}" ${checked}> ${author.name}</label><br>`;
+      });
+      document.getElementById('author-list').innerHTML = html;
+      document.getElementById('author-modal').style.display = 'block';
+    });
+}
+
+function closeAuthorModal() {
+  document.getElementById('author-modal').style.display = 'none';
+}
+
