@@ -12,10 +12,11 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Author</th>
-      <th>Publisher</th>
-      <th>Year</th>
+      <th><?= sortLink('Publisher', 'publisher', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+      <th><?= sortLink('Year', 'publish_year', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+	  <th>Categories</th>
       <th>Status</th>
       <th>Actions</th>
     </tr>
@@ -30,18 +31,40 @@
 	// search
 	$q = $_GET['q'] ?? '';
 	$q = $conn->real_escape_string($q);
+	
+	
+	// sort
+	$sort = $_GET['sort'] ?? 'entry_date_time';
+	$dir = $_GET['dir'] ?? 'desc';
+	$allowedSorts = ['title', 'publisher', 'publish_year', 'status'];
+	$allowedDirs = ['asc', 'desc'];
+	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
+	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
+	
+	
 	$sql = "SELECT * FROM books";
 	if ($q !== '') {
 	  $sql .= " WHERE MATCH(title,subtitle,publisher,description,author_name) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
-	$sql .= " ORDER BY sort ASC, key_books DESC LIMIT $limit OFFSET $offset";
+	
+	$sql .= " ORDER BY $sort $dir LIMIT $limit OFFSET $offset";
+	
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
+		
+		$res = $conn->query("SELECT c.name FROM book_categories bc JOIN categories c ON bc.key_categories = c.key_categories WHERE bc.key_books = {$row['key_books']}");
+		$catNames = [];
+		while ($cat = $res->fetch_assoc()) {
+		  $catNames[] = $cat['name'];
+		}
+		$catNames = implode(', ', $catNames);
+		
       echo "<tr>
         <td>{$row['title']}</td>
         <td>{$row['author_name']}</td>
         <td>{$row['publisher']}</td>
         <td>{$row['publish_year']}</td>
+		<td>$catNames</td>
         <td>{$row['status']}</td>
         <td>
           <a href='#' onclick='editItem({$row['key_books']}, \"get_book.php\", [\"title\",\"subtitle\",\"description\",\"cover_image_url\",\"url\",\"author_name\",\"publisher\",\"publish_year\",\"status\"])'>Edit</a> |
@@ -69,17 +92,16 @@
 
 <!-- Pager -->
 <div style="margin-top:20px;">
-  <?php if ($page > 1): ?>
-    <a href="?page=<?php echo $page - 1; ?>">⬅ Prev</a>
-  <?php endif; ?>
+	<?php if ($page > 1): ?>
+	  <a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">⬅ Prev</a>
+	<?php endif; ?>
 
-  Page <?php echo $page; ?> of <?php echo $totalPages; ?>
+	Page <?php echo $page; ?> of <?php echo $totalPages; ?>
 
-  <?php if ($page < $totalPages): ?>
-    <a href="?page=<?php echo $page + 1; ?>">Next ➡</a>
-  <?php endif; ?>
+	<?php if ($page < $totalPages): ?>
+	  <a href="?page=<?php echo $page + 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">Next ➡</a>
+	<?php endif; ?>
 </div>
-
 
 
 
@@ -90,6 +112,7 @@
   background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;">
   <h3 id="modal-title">Add Book</h3>
   <form id="modal-form" method="post" action="add.php">
+  
     <input type="hidden" name="key_books" id="key_books">
     <input type="text" name="title" id="title" placeholder="Title" required><br>
     <input type="text" name="subtitle" id="subtitle" placeholder="Subtitle"><br>
@@ -100,6 +123,23 @@
     <input type="text" name="publisher" id="publisher" placeholder="Publisher"><br>
     <input type="text" name="publish_year" id="publish_year" placeholder="Publish Year"><br>
     <input type="text" name="status" id="status" placeholder="Status"><br>
+	
+	<div>
+	<?php
+	if (isset($_GET['edit'])) {
+	  $bookId = intval($_GET['edit']);
+	  $selected = [];
+	  $res = $conn->query("SELECT key_categories FROM book_categories WHERE key_books = $bookId");
+	  while ($row = $res->fetch_assoc()) {
+		$selected[] = $row['key_categories'];
+	  }
+	  renderCategoryCheckboxes($conn, $selected);       
+	} else {
+	  renderCategoryCheckboxes($conn);
+	}
+	?>
+	</div>
+
     <input type="submit" value="Save">
     <button type="button" onclick="closeModal()">Cancel</button>
   </form>

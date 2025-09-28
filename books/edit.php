@@ -27,6 +27,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   );
 
   $stmt->execute();
+  
+	  
+	$selectedCategories = $_POST['categories'] ?? [];
+	// Clear old assignments
+	$conn->query("DELETE FROM book_categories WHERE key_books = $id");
+	// Insert new ones
+	$stmt = $conn->prepare("INSERT INTO book_categories (key_books, key_categories) VALUES (?, ?)");
+	foreach ($selectedCategories as $catId) {
+	  $catId = intval($catId);
+	  $stmt->bind_param("ii", $id, $catId);
+	  $stmt->execute();
+	}
+	$stmt->close();
+  
 }
 
 header("Location: list.php");

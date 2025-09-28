@@ -19,6 +19,9 @@
 	  <li><a href="main_menu/list.php">📑 Main Menu</a></li>
 	  <li><a href="authors/list.php">👤 Authors</a></li>
 	  <li><a href="books/list.php">📰 Books</a></li>
+	  <li><a href="books/books_sell.php">📰 Books Sell</a></li>
+	  <li><a href="photo_gallery/list.php">📰 Photo Gallery</a></li>
+	  <li><a href="youtube_gallery/list.php">📰 Youtube Gallery</a></li>
 	  <li><a href="blocks/list.php">🧱 Blocks</a></li>
 	  <li><a href="settings/view.php">⚙️ Site Settings</a></li>
 	</ul>

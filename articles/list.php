@@ -12,11 +12,11 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Snippet</th>
       <th>Categories</th>
 	  <th>Authors</th>
-      <th>Status</th>
+      <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -31,11 +31,22 @@
 	// search
 	$q = $_GET['q'] ?? '';
 	$q = $conn->real_escape_string($q);
+
+
+	// sort
+	$sort = $_GET['sort'] ?? 'entry_date_time';
+	$dir = $_GET['dir'] ?? 'desc';
+	$allowedSorts = ['title', 'status'];
+	$allowedDirs = ['asc', 'desc'];
+	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
+	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
+
+
 	$sql = "SELECT * FROM articles";
 	if ($q !== '') {
 	  $sql .= " WHERE MATCH(title, title_sub,content_type, categories, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
-	$sql .= " ORDER BY sort ASC, key_articles DESC LIMIT $limit OFFSET $offset";
+	$sql .= " ORDER BY $sort $dir LIMIT $limit OFFSET $offset";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
 		$aid = $row['key_articles'];
@@ -76,13 +87,15 @@
 
 <!-- Pager -->
 <div style="margin-top:20px;">
-  <?php if ($page > 1): ?>
-    <a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>">⬅ Prev</a>
-  <?php endif; ?>
-  Page <?php echo $page; ?> of <?php echo $totalPages; ?>
-  <?php if ($page < $totalPages): ?>
-    <a href="?page=<?php echo $page + 1; ?>&q=<?php echo urlencode($q); ?>">Next ➡</a>
-  <?php endif; ?>
+	<?php if ($page > 1): ?>
+	  <a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">⬅ Prev</a>
+	<?php endif; ?>
+
+	Page <?php echo $page; ?> of <?php echo $totalPages; ?>
+
+	<?php if ($page < $totalPages): ?>
+	  <a href="?page=<?php echo $page + 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">Next ➡</a>
+	<?php endif; ?>
 </div>
 
 

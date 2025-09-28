@@ -7,16 +7,29 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Region</th>
-      <th>Pages</th>
-      <th>Status</th>
+      <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+      <th><?= sortLink('Region', 'show_in_region', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+      <th><?= sortLink('Pages', 'show_on_pages', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+      <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
+ 
+  
     <?php
-    $sql = "SELECT * FROM blocks ORDER BY sort ASC";
+	
+
+	// sort
+	$sort = $_GET['sort'] ?? 'entry_date_time';
+	$dir = $_GET['dir'] ?? 'desc';
+	$allowedSorts = ['title', 'region', 'pages', 'status'];
+	$allowedDirs = ['asc', 'desc'];
+	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
+	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
+
+	
+    $sql = "SELECT * FROM blocks ORDER BY $sort $dir";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
       echo "<tr>

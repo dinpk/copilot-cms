@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 27, 2025 at 01:35 PM
+-- Generation Time: Sep 28, 2025 at 06:59 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -192,35 +192,44 @@ CREATE TABLE IF NOT EXISTS `books` (
   `author_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `publisher` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `publish_year` varchar(4) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `isbn` varchar(17) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `isbn` varchar(17) COLLATE utf8_unicode_ci DEFAULT '',
+  `price` decimal(10,0) DEFAULT NULL,
+  `stock_quantity` int(11) DEFAULT NULL,
+  `discount_percent` tinyint(4) DEFAULT NULL,
+  `is_featured` tinyint(1) DEFAULT NULL,
+  `language` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `format` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `weight_grams` int(11) DEFAULT NULL,
+  `sku` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `status` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `sort` smallint(6) NOT NULL DEFAULT '0',
   `entry_date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_books`),
   UNIQUE KEY `isbn` (`isbn`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=51 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `books`
 --
 
-INSERT INTO `books` (`key_books`, `title`, `subtitle`, `description`, `cover_image_url`, `url`, `author_name`, `publisher`, `publish_year`, `isbn`, `status`, `sort`, `entry_date_time`, `update_date_time`) VALUES
-(2, 'Designing Editorial Systems', 'Workflow & UX', 'A guide to building editorial systems that balance structure with usability.', 'cover1.jpg', 'designing-editorial-systems', 'Amina Siddiqui', 'ContentHub Press', '2021', '978-969-0010011', 'on', 1, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(3, 'PHP for Publishers', 'Backend Essentials', 'Explores PHP techniques tailored for publishing platforms.', 'cover2.jpg', 'php-for-publishers', 'Bilal Khan', 'TechScribe Books', '2020', '978-969-0010012', 'on', 2, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(4, 'Modular CMS Architecture', 'Scalable Design', 'Strategies for designing modular, maintainable CMS systems.', 'cover3.jpg', 'modular-cms-architecture', 'Tariq Mehmood', 'CodePen Publishing', '2022', '978-969-0010013', 'on', 3, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(5, 'Editorial UX Patterns', 'Designing for Editors', 'Patterns and principles for editorial-first user interfaces.', 'cover4.jpg', 'editorial-ux-patterns', 'Sana Raza', 'DesignJournal Books', '2021', '978-969-0010014', 'on', 4, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(6, 'CMS Debugging Handbook', 'Troubleshooting PHP & SQL', 'A practical guide to debugging CMS workflows.', 'cover5.jpg', 'cms-debugging-handbook', 'Imran Qureshi', 'DataWrite Publishing', '2019', '978-969-0010015', 'on', 5, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(7, 'Content Strategy in Practice', 'Editorial Planning', 'Real-world strategies for content planning and execution.', 'cover6.jpg', 'content-strategy-practice', 'Nida Farooq', 'StoryCraft Books', '2023', '978-969-0010016', 'on', 6, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(8, 'Scalable Publishing Systems', 'Future-Proof CMS', 'Designing CMS platforms that grow with editorial needs.', 'cover7.jpg', 'scalable-publishing-systems', 'Usman Rafiq', 'EditorialTech Press', '2022', '978-969-0010017', 'on', 7, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(9, 'Clean Code for Editors', 'Maintainable PHP', 'Writing clean, maintainable code for editorial tools.', 'cover8.jpg', 'clean-code-editors', 'Bilal Khan', 'TechScribe Books', '2021', '978-969-0010018', 'on', 8, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(10, 'Visual Content Design', 'Banner & Layouts', 'Designing impactful visuals for editorial platforms.', 'cover9.jpg', 'visual-content-design', 'Hina Javed', 'UXPress Publishing', '2020', '978-969-0010019', 'on', 9, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(11, 'Advanced CMS Filters', 'Precision Tools', 'Implementing advanced filters for editorial workflows.', 'cover10.jpg', 'advanced-cms-filters', 'Zeeshan Ali', 'DevJournal Books', '2023', '978-969-0010020', 'on', 10, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(12, 'Narrative Building', 'Storytelling in Publishing', 'Techniques for building compelling editorial narratives.', 'cover11.jpg', 'narrative-building', 'Fatima Noor', 'ContentGrid Press', '2021', '978-969-0010021', 'on', 11, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(13, 'SEO for Editorial Teams', 'URL & Structure', 'Optimizing editorial content for search engines.', 'cover12.jpg', 'seo-editorial-teams', 'Usman Rafiq', 'EditorialTech Press', '2020', '978-969-0010022', 'on', 12, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(14, 'CMS Testing Toolkit', 'QA for Editors', 'Testing strategies for editorial CMS workflows.', 'cover13.jpg', 'cms-testing-toolkit', 'Imran Qureshi', 'DataWrite Publishing', '2022', '978-969-0010023', 'on', 13, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(15, 'Collaborative Publishing', 'Team-Based CMS', 'Building CMS systems for collaborative editorial teams.', 'cover14.jpg', 'collaborative-publishing', 'Nida Farooq', 'StoryCraft Books', '2023', '978-969-0010024', 'on', 14, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
-(16, 'Desktop-First UI Design', 'Focused Editorial Tools', 'Why desktop-first design still matters in publishing.', 'cover15.jpg', 'desktop-ui-design', 'Sana Raza', 'DesignJournal Books', '2021', '978-969-0010025', 'on', 15, '2025-09-25 15:23:27', '2025-09-26 18:45:53');
+INSERT INTO `books` (`key_books`, `title`, `subtitle`, `description`, `cover_image_url`, `url`, `author_name`, `publisher`, `publish_year`, `isbn`, `price`, `stock_quantity`, `discount_percent`, `is_featured`, `language`, `format`, `weight_grams`, `sku`, `status`, `sort`, `entry_date_time`, `update_date_time`) VALUES
+(2, 'Designing Editorial Systems', 'Workflow & UX', 'A guide to building editorial systems that balance structure with usability.', 'cover1.jpg', 'designing-editorial-systems', 'Amina Siddiqui', 'ContentHub Press', '2021', '978-969-0010011', '1200', 6, 1, 0, 'Urdu', 'Cover', 0, '', 'on', 1, '2025-09-25 15:23:27', '2025-09-28 18:28:40'),
+(3, 'PHP for Publishers', 'Backend Essentials', 'Explores PHP techniques tailored for publishing platforms.', 'cover2.jpg', 'php-for-publishers', 'Bilal Khan', 'TechScribe Books', '2020', '978-969-0010012', '0', 0, 0, 0, '', '', 0, '', 'on', 2, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(4, 'Modular CMS Architecture', 'Scalable Design', 'Strategies for designing modular, maintainable CMS systems.', 'cover3.jpg', 'modular-cms-architecture', 'Tariq Mehmood', 'CodePen Publishing', '2022', '978-969-0010013', '0', 0, 0, 0, '', '', 0, '', 'on', 3, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(5, 'Editorial UX Patterns', 'Designing for Editors', 'Patterns and principles for editorial-first user interfaces.', 'cover4.jpg', 'editorial-ux-patterns', 'Sana Raza', 'DesignJournal Books', '2021', '978-969-0010014', '0', 0, 0, 0, '', '', 0, '', 'on', 4, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(6, 'CMS Debugging Handbook', 'Troubleshooting PHP & SQL', 'A practical guide to debugging CMS workflows.', 'cover5.jpg', 'cms-debugging-handbook', 'Imran Qureshi', 'DataWrite Publishing', '2019', '978-969-0010015', '0', 0, 0, 0, '', '', 0, '', 'on', 5, '2025-09-25 15:23:27', '2025-09-28 16:14:44'),
+(7, 'Content Strategy in Practice', 'Editorial Planning', 'Real-world strategies for content planning and execution.', 'cover6.jpg', 'content-strategy-practice', 'Nida Farooq', 'StoryCraft Books', '2023', '978-969-0010016', '500', 20, 0, 0, 'Urdu', 'Hard', 0, '', 'on', 6, '2025-09-25 15:23:27', '2025-09-28 16:12:12'),
+(8, 'Scalable Publishing Systems', 'Future-Proof CMS', 'Designing CMS platforms that grow with editorial needs.', 'cover7.jpg', 'scalable-publishing-systems', 'Usman Rafiq', 'EditorialTech Press', '2022', '978-969-0010017', '0', 0, 0, 0, '', '', 0, '', 'on', 7, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(9, 'Clean Code for Editors', 'Maintainable PHP', 'Writing clean, maintainable code for editorial tools.', 'cover8.jpg', 'clean-code-editors', 'Bilal Khan', 'TechScribe Books', '2021', '978-969-0010018', '0', 0, 0, 0, '', '', 0, '', 'on', 8, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(10, 'Visual Content Design', 'Banner & Layouts', 'Designing impactful visuals for editorial platforms.', 'cover9.jpg', 'visual-content-design', 'Hina Javed', 'UXPress Publishing', '2020', '978-969-0010019', '0', 0, 0, 0, '', '', 0, '', 'on', 9, '2025-09-25 15:23:27', '2025-09-28 16:10:45'),
+(11, 'Advanced CMS Filters', 'Precision Tools', 'Implementing advanced filters for editorial workflows.', 'cover10.jpg', 'advanced-cms-filters', 'Zeeshan Ali', 'DevJournal Books', '2023', '978-969-0010020', '0', 0, 0, 0, '', '', 0, '', 'on', 10, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(12, 'Narrative Building', 'Storytelling in Publishing', 'Techniques for building compelling editorial narratives.', 'cover11.jpg', 'narrative-building', 'Fatima Noor', 'ContentGrid Press', '2021', '978-969-0010021', '0', 0, 0, 0, '', '', 0, '', 'on', 11, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(13, 'SEO for Editorial Teams', 'URL & Structure', 'Optimizing editorial content for search engines.', 'cover12.jpg', 'seo-editorial-teams', 'Usman Rafiq', 'EditorialTech Press', '2020', '978-969-0010022', '0', 0, 0, 0, '', '', 0, '', 'on', 12, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(14, 'CMS Testing Toolkit', 'QA for Editors', 'Testing strategies for editorial CMS workflows.', 'cover13.jpg', 'cms-testing-toolkit', 'Imran Qureshi', 'DataWrite Publishing', '2022', '978-969-0010023', '0', 0, 0, 0, '', '', 0, '', 'on', 13, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(15, 'Collaborative Publishing', 'Team-Based CMS', 'Building CMS systems for collaborative editorial teams.', 'cover14.jpg', 'collaborative-publishing', 'Nida Farooq', 'StoryCraft Books', '2023', '978-969-0010024', '0', 0, 0, 0, '', '', 0, '', 'on', 14, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(16, 'Desktop-First UI Design', 'Focused Editorial Tools', 'Why desktop-first design still matters in publishing.', 'cover15.jpg', 'desktop-ui-design', 'Sana Raza', 'DesignJournal Books', '2021', '978-969-0010025', '0', 0, 0, 0, '', '', 0, '', 'on', 15, '2025-09-25 15:23:27', '2025-09-26 18:45:53'),
+(50, 'Next Gen Development with Copilot', 'Learn How to Build Apps in No Time', 'Step by step guide', 'Hard', 'next-gen-app-copilot', 'Din', 'Copilot', '2025', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'on', 0, '2025-09-28 18:34:24', '2025-09-28 18:34:24');
 
 -- --------------------------------------------------------
 
@@ -257,6 +266,108 @@ INSERT INTO `book_articles` (`key_book_articles`, `key_books`, `key_articles`, `
 (29, 3, 4, 0),
 (31, 4, 4, 0),
 (32, 4, 7, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_categories`
+--
+
+DROP TABLE IF EXISTS `book_categories`;
+CREATE TABLE IF NOT EXISTS `book_categories` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key_books` int(10) UNSIGNED NOT NULL,
+  `key_categories` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_pair` (`key_books`,`key_categories`),
+  KEY `key_categories` (`key_categories`)
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `book_categories`
+--
+
+INSERT INTO `book_categories` (`id`, `key_books`, `key_categories`) VALUES
+(30, 50, 3),
+(29, 49, 17),
+(28, 49, 8),
+(27, 49, 2),
+(26, 48, 17),
+(25, 48, 8),
+(24, 48, 2),
+(23, 40, 19),
+(22, 2, 7),
+(21, 2, 2),
+(20, 35, 8),
+(19, 35, 5),
+(18, 31, 0),
+(17, 29, 0),
+(31, 50, 9),
+(32, 50, 13),
+(33, 50, 15),
+(34, 50, 17);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_orders`
+--
+
+DROP TABLE IF EXISTS `book_orders`;
+CREATE TABLE IF NOT EXISTS `book_orders` (
+  `key_order` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_number` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `customer_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `order_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `total_amount` decimal(10,2) DEFAULT NULL,
+  `status` varchar(20) COLLATE utf8_unicode_ci DEFAULT 'pending',
+  PRIMARY KEY (`key_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_order_items`
+--
+
+DROP TABLE IF EXISTS `book_order_items`;
+CREATE TABLE IF NOT EXISTS `book_order_items` (
+  `key_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key_order` int(10) UNSIGNED NOT NULL,
+  `key_books` int(10) UNSIGNED NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `unit_price` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`key_item`),
+  KEY `key_order` (`key_order`),
+  KEY `key_books` (`key_books`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `book_prices_history`
+--
+
+DROP TABLE IF EXISTS `book_prices_history`;
+CREATE TABLE IF NOT EXISTS `book_prices_history` (
+  `key_price` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key_books` int(10) UNSIGNED NOT NULL,
+  `old_price` decimal(10,2) NOT NULL,
+  `new_price` decimal(10,2) NOT NULL,
+  `change_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`key_price`),
+  KEY `key_books` (`key_books`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `book_prices_history`
+--
+
+INSERT INTO `book_prices_history` (`key_price`, `key_books`, `old_price`, `new_price`, `change_date`) VALUES
+(1, 2, '0.00', '1.00', '2025-09-28 03:14:40'),
+(2, 2, '1.00', '1200.00', '2025-09-28 03:14:49'),
+(3, 7, '0.00', '500.00', '2025-09-28 03:15:06');
 
 -- --------------------------------------------------------
 
@@ -374,6 +485,65 @@ INSERT INTO `pages` (`key_pages`, `banner_image_url`, `title`, `page_content`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `page_categories`
+--
+
+DROP TABLE IF EXISTS `page_categories`;
+CREATE TABLE IF NOT EXISTS `page_categories` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key_pages` int(10) UNSIGNED NOT NULL,
+  `key_categories` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_pair` (`key_pages`,`key_categories`),
+  KEY `key_categories` (`key_categories`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `photo_categories`
+--
+
+DROP TABLE IF EXISTS `photo_categories`;
+CREATE TABLE IF NOT EXISTS `photo_categories` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key_photo_gallery` int(10) UNSIGNED NOT NULL,
+  `key_categories` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_pair` (`key_photo_gallery`,`key_categories`),
+  KEY `key_categories` (`key_categories`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `photo_gallery`
+--
+
+DROP TABLE IF EXISTS `photo_gallery`;
+CREATE TABLE IF NOT EXISTS `photo_gallery` (
+  `key_photo_gallery` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `image_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `status` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `entry_date_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`key_photo_gallery`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `photo_gallery`
+--
+
+INSERT INTO `photo_gallery` (`key_photo_gallery`, `title`, `image_url`, `description`, `status`, `entry_date_time`) VALUES
+(1, 'Mountain Sunrise', 'https://picsum.photos/id/1018/800/600', 'A breathtaking sunrise over the mountains.', 'active', '2025-09-27 22:30:18'),
+(2, 'City Reflections', 'https://picsum.photos/id/1025/800/600', 'Urban reflections captured at dusk.k', 'active', '2025-09-27 22:33:01'),
+(3, 'Desert Wanderer', 'https://images.unsplash.com/photo-1506744038136-46273834b3fb', 'A lone traveler in the vast desert.', 'active', '2025-09-27 22:30:18'),
+(4, 'Modern Architecture', 'https://images.unsplash.com/photo-1758445048994-d337f97acf4c?w=500', 'Modern architecture with a person on a balcony.', 'on', '2025-09-27 22:34:38');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `settings`
 --
 
@@ -399,6 +569,49 @@ CREATE TABLE IF NOT EXISTS `settings` (
 
 INSERT INTO `settings` (`key_settings`, `site_name`, `site_slogan`, `logo1_url`, `logo2_url`, `base_url`, `banner_height`, `footer_content`, `snippet_size`, `items_on_page`, `template_folder`, `entry_date_time`) VALUES
 (1, 'My First Sites', '', '', '', '', '300', '', '500', '50', 'templates/basic', '2025-09-23 20:25:46');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `youtube_categories`
+--
+
+DROP TABLE IF EXISTS `youtube_categories`;
+CREATE TABLE IF NOT EXISTS `youtube_categories` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key_youtube_gallery` int(10) UNSIGNED NOT NULL,
+  `key_categories` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_pair` (`key_youtube_gallery`,`key_categories`),
+  KEY `key_categories` (`key_categories`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `youtube_gallery`
+--
+
+DROP TABLE IF EXISTS `youtube_gallery`;
+CREATE TABLE IF NOT EXISTS `youtube_gallery` (
+  `key_youtube_gallery` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `youtube_id` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `thumbnail_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `status` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `entry_date_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`key_youtube_gallery`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `youtube_gallery`
+--
+
+INSERT INTO `youtube_gallery` (`key_youtube_gallery`, `title`, `youtube_id`, `thumbnail_url`, `description`, `status`, `entry_date_time`) VALUES
+(1, 'The Beauty of Pakistan', 'dQw4w9WgXcQ', 'https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg', 'A cinematic journey through Pakistan’s landscapes.', 'active', '2025-09-27 22:05:14'),
+(2, 'PHP Crash Course', 'OK_JCtrrv-c', 'https://img.youtube.com/vi/OK_JCtrrv-c/hqdefault.jpg', 'Learn PHP in one video—perfect for beginners.', 'active', '2025-09-27 22:05:14'),
+(4, 'From the Vault: Qadir takes five at the MCG', 'CbOy9J8i1sk', 'https://i3.ytimg.com/vi/CbOy9J8i1sk/maxresdefault.jpg', 'Despite a record-breaking 268 from Australia\'s Graham Yallop, Pakistan leg-spinner Abdul Qadir held firm with five wickets in the 1983 Boxing Day Tests\r\n', 'on', '2025-09-27 22:26:28');
 
 --
 -- Indexes for dumped tables
@@ -428,6 +641,16 @@ ALTER TABLE `categories` ADD FULLTEXT KEY `name` (`name`,`description`);
 -- Indexes for table `pages`
 --
 ALTER TABLE `pages` ADD FULLTEXT KEY `title` (`title`,`page_content`);
+
+--
+-- Indexes for table `photo_gallery`
+--
+ALTER TABLE `photo_gallery` ADD FULLTEXT KEY `title` (`title`,`description`);
+
+--
+-- Indexes for table `youtube_gallery`
+--
+ALTER TABLE `youtube_gallery` ADD FULLTEXT KEY `title` (`title`,`description`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -12,20 +12,29 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>City</th>
-      <th>Country</th>
-      <th>Status</th>
+      <th><?= sortLink('Name', 'name', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+      <th><?= sortLink('Email', 'email', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+      <th><?= sortLink('City', 'city', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+      <th><?= sortLink('Country', 'country', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+      <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <?php
 	
-	$limit = 10; // authors per page
+	// pager
+	$limit = 10;
 	$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 	$offset = ($page - 1) * $limit;
+	
+	// sort
+	$sort = $_GET['sort'] ?? 'entry_date_time';
+	$dir = $_GET['dir'] ?? 'desc';
+	$allowedSorts = ['name', 'email', 'city', 'country', 'status', 'entry_date_time'];
+	$allowedDirs = ['asc', 'desc'];
+	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
+	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
 
 	// search
 	$q = $_GET['q'] ?? '';
@@ -35,7 +44,10 @@
 	if ($q !== '') {
 	  $sql .= " WHERE MATCH(name,description,city,country,state) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
-	$sql .= " ORDER BY entry_date_time DESC LIMIT $limit OFFSET $offset";
+
+	$sql .= " ORDER BY $sort $dir LIMIT $limit OFFSET $offset";
+
+
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
       echo "<tr>
@@ -66,15 +78,15 @@
 
 <!-- Pager -->
 <div style="margin-top:20px;">
-  <?php if ($page > 1): ?>
-    <a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>">⬅ Prev</a>
-  <?php endif; ?>
+	<?php if ($page > 1): ?>
+	  <a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">⬅ Prev</a>
+	<?php endif; ?>
 
-  Page <?php echo $page; ?> of <?php echo $totalPages; ?>
+	Page <?php echo $page; ?> of <?php echo $totalPages; ?>
 
-  <?php if ($page < $totalPages): ?>
-    <a href="?page=<?php echo $page + 1; ?>&q=<?php echo urlencode($q); ?>">Next ➡</a>
-  <?php endif; ?>
+	<?php if ($page < $totalPages): ?>
+	  <a href="?page=<?php echo $page + 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">Next ➡</a>
+	<?php endif; ?>
 </div>
 
 <!-- Modal Form -->

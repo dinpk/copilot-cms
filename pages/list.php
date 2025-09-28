@@ -12,9 +12,9 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>URL</th>
-      <th>Status</th>
+      <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -22,11 +22,21 @@
     <?php
 	$q = $_GET['q'] ?? '';
 	$q = $conn->real_escape_string($q);
+	
+	// sort
+	$sort = $_GET['sort'] ?? 'entry_date_time';
+	$dir = $_GET['dir'] ?? 'desc';
+	$allowedSorts = ['title', 'status'];
+	$allowedDirs = ['asc', 'desc'];
+	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
+	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
+	
     $sql = "SELECT * FROM pages";
 	if ($q !== '') {
 	  $sql .= " WHERE MATCH(title, page_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
-	$sql .= " ORDER BY entry_date_time DESC";
+	$sql .= " ORDER BY $sort $dir";
+	
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
       echo "<tr>

@@ -13,10 +13,10 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th><?= sortLink('Name', 'name', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Description</th>
-      <th>URL</th>
-      <th>Status</th>
+      <th><?= sortLink('URL', 'url', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+      <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -25,11 +25,20 @@
 	$q = $_GET['q'] ?? '';
 	$q = $conn->real_escape_string($q);
 
+	// sort
+	$sort = $_GET['sort'] ?? 'entry_date_time';
+	$dir = $_GET['dir'] ?? 'desc';
+	$allowedSorts = ['name', 'url', 'status'];
+	$allowedDirs = ['asc', 'desc'];
+	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
+	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
+
+
 	$sql = "SELECT * FROM categories";
 	if ($q !== '') {
 	  $sql .= " WHERE MATCH(name, description) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
-	$sql .= " ORDER BY sort ASC";
+	$sql .= " ORDER BY $sort $dir";
 	
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {

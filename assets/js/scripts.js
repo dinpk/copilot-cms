@@ -1,7 +1,7 @@
 function openModal() {
   document.getElementById('modal-title').innerText = "Add";
   document.getElementById('modal-form').action = "add.php";
-  document.querySelectorAll('#modal-form input, #modal-form textarea').forEach(el => el.value = '');
+  document.querySelectorAll('#modal-form form > input, #modal-form textarea').forEach(el => el.value = '');
   document.getElementById('modal').style.display = "block";
 }
 
@@ -9,8 +9,9 @@ function editItem(id, endpoint, fields) {
   fetch(endpoint + '?id=' + id)
     .then(res => res.json())
     .then(data => {
-      document.getElementById('modal-title').innerText = "Edit";
+	  document.getElementById('modal-title').innerText = "Edit";
       document.getElementById('modal-form').action = "edit.php?id=" + id;
+	  
       fields.forEach(key => {
         if (document.getElementById(key)) {
           document.getElementById(key).value = data[key];
@@ -24,6 +25,30 @@ function editItem(id, endpoint, fields) {
 function closeModal() {
   document.getElementById('modal').style.display = "none";
 }
+
+
+
+// Article-Author Assignment
+function openAuthorModal(articleId) {
+  document.getElementById('author_article_id').value = articleId;
+  fetch('get_authors.php?article_id=' + articleId)
+    .then(res => res.json())
+    .then(data => {
+      let html = '';
+      data.authors.forEach(author => {
+        const checked = data.assigned.includes(author.key_authors) ? 'checked' : '';
+        html += `<label><input type="checkbox" name="author_ids[]" value="${author.key_authors}" ${checked}> ${author.name}</label><br>`;
+      });
+      document.getElementById('author-list').innerHTML = html;
+      document.getElementById('author-modal').style.display = 'block';
+    });
+}
+
+function closeAuthorModal() {
+  document.getElementById('author-modal').style.display = 'none';
+}
+
+
 
 
 // Book-Article Assignment
@@ -79,26 +104,51 @@ function filterArticles() {
 }
 
 
+// Books sell
 
+function openSellModal() {
+  document.getElementById('sell-modal-title').innerText = "Edit Sell Info";
+  document.getElementById('sell-form').reset();
+  document.getElementById('key_books').value = '';
+  document.getElementById('sell-modal').style.display = 'block';
+}
 
+function closeSellModal() {
+  document.getElementById('sell-modal').style.display = 'none';
+}
 
-// Article-Author Assignment
-function openAuthorModal(articleId) {
-  document.getElementById('author_article_id').value = articleId;
-  fetch('get_authors.php?article_id=' + articleId)
-    .then(res => res.json())
+function editSellItem(id, endpoint, fields) {
+  fetch(endpoint + '?id=' + id)
+    .then(response => response.json())
     .then(data => {
-      let html = '';
-      data.authors.forEach(author => {
-        const checked = data.assigned.includes(author.key_authors) ? 'checked' : '';
-        html += `<label><input type="checkbox" name="author_ids[]" value="${author.key_authors}" ${checked}> ${author.name}</label><br>`;
+      document.getElementById('sell-modal-title').innerText = "Edit Sell Info";
+      document.getElementById('key_books').value = id;
+      fields.forEach(field => {
+        if (document.getElementById(field)) {
+          document.getElementById(field).value = data[field] || '';
+        }
       });
-      document.getElementById('author-list').innerHTML = html;
-      document.getElementById('author-modal').style.display = 'block';
+      document.getElementById('sell-modal').style.display = 'block';
     });
 }
 
-function closeAuthorModal() {
-  document.getElementById('author-modal').style.display = 'none';
+function loadPriceHistory(bookId) {
+  fetch('get_price_history.php?id=' + bookId)
+    .then(res => res.text())
+    .then(html => {
+      openInfoModal("Price History", html);
+    });
+}
+
+
+
+function openInfoModal(title, contentHtml) {
+  document.getElementById('info-modal-title').innerText = title;
+  document.getElementById('info-modal-content').innerHTML = contentHtml;
+  document.getElementById('info-modal').style.display = 'block';
+}
+
+function closeInfoModal() {
+  document.getElementById('info-modal').style.display = 'none';
 }
 
