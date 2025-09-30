@@ -2,10 +2,11 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
+  $status = isset($_POST['status']) ? 'on' : 'off';	
 
   $stmt = $conn->prepare("UPDATE articles SET
     title = ?, title_sub = ?, article_snippet = ?, article_content = ?,
-    url = ?, banner_image_url = ?, sort = ?, categories = ?, status = ?,
+    url = ?, banner_image_url = ?, sort = ?, status = ?,
     update_date_time = CURRENT_TIMESTAMP
     WHERE key_articles = ?");
 
@@ -13,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssissi",
+  $stmt->bind_param("ssssssisi",
     $_POST['title'],
     $_POST['title_sub'],
     $_POST['article_snippet'],
@@ -21,12 +22,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $_POST['url'],
     $_POST['banner_image_url'],
     $_POST['sort'],
-    $_POST['categories'],
-    $_POST['status'],
+    $status,
     $id
   );
 
   $stmt->execute();
+
+
+  
+  
+	$conn->query("DELETE FROM article_categories WHERE key_articles = $id");
+
+	if (!empty($_POST['categories'])) {
+	  $stmtCat = $conn->prepare("INSERT IGNORE INTO article_categories (key_articles, key_categories) VALUES (?, ?)");
+	  foreach ($_POST['categories'] as $catId) {
+		$stmtCat->bind_param("ii", $id, $catId);
+		$stmtCat->execute();
+	  }
+	}
+   
+  
+  
 }
 
 header("Location: list.php");

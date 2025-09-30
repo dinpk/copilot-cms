@@ -108,7 +108,11 @@
     <input type="text" name="country" id="country" placeholder="Country"><br>
     <input type="text" name="image_url" id="image_url" placeholder="Image URL"><br>
     <textarea name="description" id="description" placeholder="Description"></textarea><br>
-    <input type="text" name="status" id="status" placeholder="Status"><br>
+	<label>
+	  <input type="checkbox" name="status" id="status" value="on" checked>
+	  Active
+	</label><br>
+
     <input type="submit" value="Save">
     <button type="button" onclick="closeModal()">Cancel</button>
   </form>

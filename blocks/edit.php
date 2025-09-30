@@ -2,6 +2,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
+  $status = isset($_POST['status']) ? 'on' : 'off';	
 
   $stmt = $conn->prepare("UPDATE blocks SET
     title = ?, block_content = ?, show_on_pages = ?, show_in_region = ?,
@@ -20,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $_POST['show_in_region'],
     $_POST['sort'],
     $_POST['module_file'],
-    $_POST['status'],
+    $status,
     $id
   );
 

@@ -3,6 +3,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   
   $id = intval($_GET['id']);
+  $status = isset($_POST['status']) ? 'on' : 'off';	
 
   $parent_id = isset($_POST['parent_id']) ? intval($_POST['parent_id']) : 0;
 
@@ -19,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $_POST['url'],
     $_POST['sort'],
     $parent_id,
-    $_POST['status'],
+    $status,
     $id
   );
 

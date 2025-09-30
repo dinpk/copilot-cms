@@ -2,6 +2,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
+  $status = isset($_POST['status']) ? 'on' : 'off';	
 
 	$stmt = $conn->prepare("INSERT INTO books (
 		title, subtitle, description, cover_image_url, url,
@@ -28,27 +29,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$_POST['format'],
 		$_POST['weight_grams'],
 		$_POST['sku'],
-		$_POST['status']
+		$status
 	);
 
-
   $stmt->execute();
-  
 
-	// Assign categories  
-	$key_books = $conn->insert_id;
 
-	$selectedCategories = $_POST['categories'] ?? [];
-	$stmtCat = $conn->prepare("INSERT INTO book_categories (key_books, key_categories) VALUES (?, ?)");
-	foreach ($selectedCategories as $catId) {
-	  $catId = intval($catId);
-	  if ($catId > 0) {
-		$stmtCat->bind_param("ii", $key_books, $catId);
+	$newRecordId = $conn->insert_id;
+
+	if (!empty($_POST['categories'])) {
+	  $stmtCat = $conn->prepare("INSERT IGNORE INTO book_categories (key_books, key_categories) VALUES (?, ?)");
+	  foreach ($_POST['categories'] as $catId) {
+		$stmtCat->bind_param("ii", $newRecordId, $catId);
 		$stmtCat->execute();
 	  }
 	}
-	$stmtCat->close();
-  
+
+
 }
 
 header("Location: list.php");

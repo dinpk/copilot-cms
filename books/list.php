@@ -16,7 +16,6 @@
       <th>Author</th>
       <th><?= sortLink('Publisher', 'publisher', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Year', 'publish_year', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
-	  <th>Categories</th>
       <th>Status</th>
       <th>Actions</th>
     </tr>
@@ -51,20 +50,11 @@
 	
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
-		
-		$res = $conn->query("SELECT c.name FROM book_categories bc JOIN categories c ON bc.key_categories = c.key_categories WHERE bc.key_books = {$row['key_books']}");
-		$catNames = [];
-		while ($cat = $res->fetch_assoc()) {
-		  $catNames[] = $cat['name'];
-		}
-		$catNames = implode(', ', $catNames);
-		
       echo "<tr>
         <td>{$row['title']}</td>
         <td>{$row['author_name']}</td>
         <td>{$row['publisher']}</td>
         <td>{$row['publish_year']}</td>
-		<td>$catNames</td>
         <td>{$row['status']}</td>
         <td>
           <a href='#' onclick='editItem({$row['key_books']}, \"get_book.php\", [\"title\",\"subtitle\",\"description\",\"cover_image_url\",\"url\",\"author_name\",\"publisher\",\"publish_year\",\"status\"])'>Edit</a> |
@@ -109,7 +99,7 @@
 
 <!-- Modal Form — add / edit -->
 <div id="modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;">
+  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; height:80vh; z-index:1000;">
   <h3 id="modal-title">Add Book</h3>
   <form id="modal-form" method="post" action="add.php">
   
@@ -122,24 +112,33 @@
     <input type="text" name="author_name" id="author_name" placeholder="Author Name"><br>
     <input type="text" name="publisher" id="publisher" placeholder="Publisher"><br>
     <input type="text" name="publish_year" id="publish_year" placeholder="Publish Year"><br>
-    <input type="text" name="status" id="status" placeholder="Status"><br>
+	<label>
+	  <input type="checkbox" name="status" id="status" value="on" checked>
+	  Active
+	</label><br>
 	
-	<div>
-	<?php
-	if (isset($_GET['edit'])) {
-	  $bookId = intval($_GET['edit']);
-	  $selected = [];
-	  $res = $conn->query("SELECT key_categories FROM book_categories WHERE key_books = $bookId");
-	  while ($row = $res->fetch_assoc()) {
-		$selected[] = $row['key_categories'];
-	  }
-	  renderCategoryCheckboxes($conn, $selected);       
-	} else {
-	  renderCategoryCheckboxes($conn);
-	}
-	?>
-	</div>
+	<div style="margin:10px 0;border:1px solid #777;padding:20px;">
+	  <h3>Categories</h3>
+		<?php
+		$types = ['photo_gallery', 'book', 'article', 'video_gallery', 'global'];
 
+		foreach ($types as $type) {
+		  echo "<div style='color:margin:10px 0;'>";
+		  echo "<div style='color:Navy;padding:10px 0 10px 0;'>" . ucfirst(str_replace('_', ' ', $type)) . "</div>";
+
+		  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
+
+		  while ($cat = $catResult->fetch_assoc()) {
+			echo "<label style='display:block;'>
+					<input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}
+				  </label>";
+		  }
+
+		  echo "</div>";
+		}
+		?>
+	</div>	
+	
     <input type="submit" value="Save">
     <button type="button" onclick="closeModal()">Cancel</button>
   </form>

@@ -57,9 +57,12 @@
     <textarea name="block_content" id="block_content" placeholder="Content"></textarea><br>
     <input type="text" name="show_on_pages" id="show_on_pages" placeholder="Show on Pages"><br>
     <input type="text" name="show_in_region" id="show_in_region" placeholder="Region"><br>
-    <input type="text" name="sort" id="sort" placeholder="Sort Order"><br>
+    <input type="number" value="0" name="sort" id="sort" placeholder="Sort Order"><br>
     <input type="text" name="module_file" id="module_file" placeholder="Module File"><br>
-    <input type="text" name="status" id="status" placeholder="Status"><br>
+	<label>
+	  <input type="checkbox" name="status" id="status" value="on" checked>
+	  Active
+	</label><br>
     <input type="submit" value="Save">
     <button type="button" onclick="closeModal()">Cancel</button>
   </form>

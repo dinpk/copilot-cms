@@ -79,8 +79,11 @@ $menuTree = buildMenuTree($menuItems);
     <input type="hidden" name="key_main_menu" id="key_main_menu">
     <input type="text" name="title" id="title" placeholder="Title" required><br>
     <input type="text" name="url" id="url" placeholder="URL"><br>
-    <input type="text" name="sort" id="sort" placeholder="Sort Order"><br>
-    <input type="text" name="status" id="status" placeholder="Status"><br>
+    <input type="number" value="0" name="sort" id="sort" placeholder="Sort Order"><br>
+	<label>
+	  <input type="checkbox" name="status" id="status" value="on" checked>
+	  Active
+	</label><br>
 	<select name="parent_id" id="parent_id">
 	  <option value="0">-- Top Level --</option>
 	  <?php

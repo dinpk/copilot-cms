@@ -85,7 +85,7 @@
 
 <!-- Modal Form -->
 <div id="modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;">
+  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;height:80vh">
   <h3 id="modal-title">Add Video</h3>
   <form id="modal-form" method="post" action="add.php">
     <input type="hidden" name="key_youtube_gallery" id="key_youtube_gallery">
@@ -93,7 +93,34 @@
     <input type="text" name="youtube_id" id="youtube_id" placeholder="YouTube ID" required><br>
     <input type="text" name="thumbnail_url" id="thumbnail_url" placeholder="Thumbnail URL"><br>
     <textarea name="description" id="description" placeholder="Description"></textarea><br>
-    <input type="text" name="status" id="status" placeholder="Status"><br>
+	<label>
+	  <input type="checkbox" name="status" id="status" value="on" checked>
+	  Active
+	</label><br>
+	
+	
+	<div style="margin:10px 0;border:1px solid #777;padding:20px;">
+	  <h3>Categories</h3>
+		<?php
+		$types = ['photo_gallery', 'book', 'article', 'video_gallery', 'global'];
+
+		foreach ($types as $type) {
+		  echo "<div style='color:margin:10px 0;'>";
+		  echo "<div style='color:Navy;padding:10px 0 10px 0;'>" . ucfirst(str_replace('_', ' ', $type)) . "</div>";
+
+		  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
+
+		  while ($cat = $catResult->fetch_assoc()) {
+			echo "<label style='display:block;'>
+					<input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}
+				  </label>";
+		  }
+
+		  echo "</div>";
+		}
+		?>
+	</div>
+	
     <input type="submit" value="Save">
     <button type="button" onclick="closeModal()">Cancel</button>
   </form>

@@ -2,6 +2,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
+  $status = isset($_POST['status']) ? 'on' : 'off';	
 
   $stmt = $conn->prepare("UPDATE books SET
     title = ?, subtitle = ?, description = ?, cover_image_url = ?, url = ?,
@@ -22,25 +23,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $_POST['author_name'],
     $_POST['publisher'],
     $_POST['publish_year'],
-    $_POST['status'],
+    $status,
     $id
   );
 
   $stmt->execute();
-  
-	  
-	$selectedCategories = $_POST['categories'] ?? [];
-	// Clear old assignments
+ 
+
 	$conn->query("DELETE FROM book_categories WHERE key_books = $id");
-	// Insert new ones
-	$stmt = $conn->prepare("INSERT INTO book_categories (key_books, key_categories) VALUES (?, ?)");
-	foreach ($selectedCategories as $catId) {
-	  $catId = intval($catId);
-	  $stmt->bind_param("ii", $id, $catId);
-	  $stmt->execute();
+
+	if (!empty($_POST['categories'])) {
+	  $stmtCat = $conn->prepare("INSERT IGNORE INTO book_categories (key_books, key_categories) VALUES (?, ?)");
+	  foreach ($_POST['categories'] as $catId) {
+		$stmtCat->bind_param("ii", $id, $catId);
+		$stmtCat->execute();
+	  }
 	}
-	$stmt->close();
-  
+ 
+ 
 }
 
 header("Location: list.php");

@@ -1,24 +1,24 @@
 <?php include '../db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
-  $id = intval($_GET['id']);
 
-  $stmt = $conn->prepare("UPDATE categories SET
-    name = ?, description = ?, url = ?, sort = ?, status = ?
-    WHERE key_categories = ?");
+	$id = intval($_GET['id']);
+	$status = isset($_POST['status']) ? 'on' : 'off';
 
-  if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
-  }
 
-  $stmt->bind_param("sssisi",
-    $_POST['name'],
-    $_POST['description'],
-    $_POST['url'],
-    $_POST['sort'],
-    $_POST['status'],
-    $id
-  );
+	$stmt = $conn->prepare("UPDATE categories SET
+	  name = ?, description = ?, url = ?, sort = ?, status = ?, category_type = ?
+	  WHERE key_categories = ?");
+
+	$stmt->bind_param("sssissi",
+	  $_POST['name'],
+	  $_POST['description'],
+	  $_POST['url'],
+	  $_POST['sort'],
+	  $status,
+	  $_POST['category_type'],
+	  $id
+	);
 
   $stmt->execute();
 }

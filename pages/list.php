@@ -63,7 +63,10 @@
     <textarea name="page_content" id="page_content" placeholder="Content"></textarea><br>
     <input type="text" name="url" id="url" placeholder="URL"><br>
     <input type="text" name="banner_image_url" id="banner_image_url" placeholder="Banner Image URL"><br>
-    <input type="text" name="status" id="status" placeholder="Status"><br>
+	<label>
+	  <input type="checkbox" name="status" id="status" value="on" checked>
+	  Active
+	</label><br>
     <input type="submit" value="Save">
     <button type="button" onclick="closeModal()">Cancel</button>
   </form>

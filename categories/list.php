@@ -5,8 +5,16 @@
 <p><a href="#" onclick="openModal()">➕ Add New Category</a></p>
 
 <form method="get" style="margin-bottom:20px;">
-  <input type="text" name="q" placeholder="Search categories..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
-  <input type="submit" value="Search">
+	<input type="text" name="q" placeholder="Search categories..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
+	<select name="type" onchange="this.form.submit()">
+		<option value="">All Types</option>
+		<option value="article">Article</option>
+		<option value="book">Book</option>
+		<option value="photo_gallery">Photo Gallery</option>
+		<option value="video_gallery">Video Gallery</option>
+		<option value="global">Global</option>
+	</select>
+	<input type="submit" value="Search">
 </form>
 
 
@@ -16,6 +24,7 @@
       <th><?= sortLink('Name', 'name', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Description</th>
       <th><?= sortLink('URL', 'url', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+	  <th><?= sortLink('Type', 'category_type', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
@@ -28,7 +37,7 @@
 	// sort
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['name', 'url', 'status'];
+	$allowedSorts = ['name', 'url', 'status', 'category_type'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
@@ -38,6 +47,13 @@
 	if ($q !== '') {
 	  $sql .= " WHERE MATCH(name, description) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
+
+	$type = $_GET['type'] ?? '';
+	if ($type !== '') {
+	  $type = $conn->real_escape_string($type);
+	  $sql .= ($q === '' ? " WHERE " : " AND ") . "category_type = '$type'";
+	}
+
 	$sql .= " ORDER BY $sort $dir";
 	
     $result = $conn->query($sql);
@@ -46,9 +62,10 @@
         <td>{$row['name']}</td>
         <td>{$row['description']}</td>
         <td>{$row['url']}</td>
+		<td>{$row['category_type']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_categories']}, \"get_category.php\", [\"name\",\"description\",\"url\",\"sort\",\"status\"])'>Edit</a> |
+          <a href='#' onclick='editItem({$row['key_categories']}, \"get_category.php\", [\"name\",\"description\",\"url\",\"sort\",\"status\"]); return false;'>Edit</a> |
           <a href='delete.php?id={$row['key_categories']}' onclick='return confirm(\"Delete this category?\")'>Delete</a>
         </td>
       </tr>";
@@ -65,9 +82,20 @@
     <input type="hidden" name="key_categories" id="key_categories">
     <input type="text" name="name" id="name" placeholder="Name" required><br>
     <textarea name="description" id="description" placeholder="Description"></textarea><br>
+	<select name="category_type" id="category_type" required>
+	  <option value="article">Article</option>
+	  <option value="book">Book</option>
+	  <option value="photo_gallery">Photo Gallery</option>
+	  <option value="video_gallery">Video Gallery</option>
+	  <option value="global">Global</option>
+	</select><br>
     <input type="text" name="url" id="url" placeholder="URL"><br>
-    <input type="text" name="sort" id="sort" placeholder="Sort Order"><br>
-    <input type="text" name="status" id="status" placeholder="Status"><br>
+    <input type="number" value="0" name="sort" id="sort" placeholder="Sort Order"><br>
+	<label>
+	  <input type="checkbox" name="status" id="status" value="on" checked>
+	  Active
+	</label><br>
+
     <input type="submit" value="Save">
     <button type="button" onclick="closeModal()">Cancel</button>
   </form>

@@ -9,20 +9,49 @@ function editItem(id, endpoint, fields) {
   fetch(endpoint + '?id=' + id)
     .then(res => res.json())
     .then(data => {
-	  document.getElementById('modal-title').innerText = "Edit";
+      document.getElementById('modal-title').innerText = "Edit";
       document.getElementById('modal-form').action = "edit.php?id=" + id;
-	  
+
       fields.forEach(key => {
-        if (document.getElementById(key)) {
-          document.getElementById(key).value = data[key];
-        }
+        const el = document.getElementById(key);
+        if (el) el.value = data[key];
       });
+
+      // Set category_type dropdown
+      if (data.category_type && document.getElementById('category_type')) {
+        document.getElementById('category_type').value = data.category_type;
+      }
+
+      // Set content_type dropdown
+      if (data.content_type && document.getElementById('content_type')) {
+        document.getElementById('content_type').value = data.content_type;
+      }
+
+		// Selected categories (articles, books, photo, youtube)
+		if (data.categories && Array.isArray(data.categories)) {
+			
+		  document.querySelectorAll('input[name="categories[]"]').forEach(cb => {
+			cb.checked = data.categories.includes(parseInt(cb.value));
+		  });
+		}
+
+
+      // Set status checkbox
+      if (document.getElementById('status')) {
+        document.getElementById('status').checked = (data.status === 'on');
+      }
+
+      // Optional: Set parent_id if used
+      if (document.getElementById('parent_id') && data.parent_id !== undefined) {
+        document.getElementById('parent_id').value = data.parent_id;
+      }
+
       document.getElementById('modal').style.display = "block";
     });
-	document.getElementById("parent_id").value = data.parent_id;
 }
 
 function closeModal() {
+  document.getElementById('modal-form').reset();
   document.getElementById('modal').style.display = "none";
 }
 

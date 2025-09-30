@@ -78,20 +78,6 @@ function sortLink($label, $column, $currentSort, $currentDir) {
     return "<a href=\"$url\">$label$icon</a>";
 }
 
-function renderCategoryCheckboxes($conn, $selected = []) {
-  $res = $conn->query("SELECT key_categories, name FROM categories ORDER BY sort");
-  if (!$res) {
-    echo "<p style='color:red;'>Failed to load categories.</p>";
-    return;
-  }
-
-  while ($cat = $res->fetch_assoc()) {
-    $key = $cat['key_categories'];
-    $name = htmlspecialchars($cat['name']);
-    $checked = in_array($key, $selected) ? 'checked' : '';
-    echo "<label><input type='checkbox' name='categories[]' value='$key' $checked> $name</label><br>";
-  }
-}
 
 
 ?>

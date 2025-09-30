@@ -3,6 +3,7 @@
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
   $parent_id = isset($_POST['parent_id']) ? intval($_POST['parent_id']) : 0;
+  $status = isset($_POST['status']) ? 'on' : 'off';	
 	
   $stmt = $conn->prepare("INSERT INTO main_menu (
     title, url, sort, parent_id, status
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST['url'],
     $_POST['sort'],
 	$parent_id,
-    $_POST['status']
+    $status
   );
 
   $stmt->execute();

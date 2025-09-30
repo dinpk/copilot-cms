@@ -2,6 +2,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
+	$status = isset($_POST['status']) ? 'on' : 'off';
 
   $stmt = $conn->prepare("UPDATE authors SET
     name = ?, email = ?, phone = ?, website = ?, url = ?,
@@ -28,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $_POST['country'],
     $_POST['image_url'],
     $_POST['description'],
-    $_POST['status'],
+    $status,
     $id
   );
 

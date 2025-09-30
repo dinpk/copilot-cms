@@ -1,6 +1,9 @@
 <?php include '../db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	
+	$status = isset($_POST['status']) ? 'on' : 'off';
+	
   $stmt = $conn->prepare("INSERT INTO authors (
     name, email, phone, website, url,
     social_url_media1, social_url_media2, social_url_media3,
@@ -25,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST['country'],
     $_POST['image_url'],
     $_POST['description'],
-    $_POST['status']
+    $status
   );
 
   $stmt->execute();
