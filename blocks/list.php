@@ -1,5 +1,10 @@
-<?php include '../db.php'; ?>
-<?php include '../layout.php'; ?>
+<?php 
+include '../db.php';
+include '../layout.php'; 
+include '../users/auth.php'; 
+?>
+
+
 <?php startLayout("Blocks List"); ?>
 
 <a href="#" onclick="openModal()">➕ Add New Block</a>
@@ -10,6 +15,8 @@
       <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Region', 'show_in_region', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Pages', 'show_on_pages', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+	  <th>Created</th>
+	  <th>Updated</th>
       <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
@@ -32,10 +39,21 @@
     $sql = "SELECT * FROM blocks ORDER BY $sort $dir";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
+		
+		// Show created by updated by
+		$keyBlocks = $row["key_blocks"];
+		$createdUpdated = $conn->query("SELECT b.key_blocks, u1.username AS creator, u2.username AS updater 
+			FROM blocks b 
+			LEFT JOIN users u1 ON b.created_by = u1.key_user
+			LEFT JOIN users u2 ON b.updated_by = u2.key_user 
+			WHERE key_blocks = $keyBlocks")->fetch_assoc();		
+
       echo "<tr>
         <td>{$row['title']}</td>
         <td>{$row['show_in_region']}</td>
         <td>{$row['show_on_pages']}</td>
+		<td>{$createdUpdated['creator']}</td>
+		<td>{$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
           <a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"sort\",\"module_file\",\"status\"])'>Edit</a> |
@@ -67,7 +85,5 @@
     <button type="button" onclick="closeModal()">Cancel</button>
   </form>
 </div>
-
-<script src="../assets/js/scripts.js"></script>
 
 <?php endLayout(); ?>

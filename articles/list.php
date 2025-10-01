@@ -1,5 +1,10 @@
-<?php include '../db.php'; ?>
-<?php include '../layout.php'; ?>
+<?php 
+include '../db.php';
+include '../layout.php'; 
+include '../users/auth.php'; 
+?>
+
+
 <?php startLayout("Articles List"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Article</a></p>
@@ -15,6 +20,8 @@
       <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Snippet</th>
 	  <th>Authors</th>
+		<th>Created</th>
+		<th>Updated</th>
       <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
@@ -48,8 +55,20 @@
 	$sql .= " ORDER BY $sort $dir LIMIT $limit OFFSET $offset";
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
-		$aid = $row['key_articles'];
-		$authRes = $conn->query("SELECT a.name FROM authors a JOIN article_authors aa ON a.key_authors = aa.key_authors WHERE aa.key_articles = $aid");
+		$keyArticles = $row['key_articles'];
+		
+		// display created/updated by
+		$createdUpdated = $conn->query("SELECT
+			  a.key_articles,
+			  u1.username AS creator,
+			  u2.username AS updater
+			FROM articles a
+			LEFT JOIN users u1 ON a.created_by = u1.key_user
+			LEFT JOIN users u2 ON a.updated_by = u2.key_user
+			WHERE key_articles = $keyArticles")->fetch_assoc();	
+			
+		// display authors
+		$authRes = $conn->query("SELECT a.name FROM authors a JOIN article_authors aa ON a.key_authors = aa.key_authors WHERE aa.key_articles = $keyArticles");
 		$authorNames = [];
 		while ($a = $authRes->fetch_assoc()) {
 		  $authorNames[] = $a['name'];
@@ -60,6 +79,8 @@
 		<td>{$row['title']}</td>
 		<td>{$row['article_snippet']}</td>
 		<td>" . htmlspecialchars($authorDisplay) . "</td>
+		<td>{$createdUpdated['creator']}</td>
+		<td>{$createdUpdated['updater']}</td>
 		<td>{$row['status']}</td>
 		<td>
 		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"banner_image_url\",\"sort\",\"status\"])'>Edit</a> |
@@ -165,8 +186,5 @@
   </form>
 </div>
 
-
-
-<script src="../assets/js/scripts.js"></script>
 
 <?php endLayout(); ?>

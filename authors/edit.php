@@ -1,21 +1,25 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
 	$status = isset($_POST['status']) ? 'on' : 'off';
 
+	$updatedBy = $_SESSION['key_user'];
+
   $stmt = $conn->prepare("UPDATE authors SET
     name = ?, email = ?, phone = ?, website = ?, url = ?,
     social_url_media1 = ?, social_url_media2 = ?, social_url_media3 = ?,
     city = ?, state = ?, country = ?, image_url = ?, description = ?, status = ?,
-    update_date_time = CURRENT_TIMESTAMP
+    updated_by = ?
     WHERE key_authors = ?");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssssssssssi",
+  $stmt->bind_param("ssssssssssssssii",
     $_POST['name'],
     $_POST['email'],
     $_POST['phone'],
@@ -30,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $_POST['image_url'],
     $_POST['description'],
     $status,
+	$updatedBy,
     $id
   );
 

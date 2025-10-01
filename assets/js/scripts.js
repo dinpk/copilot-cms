@@ -1,3 +1,4 @@
+console.log("hello world");
 function openModal() {
   document.getElementById('modal-title').innerText = "Add";
   document.getElementById('modal-form').action = "add.php";
@@ -54,6 +55,57 @@ function closeModal() {
   document.getElementById('modal-form').reset();
   document.getElementById('modal').style.display = "none";
 }
+
+
+
+// Open the image modal and load existing images
+function openImageModal(productId) {
+  document.getElementById('image_key_product').value = productId;
+
+  fetch('get_images.php?key_product=' + productId)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('image-list').innerHTML = html;
+      document.getElementById('image-modal').style.display = 'block';
+    });
+}
+
+function closeImageModal() {
+  document.getElementById('image-modal').style.display = 'none';
+}
+
+function deleteImage(imageId, productId) {
+  fetch('delete_image.php?id=' + imageId + '&key_product=' + productId)
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('image-list').innerHTML = html;
+    });
+}
+
+// Attach form listener only once
+document.addEventListener('DOMContentLoaded', function () {
+  const imageForm = document.querySelector('#image-modal form');
+  if (imageForm) {
+    imageForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(imageForm);
+      const productId = document.getElementById('image_key_product').value;
+
+      fetch('assign_image.php', {
+        method: 'POST',
+        body: data
+      })
+      .then(() => fetch('get_images.php?key_product=' + productId))
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('image-list').innerHTML = html;
+        imageForm.reset();
+      });
+    });
+  }
+});
+
+
 
 
 
@@ -120,10 +172,11 @@ function filterArticles() {
   // Clear previous search results (but keep already assigned ones)
   const assignedLabels = Array.from(document.querySelectorAll('#article-list input:checked'))
   .map(input => input.closest('label').outerHTML);
-
+console.log('search_articles.php?q=' + encodeURIComponent(query) + '&book_id=' + bookId);
   fetch('search_articles.php?q=' + encodeURIComponent(query) + '&book_id=' + bookId)
     .then(res => res.json())
     .then(data => {
+		console.log(data);
       let html = assignedLabels.join(''); // preserve checked items
       data.forEach(article => {
         html += `<p><label><input type="checkbox" name="article_ids[]" value="${article.key_articles}"> ${article.title}</label></p>`;
@@ -161,8 +214,8 @@ function editSellItem(id, endpoint, fields) {
     });
 }
 
-function loadPriceHistory(bookId) {
-  fetch('get_price_history.php?id=' + bookId)
+function loadPriceHistory(id) {
+  fetch('get_price_history.php?id=' + id)
     .then(res => res.text())
     .then(html => {
       openInfoModal("Price History", html);

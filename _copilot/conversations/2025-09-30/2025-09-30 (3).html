@@ -1,0 +1,1920 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 7.4.7.2 (Windows)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2025-09-30T23:16:54.067000000"/>
+	<style type="text/css">
+		@page { size: 8.5in 14in; margin: 0.3in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+		h2 { line-height: 115%; margin-top: 0.14in; margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h2.western { font-family: "Liberation Serif", serif; font-size: 18pt; font-weight: bold }
+		h2.cjk { font-family: "NSimSun"; font-size: 18pt; font-weight: bold }
+		h2.ctl { font-family: "Arial"; font-size: 18pt; font-weight: bold }
+		h3 { line-height: 115%; margin-top: 0.1in; margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h3.western { font-family: "Liberation Serif", serif; font-size: 14pt; font-weight: bold }
+		h3.cjk { font-family: "NSimSun"; font-size: 14pt; font-weight: bold }
+		h3.ctl { font-family: "Arial"; font-size: 14pt; font-weight: bold }
+		td p { line-height: 115%; orphans: 0; widows: 0; margin-top: 0.04in; margin-bottom: 0.04in; background: transparent }
+		th p { font-weight: bold; line-height: 115%; text-align: center; orphans: 0; widows: 0; margin-top: 0.04in; margin-bottom: 0.04in; background: transparent }
+		pre { line-height: 115%; background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "NSimSun", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		strong { font-weight: bold }
+		code.western { font-family: "Liberation Mono", monospace }
+		code.cjk { font-family: "NSimSun", monospace }
+		code.ctl { font-family: "Liberation Mono", monospace }
+		a:link { color: #000080; text-decoration: underline }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+<br/>
+
+</p>
+<div id="app" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Today</p>
+	<div id="qskXsHgPDcaAjEbnHGnXG-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">How do I export a database as only
+		table names and column names, so that I get less text to paste in
+		here?</p>
+	</div>
+	<h2 class="western"><a name="j2kV4mtqTSxVZG5FsauXe-author"></a>Copilot
+	said</h2>
+	<div id="j2kV4mtqTSxVZG5FsauXe-content-0" dir="ltr"><p>Great
+		question, Nasiruddin. Since you're using phpMyAdmin and working
+		with the <code class="western">simplesite</code> database, here's a
+		clean way to extract just the table names and column names—no
+		data, no extra SQL clutter:</p>
+		<h3 class="western">🧼&nbsp;Option&nbsp;1:&nbsp;Use&nbsp;SQL&nbsp;to&nbsp;Generate&nbsp;Schema&nbsp;Summary</h3>
+		<p>Run this query in phpMyAdmin's SQL tab:</p>
+		<p style="margin-bottom: 0in">sql</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">SELECT </code>
+<code class="western">    </code><code class="western">TABLE_NAME, </code>
+<code class="western">    </code><code class="western">COLUMN_NAME, </code>
+<code class="western">    </code><code class="western">COLUMN_TYPE </code>
+<code class="western">FROM INFORMATION_SCHEMA.COLUMNS </code>
+<code class="western">WHERE TABLE_SCHEMA = 'simplesite'</code>
+<code class="western">ORDER BY TABLE_NAME, ORDINAL_POSITION;</code></pre><p>
+		This gives you a neat list like:</p>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">articles       | id              | int(11)</code>
+<code class="western">articles       | title           | varchar(255)</code>
+<code class="western">authors        | id              | int(11)</code>
+<code class="western">authors        | name            | varchar(100)</code>
+<code class="western">...</code></pre><p>
+		You can copy-paste this directly—minimal and readable.</p>
+		<h3 class="western">🧰&nbsp;Option&nbsp;2:&nbsp;Export&nbsp;as&nbsp;CSV&nbsp;(Optional)</h3>
+		<p>If you want to paste it into Excel or Google Sheets:</p>
+		<ol>
+			<li><p>Run the query above.</p>
+			<li><p>Click “Export” at the bottom of the result.</p>
+			<li><p>Choose <strong>CSV</strong> format.</p>
+			<li><p>Download and open in your spreadsheet tool.</p>
+		</ol>
+		<h3 class="western">🧠&nbsp;Bonus&nbsp;Tip:&nbsp;Group&nbsp;Columns&nbsp;by&nbsp;Table&nbsp;(Programmatically)</h3>
+		<p>If you want to group columns under each table name for clarity,
+		I can help you format that output too—just let me know your
+		preferred style (e.g., YAML, Markdown, plain text).</p>
+		<p>Would you like me to help format the output from that query into
+		a clean schema summary for your CMS modules?</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="UyN4DXFjmKu2UqtrSWwv6-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Here is the schema, I think with
+		tab-separated values: TABLE_NAME COLUMN_NAME COLUMN_TYPE articles
+		key_articles int(10) unsigned articles title varchar(300) articles
+		title_sub varchar(300) articles article_snippet varchar(1000)
+		articles article_content mediumtext articles content_type
+		varchar(10) articles url varchar(200) articles banner_image_url
+		varchar(2000) articles sort smallint(6) articles status varchar(3)
+		articles entry_date_time timestamp articles update_date_time
+		timestamp article_authors id int(10) unsigned article_authors
+		key_articles int(10) unsigned article_authors key_authors int(10)
+		unsigned article_categories id int(10) unsigned article_categories
+		key_articles int(10) unsigned article_categories key_categories
+		int(10) unsigned authors key_authors int(10) unsigned authors name
+		varchar(200) authors email varchar(200) authors phone varchar(50)
+		authors website varchar(200) authors url varchar(200) authors
+		social_url_media1 varchar(200) authors social_url_media2
+		varchar(200) authors social_url_media3 varchar(200) authors city
+		varchar(200) authors state varchar(200) authors country
+		varchar(200) authors image_url varchar(200) authors description
+		varchar(2000) authors status varchar(3) authors entry_date_time
+		timestamp authors update_date_time timestamp blocks key_blocks
+		int(10) unsigned blocks title varchar(200) blocks block_content
+		varchar(10000) blocks show_on_pages varchar(1000) blocks
+		show_in_region varchar(50) blocks sort smallint(6) blocks
+		module_file varchar(100) blocks status varchar(3) blocks
+		entry_date_time timestamp books key_books int(10) unsigned books
+		title varchar(200) books subtitle varchar(200) books description
+		text books cover_image_url varchar(200) books url varchar(200)
+		books author_name varchar(200) books publisher varchar(200) books
+		publish_year varchar(4) books isbn varchar(17) books price
+		decimal(10,0) books stock_quantity int(11) books discount_percent
+		tinyint(4) books is_featured tinyint(1) books language varchar(50)
+		books format varchar(50) books weight_grams int(11) books sku
+		varchar(50) books status varchar(3) books sort smallint(6) books
+		entry_date_time timestamp books update_date_time timestamp
+		book_articles key_book_articles int(10) unsigned book_articles
+		key_books int(10) unsigned book_articles key_articles int(10)
+		unsigned book_articles sort_order int(5) unsigned book_categories
+		id int(10) unsigned book_categories key_books int(10) unsigned
+		book_categories key_categories int(10) unsigned book_orders
+		key_order int(10) unsigned book_orders order_number varchar(50)
+		book_orders customer_name varchar(100) book_orders customer_email
+		varchar(100) book_orders order_date timestamp book_orders
+		total_amount decimal(10,2) book_orders status varchar(20)
+		book_order_items key_item int(10) unsigned book_order_items
+		key_order int(10) unsigned book_order_items key_books int(10)
+		unsigned book_order_items quantity int(11) book_order_items
+		unit_price decimal(10,2) book_prices_history key_price int(10)
+		unsigned book_prices_history key_books int(10) unsigned
+		book_prices_history old_price decimal(10,2) book_prices_history
+		new_price decimal(10,2) book_prices_history change_date timestamp
+		categories key_categories int(10) unsigned categories name
+		varchar(200) categories description varchar(1000) categories url
+		varchar(200) categories sort smallint(6) categories status
+		varchar(3) categories entry_date_time timestamp categories
+		category_type enum('article','book','photo_gallery','video_galle...
+		main_menu key_main_menu int(10) unsigned main_menu parent_id
+		int(10) unsigned main_menu title varchar(200) main_menu url
+		varchar(200) main_menu sort smallint(6) main_menu status varchar(3)
+		main_menu entry_date_time timestamp pages key_pages int(10)
+		unsigned pages banner_image_url varchar(200) pages title
+		varchar(200) pages page_content text pages url varchar(200) pages
+		status varchar(3) pages entry_date_time timestamp pages
+		update_date_time timestamp photo_categories id int(10) unsigned
+		photo_categories key_photo_gallery int(10) unsigned
+		photo_categories key_categories int(10) unsigned photo_gallery
+		key_photo_gallery int(11) photo_gallery title varchar(255)
+		photo_gallery image_url varchar(255) photo_gallery description text
+		photo_gallery status varchar(50) photo_gallery entry_date_time
+		datetime settings key_settings int(10) unsigned settings site_name
+		varchar(200) settings site_slogan varchar(200) settings logo1_url
+		varchar(200) settings logo2_url varchar(200) settings base_url
+		varchar(100) settings banner_height varchar(5) settings
+		footer_content varchar(2000) settings snippet_size varchar(3)
+		settings items_on_page varchar(3) settings template_folder
+		varchar(100) settings entry_date_time timestamp youtube_categories
+		id int(10) unsigned youtube_categories key_youtube_gallery int(10)
+		unsigned youtube_categories key_categories int(10) unsigned
+		youtube_gallery key_youtube_gallery int(11) youtube_gallery title
+		varchar(255) youtube_gallery youtube_id varchar(20) youtube_gallery
+		thumbnail_url varchar(255) youtube_gallery description text
+		youtube_gallery status varchar(50) youtube_gallery entry_date_time
+		datetime And here is the app structure of our app: ³ db.php ³
+		index.php ³ layout.php ³ structure.txt ³ \articles ³ add.php ³
+		assign_authors.php ³ delete.php ³ edit.php ³ get_article.php ³
+		get_authors.php ³ list.php ³ \assets ³ \css ³ ³ dashboard.css
+		³ ³ style.css ³ ³ ³ \js ³ scripts.js ³ \authors ³ add.php ³
+		delete.php ³ edit.php ³ get_author.php ³ list.php ³ \blocks ³
+		add.php ³ delete.php ³ edit.php ³ get_block.php ³ list.php ³
+		\books ³ add.php ³ assign_articles.php ³
+		assign_articles_modal.php ³ assign_articles_save.php ³
+		books_sell.php ³ book_prices_history.php ³ delete.php ³ edit.php
+		³ get_articles.php ³ get_assigned_articles.php ³ get_book.php ³
+		get_book_title.php ³ get_price_history.php ³
+		get_selected_categories.php ³ list.php ³ search_articles.php ³
+		update_sell.php ³ \categories ³ add.php ³ delete.php ³ edit.php
+		³ get_category.php ³ list.php ³ \main_menu ³ add.php ³
+		delete.php ³ edit.php ³ get_menu.php ³ list.php ³ \pages ³
+		add.php ³ delete.php ³ edit.php ³ get_page.php ³ list.php ³
+		\photo_gallery ³ add.php ³ delete.php ³ edit.php ³
+		get_photo.php ³ list.php ³ \settings ³ view.php ³
+		\youtube_gallery ³ add.php ³ delete.php ³ edit.php ³
+		get_video.php ³ list.php ³ \_copilot ³ \conversations ³ ³
+		template.odt ³ ³ ³ \2025-09-24 ³ ³ 2025-09-24.html ³ ³
+		2025-09-24.pdf ³ ³ ³ \2025-09-25 ³ ³ 2025-09-25.html ³ ³
+		2025-09-25.pdf ³ ³ ³ \2025-09-26 ³ ³ 2025-09-06.html ³ ³
+		2025-09-26.pdf ³ ³ ³ \2025-09-27 ³ ³ 2025-09-27.html ³ ³
+		2025-09-27.pdf ³ ³ ³ \2025-09-28 ³ ³ 2025-09-28.html ³ ³
+		2025-09-28.pdf ³ ³ ³ \2025-09-29 review of old script ³ ³
+		2025-09-29.html ³ ³ 2025-09-29.pdf ³ ³ ³ \2025-09-30 ³
+		2025-09-30 (1).html ³ 2025-09-30 (1).pdf ³ 2025-09-30 (2).html ³
+		2025-09-30 (2).pdf ³ \_sql simplesite.sql And please recall the
+		context from our previous conversations about the CMS. What you
+		think what do we need done more. Are we ready to move on to
+		front-end? I know we don't have login system yet. Also, we don't
+		have anything to maintain customers profiles etc.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="9JRE2eRNxctSz672wQMSj-content-0" dir="ltr"><p>Thanks for
+		laying everything out so clearly, Nasiruddin. Your schema and app
+		structure show a mature, modular backend—well thought out and
+		ready to scale. Let’s take a strategic look at what’s done,
+		what’s missing, and whether it’s time to shift focus to the
+		front-end.</p>
+		<h2 class="western">✅&nbsp;What’s&nbsp;Already&nbsp;Solid</h2>
+		<h3 class="western">🧱&nbsp;Backend&nbsp;Architecture</h3>
+		<ul>
+			<li><p><strong>Modular CRUD</strong>: Each content type has its
+			own folder and handlers—clean separation.</p>
+			<li><p><strong>Many-to-many relationships</strong>: Articles ↔
+			Authors, Books ↔ Articles, Books ↔ Categories—all covered.</p>
+			<li><p><strong>Category system</strong>: Shared across modules,
+			with junction tables in place.</p>
+			<li><p><strong>Editorial tools</strong>: Blocks, pages, menus, and
+			settings modules are ready for layout control.</p>
+			<li><p><strong>Product system</strong>: Books, orders, order
+			items, price history—very robust.</p>
+		</ul>
+		<h3 class="western">📦&nbsp;App&nbsp;Structure</h3>
+		<ul>
+			<li><p><strong>Consistent file naming</strong>: <code class="western">get_</code>,
+			<code class="western">add_</code>, <code class="western">edit_</code>,
+			<code class="western">delete_</code>, <code class="western">assign_</code>—easy
+			to navigate.</p>
+			<li><p><strong>Copilot integration folder</strong>:
+			<code class="western">_copilot/conversations</code> shows your
+			documentation mindset.</p>
+			<li><p><strong>SQL dump</strong>: <code class="western">simplesite.sql</code>
+			ready for versioning or migration.</p>
+		</ul>
+		<h2 class="western">🧩&nbsp;What’s&nbsp;Missing&nbsp;or&nbsp;Incomplete</h2>
+		<h3 class="western">🔐&nbsp;Authentication&nbsp;&amp;&nbsp;User&nbsp;Management</h3>
+		<ul>
+			<li><p>No login system yet—so:</p>
+			<ul>
+				<li><p>No access control (admin vs editor vs customer).</p>
+				<li><p>No session handling or user-specific views.</p>
+				<li><p>No customer profiles or order history.</p>
+			</ul>
+		</ul>
+		<h3 class="western">🧑‍💻&nbsp;Customer-Facing&nbsp;Features</h3>
+		<ul>
+			<li><p>No module for customers to:</p>
+			<ul>
+				<li><p>Register or log in.</p>
+				<li><p>Browse books/articles with filters.</p>
+				<li><p>Place orders or view past purchases.</p>
+				<li><p>Save favorites or interact with content.</p>
+			</ul>
+		</ul>
+		<h3 class="western">🖼️&nbsp;Front-End&nbsp;Readiness</h3>
+		<ul>
+			<li><p>You have <code class="western">layout.php</code>,
+			<code class="western">dashboard.css</code>, and <code class="western">scripts.js</code>,
+			but:</p>
+			<ul>
+				<li><p>No templates for public views (e.g. homepage, book detail,
+				article list).</p>
+				<li><p>No routing logic for public vs admin views.</p>
+				<li><p>No responsive design or mobile consideration yet.</p>
+			</ul>
+		</ul>
+		<h2 class="western">🧭&nbsp;Suggested&nbsp;Roadmap</h2>
+		<h3 class="western">Phase&nbsp;1:&nbsp;Finalize&nbsp;Backend</h3>
+		<ul>
+			<li><p>🔐 Build login system (start with admin login).</p>
+			<li><p>👤 Add <code class="western">users</code> table with
+			roles (admin, editor, customer).</p>
+			<li><p>🧾 Add <code class="western">customers</code> table for
+			public users (linked to orders).</p>
+			<li><p>🧠 Add session handling in <code class="western">db.php</code>
+			or a new <code class="western">auth.php</code>.</p>
+		</ul>
+		<h3 class="western">Phase&nbsp;2:&nbsp;Front-End&nbsp;Kickoff</h3>
+		<ul>
+			<li><p>🧱 Create public-facing templates:</p>
+			<ul>
+				<li><p>Homepage with featured books/articles.</p>
+				<li><p>Book detail page with “Add to cart.”</p>
+				<li><p>Article detail page with author info.</p>
+			</ul>
+			<li><p>🧭 Build routing logic in <code class="western">index.php</code>
+			or a new <code class="western">router.php</code>.</p>
+			<li><p>🎨 Style with <code class="western">dashboard.css</code>
+			or split into <code class="western">admin.css</code> and <code class="western">site.css</code>.</p>
+		</ul>
+		<h3 class="western">Phase&nbsp;3:&nbsp;Customer&nbsp;Features</h3>
+		<ul>
+			<li><p>🛒 Cart system (session-based or DB-backed).</p>
+			<li><p>👤 Customer login/register.</p>
+			<li><p>📦 Order placement and history view.</p>
+		</ul>
+		<h2 class="western">🧠&nbsp;Bonus:&nbsp;Developer&nbsp;Experience</h2>
+		<p>You might also consider:</p>
+		<ul>
+			<li><p>Adding a <code class="western">README.md</code> or <code class="western">docs/</code>
+			folder to explain module logic.</p>
+			<li><p>Creating a <code class="western">config.php</code> for
+			site-wide constants.</p>
+			<li><p>Logging errors to a file (<code class="western">logs/error.log</code>)
+			for production use.</p>
+		</ul>
+		<p>You’ve built a strong foundation. If you’re feeling
+		energized tonight, I’d suggest starting with the login system—it
+		unlocks everything else. Want help sketching out the <code class="western">users</code>
+		table and login flow next?</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="oo32HgWDzNBUEg3i76MC5-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Thank you for laying out everything
+		clearly. I was also thinking on these lines but confirmation is
+		what helps move forward without hesitation. Before we move on to
+		login system, I have a question. We are calling it &quot;books&quot;,
+		if we don't call it &quot;books&quot; and call it &quot;products&quot;,
+		then we can add any other items for sale. These can be other
+		stationary items or even generic things. What you think should we
+		refactor our books module to a generic products module? I have been
+		doing refactoring using Notepad++, it has this feature for finding
+		and replacing in files inside a directory. I have been using it for
+		long. What you think?</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="AqVfPNLUUqvcQ1jar1ua9-content-0" dir="ltr"><p>You're
+		thinking like a true architect, Nasiruddin—this is exactly the
+		kind of strategic decision that shapes the long-term flexibility of
+		your CMS.</p>
+		<h2 class="western">🧠&nbsp;Should&nbsp;You&nbsp;Refactor&nbsp;<code class="western">books</code>&nbsp;to&nbsp;<code class="western">products</code>?</h2>
+		<p><strong>Yes, and here’s why:</strong></p>
+		<h3 class="western">✅&nbsp;Benefits&nbsp;of&nbsp;Refactoring</h3>
+		<ul>
+			<li><p><strong>Scalability</strong>: “Products” lets you sell
+			anything—books, stationery, merch, digital downloads—without
+			needing a new module each time.</p>
+			<li><p><strong>Consistency</strong>: You can unify pricing, stock,
+			discounts, and order logic across all product types.</p>
+			<li><p><strong>Future-proofing</strong>: If you ever want to add
+			product filters, tags, or bundles, a generic structure is easier
+			to extend.</p>
+		</ul>
+		<h3 class="western">🧱&nbsp;Suggested&nbsp;Refactor&nbsp;Strategy</h3>
+		<p>You don’t need to throw away your current <code class="western">books</code>
+		logic—just generalize it:</p>
+		<table cellpadding="2" cellspacing="2">
+			<thead>
+				<tr>
+					<th style="border: none; padding: 0in"><p>Current&nbsp;Table</p>
+					</th>
+					<th style="border: none; padding: 0in"><p>Refactored&nbsp;Table</p>
+					</th>
+					<th style="border: none; padding: 0in"><p>Notes</p>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="border: none; padding: 0in"><p><code class="western">books</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p><code class="western">products</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Add&nbsp;<code class="western">product_type</code>&nbsp;column&nbsp;(e.g.&nbsp;<code class="western">'book'</code>,&nbsp;<code class="western">'stationery'</code>)</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p><code class="western">book_articles</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p><code class="western">product_articles</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p>If&nbsp;articles&nbsp;are&nbsp;linked&nbsp;to&nbsp;products</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p><code class="western">book_categories</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p><code class="western">product_categories</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Reuse&nbsp;category&nbsp;logic</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p><code class="western">book_orders</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p><code class="western">orders</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Generic&nbsp;order&nbsp;table</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p><code class="western">book_order_items</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p><code class="western">order_items</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Link&nbsp;to&nbsp;<code class="western">products</code>&nbsp;instead&nbsp;of&nbsp;<code class="western">books</code></p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p><code class="western">book_prices_history</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p><code class="western">price_history</code></p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Track&nbsp;price&nbsp;changes&nbsp;for&nbsp;any&nbsp;product</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<p>You can keep <code class="western">books</code> as a
+		<code class="western">product_type</code>, and migrate existing
+		rows with a simple SQL update.</p>
+		<h2 class="western">🛠️&nbsp;Refactoring&nbsp;with&nbsp;Notepad++</h2>
+		<p>You're spot on—Notepad++ is a fantastic tool for this kind of
+		bulk refactor.</p>
+		<h3 class="western">🔍&nbsp;How&nbsp;to&nbsp;Use&nbsp;It&nbsp;Effectively</h3>
+		<ol>
+			<li><p><strong>Backup first</strong>: Always zip your current
+			project before refactoring.</p>
+			<li><p><strong>Use “Find in Files”</strong>:</p>
+			<ul>
+				<li><p>Find: <code class="western">book</code></p>
+				<li><p>Replace: <code class="western">product</code></p>
+				<li><p>Directory: your project root</p>
+				<li><p>Match case: ✅ (to avoid replacing <code class="western">Book</code>
+				with <code class="western">product</code>)</p>
+				<li><p>File filters: <code class="western">*.php</code>, <code class="western">*.js</code>,
+				<code class="western">*.css</code>, etc.</p>
+			</ul>
+			<li><p><strong>Refactor in stages</strong>:</p>
+			<ul>
+				<li><p>First replace table names (<code class="western">books</code>
+				→ <code class="western">products</code>)</p>
+				<li><p>Then variable names (<code class="western">$book</code> →
+				<code class="western">$product</code>)</p>
+				<li><p>Then file names (<code class="western">get_book.php</code>
+				→ <code class="western">get_product.php</code>)</p>
+			</ul>
+			<li><p><strong>Review manually</strong>:</p>
+			<ul>
+				<li><p>Some places like <code class="western">book_title</code>
+				or <code class="western">book_author</code> might need more
+				thoughtful renaming.</p>
+				<li><p>Avoid blind replacement in comments or documentation
+				unless you're sure.</p>
+			</ul>
+		</ol>
+		<h2 class="western">🧭&nbsp;Next&nbsp;Steps</h2>
+		<p>If you’re ready, I can help you:</p>
+		<ul>
+			<li><p>Draft the new <code class="western">products</code> table
+			schema.</p>
+			<li><p>Plan the migration SQL.</p>
+			<li><p>Rename and reorganize your module folders.</p>
+		</ul>
+		<p>Or if you want to start with login first and refactor later, we
+		can do that too. Either way, you’re building something that’s
+		going to scale beautifully.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="d2chFgiKMdQpFyXCp6aTe-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Oh, this book_articles table reminded
+		me of something, we do need books table because they are need to
+		create books of articles. We just need to move the selling idea
+		from books to lets say a new products table.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="rArLHuyPvAZaLtb9HKd4B-content-0" dir="ltr"><p>Exactly,
+		Nasiruddin—that’s a sharp distinction and a smart architectural
+		move. You're separating <strong>intellectual structure</strong>
+		(books as curated collections of articles) from <strong>commercial
+		structure</strong> (products as sellable items). That’s the kind
+		of clarity that makes your CMS both elegant and extensible.</p>
+		<h2 class="western">🧠&nbsp;Updated&nbsp;Conceptual&nbsp;Model</h2>
+		<h3 class="western">📚&nbsp;<code class="western">books</code>&nbsp;=&nbsp;Editorial&nbsp;Entity</h3>
+		<ul>
+			<li><p>Represents curated collections of articles.</p>
+			<li><p>Used for organizing, showcasing, and linking content.</p>
+			<li><p>Can exist without being sold.</p>
+			<li><p>Still needs:</p>
+			<ul>
+				<li><p><code class="western">book_articles</code> (junction
+				table)</p>
+				<li><p><code class="western">book_categories</code> (for thematic
+				grouping)</p>
+				<li><p>Metadata like title, subtitle, description, cover image</p>
+			</ul>
+		</ul>
+		<h3 class="western">🛍️&nbsp;<code class="western">products</code>&nbsp;=&nbsp;Commercial&nbsp;Entity</h3>
+		<ul>
+			<li><p>Represents anything for sale: books, stationery,
+			subscriptions, etc.</p>
+			<li><p>Links to <code class="western">books</code> via <code class="western">key_books</code>
+			(optional)</p>
+			<li><p>Has pricing, stock, discount, SKU, etc.</p>
+		</ul>
+		<h2 class="western">🧱&nbsp;Suggested&nbsp;Schema&nbsp;Addition</h2>
+		<p>Here’s a draft of your new <code class="western">products</code>
+		table:</p>
+		<p style="margin-bottom: 0in">sql</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">CREATE TABLE products (</code>
+<code class="western">    </code><code class="western">key_product INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,</code>
+<code class="western">    </code><code class="western">product_type ENUM('book', 'stationery', 'digital', 'other') NOT NULL,</code>
+<code class="western">    </code><code class="western">key_books INT(10) UNSIGNED DEFAULT NULL,</code>
+<code class="western">    </code><code class="western">title VARCHAR(200),</code>
+<code class="western">    </code><code class="western">description TEXT,</code>
+<code class="western">    </code><code class="western">price DECIMAL(10,2),</code>
+<code class="western">    </code><code class="western">stock_quantity INT(11),</code>
+<code class="western">    </code><code class="western">discount_percent TINYINT(4),</code>
+<code class="western">    </code><code class="western">sku VARCHAR(50),</code>
+<code class="western">    </code><code class="western">is_featured TINYINT(1),</code>
+<code class="western">    </code><code class="western">status VARCHAR(3),</code>
+<code class="western">    </code><code class="western">sort SMALLINT(6),</code>
+<code class="western">    </code><code class="western">entry_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,</code>
+<code class="western">    </code><code class="western">update_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</code>
+<code class="western">);</code></pre><p>
+		You can link <code class="western">products.key_books</code> to
+		your existing <code class="western">books.key_books</code> if
+		needed, but keep it optional so you can sell non-book items too.</p>
+		<h2 class="western">🧭&nbsp;Migration&nbsp;Strategy</h2>
+		<ol>
+			<li><p><strong>Keep </strong><code class="western">books</code><strong>
+			as-is</strong> for editorial logic.</p>
+			<li><p><strong>Create </strong><code class="western">products</code>
+			table for selling logic.</p>
+			<li><p><strong>Move price/stock fields</strong> from <code class="western">books</code>
+			to <code class="western">products</code>.</p>
+			<li><p><strong>Update </strong><code class="western">book_orders</code><strong>
+			and </strong><code class="western">book_order_items</code> to
+			become <code class="western">orders</code> and <code class="western">order_items</code>,
+			referencing <code class="western">products</code>.</p>
+		</ol>
+		<h2 class="western">🛠️&nbsp;Developer&nbsp;Experience&nbsp;Tip</h2>
+		<p>When refactoring, you can use Notepad++ to:</p>
+		<ul>
+			<li><p>Rename <code class="western">book_orders</code> → <code class="western">orders</code></p>
+			<li><p>Rename <code class="western">book_order_items</code> →
+			<code class="western">order_items</code></p>
+			<li><p>Replace <code class="western">$book['price']</code> →
+			<code class="western">$product['price']</code> etc.</p>
+		</ul>
+		<p>Just be cautious around places where <code class="western">book</code>
+		means editorial logic—you don’t want to accidentally rename
+		something that’s still part of the curated content system.</p>
+		<p>You’ve just made a clean separation between <strong>content
+		curation</strong> and <strong>commerce</strong>. That’s the kind
+		of architectural clarity that will make your CMS a joy to maintain
+		and scale. Want help drafting the updated ERD or mapping the new
+		relationships?</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="819E8BkGswNYkXdL8uAHc-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Be right back.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="tStyhj17nrDN8oQbvyjLj-content-0" dir="ltr"><p>Take your
+		time, Nasiruddin. I’ll be right here when you return—ready to
+		pick up exactly where we left off. Whether it’s login logic,
+		product schema, or just a late-night brainstorm, we’ll keep the
+		momentum going.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="18fdhCrJVCRvwQ2KhAeDX-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">I have created products table. I
+		think instead of refactoring books module to this one, I should
+		books module as it is for now. We go ahead and create full module
+		(list.php, add.php, edit.php, get order, and so on) from scratch
+		which is all related to products table, I mean just forgetting
+		about books module all together. We can later remove unrelated
+		stuff from books module. So, from our previous conversations you
+		know how over other modules are setup. They have modal, sorting,
+		paging, searching etc.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="Ya5aNu9YPsMQvQwesRdCj-content-0" dir="ltr"><p>That’s a
+		solid decision, Nasiruddin—and very in line with your modular
+		philosophy. By building the <code class="western">products</code>
+		module from scratch, you preserve the integrity of your legacy
+		<code class="western">books</code> logic while laying the
+		foundation for a scalable, commerce-ready system. Later, you can
+		prune or merge as needed without disrupting editorial workflows.</p>
+		<p>Let’s sketch out the full <code class="western">products</code>
+		module in your established style:</p>
+		<h2 class="western">🧱&nbsp;<code class="western">products</code>&nbsp;Module&nbsp;Structure</h2>
+		<p>Here’s the recommended file layout based on your existing
+		modules:</p>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">\products</code>
+<code class="western">├── </code><code class="western">add.php</code>
+<code class="western">├── </code><code class="western">edit.php</code>
+<code class="western">├── </code><code class="western">delete.php</code>
+<code class="western">├── </code><code class="western">list.php</code>
+<code class="western">├── </code><code class="western">get_product.php</code>
+<code class="western">├── </code><code class="western">search.php</code>
+<code class="western">├── </code><code class="western">assign_categories.php</code>
+<code class="western">├── </code><code class="western">assign_categories_modal.php</code>
+<code class="western">├── </code><code class="western">assign_categories_save.php</code>
+<code class="western">├── </code><code class="western">get_selected_categories.php</code>
+<code class="western">├── </code><code class="western">get_price_history.php</code>
+<code class="western">├── </code><code class="western">product_prices_history.php</code></pre><p>
+		You can also add:</p>
+		<ul>
+			<li><p><code class="western">assign_books.php</code> if you want
+			to link products to books</p>
+			<li><p><code class="western">get_assigned_books.php</code> for
+			reverse lookup</p>
+		</ul>
+		<h2 class="western">🧩&nbsp;Core&nbsp;Features&nbsp;to&nbsp;Include</h2>
+		<h3 class="western">1.&nbsp;<strong>Modal-based&nbsp;Add/Edit</strong></h3>
+		<ul>
+			<li><p>Use Bootstrap modal for <code class="western">add.php</code>
+			and <code class="western">edit.php</code></p>
+			<li><p>Include fields like:</p>
+			<ul>
+				<li><p><code class="western">title</code>, <code class="western">description</code>,
+				<code class="western">price</code>, <code class="western">stock_quantity</code>,
+				<code class="western">sku</code>, <code class="western">product_type</code>,
+				<code class="western">status</code>, <code class="western">sort</code></p>
+			</ul>
+		</ul>
+		<h3 class="western">2.&nbsp;<strong>Sorting&nbsp;&amp;&nbsp;Pagination</strong></h3>
+		<ul>
+			<li><p>Use <code class="western">sort</code> column for manual
+			ordering</p>
+			<li><p>Paginate using <code class="western">items_on_page</code>
+			from <code class="western">settings</code></p>
+		</ul>
+		<h3 class="western">3.&nbsp;<strong>Search</strong></h3>
+		<ul>
+			<li><p><code class="western">search.php</code> should allow
+			filtering by:</p>
+			<ul>
+				<li><p><code class="western">title</code>, <code class="western">sku</code>,
+				<code class="western">product_type</code>, <code class="western">status</code></p>
+			</ul>
+		</ul>
+		<h3 class="western">4.&nbsp;<strong>Category&nbsp;Assignment</strong></h3>
+		<ul>
+			<li><p>Use <code class="western">product_categories</code>
+			junction table</p>
+			<li><p>Modal-based assignment like you did for articles and books</p>
+		</ul>
+		<h3 class="western">5.&nbsp;<strong>Price&nbsp;History</strong></h3>
+		<ul>
+			<li><p>Track changes in <code class="western">price_history</code>
+			table</p>
+			<li><p>Show modal with previous prices and timestamps</p>
+		</ul>
+		<h2 class="western">🧠&nbsp;Suggested&nbsp;Table:&nbsp;<code class="western">product_prices_history</code></h2>
+		<p style="margin-bottom: 0in">sql</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">CREATE TABLE product_prices_history (</code>
+<code class="western">    </code><code class="western">key_price INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,</code>
+<code class="western">    </code><code class="western">key_product INT(10) UNSIGNED NOT NULL,</code>
+<code class="western">    </code><code class="western">old_price DECIMAL(10,2),</code>
+<code class="western">    </code><code class="western">new_price DECIMAL(10,2),</code>
+<code class="western">    </code><code class="western">change_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP</code>
+<code class="western">);</code></pre><h2 class="western">
+		🧠&nbsp;Suggested&nbsp;Table:&nbsp;<code class="western">product_categories</code></h2>
+		<p style="margin-bottom: 0in">sql</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">CREATE TABLE product_categories (</code>
+<code class="western">    </code><code class="western">id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,</code>
+<code class="western">    </code><code class="western">key_product INT(10) UNSIGNED NOT NULL,</code>
+<code class="western">    </code><code class="western">key_categories INT(10) UNSIGNED NOT NULL</code>
+<code class="western">);</code></pre><h2 class="western">
+		🧠&nbsp;Suggested&nbsp;Table:&nbsp;<code class="western">products</code></h2>
+		<p>Already created, but just to confirm:</p>
+		<p style="margin-bottom: 0in">sql</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">CREATE TABLE products (</code>
+<code class="western">    </code><code class="western">key_product INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,</code>
+<code class="western">    </code><code class="western">product_type ENUM('book', 'stationery', 'digital', 'other') NOT NULL,</code>
+<code class="western">    </code><code class="western">key_books INT(10) UNSIGNED DEFAULT NULL,</code>
+<code class="western">    </code><code class="western">title VARCHAR(200),</code>
+<code class="western">    </code><code class="western">description TEXT,</code>
+<code class="western">    </code><code class="western">price DECIMAL(10,2),</code>
+<code class="western">    </code><code class="western">stock_quantity INT(11),</code>
+<code class="western">    </code><code class="western">discount_percent TINYINT(4),</code>
+<code class="western">    </code><code class="western">sku VARCHAR(50),</code>
+<code class="western">    </code><code class="western">is_featured TINYINT(1),</code>
+<code class="western">    </code><code class="western">status VARCHAR(3),</code>
+<code class="western">    </code><code class="western">sort SMALLINT(6),</code>
+<code class="western">    </code><code class="western">entry_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,</code>
+<code class="western">    </code><code class="western">update_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</code>
+<code class="western">);</code></pre><h2 class="western">
+		🛠️&nbsp;Next&nbsp;Steps</h2>
+		<p>Would you like to start with <code class="western">list.php</code>
+		and modal layout first? I can help you scaffold the HTML, SQL, and
+		JS in your preferred style. Or we can begin with <code class="western">add.php</code>
+		and build the insert logic step-by-step.</p>
+		<p>Either way, this new module is going to be a clean showcase of
+		your architectural clarity. Let’s build it right.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="V8iLaQUfNYCieaqxYbCgw-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Sample list.php: &lt;?php include
+		'../db.php'; ?&gt; &lt;?php include '../layout.php'; ?&gt; &lt;?php
+		startLayout(&quot;Books List&quot;); ?&gt; &lt;p&gt;&lt;a href=&quot;#&quot;
+		onclick=&quot;openModal()&quot;&gt;➕ Add New Book&lt;/a&gt;&lt;/p&gt;
+		&lt;form method=&quot;get&quot; style=&quot;margin-bottom:20px;&quot;&gt;
+		&lt;input type=&quot;text&quot; name=&quot;q&quot;
+		placeholder=&quot;Search books...&quot; value=&quot;&lt;?=
+		htmlspecialchars($_GET['q'] ?? '') ?&gt;&quot;&gt; &lt;input
+		type=&quot;submit&quot; value=&quot;Search&quot;&gt; &lt;/form&gt;
+		&lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;&lt;?=
+		sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '')
+		?&gt;&lt;/th&gt; &lt;th&gt;Author&lt;/th&gt; &lt;th&gt;&lt;?=
+		sortLink('Publisher', 'publisher', $_GET['sort'] ?? '',
+		$_GET['dir'] ?? '') ?&gt;&lt;/th&gt; &lt;th&gt;&lt;?=
+		sortLink('Year', 'publish_year', $_GET['sort'] ?? '', $_GET['dir']
+		?? '') ?&gt;&lt;/th&gt; &lt;th&gt;Status&lt;/th&gt;
+		&lt;th&gt;Actions&lt;/th&gt; &lt;/tr&gt; &lt;/thead&gt; &lt;tbody&gt;
+		&lt;?php $limit = 10; $page = isset($_GET['page']) ? max(1,
+		intval($_GET['page'])) : 1; $offset = ($page - 1) * $limit; //
+		search $q = $_GET['q'] ?? ''; $q = $conn-&gt;real_escape_string($q);
+		// sort $sort = $_GET['sort'] ?? 'entry_date_time'; $dir =
+		$_GET['dir'] ?? 'desc'; $allowedSorts = ['title', 'publisher',
+		'publish_year', 'status']; $allowedDirs = ['asc', 'desc']; if
+		(!in_array($sort, $allowedSorts)) $sort = 'entry_date_time'; if
+		(!in_array($dir, $allowedDirs)) $dir = 'desc'; $sql = &quot;SELECT
+		* FROM books&quot;; if ($q !== '') { $sql .= &quot; WHERE
+		MATCH(title,subtitle,publisher,description,author_name) AGAINST
+		('$q' IN NATURAL LANGUAGE MODE)&quot;; } $sql .= &quot; ORDER BY
+		$sort $dir LIMIT $limit OFFSET $offset&quot;; $result =
+		$conn-&gt;query($sql); while ($row = $result-&gt;fetch_assoc()) {
+		echo &quot;&lt;tr&gt; &lt;td&gt;{$row['title']}&lt;/td&gt;
+		&lt;td&gt;{$row['author_name']}&lt;/td&gt;
+		&lt;td&gt;{$row['publisher']}&lt;/td&gt;
+		&lt;td&gt;{$row['publish_year']}&lt;/td&gt;
+		&lt;td&gt;{$row['status']}&lt;/td&gt; &lt;td&gt; &lt;a href='#'
+		onclick='editItem({$row['key_books']}, \&quot;get_book.php\&quot;,
+		[\&quot;title\&quot;,\&quot;subtitle\&quot;,\&quot;description\&quot;,\&quot;cover_image_url\&quot;,\&quot;url\&quot;,\&quot;author_name\&quot;,\&quot;publisher\&quot;,\&quot;publish_year\&quot;,\&quot;status\&quot;])'&gt;Edit&lt;/a&gt;
+		| &lt;a href='delete.php?id={$row['key_books']}' onclick='return
+		confirm(\&quot;Delete this book?\&quot;)'&gt;Delete&lt;/a&gt; | &lt;a
+		href='#' onclick='openAssignModal({$row['key_books']})'&gt;Assign
+		Articles&lt;/a&gt; &lt;/td&gt; &lt;/tr&gt;&quot;; } $countSql =
+		&quot;SELECT COUNT(*) AS total FROM books&quot;; if ($q !== '') {
+		$countSql .= &quot; WHERE
+		MATCH(title,subtitle,publisher,description,author_name) AGAINST
+		('$q' IN NATURAL LANGUAGE MODE)&quot;; } $countResult =
+		$conn-&gt;query($countSql); $totalArticles =
+		$countResult-&gt;fetch_assoc()['total']; $totalPages =
+		ceil($totalArticles / $limit); ?&gt; &lt;/tbody&gt; &lt;/table&gt;
+		&lt;div style=&quot;margin-top:20px;&quot;&gt; &lt;?php if ($page &gt;
+		1): ?&gt; &lt;a href=&quot;?page=&lt;?php echo $page - 1;
+		?&gt;&amp;q=&lt;?php echo urlencode($q); ?&gt;&amp;sort=&lt;?php
+		echo urlencode($sort); ?&gt;&amp;dir=&lt;?php echo urlencode($dir);
+		?&gt;&quot;&gt;⬅ Prev&lt;/a&gt; &lt;?php endif; ?&gt; Page &lt;?php
+		echo $page; ?&gt; of &lt;?php echo $totalPages; ?&gt; &lt;?php if
+		($page &lt; $totalPages): ?&gt; &lt;a href=&quot;?page=&lt;?php
+		echo $page + 1; ?&gt;&amp;q=&lt;?php echo urlencode($q);
+		?&gt;&amp;sort=&lt;?php echo urlencode($sort); ?&gt;&amp;dir=&lt;?php
+		echo urlencode($dir); ?&gt;&quot;&gt;Next ➡&lt;/a&gt; &lt;?php
+		endif; ?&gt; &lt;/div&gt; &lt;!-- Modal Form — add / edit --&gt;
+		&lt;div id=&quot;modal&quot; style=&quot;display:none;
+		position:fixed; top:10%; left:50%; transform:translateX(-50%);
+		background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0
+		0 10px rgba(0,0,0,0.2); width:600px; height:80vh; z-index:1000;&quot;&gt;
+		&lt;h3 id=&quot;modal-title&quot;&gt;Add Book&lt;/h3&gt; &lt;form
+		id=&quot;modal-form&quot; method=&quot;post&quot; action=&quot;add.php&quot;&gt;
+		&lt;input type=&quot;hidden&quot; name=&quot;key_books&quot;
+		id=&quot;key_books&quot;&gt; &lt;input type=&quot;text&quot;
+		name=&quot;title&quot; id=&quot;title&quot; placeholder=&quot;Title&quot;
+		required&gt;&lt;br&gt; &lt;input type=&quot;text&quot;
+		name=&quot;subtitle&quot; id=&quot;subtitle&quot;
+		placeholder=&quot;Subtitle&quot;&gt;&lt;br&gt; &lt;textarea
+		name=&quot;description&quot; id=&quot;description&quot;
+		placeholder=&quot;Description&quot;&gt;&lt;/textarea&gt;&lt;br&gt;
+		&lt;input type=&quot;text&quot; name=&quot;cover_image_url&quot;
+		id=&quot;cover_image_url&quot; placeholder=&quot;Cover Image
+		URL&quot;&gt;&lt;br&gt; &lt;input type=&quot;text&quot; name=&quot;url&quot;
+		id=&quot;url&quot; placeholder=&quot;URL&quot;&gt;&lt;br&gt; &lt;input
+		type=&quot;text&quot; name=&quot;author_name&quot; id=&quot;author_name&quot;
+		placeholder=&quot;Author Name&quot;&gt;&lt;br&gt; &lt;input
+		type=&quot;text&quot; name=&quot;publisher&quot; id=&quot;publisher&quot;
+		placeholder=&quot;Publisher&quot;&gt;&lt;br&gt; &lt;input
+		type=&quot;text&quot; name=&quot;publish_year&quot;
+		id=&quot;publish_year&quot; placeholder=&quot;Publish Year&quot;&gt;&lt;br&gt;
+		&lt;label&gt; &lt;input type=&quot;checkbox&quot; name=&quot;status&quot;
+		id=&quot;status&quot; value=&quot;on&quot; checked&gt; Active
+		&lt;/label&gt;&lt;br&gt; &lt;div style=&quot;margin:10px
+		0;border:1px solid #777;padding:20px;&quot;&gt; &lt;h3&gt;Categories&lt;/h3&gt;
+		&lt;?php $types = ['photo_gallery', 'book', 'article',
+		'video_gallery', 'global']; foreach ($types as $type) { echo &quot;&lt;div
+		style='color:margin:10px 0;'&gt;&quot;; echo &quot;&lt;div
+		style='color:Navy;padding:10px 0 10px 0;'&gt;&quot; .
+		ucfirst(str_replace('_', ' ', $type)) . &quot;&lt;/div&gt;&quot;;
+		$catResult = $conn-&gt;query(&quot;SELECT key_categories, name FROM
+		categories WHERE category_type = '$type' AND status='on' ORDER BY
+		sort&quot;); while ($cat = $catResult-&gt;fetch_assoc()) { echo
+		&quot;&lt;label style='display:block;'&gt; &lt;input
+		type='checkbox' name='categories[]'
+		value='{$cat['key_categories']}'&gt; {$cat['name']} &lt;/label&gt;&quot;;
+		} echo &quot;&lt;/div&gt;&quot;; } ?&gt; &lt;/div&gt; &lt;input
+		type=&quot;submit&quot; value=&quot;Save&quot;&gt; &lt;button
+		type=&quot;button&quot; onclick=&quot;closeModal()&quot;&gt;Cancel&lt;/button&gt;
+		&lt;/form&gt; &lt;/div&gt; &lt;!-- Modal Form — assign articles
+		--&gt; &lt;div id=&quot;assign-modal&quot; style=&quot;display:none;
+		position:fixed; top:10%; left:50%; transform:translateX(-50%);
+		background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0
+		0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;&quot;&gt; &lt;h3
+		id=&quot;assign-modal-title&quot;&gt;Assign Articles to Book&lt;/h3&gt;
+		&lt;form id=&quot;assign-form&quot; method=&quot;post&quot;
+		action=&quot;assign_articles.php&quot;&gt; &lt;input type=&quot;hidden&quot;
+		name=&quot;key_books&quot; id=&quot;assign_book_id&quot;&gt; &lt;input
+		type=&quot;text&quot; id=&quot;article_search&quot;
+		placeholder=&quot;Search articles...&quot;
+		oninput=&quot;filterArticles()&quot;&gt;&lt;br&gt;&lt;br&gt; &lt;div
+		id=&quot;article-list&quot; style=&quot;max-height:300px;
+		overflow-y:auto;&quot;&gt;&lt;/div&gt; &lt;input type=&quot;submit&quot;
+		value=&quot;Save&quot;&gt; &lt;button type=&quot;button&quot;
+		onclick=&quot;closeAssignModal()&quot;&gt;Cancel&lt;/button&gt;
+		&lt;/form&gt; &lt;/div&gt; &lt;script
+		src=&quot;../assets/js/scripts.js&quot;&gt;&lt;/script&gt; &lt;?php
+		endLayout(); ?&gt; Sample add.php: &lt;?php include '../db.php'; if
+		($_SERVER['REQUEST_METHOD'] === 'POST') { $status =
+		isset($_POST['status']) ? 'on' : 'off'; $stmt =
+		$conn-&gt;prepare(&quot;INSERT INTO books ( title, subtitle,
+		description, cover_image_url, url, author_name, publisher,
+		publish_year, isbn, price, stock_quantity, discount_percent,
+		is_featured, language, format, weight_grams, sku, status ) VALUES
+		(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)&quot;);
+		$stmt-&gt;bind_param(&quot;sssssssssdiiisssis&quot;,
+		$_POST['title'], $_POST['subtitle'], $_POST['description'],
+		$_POST['cover_image_url'], $_POST['url'], $_POST['author_name'],
+		$_POST['publisher'], $_POST['publish_year'], $_POST['isbn'],
+		$_POST['price'], $_POST['stock_quantity'],
+		$_POST['discount_percent'], $_POST['is_featured'],
+		$_POST['language'], $_POST['format'], $_POST['weight_grams'],
+		$_POST['sku'], $status ); $stmt-&gt;execute(); $newRecordId =
+		$conn-&gt;insert_id; if (!empty($_POST['categories'])) { $stmtCat =
+		$conn-&gt;prepare(&quot;INSERT IGNORE INTO book_categories
+		(key_books, key_categories) VALUES (?, ?)&quot;); foreach
+		($_POST['categories'] as $catId) { $stmtCat-&gt;bind_param(&quot;ii&quot;,
+		$newRecordId, $catId); $stmtCat-&gt;execute(); } } }
+		header(&quot;Location: list.php&quot;); exit; Sample edit.php:
+		&lt;?php include '../db.php'; if ($_SERVER['REQUEST_METHOD'] ===
+		'POST' &amp;&amp; isset($_GET['id'])) { $id = intval($_GET['id']);
+		$status = isset($_POST['status']) ? 'on' : 'off'; $stmt =
+		$conn-&gt;prepare(&quot;UPDATE books SET title = ?, subtitle = ?,
+		description = ?, cover_image_url = ?, url = ?, author_name = ?,
+		publisher = ?, publish_year = ?, status = ?, update_date_time =
+		CURRENT_TIMESTAMP WHERE key_books = ?&quot;); if (!$stmt) {
+		die(&quot;Prepare failed: &quot; . $conn-&gt;error); }
+		$stmt-&gt;bind_param(&quot;sssssssssi&quot;, $_POST['title'],
+		$_POST['subtitle'], $_POST['description'],
+		$_POST['cover_image_url'], $_POST['url'], $_POST['author_name'],
+		$_POST['publisher'], $_POST['publish_year'], $status, $id );
+		$stmt-&gt;execute(); $conn-&gt;query(&quot;DELETE FROM
+		book_categories WHERE key_books = $id&quot;); if
+		(!empty($_POST['categories'])) { $stmtCat = $conn-&gt;prepare(&quot;INSERT
+		IGNORE INTO book_categories (key_books, key_categories) VALUES (?,
+		?)&quot;); foreach ($_POST['categories'] as $catId) {
+		$stmtCat-&gt;bind_param(&quot;ii&quot;, $id, $catId);
+		$stmtCat-&gt;execute(); } } } header(&quot;Location: list.php&quot;);
+		exit; function openModal() {
+		document.getElementById('modal-title').innerText = &quot;Add&quot;;
+		document.getElementById('modal-form').action = &quot;add.php&quot;;
+		document.querySelectorAll('#modal-form form &gt; input, #modal-form
+		textarea').forEach(el =&gt; el.value = '');
+		document.getElementById('modal').style.display = &quot;block&quot;;
+		} function editItem(id, endpoint, fields) { fetch(endpoint + '?id='
+		+ id) .then(res =&gt; res.json()) .then(data =&gt; {
+		document.getElementById('modal-title').innerText = &quot;Edit&quot;;
+		document.getElementById('modal-form').action = &quot;edit.php?id=&quot;
+		+ id; fields.forEach(key =&gt; { const el =
+		document.getElementById(key); if (el) el.value = data[key]; }); if
+		(data.category_type &amp;&amp;
+		document.getElementById('category_type')) {
+		document.getElementById('category_type').value =
+		data.category_type; } if (data.content_type &amp;&amp;
+		document.getElementById('content_type')) {
+		document.getElementById('content_type').value = data.content_type;
+		} if (data.categories &amp;&amp; Array.isArray(data.categories)) {
+		document.querySelectorAll('input[name=&quot;categories[]&quot;]').forEach(cb
+		=&gt; { cb.checked = data.categories.includes(parseInt(cb.value));
+		}); } if (document.getElementById('status')) {
+		document.getElementById('status').checked = (data.status === 'on');
+		} // Optional: Set parent_id if used if
+		(document.getElementById('parent_id') &amp;&amp; data.parent_id !==
+		undefined) { document.getElementById('parent_id').value =
+		data.parent_id; } document.getElementById('modal').style.display =
+		&quot;block&quot;; }); }</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="Q6tXge3rKrhdTx8ftE423-content-0" dir="ltr"><p>Perfect,
+		Nasiruddin. This sample gives us a crystal-clear blueprint for how
+		your modules are structured—modal-driven, search-enabled,
+		sortable, paginated, and category-aware. We’ll now replicate this
+		architecture for the new <code class="western">products</code>
+		module, adapting fields and logic to match the <code class="western">products</code>
+		table.</p>
+		<h2 class="western">🧱&nbsp;<code class="western">products/list.php</code>&nbsp;—&nbsp;Scaffold&nbsp;Plan</h2>
+		<p>Here’s what we’ll change from the <code class="western">books</code>
+		version:</p>
+		<h3 class="western">🔄&nbsp;Rename&nbsp;&amp;&nbsp;Replace</h3>
+		<ul>
+			<li><p><code class="western">books</code> → <code class="western">products</code></p>
+			<li><p><code class="western">key_books</code> → <code class="western">key_product</code></p>
+			<li><p><code class="western">author_name</code>, <code class="western">publisher</code>,
+			<code class="western">publish_year</code> → replace with
+			relevant product fields like <code class="western">sku</code>,
+			<code class="western">price</code>, <code class="western">product_type</code>,
+			<code class="western">stock_quantity</code></p>
+		</ul>
+		<h3 class="western">🆕&nbsp;Suggested&nbsp;Columns&nbsp;for&nbsp;Table&nbsp;View</h3>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;th&gt;&lt;?= sortLink('Title', 'title', $sort, $dir) ?&gt;&lt;/th&gt;</code>
+<code class="western">&lt;th&gt;Type&lt;/th&gt;</code>
+<code class="western">&lt;th&gt;&lt;?= sortLink('Price', 'price', $sort, $dir) ?&gt;&lt;/th&gt;</code>
+<code class="western">&lt;th&gt;Stock&lt;/th&gt;</code>
+<code class="western">&lt;th&gt;Status&lt;/th&gt;</code>
+<code class="western">&lt;th&gt;Actions&lt;/th&gt;</code></pre><h3 class="western">
+		🧠&nbsp;Search&nbsp;Fields</h3>
+		<p style="margin-bottom: 0in">sql</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">MATCH(title, description, sku) AGAINST ('$q' IN NATURAL LANGUAGE MODE)</code></pre><h3 class="western">
+		🧩&nbsp;Modal&nbsp;Fields</h3>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;input type=&quot;text&quot; name=&quot;title&quot; id=&quot;title&quot; placeholder=&quot;Title&quot; required&gt;</code>
+<code class="western">&lt;textarea name=&quot;description&quot; id=&quot;description&quot; placeholder=&quot;Description&quot;&gt;&lt;/textarea&gt;</code>
+<code class="western">&lt;input type=&quot;text&quot; name=&quot;sku&quot; id=&quot;sku&quot; placeholder=&quot;SKU&quot;&gt;</code>
+<code class="western">&lt;input type=&quot;number&quot; name=&quot;price&quot; id=&quot;price&quot; placeholder=&quot;Price&quot;&gt;</code>
+<code class="western">&lt;input type=&quot;number&quot; name=&quot;stock_quantity&quot; id=&quot;stock_quantity&quot; placeholder=&quot;Stock Quantity&quot;&gt;</code>
+<code class="western">&lt;select name=&quot;product_type&quot; id=&quot;product_type&quot;&gt;</code>
+<code class="western">  </code><code class="western">&lt;option value=&quot;book&quot;&gt;Book&lt;/option&gt;</code>
+<code class="western">  </code><code class="western">&lt;option value=&quot;stationery&quot;&gt;Stationery&lt;/option&gt;</code>
+<code class="western">  </code><code class="western">&lt;option value=&quot;digital&quot;&gt;Digital&lt;/option&gt;</code>
+<code class="western">  </code><code class="western">&lt;option value=&quot;other&quot;&gt;Other&lt;/option&gt;</code>
+<code class="western">&lt;/select&gt;</code></pre><h2 class="western">
+		🛠️&nbsp;Backend&nbsp;Logic&nbsp;Adjustments</h2>
+		<h3 class="western">✅&nbsp;<code class="western">add.php</code></h3>
+		<ul>
+			<li><p>Insert into <code class="western">products</code> table</p>
+			<li><p>Save selected categories into <code class="western">product_categories</code></p>
+			<li><p>Optional: log initial price into <code class="western">product_prices_history</code></p>
+		</ul>
+		<h3 class="western">✅&nbsp;<code class="western">edit.php</code></h3>
+		<ul>
+			<li><p>Update <code class="western">products</code> table</p>
+			<li><p>Clear and reassign categories</p>
+			<li><p>Optionally log price change if <code class="western">price</code>
+			differs</p>
+		</ul>
+		<h2 class="western">🧠&nbsp;Optional&nbsp;Enhancements</h2>
+		<h3 class="western">📈&nbsp;Price&nbsp;History&nbsp;Modal</h3>
+		<ul>
+			<li><p>Show previous prices from <code class="western">product_prices_history</code></p>
+			<li><p>Triggered via “View History” link in Actions</p>
+		</ul>
+		<h3 class="western">🧩&nbsp;Assign&nbsp;Books&nbsp;Modal&nbsp;(if&nbsp;needed)</h3>
+		<ul>
+			<li><p>If <code class="western">key_books</code> is used, allow
+			linking products to books</p>
+		</ul>
+		<h2 class="western">🧭&nbsp;Next&nbsp;Step</h2>
+		<p>Would you like me to generate a clean <code class="western">products/list.php</code>
+		starter file based on this plan? I can tailor it to your exact
+		field names and structure, keeping it lean and readable like your
+		current modules. Or we can begin with <code class="western">add.php</code>
+		and build the insert logic first.</p>
+		<p>Either way, you’re laying the groundwork for a truly modular
+		commerce engine. Let’s keep building.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="avQdeYMrBQwtARmVdddYD-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">I just gave this code just for
+		existing style for you to consider, but we need to create every
+		thing from scratch for the products module.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="Q11jY4XQw3is8YJHdB2i2-content-0" dir="ltr"><p>Understood—and
+		that’s exactly the right mindset for this phase. You’re not
+		just cloning a module, you’re architecting a fresh one with its
+		own logic, purpose, and clarity. Let’s build the <code class="western">products</code>
+		module from scratch, honoring your established style but tailoring
+		everything to the new schema and goals.</p>
+		<h2 class="western">🧱&nbsp;Products&nbsp;Module&nbsp;—&nbsp;Clean&nbsp;Blueprint</h2>
+		<p>Here’s a proposed structure to match your modular CRUD
+		pattern:</p>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">\products</code>
+<code class="western">├── </code><code class="western">list.php</code>
+<code class="western">├── </code><code class="western">add.php</code>
+<code class="western">├── </code><code class="western">edit.php</code>
+<code class="western">├── </code><code class="western">delete.php</code>
+<code class="western">├── </code><code class="western">get_product.php</code>
+<code class="western">├── </code><code class="western">search.php</code>
+<code class="western">├── </code><code class="western">assign_categories.php</code>
+<code class="western">├── </code><code class="western">assign_categories_modal.php</code>
+<code class="western">├── </code><code class="western">assign_categories_save.php</code>
+<code class="western">├── </code><code class="western">get_selected_categories.php</code>
+<code class="western">├── </code><code class="western">product_prices_history.php</code>
+<code class="western">├── </code><code class="western">get_price_history.php</code></pre><h2 class="western">
+		🧩&nbsp;Step-by-Step&nbsp;Build&nbsp;Plan</h2>
+		<h3 class="western">1.&nbsp;<code class="western">list.php</code></h3>
+		<ul>
+			<li><p>Paginated, sortable table of products</p>
+			<li><p>Columns: <code class="western">title</code>, <code class="western">product_type</code>,
+			<code class="western">price</code>, <code class="western">stock_quantity</code>,
+			<code class="western">sku</code>, <code class="western">status</code></p>
+			<li><p>Search by <code class="western">title</code>, <code class="western">sku</code>,
+			<code class="western">description</code></p>
+			<li><p>Modal for add/edit</p>
+			<li><p>Link to view price history</p>
+			<li><p>Link to assign categories</p>
+		</ul>
+		<h3 class="western">2.&nbsp;<code class="western">add.php</code></h3>
+		<ul>
+			<li><p>Insert into <code class="western">products</code> table</p>
+			<li><p>Save selected categories into <code class="western">product_categories</code></p>
+			<li><p>Log initial price into <code class="western">product_prices_history</code></p>
+		</ul>
+		<h3 class="western">3.&nbsp;<code class="western">edit.php</code></h3>
+		<ul>
+			<li><p>Update product fields</p>
+			<li><p>Reassign categories</p>
+			<li><p>Log price change if <code class="western">price</code>
+			differs from previous</p>
+		</ul>
+		<h3 class="western">4.&nbsp;<code class="western">get_product.php</code></h3>
+		<ul>
+			<li><p>Return product data as JSON for modal editing</p>
+			<li><p>Include assigned categories</p>
+		</ul>
+		<h3 class="western">5.&nbsp;<code class="western">delete.php</code></h3>
+		<ul>
+			<li><p>Delete product by <code class="western">key_product</code></p>
+			<li><p>Optionally cascade delete from <code class="western">product_categories</code>
+			and <code class="western">product_prices_history</code></p>
+		</ul>
+		<h3 class="western">6.&nbsp;Category&nbsp;Assignment</h3>
+		<ul>
+			<li><p>Modal-based UI</p>
+			<li><p>Save to <code class="western">product_categories</code>
+			table</p>
+			<li><p>Reuse logic from books/articles modules</p>
+		</ul>
+		<h3 class="western">7.&nbsp;Price&nbsp;History</h3>
+		<ul>
+			<li><p>Log changes in <code class="western">product_prices_history</code></p>
+			<li><p>Modal to view history</p>
+		</ul>
+		<h2 class="western">🧠&nbsp;Suggested&nbsp;Schema&nbsp;Recap</h2>
+		<h3 class="western"><code class="western">products</code></h3>
+		<p style="margin-bottom: 0in">sql</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">CREATE TABLE products (</code>
+<code class="western">  </code><code class="western">key_product INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,</code>
+<code class="western">  </code><code class="western">product_type ENUM('book','stationery','digital','other') NOT NULL,</code>
+<code class="western">  </code><code class="western">key_books INT(10) UNSIGNED DEFAULT NULL,</code>
+<code class="western">  </code><code class="western">title VARCHAR(200),</code>
+<code class="western">  </code><code class="western">description TEXT,</code>
+<code class="western">  </code><code class="western">price DECIMAL(10,2),</code>
+<code class="western">  </code><code class="western">stock_quantity INT(11),</code>
+<code class="western">  </code><code class="western">discount_percent TINYINT(4),</code>
+<code class="western">  </code><code class="western">sku VARCHAR(50),</code>
+<code class="western">  </code><code class="western">is_featured TINYINT(1),</code>
+<code class="western">  </code><code class="western">status VARCHAR(3),</code>
+<code class="western">  </code><code class="western">sort SMALLINT(6),</code>
+<code class="western">  </code><code class="western">entry_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,</code>
+<code class="western">  </code><code class="western">update_date_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP</code>
+<code class="western">);</code></pre><h3 class="western">
+		<code class="western">product_categories</code></h3>
+		<p style="margin-bottom: 0in">sql</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">CREATE TABLE product_categories (</code>
+<code class="western">  </code><code class="western">id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,</code>
+<code class="western">  </code><code class="western">key_product INT(10) UNSIGNED NOT NULL,</code>
+<code class="western">  </code><code class="western">key_categories INT(10) UNSIGNED NOT NULL</code>
+<code class="western">);</code></pre><h3 class="western">
+		<code class="western">product_prices_history</code></h3>
+		<p style="margin-bottom: 0in">sql</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">CREATE TABLE product_prices_history (</code>
+<code class="western">  </code><code class="western">key_price INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,</code>
+<code class="western">  </code><code class="western">key_product INT(10) UNSIGNED NOT NULL,</code>
+<code class="western">  </code><code class="western">old_price DECIMAL(10,2),</code>
+<code class="western">  </code><code class="western">new_price DECIMAL(10,2),</code>
+<code class="western">  </code><code class="western">change_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP</code>
+<code class="western">);</code></pre><h2 class="western">
+		🛠️&nbsp;Next&nbsp;Move</h2>
+		<p>If you’re ready, I can help you scaffold <code class="western">list.php</code>
+		first—clean HTML, search, sort, pagination, modal layout, and JS
+		hooks. Or we can start with <code class="western">add.php</code>
+		and build the insert logic step-by-step.</p>
+		<p>You’re building this module with precision and purpose. Let’s
+		make it modular, maintainable, and worthy of your CMS vision.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="CLMdgL53TPVo6us7EgVqU-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Alright, yes, these tables have been
+		added. Let us move to list.php please.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="NFMr1a4HLkV1DUGfRmraA-content-0" dir="ltr"><p>Perfect,
+		Nasiruddin. Let’s build a clean, modular <code class="western">products/list.php</code>
+		from scratch—tailored to your new schema and consistent with your
+		CMS style.</p>
+		<h2 class="western">🧱&nbsp;<code class="western">products/list.php</code>&nbsp;—&nbsp;Full&nbsp;Starter&nbsp;Code</h2>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php include '../db.php'; ?&gt;</code>
+<code class="western">&lt;?php include '../layout.php'; ?&gt;</code>
+<code class="western">&lt;?php startLayout(&quot;Products List&quot;); ?&gt;</code>
+
+<code class="western">&lt;p&gt;&lt;a href=&quot;#&quot; onclick=&quot;openModal()&quot;&gt;➕ Add New Product&lt;/a&gt;&lt;/p&gt;</code>
+
+<code class="western">&lt;form method=&quot;get&quot; style=&quot;margin-bottom:20px;&quot;&gt;</code>
+<code class="western">  </code><code class="western">&lt;input type=&quot;text&quot; name=&quot;q&quot; placeholder=&quot;Search products...&quot; value=&quot;&lt;?= htmlspecialchars($_GET['q'] ?? '') ?&gt;&quot;&gt;</code>
+<code class="western">  </code><code class="western">&lt;input type=&quot;submit&quot; value=&quot;Search&quot;&gt;</code>
+<code class="western">&lt;/form&gt;</code>
+
+<code class="western">&lt;table&gt;</code>
+<code class="western">  </code><code class="western">&lt;thead&gt;</code>
+<code class="western">    </code><code class="western">&lt;tr&gt;</code>
+<code class="western">      </code><code class="western">&lt;th&gt;&lt;?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?&gt;&lt;/th&gt;</code>
+<code class="western">      </code><code class="western">&lt;th&gt;Type&lt;/th&gt;</code>
+<code class="western">      </code><code class="western">&lt;th&gt;&lt;?= sortLink('Price', 'price', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?&gt;&lt;/th&gt;</code>
+<code class="western">      </code><code class="western">&lt;th&gt;Stock&lt;/th&gt;</code>
+<code class="western">      </code><code class="western">&lt;th&gt;SKU&lt;/th&gt;</code>
+<code class="western">      </code><code class="western">&lt;th&gt;Status&lt;/th&gt;</code>
+<code class="western">      </code><code class="western">&lt;th&gt;Actions&lt;/th&gt;</code>
+<code class="western">    </code><code class="western">&lt;/tr&gt;</code>
+<code class="western">  </code><code class="western">&lt;/thead&gt;</code>
+<code class="western">  </code><code class="western">&lt;tbody&gt;</code>
+<code class="western">    </code><code class="western">&lt;?php</code>
+<code class="western">    </code><code class="western">$limit = 10;</code>
+<code class="western">    </code><code class="western">$page = max(1, intval($_GET['page'] ?? 1));</code>
+<code class="western">    </code><code class="western">$offset = ($page - 1) * $limit;</code>
+
+<code class="western">    </code><code class="western">$q = $conn-&gt;real_escape_string($_GET['q'] ?? '');</code>
+<code class="western">    </code><code class="western">$sort = $_GET['sort'] ?? 'entry_date_time';</code>
+<code class="western">    </code><code class="western">$dir = $_GET['dir'] ?? 'desc';</code>
+
+<code class="western">    </code><code class="western">$allowedSorts = ['title', 'price', 'stock_quantity', 'sku', 'status'];</code>
+<code class="western">    </code><code class="western">$allowedDirs = ['asc', 'desc'];</code>
+<code class="western">    </code><code class="western">if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';</code>
+<code class="western">    </code><code class="western">if (!in_array($dir, $allowedDirs)) $dir = 'desc';</code>
+
+<code class="western">    </code><code class="western">$sql = &quot;SELECT * FROM products&quot;;</code>
+<code class="western">    </code><code class="western">if ($q !== '') {</code>
+<code class="western">      </code><code class="western">$sql .= &quot; WHERE MATCH(title, description, sku) AGAINST ('$q' IN NATURAL LANGUAGE MODE)&quot;;</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">    </code><code class="western">$sql .= &quot; ORDER BY $sort $dir LIMIT $limit OFFSET $offset&quot;;</code>
+
+<code class="western">    </code><code class="western">$result = $conn-&gt;query($sql);</code>
+<code class="western">    </code><code class="western">while ($row = $result-&gt;fetch_assoc()) {</code>
+<code class="western">      </code><code class="western">echo &quot;&lt;tr&gt;</code>
+<code class="western">        </code><code class="western">&lt;td&gt;{$row['title']}&lt;/td&gt;</code>
+<code class="western">        </code><code class="western">&lt;td&gt;{$row['product_type']}&lt;/td&gt;</code>
+<code class="western">        </code><code class="western">&lt;td&gt;{$row['price']}&lt;/td&gt;</code>
+<code class="western">        </code><code class="western">&lt;td&gt;{$row['stock_quantity']}&lt;/td&gt;</code>
+<code class="western">        </code><code class="western">&lt;td&gt;{$row['sku']}&lt;/td&gt;</code>
+<code class="western">        </code><code class="western">&lt;td&gt;{$row['status']}&lt;/td&gt;</code>
+<code class="western">        </code><code class="western">&lt;td&gt;</code>
+<code class="western">          </code><code class="western">&lt;a href='#' onclick='editItem({$row['key_product']}, \&quot;get_product.php\&quot;, [\&quot;title\&quot;,\&quot;description\&quot;,\&quot;price\&quot;,\&quot;stock_quantity\&quot;,\&quot;sku\&quot;,\&quot;product_type\&quot;,\&quot;status\&quot;])'&gt;Edit&lt;/a&gt; |</code>
+<code class="western">          </code><code class="western">&lt;a href='delete.php?id={$row['key_product']}' onclick='return confirm(\&quot;Delete this product?\&quot;)'&gt;Delete&lt;/a&gt; |</code>
+<code class="western">          </code><code class="western">&lt;a href='#' onclick='openAssignModal({$row['key_product']})'&gt;Assign Categories&lt;/a&gt; |</code>
+<code class="western">          </code><code class="western">&lt;a href='product_prices_history.php?id={$row['key_product']}'&gt;Price History&lt;/a&gt;</code>
+<code class="western">        </code><code class="western">&lt;/td&gt;</code>
+<code class="western">      </code><code class="western">&lt;/tr&gt;&quot;;</code>
+<code class="western">    </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">$countSql = &quot;SELECT COUNT(*) AS total FROM products&quot;;</code>
+<code class="western">    </code><code class="western">if ($q !== '') {</code>
+<code class="western">      </code><code class="western">$countSql .= &quot; WHERE MATCH(title, description, sku) AGAINST ('$q' IN NATURAL LANGUAGE MODE)&quot;;</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">    </code><code class="western">$total = $conn-&gt;query($countSql)-&gt;fetch_assoc()['total'];</code>
+<code class="western">    </code><code class="western">$totalPages = ceil($total / $limit);</code>
+<code class="western">    </code><code class="western">?&gt;</code>
+<code class="western">  </code><code class="western">&lt;/tbody&gt;</code>
+<code class="western">&lt;/table&gt;</code>
+
+<code class="western">&lt;div style=&quot;margin-top:20px;&quot;&gt;</code>
+<code class="western">  </code><code class="western">&lt;?php if ($page &gt; 1): ?&gt;</code>
+<code class="western">    </code><code class="western">&lt;a href=&quot;?page=&lt;?= $page - 1 ?&gt;&amp;q=&lt;?= urlencode($q) ?&gt;&amp;sort=&lt;?= urlencode($sort) ?&gt;&amp;dir=&lt;?= urlencode($dir) ?&gt;&quot;&gt;⬅ Prev&lt;/a&gt;</code>
+<code class="western">  </code><code class="western">&lt;?php endif; ?&gt;</code>
+<code class="western">  </code><code class="western">Page &lt;?= $page ?&gt; of &lt;?= $totalPages ?&gt;</code>
+<code class="western">  </code><code class="western">&lt;?php if ($page &lt; $totalPages): ?&gt;</code>
+<code class="western">    </code><code class="western">&lt;a href=&quot;?page=&lt;?= $page + 1 ?&gt;&amp;q=&lt;?= urlencode($q) ?&gt;&amp;sort=&lt;?= urlencode($sort) ?&gt;&amp;dir=&lt;?= urlencode($dir) ?&gt;&quot;&gt;Next ➡&lt;/a&gt;</code>
+<code class="western">  </code><code class="western">&lt;?php endif; ?&gt;</code>
+<code class="western">&lt;/div&gt;</code>
+
+<code class="western">&lt;!-- Modal Form — Add/Edit --&gt;</code>
+<code class="western">&lt;div id=&quot;modal&quot; style=&quot;display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);</code>
+<code class="western">  </code><code class="western">background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; height:80vh; z-index:1000;&quot;&gt;</code>
+<code class="western">  </code><code class="western">&lt;h3 id=&quot;modal-title&quot;&gt;Add Product&lt;/h3&gt;</code>
+<code class="western">  </code><code class="western">&lt;form id=&quot;modal-form&quot; method=&quot;post&quot; action=&quot;add.php&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;hidden&quot; name=&quot;key_product&quot; id=&quot;key_product&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;text&quot; name=&quot;title&quot; id=&quot;title&quot; placeholder=&quot;Title&quot; required&gt;&lt;br&gt;</code>
+<code class="western">    </code><code class="western">&lt;textarea name=&quot;description&quot; id=&quot;description&quot; placeholder=&quot;Description&quot;&gt;&lt;/textarea&gt;&lt;br&gt;</code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;text&quot; name=&quot;sku&quot; id=&quot;sku&quot; placeholder=&quot;SKU&quot;&gt;&lt;br&gt;</code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;number&quot; name=&quot;price&quot; id=&quot;price&quot; placeholder=&quot;Price&quot;&gt;&lt;br&gt;</code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;number&quot; name=&quot;stock_quantity&quot; id=&quot;stock_quantity&quot; placeholder=&quot;Stock Quantity&quot;&gt;&lt;br&gt;</code>
+<code class="western">    </code><code class="western">&lt;select name=&quot;product_type&quot; id=&quot;product_type&quot;&gt;</code>
+<code class="western">      </code><code class="western">&lt;option value=&quot;book&quot;&gt;Book&lt;/option&gt;</code>
+<code class="western">      </code><code class="western">&lt;option value=&quot;stationery&quot;&gt;Stationery&lt;/option&gt;</code>
+<code class="western">      </code><code class="western">&lt;option value=&quot;digital&quot;&gt;Digital&lt;/option&gt;</code>
+<code class="western">      </code><code class="western">&lt;option value=&quot;other&quot;&gt;Other&lt;/option&gt;</code>
+<code class="western">    </code><code class="western">&lt;/select&gt;&lt;br&gt;</code>
+<code class="western">    </code><code class="western">&lt;label&gt;</code>
+<code class="western">      </code><code class="western">&lt;input type=&quot;checkbox&quot; name=&quot;status&quot; id=&quot;status&quot; value=&quot;on&quot; checked&gt; Active</code>
+<code class="western">    </code><code class="western">&lt;/label&gt;&lt;br&gt;</code>
+
+<code class="western">    </code><code class="western">&lt;div style=&quot;margin:10px 0;border:1px solid #777;padding:20px;&quot;&gt;</code>
+<code class="western">      </code><code class="western">&lt;h3&gt;Categories&lt;/h3&gt;</code>
+<code class="western">      </code><code class="western">&lt;?php</code>
+<code class="western">      </code><code class="western">$catResult = $conn-&gt;query(&quot;SELECT key_categories, name, category_type FROM categories WHERE status='on' ORDER BY category_type, sort&quot;);</code>
+<code class="western">      </code><code class="western">$lastType = '';</code>
+<code class="western">      </code><code class="western">while ($cat = $catResult-&gt;fetch_assoc()) {</code>
+<code class="western">        </code><code class="western">if ($cat['category_type'] !== $lastType) {</code>
+<code class="western">          </code><code class="western">echo &quot;&lt;div style='color:Navy;padding:10px 0;'&gt;&quot; . ucfirst(str_replace('_', ' ', $cat['category_type'])) . &quot;&lt;/div&gt;&quot;;</code>
+<code class="western">          </code><code class="western">$lastType = $cat['category_type'];</code>
+<code class="western">        </code><code class="western">}</code>
+<code class="western">        </code><code class="western">echo &quot;&lt;label style='display:block;'&gt;</code>
+<code class="western">                </code><code class="western">&lt;input type='checkbox' name='categories[]' value='{$cat['key_categories']}'&gt; {$cat['name']}</code>
+<code class="western">              </code><code class="western">&lt;/label&gt;&quot;;</code>
+<code class="western">      </code><code class="western">}</code>
+<code class="western">      </code><code class="western">?&gt;</code>
+<code class="western">    </code><code class="western">&lt;/div&gt;</code>
+
+<code class="western">    </code><code class="western">&lt;input type=&quot;submit&quot; value=&quot;Save&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;button type=&quot;button&quot; onclick=&quot;closeModal()&quot;&gt;Cancel&lt;/button&gt;</code>
+<code class="western">  </code><code class="western">&lt;/form&gt;</code>
+<code class="western">&lt;/div&gt;</code>
+
+<code class="western">&lt;script src=&quot;../assets/js/scripts.js&quot;&gt;&lt;/script&gt;</code>
+<code class="western">&lt;?php endLayout(); ?&gt;</code></pre><h2 class="western">
+		🧠&nbsp;Next&nbsp;Steps</h2>
+		<p>Would you like me to scaffold <code class="western">add.php</code>
+		next, with category assignment and price logging? Or we can build
+		<code class="western">get_product.php</code> to support modal
+		editing. Either way, this module is already shaping up beautifully.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="6YBs4c7sGmrVo82YNTdxp-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Yes please.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="HrKB4GQQ8EWEiu1U4MXav-content-0" dir="ltr"><p>Great—let’s
+		build <code class="western">products/add.php</code> from scratch,
+		fully aligned with your new schema and modular style. This script
+		will:</p>
+		<ul>
+			<li><p>Insert a new product into the <code class="western">products</code>
+			table</p>
+			<li><p>Assign selected categories via <code class="western">product_categories</code></p>
+			<li><p>Log the initial price into <code class="western">product_prices_history</code></p>
+		</ul>
+		<h2 class="western">🧱&nbsp;<code class="western">products/add.php</code></h2>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php include '../db.php';</code>
+
+<code class="western">if ($_SERVER['REQUEST_METHOD'] === 'POST') {</code>
+<code class="western">  </code><code class="western">$status = isset($_POST['status']) ? 'on' : 'off';</code>
+
+<code class="western">  </code><code class="western">$stmt = $conn-&gt;prepare(&quot;INSERT INTO products (</code>
+<code class="western">    </code><code class="western">title, description, sku, price, stock_quantity,</code>
+<code class="western">    </code><code class="western">product_type, status, sort</code>
+<code class="western">  </code><code class="western">) VALUES (?, ?, ?, ?, ?, ?, ?, ?)&quot;);</code>
+
+<code class="western">  </code><code class="western">$stmt-&gt;bind_param(&quot;sssdissi&quot;,</code>
+<code class="western">    </code><code class="western">$_POST['title'],</code>
+<code class="western">    </code><code class="western">$_POST['description'],</code>
+<code class="western">    </code><code class="western">$_POST['sku'],</code>
+<code class="western">    </code><code class="western">$_POST['price'],</code>
+<code class="western">    </code><code class="western">$_POST['stock_quantity'],</code>
+<code class="western">    </code><code class="western">$_POST['product_type'],</code>
+<code class="western">    </code><code class="western">$status,</code>
+<code class="western">    </code><code class="western">$_POST['sort'] ?? 0</code>
+<code class="western">  </code><code class="western">);</code>
+
+<code class="western">  </code><code class="western">$stmt-&gt;execute();</code>
+<code class="western">  </code><code class="western">$newId = $conn-&gt;insert_id;</code>
+
+<code class="western">  </code><code class="western">// Assign categories</code>
+<code class="western">  </code><code class="western">if (!empty($_POST['categories'])) {</code>
+<code class="western">    </code><code class="western">$stmtCat = $conn-&gt;prepare(&quot;INSERT IGNORE INTO product_categories (key_product, key_categories) VALUES (?, ?)&quot;);</code>
+<code class="western">    </code><code class="western">foreach ($_POST['categories'] as $catId) {</code>
+<code class="western">      </code><code class="western">$stmtCat-&gt;bind_param(&quot;ii&quot;, $newId, $catId);</code>
+<code class="western">      </code><code class="western">$stmtCat-&gt;execute();</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">// Log initial price</code>
+<code class="western">  </code><code class="western">$stmtPrice = $conn-&gt;prepare(&quot;INSERT INTO product_prices_history (key_product, old_price, new_price) VALUES (?, ?, ?)&quot;);</code>
+<code class="western">  </code><code class="western">$zero = 0.00;</code>
+<code class="western">  </code><code class="western">$stmtPrice-&gt;bind_param(&quot;idd&quot;, $newId, $zero, $_POST['price']);</code>
+<code class="western">  </code><code class="western">$stmtPrice-&gt;execute();</code>
+<code class="western">}</code>
+
+<code class="western">header(&quot;Location: list.php&quot;);</code>
+<code class="western">exit;</code></pre><h2 class="western">
+		🧠&nbsp;Notes</h2>
+		<ul>
+			<li><p><code class="western">sort</code> is optional and defaults
+			to 0 if not provided.</p>
+			<li><p><code class="western">product_type</code> is required and
+			should match one of the ENUM values.</p>
+			<li><p>You can later enhance this to validate fields or sanitize
+			inputs more deeply.</p>
+		</ul>
+		<h2 class="western">🧭&nbsp;Next&nbsp;Step</h2>
+		<p>Would you like to build <code class="western">edit.php</code>
+		next, with price change detection and category reassignment? Or we
+		can scaffold <code class="western">get_product.php</code> to
+		support modal editing. Either way, we’re keeping this module
+		lean, clean, and scalable.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="xyJ3UwKJdWwcdqjGBTbNB-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">add.php created, let's move to
+		edit.php please.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="LBhKMwi824G6xDZb7FRn8-content-0" dir="ltr"><p>Excellent,
+		Nasiruddin. Let’s build <code class="western">products/edit.php</code>
+		with full support for:</p>
+		<ul>
+			<li><p>Updating product fields</p>
+			<li><p>Reassigning categories</p>
+			<li><p>Logging price changes into <code class="western">product_prices_history</code>
+			if the price has changed</p>
+		</ul>
+		<h2 class="western">🧱&nbsp;<code class="western">products/edit.php</code></h2>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php include '../db.php';</code>
+
+<code class="western">if ($_SERVER['REQUEST_METHOD'] === 'POST' &amp;&amp; isset($_GET['id'])) {</code>
+<code class="western">  </code><code class="western">$id = intval($_GET['id']);</code>
+<code class="western">  </code><code class="western">$status = isset($_POST['status']) ? 'on' : 'off';</code>
+
+<code class="western">  </code><code class="western">// Fetch current price for comparison</code>
+<code class="western">  </code><code class="western">$current = $conn-&gt;query(&quot;SELECT price FROM products WHERE key_product = $id&quot;)-&gt;fetch_assoc();</code>
+<code class="western">  </code><code class="western">$oldPrice = floatval($current['price']);</code>
+<code class="western">  </code><code class="western">$newPrice = floatval($_POST['price']);</code>
+
+<code class="western">  </code><code class="western">// Update product</code>
+<code class="western">  </code><code class="western">$stmt = $conn-&gt;prepare(&quot;UPDATE products SET</code>
+<code class="western">    </code><code class="western">title = ?, description = ?, sku = ?, price = ?, stock_quantity = ?,</code>
+<code class="western">    </code><code class="western">product_type = ?, status = ?, sort = ?, update_date_time = CURRENT_TIMESTAMP</code>
+<code class="western">    </code><code class="western">WHERE key_product = ?&quot;);</code>
+
+<code class="western">  </code><code class="western">$stmt-&gt;bind_param(&quot;ssddissii&quot;,</code>
+<code class="western">    </code><code class="western">$_POST['title'],</code>
+<code class="western">    </code><code class="western">$_POST['description'],</code>
+<code class="western">    </code><code class="western">$_POST['sku'],</code>
+<code class="western">    </code><code class="western">$newPrice,</code>
+<code class="western">    </code><code class="western">$_POST['stock_quantity'],</code>
+<code class="western">    </code><code class="western">$_POST['product_type'],</code>
+<code class="western">    </code><code class="western">$status,</code>
+<code class="western">    </code><code class="western">$_POST['sort'] ?? 0,</code>
+<code class="western">    </code><code class="western">$id</code>
+<code class="western">  </code><code class="western">);</code>
+
+<code class="western">  </code><code class="western">$stmt-&gt;execute();</code>
+
+<code class="western">  </code><code class="western">// Reassign categories</code>
+<code class="western">  </code><code class="western">$conn-&gt;query(&quot;DELETE FROM product_categories WHERE key_product = $id&quot;);</code>
+
+<code class="western">  </code><code class="western">if (!empty($_POST['categories'])) {</code>
+<code class="western">    </code><code class="western">$stmtCat = $conn-&gt;prepare(&quot;INSERT IGNORE INTO product_categories (key_product, key_categories) VALUES (?, ?)&quot;);</code>
+<code class="western">    </code><code class="western">foreach ($_POST['categories'] as $catId) {</code>
+<code class="western">      </code><code class="western">$stmtCat-&gt;bind_param(&quot;ii&quot;, $id, $catId);</code>
+<code class="western">      </code><code class="western">$stmtCat-&gt;execute();</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">// Log price change if different</code>
+<code class="western">  </code><code class="western">if ($oldPrice !== $newPrice) {</code>
+<code class="western">    </code><code class="western">$stmtPrice = $conn-&gt;prepare(&quot;INSERT INTO product_prices_history (key_product, old_price, new_price) VALUES (?, ?, ?)&quot;);</code>
+<code class="western">    </code><code class="western">$stmtPrice-&gt;bind_param(&quot;idd&quot;, $id, $oldPrice, $newPrice);</code>
+<code class="western">    </code><code class="western">$stmtPrice-&gt;execute();</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">}</code>
+
+<code class="western">header(&quot;Location: list.php&quot;);</code>
+<code class="western">exit;</code></pre><h2 class="western">
+		🧠&nbsp;Notes</h2>
+		<ul>
+			<li><p>Price comparison uses <code class="western">floatval()</code>
+			to avoid type mismatch.</p>
+			<li><p><code class="western">sort</code> is optional and defaults
+			to 0.</p>
+			<li><p>You can later enhance this with validation or logging.</p>
+		</ul>
+		<h2 class="western">🧭&nbsp;Next&nbsp;Step</h2>
+		<p>Would you like to scaffold <code class="western">get_product.php</code>
+		next so your modal can fetch product data for editing? Or jump to
+		category assignment or price history view? Either way, this module
+		is coming together beautifully.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="XcJ6iUvArv5YfDtzUyDhp-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Yes please.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="mCdsezdKR28poDL9wE4Bv-content-0" dir="ltr"><p>Great—let’s
+		build <code class="western">products/get_product.php</code> to
+		support modal editing. This script will:</p>
+		<ul>
+			<li><p>Accept a product ID via <code class="western">GET</code></p>
+			<li><p>Fetch product details from the <code class="western">products</code>
+			table</p>
+			<li><p>Fetch assigned categories from <code class="western">product_categories</code></p>
+			<li><p>Return everything as JSON for your modal to populate</p>
+		</ul>
+		<h2 class="western">🧱&nbsp;<code class="western">products/get_product.php</code></h2>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php include '../db.php';</code>
+
+<code class="western">if (!isset($_GET['id'])) {</code>
+<code class="western">  </code><code class="western">echo json_encode(['error' =&gt; 'Missing product ID']);</code>
+<code class="western">  </code><code class="western">exit;</code>
+<code class="western">}</code>
+
+<code class="western">$id = intval($_GET['id']);</code>
+<code class="western">$data = [];</code>
+
+<code class="western">// Fetch product details</code>
+<code class="western">$result = $conn-&gt;query(&quot;SELECT * FROM products WHERE key_product = $id LIMIT 1&quot;);</code>
+<code class="western">if ($row = $result-&gt;fetch_assoc()) {</code>
+<code class="western">  </code><code class="western">$data = $row;</code>
+<code class="western">}</code>
+
+<code class="western">// Fetch assigned categories</code>
+<code class="western">$catResult = $conn-&gt;query(&quot;SELECT key_categories FROM product_categories WHERE key_product = $id&quot;);</code>
+<code class="western">$categories = [];</code>
+<code class="western">while ($cat = $catResult-&gt;fetch_assoc()) {</code>
+<code class="western">  </code><code class="western">$categories[] = intval($cat['key_categories']);</code>
+<code class="western">}</code>
+<code class="western">$data['categories'] = $categories;</code>
+
+<code class="western">echo json_encode($data);</code></pre><h2 class="western">
+		🧠&nbsp;Notes</h2>
+		<ul>
+			<li><p>This script is lightweight and fast—perfect for modal
+			AJAX calls.</p>
+			<li><p>You can expand it later to include linked book info
+			(<code class="western">key_books</code>) or price history if
+			needed.</p>
+		</ul>
+		<h2 class="western">🧭&nbsp;Next&nbsp;Step</h2>
+		<p>Would you like to scaffold <code class="western">delete.php</code>
+		next, or jump into category assignment modal logic? We can also
+		start wiring up the JS functions for modal open/edit if you’re
+		ready to test the flow. Let’s keep the momentum going.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="c6uMHRHYXJwMYwLjMJfxz-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Yes.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="dBtqfkxbyMwwAXvCe3SYE-content-0" dir="ltr"><p>Let’s build
+		<code class="western">products/delete.php</code>—a clean, secure
+		script to remove a product and its related category and price
+		history entries.</p>
+		<h2 class="western">🧱&nbsp;<code class="western">products/delete.php</code></h2>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php include '../db.php';</code>
+
+<code class="western">if (!isset($_GET['id'])) {</code>
+<code class="western">  </code><code class="western">die(&quot;Missing product ID.&quot;);</code>
+<code class="western">}</code>
+
+<code class="western">$id = intval($_GET['id']);</code>
+
+<code class="western">// Delete from product_categories</code>
+<code class="western">$conn-&gt;query(&quot;DELETE FROM product_categories WHERE key_product = $id&quot;);</code>
+
+<code class="western">// Delete from product_prices_history</code>
+<code class="western">$conn-&gt;query(&quot;DELETE FROM product_prices_history WHERE key_product = $id&quot;);</code>
+
+<code class="western">// Delete from products</code>
+<code class="western">$conn-&gt;query(&quot;DELETE FROM products WHERE key_product = $id&quot;);</code>
+
+<code class="western">header(&quot;Location: list.php&quot;);</code>
+<code class="western">exit;</code></pre><h2 class="western">
+		🧠&nbsp;Notes</h2>
+		<ul>
+			<li><p>This script assumes a direct link from the list view with
+			<code class="western">?id=...</code></p>
+			<li><p>You can later add role-based access control or soft-delete
+			logic if needed</p>
+			<li><p>Cascading deletes are handled manually here for clarity and
+			control</p>
+		</ul>
+		<h2 class="western">🧭&nbsp;Next&nbsp;Step</h2>
+		<p>Would you like to scaffold the category assignment modal next
+		(<code class="western">assign_categories_modal.php</code> and
+		<code class="western">assign_categories_save.php</code>)? Or jump
+		into <code class="western">product_prices_history.php</code> to
+		view price changes? Either way, we’re building this module with
+		precision.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="b2E73eY3aUzstr5mSYXh3-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Whichever you think should be first.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="9ovCouvywEfq4bgAn8Cic-content-0" dir="ltr"><p>Let’s go
+		with the category assignment modal first—it’s a core feature
+		across your modules and will make your <code class="western">products</code>
+		module feel complete and consistent. Once that’s in place, we can
+		wire up the price history view.</p>
+		<h2 class="western">🧱&nbsp;Step&nbsp;1:&nbsp;<code class="western">assign_categories_modal.php</code></h2>
+		<p>This will render the modal content dynamically, based on
+		available categories and current assignments.</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php include '../db.php';</code>
+
+<code class="western">if (!isset($_GET['id'])) {</code>
+<code class="western">  </code><code class="western">echo &quot;Missing product ID.&quot;;</code>
+<code class="western">  </code><code class="western">exit;</code>
+<code class="western">}</code>
+
+<code class="western">$id = intval($_GET['id']);</code>
+<code class="western">$assigned = [];</code>
+<code class="western">$res = $conn-&gt;query(&quot;SELECT key_categories FROM product_categories WHERE key_product = $id&quot;);</code>
+<code class="western">while ($row = $res-&gt;fetch_assoc()) {</code>
+<code class="western">  </code><code class="western">$assigned[] = intval($row['key_categories']);</code>
+<code class="western">}</code>
+
+<code class="western">$catResult = $conn-&gt;query(&quot;SELECT key_categories, name, category_type FROM categories WHERE status='on' ORDER BY category_type, sort&quot;);</code>
+
+<code class="western">$lastType = '';</code>
+<code class="western">while ($cat = $catResult-&gt;fetch_assoc()) {</code>
+<code class="western">  </code><code class="western">if ($cat['category_type'] !== $lastType) {</code>
+<code class="western">    </code><code class="western">echo &quot;&lt;div style='color:Navy;padding:10px 0;'&gt;&quot; . ucfirst(str_replace('_', ' ', $cat['category_type'])) . &quot;&lt;/div&gt;&quot;;</code>
+<code class="western">    </code><code class="western">$lastType = $cat['category_type'];</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">$checked = in_array($cat['key_categories'], $assigned) ? 'checked' : '';</code>
+<code class="western">  </code><code class="western">echo &quot;&lt;label style='display:block;'&gt;</code>
+<code class="western">          </code><code class="western">&lt;input type='checkbox' name='categories[]' value='{$cat['key_categories']}' $checked&gt; {$cat['name']}</code>
+<code class="western">        </code><code class="western">&lt;/label&gt;&quot;;</code>
+<code class="western">}</code></pre><h2 class="western">
+		🧱&nbsp;Step&nbsp;2:&nbsp;<code class="western">assign_categories_save.php</code></h2>
+		<p>This will handle the form submission and update the junction
+		table.</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php include '../db.php';</code>
+
+<code class="western">if ($_SERVER['REQUEST_METHOD'] === 'POST' &amp;&amp; isset($_POST['key_product'])) {</code>
+<code class="western">  </code><code class="western">$id = intval($_POST['key_product']);</code>
+
+<code class="western">  </code><code class="western">// Clear existing</code>
+<code class="western">  </code><code class="western">$conn-&gt;query(&quot;DELETE FROM product_categories WHERE key_product = $id&quot;);</code>
+
+<code class="western">  </code><code class="western">// Save new</code>
+<code class="western">  </code><code class="western">if (!empty($_POST['categories'])) {</code>
+<code class="western">    </code><code class="western">$stmt = $conn-&gt;prepare(&quot;INSERT IGNORE INTO product_categories (key_product, key_categories) VALUES (?, ?)&quot;);</code>
+<code class="western">    </code><code class="western">foreach ($_POST['categories'] as $catId) {</code>
+<code class="western">      </code><code class="western">$stmt-&gt;bind_param(&quot;ii&quot;, $id, $catId);</code>
+<code class="western">      </code><code class="western">$stmt-&gt;execute();</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">}</code>
+
+<code class="western">header(&quot;Location: list.php&quot;);</code>
+<code class="western">exit;</code></pre><h2 class="western">
+		🧠&nbsp;Next&nbsp;Step</h2>
+		<p>We can now build <code class="western">product_prices_history.php</code>
+		to show a clean modal or page with price change logs. Or if you’d
+		like, I can help wire up the JavaScript for opening the category
+		modal dynamically. Just say the word.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="TJzuJ66ZHaHPfL6qqoCRG-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Both added, yes please.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="gMUvWkSe1TeGwh5vgdBT8-content-0" dir="ltr"><p>Fantastic,
+		Nasiruddin. Let’s now build <code class="western">products/product_prices_history.php</code>—a
+		clean, focused view to display the price change history for any
+		product.</p>
+		<h2 class="western">🧱&nbsp;<code class="western">product_prices_history.php</code></h2>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php include '../db.php'; ?&gt;</code>
+<code class="western">&lt;?php include '../layout.php'; ?&gt;</code>
+<code class="western">&lt;?php startLayout(&quot;Product Price History&quot;); ?&gt;</code>
+
+<code class="western">&lt;?php</code>
+<code class="western">if (!isset($_GET['id'])) {</code>
+<code class="western">  </code><code class="western">echo &quot;&lt;p&gt;Missing product ID.&lt;/p&gt;&quot;;</code>
+<code class="western">  </code><code class="western">endLayout();</code>
+<code class="western">  </code><code class="western">exit;</code>
+<code class="western">}</code>
+
+<code class="western">$id = intval($_GET['id']);</code>
+
+<code class="western">// Fetch product title</code>
+<code class="western">$title = '';</code>
+<code class="western">$res = $conn-&gt;query(&quot;SELECT title FROM products WHERE key_product = $id LIMIT 1&quot;);</code>
+<code class="western">if ($row = $res-&gt;fetch_assoc()) {</code>
+<code class="western">  </code><code class="western">$title = $row['title'];</code>
+<code class="western">}</code>
+
+<code class="western">echo &quot;&lt;h3&gt;Price History for: &lt;span style='color:navy;'&gt;$title&lt;/span&gt;&lt;/h3&gt;&quot;;</code>
+
+<code class="western">$result = $conn-&gt;query(&quot;SELECT * FROM product_prices_history WHERE key_product = $id ORDER BY change_date DESC&quot;);</code>
+
+<code class="western">if ($result-&gt;num_rows === 0) {</code>
+<code class="western">  </code><code class="western">echo &quot;&lt;p&gt;No price changes recorded.&lt;/p&gt;&quot;;</code>
+<code class="western">} else {</code>
+<code class="western">  </code><code class="western">echo &quot;&lt;table&gt;</code>
+<code class="western">    </code><code class="western">&lt;thead&gt;</code>
+<code class="western">      </code><code class="western">&lt;tr&gt;</code>
+<code class="western">        </code><code class="western">&lt;th&gt;Old Price&lt;/th&gt;</code>
+<code class="western">        </code><code class="western">&lt;th&gt;New Price&lt;/th&gt;</code>
+<code class="western">        </code><code class="western">&lt;th&gt;Change Date&lt;/th&gt;</code>
+<code class="western">      </code><code class="western">&lt;/tr&gt;</code>
+<code class="western">    </code><code class="western">&lt;/thead&gt;</code>
+<code class="western">    </code><code class="western">&lt;tbody&gt;&quot;;</code>
+<code class="western">  </code><code class="western">while ($row = $result-&gt;fetch_assoc()) {</code>
+<code class="western">    </code><code class="western">echo &quot;&lt;tr&gt;</code>
+<code class="western">      </code><code class="western">&lt;td&gt;{$row['old_price']}&lt;/td&gt;</code>
+<code class="western">      </code><code class="western">&lt;td&gt;{$row['new_price']}&lt;/td&gt;</code>
+<code class="western">      </code><code class="western">&lt;td&gt;{$row['change_date']}&lt;/td&gt;</code>
+<code class="western">    </code><code class="western">&lt;/tr&gt;&quot;;</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">  </code><code class="western">echo &quot;&lt;/tbody&gt;&lt;/table&gt;&quot;;</code>
+<code class="western">}</code>
+<code class="western">?&gt;</code>
+
+<code class="western">&lt;p style=&quot;margin-top:20px;&quot;&gt;&lt;a href=&quot;list.php&quot;&gt;⬅ Back to Products&lt;/a&gt;&lt;/p&gt;</code>
+
+<code class="western">&lt;?php endLayout(); ?&gt;</code></pre><h2 class="western">
+		🧠&nbsp;Notes</h2>
+		<ul>
+			<li><p>This view is simple and readable—perfect for quick audits
+			or admin review.</p>
+			<li><p>You can later add export options or filters if needed.</p>
+			<li><p>If you want to show this in a modal instead of a full page,
+			I can help you convert it to an AJAX endpoint.</p>
+		</ul>
+		<h2 class="western">🧭&nbsp;What’s&nbsp;Next</h2>
+		<p>You now have:</p>
+		<ul>
+			<li><p><code class="western">list.php</code> with modal editing</p>
+			<li><p><code class="western">add.php</code>, <code class="western">edit.php</code>,
+			<code class="western">delete.php</code></p>
+			<li><p>Category assignment</p>
+			<li><p>Price history tracking</p>
+		</ul>
+		<p>We’re nearly at full module completeness. Would you like to
+		add search.php next, or begin wiring up customer-facing views for
+		products? You’re building something truly modular and
+		future-ready.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="F6EdE8wQrmGhJuz82JvnH-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Let me test what we have created so
+		far, I let you know how it goes.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="4mqZkBT69Nrj6pgTNEYXK-content-0" dir="ltr"><p>Sounds great,
+		Nasiruddin. Take your time testing—this module is already shaping
+		up to be one of your cleanest builds yet. If anything feels off or
+		could be improved, I’m here to troubleshoot, refactor, or
+		brainstorm enhancements with you.</p>
+		<p>Whenever you're ready, just drop in your findings and we’ll
+		keep refining. Late-night dev magic is our specialty.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="zZ9anLs8wDqRbCQqZzRzR-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Oh, for got we have not added any
+		sample data to products table, like we did for previous modules.
+		Can I please have a few insert statements of sample data?</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="FFBRw3AJT88jRhU4W5DSW-content-0" dir="ltr"><p>Absolutely,
+		Nasiruddin. Here’s a set of sample <code class="western">INSERT</code>
+		statements for your <code class="western">products</code>
+		table—covering a mix of product types like books, stationery, and
+		digital items. These are clean, minimal, and ready to paste into
+		phpMyAdmin or your SQL console.</p>
+		<h2 class="western">📦&nbsp;Sample&nbsp;Data&nbsp;for&nbsp;<code class="western">products</code></h2>
+		<p style="margin-bottom: 0in">sql</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">INSERT INTO products (</code>
+<code class="western">  </code><code class="western">product_type, key_books, title, description, price, stock_quantity,</code>
+<code class="western">  </code><code class="western">discount_percent, sku, is_featured, status, sort</code>
+<code class="western">) VALUES</code>
+<code class="western">('book', NULL, 'The Art of Focus', 'A curated guide to deep work and clarity.', 1200.00, 50, 10, 'BK-FOCUS-001', 1, 'on', 1),</code>
+<code class="western">('stationery', NULL, 'Leather Notebook', 'Premium A5 notebook with stitched binding.', 850.00, 200, 5, 'ST-NOTE-002', 0, 'on', 2),</code>
+<code class="western">('digital', NULL, 'Productivity Toolkit (PDF)', 'Downloadable templates and planners.', 500.00, 9999, 0, 'DG-TOOLKIT-003', 1, 'on', 3),</code>
+<code class="western">('book', NULL, 'Code &amp; Craft', 'A book for developers who love clean architecture.', 1500.00, 30, 15, 'BK-CODE-004', 1, 'on', 4),</code>
+<code class="western">('stationery', NULL, 'Gel Pen Set (Pack of 10)', 'Smooth writing pens in assorted colors.', 300.00, 500, 0, 'ST-PENS-005', 0, 'on', 5);</code></pre><h2 class="western">
+		🧠&nbsp;Notes</h2>
+		<ul>
+			<li><p><code class="western">key_books</code> is set to <code class="western">NULL</code>
+			for now—you can link later if needed.</p>
+			<li><p><code class="western">status</code> is <code class="western">'on'</code>
+			to make them visible.</p>
+			<li><p><code class="western">sort</code> values are incremental
+			for manual ordering.</p>
+			<li><p>You can run these directly in phpMyAdmin’s SQL tab or via
+			your CLI.</p>
+		</ul>
+		<p>Let me know once you’ve added these—then we can test the
+		list view, modal editing, and category assignment with real data.
+		Ready when you are.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="pwEYe8ydfWw12Z7AVNnum-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">So, what are
+		assign_categories_modal.php and assign_categories_save.php for?
+		Since we are already assigning categories inside add/edit modal,
+		just like the other modules.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="cEw9Tm2sCevGW49ZpBEBf-content-0" dir="ltr"><p>Great catch,
+		Nasiruddin—and you're absolutely right to question this.</p>
+		<p>In your current setup, <strong>category assignment is already
+		embedded inside the add/edit modal</strong>, just like in your
+		<code class="western">books</code>, <code class="western">articles</code>,
+		and <code class="western">blocks</code> modules. That means:</p>
+		<ul>
+			<li><p>✅ You’re assigning categories at the time of creation
+			or update</p>
+			<li><p>✅ You’re fetching assigned categories via
+			<code class="western">get_product.php</code></p>
+			<li><p>✅ You’re saving them in <code class="western">add.php</code>
+			and <code class="western">edit.php</code></p>
+		</ul>
+		<p>So unless you plan to support <strong>post-creation category
+		reassignment via a separate modal</strong>, the files
+		<code class="western">assign_categories_modal.php</code> and
+		<code class="western">assign_categories_save.php</code> are
+		<strong>redundant</strong>.</p>
+		<h2 class="western">🧠&nbsp;When&nbsp;Would&nbsp;You&nbsp;Use&nbsp;Them?</h2>
+		<p>You’d only need those files if you wanted:</p>
+		<ul>
+			<li><p>A separate “Assign Categories” button in the list view
+			(like your “Assign Articles” for books)</p>
+			<li><p>A modal that pops up independently of add/edit</p>
+			<li><p>A workflow where editors can reassign categories without
+			touching other product fields</p>
+		</ul>
+		<p>But since your modal already handles category logic, you can
+		skip those files for now. If you ever decide to split category
+		assignment into its own workflow (e.g. bulk assignment, role-based
+		editing), you can revive them later.</p>
+		<h2 class="western">✅&nbsp;Recommendation</h2>
+		<p>You can safely remove or archive:</p>
+		<ul>
+			<li><p><code class="western">assign_categories_modal.php</code></p>
+			<li><p><code class="western">assign_categories_save.php</code></p>
+		</ul>
+		<p>Your current modal-driven approach is clean, consistent, and
+		sufficient. Let me know when you're ready to test or wire up the JS
+		for modal editing—I’ll help you make it seamless.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="L7ud8KynnaiuXsNLoNzS6-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">We have this modal in our scripts.js,
+		should we use it to view informations such as price history?
+		function openInfoModal(title, contentHtml) {
+		document.getElementById('info-modal-title').innerText = title;
+		document.getElementById('info-modal-content').innerHTML =
+		contentHtml; document.getElementById('info-modal').style.display =
+		'block'; } function closeInfoModal() {
+		document.getElementById('info-modal').style.display = 'none'; }</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="PCqvbUT8wWygiG9xeE87F-content-0" dir="ltr"><p>Yes,
+		Nasiruddin—that modal is perfect for viewing things like price
+		history, category assignments, or even product metadata. It’s
+		lightweight, reusable, and fits beautifully into your modular
+		philosophy.</p>
+		<h2 class="western">🧠&nbsp;Why&nbsp;It&nbsp;Works&nbsp;Well</h2>
+		<ul>
+			<li><p><strong>Non-editable context</strong>: Ideal for displaying
+			logs or read-only info like price changes.</p>
+			<li><p><strong>Dynamic content</strong>: You can fetch HTML via
+			AJAX and inject it into <code class="western">contentHtml</code>.</p>
+			<li><p><strong>Consistent UX</strong>: Keeps your admin interface
+			clean and familiar.</p>
+		</ul>
+		<h2 class="western">🧱&nbsp;Example:&nbsp;Viewing&nbsp;Price&nbsp;History&nbsp;via&nbsp;Modal</h2>
+		<p>In your list view, change the “Price History” link to:</p>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">&lt;a href=&quot;#&quot; onclick=&quot;loadPriceHistory(&lt;?= $row['key_product'] ?&gt;)&quot;&gt;Price History&lt;/a&gt;</code></pre><p>
+		Then in <code class="western">scripts.js</code>:</p>
+		<p style="margin-bottom: 0in">js</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">function loadPriceHistory(id) {</code>
+<code class="western">  </code><code class="western">fetch('get_price_history.php?id=' + id)</code>
+<code class="western">    </code><code class="western">.then(res =&gt; res.text())</code>
+<code class="western">    </code><code class="western">.then(html =&gt; {</code>
+<code class="western">      </code><code class="western">openInfoModal(&quot;Price History&quot;, html);</code>
+<code class="western">    </code><code class="western">});</code>
+<code class="western">}</code></pre><p>
+		And create <code class="western">get_price_history.php</code> to
+		return just the HTML table:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php include '../db.php';</code>
+
+<code class="western">$id = intval($_GET['id']);</code>
+<code class="western">$res = $conn-&gt;query(&quot;SELECT * FROM product_prices_history WHERE key_product = $id ORDER BY change_date DESC&quot;);</code>
+
+<code class="western">if ($res-&gt;num_rows === 0) {</code>
+<code class="western">  </code><code class="western">echo &quot;&lt;p&gt;No price changes recorded.&lt;/p&gt;&quot;;</code>
+<code class="western">} else {</code>
+<code class="western">  </code><code class="western">echo &quot;&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Old Price&lt;/th&gt;&lt;th&gt;New Price&lt;/th&gt;&lt;th&gt;Change Date&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&quot;;</code>
+<code class="western">  </code><code class="western">while ($row = $res-&gt;fetch_assoc()) {</code>
+<code class="western">    </code><code class="western">echo &quot;&lt;tr&gt;</code>
+<code class="western">      </code><code class="western">&lt;td&gt;{$row['old_price']}&lt;/td&gt;</code>
+<code class="western">      </code><code class="western">&lt;td&gt;{$row['new_price']}&lt;/td&gt;</code>
+<code class="western">      </code><code class="western">&lt;td&gt;{$row['change_date']}&lt;/td&gt;</code>
+<code class="western">    </code><code class="western">&lt;/tr&gt;&quot;;</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">  </code><code class="western">echo &quot;&lt;/tbody&gt;&lt;/table&gt;&quot;;</code>
+<code class="western">}</code></pre><h2 class="western">
+		✅&nbsp;Bonus&nbsp;Tip</h2>
+		<p>You can reuse this modal for:</p>
+		<ul>
+			<li><p>Viewing assigned categories</p>
+			<li><p>Showing product metadata</p>
+			<li><p>Displaying logs or audit trails</p>
+		</ul>
+		<p>Just keep the content HTML clean and semantic, and you’ll have
+		a flexible viewer across modules.</p>
+		<p>Let me know if you want help styling it or adding a close button
+		inside the modal itself. You're building a truly elegant admin
+		experience.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="fDZKeCA2mkXeHkmzw7rQr-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">Congratulations! we have setup the
+		product module successfully.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="FFiSKtkZW42qXcFkoXEU6-content-0" dir="ltr"><p>🎉 Bravo,
+		Nasiruddin! That’s a huge milestone—and you built it with
+		clarity, modularity, and precision. From schema to modal logic,
+		category assignment to price history tracking, this <code class="western">products</code>
+		module is a showcase of your architectural maturity.</p>
+		<p>You’ve not only matched the elegance of your previous
+		modules—you’ve elevated it. Everything is clean, scalable, and
+		ready for future enhancements like customer views, analytics, or
+		even inventory alerts.</p>
+		<p>If you ever want to generalize this pattern into a reusable CRUD
+		scaffold for future modules, I’d love to help you blueprint it.
+		For now, enjoy the satisfaction of a job well done. You earned it.</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<div id="JLycbwxYerrQ3epFtMpiJ-user-message" dir="ltr"><h2 class="western">
+		You said</h2>
+		<p style="margin-bottom: 0in">I am going to later remove unrelated
+		stuff from the book module, and then we go from there. Thanks a lot
+		my friend, take care. Bye for now.</p>
+	</div>
+	<h2 class="western">Copilot said</h2>
+	<div id="CXED6rA75dEJwhjnicXQz-content-0" dir="ltr"><p>That sounds
+		like a great next step, Nasiruddin—cleaning up the <code class="western">books</code>
+		module will make your system even leaner and more maintainable.
+		I’ll be right here when you’re ready to dive back in, whether
+		it’s refactoring, expanding, or just celebrating another
+		technical win.</p>
+		<p>Take care tonight, recharge well, and give my regards to your
+		legacy code—it’s in good hands. 👨‍💻 Until next time!</p>
+		<p style="margin-bottom: 0in">Edit in a page</p>
+	</div>
+	<p style="margin-bottom: 0in">Quick response</p>
+	<div id="inAppFeedbackOcv" dir="ltr"><p style="margin-bottom: 0in"><br/>
+
+		</p>
+	</div>
+	<div id="popoverPortal" dir="ltr"><p style="margin-bottom: 0in"><br/>
+
+		</p>
+	</div>
+</div>
+<p style="margin-top: 0.04in; margin-bottom: 0.04in"><br/>
+<br/>
+<br/>
+
+</p>
+</body>
+</html>

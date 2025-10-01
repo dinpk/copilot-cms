@@ -1,4 +1,6 @@
-
+<?php
+include 'users/auth.php'; 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,11 +21,13 @@
 	  <li><a href="main_menu/list.php">📑 Main Menu</a></li>
 	  <li><a href="authors/list.php">👤 Authors</a></li>
 	  <li><a href="books/list.php">📰 Books</a></li>
-	  <li><a href="books/books_sell.php">📰 Books Sell</a></li>
 	  <li><a href="photo_gallery/list.php">📰 Photo Gallery</a></li>
 	  <li><a href="youtube_gallery/list.php">📰 Youtube Gallery</a></li>
+	  <li><a href="products/list.php">🧱 Products</a></li>
 	  <li><a href="blocks/list.php">🧱 Blocks</a></li>
 	  <li><a href="settings/view.php">⚙️ Site Settings</a></li>
+	  <li><a href="users/list.php">⚙️ Users</a></li>
+	  <li><a href="users/logout.php">⚙️ Logout</a></li>
 	</ul>
 
 	<p style="margin-top:2em; color:#666;">All changes are live. You’re in full control.</p>

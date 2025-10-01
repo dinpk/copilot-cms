@@ -1,5 +1,10 @@
-<?php include '../db.php'; ?>
-<?php include '../layout.php'; ?>
+<?php 
+include '../db.php';
+include '../layout.php'; 
+include '../users/auth.php'; 
+?>
+
+
 <?php startLayout("Books — Sell Settings"); ?>
 
 

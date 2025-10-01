@@ -1,20 +1,23 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php'; 
 
-print "<pre>" . print_r($_POST) . "</pre>";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	
   $status = isset($_POST['status']) ? 'on' : 'off';	
+  $createdBy = $_SESSION['key_user'];
   
   $stmt = $conn->prepare("INSERT INTO articles (
     title, title_sub, article_snippet, article_content,
-    content_type, url, banner_image_url, sort, status
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    content_type, url, banner_image_url, sort, status, created_by
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssssis",
+  $stmt->bind_param("sssssssisi",
     $_POST['title'],
     $_POST['title_sub'],
     $_POST['article_snippet'],
@@ -23,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$_POST['url'],
     $_POST['banner_image_url'],
     $_POST['sort'],
-    $status
+    $status,
+	$createdBy
   );
 
   $stmt->execute();

@@ -1,5 +1,10 @@
-<?php include '../db.php'; ?>
-<?php include '../layout.php'; ?>
+<?php 
+include '../db.php';
+include '../layout.php'; 
+include '../users/auth.php'; 
+?>
+
+
 <?php startLayout("YouTube Gallery"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Video</a></p>
@@ -14,6 +19,8 @@
     <tr>
       <th>Thumbnail</th>
       <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+	  <th>Created</th>
+	  <th>Updated</th>
       <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
@@ -41,12 +48,22 @@
     }
     $sql .= " ORDER BY $sort $dir LIMIT $limit OFFSET $offset";
 	
-	
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
+		
+		// Show created by updated by
+		$keyYoutubeGallery = $row["key_youtube_gallery"];
+		$createdUpdated = $conn->query("SELECT p.key_youtube_gallery, u1.username AS creator, u2.username AS updater 
+			FROM youtube_gallery p 
+			LEFT JOIN users u1 ON p.created_by = u1.key_user
+			LEFT JOIN users u2 ON p.updated_by = u2.key_user 
+			WHERE key_youtube_gallery = $keyYoutubeGallery")->fetch_assoc();		
+		
       echo "<tr>
         <td><img src='{$row['thumbnail_url']}' width='120'></td>
         <td>{$row['title']}</td>
+		<td>{$createdUpdated['creator']}</td>
+		<td>{$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
           <a href='#' onclick='editItem({$row['key_youtube_gallery']}, \"get_video.php\", [\"title\",\"youtube_id\",\"thumbnail_url\",\"description\",\"status\"])'>Edit</a> |
@@ -126,5 +143,4 @@
   </form>
 </div>
 
-<script src="../assets/js/scripts.js"></script>
 <?php endLayout(); ?>

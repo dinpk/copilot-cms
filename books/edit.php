@@ -1,20 +1,23 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
   $status = isset($_POST['status']) ? 'on' : 'off';	
+	$updatedBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("UPDATE books SET
     title = ?, subtitle = ?, description = ?, cover_image_url = ?, url = ?,
     author_name = ?, publisher = ?, publish_year = ?, status = ?,
-    update_date_time = CURRENT_TIMESTAMP
+    updated_by = ? 
     WHERE key_books = ?");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssssssi",
+  $stmt->bind_param("sssssssssii",
     $_POST['title'],
     $_POST['subtitle'],
     $_POST['description'],
@@ -24,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $_POST['publisher'],
     $_POST['publish_year'],
     $status,
+	$updatedBy,
     $id
   );
 

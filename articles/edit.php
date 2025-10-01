@@ -1,20 +1,25 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
   $status = isset($_POST['status']) ? 'on' : 'off';	
+  $updatedBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("UPDATE articles SET
     title = ?, title_sub = ?, article_snippet = ?, article_content = ?,
     url = ?, banner_image_url = ?, sort = ?, status = ?,
-    update_date_time = CURRENT_TIMESTAMP
+    updated_by = ?
     WHERE key_articles = ?");
+
+print_r($id);
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssisi",
+  $stmt->bind_param("ssssssisii",
     $_POST['title'],
     $_POST['title_sub'],
     $_POST['article_snippet'],
@@ -23,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $_POST['banner_image_url'],
     $_POST['sort'],
     $status,
+	$updatedBy,
     $id
   );
 

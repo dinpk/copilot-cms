@@ -1,24 +1,28 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
   $status = isset($_POST['status']) ? 'on' : 'off';	
+  $updatedBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("UPDATE youtube_gallery SET
     title = ?, youtube_id = ?, thumbnail_url = ?, description = ?, status = ?,
-    entry_date_time = CURRENT_TIMESTAMP
+    updated_by = ? 
     WHERE key_youtube_gallery = ?");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssi",
+  $stmt->bind_param("sssssii",
     $_POST['title'],
     $_POST['youtube_id'],
     $_POST['thumbnail_url'],
     $_POST['description'],
     $status,
+	$updatedBy,
     $id
   );
 

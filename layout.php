@@ -25,11 +25,13 @@ function startLayout($title = "Admin Panel") {
     <a href="../main_menu/list.php">📑 Main Menu</a>
     <a href="../authors/list.php">👤 Authors</a>
 	<a href="../books/list.php">📰 Books</a>
-	<a href="../books/books_sell.php">📰 Books Sell</a>
 	<a href="../photo_gallery/list.php">📰 Photo Gallery</a>
 	<a href="../youtube_gallery/list.php">📰 Youtube Gallery</a>
+	<a href="../products/list.php">🧱 Products</a>
     <a href="../blocks/list.php">🧱 Blocks</a>
     <a href="../settings/view.php">⚙️ Settings</a>
+	<a href="../users/list.php">⚙️ Users</a>
+	<a href="../users/logout.php">⚙️ Logout</a>
   </div>
   
   

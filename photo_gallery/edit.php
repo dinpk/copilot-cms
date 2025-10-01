@@ -1,23 +1,27 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
   $status = isset($_POST['status']) ? 'on' : 'off';	
+	$updatedBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("UPDATE photo_gallery SET
     title = ?, image_url = ?, description = ?, status = ?,
-    entry_date_time = CURRENT_TIMESTAMP
+    updated_by = ? 
     WHERE key_photo_gallery = ?");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssi",
+  $stmt->bind_param("ssssii",
     $_POST['title'],
     $_POST['image_url'],
     $_POST['description'],
     $status,
+	$updatedBy,
     $id
   );
 

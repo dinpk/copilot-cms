@@ -1,21 +1,26 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $status = isset($_POST['status']) ? 'on' : 'off';	
+  $createdBy = $_SESSION['key_user'];
+  
   $stmt = $conn->prepare("INSERT INTO youtube_gallery (
-    title, youtube_id, thumbnail_url, description, status
-  ) VALUES (?, ?, ?, ?, ?)");
+    title, youtube_id, thumbnail_url, description, status, created_by 
+  ) VALUES (?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssss",
+  $stmt->bind_param("sssssi",
     $_POST['title'],
     $_POST['youtube_id'],
     $_POST['thumbnail_url'],
     $_POST['description'],
-    $status
+    $status,
+	$createdBy
   );
 
   $stmt->execute();

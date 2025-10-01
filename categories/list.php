@@ -1,5 +1,11 @@
-<?php include '../db.php'; ?>
-<?php include '../layout.php'; ?>
+<?php 
+include '../db.php';
+include '../layout.php'; 
+include '../users/auth.php'; 
+?>
+
+
+
 <?php startLayout("Categories List"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Category</a></p>
@@ -101,6 +107,5 @@
   </form>
 </div>
 
-<script src="../assets/js/scripts.js"></script>
 
 <?php endLayout(); ?>

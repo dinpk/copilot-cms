@@ -1,5 +1,10 @@
-<?php include '../db.php'; ?>
-<?php include '../layout.php'; ?>
+<?php 
+include '../db.php';
+include '../layout.php'; 
+include '../users/auth.php'; 
+?>
+
+
 <?php startLayout("Books List"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Book</a></p>
@@ -16,6 +21,8 @@
       <th>Author</th>
       <th><?= sortLink('Publisher', 'publisher', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Year', 'publish_year', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+	  <th>Created</th>
+	  <th>Updated</th>
       <th>Status</th>
       <th>Actions</th>
     </tr>
@@ -50,11 +57,22 @@
 	
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
+		
+		// Show created by updated by
+		$keyBooks = $row["key_books"];
+		$createdUpdated = $conn->query("SELECT b.key_books, u1.username AS creator, u2.username AS updater 
+			FROM books b 
+			LEFT JOIN users u1 ON b.created_by = u1.key_user
+			LEFT JOIN users u2 ON b.updated_by = u2.key_user 
+			WHERE key_books = $keyBooks")->fetch_assoc();		
+		
       echo "<tr>
         <td>{$row['title']}</td>
         <td>{$row['author_name']}</td>
         <td>{$row['publisher']}</td>
         <td>{$row['publish_year']}</td>
+		<td>{$createdUpdated['creator']}</td>
+		<td>{$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
           <a href='#' onclick='editItem({$row['key_books']}, \"get_book.php\", [\"title\",\"subtitle\",\"description\",\"cover_image_url\",\"url\",\"author_name\",\"publisher\",\"publish_year\",\"status\"])'>Edit</a> |
@@ -160,7 +178,5 @@
   </form>
 </div>
 
-
-<script src="../assets/js/scripts.js"></script>
 
 <?php endLayout(); ?>

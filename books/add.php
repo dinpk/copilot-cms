@@ -1,17 +1,20 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   $status = isset($_POST['status']) ? 'on' : 'off';	
+  $createdBy = $_SESSION['key_user'];
 
 	$stmt = $conn->prepare("INSERT INTO books (
 		title, subtitle, description, cover_image_url, url,
 		author_name, publisher, publish_year, isbn, price,
 		stock_quantity, discount_percent, is_featured, language,
-		format, weight_grams, sku, status
-	) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		format, weight_grams, sku, status, created_by
+	) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-	$stmt->bind_param("sssssssssdiiisssis",
+	$stmt->bind_param("sssssssssdiiisssisi",
 		$_POST['title'],
 		$_POST['subtitle'],
 		$_POST['description'],
@@ -29,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$_POST['format'],
 		$_POST['weight_grams'],
 		$_POST['sku'],
-		$status
+		$status,
+		$createdBy
 	);
 
   $stmt->execute();

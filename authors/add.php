@@ -1,20 +1,24 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
 	$status = isset($_POST['status']) ? 'on' : 'off';
 	
+	$createdBy = $_SESSION['key_user'];	
+	
   $stmt = $conn->prepare("INSERT INTO authors (
     name, email, phone, website, url,
     social_url_media1, social_url_media2, social_url_media3,
-    city, state, country, image_url, description, status
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    city, state, country, image_url, description, status, created_by
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssssssssss",
+  $stmt->bind_param("ssssssssssssssi",
     $_POST['name'],
     $_POST['email'],
     $_POST['phone'],
@@ -28,10 +32,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST['country'],
     $_POST['image_url'],
     $_POST['description'],
-    $status
+    $status,
+	$createdBy
   );
 
   $stmt->execute();
+  
+  
+  
+  
 }
 
 header("Location: list.php");
