@@ -16,28 +16,33 @@ function startLayout($title = "Admin Panel") {
   <script src="../assets/js/scripts.js"></script>
 </head>
 <body>
+<header>
+$title
+</header>
 <div class="container">
-  <div class="sidebar">
-    <h3>Admin</h3>
-    <a href="../articles/list.php">📰 Articles</a>
-    <a href="../pages/list.php">📄 Pages</a>
-    <a href="../categories/list.php">🗂️ Categories</a>
-    <a href="../main_menu/list.php">📑 Main Menu</a>
-    <a href="../authors/list.php">👤 Authors</a>
-	<a href="../books/list.php">📰 Books</a>
-	<a href="../photo_gallery/list.php">📰 Photo Gallery</a>
-	<a href="../youtube_gallery/list.php">📰 Youtube Gallery</a>
-	<a href="../products/list.php">🧱 Products</a>
-    <a href="../blocks/list.php">🧱 Blocks</a>
-    <a href="../settings/view.php">⚙️ Settings</a>
-	<a href="../users/list.php">⚙️ Users</a>
-	<a href="../users/logout.php">⚙️ Logout</a>
-  </div>
+
+	<div class="sidebar">
+	  <h3>Admin</h3>
+	  <a href="../index.php">📊 Dashboard</a>
+	  <a href="../articles/list.php">📝 Articles</a>
+	  <a href="../pages/list.php">📘 Pages</a>
+	  <a href="../categories/list.php">🏷️ Categories</a>
+	  <a href="../main_menu/list.php">🧭 Main Menu</a>
+	  <a href="../authors/list.php">🧑‍ Authors</a>
+	  <a href="../books/list.php">📚 Books</a>
+	  <a href="../photo_gallery/list.php">🖼️ Photo Gallery</a>
+	  <a href="../youtube_gallery/list.php">🎥 YouTube Gallery</a>
+	  <a href="../products/list.php">🛍️ Products</a>
+	  <a href="../blocks/list.php">🧩 Blocks</a>
+	  <a href="../users/list.php">👥 Users</a>
+	  <a href="../users/logout.php">🚪 Logout</a>
+	  <a href="../settings/view.php">🛠️ Settings</a>
+	</div>
+
   
   
   
-	<div id="info-modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-	  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;">
+	<div id="info-modal" class="modal">
 	  <h3 id="info-modal-title">Info</h3>
 	  <div id="info-modal-content" style="max-height:400px; overflow-y:auto;"></div>
 	  <p><button type="button" onclick="closeInfoModal()">Close</button></p>
@@ -55,6 +60,13 @@ function endLayout() {
   echo <<<HTML
   </div>
 </div>
+
+
+
+<footer>
+  Powered by Copilot &mdash; Built with clarity, collaboration, and care. &copy; <?= date('Y') ?> CopilotCMS. All rights reserved.
+</footer>
+
 </body>
 </html>
 HTML;

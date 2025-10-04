@@ -9,7 +9,7 @@ include '../users/auth.php';
 
 <p><a href="#" onclick="openModal()">➕ Add New Product</a></p>
 
-<form method="get" style="margin-bottom:20px;">
+<form method="get">
   <input type="text" name="q" placeholder="Search products..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
   <input type="submit" value="Search">
 </form>
@@ -88,7 +88,7 @@ include '../users/auth.php';
   </tbody>
 </table>
 
-<div style="margin-top:20px;">
+<div id="pager">
   <?php if ($page > 1): ?>
     <a href="?page=<?= $page - 1 ?>&q=<?= urlencode($q) ?>&sort=<?= urlencode($sort) ?>&dir=<?= urlencode($dir) ?>">⬅ Prev</a>
   <?php endif; ?>
@@ -99,8 +99,7 @@ include '../users/auth.php';
 </div>
 
 <!-- Modal Form — Add/Edit -->
-<div id="modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; height:80vh; z-index:1000;">
+<div id="modal" class="modal">
   <h3 id="modal-title">Add Product</h3>
   <form id="modal-form" method="post" action="add.php">
     <input type="hidden" name="key_product" id="key_product">
@@ -119,7 +118,7 @@ include '../users/auth.php';
       <input type="checkbox" name="status" id="status" value="on" checked> Active
     </label><br>
 
-    <div style="margin:10px 0;border:1px solid #777;padding:20px;">
+    <div id="select-categories">
       <h3>Categories</h3>
       <?php
       $catResult = $conn->query("SELECT key_categories, name, category_type FROM categories WHERE status='on' ORDER BY category_type, sort");
@@ -145,8 +144,7 @@ include '../users/auth.php';
 
 
 <!-- Modal: Assign Images -->
-<div id="image-modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; height:80vh; z-index:1000;">
+<div id="image-modal" class="modal">
   <h3>Assign Images to Product</h3>
 	<form method="post" id="image-form">
 	  <input type="hidden" name="key_product" id="image_key_product">
@@ -155,7 +153,7 @@ include '../users/auth.php';
 	  <input type="submit" value="Add Image">
 	</form>
 
-  <div id="image-list" style="margin-top:20px;"></div>
+  <div id="image-list"></div>
   
   <button type="button" onclick="closeImageModal()">Close</button>
 

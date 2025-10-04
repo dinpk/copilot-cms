@@ -7,7 +7,7 @@ include '../users/auth.php';
 
 <?php startLayout("Book Price History"); ?>
 
-<form method="get" style="margin-bottom:20px;">
+<form method="get">
   <input type="text" name="q" placeholder="Search by title..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
   <input type="submit" value="Search">
 </form>

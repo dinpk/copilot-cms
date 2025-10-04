@@ -9,7 +9,7 @@ include '../users/auth.php';
 
 <p><a href="#" onclick="openModal()">➕ Add New Book</a></p>
 
-<form method="get" style="margin-bottom:20px;">
+<form method="get">
   <input type="text" name="q" placeholder="Search books..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
   <input type="submit" value="Search">
 </form>
@@ -99,7 +99,7 @@ include '../users/auth.php';
 
 
 <!-- Pager -->
-<div style="margin-top:20px;">
+<div id="pager">
 	<?php if ($page > 1): ?>
 	  <a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">⬅ Prev</a>
 	<?php endif; ?>
@@ -116,8 +116,7 @@ include '../users/auth.php';
 
 
 <!-- Modal Form — add / edit -->
-<div id="modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; height:80vh; z-index:1000;">
+<div id="modal" class="modal">
   <h3 id="modal-title">Add Book</h3>
   <form id="modal-form" method="post" action="add.php">
   
@@ -135,7 +134,7 @@ include '../users/auth.php';
 	  Active
 	</label><br>
 	
-	<div style="margin:10px 0;border:1px solid #777;padding:20px;">
+	<div id="select-categories">
 	  <h3>Categories</h3>
 		<?php
 		$types = ['photo_gallery', 'book', 'article', 'video_gallery', 'global'];
@@ -165,14 +164,13 @@ include '../users/auth.php';
 
 
 <!-- Modal Form — assign articles -->
-<div id="assign-modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;">
+<div id="assign-modal" class="modal">
   <h3 id="assign-modal-title">Assign Articles to Book</h3>
 
   <form id="assign-form" method="post" action="assign_articles.php">
     <input type="hidden" name="key_books" id="assign_book_id">
     <input type="text" id="article_search" placeholder="Search articles..." oninput="filterArticles()"><br><br>
-    <div id="article-list" style="max-height:300px; overflow-y:auto;"></div>
+    <div id="article-list"></div>
     <input type="submit" value="Save">
     <button type="button" onclick="closeAssignModal()">Cancel</button>
   </form>

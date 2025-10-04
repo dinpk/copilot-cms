@@ -9,7 +9,7 @@ include '../users/auth.php';
 
 <p><a href="#" onclick="openModal()">➕ Add New User</a></p>
 
-<form method="get" style="margin-bottom:20px;">
+<form method="get">
   <input type="text" name="q" placeholder="Search users..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
   <input type="submit" value="Search">
 </form>
@@ -73,7 +73,7 @@ include '../users/auth.php';
   </tbody>
 </table>
 
-<div style="margin-top:20px;">
+<div id="pager">
   <?php if ($page > 1): ?>
     <a href="?page=<?= $page - 1 ?>&q=<?= urlencode($q) ?>&sort=<?= urlencode($sort) ?>&dir=<?= urlencode($dir) ?>">⬅ Prev</a>
   <?php endif; ?>
@@ -84,8 +84,7 @@ include '../users/auth.php';
 </div>
 
 <!-- Modal Form — Add/Edit -->
-<div id="modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; height:auto; z-index:1000;">
+<div id="modal" class="modal">
   <h3 id="modal-title">Add User</h3>
   <form id="modal-form" method="post" action="add.php">
     <input type="hidden" name="key_user" id="key_user">

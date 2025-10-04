@@ -66,8 +66,7 @@ include '../users/auth.php';
 </table>
 
 <!-- Modal Form -->
-<div id="modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;">
+<div id="modal" class="modal">
   <h3 id="modal-title">Add Block</h3>
   <form id="modal-form" method="post" action="add.php">
     <input type="hidden" name="key_blocks" id="key_blocks">

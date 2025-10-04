@@ -8,7 +8,7 @@ include '../users/auth.php';
 <?php startLayout("Books — Sell Settings"); ?>
 
 
-<form method="get" style="margin-bottom:20px;">
+<form method="get">
   <input type="text" name="q" placeholder="Search books..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
   <input type="submit" value="Search">
 </form>
@@ -78,7 +78,7 @@ include '../users/auth.php';
 </table>
 
 <!-- Pager -->
-<div style="margin-top:20px;">
+<div id="pager">
 	<?php if ($page > 1): ?>
 	  <a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">⬅ Prev</a>
 	<?php endif; ?>
@@ -91,8 +91,7 @@ include '../users/auth.php';
 </div>
 
 <!-- Modal Form — Sell Settings -->
-<div id="sell-modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;">
+<div id="sell-modal" class="modal">
   <h3 id="sell-modal-title">Edit Sell Info</h3>
   <form id="sell-form" method="post" action="update_sell.php">
     <input type="hidden" name="key_books" id="key_books">

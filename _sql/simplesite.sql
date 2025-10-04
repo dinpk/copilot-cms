@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 01, 2025 at 08:42 PM
+-- Generation Time: Oct 03, 2025 at 07:45 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -376,68 +376,6 @@ INSERT INTO `book_categories` (`id`, `key_books`, `key_categories`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `book_orders`
---
-
-DROP TABLE IF EXISTS `book_orders`;
-CREATE TABLE IF NOT EXISTS `book_orders` (
-  `key_order` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `order_number` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `customer_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `customer_email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `order_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `total_amount` decimal(10,2) DEFAULT NULL,
-  `status` varchar(20) COLLATE utf8_unicode_ci DEFAULT 'pending',
-  PRIMARY KEY (`key_order`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `book_order_items`
---
-
-DROP TABLE IF EXISTS `book_order_items`;
-CREATE TABLE IF NOT EXISTS `book_order_items` (
-  `key_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `key_order` int(10) UNSIGNED NOT NULL,
-  `key_books` int(10) UNSIGNED NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `unit_price` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`key_item`),
-  KEY `key_order` (`key_order`),
-  KEY `key_books` (`key_books`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `book_prices_history`
---
-
-DROP TABLE IF EXISTS `book_prices_history`;
-CREATE TABLE IF NOT EXISTS `book_prices_history` (
-  `key_price` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `key_books` int(10) UNSIGNED NOT NULL,
-  `old_price` decimal(10,2) NOT NULL,
-  `new_price` decimal(10,2) NOT NULL,
-  `change_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`key_price`),
-  KEY `key_books` (`key_books`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `book_prices_history`
---
-
-INSERT INTO `book_prices_history` (`key_price`, `key_books`, `old_price`, `new_price`, `change_date`) VALUES
-(1, 2, '0.00', '1.00', '2025-09-28 03:14:40'),
-(2, 2, '1.00', '1200.00', '2025-09-28 03:14:49'),
-(3, 7, '0.00', '500.00', '2025-09-28 03:15:06');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `categories`
 --
 
@@ -649,7 +587,7 @@ INSERT INTO `products` (`key_product`, `product_type`, `key_books`, `title`, `de
 (3, 'digital', NULL, 'Productivity Toolkit (PDF)', 'Downloadable templates and planners.', '500.00', 9999, 0, 'DG-TOOLKIT-003', 1, 'on', 3, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
 (4, 'book', NULL, 'Code & Craft', 'A book for developers who love clean architecture.', '1500.00', 30, 15, 'BK-CODE-004', 1, 'on', 4, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
 (5, 'stationery', NULL, 'Gel Pen Set (Pack of 10)', 'Smooth writing pens in assorted colors.', '300.00', 500, 0, 'ST-PENS-005', 0, 'on', 5, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
-(6, 'other', NULL, 'Golden Jump', 'Some long jumps ', '500.00', 10, NULL, '0', NULL, 'on', NULL, '2025-09-30 17:21:30', '2025-09-30 19:43:40', NULL, 1),
+(6, 'other', NULL, 'Golden Jump', 'Some long jumps ', '600.00', 10, NULL, '0', NULL, 'on', NULL, '2025-09-30 17:21:30', '2025-10-02 11:40:30', NULL, 1),
 (11, 'other', NULL, 'Navy Shoes', '', '2000.00', 40, NULL, '', NULL, 'on', NULL, '2025-09-30 19:48:15', '2025-09-30 19:48:15', 1, NULL);
 
 -- --------------------------------------------------------
@@ -664,7 +602,7 @@ CREATE TABLE IF NOT EXISTS `product_categories` (
   `key_product` int(10) UNSIGNED NOT NULL,
   `key_categories` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_categories`
@@ -672,8 +610,8 @@ CREATE TABLE IF NOT EXISTS `product_categories` (
 
 INSERT INTO `product_categories` (`id`, `key_product`, `key_categories`) VALUES
 (11, 1, 5),
-(5, 6, 1),
-(4, 6, 13),
+(13, 6, 1),
+(12, 6, 13),
 (10, 11, 20);
 
 -- --------------------------------------------------------
@@ -716,6 +654,42 @@ INSERT INTO `product_images` (`key_image`, `key_product`, `image_url`, `sort_ord
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `product_orders`
+--
+
+DROP TABLE IF EXISTS `product_orders`;
+CREATE TABLE IF NOT EXISTS `product_orders` (
+  `key_order` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `order_number` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `customer_email` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `order_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `total_amount` decimal(10,2) DEFAULT NULL,
+  `status` varchar(3) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`key_order`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_order_items`
+--
+
+DROP TABLE IF EXISTS `product_order_items`;
+CREATE TABLE IF NOT EXISTS `product_order_items` (
+  `key_item` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key_order` int(10) UNSIGNED DEFAULT NULL,
+  `key_product` int(10) UNSIGNED DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `unit_price` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`key_item`),
+  KEY `key_order` (`key_order`),
+  KEY `key_product` (`key_product`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product_prices_history`
 --
 
@@ -727,7 +701,7 @@ CREATE TABLE IF NOT EXISTS `product_prices_history` (
   `new_price` decimal(10,2) DEFAULT NULL,
   `change_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_price`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_prices_history`
@@ -736,6 +710,7 @@ CREATE TABLE IF NOT EXISTS `product_prices_history` (
 INSERT INTO `product_prices_history` (`key_price`, `key_product`, `old_price`, `new_price`, `change_date`) VALUES
 (1, 1, '1200.00', '1203.00', '2025-09-30 17:17:14'),
 (2, 6, '0.00', '500.00', '2025-09-30 17:21:30'),
+(8, 6, '500.00', '600.00', '2025-10-02 11:40:30'),
 (7, 11, '0.00', '2000.00', '2025-09-30 19:48:15');
 
 -- --------------------------------------------------------
@@ -757,15 +732,27 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `snippet_size` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '500',
   `items_on_page` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '50',
   `template_folder` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'templates/basic',
-  `entry_date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `entry_date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `default_language` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `timezone` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `admin_email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `maintenance_mode` tinyint(1) DEFAULT '0',
+  `maintenance_message` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `default_meta_title` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `default_meta_desc` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `analytics_script` text COLLATE utf8_unicode_ci,
+  `custom_css` text COLLATE utf8_unicode_ci,
+  `custom_js` text COLLATE utf8_unicode_ci,
+  `copyright_notice` varchar(300) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `powered_by` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`key_settings`, `site_name`, `site_slogan`, `logo1_url`, `logo2_url`, `base_url`, `banner_height`, `footer_content`, `snippet_size`, `items_on_page`, `template_folder`, `entry_date_time`) VALUES
-(1, 'My First Sites', '', '', '', '', '300', '', '500', '50', 'templates/basic', '2025-09-23 20:25:46');
+INSERT INTO `settings` (`key_settings`, `site_name`, `site_slogan`, `logo1_url`, `logo2_url`, `base_url`, `banner_height`, `footer_content`, `snippet_size`, `items_on_page`, `template_folder`, `entry_date_time`, `default_language`, `timezone`, `admin_email`, `maintenance_mode`, `maintenance_message`, `default_meta_title`, `default_meta_desc`, `analytics_script`, `custom_css`, `custom_js`, `copyright_notice`, `powered_by`) VALUES
+(1, 'My First Sites', '', 'https://alsharia.org/media/misc/alsharia-blue.png', '', '', '300', '', '500', '50', 'templates/basic', '2025-09-23 20:25:46', '', 'Asia/Karachi', '', 0, '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 

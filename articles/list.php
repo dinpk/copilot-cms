@@ -9,7 +9,7 @@ include '../users/auth.php';
 
 <p><a href="#" onclick="openModal()">➕ Add New Article</a></p>
 
-<form method="get" style="margin-bottom:20px;">
+<form method="get">
   <input type="text" name="q" placeholder="Search articles..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
   <input type="submit" value="Search">
 </form>
@@ -105,7 +105,7 @@ include '../users/auth.php';
 
 
 <!-- Pager -->
-<div style="margin-top:20px;">
+<div id="pager">
 	<?php if ($page > 1): ?>
 	  <a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">⬅ Prev</a>
 	<?php endif; ?>
@@ -119,8 +119,7 @@ include '../users/auth.php';
 
 
 <!-- Add/Edit Article Modal Form -->
-<div id="modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;height:80vh">
+<div id="modal" class="modal">
   <h3 id="modal-title">Add Article</h3>
   <form id="modal-form" method="post" action="add.php">
     <input type="hidden" name="key_articles" id="key_articles">
@@ -144,7 +143,7 @@ include '../users/auth.php';
 	</label><br>
 	
 	
-	<div style="margin:10px 0;border:1px solid #777;padding:20px;">
+	<div id="select-categories">
 	  <h3>Categories</h3>
 		<?php
 		$types = ['photo_gallery', 'book', 'article', 'video_gallery', 'global'];
@@ -173,8 +172,7 @@ include '../users/auth.php';
 </div>
 
 <!-- Assign Authors Model Form -->
-<div id="author-modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
-  background:#fff; padding:20px; border:1px solid #ccc; box-shadow:0 0 10px rgba(0,0,0,0.2); width:600px; z-index:1000;">
+<div id="author-modal" class="modal">
   <h3>Assign Authors</h3>
   <form id="author-form" method="post" action="assign_authors.php">
     <input type="hidden" name="key_articles" id="author_article_id">
