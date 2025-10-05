@@ -109,9 +109,9 @@ include '../users/auth.php';
 <!-- Modal Form -->
 <div id="modal" class="modal">
   <h3 id="modal-title">Add Author</h3>
-  <form id="modal-form" method="post" action="add.php">
+  <form id="modal-form" method="post">
     <input type="hidden" name="key_authors" id="key_authors">
-    <input type="text" name="name" id="name" placeholder="Name" required><br>
+    <input type="text" name="name" id="name" onchange="setCleanURL(this.value)" placeholder="Name" required><br>
     <input type="email" name="email" id="email" placeholder="Email"><br>
     <input type="text" name="phone" id="phone" placeholder="Phone"><br>
     <input type="text" name="website" id="website" placeholder="Website"><br>

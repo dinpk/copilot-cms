@@ -70,7 +70,7 @@ include '../users/auth.php';
 		<td>{$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_product']}, \"get_product.php\", [\"title\",\"description\",\"price\",\"stock_quantity\",\"sku\",\"product_type\",\"status\"])'>Edit</a> |
+          <a href='#' onclick='editItem({$row['key_product']}, \"get_product.php\", [\"title\",\"description\",\"price\",\"stock_quantity\",\"sku\",\"product_type\",\"url\",\"status\"])'>Edit</a> |
           <a href='delete.php?id={$row['key_product']}' onclick='return confirm(\"Delete this product?\")'>Delete</a> |
           <a href='#' onclick='loadPriceHistory({$row['key_product']})'>Price History</a> | 
 			<a href='#' onclick='openImageModal({$row['key_product']})'>Assign Images</a>
@@ -101,9 +101,9 @@ include '../users/auth.php';
 <!-- Modal Form — Add/Edit -->
 <div id="modal" class="modal">
   <h3 id="modal-title">Add Product</h3>
-  <form id="modal-form" method="post" action="add.php">
+  <form id="modal-form" method="post">
     <input type="hidden" name="key_product" id="key_product">
-    <input type="text" name="title" id="title" placeholder="Title" required><br>
+    <input type="text" name="title" id="title" onchange="setCleanURL(this.value)" placeholder="Title" required><br>
     <textarea name="description" id="description" placeholder="Description"></textarea><br>
     <input type="text" name="sku" id="sku" placeholder="SKU"><br>
     <input type="number" name="price" id="price" placeholder="Price"><br>
@@ -114,6 +114,7 @@ include '../users/auth.php';
       <option value="digital">Digital</option>
       <option value="other">Other</option>
     </select><br>
+	<input type="text" name="url" id="url" placeholder="URL"><br>
     <label>
       <input type="checkbox" name="status" id="status" value="on" checked> Active
     </label><br>

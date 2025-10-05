@@ -7,11 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 	$stmt = $conn->prepare("INSERT INTO users (
-	  username, password_hash, email, role, status,
-	  phone, address, city, state, country, description
-	) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	  name, username, password_hash, email, role, status,
+	  phone, address, city, state, country, description, url
+	) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-	$stmt->bind_param("sssssssssss",
+	$stmt->bind_param("sssssssssssss",
+	  $_POST['name'],
 	  $_POST['username'],
 	  $passwordHash,
 	  $_POST['email'],
@@ -22,7 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	  $_POST['city'],
 	  $_POST['state'],
 	  $_POST['country'],
-	  $_POST['description']
+	  $_POST['description'],
+	  $_POST['url']
 	);
 
 

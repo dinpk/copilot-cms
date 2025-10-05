@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 	$updatedBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("UPDATE photo_gallery SET
-    title = ?, image_url = ?, description = ?, status = ?,
+    title = ?, url = ?, image_url = ?, description = ?, status = ?,
     updated_by = ? 
     WHERE key_photo_gallery = ?");
 
@@ -16,8 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssii",
+  $stmt->bind_param("sssssii",
     $_POST['title'],
+    $_POST['url'],
     $_POST['image_url'],
     $_POST['description'],
     $status,

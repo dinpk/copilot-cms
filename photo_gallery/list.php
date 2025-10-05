@@ -67,7 +67,7 @@ include '../users/auth.php';
 		<td>{$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo.php\", [\"title\",\"image_url\",\"description\",\"status\"])'>Edit</a> |
+          <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo.php\", [\"title\",\"url\",\"image_url\",\"description\",\"status\"])'>Edit</a> |
           <a href='delete.php?id={$row['key_photo_gallery']}' onclick='return confirm(\"Delete this photo?\")'>Delete</a>
         </td>
       </tr>";
@@ -103,9 +103,10 @@ include '../users/auth.php';
 <!-- Modal Form -->
 <div id="modal" class="modal">
   <h3 id="modal-title">Add Photo</h3>
-  <form id="modal-form" method="post" action="add.php">
+  <form id="modal-form" method="post">
     <input type="hidden" name="key_photo_gallery" id="key_photo_gallery">
-    <input type="text" name="title" id="title" placeholder="Title" required><br>
+    <input type="text" name="title" id="title" onchange="setCleanURL(this.value)" placeholder="Title" required><br>
+    <input type="text" name="url" id="url" placeholder="URL" required><br>
     <input type="text" name="image_url" id="image_url" placeholder="Image URL" required><br>
     <textarea name="description" id="description" placeholder="Description"></textarea><br>
 	<label>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 03, 2025 at 07:45 PM
+-- Generation Time: Oct 05, 2025 at 06:00 AM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `created_by` int(10) UNSIGNED DEFAULT NULL,
   `updated_by` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`key_articles`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `articles`
@@ -78,7 +78,9 @@ INSERT INTO `articles` (`key_articles`, `title`, `title_sub`, `article_snippet`,
 (25, 'URL Structuring', 'SEO & Clarity', 'Structuring article URLs for clarity and SEO.', 'Full content of article 24...', 'article', 'url-structure', 'banner24.jpg', 24, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
 (26, 'CMS Entry Points', 'Where It Begins', 'Designing intuitive entry points for editors.', 'Full content of article 25...', 'article', 'cms-entry', 'banner25.jpg', 25, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
 (33, 'Next Era App Dev', 'New Ways of App Dev in 21st Century', 'some snippet', '', 'article', '', '', 0, 'on', '2025-09-30 13:56:49', '2025-09-30 13:57:02', 1, NULL),
-(34, 'Another Era of Building Apps', '', '', '', 'book', 'another-era-of-building-app', '', 2, 'on', '2025-10-01 17:04:57', '2025-10-01 17:04:57', 1, NULL);
+(34, 'Another Era of Building Apps', '', '', '', 'book', 'another-era-of-building-app', '', 2, 'on', '2025-10-01 17:04:57', '2025-10-01 17:04:57', 1, NULL),
+(35, 'Concerned US and Canadian Muslims weigh in on rising Islamophobia', '', '', '', 'article', 'concerned-us-and-canadian-muslims-on-islamophobia', '', 0, 'on', '2025-10-05 05:08:13', '2025-10-05 05:08:13', 1, 1),
+(36, 'True strength begins with self-awareness and the emotional connection', '', 'We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'We live in a world where stress, anxiety and depression are becoming increasingly common.  We live in a world where stress, anxiety and depression are becoming increasingly common.  We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'article', 'true-strength-begins-with-self-awareness-and-emotional-connection', '', 0, 'on', '2025-10-05 05:30:29', '2025-10-05 05:30:29', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -117,31 +119,34 @@ CREATE TABLE IF NOT EXISTS `article_categories` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `key_articles` int(10) UNSIGNED NOT NULL,
   `key_categories` int(10) UNSIGNED NOT NULL,
+  `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_categories`
 --
 
-INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`) VALUES
-(1, 6, 8),
-(2, 6, 18),
-(3, 27, 4),
-(4, 27, 19),
-(8, 29, 8),
-(7, 29, 6),
-(9, 31, 19),
-(10, 31, 5),
-(11, 0, 5),
-(12, 0, 16),
-(23, 33, 19),
-(24, 33, 8),
-(25, 33, 14),
-(26, 3, 11),
-(27, 34, 1);
+INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`) VALUES
+(1, 6, 8, NULL),
+(2, 6, 18, NULL),
+(3, 27, 4, NULL),
+(4, 27, 19, NULL),
+(8, 29, 8, NULL),
+(7, 29, 6, NULL),
+(9, 31, 19, NULL),
+(10, 31, 5, NULL),
+(11, 0, 5, NULL),
+(12, 0, 16, NULL),
+(23, 33, 19, NULL),
+(24, 33, 8, NULL),
+(25, 33, 14, NULL),
+(26, 3, 11, NULL),
+(27, 34, 1, NULL),
+(29, 35, 18, NULL),
+(31, 36, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -171,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `authors` (
   `created_by` int(10) UNSIGNED DEFAULT NULL,
   `updated_by` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`key_authors`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `authors`
@@ -190,7 +195,8 @@ INSERT INTO `authors` (`key_authors`, `name`, `email`, `phone`, `website`, `url`
 (10, 'Fatima Noor', 'fatima@contentgrid.io', '0331-4455667', 'https://fatimanoor.com', 'fatima-noor', 'https://instagram.com/fatimanoor', 'https://linkedin.com/in/fatimanoor', '', 'Quetta', 'Balochistan', 'Pakistan', 'fatima.jpg', 'Fatima writes on editorial workflows and content curation.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51', NULL, NULL),
 (11, 'Usman Rafiq', 'usman@editorialtech.pk', '0340-2233445', 'https://usmanrafiq.dev', 'usman-rafiq', 'https://github.com/usmanrafiq', '', '', 'Sialkot', 'Punjab', 'Pakistan', 'usman.jpg', 'Usman focuses on scalable CMS and editorial automation.', 'on', '2025-09-25 15:19:51', '2025-09-25 15:19:51', NULL, NULL),
 (12, 'Haseena Imtiaz', 'haseenaimtiaz@gmail.com', '123-456-7848', '', '', '', '', '', '', '', '', '', '', 'on', '2025-10-01 17:23:56', '2025-10-01 17:23:56', NULL, 1),
-(13, 'Sumrina Khan', 'sumrinakhan@hotmail.com', '548-455-5548', '', '', '', '', '', '', '', '', '', '', 'on', '2025-10-01 17:26:39', '2025-10-01 17:26:39', 1, NULL);
+(13, 'Sumrina Khan', 'sumrinakhan@hotmail.com', '548-455-5548', '', '', '', '', '', '', '', '', '', '', 'on', '2025-10-01 17:26:39', '2025-10-01 17:26:39', 1, NULL),
+(14, 'Taimur Sarfaraz', 'taimursarfaraz@gmail.com', '', '', 'tamir-sarfaraz-ahmad', '', '', '', '', '', '', '', '', 'on', '2025-10-05 05:09:57', '2025-10-05 05:09:57', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -333,6 +339,7 @@ CREATE TABLE IF NOT EXISTS `book_categories` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `key_books` int(10) UNSIGNED NOT NULL,
   `key_categories` int(10) UNSIGNED NOT NULL,
+  `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_books`,`key_categories`),
   KEY `key_categories` (`key_categories`)
@@ -342,36 +349,36 @@ CREATE TABLE IF NOT EXISTS `book_categories` (
 -- Dumping data for table `book_categories`
 --
 
-INSERT INTO `book_categories` (`id`, `key_books`, `key_categories`) VALUES
-(43, 51, 15),
-(29, 49, 17),
-(28, 49, 8),
-(27, 49, 2),
-(26, 48, 17),
-(25, 48, 8),
-(24, 48, 2),
-(23, 40, 19),
-(39, 2, 12),
-(40, 0, 9),
-(20, 35, 8),
-(19, 35, 5),
-(18, 31, 0),
-(17, 29, 0),
-(42, 51, 3),
-(41, 0, 11),
-(37, 50, 3),
-(38, 50, 5),
-(44, 53, 3),
-(45, 53, 15),
-(46, 55, 3),
-(47, 55, 15),
-(48, 57, 3),
-(49, 57, 15),
-(53, 58, 14),
-(52, 58, 1),
-(54, 3, 15),
-(56, 59, 19),
-(57, 59, 11);
+INSERT INTO `book_categories` (`id`, `key_books`, `key_categories`, `url`) VALUES
+(43, 51, 15, NULL),
+(29, 49, 17, NULL),
+(28, 49, 8, NULL),
+(27, 49, 2, NULL),
+(26, 48, 17, NULL),
+(25, 48, 8, NULL),
+(24, 48, 2, NULL),
+(23, 40, 19, NULL),
+(39, 2, 12, NULL),
+(40, 0, 9, NULL),
+(20, 35, 8, NULL),
+(19, 35, 5, NULL),
+(18, 31, 0, NULL),
+(17, 29, 0, NULL),
+(42, 51, 3, NULL),
+(41, 0, 11, NULL),
+(37, 50, 3, NULL),
+(38, 50, 5, NULL),
+(44, 53, 3, NULL),
+(45, 53, 15, NULL),
+(46, 55, 3, NULL),
+(47, 55, 15, NULL),
+(48, 57, 3, NULL),
+(49, 57, 15, NULL),
+(53, 58, 14, NULL),
+(52, 58, 1, NULL),
+(54, 3, 15, NULL),
+(56, 59, 19, NULL),
+(57, 59, 11, NULL);
 
 -- --------------------------------------------------------
 
@@ -498,23 +505,28 @@ CREATE TABLE IF NOT EXISTS `photo_categories` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `key_photo_gallery` int(10) UNSIGNED NOT NULL,
   `key_categories` int(10) UNSIGNED NOT NULL,
+  `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_photo_gallery`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=MyISAM AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `photo_categories`
 --
 
-INSERT INTO `photo_categories` (`id`, `key_photo_gallery`, `key_categories`) VALUES
-(31, 8, 2),
-(30, 7, 12),
-(29, 0, 15),
-(26, 6, 21),
-(25, 6, 12),
-(27, 4, 5),
-(28, 4, 12);
+INSERT INTO `photo_categories` (`id`, `key_photo_gallery`, `key_categories`, `url`) VALUES
+(32, 8, 2, NULL),
+(35, 7, 12, NULL),
+(29, 0, 15, NULL),
+(37, 6, 21, NULL),
+(27, 4, 5, NULL),
+(28, 4, 12, NULL),
+(36, 6, 12, NULL),
+(38, 9, 4, NULL),
+(39, 11, 15, NULL),
+(40, 13, 15, NULL),
+(41, 15, 13, NULL);
 
 -- --------------------------------------------------------
 
@@ -533,22 +545,22 @@ CREATE TABLE IF NOT EXISTS `photo_gallery` (
   `update_date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` int(10) UNSIGNED DEFAULT NULL,
   `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`key_photo_gallery`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `photo_gallery`
 --
 
-INSERT INTO `photo_gallery` (`key_photo_gallery`, `title`, `image_url`, `description`, `status`, `entry_date_time`, `update_date_time`, `created_by`, `updated_by`) VALUES
-(1, 'Mountain Sunrise', 'https://picsum.photos/id/1018/800/600', 'A breathtaking sunrise over the mountains.', 'on', '2025-09-30 03:07:08', '2025-10-01 17:57:22', NULL, NULL),
-(2, 'City Reflections', 'https://picsum.photos/id/1025/800/600', 'Urban reflections captured at dusk.k', 'on', '2025-09-30 03:07:02', '2025-10-01 17:57:22', NULL, NULL),
-(3, 'Desert Wanderer', 'https://images.unsplash.com/photo-1506744038136-46273834b3fb', 'A lone traveler in the vast desert.', 'on', '2025-09-30 14:41:27', '2025-10-01 17:57:22', NULL, NULL),
-(4, 'Modern Architecture', 'https://images.unsplash.com/photo-1758445048994-d337f97acf4c?w=500', 'Modern architecture with a person on a balcony.', 'on', '2025-09-30 14:52:26', '2025-10-01 17:57:22', NULL, 1),
-(5, 'Lined up Trees', 'https://fastly.picsum.photos/id/568/500/250.jpg?hmac=tVgo0DMwBaQM-ZkExvcWJ5Ivj7oM5iAQYy1B4bIc9tM', '', 'on', '2025-09-29 18:37:27', '2025-10-01 17:57:22', NULL, NULL),
-(6, 'Yet Another Photo', 'https://picsum.photos/id/1018/800/600', '', 'on', '2025-09-30 14:53:16', '2025-10-01 17:57:22', NULL, NULL),
-(7, 'Hello World', 'https://quotefancy.com/media/wallpaper/3840x2160/8151357-Hello-World-Wallpaper.jpg', '', 'on', '2025-10-01 23:06:03', '2025-10-01 18:06:03', 1, NULL),
-(8, 'Hello World', 'https://quotefancy.com/media/wallpaper/3840x2160/8151357-Hello-World-Wallpaper.jpg', '', 'on', '2025-10-01 23:06:03', '2025-10-01 18:06:03', 1, 1);
+INSERT INTO `photo_gallery` (`key_photo_gallery`, `title`, `image_url`, `description`, `status`, `entry_date_time`, `update_date_time`, `created_by`, `updated_by`, `url`) VALUES
+(1, 'Mountain Sunrise', 'https://picsum.photos/id/1018/800/600', 'A breathtaking sunrise over the mountains.', 'on', '2025-09-30 03:07:08', '2025-10-01 17:57:22', NULL, NULL, NULL),
+(2, 'City Reflections', 'https://picsum.photos/id/1025/800/600', 'Urban reflections captured at dusk.k', 'on', '2025-09-30 03:07:02', '2025-10-01 17:57:22', NULL, NULL, NULL),
+(3, 'Desert Wanderer', 'https://images.unsplash.com/photo-1506744038136-46273834b3fb', 'A lone traveler in the vast desert.', 'on', '2025-09-30 14:41:27', '2025-10-01 17:57:22', NULL, NULL, NULL),
+(14, 'Yet Another Hello World Photo', 'https://images.unsplash.com/photo-1758445048994-d337f97acf4c?w=500', '', 'on', '2025-10-04 16:35:37', '2025-10-04 11:35:37', 1, NULL, 'helloworldphoto'),
+(5, 'Lined up Trees', 'https://fastly.picsum.photos/id/568/500/250.jpg?hmac=tVgo0DMwBaQM-ZkExvcWJ5Ivj7oM5iAQYy1B4bIc9tM', '', 'on', '2025-09-29 18:37:27', '2025-10-01 17:57:22', NULL, NULL, NULL),
+(6, 'Yet Another Photo', 'https://picsum.photos/id/1018/800/600', '', 'on', '2025-09-30 14:53:16', '2025-10-01 17:57:22', NULL, 1, 'designing-editorial-systemsdsfs'),
+(15, 'Why PHoto', 'https://images.unsplash.com/photo-1758445048994-d337f97acf4c?w=500', '', 'on', '2025-10-04 16:36:27', '2025-10-04 11:36:27', 1, NULL, 'whyphoto');
 
 -- --------------------------------------------------------
 
@@ -568,6 +580,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `discount_percent` tinyint(4) DEFAULT NULL,
   `sku` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `is_featured` tinyint(1) DEFAULT NULL,
+  `url` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `status` varchar(3) COLLATE utf8_unicode_ci DEFAULT NULL,
   `sort` smallint(6) DEFAULT NULL,
   `entry_date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -575,20 +588,21 @@ CREATE TABLE IF NOT EXISTS `products` (
   `created_by` int(10) UNSIGNED DEFAULT NULL,
   `updated_by` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`key_product`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`key_product`, `product_type`, `key_books`, `title`, `description`, `price`, `stock_quantity`, `discount_percent`, `sku`, `is_featured`, `status`, `sort`, `entry_date_time`, `update_date_time`, `created_by`, `updated_by`) VALUES
-(1, 'book', NULL, 'The Art of Focus', 'A curated guide to deep work and clarity.', '1203.00', 51, 10, '0', 1, 'on', NULL, '2025-09-30 17:10:39', '2025-10-01 17:27:08', NULL, 1),
-(2, 'stationery', NULL, 'Leather Notebook', 'Premium A5 notebook with stitched binding.', '850.00', 200, 5, 'ST-NOTE-002', 0, 'on', 2, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
-(3, 'digital', NULL, 'Productivity Toolkit (PDF)', 'Downloadable templates and planners.', '500.00', 9999, 0, 'DG-TOOLKIT-003', 1, 'on', 3, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
-(4, 'book', NULL, 'Code & Craft', 'A book for developers who love clean architecture.', '1500.00', 30, 15, 'BK-CODE-004', 1, 'on', 4, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
-(5, 'stationery', NULL, 'Gel Pen Set (Pack of 10)', 'Smooth writing pens in assorted colors.', '300.00', 500, 0, 'ST-PENS-005', 0, 'on', 5, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
-(6, 'other', NULL, 'Golden Jump', 'Some long jumps ', '600.00', 10, NULL, '0', NULL, 'on', NULL, '2025-09-30 17:21:30', '2025-10-02 11:40:30', NULL, 1),
-(11, 'other', NULL, 'Navy Shoes', '', '2000.00', 40, NULL, '', NULL, 'on', NULL, '2025-09-30 19:48:15', '2025-09-30 19:48:15', 1, NULL);
+INSERT INTO `products` (`key_product`, `product_type`, `key_books`, `title`, `description`, `price`, `stock_quantity`, `discount_percent`, `sku`, `is_featured`, `url`, `status`, `sort`, `entry_date_time`, `update_date_time`, `created_by`, `updated_by`) VALUES
+(1, 'book', NULL, 'The Art of Focus', 'A curated guide to deep work and clarity.', '1203.00', 51, 10, '0', 1, '', 'on', NULL, '2025-09-30 17:10:39', '2025-10-01 17:27:08', NULL, 1),
+(2, 'stationery', NULL, 'Leather Notebook', 'Premium A5 notebook with stitched binding.', '850.00', 200, 5, 'ST-NOTE-002', 0, '', 'on', 2, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
+(3, 'digital', NULL, 'Productivity Toolkit (PDF)', 'Downloadable templates and planners.', '500.00', 9999, 0, 'DG-TOOLKIT-003', 1, '', 'on', 3, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
+(4, 'book', NULL, 'Code & Craft', 'A book for developers who love clean architecture.', '1500.00', 30, 15, 'BK-CODE-004', 1, '', 'on', 4, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
+(5, 'stationery', NULL, 'Gel Pen Set (Pack of 10)', 'Smooth writing pens in assorted colors.', '300.00', 500, 0, 'ST-PENS-005', 0, '', 'on', 5, '2025-09-30 17:10:39', '2025-09-30 17:10:39', NULL, NULL),
+(6, 'other', NULL, 'Golden Jump', 'Some long jumps ', '600.00', 10, NULL, '0', NULL, '', 'on', NULL, '2025-09-30 17:21:30', '2025-10-02 11:40:30', NULL, 1),
+(11, 'other', NULL, 'Navy Shoes', '', '2000.00', 40, NULL, '', NULL, '', 'on', NULL, '2025-09-30 19:48:15', '2025-09-30 19:48:15', 1, NULL),
+(12, 'book', NULL, 'Robot Car, Racing Car Toy for Kids', '', '900.00', 0, NULL, '', NULL, 'robot-car-racing-car-toy-for-kids-', 'on', NULL, '2025-10-05 01:31:32', '2025-10-05 01:31:41', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -601,18 +615,21 @@ CREATE TABLE IF NOT EXISTS `product_categories` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `key_product` int(10) UNSIGNED NOT NULL,
   `key_categories` int(10) UNSIGNED NOT NULL,
+  `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_categories`
 --
 
-INSERT INTO `product_categories` (`id`, `key_product`, `key_categories`) VALUES
-(11, 1, 5),
-(13, 6, 1),
-(12, 6, 13),
-(10, 11, 20);
+INSERT INTO `product_categories` (`id`, `key_product`, `key_categories`, `url`) VALUES
+(11, 1, 5, NULL),
+(13, 6, 1, NULL),
+(12, 6, 13, NULL),
+(10, 11, 20, NULL),
+(17, 12, 14, NULL),
+(16, 12, 19, NULL);
 
 -- --------------------------------------------------------
 
@@ -701,7 +718,7 @@ CREATE TABLE IF NOT EXISTS `product_prices_history` (
   `new_price` decimal(10,2) DEFAULT NULL,
   `change_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_price`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `product_prices_history`
@@ -711,6 +728,7 @@ INSERT INTO `product_prices_history` (`key_price`, `key_product`, `old_price`, `
 (1, 1, '1200.00', '1203.00', '2025-09-30 17:17:14'),
 (2, 6, '0.00', '500.00', '2025-09-30 17:21:30'),
 (8, 6, '500.00', '600.00', '2025-10-02 11:40:30'),
+(9, 12, '0.00', '900.00', '2025-10-05 01:31:32'),
 (7, 11, '0.00', '2000.00', '2025-09-30 19:48:15');
 
 -- --------------------------------------------------------
@@ -763,6 +781,7 @@ INSERT INTO `settings` (`key_settings`, `site_name`, `site_slogan`, `logo1_url`,
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `key_user` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -776,19 +795,23 @@ CREATE TABLE IF NOT EXISTS `users` (
   `state` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `country` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci,
+  `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`key_user`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`key_user`, `username`, `password_hash`, `email`, `role`, `status`, `entry_date_time`, `update_date_time`, `phone`, `address`, `city`, `state`, `country`, `description`) VALUES
-(1, 'admin', '$2y$10$Q7Kw59cZKWr9kzJalRLFeOs7eJ9VBQWhsb1RWalHGrZT5aJOlCqou', 'admin123@example.com', 'admin', 'on', '2025-09-30 18:41:42', '2025-09-30 19:15:53', '', '123 ABC Street\r\nWoodbridge, VA', '', '', 'Pakistan', ''),
-(2, 'editor_jane', '$2y$10$ZxYkQeW9vXJzYq7gT1xE1eQvZz9YqU8gT1xE1eQvZz9YqU8gT1xE1e', 'jane@example.com', 'editor', 'on', '2025-09-30 18:41:42', '2025-09-30 18:41:42', NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'viewer_ali', '$2y$10$ZxYkQeW9vXJzYq7gT1xE1eQvZz9YqU8gT1xE1eQvZz9YqU8gT1xE1e', 'ali@example.com', 'viewer', 'on', '2025-09-30 18:41:42', '2025-09-30 18:41:42', NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 'ladyuser', '$2y$10$Rh41jF3r/O7JJuUV3lUXFu5oLx0PimV1bXchEY8CeRQWd7aTwuhA2', 'lady@mail.com', 'editor', 'on', '2025-09-30 19:02:19', '2025-09-30 19:02:19', '123456789148', 'Lady street.', 'Hashmi', 'Punjab', 'Pakistan', '');
+INSERT INTO `users` (`key_user`, `name`, `username`, `password_hash`, `email`, `role`, `status`, `entry_date_time`, `update_date_time`, `phone`, `address`, `city`, `state`, `country`, `description`, `url`) VALUES
+(1, '', 'admin', '$2y$10$Qe7KRSrCgab9KFbM6cZyBul.eUdM9ydmS6MnW2Ch6TsGWgC9WVf6u', 'admin123@example.com', 'admin', 'on', '2025-09-30 18:41:42', '2025-10-05 01:38:08', '', '123 ABC Street\r\nWoodbridge, VA', '', '', 'Pakistan', '', 'hello'),
+(2, '', 'editor_jane', '$2y$10$ZxYkQeW9vXJzYq7gT1xE1eQvZz9YqU8gT1xE1eQvZz9YqU8gT1xE1e', 'jane@example.com', 'editor', 'on', '2025-09-30 18:41:42', '2025-09-30 18:41:42', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, '', 'viewer_ali', '$2y$10$ZxYkQeW9vXJzYq7gT1xE1eQvZz9YqU8gT1xE1eQvZz9YqU8gT1xE1e', 'ali@example.com', 'viewer', 'on', '2025-09-30 18:41:42', '2025-09-30 18:41:42', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'Lady User', 'ladyuser', '$2y$10$bNMbu9PTVfkl4m.meX1Cgu2V9AcE7sEggdRcFHotoiyZWU26CUnzG', 'lady@mail.com', 'editor', 'on', '2025-09-30 19:02:19', '2025-10-05 05:39:06', '123456789148', 'Lady street.', 'Hashmi', 'Punjab', 'Pakistan', '', ''),
+(5, '', 'newuser', '$2y$10$qLr7i4gCGtsM8Z1aJo.KGekV4JZujBGtx1Wbw6wRtKLwwb93lwL9q', 'newuser@gmail.com', 'editor', 'on', '2025-10-05 01:38:46', '2025-10-05 01:38:46', '', '', '', '', '', '', 'newuser'),
+(6, 'Man User', 'manuser', '$2y$10$4DB6d2lani2HYDLH1kuafe1WaQslLUD7JGA2GEVLHmw1GNXHMRG2a', 'manuser@outlook.com', 'viewer', 'on', '2025-10-05 05:40:46', '2025-10-05 05:40:46', '', '', '', '', '', '', ''),
+(7, 'John Doe', 'johndoe', '$2y$10$oPtF/y5pnziuscR2Wd0V6.GVGjOyQL6LAEhFFR3YckMqETEK791Hy', 'johndoe@gmail.com', 'admin', 'on', '2025-10-05 05:43:21', '2025-10-05 05:43:21', '', '', '', '', '', '', 'john-doe');
 
 -- --------------------------------------------------------
 
@@ -801,19 +824,24 @@ CREATE TABLE IF NOT EXISTS `youtube_categories` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `key_youtube_gallery` int(10) UNSIGNED NOT NULL,
   `key_categories` int(10) UNSIGNED NOT NULL,
+  `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_youtube_gallery`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `youtube_categories`
 --
 
-INSERT INTO `youtube_categories` (`id`, `key_youtube_gallery`, `key_categories`) VALUES
-(9, 7, 15),
-(7, 7, 2),
-(8, 7, 8);
+INSERT INTO `youtube_categories` (`id`, `key_youtube_gallery`, `key_categories`, `url`) VALUES
+(9, 7, 15, NULL),
+(7, 7, 2, NULL),
+(8, 7, 8, NULL),
+(11, 9, 19, NULL),
+(13, 10, 19, NULL),
+(15, 11, 5, NULL),
+(17, 12, 20, NULL);
 
 -- --------------------------------------------------------
 
@@ -832,19 +860,21 @@ CREATE TABLE IF NOT EXISTS `youtube_gallery` (
   `entry_date_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `created_by` int(10) UNSIGNED DEFAULT NULL,
   `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`key_youtube_gallery`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `youtube_gallery`
 --
 
-INSERT INTO `youtube_gallery` (`key_youtube_gallery`, `title`, `youtube_id`, `thumbnail_url`, `description`, `status`, `entry_date_time`, `created_by`, `updated_by`) VALUES
-(7, 'Responsibility (1953)', 'j9TWBV_gKf8', 'https://i.ytimg.com/an_webp/-CBImgCQEKw/mqdefault_6s.webp?du=3000&sqp=CLjK7sYG&rs=AOn4CLA07kasjQiTlivo4pjkyReP6sDDag', '', 'on', '2025-09-30 16:15:47', NULL, 1),
-(6, 'Maintaining Classroom Discipline (1947)', 'j9TWBV_gKf8', 'https://i.ytimg.com/vi/j9TWBV_gKf8/hqdefault.jpg?sqp=-oaymwFBCOADEI4CSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-BIAC4AOKAgwIABABGGUgZShlMA8=&rs=AOn4CLCrEcdHpJcjiibQ2V7gKlqqXmtZHQ', '', 'on', '2025-09-30 16:07:03', NULL, NULL),
-(4, 'From the Vault: Qadir takes five at the MCG', 'CbOy9J8i1sk', 'https://i3.ytimg.com/vi/CbOy9J8i1sk/maxresdefault.jpg', 'Despite a record-breaking 268 from Australia\'s Graham Yallop, Pakistan leg-spinner Abdul Qadir held firm with five wickets in the 1983 Boxing Day Tests\r\n', 'on', '2025-09-30 16:00:14', NULL, NULL),
-(5, 'Tony Greg Commentry Gold', '59aoWggycSE', 'https://i.ytimg.com/vi/59aoWggycSE/hq720.jpg?sqp=-oaymwFBCNAFEJQDSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG-B4AC0AWKAgwIABABGGUgVihPMA8=&rs=AOn4CLC1vmDZWpIc0QAsD6f6fdIW8J0mKw', '', 'on', '2025-09-30 16:05:06', NULL, NULL),
-(8, 'One Again Old 1947 Video', 'j9TWBV_gKf8', 'https://i.ytimg.com/vi/j9TWBV_gKf8/hqdefault.jpg?sqp=-oaymwFBCOADEI4CSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-BIAC4AOKAgwIABABGGUgZShlMA8=&rs=AOn4CLCrEcdHpJcjiibQ2V7gKlqqXmtZHQ', '', 'on', '2025-10-01 23:12:51', 1, NULL);
+INSERT INTO `youtube_gallery` (`key_youtube_gallery`, `title`, `youtube_id`, `thumbnail_url`, `description`, `status`, `entry_date_time`, `created_by`, `updated_by`, `url`) VALUES
+(4, 'From the Vault: Qadir takes five at the MCG', 'CbOy9J8i1sk', 'https://i3.ytimg.com/vi/CbOy9J8i1sk/maxresdefault.jpg', 'Despite a record-breaking 268 from Australia\'s Graham Yallop, Pakistan leg-spinner Abdul Qadir held firm with five wickets in the 1983 Boxing Day Tests\r\n', 'on', '2025-09-30 16:00:14', NULL, NULL, NULL),
+(5, 'Tony Greg Commentry Gold', '59aoWggycSE', 'https://i.ytimg.com/vi/59aoWggycSE/hq720.jpg?sqp=-oaymwFBCNAFEJQDSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG-B4AC0AWKAgwIABABGGUgVihPMA8=&rs=AOn4CLC1vmDZWpIc0QAsD6f6fdIW8J0mKw', '', 'on', '2025-09-30 16:05:06', NULL, NULL, NULL),
+(8, 'One Again Old 1947 Video', 'j9TWBV_gKf8', 'https://i.ytimg.com/vi/j9TWBV_gKf8/hqdefault.jpg?sqp=-oaymwFBCOADEI4CSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-BIAC4AOKAgwIABABGGUgZShlMA8=&rs=AOn4CLCrEcdHpJcjiibQ2V7gKlqqXmtZHQ', '', 'on', '2025-10-01 23:12:51', 1, NULL, NULL),
+(10, 'Tony Greg', '59aoWggycSE', 'https://i.ytimg.com/vi/59aoWggycSE/hq720.jpg?sqp=-oaymwFBCNAFEJQDSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG-B4AC0AWKAgwIABABGGUgVihPMA8=&rs=AOn4CLC1vmDZWpIc0QAsD6f6fdIW8J0mKw', '', 'on', '2025-10-05 09:59:50', 1, 1, 'commentry-gold1'),
+(11, 'Minar-e-Pakistan History || Lahore, Pakistan ðŸ‡µðŸ‡°', 'OVP.B5X3vac', 'https://th.bing.com/th?&id=OVP.B5X3vac-igTcXaDNZ2EgGAHgFo&w=276&h=154&c=7&pid=2.1&rs=1', '', 'on', '2025-10-05 10:02:50', 1, 1, 'minar-e-pakistan-tareekh-history'),
+(12, 'Pakistan\'s 78th Youm e Azadi', '3CNhflmZVl0', 'https://th.bing.com/th?&id=OVP.bRUSwJK-hb7rOuLOY9Dj5wHgFo&w=271&h=152&c=7&pid=2.1&rs=1', '', 'on', '2025-10-05 10:05:16', 1, 1, 'pakistan-78-yaum-e-azadi-ka-din');
 
 --
 -- Indexes for dumped tables

@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $updatedBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("UPDATE youtube_gallery SET
-    title = ?, youtube_id = ?, thumbnail_url = ?, description = ?, status = ?,
+    title = ?, youtube_id = ?, thumbnail_url = ?, url = ?, description = ?, status = ?,
     updated_by = ? 
     WHERE key_youtube_gallery = ?");
 
@@ -16,10 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssii",
+  $stmt->bind_param("ssssssii",
     $_POST['title'],
     $_POST['youtube_id'],
     $_POST['thumbnail_url'],
+    $_POST['url'],
     $_POST['description'],
     $status,
 	$updatedBy,

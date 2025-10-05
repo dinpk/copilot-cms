@@ -10,16 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $stmt = $conn->prepare("INSERT INTO products (
     title, description, sku, price, stock_quantity,
-    product_type, status, sort, created_by
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    product_type, url, status, sort, created_by
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-  $stmt->bind_param("sssdissii",
+  $stmt->bind_param("sssdisssii",
     $_POST['title'],
     $_POST['description'],
     $_POST['sku'],
     $_POST['price'],
     $_POST['stock_quantity'],
     $_POST['product_type'],
+    $_POST['url'],
     $status,
     $_POST['sort'],
 	$createdBy

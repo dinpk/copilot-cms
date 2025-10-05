@@ -17,7 +17,8 @@ include '../users/auth.php';
 <table>
   <thead>
     <tr>
-      <th><?= sortLink('Username', 'username', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+      <th><?= sortLink('Name', 'name', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+	  <th><?= sortLink('Username', 'username', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Email</th>
       <th>Role</th>
       <th>Status</th>
@@ -34,7 +35,7 @@ include '../users/auth.php';
     $sort = $_GET['sort'] ?? 'entry_date_time';
     $dir = $_GET['dir'] ?? 'desc';
 
-    $allowedSorts = ['username', 'email', 'role', 'status'];
+    $allowedSorts = ['name', 'username', 'email', 'role', 'status'];
     $allowedDirs = ['asc', 'desc'];
     if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
     if (!in_array($dir, $allowedDirs)) $dir = 'desc';
@@ -49,14 +50,15 @@ include '../users/auth.php';
     $result = $conn->query($sql);
     while ($row = $result->fetch_assoc()) {
       echo "<tr>
+        <td>{$row['name']}</td>
         <td>{$row['username']}</td>
         <td>{$row['email']}</td>
         <td>{$row['role']}</td>
         <td>{$row['status']}</td>
         <td>
 		<a href='#' onclick='editItem({$row['key_user']},\"get_user.php\",
-		  [\"username\", \"email\", \"role\", \"status\",
-			\"phone\", \"address\", \"city\", \"state\", \"country\", \"description\"]
+		  [\"name\", \"username\", \"email\", \"role\", \"status\",
+			\"phone\", \"address\", \"city\", \"state\", \"country\", \"url\", \"description\"]
 		)'>Edit</a>          
           <a href='delete.php?id={$row['key_user']}' onclick='return confirm(\"Delete this user?\")'>Delete</a>
         </td>
@@ -86,17 +88,18 @@ include '../users/auth.php';
 <!-- Modal Form — Add/Edit -->
 <div id="modal" class="modal">
   <h3 id="modal-title">Add User</h3>
-  <form id="modal-form" method="post" action="add.php">
+  <form id="modal-form" method="post">
     <input type="hidden" name="key_user" id="key_user">
-    <input type="text" name="username" id="username" placeholder="Username" required><br>
+    <input type="text" name="name" id="name" onchange="setCleanURL(this.value)" placeholder="Full Name" required><br>
+	<input type="text" name="username" id="username" placeholder="Username" required><br>
     <input type="email" name="email" id="email" placeholder="Email"><br>
 	<input type="text" name="phone" id="phone" placeholder="Phone"><br>
 	<textarea name="address" id="address" placeholder="Address"></textarea><br>
 	<input type="text" name="city" id="city" placeholder="City"><br>
 	<input type="text" name="state" id="state" placeholder="State"><br>
 	<input type="text" name="country" id="country" placeholder="Country"><br>
+	<input type="text" name="url" id="url" placeholder="URL"><br>
 	<textarea name="description" id="description" placeholder="Description"></textarea><br>
-	
 	<br>
     <input type="password" name="password" id="password" placeholder="Password"><br>
     <select name="role" id="role">

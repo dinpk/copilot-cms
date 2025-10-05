@@ -17,16 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   // Update product
   $stmt = $conn->prepare("UPDATE products SET
     title = ?, description = ?, sku = ?, price = ?, stock_quantity = ?,
-    product_type = ?, status = ?, sort = ?, updated_by = ? 
+    product_type = ?, url = ?, status = ?, sort = ?, updated_by = ? 
     WHERE key_product = ?");
 
-  $stmt->bind_param("ssddissiis",
+  $stmt->bind_param("sssdisssiii",
     $_POST['title'],
     $_POST['description'],
     $_POST['sku'],
     $newPrice,
     $_POST['stock_quantity'],
     $_POST['product_type'],
+    $_POST['url'],
     $status,
     $_POST['sort'],
 	$updatedBy,

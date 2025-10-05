@@ -68,7 +68,7 @@ include '../users/auth.php';
 <!-- Modal Form -->
 <div id="modal" class="modal">
   <h3 id="modal-title">Add Block</h3>
-  <form id="modal-form" method="post" action="add.php">
+  <form id="modal-form" method="post">
     <input type="hidden" name="key_blocks" id="key_blocks">
     <input type="text" name="title" id="title" placeholder="Title" required><br>
     <textarea name="block_content" id="block_content" placeholder="Content"></textarea><br>

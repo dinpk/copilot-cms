@@ -121,9 +121,9 @@ include '../users/auth.php';
 <!-- Add/Edit Article Modal Form -->
 <div id="modal" class="modal">
   <h3 id="modal-title">Add Article</h3>
-  <form id="modal-form" method="post" action="add.php">
+  <form id="modal-form" method="post">
     <input type="hidden" name="key_articles" id="key_articles">
-    <input type="text" name="title" id="title" placeholder="Title" required><br>
+    <input type="text" name="title" id="title"  onchange="setCleanURL(this.value)" placeholder="Title" required><br>
     <input type="text" name="title_sub" id="title_sub" placeholder="Subtitle"><br>
     <textarea name="article_snippet" id="article_snippet" placeholder="Snippet"></textarea><br>
     <textarea name="article_content" id="article_content" placeholder="Content"></textarea><br>

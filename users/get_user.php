@@ -8,8 +8,7 @@ if (!isset($_GET['id'])) {
 $id = intval($_GET['id']);
 $data = [];
 
-$result = $conn->query("SELECT key_user, username, email, role, status,
-phone, address, city, state, country, description FROM users WHERE key_user = $id LIMIT 1");
+$result = $conn->query("SELECT * FROM users WHERE key_user = $id LIMIT 1");
 if ($row = $result->fetch_assoc()) {
   $data = $row;
 }

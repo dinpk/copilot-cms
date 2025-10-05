@@ -66,7 +66,7 @@ include '../users/auth.php';
 		<td>{$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_youtube_gallery']}, \"get_video.php\", [\"title\",\"youtube_id\",\"thumbnail_url\",\"description\",\"status\"])'>Edit</a> |
+          <a href='#' onclick='editItem({$row['key_youtube_gallery']}, \"get_video.php\", [\"title\",\"youtube_id\",\"thumbnail_url\",\"url\",\"description\",\"status\"])'>Edit</a> |
           <a href='delete.php?id={$row['key_youtube_gallery']}' onclick='return confirm(\"Delete this video?\")'>Delete</a>
         </td>
       </tr>";
@@ -103,11 +103,12 @@ include '../users/auth.php';
 <!-- Modal Form -->
 <div id="modal" class="modal">
   <h3 id="modal-title">Add Video</h3>
-  <form id="modal-form" method="post" action="add.php">
+  <form id="modal-form" method="post">
     <input type="hidden" name="key_youtube_gallery" id="key_youtube_gallery">
-    <input type="text" name="title" id="title" placeholder="Title" required><br>
+    <input type="text" name="title" id="title" onchange="setCleanURL(this.value)" placeholder="Title" required><br>
     <input type="text" name="youtube_id" id="youtube_id" placeholder="YouTube ID" required><br>
     <input type="text" name="thumbnail_url" id="thumbnail_url" placeholder="Thumbnail URL"><br>
+    <input type="text" name="url" id="url" placeholder="URL"><br>
     <textarea name="description" id="description" placeholder="Description"></textarea><br>
 	<label>
 	  <input type="checkbox" name="status" id="status" value="on" checked>

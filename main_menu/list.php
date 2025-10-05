@@ -79,7 +79,7 @@ $menuTree = buildMenuTree($menuItems);
 <!-- Modal Form -->
 <div id="modal" class="modal">
   <h3 id="modal-title">Add Menu Item</h3>
-  <form id="modal-form" method="post" action="add.php">
+  <form id="modal-form" method="post">
     <input type="hidden" name="key_main_menu" id="key_main_menu">
     <input type="text" name="title" id="title" placeholder="Title" required><br>
     <input type="text" name="url" id="url" placeholder="URL"><br>

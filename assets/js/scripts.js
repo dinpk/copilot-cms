@@ -1,4 +1,65 @@
-console.log("hello world");
+
+
+
+
+// Attach form listener only once
+document.addEventListener('DOMContentLoaded', function () {
+
+	const modalForm = document.querySelector('#modal-form');
+	if (modalForm) {
+		document.getElementById('modal-form').addEventListener('submit', function(e) {
+		  e.preventDefault();
+
+		  const form = e.target;
+		  const formData = new FormData(form);
+
+		  fetch(form.action, {
+			method: 'POST',
+			body: formData
+		  })
+		  .then(response => response.text())
+		  .then(data => {
+			if (data.includes('❌')) {
+			  alert(data);
+			} else {
+			  window.location.href = 'list.php'; // or close modal and refresh list
+			}
+		  })
+		  .catch(error => {
+			alert('❌ Submission failed.');
+			console.error(error);
+		  });
+		});	
+	}
+	
+
+  const imageForm = document.querySelector('#image-modal form');
+  if (imageForm) {
+    imageForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(imageForm);
+      const productId = document.getElementById('image_key_product').value;
+
+      fetch('assign_image.php', {
+        method: 'POST',
+        body: data
+      })
+      .then(() => fetch('get_images.php?key_product=' + productId))
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('image-list').innerHTML = html;
+        imageForm.reset();
+      });
+    });
+  }
+});
+
+
+
+
+
+
+
 function openModal() {
   document.getElementById('modal-title').innerText = "Add";
   document.getElementById('modal-form').action = "add.php";
@@ -81,29 +142,6 @@ function deleteImage(imageId, productId) {
       document.getElementById('image-list').innerHTML = html;
     });
 }
-
-// Attach form listener only once
-document.addEventListener('DOMContentLoaded', function () {
-  const imageForm = document.querySelector('#image-modal form');
-  if (imageForm) {
-    imageForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const data = new FormData(imageForm);
-      const productId = document.getElementById('image_key_product').value;
-
-      fetch('assign_image.php', {
-        method: 'POST',
-        body: data
-      })
-      .then(() => fetch('get_images.php?key_product=' + productId))
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('image-list').innerHTML = html;
-        imageForm.reset();
-      });
-    });
-  }
-});
 
 
 
@@ -234,3 +272,19 @@ function closeInfoModal() {
   document.getElementById('info-modal').style.display = 'none';
 }
 
+
+
+function setCleanURL(title) {
+  const urlInput = document.querySelector('#url');
+  if (!urlInput.value) {
+    const slug = title
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+	  console.log(slug);
+    urlInput.value = slug;
+  }
+}

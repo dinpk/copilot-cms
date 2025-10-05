@@ -8,15 +8,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $createdBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("INSERT INTO photo_gallery (
-    title, image_url, description, status, created_by 
-  ) VALUES (?, ?, ?, ?, ?)");
+    title, url, image_url, description, status, created_by 
+  ) VALUES (?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssi",
+  $stmt->bind_param("sssssi",
     $_POST['title'],
+    $_POST['url'],
     $_POST['image_url'],
     $_POST['description'],
     $status,
@@ -38,16 +39,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   
 
-
+/*
 
 if (!$stmt->execute()) {
   echo "Category insert error: " . $stmtCat->error;
 }
 print "<pre>" . print_r($_POST) . "</pre>";
-
+*/
   
   
 }
 
-//header("Location: list.php");
+header("Location: list.php");
 exit;

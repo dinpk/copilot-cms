@@ -83,9 +83,9 @@ include '../users/auth.php';
 <!-- Modal Form -->
 <div id="modal" class="modal">
   <h3 id="modal-title">Add Category</h3>
-  <form id="modal-form" method="post" action="add.php">
+  <form id="modal-form" method="post">
     <input type="hidden" name="key_categories" id="key_categories">
-    <input type="text" name="name" id="name" placeholder="Name" required><br>
+    <input type="text" name="name" id="name" onchange="setCleanURL(this.value)" placeholder="Name" required><br>
     <textarea name="description" id="description" placeholder="Description"></textarea><br>
 	<select name="category_type" id="category_type" required>
 	  <option value="article">Article</option>

@@ -61,9 +61,9 @@ include '../users/auth.php';
 <!-- Modal Form -->
 <div id="modal" class="modal">
   <h3 id="modal-title">Add Page</h3>
-  <form id="modal-form" method="post" action="add.php">
+  <form id="modal-form" method="post">
     <input type="hidden" name="key_pages" id="key_pages">
-    <input type="text" name="title" id="title" placeholder="Title" required><br>
+    <input type="text" name="title" id="title" onchange="setCleanURL(this.value)" placeholder="Title" required><br>
     <textarea name="page_content" id="page_content" placeholder="Content"></textarea><br>
     <input type="text" name="url" id="url" placeholder="URL"><br>
     <input type="text" name="banner_image_url" id="banner_image_url" placeholder="Banner Image URL"><br>

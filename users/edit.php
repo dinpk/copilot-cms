@@ -8,12 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 
   // Update basic fields
 	$stmt = $conn->prepare("UPDATE users SET
-	  username = ?, email = ?, role = ?, status = ?,
-	  phone = ?, address = ?, city = ?, state = ?, country = ?, description = ?,
+	  name = ?, username = ?, email = ?, role = ?, status = ?,
+	  phone = ?, address = ?, city = ?, state = ?, country = ?, description = ?, url = ?,
 	  update_date_time = CURRENT_TIMESTAMP
 	  WHERE key_user = ?");
 
-	$stmt->bind_param("ssssssssssi",
+	$stmt->bind_param("ssssssssssssi",
+	  $_POST['name'],
 	  $_POST['username'],
 	  $_POST['email'],
 	  $_POST['role'],
@@ -24,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 	  $_POST['state'],
 	  $_POST['country'],
 	  $_POST['description'],
+	  $_POST['url'],
 	  $id
 	);
 

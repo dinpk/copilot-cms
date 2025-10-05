@@ -73,25 +73,5 @@ HTML;
 }
 
 
-// Non-layout functions
-
-
-function sortLink($label, $column, $currentSort, $currentDir) {
-    $newDir = ($currentSort === $column && $currentDir === 'asc') ? 'desc' : 'asc';
-    $icon = '';
-
-    if ($currentSort === $column) {
-        $icon = $currentDir === 'asc' ? ' 🔼' : ' 🔽';
-    }
-
-    $query = $_GET;
-    $query['sort'] = $column;
-    $query['dir'] = $newDir;
-    $url = '?' . http_build_query($query);
-
-    return "<a href=\"$url\">$label$icon</a>";
-}
-
-
 
 ?>
