@@ -10,6 +10,8 @@ function startLayout($title = "Admin Panel") {
   echo <<<HTML
 <!DOCTYPE html>
 <html>
+<div id="code-message"><span id="code-message-x" onclick="closeMessage();">X</span></div>
+
 <head>
   <title>$title</title>
   <link rel="stylesheet" href="../assets/css/style.css">
@@ -20,7 +22,6 @@ function startLayout($title = "Admin Panel") {
 $title
 </header>
 <div class="container">
-
 	<div class="sidebar">
 	  <h3>Admin</h3>
 	  <a href="../index.php">📊 Dashboard</a>

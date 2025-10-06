@@ -31,6 +31,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 
   $stmt->execute();
 }
-
-header("Location: list.php");
-exit;
+?>

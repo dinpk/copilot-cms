@@ -1,7 +1,4 @@
 
-
-
-
 // Attach form listener only once
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -91,7 +88,6 @@ function editItem(id, endpoint, fields) {
 
 		// Selected categories (articles, books, photo, youtube)
 		if (data.categories && Array.isArray(data.categories)) {
-			
 		  document.querySelectorAll('input[name="categories[]"]').forEach(cb => {
 			cb.checked = data.categories.includes(parseInt(cb.value));
 		  });
@@ -288,3 +284,23 @@ function setCleanURL(title) {
     urlInput.value = slug;
   }
 }
+
+
+function setMessage(message, message_type) {
+	console.log(message);
+	if (message_type === "error") {
+		const message_div = document.getElementById("code-message");
+		message_div.style.display = "block";
+		message_div.innerHTML = message;
+	}
+	
+}
+
+function closeMessage() {
+	const message_div = document.getElementById("code-message");
+	message_div.style.display = "none";
+	message_div.innerHTML = "";
+}
+
+
+

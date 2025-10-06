@@ -234,6 +234,21 @@ fieldset {
 	margin-top:30px;
 }
 
+#code-message {
+	display:none;
+	position:relative;
+	min-height:25px;
+}
+
+#code-message-x {
+	position:absolute;
+	top:5px;
+	right:5px;
+	cursor:pointer;"
+}
+
+
+
 /* Footer */
 footer {
   background: #287eb7;

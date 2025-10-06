@@ -50,6 +50,4 @@ print_r($id);
   
   
 }
-
-header("Location: list.php");
-exit;
+?>

@@ -5,6 +5,12 @@ include '../users/auth.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
+  
+	if (isUrlTaken($_POST['url'], 'pages', $id)) {
+	  echo "❌ This URL is already used in another module. Please choose a unique one.";
+	  exit;
+	} 	
+	
   $status = isset($_POST['status']) ? 'on' : 'off';
   
   $stmt = $conn->prepare("UPDATE pages SET
@@ -28,5 +34,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $stmt->execute();
 }
 
-header("Location: list.php");
-exit;
+?>
