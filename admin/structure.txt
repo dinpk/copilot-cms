@@ -1,0 +1,113 @@
+COPILOT-CMS
+³   db.php
+³   index.php
+³   layout.php
+³   structure.txt
+³   
+articles
+³       add.php
+³       assign_authors.php
+³       delete.php
+³       edit.php
+³       get_article.php
+³       get_authors.php
+³       list.php
+³       
+assets
+³   css
+³   ³       dashboard.css
+³   ³       style.css
+³   ³       
+³   js
+³           scripts.js
+³           
+authors
+³       add.php
+³       delete.php
+³       edit.php
+³       get_author.php
+³       list.php
+³       
+blocks
+³       add.php
+³       delete.php
+³       edit.php
+³       get_block.php
+³       list.php
+³       
+books
+³       add.php
+³       assign_articles.php
+³       assign_articles_modal.php
+³       assign_articles_save.php
+³       delete.php
+³       edit.php
+³       get_articles.php
+³       get_assigned_articles.php
+³       get_book.php
+³       get_book_title.php
+³       list.php
+³       search_articles.php
+³       
+categories
+³       add.php
+³       delete.php
+³       edit.php
+³       get_category.php
+³       list.php
+³       
+main_menu
+³       add.php
+³       delete.php
+³       edit.php
+³       get_menu.php
+³       list.php
+³       
+pages
+³       add.php
+³       delete.php
+³       edit.php
+³       get_page.php
+³       list.php
+³       
+photo_gallery
+³       add.php
+³       delete.php
+³       edit.php
+³       get_photo.php
+³       list.php
+³       
+products
+³       add.php
+³       assign_image.php
+³       delete.php
+³       delete_image.php
+³       edit.php
+³       get_images.php
+³       get_price_history.php
+³       get_product.php
+³       list.php
+³       
+settings
+³       view.php
+³       
+users
+³       add.php
+³       auth.php
+³       delete.php
+³       edit.php
+³       get_user.php
+³       list.php
+³       login.php
+³       logout.php
+³       
+youtube_gallery
+³       add.php
+³       delete.php
+³       edit.php
+³       get_video.php
+³       list.php
+³       
+_sql
+        simplesite.sql
+        

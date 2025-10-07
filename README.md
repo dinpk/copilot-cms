@@ -1,5 +1,4 @@
-# copilot-cms
+# Copilot CMS
 
-User: admin
-
+Username: admin
 Password: demo123
