@@ -1,4 +1,11 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php';
+
+if ($_SESSION["role"] != "admin" && $_SESSION["role"] != "creaditor" ) {
+	echo "'⚠ You do not have access to add a record';";
+	exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -7,24 +14,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		  exit;
 	  }
 
-  $status = isset($_POST['status']) ? 'on' : 'off';	
-  
-  $stmt = $conn->prepare("INSERT INTO pages (
-    title, page_content, url, banner_image_url, status
-  ) VALUES (?, ?, ?, ?, ?)");
+	  $status = isset($_POST['status']) ? 'on' : 'off';	
+	  
+	  $stmt = $conn->prepare("INSERT INTO pages (
+		title, page_content, url, banner_image_url, status, key_media_banner
+	  ) VALUES (?, ?, ?, ?, ?, ?)");
 
-  if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
-  }
+	  if (!$stmt) {
+		die("Prepare failed: " . $conn->error);
+	  }
 
-  $stmt->bind_param("sssss",
-    $_POST['title'],
-    $_POST['page_content'],
-    $_POST['url'],
-    $_POST['banner_image_url'],
-    $status
-  );
+	  $stmt->bind_param("sssssi",
+		$_POST['title'],
+		$_POST['page_content'],
+		$_POST['url'],
+		$_POST['banner_image_url'],
+		$status,
+		$_POST['key_media_banner']
+	  );
 
-  $stmt->execute();
+	  $stmt->execute();
 }
 

@@ -7,6 +7,8 @@ error_reporting(E_ALL);
 
 
 function startLayout($title = "Admin Panel") {
+	$username = $_SESSION["username"];
+	
   echo <<<HTML
 <!DOCTYPE html>
 <html>
@@ -23,7 +25,7 @@ $title
 </header>
 <div class="container">
 	<div class="sidebar">
-	  <h3>Admin</h3>
+	  <h3>$username</h3>
 	  <a href="../index.php">📊 Dashboard</a>
 	  <a href="../main_menu/list.php">🧭 Main Menu</a>
 	  <a href="../articles/list.php">📝 Articles</a>
@@ -36,6 +38,7 @@ $title
 	  <a href="../products/list.php">🛍️ Products</a>
 	  <a href="../blocks/list.php">🧩 Blocks</a>
 	  <a href="../users/list.php">👥 Users</a>
+	  <a href="../media_library/list.php">🛠️ Media Library</a>
 	  <a href="../settings/list.php">🛠️ Settings</a>
 	  <a href="../users/logout.php">🚪 Logout</a>
 	</div>

@@ -1,10 +1,13 @@
-COPILOT-CMS
+Folder PATH listing
+Volume serial number is 02D4B2B8 5C8E:FFED
+D:.
 ³   db.php
 ³   index.php
 ³   layout.php
+³   structure
 ³   structure.txt
 ³   
-articles
+ÃÄÄÄarticles
 ³       add.php
 ³       assign_authors.php
 ³       delete.php
@@ -13,29 +16,29 @@ articles
 ³       get_authors.php
 ³       list.php
 ³       
-assets
-³   css
+ÃÄÄÄassets
+³   ÃÄÄÄcss
 ³   ³       dashboard.css
 ³   ³       style.css
 ³   ³       
-³   js
+³   ÀÄÄÄjs
 ³           scripts.js
 ³           
-authors
+ÃÄÄÄauthors
 ³       add.php
 ³       delete.php
 ³       edit.php
 ³       get_author.php
 ³       list.php
 ³       
-blocks
+ÃÄÄÄblocks
 ³       add.php
 ³       delete.php
 ³       edit.php
 ³       get_block.php
 ³       list.php
 ³       
-books
+ÃÄÄÄbooks
 ³       add.php
 ³       assign_articles.php
 ³       assign_articles_modal.php
@@ -49,35 +52,35 @@ books
 ³       list.php
 ³       search_articles.php
 ³       
-categories
+ÃÄÄÄcategories
 ³       add.php
 ³       delete.php
 ³       edit.php
 ³       get_category.php
 ³       list.php
 ³       
-main_menu
+ÃÄÄÄmain_menu
 ³       add.php
 ³       delete.php
 ³       edit.php
 ³       get_menu.php
 ³       list.php
 ³       
-pages
+ÃÄÄÄpages
 ³       add.php
 ³       delete.php
 ³       edit.php
 ³       get_page.php
 ³       list.php
 ³       
-photo_gallery
+ÃÄÄÄphoto_gallery
 ³       add.php
 ³       delete.php
 ³       edit.php
 ³       get_photo.php
 ³       list.php
 ³       
-products
+ÃÄÄÄproducts
 ³       add.php
 ³       assign_image.php
 ³       delete.php
@@ -88,10 +91,14 @@ products
 ³       get_product.php
 ³       list.php
 ³       
-settings
-³       view.php
+ÃÄÄÄsettings
+³       add.php
+³       delete.php
+³       edit.php
+³       get_setting.php
+³       list.php
 ³       
-users
+ÃÄÄÄusers
 ³       add.php
 ³       auth.php
 ³       delete.php
@@ -101,13 +108,82 @@ users
 ³       login.php
 ³       logout.php
 ³       
-youtube_gallery
+ÃÄÄÄyoutube_gallery
 ³       add.php
 ³       delete.php
 ³       edit.php
 ³       get_video.php
 ³       list.php
 ³       
-_sql
+ÃÄÄÄ_archive
+³       assign_categories_modal.php
+³       assign_categories_save.php
+³       books_sell.php
+³       book_prices_history.php
+³       get_price_history.php
+³       get_selected_categories.php
+³       product_prices_history.php
+³       update_sell.php
+³       view.php
+³       
+ÃÄÄÄ_copilot
+³   ÀÄÄÄconversations
+³       ³   template.odt
+³       ³   
+³       ÃÄÄÄ2025-09-24
+³       ³       2025-09-24.html
+³       ³       2025-09-24.pdf
+³       ³       
+³       ÃÄÄÄ2025-09-25
+³       ³       2025-09-25.html
+³       ³       2025-09-25.pdf
+³       ³       
+³       ÃÄÄÄ2025-09-26
+³       ³       2025-09-06.html
+³       ³       2025-09-26.pdf
+³       ³       
+³       ÃÄÄÄ2025-09-27
+³       ³       2025-09-27.html
+³       ³       2025-09-27.pdf
+³       ³       
+³       ÃÄÄÄ2025-09-28
+³       ³       2025-09-28.html
+³       ³       2025-09-28.pdf
+³       ³       
+³       ÃÄÄÄ2025-09-29 review of old script
+³       ³       2025-09-29.html
+³       ³       2025-09-29.pdf
+³       ³       
+³       ÃÄÄÄ2025-09-30
+³       ³       2025-09-30 (1).html
+³       ³       2025-09-30 (1).pdf
+³       ³       2025-09-30 (2).html
+³       ³       2025-09-30 (2).pdf
+³       ³       2025-09-30 (3).html
+³       ³       2025-09-30 (3).pdf
+³       ³       
+³       ÃÄÄÄ2025-10-01
+³       ³       2025-10-01.html
+³       ³       2025-10-01.pdf
+³       ³       
+³       ÃÄÄÄ2025-10-02
+³       ³       2025-10-02.html
+³       ³       2025-10-02.pdf
+³       ³       2025-10-02_html_324bb3fc61c5fe23.png
+³       ³       2025-10-02_html_ce592e1f5afb1829.png
+³       ³       
+³       ÃÄÄÄ2025-10-04
+³       ³       2025-10-04.html
+³       ³       2025-10-04.pdf
+³       ³       
+³       ÃÄÄÄ2025-10-06
+³       ³       2025-10-06.html
+³       ³       2025-10-06.pdf
+³       ³       
+³       ÀÄÄÄ2025-10-07
+³               2025-10-07.html
+³               2025-10-07.pdf
+³               
+ÀÄÄÄ_sql
         simplesite.sql
         

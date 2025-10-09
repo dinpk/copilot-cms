@@ -85,6 +85,7 @@ include '../users/auth.php';
 		<td>
 		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"banner_image_url\",\"sort\",\"status\"])'>Edit</a> |
 		  <a href='#' onclick='openAuthorModal({$row['key_articles']})'>Assign Authors</a> |
+		  <a href='preview.php?id={$row['key_articles']}' target='_blank'>Preview</a> |
 		  <a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'>Delete</a>
 		</td>
 		</tr>";
@@ -154,9 +155,13 @@ include '../users/auth.php';
 		   maxlength="200" pattern="^[a-z0-9\-]+$" 
 		   title="Lowercase letters, numbers, and hyphens only"><br>
 
-	<input type="url" name="banner_image_url" id="banner_image_url" 
-		   placeholder="Banner Image URL" 
-		   maxlength="2000"><br>
+	<br>
+
+	<input type="hidden" name="key_media_banner" id="key_media_banner">
+	<div id="media-preview"></div>
+	<button type="button" onclick="openMediaModal()">Select Banner Image</button>
+	
+	<br><br>
 
 	<input type="number" name="sort" id="sort" 
 		   placeholder="Sort Order" 
@@ -211,6 +216,26 @@ include '../users/auth.php';
     <button type="button" onclick="closeAuthorModal()">Cancel</button>
   </form>
 </div>
+
+
+
+<!-- Media Modal Form -->
+<div id="media-modal" class="modal">
+  <h3>Select Banner Image</h3>
+  <div id="media-grid">
+    <?php
+    $mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
+    while ($media = $mediaRes->fetch_assoc()) {
+      echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
+              <img src='{$media['file_url']}' width='100'><br>
+              <small>" . htmlspecialchars($media['alt_text']) . "</small>
+            </div>";
+    }
+    ?>
+  </div>
+  <button type="button" onclick="closeMediaModal()">Cancel</button>
+</div>
+
 
 
 <?php endLayout(); ?>

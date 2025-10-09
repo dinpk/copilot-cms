@@ -2,6 +2,11 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] == "viewer") {
+	echo "'⚠ You do not have access to edit a record';";
+	exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
 
@@ -16,20 +21,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 
   $stmt = $conn->prepare("UPDATE photo_gallery SET
     title = ?, url = ?, image_url = ?, description = ?, status = ?,
-    updated_by = ? 
+    updated_by = ?, key_media_banner = ? 
     WHERE key_photo_gallery = ?");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssii",
+  $stmt->bind_param("sssssiii",
     $_POST['title'],
     $_POST['url'],
     $_POST['image_url'],
     $_POST['description'],
     $status,
 	$updatedBy,
+	$_POST['key_media_banner'],
     $id
   );
 

@@ -2,6 +2,11 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] == "viewer") {
+	echo "'⚠ You do not have access to edit a record';";
+	exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 	
 	$updatedBy = $_SESSION['key_user'];

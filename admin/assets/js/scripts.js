@@ -2,53 +2,63 @@
 // Attach form listener only once
 document.addEventListener('DOMContentLoaded', function () {
 
-	const modalForm = document.querySelector('#modal-form');
-	if (modalForm) {
-		document.getElementById('modal-form').addEventListener('submit', function(e) {
+		const modalForm = document.querySelector('#modal-form');
+		if (modalForm) {
+			document.getElementById('modal-form').addEventListener('submit', function(e) {
+			  e.preventDefault();
+
+			  const form = e.target;
+			  const formData = new FormData(form);
+
+			  fetch(form.action, {
+				method: 'POST',
+				body: formData
+			  })
+			  .then(response => response.text())
+			  .then(data => {
+
+				//console.log(data); // to see the errors produced by add/edit
+				//return;
+
+				if (data.includes('❌') || data.includes('⚠')) {
+				  alert(data);
+				  closeModal();
+				} else {
+				  window.location.href = 'list.php'; // or close modal and refresh list
+				}
+			  })
+			  .catch(error => {
+				alert('❌ Submission failed.');
+				console.error(error);
+			  });
+			});	
+		}
+		
+
+		// image model form used by (1) products assign image (2) photo gallery assign image
+	  const imageForm = document.querySelector('#image-modal form');
+	  if (imageForm) {
+		imageForm.addEventListener('submit', function (e) {
 		  e.preventDefault();
-
-		  const form = e.target;
-		  const formData = new FormData(form);
-
-		  fetch(form.action, {
+		  
+		  const data = new FormData(imageForm);
+		  console.log(document.getElementById('key_media_banner').value);
+		  const id = document.getElementById('image_hidden_key').value;
+		  const record_key = document.getElementById('image_hidden_key').name; // key_product, key_photo_gallery
+		  fetch('assign_image.php', {
 			method: 'POST',
-			body: formData
+			body: data
 		  })
-		  .then(response => response.text())
-		  .then(data => {
-			if (data.includes('❌')) {
-			  alert(data);
-			} else {
-			  window.location.href = 'list.php'; // or close modal and refresh list
-			}
-		  })
-		  .catch(error => {
-			alert('❌ Submission failed.');
-			console.error(error);
+		  .then(() => fetch('get_images.php?' + record_key + '=' + id))
+		  .then(res => res.text())
+		  .then(html => {
+			document.getElementById('image-list').innerHTML = html;
+			imageForm.reset();
 		  });
-		});	
-	}
-	
-
-  const imageForm = document.querySelector('#image-modal form');
-  if (imageForm) {
-    imageForm.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const data = new FormData(imageForm);
-      const productId = document.getElementById('image_key_product').value;
-
-      fetch('assign_image.php', {
-        method: 'POST',
-        body: data
-      })
-      .then(() => fetch('get_images.php?key_product=' + productId))
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById('image-list').innerHTML = html;
-        imageForm.reset();
-      });
-    });
-  }
+		});
+	  }
+	  
+	  
 });
 
 
@@ -116,10 +126,12 @@ function closeModal() {
 
 
 // Open the image modal and load existing images
-function openImageModal(productId) {
-  document.getElementById('image_key_product').value = productId;
-
-  fetch('get_images.php?key_product=' + productId)
+function openImageModal(id) {
+  const image_hidden_field = document.getElementById('image_hidden_key');
+  image_hidden_field.value = id;
+  const record_key = image_hidden_field.name; // key_product, key_photo_gallery
+console.log('get_images.php?' + record_key + '=' + id);
+  fetch('get_images.php?' + record_key + '=' + id)
     .then(res => res.text())
     .then(html => {
       document.getElementById('image-list').innerHTML = html;
@@ -131,16 +143,15 @@ function closeImageModal() {
   document.getElementById('image-modal').style.display = 'none';
 }
 
-function deleteImage(imageId, productId) {
-  fetch('delete_image.php?id=' + imageId + '&key_product=' + productId)
+function deleteImage(imageId, id) {
+	const record_key = document.getElementById('image_hidden_key').name;
+	console.log('delete_image.php?id=' + imageId + '&' + record_key +  '=' + id);
+  fetch('delete_image.php?id=' + imageId + '&' + record_key +  '=' + id)
     .then(res => res.text())
     .then(html => {
       document.getElementById('image-list').innerHTML = html;
     });
 }
-
-
-
 
 
 // Article-Author Assignment
@@ -257,6 +268,25 @@ function loadPriceHistory(id) {
 }
 
 
+// Media model form
+
+function openMediaModal() {
+  document.getElementById('media-modal').style.display = 'block';
+}
+
+function closeMediaModal() {
+  document.getElementById('media-modal').style.display = 'none';
+}
+
+function selectMedia(id, url) {
+  document.getElementById('key_media_banner').value = id;
+  document.getElementById('media-preview').innerHTML = "<img src='" + url + "' width='100'>";
+  console.log(document.getElementById('key_media_banner').value);
+  closeMediaModal();
+}
+
+
+
 
 function openInfoModal(title, contentHtml) {
   document.getElementById('info-modal-title').innerText = title;
@@ -304,3 +334,6 @@ function closeMessage() {
 
 
 
+function showAlert(message) {
+	alert(message);
+}

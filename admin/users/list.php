@@ -135,14 +135,17 @@ include '../users/auth.php';
 	  <input type="password" name="password" id="password" 
 			 placeholder="Password" 
 			 maxlength="255"><br>
-
+		<br>
 	  <select name="role" id="role" required>
 		<option value="">--Select Role--</option>
 		<option value="admin">Admin</option>
+		<option value="creaditor">Creaditor</option>
 		<option value="editor">Editor</option>
 		<option value="viewer">Viewer</option>
 	  </select><br>
-
+		
+		<br>
+	  
 	  <label>
 		<input type="checkbox" name="status" id="status" 
 			   value="on" checked>

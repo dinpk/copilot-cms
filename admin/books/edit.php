@@ -2,6 +2,11 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] == "viewer") {
+	echo "'⚠ You do not have access to edit a record';";
+	exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 
   $id = intval($_GET['id']);
@@ -17,14 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $stmt = $conn->prepare("UPDATE books SET
     title = ?, subtitle = ?, description = ?, cover_image_url = ?, url = ?,
     author_name = ?, publisher = ?, publish_year = ?, status = ?,
-    updated_by = ? 
+    updated_by = ?, key_media_banner = ? 
     WHERE key_books = ?");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssssssii",
+  $stmt->bind_param("sssssssssiii",
     $_POST['title'],
     $_POST['subtitle'],
     $_POST['description'],
@@ -35,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $_POST['publish_year'],
     $status,
 	$updatedBy,
+	$_POST['key_media_banner'],
     $id
   );
 

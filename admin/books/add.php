@@ -2,6 +2,11 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] != "admin" && $_SESSION["role"] != "creaditor" ) {
+	echo "'⚠ You do not have access to add a record';";
+	exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	  if (isUrlTaken($_POST["url"], "books")) {
@@ -16,10 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		title, subtitle, description, cover_image_url, url,
 		author_name, publisher, publish_year, isbn, price,
 		stock_quantity, discount_percent, is_featured, language,
-		format, weight_grams, sku, status, created_by
-	) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		format, weight_grams, sku, status, created_by, key_media_banner 
+	) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-	$stmt->bind_param("sssssssssdiiisssisi",
+	$stmt->bind_param("sssssssssdiiisssisii",
 		$_POST['title'],
 		$_POST['subtitle'],
 		$_POST['description'],
@@ -38,10 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$_POST['weight_grams'],
 		$_POST['sku'],
 		$status,
-		$createdBy
+		$createdBy,
+		$_POST['key_media_banner']
 	);
 
   $stmt->execute();
+
 
 
 	$newRecordId = $conn->insert_id;
@@ -56,6 +63,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 }
-
-header("Location: list.php");
-exit;

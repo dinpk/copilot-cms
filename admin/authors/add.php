@@ -2,6 +2,11 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] != "admin" && $_SESSION["role"] != "creaditor") {
+    echo "⚠ You do not have access to add a record";
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	  if (isUrlTaken($_POST["url"], "authors")) {
@@ -16,14 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $stmt = $conn->prepare("INSERT INTO authors (
     name, email, phone, website, url,
     social_url_media1, social_url_media2, social_url_media3,
-    city, state, country, image_url, description, status, created_by
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    city, state, country, image_url, description, status, created_by, key_media_banner
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssssssssssi",
+  $stmt->bind_param("ssssssssssssssii",
     $_POST['name'],
     $_POST['email'],
     $_POST['phone'],
@@ -38,7 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST['image_url'],
     $_POST['description'],
     $status,
-	$createdBy
+	$createdBy,
+	$_POST['key_media_banner']
   );
 
   $stmt->execute();
@@ -47,6 +53,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   
 }
-
-header("Location: list.php");
-exit;

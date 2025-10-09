@@ -2,12 +2,13 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] != "admin" && $_SESSION["role"] != "creaditor" ) {
+	echo "'⚠ You do not have access to add a record';";
+	exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-	  if (isUrlTaken($_POST["url"], "blocks")) {
-		  echo "❌ This URL is already used in another module. Please choose a unique one.";
-		  exit;
-	  }
 
   $status = isset($_POST['status']) ? 'on' : 'off';	
 
@@ -15,22 +16,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $stmt = $conn->prepare("INSERT INTO blocks (
     title, block_content, show_on_pages, show_in_region,
-    sort, module_file, status, created_by
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    sort, module_file, status, created_by, key_media_banner
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssissi",
+  $stmt->bind_param("ssssissii",
     $_POST['title'],
     $_POST['block_content'],
     $_POST['show_on_pages'],
     $_POST['show_in_region'],
     $_POST['sort'],
     $_POST['module_file'],
-    $status,
-	$createdBy
+	$status,
+	$createdBy,
+    $_POST['key_media_banner']	
   );
 
   $stmt->execute();

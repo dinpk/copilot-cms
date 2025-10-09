@@ -2,6 +2,11 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] != "admin" && $_SESSION["role"] != "creaditor" ) {
+	echo "'⚠ You do not have access to add a record';";
+	exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	  if (isUrlTaken($_POST["url"], "youtube_gallery")) {
@@ -13,21 +18,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $createdBy = $_SESSION['key_user'];
   
   $stmt = $conn->prepare("INSERT INTO youtube_gallery (
-    title, youtube_id, thumbnail_url, url, description, status, created_by 
-  ) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    title, youtube_id, thumbnail_url, url, description, status, created_by, key_media_banner 
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssi",
+  $stmt->bind_param("ssssssii",
     $_POST['title'],
     $_POST['youtube_id'],
     $_POST['thumbnail_url'],
     $_POST['url'],
     $_POST['description'],
     $status,
-	$createdBy
+	$createdBy,
+	$_POST['key_media_banner']
   );
 
   $stmt->execute();

@@ -2,6 +2,11 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] != "admin" && $_SESSION["role"] != "creaditor" ) {
+	echo "'⚠ You do not have access to add a record';";
+	exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	  if (isUrlTaken($_POST["url"], "articles")) {
@@ -15,14 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   $stmt = $conn->prepare("INSERT INTO articles (
     title, title_sub, article_snippet, article_content,
-    content_type, url, banner_image_url, sort, status, created_by
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    content_type, url, banner_image_url, sort, status, created_by, key_media_banner
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssssisi",
+  $stmt->bind_param("sssssssisii",
     $_POST['title'],
     $_POST['title_sub'],
     $_POST['article_snippet'],
@@ -32,11 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST['banner_image_url'],
     $_POST['sort'],
     $status,
-	$createdBy
+	$createdBy,
+	$_POST['key_media_banner']
   );
 
   $stmt->execute();
-  
+
+
   
 	$newRecordId = $conn->insert_id;
 
@@ -53,6 +60,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
   
 }
-
-header("Location: list.php");
-exit;

@@ -1,4 +1,11 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php';
+
+if ($_SESSION["role"] != "admin" && $_SESSION["role"] != "creaditor" ) {
+	echo "'⚠ You do not have access to add a record';";
+	exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -10,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$status = isset($_POST['status']) ? 'on' : 'off';
 
 	$stmt = $conn->prepare("INSERT INTO categories (
-	  name, description, url, sort, status, category_type
-	) VALUES (?, ?, ?, ?, ?, ?)");
+	  name, description, url, sort, status, category_type, key_media_banner
+	) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
 	$stmt->bind_param("sssiss",
 	  $_POST['name'],
@@ -19,7 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	  $_POST['url'],
 	  $_POST['sort'],
 	  $status,
-	  $_POST['category_type']
+	  $_POST['category_type'],
+	  $_POST['key_media_banner']
 	);
 
   $stmt->execute();

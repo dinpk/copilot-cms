@@ -2,6 +2,11 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] == "viewer") {
+	echo "'⚠ You do not have access to edit a record';";
+	exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 
 	$id = intval($_GET['id']);
@@ -15,16 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 
 
 	$stmt = $conn->prepare("UPDATE categories SET
-	  name = ?, description = ?, url = ?, sort = ?, status = ?, category_type = ?
+	  name = ?, description = ?, url = ?, sort = ?, status = ?, category_type = ?, key_media_banner = ? 
 	  WHERE key_categories = ?");
 
-	$stmt->bind_param("sssissi",
+	$stmt->bind_param("sssissii",
 	  $_POST['name'],
 	  $_POST['description'],
 	  $_POST['url'],
 	  $_POST['sort'],
 	  $status,
 	  $_POST['category_type'],
+	  $_POST['key_media_banner'],
 	  $id
 	);
 

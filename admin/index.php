@@ -72,6 +72,7 @@ Dashboard
       <li><a href="products/list.php">🧱 Products</a></li>
       <li><a href="blocks/list.php">🧱 Blocks</a></li>
       <li><a href="users/list.php">👥 Users</a></li>
+      <li><a href="media_library/list.php">⚙️ Media Library</a></li>
       <li><a href="settings/list.php">⚙️ Site Settings</a></li>
       <li><a href="users/logout.php">🚪 Logout</a></li>
     </ul>

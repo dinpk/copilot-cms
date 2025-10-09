@@ -180,9 +180,18 @@ include '../users/auth.php';
 <div id="image-modal" class="modal">
   <h3>Assign Images to Product</h3>
 	<form method="post" id="image-form">
-	  <input type="hidden" name="key_product" id="image_key_product">
-	  <input type="text" name="image_url" placeholder="Image URL" required maxlength="2000"><br>
-	  <input type="number" name="sort_order" placeholder="Sort Order"><br>
+	  <input type="hidden" name="key_product" id="image_hidden_key">
+  
+	  <br>
+	  
+		<input type="hidden" name="key_media_banner" id="key_media_banner">
+		<div id="media-preview"></div>
+		<button type="button" onclick="openMediaModal()">Select Banner Image</button>
+	  
+	  <br>
+	  <br>
+	  
+	  <input type="number" name="sort_order" placeholder="Sort Order" value="0"><br>
 	  <input type="submit" value="Add Image">
 	</form>
 
@@ -190,7 +199,24 @@ include '../users/auth.php';
   
   <button type="button" onclick="closeImageModal()">Close</button>
 
-  
+</div>
+
+
+<!-- Media Modal Form -->
+<div id="media-modal" class="modal">
+  <h3>Select Banner Image</h3>
+  <div id="media-grid">
+    <?php
+    $mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
+    while ($media = $mediaRes->fetch_assoc()) {
+      echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
+              <img src='{$media['file_url']}' width='100'><br>
+              <small>" . htmlspecialchars($media['alt_text']) . "</small>
+            </div>";
+    }
+    ?>
+  </div>
+  <button type="button" onclick="closeMediaModal()">Cancel</button>
 </div>
 
 

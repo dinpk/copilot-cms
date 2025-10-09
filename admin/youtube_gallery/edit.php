@@ -2,6 +2,11 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] == "viewer") {
+	echo "'⚠ You do not have access to edit a record';";
+	exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 
   $id = intval($_GET['id']);
@@ -15,15 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 	  $updatedBy = $_SESSION['key_user'];
 
 	  $stmt = $conn->prepare("UPDATE youtube_gallery SET
-		title = ?, youtube_id = ?, thumbnail_url = ?, url = ?, description = ?, status = ?,
-		updated_by = ? 
+		title = ?, youtube_id = ?, thumbnail_url = ?, url = ?, description = ?, status = ?, updated_by = ?, key_media_banner = ?  
 		WHERE key_youtube_gallery = ?");
 
 	  if (!$stmt) {
 		die("Prepare failed: " . $conn->error);
 	  }
 
-	  $stmt->bind_param("ssssssii",
+	  $stmt->bind_param("ssssssiii",
 		$_POST['title'],
 		$_POST['youtube_id'],
 		$_POST['thumbnail_url'],
@@ -31,6 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 		$_POST['description'],
 		$status,
 		$updatedBy,
+		$_POST['key_media_banner'],
 		$id
 	  );
 

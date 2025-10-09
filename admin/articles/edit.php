@@ -2,6 +2,11 @@
 include '../db.php';
 include '../users/auth.php'; 
 
+if ($_SESSION["role"] == "viewer") {
+	echo "'⚠ You do not have access to edit a record';";
+	exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $id = intval($_GET['id']);
 
@@ -16,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $stmt = $conn->prepare("UPDATE articles SET
     title = ?, title_sub = ?, article_snippet = ?, article_content = ?,
     url = ?, banner_image_url = ?, sort = ?, status = ?,
-    updated_by = ?
+    updated_by = ?, key_media_banner = ?
     WHERE key_articles = ?");
 
 print_r($id);
@@ -25,7 +30,7 @@ print_r($id);
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssisii",
+  $stmt->bind_param("ssssssisiii",
     $_POST['title'],
     $_POST['title_sub'],
     $_POST['article_snippet'],
@@ -35,12 +40,18 @@ print_r($id);
     $_POST['sort'],
     $status,
 	$updatedBy,
+	$_POST['key_media_banner'],
     $id
   );
 
   $stmt->execute();
 
 
+	/*
+	if (!$stmt->execute()) {
+	  die("Execute failed: " . $stmt->error);
+	}
+	*/
   
   
 	$conn->query("DELETE FROM article_categories WHERE key_articles = $id");

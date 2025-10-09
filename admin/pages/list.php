@@ -1,7 +1,7 @@
 <?php 
 include '../db.php';
-include '../layout.php'; 
 include '../users/auth.php'; 
+include '../layout.php'; 
 ?>
 
 
@@ -82,6 +82,13 @@ include '../users/auth.php';
 			 placeholder="Banner Image URL" 
 			 maxlength="200"><br>
 
+		<br>
+		<input type="hidden" name="key_media_banner" id="key_media_banner">
+		<div id="media-preview"></div>
+		<button type="button" onclick="openMediaModal()">Select Banner Image</button>
+		
+		<br><br>
+
 	  <label>
 		<input type="checkbox" name="status" id="status" 
 			   value="on" checked>
@@ -92,6 +99,24 @@ include '../users/auth.php';
 	  <button type="button" onclick="closeModal()">Cancel</button>
 	</form>
 
+</div>
+
+
+<!-- Media Modal Form -->
+<div id="media-modal" class="modal">
+  <h3>Select Banner Image</h3>
+  <div id="media-grid">
+    <?php
+    $mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
+    while ($media = $mediaRes->fetch_assoc()) {
+      echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
+              <img src='{$media['file_url']}' width='100'><br>
+              <small>" . htmlspecialchars($media['alt_text']) . "</small>
+            </div>";
+    }
+    ?>
+  </div>
+  <button type="button" onclick="closeMediaModal()">Cancel</button>
 </div>
 
 

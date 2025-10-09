@@ -16,6 +16,11 @@ if ($conn->connect_error) {
 
 // util functions
 
+function firstWords($text, $limit = 15) {
+  return implode(' ', array_slice(explode(' ', strip_tags($text)), 0, $limit));
+}
+
+
 function isUrlTaken($slug, $excludeTable = '', $excludeKey = 0) {
   global $conn;
 

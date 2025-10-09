@@ -1,4 +1,11 @@
-<?php include '../db.php';
+<?php 
+include '../db.php';
+include '../users/auth.php';
+
+if ($_SESSION["role"] != "admin" && $_SESSION["role"] != "creaditor" ) {
+	echo "'⚠ You do not have access to add a record';";
+	exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $is_active = isset($_POST['is_active']) ? 1 : 0;
