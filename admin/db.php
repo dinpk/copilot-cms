@@ -1,5 +1,13 @@
-
 <?php
+
+/*
+// direct access denied
+if (basename($_SERVER['SCRIPT_FILENAME']) === basename(__FILE__)) {
+    http_response_code(403);
+    exit('Access denied.');
+}
+*/
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -14,7 +22,22 @@ if ($conn->connect_error) {
 }
 
 
-// util functions
+// ------------ util functions
+
+
+
+// db.php
+$settings = [];
+$sql = "SELECT setting_key, setting_value FROM settings WHERE is_active = 1";
+$result = $conn->query($sql);
+while ($row = $result->fetch_assoc()) {
+    $settings[$row['setting_key']] = $row['setting_value'];
+}
+
+function getSetting($key, $default = null) {
+    global $settings;
+    return $settings[$key] ?? $default;
+}
 
 function firstWords($text, $limit = 15) {
   return implode(' ', array_slice(explode(' ', strip_tags($text)), 0, $limit));

@@ -1,42 +1,95 @@
 <?php
 
-function startLayout($title = "CopilotCMS") {
+$page_slug = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
+function startLayout($title = "CopilotCMS") {
 	echo "<!DOCTYPE html><html><head><title>$title</title>
-        <link rel='stylesheet' href='style.css'>
-        </head><body>
-		<nav>";
-	renderMainMenu();
-	echo "</nav><div class='container'>";
+        <link rel='stylesheet' href='/templates/default/style.css'>
+        </head><body>";
+
+	echo "<div id='above-header'>";
+		renderBlocks("above_header");
+	echo "</div>";
+
+	echo "<header>";
+		echo "<div id='site-logo'><img src='" . getSetting("template_default_logo") . "'></div>";
+		renderMainMenu();
+	echo "</header>";
+
+	global $page_slug;
+	echo "<div id='below_header'>";
+	renderBlocks("below_header", $page_slug);
+	echo "</div>";
+	
+	echo "<main>";
 }
 
+
 function endLayout() {
-  echo "</div></body></html>";
+	echo "</main>";
+	global $page_slug;
+	echo "<div id='footer'>";
+		renderBlocks("footer", $page_slug);
+	echo "</div>";
+	echo "<div id='below-footer'>";
+		renderBlocks("below_footer", $page_slug);
+	echo "</div>";
+
+	echo "</body></html>";
 }
 
 
 // Main Menu
+function getMenuItems() {
+    global $conn;
+    $items = [];
+    $res = $conn->query("SELECT key_main_menu, parent_id, title, url_link FROM main_menu WHERE status = 'on' ORDER BY sort");
+    while ($row = $res->fetch_assoc()) {
+        $items[$row['parent_id']][] = $row;
+    }
+    return $items;
+}
+function renderMenuTree($items, $parent_id = 0) {
+    if (!isset($items[$parent_id])) return;
+
+    echo "<ul>";
+    foreach ($items[$parent_id] as $item) {
+        echo "<li><a href='" . htmlspecialchars($item['url_link']) . "'>" . htmlspecialchars($item['title']) . "</a>";
+        renderMenuTree($items, $item['key_main_menu']); // Recursion for children
+        echo "</li>";
+    }
+    echo "</ul>";
+}
 function renderMainMenu() {
-	global $conn;
-  $res = $conn->query("SELECT title, url_link FROM main_menu WHERE status = 'on' ORDER BY sort");
-  echo "<nav class='main-menu'>";
-  while ($row = $res->fetch_assoc()) {
-    echo "<a href='" . htmlspecialchars($row['url_link']) . "'>" . htmlspecialchars($row['title']) . "</a> ";
-  }
-  echo "</nav>";
+    $items = getMenuItems();
+	
+	echo "<button class='menu-toggle' onclick=\"document.querySelector('.main-menu').classList.toggle('open')\">☰ Menu</button>";
+	
+    echo "<nav class='main-menu'>";
+    renderMenuTree($items);
+    echo "</nav>";
 }
 
 
+
 // Blocks
-function renderBlocks($conn, $region, $currentPage) {
-  $res = $conn->query("SELECT block_content FROM blocks 
-                       WHERE status = 'on' 
-                       AND show_in_region = '$region' 
-                       AND (show_on_pages = '' OR FIND_IN_SET('$currentPage', show_on_pages)) 
-                       ORDER BY sort");
-  while ($row = $res->fetch_assoc()) {
-    echo "<div class='block'>" . $row['block_content'] . "</div>";
-  }
+function renderBlocks($region, $currentPage = '') {
+	global $conn;
+	$sql = "SELECT title, block_content, module_file FROM blocks 
+					   WHERE status = 'on' 
+					   AND show_in_region = '$region' 
+					   AND (show_on_pages = '' OR FIND_IN_SET('$currentPage', show_on_pages)) 
+					   ORDER BY sort";
+	$res = $conn->query($sql);
+	// echo __FILE__;
+	while ($row = $res->fetch_assoc()) {
+		
+		echo "<h2>" . $row['title'] . "</h2>";
+		echo "<div class='block_content'>" . $row['block_content'] . "</div>";
+		if ($row['module_file'] != '') {
+			include("modules/" . $row['module_file'] . ".php");
+		}
+	}
 }
 
 

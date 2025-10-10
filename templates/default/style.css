@@ -1,0 +1,315 @@
+/* Base Reset & Typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background: #f4f7fb;
+  color: #333;
+  padding: 0 20px;
+}
+
+a {
+  color: #0055aa;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+	max-width:100%;
+}
+
+
+/* Header Regions */
+#above-header, #footer, #below-footer {
+  background: #eaeaea;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+#above-header {
+	text-align:right;
+	word-spacing:5px;
+}
+
+#site-logo {
+  text-align:center;	
+}
+
+#site-logo img {
+  max-height: 60px;
+  display: inline-block;
+}
+
+
+/* Collapsible Menu Toggle */
+.menu-toggle {
+  display: none;
+  background: #0055aa;
+  color: #fff;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+  
+/* Main Menu */
+.main-menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  flex-wrap: wrap;
+  gap: 15px;
+  background: #0055aa;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.main-menu li {
+  position: relative;
+}
+
+.main-menu a {
+  color: #fff;
+  font-weight: bold;
+  padding: 6px 10px;
+  display: block;
+}
+
+.main-menu li ul {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-width: 150px;
+  z-index: 10;
+}
+
+.main-menu li:hover ul {
+  display: block;
+}
+
+.main-menu li ul li a {
+  color: #0055aa;
+  font-weight: normal;
+}
+
+/* Layout */
+main {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+  padding-bottom: 40px;
+  min-height:80vh;
+}
+
+#content {
+  flex: 3;
+  background-color:#FFF;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  
+}
+
+#sidebar {
+  flex: 1.2;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Block Headings */
+#sidebar h2 {
+  background: #0055aa;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 1.1em;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border: none;
+}
+
+/* Snippet Cards */
+.snippet-card {
+  display: flex;
+  gap: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  align-items: flex-start;
+}
+
+.snippet-card > div:first-child {
+  flex-shrink: 0;
+}
+
+.snippet-card img {
+  width: 300px;
+  border-radius: 4px;
+  display: block;
+}
+
+.snippet-content {
+  flex: 1;
+}
+
+.snippet-content h2 {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+.snippet-content p {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.snippet-content a {
+  display: inline-block;
+  margin-top: 5px;
+  color: #0055aa;
+  font-weight: bold;
+}
+
+
+
+/* Sidebar Blocks */
+#sidebar h2 {
+  font-size: 1.1em;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.block {
+  background: #fff;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.category-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.category-list li {
+  margin-bottom: 6px;
+}
+
+.category-list a {
+  
+}
+
+.category-list a:hover {
+  color: #0055aa;
+}
+
+
+
+#pager {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin: 30px auto;
+  padding: 10px 20px;
+  background: #f0f4fa;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1em;
+  color: #333;
+  max-width: 400px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+#pager a {
+  background: #0055aa;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+#pager a:hover {
+  background: #003f88;
+}
+
+
+
+
+/* Footer */
+#footer .block_content,
+#below-footer .block_content {
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+}
+
+
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-menu ul {
+    display: none;
+    flex-direction: column;
+    background: #0055aa;
+    padding: 10px;
+  }
+
+  .main-menu.open ul {
+    display: flex;
+  }  
+
+  .main-menu li {
+    margin-bottom: 5px;
+  }
+
+  #sidebar {
+    margin-top: 20px;
+  }
+
+  .snippet-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .snippet-card img {
+    width: 100%;
+    margin-bottom: 10px;
+  }  
+}
+
+

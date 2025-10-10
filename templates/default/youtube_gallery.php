@@ -14,53 +14,64 @@ if ($category_url) {
 }
 
 startLayout("YouTube Gallery");
-echo "<h1>YouTube Gallery</h1>";
 
 ?>
-<!-- Category Tags -->
-<div class="category-tags">
-  <?php
-  $cats = $conn->query("SELECT name, url FROM categories 
-                        WHERE status = 'on' AND category_type = 'video_gallery' 
-                        ORDER BY sort");
-  while ($c = $cats->fetch_assoc()) {
-    $active = ($c['url'] === $category_url) ? "style='font-weight:bold;'" : "";
-    echo "<a href='/youtube_gallery?category={$c['url']}' class='tag' $active>" . htmlspecialchars($c['name']) . "</a> ";
-  }
-  ?>
+
+<div id="content">
+	<h1>YouTube Gallery</h1>
+	
+	<!-- Category Tags -->
+	<div class="category-tags">
+	  <?php
+	  $cats = $conn->query("SELECT name, url FROM categories 
+							WHERE status = 'on' AND category_type = 'video_gallery' 
+							ORDER BY sort");
+	  while ($c = $cats->fetch_assoc()) {
+		$active = ($c['url'] === $category_url) ? "style='font-weight:bold;'" : "";
+		echo "<a href='/youtube-gallery?category={$c['url']}' class='tag' $active>" . htmlspecialchars($c['name']) . "</a> &nbsp; ";
+	  }
+	  ?>
+	</div>
+	<br>
+
+	<?php
+	// Fetch videos
+	$sql = "SELECT y.title, y.youtube_id, y.description 
+			FROM youtube_gallery y 
+			WHERE y.status = 'on'";
+
+	if ($category_id) {
+	  $sql .= " AND EXISTS (
+				  SELECT 1 FROM youtube_categories yc 
+				  WHERE yc.key_youtube_gallery = y.key_youtube_gallery 
+				  AND yc.key_categories = $category_id
+				)";
+	}
+
+	$sql .= " ORDER BY y.entry_date_time DESC";
+
+	$res = $conn->query($sql);
+
+	echo "<div class='gallery-grid'>";
+	while ($v = $res->fetch_assoc()) {
+	  $thumb = "https://img.youtube.com/vi/{$v['youtube_id']}/hqdefault.jpg";
+	  $title = htmlspecialchars($v['title']);
+	  $desc = htmlspecialchars($v['description']);
+	  echo "<div class='video-card'>
+			  <img src='$thumb' width='300' onclick=\"openModal('{$v['youtube_id']}', '$title', '$desc')\">
+			  <h3>$title</h3>
+			</div>";
+	}
+	echo "</div>";
+	?>
 </div>
-<br>
 
-<?php
-// Fetch videos
-$sql = "SELECT y.title, y.youtube_id, y.description 
-        FROM youtube_gallery y 
-        WHERE y.status = 'on'";
+<div id="sidebar">
+	<?php renderBlocks("sidebar_right"); ?>
+</div>
 
-if ($category_id) {
-  $sql .= " AND EXISTS (
-              SELECT 1 FROM youtube_categories yc 
-              WHERE yc.key_youtube_gallery = y.key_youtube_gallery 
-              AND yc.key_categories = $category_id
-            )";
-}
 
-$sql .= " ORDER BY y.entry_date_time DESC";
 
-$res = $conn->query($sql);
-
-echo "<div class='gallery-grid'>";
-while ($v = $res->fetch_assoc()) {
-  $thumb = "https://img.youtube.com/vi/{$v['youtube_id']}/hqdefault.jpg";
-  $title = htmlspecialchars($v['title']);
-  $desc = htmlspecialchars($v['description']);
-  echo "<div class='video-card'>
-          <img src='$thumb' width='300' onclick=\"openModal('{$v['youtube_id']}', '$title', '$desc')\">
-          <h3>$title</h3>
-        </div>";
-}
-echo "</div>";
-?>
 
 <!-- Modal -->
 <div id="videoModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000cc; z-index:9999;">

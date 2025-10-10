@@ -15,8 +15,9 @@ include '../users/auth.php';
       <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Region', 'show_in_region', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Pages', 'show_on_pages', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
-	  <th>Created</th>
-	  <th>Updated</th>
+      <th><?= sortLink('Module', 'module_file', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+	  <th>Created / Updated</th>
+	  <th><?= sortLink('Sort', 'sort', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
@@ -28,9 +29,9 @@ include '../users/auth.php';
 	
 
 	// sort
-	$sort = $_GET['sort'] ?? 'entry_date_time';
-	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['title', 'region', 'pages', 'status'];
+	$sort = $_GET['sort'] ?? 'sort';
+	$dir = $_GET['dir'] ?? 'asc';
+	$allowedSorts = ['title', 'region', 'pages', 'sort', 'status'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
@@ -52,8 +53,9 @@ include '../users/auth.php';
         <td>{$row['title']}</td>
         <td>{$row['show_in_region']}</td>
         <td>{$row['show_on_pages']}</td>
-		<td>{$createdUpdated['creator']}</td>
-		<td>{$createdUpdated['updater']}</td>
+        <td>{$row['module_file']}</td>
+		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
+		<td>{$row['sort']}</td>
         <td>{$row['status']}</td>
         <td>
           <a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"sort\",\"module_file\",\"status\"])'>Edit</a> |
@@ -83,11 +85,17 @@ include '../users/auth.php';
 			 placeholder="Show on Pages" 
 			 maxlength="1000"><br>
 
-	  <input type="text" name="show_in_region" id="show_in_region" 
-			 placeholder="Region" 
-			 maxlength="50"><br>
-
-		<br>
+		<select name='show_in_region' id='show_in_region'>
+			<option value="above_header">Above Header</option>
+			<option value="header">Header</option>
+			<option value="below_header">Below Header</option>
+			<option value="sidebar_right">Sidebar Right</option>
+			<option value="content">Content</option>
+			<option value="sidebar_left">Sidebar Left</option>
+			<option value="above_footer">Above Footer</option>
+			<option value="footer">Footer</option>
+			<option value="below_footer">Below Footer</option>
+		</select><br><br>
 		
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
@@ -97,11 +105,19 @@ include '../users/auth.php';
 
 	  <input type="number" name="sort" id="sort" 
 			 placeholder="Sort Order" 
-			 value="0" min="0" max="32767"><br>
+			 value="0" min="0" max="32767"><br><br>
 
-	  <input type="text" name="module_file" id="module_file" 
-			 placeholder="Module File" 
-			 maxlength="100"><br>
+		<select name='module_file' id='module_file'>
+		<option value=''></option>
+		<?php
+		$module_files = glob('../../modules/*.php');
+		$modules = array_map('basename', $module_files);
+		foreach ($modules as $module) {
+			$module_name = str_replace(".php", "", $module);
+		  echo "<option value='$module_name'>$module_name</option>";
+		}
+		?>
+		</select><br><br>
 
 	  <label>
 		<input type="checkbox" name="status" id="status" 

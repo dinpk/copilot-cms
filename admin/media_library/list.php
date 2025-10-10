@@ -25,30 +25,64 @@ include '../users/auth.php';
     </tr>
   </thead>
   <tbody>
-    <?php
-    $q = $conn->real_escape_string($_GET['q'] ?? '');
-    $sql = "SELECT m.*, u.username FROM media_library m LEFT JOIN users u ON m.uploaded_by = u.key_user";
-    if ($q !== '') {
-      $sql .= " WHERE tags LIKE '%$q%'";
-    }
-    $sql .= " ORDER BY entry_date_time DESC";
-    $result = $conn->query($sql);
-    while ($row = $result->fetch_assoc()) {
-      echo "<tr>
-        <td><img src='{$row['file_url']}' width='100'></td>
-        <td>{$row['file_type']}</td>
-        <td>{$row['tags']}</td>
-        <td>{$row['alt_text']}</td>
-        <td>{$row['username']}</td>
-        <td>
-          <a href='#' onclick='editItem({$row['key_media']}, \"get_media.php\", [\"file_url\",\"file_type\",\"alt_text\",\"tags\"])'>Edit</a> |
-          <a href='delete.php?id={$row['key_media']}' onclick='return confirm(\"Delete this media item?\")'>Delete</a>
-        </td>
-      </tr>";
-    }
-    ?>
+	<?php
+	$q = trim($_GET['q'] ?? '');
+	$page = max(1, intval($_GET['page'] ?? 1));
+	$limit = 6;
+	$offset = ($page - 1) * $limit;
+
+	// Base query
+	$sql = "SELECT SQL_CALC_FOUND_ROWS m.*, u.username 
+			FROM media_library m 
+			LEFT JOIN users u ON m.uploaded_by = u.key_user";
+
+	// Search condition
+	if ($q !== '') {
+		$escaped = $conn->real_escape_string($q);
+		$sql .= " WHERE MATCH(alt_text, tags) AGAINST('$escaped' IN BOOLEAN MODE)";
+	}
+
+	$sql .= " ORDER BY entry_date_time DESC LIMIT $limit OFFSET $offset";
+	$result = $conn->query($sql);
+
+	// Render rows
+	while ($row = $result->fetch_assoc()) {
+		echo "<tr>
+			<td><img src='{$row['file_url']}' width='100'></td>
+			<td>{$row['file_type']}</td>
+			<td>{$row['tags']}</td>
+			<td>{$row['alt_text']}</td>
+			<td>{$row['username']}</td>
+			<td>
+			  <a href='#' onclick='editItem({$row['key_media']}, \"get_media.php\", [\"file_url\",\"file_type\",\"alt_text\",\"tags\"])'>Edit</a> |
+			  <a href='delete.php?id={$row['key_media']}' onclick='return confirm(\"Delete this media item?\")'>Delete</a>
+			</td>
+		  </tr>";
+	}
+
+	// Pagination
+	$total = $conn->query("SELECT FOUND_ROWS() AS total")->fetch_assoc()['total'];
+	$totalPages = ceil($total / $limit);
+	?>
+
   </tbody>
 </table>
+
+
+<br><hr>
+<div id='pager'>
+<?php
+if ($page > 1) {
+    echo "<a href='?q=" . urlencode($q) . "&page=" . ($page - 1) . "'>⬅ Prev</a> ";
+}
+echo "Page $page of $totalPages ";
+if ($page < $totalPages) {
+    echo "<a href='?q=" . urlencode($q) . "&page=" . ($page + 1) . "'>Next ➡</a>";
+}
+?>
+</div>
+
+
 
 <!-- Modal Form -->
 <div id="modal" class="modal">
@@ -56,7 +90,7 @@ include '../users/auth.php';
   <form id="modal-form" method="post" enctype="multipart/form-data" action="add.php">
     <input type="hidden" name="key_media" id="key_media">
 
-    <input type="url" name="file_url" id="file_url" placeholder="Media URL" required maxlength="2000"><br>
+    <input type="text" name="file_url" id="file_url" placeholder="Media URL" required maxlength="2000"><br>
 	<br>
 
     <select name="file_type" id="file_type" required>

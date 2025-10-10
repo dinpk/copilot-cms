@@ -88,9 +88,8 @@ $menuTree = buildMenuTree($menuItems);
 
 	  <input type="text" name="url_link" id="url_link" 
 			 placeholder="URL-Link" 
-			 maxlength="200" 
-			 pattern="^[a-z0-9\-]+$" 
-			 title="Lowercase letters, numbers, and hyphens only"><br>
+			 pattern="^[a-z0-9\-\/]+$" 
+			 maxlength="200"><br>
 
 	  <input type="number" name="sort" id="sort" 
 			 placeholder="Sort Order" 

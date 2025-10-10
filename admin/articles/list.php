@@ -152,7 +152,8 @@ include '../users/auth.php';
 
 	<input type="text" name="url" id="url" 
 		   placeholder="Slug" 
-		   maxlength="200" pattern="^[a-z0-9\-]+$" 
+		   maxlength="200" 
+		   pattern="^[a-z0-9\-\/]+$" 
 		   title="Lowercase letters, numbers, and hyphens only"><br>
 
 	<br>

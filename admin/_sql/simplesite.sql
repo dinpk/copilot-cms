@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 09, 2025 at 06:45 AM
+-- Generation Time: Oct 10, 2025 at 05:06 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -53,16 +53,15 @@ CREATE TABLE IF NOT EXISTS `articles` (
 --
 
 INSERT INTO `articles` (`key_articles`, `title`, `title_sub`, `article_snippet`, `article_content`, `content_type`, `url`, `banner_image_url`, `key_media_banner`, `sort`, `status`, `entry_date_time`, `update_date_time`, `created_by`, `updated_by`) VALUES
-(1, 'Hello Worlds', 'sub title', ' snippet', 'content', 'article', 'my-url', '', 0, 0, 'on', '2025-09-23 20:14:17', '2025-09-24 03:57:19', NULL, NULL),
-(2, 'The Rise of Minimal CMS', 'Streamlined Editorial Tools', 'Exploring how minimal CMS platforms empower editorial teams.', 'Full content of article 1...', 'article', 'minimal-cms', 'banner1.jpg', 0, 1, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', 1, 1),
-(3, 'Designing for Editors', 'UI That Works', 'Why editorial-first design matters in publishing workflows.', 'Full content of article 2 3 4', 'article', 'editorial-ui', 'banner2.jpg', 0, 2, 'on', '2025-09-25 15:13:08', '2025-09-27 12:05:22', NULL, 1),
-(4, 'PHP Without Frameworks', 'Native Power', 'Building robust apps with native PHP and no frameworks.', 'Full content of article 3...', 'article', 'php-native', NULL, 0, 3, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
-(5, 'Modular CRUD Systems', 'Scalable Architecture', 'How modular CRUD design improves maintainability.', 'Full content of article 4...', 'article', 'modular-crud', 'banner4.jpg', 0, 4, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(6, 'Debounce in Search', 'Performance Boosts', 'Using debounce to optimize search-triggered loading.', 'Full content of article 5...', 'article', 'debounce-search', 'banner5.jpg', 0, 5, 'on', '2025-09-25 15:13:08', '2025-09-30 13:34:45', NULL, NULL),
-(7, 'Pagination Patterns', 'Smart Loading', 'Best practices for implementing pagination in CMS.', 'Full content of article 6...', 'article', 'pagination-patterns', 'banner6.jpg', 0, 6, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(8, 'Editorial Workflows', 'From Draft to Publish', 'Mapping out efficient editorial workflows.', 'Full content of article 7...', 'article', 'editorial-workflows', 'banner7.jpg', 0, 7, 'on', '2025-09-25 15:13:08', '2025-09-29 22:11:15', NULL, NULL),
-(9, 'Category Management', 'Organized Content', 'Tips for managing categories in publishing systems.', 'Full content of article 8...', 'article', 'category-management', 'banner8.jpg', 0, 8, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(10, 'Modal-Based Editing', 'Inline Efficiency', 'Using modals for quick article edits.', 'Full content of article 9...', 'article', 'modal-editing', 'banner9.jpg', 0, 9, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
+(2, 'The Rise of Minimal CMS', 'Streamlined Editorial Tools', 'Exploring how minimal CMS platforms empower editorial teams.', 'Full content of article 1...', 'article', 'minimal-cms', NULL, 28, 1, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', 1, 1),
+(3, 'Designing for Editors', 'UI That Works', 'Why editorial-first design matters in publishing workflows.', 'Full content of article 2 3 4', 'article', 'editorial-ui', NULL, 25, 2, 'on', '2025-09-25 15:13:08', '2025-09-27 12:05:22', NULL, 1),
+(4, 'PHP Without Frameworks', 'Native Power', 'Building robust apps with native PHP and no frameworks.', 'Full content of article 3...', 'article', 'php-native', NULL, 11, 3, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
+(5, 'Modular CRUD Systems', 'Scalable Architecture', 'How modular CRUD design improves maintainability.', 'Full content of article 4...', 'article', 'modular-crud', NULL, 5, 4, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
+(6, 'Debounce in Search', 'Performance Boosts', 'Using debounce to optimize search-triggered loading.', 'Full content of article 5...', 'article', 'debounce-search', NULL, 37, 5, 'on', '2025-09-25 15:13:08', '2025-09-30 13:34:45', NULL, 1),
+(7, 'Pagination Patterns', 'Smart Loading', 'Best practices for implementing pagination in CMS.', 'Full content of article 6...', 'article', 'pagination-patterns', NULL, 6, 6, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
+(8, 'Editorial Workflows', 'From Draft to Publish', 'Mapping out efficient editorial workflows.', 'Full content of article 7...', 'article', 'editorial-workflows', NULL, 34, 7, 'on', '2025-09-25 15:13:08', '2025-09-29 22:11:15', NULL, 1),
+(9, 'Category Management', 'Organized Content', 'Tips for managing categories in publishing systems.', 'Full content of article 8...', 'article', 'category-management', NULL, 30, 8, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
+(10, 'Modal-Based Editing', 'Inline Efficiency', 'Using modals for quick article edits.', 'Full content of article 9...', 'article', 'modal-editing', NULL, 39, 9, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
 (11, 'Search Optimization', 'Fast & Relevant', 'Improving search relevance and speed.', 'Full content of article 10...', 'article', 'search-optimization', 'banner10.jpg', 0, 10, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
 (12, 'Legacy CMS Refactor', 'Modernizing Systems', 'Strategies for refactoring legacy CMS platforms.', 'Full content of article 11...', 'article', 'legacy-refactor', 'banner11.jpg', 0, 11, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
 (13, 'Content Snippets', 'Reusable Blocks', 'Creating reusable content snippets.', 'Full content of article 12...', 'article', 'content-snippets', 'banner12.jpg', 0, 12, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
@@ -79,11 +78,7 @@ INSERT INTO `articles` (`key_articles`, `title`, `title_sub`, `article_snippet`,
 (24, 'Banner Image Tips', 'Visual Impact', 'Choosing effective banner images.', 'Full content of article 23...', 'article', 'banner-tips', 'banner23.jpg', 0, 23, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
 (25, 'URL Structuring', 'SEO & Clarity', 'Structuring article URLs for clarity and SEO.', 'Full content of article 24...', 'article', 'url-structure', 'banner24.jpg', 0, 24, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
 (26, 'CMS Entry Points', 'Where It Begins', 'Designing intuitive entry points for editors.', 'Full content of article 25...', 'article', 'cms-entry', 'banner25.jpg', 0, 25, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(33, 'Next Era App Dev', 'New Ways of App Dev in 21st Century', 'some snippet', '', 'article', '', '', 0, 0, 'on', '2025-09-30 13:56:49', '2025-09-30 13:57:02', 1, NULL),
-(34, 'Another Era of Building Apps', '', 'Why snippet here, it is big and multi line\r\n', '', 'book', 'another-era-of-building-app', '', 0, 2, 'on', '2025-10-01 17:04:57', '2025-10-01 17:04:57', 1, 1),
-(35, 'Concerned US and Canadian Muslims weigh in on rising Islamophobiaaa', '', 'no need snippet here', '', 'article', 'concerned-us-and-canadian-muslims-on-islamophobia', NULL, 1, 0, 'on', '2025-10-05 05:08:13', '2025-10-05 05:08:13', 1, 1),
-(36, 'True strength begins with self-awareness and the emotional connection', '', 'We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'We live in a world where stress, anxiety and depression are becoming increasingly common.  We live in a world where stress, anxiety and depression are becoming increasingly common.  We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'article', 'true-strength-begins-with-self-awareness-and-emotional-connection', '', 0, 0, 'on', '2025-10-05 05:30:29', '2025-10-05 05:30:29', 1, 1),
-(37, 'New Flower Photo Test', '', '', '', 'article', 'new-flower-photo-test', NULL, 4, 0, 'on', '2025-10-08 07:33:03', '2025-10-08 07:33:03', 1, 1);
+(36, 'True strength begins with self-awareness and the emotional connection', '', 'We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'We live in a world where stress, anxiety and depression are becoming increasingly common.  We live in a world where stress, anxiety and depression are becoming increasingly common.  We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'article', 'true-strength-begins-with-self-awareness-and-emotional-connection', NULL, 36, 0, 'on', '2025-10-05 05:30:29', '2025-10-05 05:30:29', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -129,15 +124,15 @@ CREATE TABLE IF NOT EXISTS `article_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_categories`
 --
 
 INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`) VALUES
-(1, 6, 8, NULL),
-(2, 6, 18, NULL),
+(69, 6, 18, NULL),
+(68, 6, 8, NULL),
 (3, 27, 4, NULL),
 (4, 27, 19, NULL),
 (8, 29, 8, NULL),
@@ -149,17 +144,17 @@ INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`)
 (23, 33, 19, NULL),
 (24, 33, 8, NULL),
 (25, 33, 14, NULL),
-(26, 3, 11, NULL),
-(52, 34, 1, NULL),
+(70, 3, 11, NULL),
+(63, 34, 1, NULL),
 (57, 35, 18, NULL),
-(54, 36, 6, NULL),
+(61, 36, 4, NULL),
 (43, 0, 2, NULL),
 (44, 0, 15, NULL),
 (45, 0, 4, NULL),
-(53, 36, 4, NULL),
-(58, 4, 5, NULL),
-(59, 4, 9, NULL),
-(60, 4, 14, NULL);
+(62, 36, 6, NULL),
+(71, 4, 5, NULL),
+(72, 4, 9, NULL),
+(73, 4, 14, NULL);
 
 -- --------------------------------------------------------
 
@@ -212,7 +207,7 @@ INSERT INTO `authors` (`key_authors`, `name`, `email`, `phone`, `website`, `url`
 (12, 'Haseena Imtiaz', 'haseenaimtiaz@gmail.com', '123-456-7848', '', '', '', '', '', '', '', '', '', NULL, '', 'on', '2025-10-01 17:23:56', '2025-10-01 17:23:56', NULL, 1),
 (13, 'Sumrina Khan', 'sumrinakhan@hotmail.com', '548-455-5548', '', '', '', '', '', '', '', '', '', NULL, '', 'on', '2025-10-01 17:26:39', '2025-10-01 17:26:39', 1, NULL),
 (14, 'Taimur Sarfaraz', 'taimursarfaraz@gmail.com', '', '', 'tamir-sarfaraz-ahmad', '', '', '', 'Karachi', '', '', '', NULL, '', 'on', '2025-10-05 05:09:57', '2025-10-05 05:09:57', 1, 1),
-(15, 'My Second Authoer', 'mysecondauthor@outlook.com', '', '', 'my-second-authoer', '', '', '', '', '', '', '', 3, '', 'on', '2025-10-08 08:12:33', '2025-10-08 08:12:33', 1, NULL);
+(15, 'My Second Authoer', 'mysecondauthor@outlook.com', '', '', 'my-second-authoer', '', '', '', '', '', '', '', 0, '', 'on', '2025-10-08 08:12:33', '2025-10-08 08:12:33', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -236,19 +231,23 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `updated_by` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`key_blocks`),
   KEY `fk_blocks_media` (`key_media_banner`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `blocks`
 --
 
 INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `title`, `block_content`, `show_on_pages`, `show_in_region`, `sort`, `module_file`, `status`, `entry_date_time`, `created_by`, `updated_by`) VALUES
-(1, NULL, 'My First Block', 'some content of block', '/starting-wtih-video', 'sidebar_below', 0, '', 'off', '2025-09-29 22:09:45', NULL, 1),
-(2, NULL, 'My Second Block', 'some content of block', '/starting-wtih-videos', 'sidebar_below', 0, '', 'on', '2025-09-24 03:58:17', NULL, NULL),
-(3, NULL, 'My Third Block', 'some content of block', '/starting-wtih-videoz', 'sidebar_below', 0, '', 'on', '2025-09-24 03:58:23', NULL, NULL),
-(4, NULL, 'Another Block for sidebar2', 'Some content', '', 'sidebar_below', 0, '', 'on', '2025-09-29 22:10:15', NULL, 1),
-(5, 2, 'Top Content Block', '', '', 'above_content', 0, '', 'on', '2025-10-01 17:49:57', 1, 1),
-(6, 4, 'Header Block', '', '', 'header', 0, '', 'on', '2025-10-08 09:37:28', 1, 1);
+(1, 0, 'Authors', '', '', 'sidebar_right', 4, 'authors_91558', 'on', '2025-09-29 22:09:45', NULL, 1),
+(2, 0, 'Photo Gallery', '', '', 'sidebar_right', 5, 'photos_56467', 'on', '2025-09-24 03:58:17', NULL, 1),
+(3, 1, 'Youtube Gallery', '', '', 'sidebar_right', 6, 'youtube_15578', 'on', '2025-09-24 03:58:23', NULL, 1),
+(4, 0, 'Articles', '', '', 'sidebar_right', 1, 'articles_34548', 'on', '2025-09-29 22:10:15', NULL, 1),
+(5, 0, 'Books', '', '', 'sidebar_right', 3, 'books_84538', 'on', '2025-10-01 17:49:57', 1, 1),
+(6, 0, 'Topics', '', '', 'sidebar_right', 2, 'categories_55448', 'on', '2025-10-08 09:37:28', 1, 1),
+(7, 0, '<none>', '<img src=\"/templates/default/images/pexels-wasifmehmood997-19442078.jpg\">', 'home', 'below_header', 1, '', 'on', '2025-10-10 13:13:56', 1, 1),
+(8, 0, '<none>', 'Default Template Â© CopilotCMS', '', 'footer', 10, '', 'on', '2025-10-10 13:40:38', 1, 1),
+(9, 0, '<none>', '<span>Phone</span> <a href=\"tel:1234567890\">(123)456-7890</a> \r\n<span>Email</span> <a href=\"mailto:myemail@outlook.com\">myemail@outlook.com</a> ', '', 'above_header', 0, '', 'on', '2025-10-10 14:47:52', 1, 1),
+(10, 0, '<none>', '<a href=\"/page/privacy-policy\">Privacy Policy</a> | <a href=\"/page/terms-of-use\">Term of Use</a>', '', 'below_footer', 16, '', 'on', '2025-10-10 14:49:16', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -310,7 +309,7 @@ INSERT INTO `books` (`key_books`, `key_media_banner`, `title`, `subtitle`, `desc
 (16, NULL, 'Desktop-First UI Design', 'Focused Editorial Tools', 'Why desktop-first design still matters in publishing.', 'cover15.jpg', 'desktop-ui-design', 'Sana Raza', 'DesignJournal Books', '2021', '978-969-0010025', '0', 0, 0, 0, '', '', 0, '', 'on', 15, '2025-09-25 15:23:27', '2025-09-26 18:45:53', NULL, NULL),
 (58, NULL, 'New World of App Dev with A-I', 'Speed up the Process 10x', '', '', 'new-world-of-app-dev-with-ai', 'Dean Mo', 'Copilot', '2025', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'on', 0, '2025-09-30 13:31:13', '2025-09-30 18:00:31', NULL, NULL),
 (59, 2, 'PHP for Non Publishers', '', '', '', 'php-for-non-publishers', '', 'Hello Pubs', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'on', 0, '2025-10-01 17:54:52', '2025-10-08 08:18:02', 1, 1),
-(62, 4, 'Pink Flowers in the World', '', '', '', 'pink-flowers-in-the-world', '', '', '', '', '0', 0, 0, NULL, '', '', 0, '0', 'on', 0, '2025-10-08 08:24:50', '2025-10-08 08:24:50', 1, NULL);
+(62, 0, 'Pink Flowers in the World', '', '', '', 'pink-flowers-in-the-world', '', '', '', '', '0', 0, 0, NULL, '', '', 0, '0', 'on', 0, '2025-10-08 08:24:50', '2025-10-09 12:50:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -365,7 +364,7 @@ CREATE TABLE IF NOT EXISTS `book_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_books`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=MyISAM AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `book_categories`
@@ -402,7 +401,8 @@ INSERT INTO `book_categories` (`id`, `key_books`, `key_categories`, `url`) VALUE
 (62, 59, 19, NULL),
 (63, 59, 11, NULL),
 (64, 0, 5, NULL),
-(66, 2, 12, NULL);
+(66, 2, 12, NULL),
+(67, 62, 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -422,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `entry_date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `category_type` enum('article','book','photo_gallery','video_gallery','global') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'global',
   PRIMARY KEY (`key_categories`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `categories`
@@ -435,7 +435,7 @@ INSERT INTO `categories` (`key_categories`, `key_media_banner`, `name`, `descrip
 (4, 0, 'PHP Development', 'Native PHP techniques for backend publishing tools.', 'php-development', 3, 'on', '2025-09-25 15:25:13', 'photo_gallery'),
 (5, 0, 'UX Patterns', 'User experience strategies for editorial workflows.', 'ux-patterns1', 4, 'on', '2025-09-25 15:25:13', 'global'),
 (6, 0, 'Content Strategy', 'Planning and organizing editorial content.', 'content-strategy', 5, 'on', '2025-09-25 15:25:13', 'article'),
-(7, 0, 'Debugging & QA', 'Troubleshooting and testing publishing systems.', 'debugging-qa', 6, 'on', '2025-09-25 15:25:13', 'video_gallery'),
+(7, 0, 'Debugging & QA', 'Troubleshooting and testing publishing systems.', 'debugging-qa', 6, 'on', '2025-09-25 15:25:13', 'global'),
 (8, 0, 'Search Optimization', 'Improving search relevance and performance.', 'search-optimization', 7, 'on', '2025-09-25 15:25:13', 'global'),
 (9, 0, 'Modular Design', 'Reusable components and scalable architecture.', 'modular-design', 8, 'on', '2025-09-25 15:25:13', 'global'),
 (10, 3, 'Visual Design', 'Banner images, layout, and visual storytelling.', 'visual-design', 9, 'on', '2025-09-25 15:25:13', 'global'),
@@ -447,9 +447,17 @@ INSERT INTO `categories` (`key_categories`, `key_media_banner`, `name`, `descrip
 (16, 0, 'Content Curation', 'Selecting and organizing high-quality content.', 'content-curation', 15, 'on', '2025-09-25 15:25:13', 'global'),
 (17, 0, 'Performance Optimization', 'Speed and efficiency in CMS systems.', 'performance-optimization', 16, 'on', '2025-09-25 15:25:13', 'global'),
 (18, 0, 'Advanced Filters', 'Precision filtering tools for editors.', 'advanced-filters', 17, 'on', '2025-09-25 15:25:13', 'global'),
-(19, 0, 'Legacy Systems', 'Modernizing and refactoring old CMS platforms.', 'legacy-systems-legacy', 18, 'on', '2025-09-25 15:25:13', 'video_gallery'),
+(19, 0, 'Legacy Systems', 'Modernizing and refactoring old CMS platforms.', 'legacy-systems-legacy', 18, 'on', '2025-09-25 15:25:13', 'global'),
 (20, 0, 'Narrative Building', 'Crafting compelling editorial stories.', 'narrative-building', 19, 'on', '2025-09-25 15:25:13', 'global'),
-(21, 0, 'Editorial Automation', 'Automating repetitive editorial tasks.', 'editorial-automation', 20, 'on', '2025-09-25 15:25:13', 'global');
+(21, 0, 'Editorial Automation', 'Automating repetitive editorial tasks.', 'editorial-automation', 20, 'on', '2025-09-25 15:25:13', 'global'),
+(23, 13, 'Modern Architecture', '', 'modern-architecture', 0, 'on', '2025-10-10 07:48:30', 'photo_gallery'),
+(24, 0, 'Ancient Heritage', '', 'ancient-heritage', 0, 'on', '2025-10-10 07:49:31', 'photo_gallery'),
+(25, 0, 'Educational Institutions', '', 'educational-institutions', 0, 'on', '2025-10-10 07:49:53', 'photo_gallery'),
+(26, 0, 'Tourism Attractions', '', 'tourism-attractions', 0, 'on', '2025-10-10 07:50:36', 'photo_gallery'),
+(27, 0, 'Cricket', '', 'cricket', 0, 'on', '2025-10-10 11:51:49', 'video_gallery'),
+(28, 0, 'Soccer', '', 'soccer', 0, 'on', '2025-10-10 11:51:57', 'video_gallery'),
+(29, 0, 'Swimming', '', 'swimming', 0, 'on', '2025-10-10 11:52:31', 'video_gallery'),
+(30, 0, 'Tennis', '', 'tennis', 0, 'on', '2025-10-10 11:52:52', 'video_gallery');
 
 -- --------------------------------------------------------
 
@@ -467,17 +475,23 @@ CREATE TABLE IF NOT EXISTS `main_menu` (
   `status` varchar(3) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `entry_date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_main_menu`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `main_menu`
 --
 
 INSERT INTO `main_menu` (`key_main_menu`, `parent_id`, `title`, `url_link`, `sort`, `status`, `entry_date_time`) VALUES
-(15, 0, 'Books', 'book', 3, 'on', '2025-10-09 05:23:50'),
-(14, 0, 'Topics', 'category', 2, 'on', '2025-10-09 05:23:33'),
-(13, 0, 'Articles', 'articles', 1, 'on', '2025-10-09 05:23:15'),
-(12, 0, 'Home', 'home', 0, 'on', '2025-10-09 05:23:01');
+(15, 0, 'Books', '/books', 3, 'on', '2025-10-09 05:23:50'),
+(14, 0, 'Topics', '/categories', 2, 'on', '2025-10-09 05:23:33'),
+(20, 19, 'About Us', '/page/about-us', 0, 'on', '2025-10-10 14:03:19'),
+(19, 0, 'Info', '/pages', 5, 'on', '2025-10-09 10:15:38'),
+(18, 0, 'Youtube', '/youtube-gallery', 6, 'on', '2025-10-09 10:15:01'),
+(17, 0, 'Albums', '/photo-gallery', 5, 'on', '2025-10-09 10:14:12'),
+(13, 0, 'Articles', '/articles', 1, 'on', '2025-10-09 05:23:15'),
+(16, 0, 'Authors', '/authors', 4, 'on', '2025-10-09 10:12:54'),
+(12, 0, 'Home', '/home', 0, 'on', '2025-10-09 05:23:01'),
+(21, 19, 'Careers', '/page/careers', 0, 'on', '2025-10-10 14:03:34');
 
 -- --------------------------------------------------------
 
@@ -496,17 +510,48 @@ CREATE TABLE IF NOT EXISTS `media_library` (
   `entry_date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_media`),
   KEY `uploaded_by` (`uploaded_by`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `media_library`
 --
 
 INSERT INTO `media_library` (`key_media`, `file_url`, `file_type`, `alt_text`, `tags`, `uploaded_by`, `entry_date_time`) VALUES
-(1, 'https://images.pexels.com/photos/56866/garden-rose-red-pink-56866.jpeg', 'image', 'Red Rose from Pexels', 'rose', 1, '2025-10-08 06:48:22'),
-(2, 'https://images.pexels.com/photos/46216/sunflower-flowers-bright-yellow-46216.jpeg', 'image', 'Yellow SunFlower', 'flower, sunflower', 1, '2025-10-08 07:30:40'),
-(3, 'https://images.pexels.com/photos/67857/daisy-flower-spring-marguerite-67857.jpeg', 'image', 'White Daisy Flower', 'flower, daisy', 1, '2025-10-08 07:31:17'),
-(4, 'https://images.pexels.com/photos/54323/rose-composites-flowers-spring-54323.jpeg', 'image', 'Pink Rose', 'rose, flower', 1, '2025-10-08 07:32:16');
+(5, '/media/images/2025/badshahi-mosque-lahore-pakistan.jpg', 'image', 'Badshahi Mosque, Lahore, Pakistan', '', 1, '2025-10-10 05:45:21'),
+(6, '/media/images/2025/ferris-wheel-singapore.jpg', 'image', 'Ferris Wheel Singapore', '', 1, '2025-10-10 05:45:55'),
+(7, '/media/images/2025/taj-mahal-india.jpg', 'image', 'Taj Mahal India', '', 1, '2025-10-10 06:13:21'),
+(8, '/media/images/2025/bosphorus-istanbul-turkey.jpg', 'image', 'Bosphorus, Istanbul, Turkey', '', 1, '2025-10-10 07:17:46'),
+(9, '/media/images/2025/eiffel-tower-paris-france.jpg', 'image', 'Eiffel Tower, Paris, France', '', 1, '2025-10-10 07:18:19'),
+(10, '/media/images/2025/golden-gate-bridge-san-francisco-california-united-states.jpg', 'image', 'Golden Gate Bridge, San Francisco, California, United States', '', 1, '2025-10-10 07:19:02'),
+(11, '/media/images/2025/great-wall-of-china.jpg', 'image', 'Great Wall of China', '', 1, '2025-10-10 07:19:24'),
+(12, '/media/images/2025/sydney-opera-house-australia.jpg', 'image', 'Opera House, Sydney, Australia', '', 1, '2025-10-10 07:20:00'),
+(13, '/media/images/2025/oxford-london-united-kingdom.jpg', 'image', 'Oxford, London, United Kingdom', '', 1, '2025-10-10 07:22:10'),
+(14, '/media/images/2025/taj-mahal-india4.jpg', 'image', 'Taj Mahal India', '', 1, '2025-10-10 10:35:23'),
+(15, '/media/images/2025/taj-mahal-india3.jpg', 'image', 'Taj Mahal India', '', 1, '2025-10-10 10:35:48'),
+(16, '/media/images/2025/taj-mahal-india4.jpg', 'image', 'Taj Mahal India', '', 1, '2025-10-10 10:36:00'),
+(17, '/media/images/2025/sydney-opera-house-australia4.jpg', 'image', 'Sydney Opera House', '', 1, '2025-10-10 10:36:31'),
+(18, '/media/images/2025/sydney-opera-house-australia3.jpg', 'image', 'Sydney Opera House', '', 1, '2025-10-10 10:36:46'),
+(19, '/media/images/2025/sydney-opera-house-australia2.jpg', 'image', 'Sydney Opera House', '', 1, '2025-10-10 10:36:58'),
+(20, '/media/images/2025/oxford-london-united-kingdom3.jpg', 'image', 'Oxford London', '', 1, '2025-10-10 10:37:25'),
+(21, '/media/images/2025/oxford-london-united-kingdom2.jpg', 'image', 'Oxford London', '', 1, '2025-10-10 10:37:37'),
+(22, '/media/images/2025/oxford-london-united-kingdom2.jpg', 'image', 'Oxford London', '', 1, '2025-10-10 10:37:46'),
+(23, '/media/images/2025/great-wall-of-china4.jpg', 'image', 'Great Wall of China', '', 1, '2025-10-10 10:38:04'),
+(24, '/media/images/2025/great-wall-of-china3.jpg', 'image', 'Great Wall of China', '', 1, '2025-10-10 10:38:19'),
+(25, '/media/images/2025/great-wall-of-china2.jpg', 'image', 'Great Wall of China', '', 1, '2025-10-10 10:38:28'),
+(26, '/media/images/2025/golden-gate-bridge-san-francisco-california-united-states4.jpg', 'image', 'Golden Gate Bridge', '', 1, '2025-10-10 10:38:45'),
+(27, '/media/images/2025/golden-gate-bridge-san-francisco-california-united-states3.jpg', 'image', 'Golde Gate Bridge', '', 1, '2025-10-10 10:38:55'),
+(28, '/media/images/2025/golden-gate-bridge-san-francisco-california-united-states2.jpg', 'image', 'Golden Gate Bridge', '', 1, '2025-10-10 10:39:13'),
+(29, '/media/images/2025/ferris-wheel-singapore3.jpg', 'image', 'Ferris Wheel Singapore', '', 1, '2025-10-10 10:39:33'),
+(30, '/media/images/2025/ferris-wheel-singapore2.jpg', 'image', 'Ferris Wheel Singapore', '', 1, '2025-10-10 10:39:43'),
+(31, '/media/images/2025/eiffel-tower-paris-france4.jpg', 'image', 'Eiffel Tower France', '', 1, '2025-10-10 10:40:09'),
+(32, '/media/images/2025/eiffel-tower-paris-france3.jpg', 'image', 'Eiffel Tower France', '', 1, '2025-10-10 10:40:21'),
+(33, '/media/images/2025/eiffel-tower-paris-france2.jpg', 'image', 'Eiffel Tower France', '', 1, '2025-10-10 10:40:30'),
+(34, '/media/images/2025/bosphorus-istanbul-turkey4.jpg', 'image', 'Istanbul Turkey', '', 1, '2025-10-10 10:40:53'),
+(35, '/media/images/2025/bosphorus-istanbul-turkey3.jpg', 'image', 'Istanbul Turkey', '', 1, '2025-10-10 10:41:05'),
+(36, '/media/images/2025/bosphorus-istanbul-turkey2.jpg', 'image', 'Istanbul Turkey', '', 1, '2025-10-10 10:41:15'),
+(37, '/media/images/2025/badshahi-mosque-lahore4.jpg', 'image', 'Badshahi Mosque Lahore', '', 1, '2025-10-10 10:41:45'),
+(38, '/media/images/2025/badshahi-mosque-lahore3.jpg', 'image', 'Badshahi Mosque Lahore', '', 1, '2025-10-10 10:41:53'),
+(39, '/media/images/2025/badshahi-mosque-lahore2.jpg', 'image', 'Badshahi Mosque Lahore', '', 1, '2025-10-10 10:42:04');
 
 -- --------------------------------------------------------
 
@@ -534,17 +579,11 @@ CREATE TABLE IF NOT EXISTS `pages` (
 --
 
 INSERT INTO `pages` (`key_pages`, `key_media_banner`, `banner_image_url`, `title`, `page_content`, `url`, `status`, `entry_date_time`, `update_date_time`) VALUES
-(2, NULL, 'banner-home.jpg', 'Home', 'Welcome to our editorial platform. Discover articles, books, and more.', 'homee', 'on', '2025-09-25 15:27:07', '2025-10-06 05:40:41'),
 (3, 1, 'banner-about.jpg', 'About Us', 'We build tools that empower editorial teams through clean design and modular workflows.', 'about-us', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
 (4, 2, 'banner-contact.jpg', 'Contact', 'Reach out to us via email or social media. We value your feedback.', 'contact', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
 (5, NULL, 'banner-privacy.jpg', 'Privacy Policy', 'This page outlines how we handle user data and respect privacy.', 'privacy-policy', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
 (6, NULL, 'banner-terms.jpg', 'Terms of Use', 'By using this site, you agree to our terms and conditions.', 'terms-of-use', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(7, NULL, 'banner-authors.jpg', 'Authors', 'Meet the contributors who shape our editorial voice.', 'authors', 'on', '2025-09-25 15:27:07', '2025-09-29 22:05:39'),
-(8, NULL, 'banner-books.jpg', 'Books', 'Explore our curated collection of publishing and design books.', 'books', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(9, NULL, 'banner-categories.jpg', 'Categories', 'Browse content by editorial categories and themes.', 'categories', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(10, NULL, 'banner-editorial.jpg', 'Editorial Philosophy', 'Our approach to content creation, curation, and publishing.', 'editorial-philosophy', 'on', '2025-09-25 15:27:07', '2025-09-25 15:27:07'),
-(12, 0, '', 'Careers', 'Testing careers', 'careers', 'on', '2025-10-07 16:55:28', '2025-10-07 16:55:28'),
-(13, 1, '', 'New Photo Test Page', '', 'new-photo-test-page', 'on', '2025-10-08 09:41:01', '2025-10-08 09:41:01');
+(12, 0, '', 'Careers', 'Testing careers', 'careers', 'on', '2025-10-07 16:55:28', '2025-10-07 16:55:28');
 
 -- --------------------------------------------------------
 
@@ -561,7 +600,7 @@ CREATE TABLE IF NOT EXISTS `photo_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_photo_gallery`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `photo_categories`
@@ -578,7 +617,16 @@ INSERT INTO `photo_categories` (`id`, `key_photo_gallery`, `key_categories`, `ur
 (38, 9, 4, NULL),
 (39, 11, 15, NULL),
 (40, 13, 15, NULL),
-(42, 15, 13, NULL);
+(42, 15, 13, NULL),
+(43, 17, 26, NULL),
+(44, 16, 25, NULL),
+(45, 18, 26, NULL),
+(46, 19, 26, NULL),
+(47, 20, 23, NULL),
+(48, 21, 24, NULL),
+(49, 22, 23, NULL),
+(55, 23, 26, NULL),
+(54, 24, 26, NULL);
 
 -- --------------------------------------------------------
 
@@ -601,21 +649,22 @@ CREATE TABLE IF NOT EXISTS `photo_gallery` (
   `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`key_photo_gallery`),
   KEY `fk_photo_gallery_media` (`key_media_banner`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `photo_gallery`
 --
 
 INSERT INTO `photo_gallery` (`key_photo_gallery`, `key_media_banner`, `title`, `image_url`, `description`, `status`, `entry_date_time`, `update_date_time`, `created_by`, `updated_by`, `url`) VALUES
-(1, 0, 'Mountain Sunrise', 'https://picsum.photos/id/1018/800/600', 'A breathtaking sunrise over the mountains. A testing scene.', 'on', '2025-09-30 03:07:08', '2025-10-01 17:57:22', NULL, 1, 'mountain-sunrise'),
-(2, NULL, 'City Reflections', 'https://picsum.photos/id/1025/800/600', 'Urban reflections captured at dusk.k', 'on', '2025-09-30 03:07:02', '2025-10-01 17:57:22', NULL, NULL, NULL),
-(3, NULL, 'Desert Wandererererer', 'https://images.unsplash.com/photo-1506744038136-46273834b3fb', 'A lone traveler in the vast desert.', 'on', '2025-09-30 14:41:27', '2025-10-01 17:57:22', NULL, 1, 'desert-wandererererer'),
-(14, NULL, 'Yet Another Hello World Photo', 'https://images.unsplash.com/photo-1758445048994-d337f97acf4c?w=500', '', 'on', '2025-10-04 16:35:37', '2025-10-04 11:35:37', 1, NULL, 'helloworldphoto'),
-(5, NULL, 'Lined up Trees', 'https://fastly.picsum.photos/id/568/500/250.jpg?hmac=tVgo0DMwBaQM-ZkExvcWJ5Ivj7oM5iAQYy1B4bIc9tM', '', 'on', '2025-09-29 18:37:27', '2025-10-01 17:57:22', NULL, NULL, NULL),
-(6, NULL, 'Yet Another Photo', 'https://picsum.photos/id/1018/800/600', '', 'on', '2025-09-30 14:53:16', '2025-10-01 17:57:22', NULL, 1, 'designing-editorial-systemsdsfs'),
-(15, 3, 'Why PHoto', 'https://images.unsplash.com/photo-1758445048994-d337f97acf4c?w=500', '', 'on', '2025-10-04 16:36:27', '2025-10-04 11:36:27', 1, 1, 'whyphoto'),
-(16, 4, 'Photo Gallery Photo Test', 'https://images.pexels.com/photos/32276235/pexels-photo-32276235.jpeg', '', 'on', '2025-10-08 14:47:00', '2025-10-08 09:47:00', 1, NULL, 'photo-gallery-photo-test');
+(22, 12, 'Sydney Opera House Australia', '/media/images/2025/sydney-opera-house-australia.jpg', '', 'on', '2025-10-10 12:54:56', '2025-10-10 07:54:56', 1, NULL, 'sydney-opera-house-australia'),
+(20, 10, 'Golden Gate Bridge San Francisco California United States', '/media/images/2025/golden-gate-bridge-san-francisco-california-united-states.jpg', '', 'on', '2025-10-10 12:53:38', '2025-10-10 07:53:38', 1, NULL, 'golden-gate-bridge-san-francisco-california-united-states'),
+(21, 11, 'Great Wall of China', '/media/images/2025/great-wall-of-china.jpg', '', 'on', '2025-10-10 12:54:09', '2025-10-10 07:54:09', 1, NULL, 'great-wall-of-china'),
+(17, 0, 'Bosphorus Istanbul Turkey', '/media/images/2025/bosphorus-istanbul-turkey.jpg', '', 'on', '2025-10-10 12:41:00', '2025-10-10 07:41:00', 1, 1, 'bosphorus-istanbul-turkey'),
+(18, 9, 'Eiffel Tower Paris France', 'http://copilot/media/images/2025/eiffel-tower-paris-france.jpg', '', 'on', '2025-10-10 12:52:14', '2025-10-10 07:52:14', 1, NULL, 'eiffel-tower-paris-france'),
+(19, 6, 'Ferris Wheel Singapore', '/media/images/2025/ferris-wheel-singapore.jpg', '', 'on', '2025-10-10 12:52:51', '2025-10-10 07:52:51', 1, NULL, 'ferris-wheel-singapore'),
+(16, 0, 'Oxford University London', '/media/images/2025/oxford-london-united-kingdom.jpg', '', 'on', '2025-10-08 14:47:00', '2025-10-08 09:47:00', 1, 1, 'oxford-university-london'),
+(23, 0, 'Taj Mahal India', '/media/images/2025/taj-mahal-india.jpg', '', 'on', '2025-10-10 12:55:31', '2025-10-10 07:55:31', 1, 1, 'taj-mahal-india'),
+(24, 0, 'Badshahi Mosque Lahore Pakistan', '/media/images/2025/badshahi-mosque-lahore-pakistan.jpg', '', 'on', '2025-10-10 12:55:55', '2025-10-10 07:55:55', 1, 1, 'badshahi-mosque-lahore-pakistan');
 
 -- --------------------------------------------------------
 
@@ -633,7 +682,7 @@ CREATE TABLE IF NOT EXISTS `photo_gallery_images` (
   PRIMARY KEY (`key_image`),
   KEY `key_photo_gallery` (`key_photo_gallery`),
   KEY `fk_photo_gallery_images_media` (`key_media_banner`)
-) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `photo_gallery_images`
@@ -645,10 +694,40 @@ INSERT INTO `photo_gallery_images` (`key_image`, `key_media_banner`, `key_photo_
 (30, 2, 14, 0, '2025-10-09 02:34:48'),
 (27, 3, 6, 0, '2025-10-09 02:34:13'),
 (29, 4, 3, 0, '2025-10-09 02:34:38'),
+(34, 39, 24, 0, '2025-10-10 10:42:37'),
 (25, 4, 6, 0, '2025-10-09 02:34:06'),
-(31, 4, 16, 0, '2025-10-09 02:34:57'),
-(32, 1, 16, 0, '2025-10-09 02:35:00'),
-(33, 1, 15, 0, '2025-10-09 02:35:08');
+(65, 22, 16, 0, '2025-10-10 10:47:14'),
+(64, 13, 16, 0, '2025-10-10 10:47:04'),
+(33, 1, 15, 0, '2025-10-09 02:35:08'),
+(35, 38, 24, 0, '2025-10-10 10:42:41'),
+(36, 37, 24, 0, '2025-10-10 10:42:43'),
+(39, 7, 23, 0, '2025-10-10 10:43:09'),
+(40, 14, 23, 0, '2025-10-10 10:43:17'),
+(41, 15, 23, 0, '2025-10-10 10:43:32'),
+(42, 12, 22, 0, '2025-10-10 10:44:01'),
+(43, 17, 22, 0, '2025-10-10 10:44:09'),
+(44, 18, 22, 0, '2025-10-10 10:44:12'),
+(45, 19, 22, 0, '2025-10-10 10:44:15'),
+(46, 11, 21, 0, '2025-10-10 10:44:34'),
+(47, 25, 21, 0, '2025-10-10 10:44:40'),
+(48, 23, 21, 0, '2025-10-10 10:44:51'),
+(49, 24, 21, 0, '2025-10-10 10:45:06'),
+(50, 10, 20, 0, '2025-10-10 10:45:17'),
+(51, 26, 20, 0, '2025-10-10 10:45:21'),
+(52, 28, 20, 0, '2025-10-10 10:45:23'),
+(53, 6, 19, 0, '2025-10-10 10:45:44'),
+(54, 29, 19, 0, '2025-10-10 10:45:49'),
+(55, 30, 19, 0, '2025-10-10 10:45:51'),
+(56, 9, 18, 0, '2025-10-10 10:46:10'),
+(57, 31, 18, 0, '2025-10-10 10:46:15'),
+(58, 32, 18, 0, '2025-10-10 10:46:17'),
+(59, 33, 18, 0, '2025-10-10 10:46:19'),
+(60, 8, 17, 0, '2025-10-10 10:46:41'),
+(61, 34, 17, 0, '2025-10-10 10:46:46'),
+(62, 35, 17, 0, '2025-10-10 10:46:48'),
+(63, 36, 17, 0, '2025-10-10 10:46:51'),
+(67, 20, 16, 0, '2025-10-10 10:47:21'),
+(68, 13, 16, 0, '2025-10-10 10:47:24');
 
 -- --------------------------------------------------------
 
@@ -828,7 +907,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `is_active` tinyint(1) DEFAULT '1',
   `entry_date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_settings`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings`
@@ -858,7 +937,7 @@ INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting
 (21, 'youtube_gallery_embed_style', 'iframe', 'gallery', 'text', 1, '2025-10-06 18:07:08'),
 (22, 'gallery_items_per_page', '12', 'gallery', 'number', 1, '2025-10-06 18:07:08'),
 (23, 'default_font_family', 'Arial, sans-serif', 'ui', 'text', 1, '2025-10-06 18:07:08'),
-(24, 'default_theme_color', '#0055aa', 'ui', 'color', 1, '2025-10-06 18:07:08'),
+(24, 'template_default_color', '#0055aa', 'ui', 'color', 1, '2025-10-10 13:01:14'),
 (25, 'default_button_style', 'rounded', 'ui', 'text', 1, '2025-10-06 18:07:08'),
 (26, 'default_loading_spinner', 'spinner-circle', 'ui', 'text', 1, '2025-10-06 18:07:08'),
 (27, 'default_404_message', 'Page not found.', 'ui', 'text', 1, '2025-10-06 18:07:08'),
@@ -870,7 +949,9 @@ INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting
 (33, 'frontend_debug_mode', '0', 'debug', 'boolean', 1, '2025-10-06 18:07:08'),
 (34, 'frontend_cache_ttl', '300', 'debug', 'number', 1, '2025-10-06 18:07:08'),
 (35, 'frontend_ajax_timeout', '5000', 'debug', 'number', 1, '2025-10-06 18:07:08'),
-(37, 'template_folder', 'editorial', 'ui', 'dropdown', 1, '2025-10-06 18:59:28');
+(37, 'template_folder', 'editorial', 'ui', 'dropdown', 1, '2025-10-06 18:59:28'),
+(38, 'template_default_logo', '/templates/default/images/copilogcms.jpg', 'ui', 'text', 1, '2025-10-10 12:11:50'),
+(39, 'template_default_cover_image', '/templates/default/images/pexels-wasifmehmood997-19442078.jpg', 'ui', 'text', 1, '2025-10-10 13:02:14');
 
 -- --------------------------------------------------------
 
@@ -928,7 +1009,7 @@ CREATE TABLE IF NOT EXISTS `youtube_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_youtube_gallery`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `youtube_categories`
@@ -947,7 +1028,11 @@ INSERT INTO `youtube_categories` (`id`, `key_youtube_gallery`, `key_categories`,
 (25, 12, 20, NULL),
 (26, 13, 8, NULL),
 (27, 13, 14, NULL),
-(29, 8, 21, NULL);
+(29, 8, 21, NULL),
+(30, 14, 27, NULL),
+(31, 15, 28, NULL),
+(32, 16, 29, NULL),
+(33, 17, 30, NULL);
 
 -- --------------------------------------------------------
 
@@ -970,20 +1055,17 @@ CREATE TABLE IF NOT EXISTS `youtube_gallery` (
   `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`key_youtube_gallery`),
   KEY `fk_youtube_gallery_media` (`key_media_banner`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `youtube_gallery`
 --
 
 INSERT INTO `youtube_gallery` (`key_youtube_gallery`, `key_media_banner`, `title`, `youtube_id`, `thumbnail_url`, `description`, `status`, `entry_date_time`, `created_by`, `updated_by`, `url`) VALUES
-(4, NULL, 'From the Vault: Qadir takes five at the MCGG', 'CbOy9J8i1sk', 'https://i3.ytimg.com/vi/CbOy9J8i1sk/maxresdefault.jpg', 'Despite a record-breaking 268 from Australia\'s Graham Yallop, Pakistan leg-spinner Abdul Qadir held firm with five wickets in the 1983 Boxing Day Tests\r\n', 'on', '2025-09-30 16:00:14', NULL, 1, 'from-the-vault-qadir-takes-five-at-the-mcg'),
-(5, NULL, 'Tony Greg Commentry Gold', '59aoWggycSE', 'https://i.ytimg.com/vi/59aoWggycSE/hq720.jpg?sqp=-oaymwFBCNAFEJQDSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG-B4AC0AWKAgwIABABGGUgVihPMA8=&rs=AOn4CLC1vmDZWpIc0QAsD6f6fdIW8J0mKw', '', 'on', '2025-09-30 16:05:06', NULL, 1, 'tony-greg-gold'),
-(8, 0, 'One Again Old 1947 Video', 'j9TWBV_gKf8', 'https://i.ytimg.com/vi/j9TWBV_gKf8/hqdefault.jpg?sqp=-oaymwFBCOADEI4CSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-BIAC4AOKAgwIABABGGUgZShlMA8=&rs=AOn4CLCrEcdHpJcjiibQ2V7gKlqqXmtZHQ', '', 'on', '2025-10-01 23:12:51', 1, 1, 'from-the-vault-qadir-takes-five-at-the-mcggg'),
-(10, NULL, 'Tony Greg', '59aoWggycSE', 'https://i.ytimg.com/vi/59aoWggycSE/hq720.jpg?sqp=-oaymwFBCNAFEJQDSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG-B4AC0AWKAgwIABABGGUgVihPMA8=&rs=AOn4CLC1vmDZWpIc0QAsD6f6fdIW8J0mKw', '', 'on', '2025-10-05 09:59:50', 1, 1, 'commentry-gold123'),
-(11, NULL, 'Minar-e-Pakistan History || Lahore, Pakistan ðŸ‡µðŸ‡°', 'OVP.B5X3vac', 'https://th.bing.com/th?&id=OVP.B5X3vac-igTcXaDNZ2EgGAHgFo&w=276&h=154&c=7&pid=2.1&rs=1', '', 'on', '2025-10-05 10:02:50', 1, 1, 'minar-e-pakistan-tareekh-history'),
-(12, 0, 'Pakistan\'s 78th Youm e Azadi', '3CNhflmZVl0', 'https://th.bing.com/th?&id=OVP.bRUSwJK-hb7rOuLOY9Dj5wHgFo&w=271&h=152&c=7&pid=2.1&rs=1', 'A testing year of independence.', 'on', '2025-10-05 10:05:16', 1, 1, 'pakistan-78-yaum-e-azadi-ka-din'),
-(13, 0, 'Open Van Photo Test', 'G2KOnkCtgwQ', 'https://images.pexels.com/photos/10630987/pexels-photo-10630987.jpeg', '', 'on', '2025-10-08 14:52:09', 1, 1, 'open-van-photo-test');
+(14, 0, 'England vs South Africa - Highlights', 'mq4_JpV9qPc', '', '', 'on', '2025-10-10 16:50:47', 1, 1, 'england-vs-south-africa-highlights'),
+(15, 0, 'Best Goals in Football', 'XKAV4qRIvJ8', '', '', 'on', '2025-10-10 16:54:57', 1, NULL, 'best-goals-in-football'),
+(16, 0, 'The Big Swimming Race', 'bSc0ddvxoec', '', '', 'on', '2025-10-10 16:56:52', 1, NULL, 'the-big-swimming-race'),
+(17, 0, 'Best Set of the Year', 'vel8ekZ8rTs', '', '', 'on', '2025-10-10 16:58:56', 1, NULL, 'best-set-of-the-year');
 
 --
 -- Indexes for dumped tables
@@ -1009,6 +1091,11 @@ ALTER TABLE `books` ADD FULLTEXT KEY `title` (`title`,`subtitle`,`publisher`,`de
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories` ADD FULLTEXT KEY `name` (`name`,`description`);
+
+--
+-- Indexes for table `media_library`
+--
+ALTER TABLE `media_library` ADD FULLTEXT KEY `alt_text` (`alt_text`,`tags`);
 
 --
 -- Indexes for table `pages`

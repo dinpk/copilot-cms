@@ -7,7 +7,7 @@ include '../users/auth.php';
 
 <?php startLayout("Photo Gallery"); ?>
 
-<p><a href="#" onclick="openModal()">➕ Add New Photo</a> &nbsp;&nbsp; ⛾ <a href="list_assign_images.php"> Assign Photos</a></p>
+<p><a href="#" onclick="openModal()">➕ Add Photo Gallery</a> &nbsp;&nbsp; ⛾ <a href="list_assign_images.php"> Assign Photos</a></p>
 
 <form method="get">
   <input type="text" name="q" placeholder="Search photos..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
@@ -19,8 +19,7 @@ include '../users/auth.php';
     <tr>
       <th>Image</th>
       <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
-	  <th>Created</th>
-	  <th>Updated</th>
+	  <th>Created / Updated</th>
       <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
@@ -63,8 +62,7 @@ include '../users/auth.php';
       echo "<tr>
         <td><img src='{$row['image_url']}' width='120'></td>
         <td>{$row['title']}</td>
-		<td>{$createdUpdated['creator']}</td>
-		<td>{$createdUpdated['updater']}</td>
+		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
           <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo.php\", [\"title\",\"url\",\"image_url\",\"description\",\"status\"])'>Edit</a> |
@@ -102,7 +100,7 @@ include '../users/auth.php';
 
 <!-- Modal Form -->
 <div id="modal" class="modal">
-  <h3 id="modal-title">Add Photo</h3>
+  <h3 id="modal-title">Add Photo Gallery</h3>
   <form id="modal-form" method="post">
 	<input type="hidden" name="key_photo_gallery" id="key_photo_gallery">
 
@@ -114,12 +112,12 @@ include '../users/auth.php';
 	<input type="text" name="url" id="url" 
 		   placeholder="Slug" 
 		   required maxlength="200" 
-		   pattern="^[a-z0-9\-]+$" 
+		   pattern="^[a-z0-9\-\/]+$" 
 		   title="Lowercase letters, numbers, and hyphens only"><br>
 
 	<input type="text" name="image_url" id="image_url" 
 		   placeholder="Image URL" 
-		   required maxlength="2000"><br>
+		   maxlength="2000"><br>
 
 	<br>
 	<input type="hidden" name="key_media_banner" id="key_media_banner">

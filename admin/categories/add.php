@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	  name, description, url, sort, status, category_type, key_media_banner
 	) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-	$stmt->bind_param("sssiss",
+	$stmt->bind_param("sssissi",
 	  $_POST['name'],
 	  $_POST['description'],
 	  $_POST['url'],
