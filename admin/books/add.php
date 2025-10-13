@@ -18,25 +18,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $createdBy = $_SESSION['key_user'];
 
 	$stmt = $conn->prepare("INSERT INTO books (
-		title, subtitle, description, cover_image_url, url,
-		author_name, publisher, publish_year, isbn, price,
-		stock_quantity, discount_percent, is_featured, language,
+		title, subtitle, description, url,
+		author_name, publisher, publish_year, isbn, is_featured, language,
 		format, weight_grams, sku, status, created_by, key_media_banner 
-	) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+	) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-	$stmt->bind_param("sssssssssdiiisssisii",
+	$stmt->bind_param("ssssssssisssisii",
 		$_POST['title'],
 		$_POST['subtitle'],
 		$_POST['description'],
-		$_POST['cover_image_url'],
 		$_POST['url'],
 		$_POST['author_name'],
 		$_POST['publisher'],
 		$_POST['publish_year'],
 		$_POST['isbn'],
-		$_POST['price'],
-		$_POST['stock_quantity'],
-		$_POST['discount_percent'],
 		$_POST['is_featured'],
 		$_POST['language'],
 		$_POST['format'],

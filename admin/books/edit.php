@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 	$updatedBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("UPDATE books SET
-    title = ?, subtitle = ?, description = ?, cover_image_url = ?, url = ?,
+    title = ?, subtitle = ?, description = ?, url = ?,
     author_name = ?, publisher = ?, publish_year = ?, status = ?,
     updated_by = ?, key_media_banner = ? 
     WHERE key_books = ?");
@@ -29,11 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssssssiii",
+  $stmt->bind_param("ssssssssiii",
     $_POST['title'],
     $_POST['subtitle'],
     $_POST['description'],
-    $_POST['cover_image_url'],
     $_POST['url'],
     $_POST['author_name'],
     $_POST['publisher'],

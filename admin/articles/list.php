@@ -18,10 +18,10 @@ include '../users/auth.php';
   <thead>
     <tr>
       <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
-      <th>Snippet</th>
+      <th>Type</th>
 	  <th>Authors</th>
-		<th>Created</th>
-		<th>Updated</th>
+	  <th><?= sortLink('Created', 'entry_date_time', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+	  <th><?= sortLink('Updated', 'update_date_time', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th>Actions</th>
     </tr>
@@ -42,15 +42,15 @@ include '../users/auth.php';
 	// sort
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['title', 'status'];
+	$allowedSorts = ['title', 'status', 'entry_date_time', 'update_date_time'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
 
 
-	$sql = "SELECT * FROM articles";
+	$sql = "SELECT key_articles, title, content_type, article_snippet, entry_date_time, update_date_time, status FROM articles";
 	if ($q !== '') {
-	  $sql .= " WHERE MATCH(title, title_sub,content_type, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+	  $sql .= " WHERE MATCH(title, title_sub, content_type, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
 	$sql .= " ORDER BY $sort $dir LIMIT $limit OFFSET $offset";
     $result = $conn->query($sql);
@@ -75,16 +75,19 @@ include '../users/auth.php';
 		}
 		$authorDisplay = implode(', ', $authorNames);
 		
+		$date_created = date_format(date_create($row["entry_date_time"]), "d M, Y - H:i a");
+		$date_updated = date_format(date_create($row["update_date_time"]), "d M, Y - H:i a");
+		
 		echo "<tr>
 		<td>{$row['title']}</td>
-		<td>{$row['article_snippet']}</td>
+		<td>{$row['content_type']}</td>
 		<td>" . htmlspecialchars($authorDisplay) . "</td>
-		<td>{$createdUpdated['creator']}</td>
-		<td>{$createdUpdated['updater']}</td>
+		<td><small>{$createdUpdated['creator']} $date_created</small></td>
+		<td><small>{$createdUpdated['updater']} $date_updated</small></td>
 		<td>{$row['status']}</td>
 		<td>
 		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"banner_image_url\",\"sort\",\"status\"])'>Edit</a> |
-		  <a href='#' onclick='openAuthorModal({$row['key_articles']})'>Assign Authors</a> |
+		  <a href='#' onclick='openAuthorModal({$row['key_articles']})'>Authors</a> |
 		  <a href='preview.php?id={$row['key_articles']}' target='_blank'>Preview</a> |
 		  <a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'>Delete</a>
 		</td>
@@ -158,9 +161,13 @@ include '../users/auth.php';
 
 	<br>
 
+	<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"><br>
+
+	<br><br>
+
 	<input type="hidden" name="key_media_banner" id="key_media_banner">
 	<div id="media-preview"></div>
-	<button type="button" onclick="openMediaModal()">Select Banner Image</button>
+	<button type="button" onclick="openMediaModal()">Select Banner Image</button> 
 	
 	<br><br>
 

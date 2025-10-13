@@ -14,22 +14,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		  exit;
 	  }
 
+  $available_for_blocks = isset($_POST['available_for_blocks']) ? 'on' : 'off';	
   $status = isset($_POST['status']) ? 'on' : 'off';	
   $createdBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("INSERT INTO photo_gallery (
-    title, url, image_url, description, status, created_by, key_media_banner 
-  ) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    title, url, image_url, description, available_for_blocks, status, created_by, key_media_banner 
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssii",
+  $stmt->bind_param("ssssssii",
     $_POST['title'],
     $_POST['url'],
     $_POST['image_url'],
     $_POST['description'],
+    $available_for_blocks,
     $status,
 	$createdBy,
 	$_POST['key_media_banner']

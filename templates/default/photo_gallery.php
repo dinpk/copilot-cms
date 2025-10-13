@@ -93,13 +93,13 @@ startLayout("Photo Gallery");
 
 <!-- Modal Viewer with Arrows -->
 <div id="albumModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000cc; z-index:9999;">
-  <div style="position:relative; width:90%; max-width:1000px; margin:3% auto; background:#fff; padding:20px; border-radius:8px;">
+  <div style="position:relative; width:90vw; height:90vh; margin:3% auto; background:#fff; padding:20px; border-radius:8px;">
     <span onclick="closeAlbum()" style="position:absolute; top:10px; right:20px; cursor:pointer; font-size:24px;">&times;</span>
     <h2 id="albumTitle"></h2>
     <div style="position:relative;">
-      <button onclick="prevImage()" style="position:absolute; left:-40px; top:50%; transform:translateY(-50%); font-size:24px;">⬅</button>
+      <button onclick="prevImage()" style="position:absolute; left:-40px; top:35vh; transform:translateY(-50%); font-size:24px;">⬅</button>
       <img id="albumImage" src="" alt="" style="max-width:100%; max-height:500px; display:block; margin:0 auto;">
-      <button onclick="nextImage()" style="position:absolute; right:-40px; top:50%; transform:translateY(-50%); font-size:24px;">➡</button>
+      <button onclick="nextImage()" style="position:absolute; right:-40px; top:35vh; transform:translateY(-50%); font-size:24px;">➡</button>
     </div>
     <p id="albumCaption" style="text-align:center; margin-top:10px;"></p>
   </div>

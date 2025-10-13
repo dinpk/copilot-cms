@@ -26,6 +26,6 @@ startLayout("Preview: " . htmlspecialchars($article['title']));
 <h3><?= htmlspecialchars($article['title_sub']) ?></h3>
 <img src="<?= htmlspecialchars($article['banner_url'] ?? $article['banner_image_url']) ?>" width="600"><br>
 <p><em><?= htmlspecialchars($article['article_snippet']) ?></em></p>
-<div><?= nl2br(htmlspecialchars($article['article_content'])) ?></div>
+<div><?= $article['article_content'] ?></div>
 
 <?php endLayout(); ?>

@@ -16,29 +16,44 @@ if (!$category) {
 }
 
 startLayout("Category: " . htmlspecialchars($category['name']));
-echo "<h1>Category: " . htmlspecialchars($category['name']) . "</h1>";
 
-
-if ($category['banner']) {
-  echo "<img src='" . htmlspecialchars($category['banner']) . "' width='600'><br>";
-}
-
-// Get articles in this category
-$articles = $conn->query("SELECT a.*, m.file_url AS banner 
-                          FROM articles a
-                          JOIN article_categories ac ON a.key_articles = ac.key_articles
-                          LEFT JOIN media_library m ON a.key_media_banner = m.key_media
-                          WHERE ac.key_categories = {$category['key_categories']} AND a.status = 'on'
-                          ORDER BY a.sort");
-
-while ($a = $articles->fetch_assoc()) {
-  echo "<div class='article-card'>
-          <img src='{$a['banner']}' width='300'>
-          <h2>{$a['title']}</h2>
-          <p>{$a['article_snippet']}</p>
-          <a href='/article/{$a['url']}'>Read More</a>
-        </div>";
-}
-
-endLayout();
 ?>
+
+<div id="content">
+
+	<?php
+
+	echo "<h1>Category: " . htmlspecialchars($category['name']) . "</h1>";
+
+
+	if ($category['banner']) {
+	  echo "<img src='" . htmlspecialchars($category['banner']) . "' width='600'><br>";
+	}
+
+	// Get articles in this category
+	$articles = $conn->query("SELECT a.*, m.file_url AS banner 
+							  FROM articles a
+							  JOIN article_categories ac ON a.key_articles = ac.key_articles
+							  LEFT JOIN media_library m ON a.key_media_banner = m.key_media
+							  WHERE ac.key_categories = {$category['key_categories']} AND a.status = 'on'
+							  ORDER BY a.sort");
+
+	while ($a = $articles->fetch_assoc()) {
+	  echo "<div class='article-card'>
+			  <img src='{$a['banner']}' width='300'>
+			  <h2>{$a['title']}</h2>
+			  <p>{$a['article_snippet']}</p>
+			  <a href='/article/{$a['url']}'>Read More</a>
+			</div>";
+	}
+	?>
+
+</div>
+
+
+<div id="sidebar">
+	<?php renderBlocks("sidebar_right"); ?>
+</div>
+
+
+<?php endLayout(); ?>

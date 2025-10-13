@@ -49,7 +49,7 @@ include '../layout.php';
         <td>{$row['url']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_pages']}, \"get_page.php\", [\"title\",\"page_content\",\"url\",\"banner_image_url\",\"status\"])'>Edit</a> |
+          <a href='#' onclick='editItem({$row['key_pages']}, \"get_page.php\", [\"title\",\"page_content\",\"url\",\"status\"])'>Edit</a> |
           <a href='delete.php?id={$row['key_pages']}' onclick='return confirm(\"Delete this page?\")'>Delete</a>
         </td>
       </tr>";
@@ -77,10 +77,6 @@ include '../layout.php';
 			 maxlength="200" 
 			 pattern="^[a-z0-9\-\/]+$" 
 			 title="Lowercase letters, numbers, and hyphens only"><br>
-
-	  <input type="text" name="banner_image_url" id="banner_image_url" 
-			 placeholder="Banner Image URL" 
-			 maxlength="200"><br>
 
 		<br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">

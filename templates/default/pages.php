@@ -14,14 +14,19 @@ include __DIR__ . '/layout.php';
 	$page = max(1, intval($_GET['page'] ?? 1));
 	$limit = 6;
 	$offset = ($page - 1) * $limit;
-	$sql = "SELECT title, page_content, url FROM pages WHERE status = 'on'";
+	$sql = "SELECT pages.*, m.file_url AS banner FROM pages 
+							  LEFT JOIN media_library m ON pages.key_media_banner = m.key_media
+							  WHERE pages.status='on' ";
 	$sql .= " ORDER BY entry_date_time DESC LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);
 	while ($a = $records->fetch_assoc()) {
 		echo "<div class='snippet-card'>
-			  <h2>{$a['title']}</h2>
-			  <p>" . firstWords($a['page_content'], 40) . "</p>
-			  <a href='/page/{$a['url']}'>Read More</a>
+				<div><img src='{$a['banner']}' width='300'></div>
+				<div class='snippet-content'>
+					<h2>{$a['title']}</h2>
+					<p>" . firstWords($a['page_content'], 40) . "</p>
+					<a href='/page/{$a['url']}'>Read More</a>
+				</div>
 			</div>";
 	}
 	$countSql = "SELECT COUNT(*) AS total FROM pages WHERE status = 'on'";

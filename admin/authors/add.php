@@ -21,14 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $stmt = $conn->prepare("INSERT INTO authors (
     name, email, phone, website, url,
     social_url_media1, social_url_media2, social_url_media3,
-    city, state, country, image_url, description, status, created_by, key_media_banner
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    city, state, country, description, status, created_by, key_media_banner
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssssssssssii",
+  $stmt->bind_param("sssssssssssssii",
     $_POST['name'],
     $_POST['email'],
     $_POST['phone'],
@@ -40,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST['city'],
     $_POST['state'],
     $_POST['country'],
-    $_POST['image_url'],
     $_POST['description'],
     $status,
 	$createdBy,

@@ -11,8 +11,8 @@ function startLayout($title = "CopilotCMS") {
 		renderBlocks("above_header");
 	echo "</div>";
 
-	echo "<header>";
-		echo "<div id='site-logo'><img src='" . getSetting("template_default_logo") . "'></div>";
+	echo "<header data-animate='fade'>";
+		echo "<div id='site-logo'><a href='/home'><img src='" . getSetting("template_default_logo") . "'></a></div>";
 		renderMainMenu();
 	echo "</header>";
 
@@ -35,7 +35,9 @@ function endLayout() {
 		renderBlocks("below_footer", $page_slug);
 	echo "</div>";
 
-	echo "</body></html>";
+	echo "</body></html>
+	<script src='/templates/default/script.js'></script>
+	";
 }
 
 
@@ -90,6 +92,46 @@ function renderBlocks($region, $currentPage = '') {
 			include("modules/" . $row['module_file'] . ".php");
 		}
 	}
+}
+
+
+
+/**
+ * Clean HTML by removing specific tags and wrapping text nodes in <p>.
+ *
+ * @param string $html The raw HTML input.
+ * @param array $tagsToRemove Tags to remove completely (e.g., ['script', 'h1']).
+ * @return string Sanitized HTML with <p>-wrapped text.
+ */
+function unwantedTagsToParagraphs(string $html, array $tagsToRemove = []): string {
+    libxml_use_internal_errors(true);
+    $doc = new DOMDocument();
+    $doc->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
+
+    // Remove unwanted tags and their content
+    foreach ($tagsToRemove as $tag) {
+        while (true) {
+            $elements = $doc->getElementsByTagName($tag);
+            if ($elements->length === 0) break;
+            $elements->item(0)->parentNode->removeChild($elements->item(0));
+        }
+    }
+
+    // Wrap orphaned text nodes in <p>
+    $body = $doc->getElementsByTagName('body')->item(0);
+    $cleanHtml = '';
+    foreach ($body->childNodes as $node) {
+        if ($node->nodeType === XML_TEXT_NODE) {
+            $text = trim($node->textContent);
+            if ($text !== '') {
+                $cleanHtml .= '<p>' . htmlspecialchars($text) . '</p>';
+            }
+        } else {
+            $cleanHtml .= $doc->saveHTML($node);
+        }
+    }
+
+    return $cleanHtml;
 }
 
 

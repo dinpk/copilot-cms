@@ -16,14 +16,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $stmt = $conn->prepare("INSERT INTO blocks (
     title, block_content, show_on_pages, show_in_region,
-    sort, module_file, status, created_by, key_media_banner
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    sort, module_file, status, created_by, key_media_banner, key_photo_gallery
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssissii",
+  $stmt->bind_param("ssssissiii",
     $_POST['title'],
     $_POST['block_content'],
     $_POST['show_on_pages'],
@@ -32,7 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_POST['module_file'],
 	$status,
 	$createdBy,
-    $_POST['key_media_banner']	
+    $_POST['key_media_banner'],	
+    $_POST['key_photo_gallery']	
   );
 
   $stmt->execute();

@@ -33,12 +33,14 @@ include __DIR__ . '/layout.php';
 		$stmt->execute();
 		$records = $stmt->get_result();
 
-		echo "<h2>Articles in Selected Category</h2>";
+		echo "<h3>Articles in Selected Category</h3><br>";
 		while ($a = $records->fetch_assoc()) {
 			echo "<div class='snippet-card'>
-				  <h2>{$a['title']}</h2>
-				  <p>{$a['article_snippet']}</p>
-				  <a href='/article/{$a['url']}'>Read More</a>
+					<div>
+						<h2>{$a['title']}</h2>
+						<p>{$a['article_snippet']}</p>
+						<a href='/article/{$a['url']}'>Read More</a>
+					</div>
 				  </div>";
 		}
 

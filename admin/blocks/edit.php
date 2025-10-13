@@ -15,14 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $stmt = $conn->prepare("UPDATE blocks SET
     title = ?, block_content = ?, show_on_pages = ?, show_in_region = ?,
     sort = ?, module_file = ?, status = ?,
-    updated_by = ?, key_media_banner = ? 
+    updated_by = ?, key_media_banner = ?, key_photo_gallery = ?  
     WHERE key_blocks = ?");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssissiii",
+  $stmt->bind_param("ssssissiiii",
     $_POST['title'],
     $_POST['block_content'],
     $_POST['show_on_pages'],
@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $status,
 	$updatedBy,
 	$_POST['key_media_banner'],
+	$_POST['key_photo_gallery'],
     $id
   );
 

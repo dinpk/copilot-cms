@@ -19,36 +19,46 @@ if (!$book) {
 startLayout("Book: " . htmlspecialchars($book['title']));
 ?>
 
-<h1><?= htmlspecialchars($book['title']) ?></h1>
-<h3><?= htmlspecialchars($book['subtitle']) ?></h3>
+<div id="content">
 
-<?php if ($book['banner']): ?>
-  <img src="<?= htmlspecialchars($book['banner']) ?>" width="600"><br>
-<?php endif; ?>
+	<h1><?= htmlspecialchars($book['title']) ?></h1>
+	<h3><?= htmlspecialchars($book['subtitle']) ?></h3>
 
-<p>Author: <em><?= htmlspecialchars($book['author_name']) ?></em></p>
-<p><em><?= htmlspecialchars($book['description']) ?></em></p>
+	<?php if ($book['banner']): ?>
+	  <img src="<?= htmlspecialchars($book['banner']) ?>" width="600"><br>
+	<?php endif; ?>
 
-<hr>
+	<p>Author: <em><?= htmlspecialchars($book['author_name']) ?></em></p>
+	<p><em><?= htmlspecialchars($book['description']) ?></em></p>
 
-<!-- Linked Articles -->
-<h2>Articles in this Book</h2>
-<?php
-$articles = $conn->query("SELECT a.*, m.file_url AS banner 
-                          FROM articles a
-                          JOIN book_articles ba ON a.key_articles = ba.key_articles
-                          LEFT JOIN media_library m ON a.key_media_banner = m.key_media
-                          WHERE ba.key_books = {$book['key_books']} AND a.status = 'on'
-                          ORDER BY a.sort");
+	<br><hr><br>
 
-while ($a = $articles->fetch_assoc()) {
-  echo "<div class='article-card'>
-          <img src='{$a['banner']}' width='300'>
-          <h3>{$a['title']}</h3>
-          <p>{$a['article_snippet']}</p>
-          <a href='/article/{$a['url']}'>Read More</a>
-        </div>";
-}
-?>
+	<!-- Linked Articles -->
+	<h2>Articles in this Book</h2>
+	<?php
+	$articles = $conn->query("SELECT a.*, m.file_url AS banner 
+							  FROM articles a
+							  JOIN book_articles ba ON a.key_articles = ba.key_articles
+							  LEFT JOIN media_library m ON a.key_media_banner = m.key_media
+							  WHERE ba.key_books = {$book['key_books']} AND a.status = 'on'
+							  ORDER BY a.sort");
+
+	while ($a = $articles->fetch_assoc()) {
+	  echo "<div class='snippet-card'>
+				<div class='snippet-content'>
+					<h3>{$a['title']}</h3>
+					<p>{$a['article_snippet']}</p>
+					<a href='/article/{$a['url']}'>Read More</a>
+				</div>
+			</div>";
+	}
+	?>
+
+</div>
+
+
+<div id="sidebar">
+	<?php renderBlocks("sidebar_right"); ?>
+</div>
 
 <?php endLayout(); ?>

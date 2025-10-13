@@ -74,7 +74,7 @@ include '../users/auth.php';
 		<td>{$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_authors']}, \"get_author.php\", [\"name\",\"email\",\"phone\",\"website\",\"url\",\"social_url_media1\",\"social_url_media2\",\"social_url_media3\",\"city\",\"state\",\"country\",\"image_url\",\"description\",\"status\"])'>Edit</a> |
+          <a href='#' onclick='editItem({$row['key_authors']}, \"get_author.php\", [\"name\",\"email\",\"phone\",\"website\",\"url\",\"social_url_media1\",\"social_url_media2\",\"social_url_media3\",\"city\",\"state\",\"country\",\"description\",\"status\"])'>Edit</a> |
           <a href='delete.php?id={$row['key_authors']}' onclick='return confirm(\"Delete this author?\")'>Delete</a>
         </td>
       </tr>";
@@ -159,9 +159,6 @@ include '../users/auth.php';
 			 placeholder="Country" 
 			 maxlength="200"><br>
 
-	  <input type="url" name="image_url" id="image_url" 
-			 placeholder="Image URL" 
-			 maxlength="200"><br>
 
 		<br>
 		

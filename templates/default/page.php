@@ -17,20 +17,32 @@ if (!$page) {
 }
 
 startLayout(htmlspecialchars($page['title']));
+
 ?>
 
-<h1><?= htmlspecialchars($page['title']) ?></h1>
 
-<?php if (!empty($page['title_sub'])): ?>
-  <h3><?= htmlspecialchars($page['title_sub']) ?></h3>
-<?php endif; ?>
+<div id="content">
 
-<?php
-if ($page['banner']) {
-  echo "<img src='" . htmlspecialchars($page['banner']) . "' width='600'><br>";
-}
-?>
 
-<div><?= nl2br(htmlspecialchars($page['page_content'])) ?></div>
+	<h1><?= htmlspecialchars($page['title']) ?></h1>
+
+	<?php if (!empty($page['title_sub'])): ?>
+	  <h3><?= htmlspecialchars($page['title_sub']) ?></h3>
+	<?php endif; ?>
+
+	<?php
+	if ($page['banner']) {
+		echo "<div><img src='" . htmlspecialchars($page['banner']) . "' width='600'></div>";
+	}
+	?>
+
+	<div><?= $page['page_content'] ?></div>
+
+</div>
+
+<div id="sidebar">
+	<?php renderBlocks("sidebar_right"); ?>
+</div>
+
 
 <?php endLayout(); ?>

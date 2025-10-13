@@ -58,7 +58,7 @@ include '../users/auth.php';
 		<td>{$row['sort']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"sort\",\"module_file\",\"status\"])'>Edit</a> |
+          <a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"sort\",\"module_file\",\"key_photo_gallery\",\"status\"])'>Edit</a> |
           <a href='delete.php?id={$row['key_blocks']}' onclick='return confirm(\"Delete this block?\")'>Delete</a>
         </td>
       </tr>";
@@ -83,7 +83,7 @@ include '../users/auth.php';
 
 	  <input type="text" name="show_on_pages" id="show_on_pages" 
 			 placeholder="Show on Pages" 
-			 maxlength="1000"><br>
+			 maxlength="1000"><br><br>
 
 		<select name='show_in_region' id='show_in_region'>
 			<option value="above_header">Above Header</option>
@@ -117,6 +117,24 @@ include '../users/auth.php';
 		  echo "<option value='$module_name'>$module_name</option>";
 		}
 		?>
+		</select><br><br>
+
+		
+		<?php
+		// Fetch active photo galleries
+		$galleryQuery = "SELECT key_photo_gallery, title FROM photo_gallery WHERE status = 'on' AND available_for_blocks = 'on' ORDER BY entry_date_time DESC";
+		$galleryResult = mysqli_query($conn, $galleryQuery);
+		?>
+
+		<label for="key_photo_gallery">Assign Photo Gallery:</label><br>
+		<select name="key_photo_gallery" id="key_photo_gallery" class="form-control">
+		  <option value="">-- None --</option>
+		  <?php while ($gallery = mysqli_fetch_assoc($galleryResult)): ?>
+			<option value="<?= $gallery['key_photo_gallery'] ?>"
+			  <?= ($block['key_photo_gallery'] ?? '') == $gallery['key_photo_gallery'] ? 'selected' : '' ?>>
+			  <?= htmlspecialchars($gallery['title']) ?>
+			</option>
+		  <?php endwhile; ?>
 		</select><br><br>
 
 	  <label>

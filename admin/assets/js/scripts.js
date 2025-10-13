@@ -78,6 +78,10 @@ function editItem(id, endpoint, fields) {
   fetch(endpoint + '?id=' + id)
     .then(res => res.json())
     .then(data => {
+		
+		//console.log(data);
+		//return;
+		
       document.getElementById('modal-title').innerText = "Edit";
       document.getElementById('modal-form').action = "edit.php?id=" + id;
 
@@ -85,6 +89,11 @@ function editItem(id, endpoint, fields) {
         const el = document.getElementById(key);
         if (el) el.value = data[key];
       });
+
+      // Set category_type dropdown
+      if (data.banner && document.getElementById('media-preview')) {
+        document.getElementById('media-preview').innerHTML = "<img src='" + data.banner + "'>";
+      }
 
       // Set category_type dropdown
       if (data.category_type && document.getElementById('category_type')) {
@@ -107,6 +116,10 @@ function editItem(id, endpoint, fields) {
       // Set status checkbox
       if (document.getElementById('status')) {
         document.getElementById('status').checked = (data.status === 'on');
+      }
+
+      if (document.getElementById('available_for_blocks')) {
+        document.getElementById('available_for_blocks').checked = (data.available_for_blocks === 'on');
       }
 
       // Optional: Set parent_id if used

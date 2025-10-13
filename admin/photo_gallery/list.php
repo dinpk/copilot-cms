@@ -65,8 +65,10 @@ include '../users/auth.php';
 		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo.php\", [\"title\",\"url\",\"image_url\",\"description\",\"status\"])'>Edit</a> |
-          <a href='delete.php?id={$row['key_photo_gallery']}' onclick='return confirm(\"Delete this photo?\")'>Delete</a>
+          <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo.php\", [\"title\",\"url\",\"image_url\",\"description\",\"available_for_blocks\",\"status\"])'>Edit</a> |
+          <a href='delete.php?id={$row['key_photo_gallery']}' onclick='return confirm(\"Delete this photo?\")'>Delete</a> | 
+		  <a href='list_photo_gallery_images.php?gallery_id={$row['key_photo_gallery']}' target='_blank'>Assign Images</a>
+
         </td>
       </tr>";
     }
@@ -129,11 +131,9 @@ include '../users/auth.php';
 	<textarea name="description" id="description" 
 			  placeholder="Description"></textarea><br>
 
-	<label>
-	  <input type="checkbox" name="status" id="status" 
-			 value="on" checked>
-	  Active
-	</label><br>
+	<label><input type="checkbox" name="available_for_blocks" id="available_for_blocks" value="on"> Available for Blocks</label><br><br>
+	
+	<label><input type="checkbox" name="status" id="status" value="on" checked> Active</label><br>
 
 	
 	<div id="select-categories">

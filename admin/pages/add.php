@@ -17,18 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	  $status = isset($_POST['status']) ? 'on' : 'off';	
 	  
 	  $stmt = $conn->prepare("INSERT INTO pages (
-		title, page_content, url, banner_image_url, status, key_media_banner
-	  ) VALUES (?, ?, ?, ?, ?, ?)");
+		title, page_content, url, status, key_media_banner
+	  ) VALUES (?, ?, ?, ?, ?)");
 
 	  if (!$stmt) {
 		die("Prepare failed: " . $conn->error);
 	  }
 
-	  $stmt->bind_param("sssssi",
+	  $stmt->bind_param("ssssi",
 		$_POST['title'],
 		$_POST['page_content'],
 		$_POST['url'],
-		$_POST['banner_image_url'],
 		$status,
 		$_POST['key_media_banner']
 	  );

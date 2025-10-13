@@ -19,7 +19,7 @@ include __DIR__ . '/layout.php';
 	$records = $conn->query($sql);
 	while ($a = $records->fetch_assoc()) {
 		echo "<div class='snippet-card'>
-  			  <div><img src='{$a['banner']}' width='300'></div>
+  			  <div><img src='{$a['banner']}' data-animate='fade'></div>
 			  <div class='snippet-content'>
 			  <h2>{$a['title']}</h2>
 			  <p>{$a['article_snippet']}</p>

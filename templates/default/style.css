@@ -107,6 +107,21 @@ img {
   font-weight: normal;
 }
 
+#home-banner {
+	height:40vh;
+	background-size: cover;
+	background-position: 50% 50%;
+}
+
+#main-banner {
+	height:25vh;
+	background-size: cover;
+	background-position: 50% 50%;
+	margin:20px 0 20px 0;
+}
+
+
+
 /* Layout */
 main {
   display: flex;
@@ -116,6 +131,12 @@ main {
   min-height:80vh;
 }
 
+main ul {
+	margin:0 0 10px 30px;
+}
+
+
+
 #content {
   flex: 3;
   background-color:#FFF;
@@ -123,8 +144,12 @@ main {
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  
 }
+
+#content article {
+	line-height:230%;
+}
+
 
 #sidebar {
   flex: 1.2;
@@ -164,7 +189,8 @@ main {
 }
 
 .snippet-card img {
-  width: 300px;
+  max-width: 300px;
+  width:100%;
   border-radius: 4px;
   display: block;
 }
@@ -207,23 +233,6 @@ main {
   padding: 15px;
   border-radius: 4px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-}
-
-.category-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.category-list li {
-  margin-bottom: 6px;
-}
-
-.category-list a {
-  
-}
-
-.category-list a:hover {
-  color: #0055aa;
 }
 
 
@@ -271,6 +280,40 @@ main {
 
 
 
+/* Image Animation */ 
+/* Initial hidden state */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Fade animation */
+.animate-fade {
+  animation: fadeZoom 0.8s ease-out forwards;
+}
+
+@keyframes fadeZoom {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Shake animation */
+.animate-shake {
+  animation: shake 0.5s ease-in-out forwards;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+}
+
+
+
+
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -295,6 +338,24 @@ main {
 
   .main-menu li {
     margin-bottom: 5px;
+  }
+    
+  .main-menu li:hover ul {
+	 line-height:230%;
+  }  
+
+  .main-menu li ul {
+	  display: block;
+	  position:static;
+	  border:none;
+	  background:none;
+	  padding-left:25px;
+	  min-width:auto;
+  }
+  
+  .main-menu li ul li a {
+	  color:#FFF;
+	  font-weight:bold;
   }
 
   #sidebar {

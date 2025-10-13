@@ -3,7 +3,9 @@ include '../db.php';
 
 if (isset($_GET['id'])) {
   $id = intval($_GET['id']);
-  $result = $conn->query("SELECT * FROM books WHERE key_books = $id");
+  $result = $conn->query("SELECT books.*, m.file_url AS banner FROM books 
+							  LEFT JOIN media_library m ON books.key_media_banner = m.key_media 
+							  WHERE key_books = $id");
   $data = $result->fetch_assoc();
 
   // Fetch assigned categories

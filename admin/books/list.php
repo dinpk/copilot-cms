@@ -75,7 +75,7 @@ include '../users/auth.php';
 		<td>{$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_books']}, \"get_book.php\", [\"title\",\"subtitle\",\"description\",\"cover_image_url\",\"url\",\"author_name\",\"publisher\",\"publish_year\",\"status\"])'>Edit</a> |
+          <a href='#' onclick='editItem({$row['key_books']}, \"get_book.php\", [\"title\",\"subtitle\",\"description\",\"url\",\"author_name\",\"publisher\",\"publish_year\",\"status\"])'>Edit</a> |
           <a href='delete.php?id={$row['key_books']}' onclick='return confirm(\"Delete this book?\")'>Delete</a> | 
 		  <a href='#' onclick='openAssignModal({$row['key_books']})'>Assign Articles</a>
 
@@ -134,10 +134,6 @@ include '../users/auth.php';
 	<textarea name="description" id="description" 
 			  placeholder="Description"></textarea><br>
 
-	<input type="url" name="cover_image_url" id="cover_image_url" 
-		   placeholder="Cover Image URL" 
-		   maxlength="200"><br>
-
 	<br>
 	<input type="hidden" name="key_media_banner" id="key_media_banner">
 	<div id="media-preview"></div>
@@ -168,18 +164,6 @@ include '../users/auth.php';
 	<input type="text" name="isbn" id="isbn" 
 		   placeholder="ISBN" 
 		   maxlength="17"><br>
-
-	<input type="number" name="price" id="price" 
-		   placeholder="Price" 
-		   min="0" max="9999999999"><br>
-
-	<input type="number" name="stock_quantity" id="stock_quantity" 
-		   placeholder="Stock Quantity" 
-		   min="0" max="99999999999"><br>
-
-	<input type="number" name="discount_percent" id="discount_percent" 
-		   placeholder="Discount (%)" 
-		   min="0" max="127"><br>
 
 	<input type="checkbox" name="is_featured" id="is_featured" 
 		   value="1"> Featured<br>

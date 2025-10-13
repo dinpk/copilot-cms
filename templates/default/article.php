@@ -16,51 +16,65 @@ if (!$article) {
   exit;
 }
 
+
 startLayout(htmlspecialchars($article['title']));
 ?>
 
-<h1><?= htmlspecialchars($article['title']) ?></h1>
-<h3><?= htmlspecialchars($article['title_sub']) ?></h3>
 
-<?php if ($article['banner_url']): ?>
-  <img src="<?= htmlspecialchars($article['banner_url']) ?>" width="600"><br>
-<?php endif; ?>
+<div id="content">
+	<article>
+	<h1><?= htmlspecialchars($article['title']) ?></h1>
+	<h3><?= htmlspecialchars($article['title_sub']) ?></h3>
 
-<p><em><?= htmlspecialchars($article['article_snippet']) ?></em></p>
+	<?php 
+		if ($article['banner_url']) { // from media_library table
+			echo "<div id='main-banner' style='background-image:url(" . $article['banner_url'] . ")'></div>";
+		} else if ($article['banner_image_url']) { // from articles table
+			echo "<div id='main-banner' style='background-image:url(" . $article['banner_image_url'] . ")'></div>";
+		}
+	?>
 
-<div><?= nl2br(htmlspecialchars($article['article_content'])) ?></div>
+	<p><em><?= htmlspecialchars($article['article_snippet']) ?></em></p>
 
-<hr>
+	<div><?= unwantedTagsToParagraphs($article['article_content'], ['script']) ?></div>
 
-<!-- Authors -->
-<?php
-$authRes = $conn->query("SELECT name, url FROM authors 
-                         JOIN article_authors ON authors.key_authors = article_authors.key_authors 
-                         WHERE article_authors.key_articles = {$article['key_articles']}");
+	<hr>
 
-$authors = [];
-while ($a = $authRes->fetch_assoc()) {
-  $authors[] = "<a href='/author/{$a['url']}'>" . htmlspecialchars($a['name']) . "</a>";
-}
-if ($authors) {
-  echo "<p><strong>By:</strong> " . implode(', ', $authors) . "</p>";
-}
-?>
+	<!-- Authors -->
+	<?php
+	$authRes = $conn->query("SELECT name, url FROM authors 
+							 JOIN article_authors ON authors.key_authors = article_authors.key_authors 
+							 WHERE article_authors.key_articles = {$article['key_articles']}");
 
-<!-- Categories -->
-<?php
+	$authors = [];
+	while ($a = $authRes->fetch_assoc()) {
+	  $authors[] = "<a href='/author/{$a['url']}'>" . htmlspecialchars($a['name']) . "</a>";
+	}
+	if ($authors) {
+	  echo "<p><strong>By:</strong> " . implode(', ', $authors) . "</p>";
+	}
+	?>
 
-$catRes = $conn->query("SELECT name, categories.url FROM categories 
-                        JOIN article_categories ON categories.key_categories = article_categories.key_categories 
-                        WHERE article_categories.key_articles = {$article['key_articles']}");
+	<!-- Categories -->
+	<?php
 
-$categories = [];
-while ($c = $catRes->fetch_assoc()) {
-  $categories[] = "<a href='/category/{$c['url']}'>" . htmlspecialchars($c['name']) . "</a>";
-}
-if ($categories) {
-  echo "<p><strong>Categories:</strong> " . implode(', ', $categories) . "</p>";
-}
-?>
+	$catRes = $conn->query("SELECT name, categories.url FROM categories 
+							JOIN article_categories ON categories.key_categories = article_categories.key_categories 
+							WHERE article_categories.key_articles = {$article['key_articles']}");
+
+	$categories = [];
+	while ($c = $catRes->fetch_assoc()) {
+	  $categories[] = "<a href='/category/{$c['url']}'>" . htmlspecialchars($c['name']) . "</a>";
+	}
+	if ($categories) {
+	  echo "<p><strong>Categories:</strong> " . implode(', ', $categories) . "</p>";
+	}
+	?>
+	</article>
+</div>
+
+<div id="sidebar">
+	<?php renderBlocks("sidebar_right"); ?>
+</div>
 
 <?php endLayout(); ?>

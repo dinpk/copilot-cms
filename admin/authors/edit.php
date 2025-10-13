@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
   $stmt = $conn->prepare("UPDATE authors SET
     name = ?, email = ?, phone = ?, website = ?, url = ?,
     social_url_media1 = ?, social_url_media2 = ?, social_url_media3 = ?,
-    city = ?, state = ?, country = ?, image_url = ?, description = ?, status = ?,
+    city = ?, state = ?, country = ?, description = ?, status = ?,
     updated_by = ?, key_media_banner = ? 
     WHERE key_authors = ?");
 
@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssssssssssiii",
+  $stmt->bind_param("sssssssssssssiii",
     $_POST['name'],
     $_POST['email'],
     $_POST['phone'],
@@ -42,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     $_POST['city'],
     $_POST['state'],
     $_POST['country'],
-    $_POST['image_url'],
     $_POST['description'],
     $status,
 	$updatedBy,

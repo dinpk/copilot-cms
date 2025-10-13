@@ -16,11 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 	  }
 
 
+  $available_for_blocks = isset($_POST['available_for_blocks']) ? 'on' : 'off';	
   $status = isset($_POST['status']) ? 'on' : 'off';	
 	$updatedBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("UPDATE photo_gallery SET
-    title = ?, url = ?, image_url = ?, description = ?, status = ?,
+    title = ?, url = ?, image_url = ?, description = ?, available_for_blocks = ?, status = ?,
     updated_by = ?, key_media_banner = ? 
     WHERE key_photo_gallery = ?");
 
@@ -28,11 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssiii",
+  $stmt->bind_param("ssssssiii",
     $_POST['title'],
     $_POST['url'],
     $_POST['image_url'],
     $_POST['description'],
+    $available_for_blocks,
     $status,
 	$updatedBy,
 	$_POST['key_media_banner'],

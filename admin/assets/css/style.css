@@ -173,6 +173,11 @@ form input[type="submit"]:hover {
   background: #2980b9;
 }
 
+label {
+	font-size:80%;
+	color:#555;
+}
+
 /* Modal Styling */
 .modal {
 	display:none;
@@ -209,6 +214,10 @@ form input[type="submit"]:hover {
   color: #333;
 }
 
+
+#media-preview img {
+	max-height:200px;
+}
 
 #image-list {
 	margin-top:20px;	
