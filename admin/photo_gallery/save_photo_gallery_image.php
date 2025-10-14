@@ -8,7 +8,6 @@ if (!$key_photo_gallery) die("Missing gallery ID");
 
 $title = $conn->real_escape_string($_POST['title'] ?? '');
 $description = $conn->real_escape_string($_POST['description'] ?? '');
-$image_mobile_url = $conn->real_escape_string($_POST['image_mobile_url'] ?? '');
 $opacity = floatval($_POST['opacity'] ?? 1);
 $action_button = isset($_POST['action_button']) ? 1 : 0;
 $action_button_text = $conn->real_escape_string($_POST['action_button_text'] ?? '');
@@ -24,7 +23,6 @@ if ($key_image) {
   $sql = "UPDATE photo_gallery_images SET
     title = '$title',
     description = '$description',
-    image_mobile_url = '$image_mobile_url',
     opacity = $opacity,
     action_button = $action_button,
     action_button_text = '$action_button_text',
@@ -38,11 +36,11 @@ if ($key_image) {
 } else {
   // Insert new record
   $sql = "INSERT INTO photo_gallery_images (
-    key_photo_gallery, title, description, image_mobile_url, opacity,
+    key_photo_gallery, title, description, opacity,
     action_button, action_button_text, action_button_link_url,
     animation_type, text_position, text_color, button_style, status
   ) VALUES (
-    $key_photo_gallery, '$title', '$description', '$image_mobile_url', $opacity,
+    $key_photo_gallery, '$title', '$description', $opacity,
     $action_button, '$action_button_text', '$action_button_link_url',
     '$animation_type', '$text_position', '$text_color', '$button_style', '$status'
   )";

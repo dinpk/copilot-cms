@@ -53,6 +53,8 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 
 <!-- Add/Edit Modal -->
 <div id="galleryImageModal" class="modal">
+	<a href="#" onclick="galleryImage_closeModal();" class="close-icon">✖</a>
+
   <h3 id="galleryImageModalTitle">Add Image</h3>
   <form id="galleryImageForm" method="post" action="save_photo_gallery_image.php">
     <input type="hidden" name="key_image" id="galleryImage_key_image">
@@ -61,19 +63,20 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
     <input type="text" name="title" id="galleryImage_title" placeholder="Title"><br>
     <textarea name="description" id="galleryImage_description" placeholder="Description"></textarea><br>
 
-    <input type="text" name="image_mobile_url" id="galleryImage_image_mobile_url" placeholder="Mobile Image URL"><br>
-    <input type="number" step="0.1" name="opacity" id="galleryImage_opacity" placeholder="Opacity (0–1)" value="1"><br>
-
-    <label><input type="checkbox" name="action_button" id="galleryImage_action_button" value="1"> Show Action Button</label><br>
-    <input type="text" name="action_button_text" id="galleryImage_action_button_text" placeholder="Button Text"><br>
-    <input type="text" name="action_button_link_url" id="galleryImage_action_button_link_url" placeholder="Button Link URL"><br>
+    <input type="number" step="0.1" name="opacity" id="galleryImage_opacity" placeholder="Opacity (0–1)" value="1"> <label>Opacity</label><br><br>
 
     <select name="animation_type" id="galleryImage_animation_type">
       <option value="fade">Fade</option>
       <option value="zoom">Zoom</option>
       <option value="slide">Slide</option>
       <option value="none">None</option>
-    </select><br>
+    </select><br><br>
+
+    <label><input type="checkbox" name="action_button" id="galleryImage_action_button" value="1"> Show Action Button</label><br>
+	
+    <input type="text" name="action_button_text" id="galleryImage_action_button_text" placeholder="Button Text"><br>
+    <input type="text" name="action_button_link_url" id="galleryImage_action_button_link_url" placeholder="Button Link URL"><br>
+
 
     <select name="text_position" id="galleryImage_text_position">
       <option value="center">Center</option>
@@ -83,17 +86,18 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
     </select><br>
 
     <input type="text" name="text_color" id="galleryImage_text_color" placeholder="Text Color" value="#ffffff"><br>
+	
     <input type="text" name="button_style" id="galleryImage_button_style" placeholder="Button CSS Class"><br>
+	<br>
 
     <label>Status:
       <select name="status" id="galleryImage_status">
         <option value="on">Active</option>
         <option value="off">Inactive</option>
       </select>
-    </label><br>
+    </label><br><br>
 
     <input type="submit" value="Save">
-    <button type="button" onclick="galleryImage_closeModal()">Cancel</button>
   </form>
 </div>
 
@@ -119,7 +123,7 @@ function galleryImage_editItem(id) {
       document.getElementById('galleryImageModalTitle').innerText = 'Edit Image';
       document.getElementById('galleryImage_key_image').value = id;
       [
-        'title','description','image_mobile_url','opacity','action_button',
+        'title','description','opacity','action_button',
         'action_button_text','action_button_link_url','animation_type',
         'text_position','text_color','button_style','status'
       ].forEach(field => {

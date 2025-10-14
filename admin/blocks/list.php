@@ -12,6 +12,7 @@ include '../users/auth.php';
 <table>
   <thead>
     <tr>
+      <th><?= sortLink('Name', 'block_name', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Region', 'show_in_region', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
       <th><?= sortLink('Pages', 'show_on_pages', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
@@ -50,6 +51,7 @@ include '../users/auth.php';
 			WHERE key_blocks = $keyBlocks")->fetch_assoc();		
 
       echo "<tr>
+        <td>{$row['block_name']}</td>
         <td>{$row['title']}</td>
         <td>{$row['show_in_region']}</td>
         <td>{$row['show_on_pages']}</td>
@@ -58,7 +60,7 @@ include '../users/auth.php';
 		<td>{$row['sort']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"sort\",\"module_file\",\"key_photo_gallery\",\"status\"])'>Edit</a> |
+          <a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"block_name\",\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"sort\",\"module_file\",\"key_photo_gallery\",\"status\"])'>Edit</a> |
           <a href='delete.php?id={$row['key_blocks']}' onclick='return confirm(\"Delete this block?\")'>Delete</a>
         </td>
       </tr>";
@@ -69,9 +71,14 @@ include '../users/auth.php';
 
 <!-- Modal Form -->
 <div id="modal" class="modal">
+	<a href="#" onclick="closeModal();" class="close-icon">✖</a>
 	<h3 id="modal-title">Add Block</h3>
 	<form id="modal-form" method="post">
 	  <input type="hidden" name="key_blocks" id="key_blocks">
+
+	  <input type="text" name="block_name" id="block_name" 
+			 placeholder="Block Name" 
+			 required maxlength="200"><br>
 
 	  <input type="text" name="title" id="title" 
 			 placeholder="Title" 
@@ -144,7 +151,7 @@ include '../users/auth.php';
 	  </label><br>
 
 	  <input type="submit" value="Save">
-	  <button type="button" onclick="closeModal()">Cancel</button>
+	  
 	</form>
 
 </div>
@@ -152,6 +159,7 @@ include '../users/auth.php';
 
 <!-- Media Modal Form -->
 <div id="media-modal" class="modal">
+	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
   <h3>Select Banner Image</h3>
   <div id="media-grid">
     <?php
@@ -164,7 +172,6 @@ include '../users/auth.php';
     }
     ?>
   </div>
-  <button type="button" onclick="closeMediaModal()">Cancel</button>
 </div>
 
 

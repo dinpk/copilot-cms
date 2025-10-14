@@ -87,6 +87,8 @@ include '../users/auth.php';
 
 <!-- Modal Form — Add/Edit -->
 <div id="modal" class="modal">
+	<a href="#" onclick="closeModal();" class="close-icon">✖</a>
+
 	<h3 id="modal-title">Add User</h3>
 	<form id="modal-form" method="post">
 	  <input type="hidden" name="key_user" id="key_user">
@@ -153,7 +155,7 @@ include '../users/auth.php';
 	  </label><br>
 
 	  <input type="submit" value="Save">
-	  <button type="button" onclick="closeModal()">Cancel</button>
+
 	</form>
 
 </div>

@@ -117,6 +117,7 @@ include '../users/auth.php';
 
 <!-- Modal Form — add / edit -->
 <div id="modal" class="modal">
+	<a href="#" onclick="closeModal();" class="close-icon">✖</a>
   <h3 id="modal-title">Add Book</h3>
   <form id="modal-form" method="post">
   
@@ -218,7 +219,7 @@ include '../users/auth.php';
 	</div>	
 	
     <input type="submit" value="Save">
-    <button type="button" onclick="closeModal()">Cancel</button>
+    
   </form>
 </div>
 
@@ -226,6 +227,7 @@ include '../users/auth.php';
 
 <!-- Modal Form — assign articles -->
 <div id="assign-modal" class="modal">
+	<a href="#" onclick="closeAssignModal();" class="close-icon">✖</a>
   <h3 id="assign-modal-title">Assign Articles to Book</h3>
 
   <form id="assign-form" method="post" action="assign_articles.php">
@@ -233,13 +235,13 @@ include '../users/auth.php';
     <input type="text" id="article_search" placeholder="Search articles..." oninput="filterArticles()"><br><br>
     <div id="article-list"></div>
     <input type="submit" value="Save">
-    <button type="button" onclick="closeAssignModal()">Cancel</button>
   </form>
 </div>
 
 
 <!-- Media Modal Form -->
 <div id="media-modal" class="modal">
+	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
   <h3>Select Banner Image</h3>
   <div id="media-grid">
     <?php
@@ -252,7 +254,6 @@ include '../users/auth.php';
     }
     ?>
   </div>
-  <button type="button" onclick="closeMediaModal()">Cancel</button>
 </div>
 
 

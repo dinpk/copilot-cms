@@ -78,6 +78,7 @@ $menuTree = buildMenuTree($menuItems);
 
 <!-- Modal Form -->
 <div id="modal" class="modal">
+	<a href="#" onclick="closeModal();" class="close-icon">✖</a>
 	<h3 id="modal-title">Add Menu Item</h3>
 	<form id="modal-form" method="post">
 	  <input type="hidden" name="key_main_menu" id="key_main_menu">
@@ -111,7 +112,6 @@ $menuTree = buildMenuTree($menuItems);
 	  </select><br>
 
 	  <input type="submit" value="Save">
-	  <button type="button" onclick="closeModal()">Cancel</button>
 	</form>
 
 </div>

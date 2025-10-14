@@ -2,11 +2,10 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  border-right:10px solid #287eb7;
 }
 
 a {
-  color: #0066cc;
+  color: seagreen;
   text-decoration: none;
 }
 
@@ -18,10 +17,10 @@ h2 {
 
 header {
 	color:#FFF;	
-	background: #287eb7;
+	background: seagreen;
 	padding:10px;
 	text-align:right;
-	font-size:150%;
+	font-size:1.5em;
 }
 
 .container {
@@ -31,7 +30,7 @@ header {
 }
 
 .sidebar {
-  background: #287eb7;
+  background: seagreen;
   color: #fff;
   padding: 0 20px;
 }
@@ -41,27 +40,32 @@ header {
   margin-bottom: 1em;
 }
 
-.sidebar a,
-.dashboard-links a {
+.sidebar a {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   color: #ecf0f1;
   padding: 0.4em;
   border-radius: 4px;
 }
 
-.sidebar a:hover,
-.dashboard-links a:hover {
-  background: #34495e;
+.sidebar a:hover {
+  background: #41a56d;
+}
+
+.sidebar a span {
+	padding:5px;
+	width:24px;
+	text-align:center;
+	height:20px;
+	margin-right:5px;
+	border-radius:55px;
+	background-color:#FFF;
+	display:inline-block;
 }
 
 .dashboard-links {
   list-style: none;
   padding: 0;
-}
-
-.dashboard-links li {
-  margin-bottom: 0.8em;
 }
 
 .main {
@@ -91,7 +95,7 @@ header {
 .metric-box span {
   display: block;
   font-size: 2em;
-  color: #0077cc;
+  color: seagreen;
   margin-top: 0.5em;
 }
 
@@ -123,8 +127,8 @@ header {
 }
 
 .recent-activity small {
-  color: #666;
-  font-size: 0.9em;
+  color: #888;
+  font-size: 0.7em;
 }
 
 /* Table Styling */
@@ -142,6 +146,7 @@ table th, table td {
 
 table th {
   background: #eee;
+  color:seagreen;
 }
 
 tr:nth-child(even) {
@@ -151,9 +156,28 @@ tr:nth-child(even) {
 /* Form Styling */
 
 form {
-	margin-bottom:20px;	
+	
 }
+
+form select {
+  width: 40%;
+  padding: 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
 form input[type="text"],
+form input[type="number"],
+form input[type="url"],
+form input[type="tel"],
+form input[type="email"]
+{
+  width: 80%;
+  padding: 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
 form textarea,
 form input[type="submit"] {
   width: 100%;
@@ -162,39 +186,76 @@ form input[type="submit"] {
   box-sizing: border-box;
 }
 
+
+form textarea {
+	min-height:100px;
+}
+
 form input[type="submit"] {
-  background: #3498db;
+  background: seagreen;
   color: #fff;
   border: none;
   cursor: pointer;
 }
 
 form input[type="submit"]:hover {
-  background: #2980b9;
+  background: forestgreen;
 }
 
 label {
-	font-size:80%;
+	text-transform:uppercase;
+	font-size:.7em;
 	color:#555;
+	font-weight:bold;
+}
+
+
+.record-action-links {
+	text-transform:uppercase;
+	font-size:.55em;
+	font-weight:bold;
+	word-spacing:3px;
+	line-height:250%;
+	min-width:220px;
+}
+
+
+.record-action-links a {
+	background-color:seagreen;
+	color:#FFF;
+	border-radius:30px;
+	padding:2px 6px 2px 6px;
 }
 
 /* Modal Styling */
 .modal {
-	display:none;
+  display:none;
   position: fixed;
-  top: 10%;
+  top: 3vh;
   left: 50%;
   transform: translateX(-50%);
-  width: 600px;
-  max-height: 80vh;
+  width: 800px;
+  height: 94vh;
   overflow-y: auto;
   background: #fff;
   border: 15px solid #EEE;
+  border-radius:10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  padding: 20px;
+  padding: 40px;
   z-index: 1000;
-  border-radius: 8px;
+  box-sizing:border-box;
 }
+
+
+.close-icon {
+	position:absolute;
+	top:10px;
+	right:15px;
+	font-size:1.3em;
+	text-decoration:none;
+	color:black;
+}
+
 
 .modal-header {
   font-size: 1.2em;
@@ -224,9 +285,14 @@ label {
 }
 
 #select-categories {
-	margin:10px 0;
+	margin:30px 0;
 	border:1px solid #777;
 	padding:20px;
+}
+
+#select-categories legend {
+	font-size:1.2em;
+	font-weight:bold;
 }
 
 #articles-list { /* book articles list */
@@ -236,6 +302,7 @@ label {
 
 #pager {
 	margin-top:20px;
+	text-align:center;
 }
 
 
@@ -260,7 +327,7 @@ fieldset {
 
 /* Footer */
 footer {
-  background: #287eb7;
+  background: seagreen;
   color: #FFF;
   text-align: center;
   padding: 1em;

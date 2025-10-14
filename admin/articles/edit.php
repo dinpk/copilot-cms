@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
 
   $stmt = $conn->prepare("UPDATE articles SET
     title = ?, title_sub = ?, article_snippet = ?, article_content = ?,
-    url = ?, banner_image_url = ?, sort = ?, status = ?,
+    url = ?, content_type = ?, book_indent_level = ?, banner_image_url = ?, sort = ?, status = ?,
     updated_by = ?, key_media_banner = ?
     WHERE key_articles = ?");
 
@@ -30,12 +30,14 @@ print_r($id);
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssisiii",
+  $stmt->bind_param("ssssssisisiii",
     $_POST['title'],
     $_POST['title_sub'],
     $_POST['article_snippet'],
     $_POST['article_content'],
     $_POST['url'],
+    $_POST['content_type'],
+    $_POST['book_indent_level'],
     $_POST['banner_image_url'],
     $_POST['sort'],
     $status,

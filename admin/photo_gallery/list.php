@@ -7,7 +7,7 @@ include '../users/auth.php';
 
 <?php startLayout("Photo Gallery"); ?>
 
-<p><a href="#" onclick="openModal()">➕ Add Photo Gallery</a> &nbsp;&nbsp; ⛾ <a href="list_assign_images.php"> Assign Photos</a></p>
+<p><a href="#" onclick="openModal()">➕ Add Photo Gallery</a></p>
 
 <form method="get">
   <input type="text" name="q" placeholder="Search photos..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
@@ -65,7 +65,7 @@ include '../users/auth.php';
 		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
         <td>{$row['status']}</td>
         <td>
-          <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo.php\", [\"title\",\"url\",\"image_url\",\"description\",\"available_for_blocks\",\"status\"])'>Edit</a> |
+          <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo.php\", [\"title\",\"url\",\"image_url\",\"description\",\"navigation_type\",\"css\",\"available_for_blocks\",\"status\"])'>Edit</a> |
           <a href='delete.php?id={$row['key_photo_gallery']}' onclick='return confirm(\"Delete this photo?\")'>Delete</a> | 
 		  <a href='list_photo_gallery_images.php?gallery_id={$row['key_photo_gallery']}' target='_blank'>Assign Images</a>
 
@@ -102,42 +102,47 @@ include '../users/auth.php';
 
 <!-- Modal Form -->
 <div id="modal" class="modal">
+	<a href="#" onclick="closeModal();" class="close-icon">✖</a>
   <h3 id="modal-title">Add Photo Gallery</h3>
   <form id="modal-form" method="post">
 	<input type="hidden" name="key_photo_gallery" id="key_photo_gallery">
 
-	<input type="text" name="title" id="title" 
-		   onchange="setCleanURL(this.value)" 
-		   placeholder="Title" 
-		   required maxlength="255"><br>
+	<input type="text" name="title" id="title" onchange="setCleanURL(this.value)" required maxlength="255"> <label>Title</label><br>
 
 	<input type="text" name="url" id="url" 
-		   placeholder="Slug" 
 		   required maxlength="200" 
 		   pattern="^[a-z0-9\-\/]+$" 
-		   title="Lowercase letters, numbers, and hyphens only"><br>
+		   title="Lowercase letters, numbers, and hyphens only"> <label>Slug</label><br>
 
 	<input type="text" name="image_url" id="image_url" 
-		   placeholder="Image URL" 
-		   maxlength="2000"><br>
+		   maxlength="2000"> <label>Image URL</label><br>
 
 	<br>
 	<input type="hidden" name="key_media_banner" id="key_media_banner">
 	<div id="media-preview"></div>
-	<button type="button" onclick="openMediaModal()">Select Banner Image</button>
+	<button type="button" onclick="openMediaModal()">Select Banner Image from Media Library</button>
 	
 	<br><br>
 
-	<textarea name="description" id="description" 
-			  placeholder="Description"></textarea><br>
+	<textarea name="description" id="description" placeholder="Description"></textarea><br><br>
+
+   
+      <select name="navigation_type" id="navigation_type">
+        <option value="arrows">Arrows</option>
+        <option value="slideshow">Slideshow</option>
+      </select> <label>Navigation type</label>
+    <br><br>
+
 
 	<label><input type="checkbox" name="available_for_blocks" id="available_for_blocks" value="on"> Available for Blocks</label><br><br>
+
+	<input type="text" name="css" id="css"  maxlength="500"> <label>CSS</label><br>
 	
 	<label><input type="checkbox" name="status" id="status" value="on" checked> Active</label><br>
 
 	
-	<div id="select-categories">
-	  <h3>Categories</h3>
+	<fieldset id="select-categories">
+	  <legend>Categories</legend>
 		<?php
 		$types = ['photo_gallery', 'book', 'article', 'video_gallery', 'global'];
 
@@ -156,10 +161,9 @@ include '../users/auth.php';
 		  echo "</div>";
 		}
 		?>
-	</div>
+	</fieldset>
 	
     <input type="submit" value="Save">
-    <button type="button" onclick="closeModal()">Cancel</button>
   </form>
 </div>
 
@@ -167,6 +171,7 @@ include '../users/auth.php';
 
 <!-- Media Modal Form -->
 <div id="media-modal" class="modal">
+	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
   <h3>Select Banner Image</h3>
   <div id="media-grid">
     <?php
@@ -179,7 +184,6 @@ include '../users/auth.php';
     }
     ?>
   </div>
-  <button type="button" onclick="closeMediaModal()">Cancel</button>
 </div>
 
 

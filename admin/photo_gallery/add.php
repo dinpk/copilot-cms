@@ -19,18 +19,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $createdBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("INSERT INTO photo_gallery (
-    title, url, image_url, description, available_for_blocks, status, created_by, key_media_banner 
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    title, url, image_url, description, navigation_type, css, available_for_blocks, status, created_by, key_media_banner 
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssssii",
+  $stmt->bind_param("ssssssssii",
     $_POST['title'],
     $_POST['url'],
     $_POST['image_url'],
     $_POST['description'],
+    $_POST['navigation_type'],
+	$_POST['css'],
     $available_for_blocks,
     $status,
 	$createdBy,

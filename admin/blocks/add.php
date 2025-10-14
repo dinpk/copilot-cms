@@ -15,15 +15,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$createdBy = $_SESSION['key_user'];
 
   $stmt = $conn->prepare("INSERT INTO blocks (
-    title, block_content, show_on_pages, show_in_region,
+    block_name, title, block_content, show_on_pages, show_in_region,
     sort, module_file, status, created_by, key_media_banner, key_photo_gallery
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("ssssissiii",
+  $stmt->bind_param("sssssissiii",
+    $_POST['block_name'],
     $_POST['title'],
     $_POST['block_content'],
     $_POST['show_on_pages'],

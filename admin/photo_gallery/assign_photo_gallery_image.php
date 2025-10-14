@@ -27,9 +27,9 @@ $total = $conn->query($count_sql)->fetch_assoc()['total'];
 $total_pages = ceil($total / $limit);
 ?>
 
-<div style="background:#fff;padding:20px;">
-	<a href="#" onclick="document.getElementById('mediaPickerModal').style.display='none'" 
-     style="position:absolute;top:10px;right:15px;font-size:18px;text-decoration:none;">✖</a>
+<div >
+	<a href="#" onclick="document.getElementById('mediaPickerModal').style.display='none'" class="close-icon">✖</a>
+  
   <h3>Select Image from Media Library</h3>
 
 	<form id="media-search-form" action="assign_photo_gallery_image.php" method="get">
@@ -50,7 +50,7 @@ $total_pages = ceil($total / $limit);
     <?php endwhile; ?>
   </div>
 
-  <div style="margin-top:10px;">
+  <div id="pager">
     <?php if ($page > 1): ?>
 		<a href="assign_photo_gallery_image.php?image_id=<?= $image_id ?>&gallery_id=<?= $gallery_id ?>&q=<?= urlencode($q) ?>&page=<?= $page - 1 ?>" class="media-modal-link" data-image-id="<?= $image_id ?>">⬅ Prev</a>
 	    

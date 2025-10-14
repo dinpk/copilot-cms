@@ -86,6 +86,7 @@ if ($page < $totalPages) {
 
 <!-- Modal Form -->
 <div id="modal" class="modal">
+	<a href="#" onclick="closeModal();" class="close-icon">✖</a>
   <h3 id="modal-title">Upload Media</h3>
   <form id="modal-form" method="post" enctype="multipart/form-data" action="add.php">
     <input type="hidden" name="key_media" id="key_media">
@@ -107,7 +108,6 @@ if ($page < $totalPages) {
     <input type="text" name="tags" id="tags" placeholder="Tags (comma-separated)" maxlength="500"><br>
 
     <input type="submit" value="Save">
-    <button type="button" onclick="closeModal()">Cancel</button>
   </form>
 </div>
 

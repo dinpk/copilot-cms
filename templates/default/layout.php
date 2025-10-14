@@ -28,13 +28,17 @@ function startLayout($title = "CopilotCMS") {
 function endLayout() {
 	echo "</main>";
 	global $page_slug;
+
+	echo "<div id='above-footer'>";
+		renderBlocks("above_footer", $page_slug);
+	echo "</div>";
+
 	echo "<div id='footer'>";
 		renderBlocks("footer", $page_slug);
 	echo "</div>";
 	echo "<div id='below-footer'>";
 		renderBlocks("below_footer", $page_slug);
 	echo "</div>";
-
 	echo "</body></html>
 	<script src='/templates/default/script.js'></script>
 	";
@@ -77,7 +81,7 @@ function renderMainMenu() {
 // Blocks
 function renderBlocks($region, $currentPage = '') {
 	global $conn;
-	$sql = "SELECT title, block_content, module_file FROM blocks 
+	$sql = "SELECT key_blocks, key_photo_gallery, title, block_content, module_file FROM blocks 
 					   WHERE status = 'on' 
 					   AND show_in_region = '$region' 
 					   AND (show_on_pages = '' OR FIND_IN_SET('$currentPage', show_on_pages)) 
@@ -85,7 +89,7 @@ function renderBlocks($region, $currentPage = '') {
 	$res = $conn->query($sql);
 	// echo __FILE__;
 	while ($row = $res->fetch_assoc()) {
-		
+		$key_photo_gallery = $row['key_photo_gallery'];
 		echo "<h2>" . $row['title'] . "</h2>";
 		echo "<div class='block_content'>" . $row['block_content'] . "</div>";
 		if ($row['module_file'] != '') {

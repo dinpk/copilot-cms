@@ -20,19 +20,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   
   $stmt = $conn->prepare("INSERT INTO articles (
     title, title_sub, article_snippet, article_content,
-    content_type, url, banner_image_url, sort, status, created_by, key_media_banner
-  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    content_type, book_indent_level, url, banner_image_url, sort, status, created_by, key_media_banner
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   if (!$stmt) {
     die("Prepare failed: " . $conn->error);
   }
 
-  $stmt->bind_param("sssssssisii",
+  $stmt->bind_param("sssssissisii",
     $_POST['title'],
     $_POST['title_sub'],
     $_POST['article_snippet'],
     $_POST['article_content'],
     $_POST['content_type'],
+    $_POST['book_indent_level'],
 	$_POST['url'],
     $_POST['banner_image_url'],
     $_POST['sort'],

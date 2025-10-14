@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 13, 2025 at 07:36 AM
+-- Generation Time: Oct 14, 2025 at 07:56 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -30,20 +30,21 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE IF NOT EXISTS `articles` (
   `key_articles` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key_media_banner` int(10) UNSIGNED DEFAULT '0',
   `title` varchar(300) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `title_sub` varchar(300) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `article_snippet` varchar(1000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `article_content` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `content_type` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'article',
+  `content_type` varchar(30) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `book_indent_level` tinyint(4) NOT NULL DEFAULT '0',
   `url` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `banner_image_url` varchar(2000) COLLATE utf8_unicode_ci DEFAULT '',
-  `key_media_banner` int(10) UNSIGNED DEFAULT '0',
   `sort` smallint(6) NOT NULL DEFAULT '0',
-  `status` enum('draft','on','off') COLLATE utf8_unicode_ci DEFAULT 'draft',
   `entry_date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_date_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `created_by` int(10) UNSIGNED DEFAULT NULL,
   `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `status` enum('draft','on','off') COLLATE utf8_unicode_ci DEFAULT 'draft',
   PRIMARY KEY (`key_articles`),
   KEY `fk_articles_media` (`key_media_banner`),
   KEY `entry_date_time` (`entry_date_time`),
@@ -54,34 +55,34 @@ CREATE TABLE IF NOT EXISTS `articles` (
 -- Dumping data for table `articles`
 --
 
-INSERT INTO `articles` (`key_articles`, `title`, `title_sub`, `article_snippet`, `article_content`, `content_type`, `url`, `banner_image_url`, `key_media_banner`, `sort`, `status`, `entry_date_time`, `update_date_time`, `created_by`, `updated_by`) VALUES
-(2, 'The Rise of Minimal CMS', 'Streamlined Editorial Tools', 'Exploring how minimal CMS platforms empower editorial teams.', 'Full content of article 1...', 'article', 'minimal-cms', NULL, 28, 1, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', 1, 1),
-(3, 'Designing for Editors', 'UI That Works', 'Why editorial-first design matters in publishing workflows.', 'Full content of article 2 3 4', 'article', 'editorial-ui', NULL, 25, 2, 'on', '2025-09-25 15:13:08', '2025-09-27 12:05:22', NULL, 1),
-(4, 'PHP Without Frameworks', 'Native Power', 'Building robust apps with native PHP and no frameworks.', 'Full content of article 3...', 'article', 'php-native', NULL, 11, 3, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
-(5, 'Modular CRUD Systems', 'Scalable Architecture', 'How modular CRUD design improves maintainability.', 'Full content of article 4...', 'article', 'modular-crud', NULL, 5, 4, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
-(6, 'Debounce in Search', 'Performance Boosts', 'Using debounce to optimize search-triggered loading.', 'Full content of article 5...', 'article', 'debounce-search', NULL, 37, 5, 'on', '2025-09-25 15:13:08', '2025-09-30 13:34:45', NULL, 1),
-(7, 'Pagination Patterns', 'Smart Loading', 'Best practices for implementing pagination in CMS.', 'Full content of article 6...', 'article', 'pagination-patterns', NULL, 6, 6, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
-(8, 'Editorial Workflows', 'From Draft to Publish', 'Mapping out efficient editorial workflows.', 'Full content of article 7...', 'article', 'editorial-workflows', NULL, 34, 7, 'on', '2025-09-25 15:13:08', '2025-09-29 22:11:15', NULL, 1),
-(9, 'Category Management', 'Organized Content', 'Tips for managing categories in publishing systems.', 'Full content of article 8...', 'article', 'category-management', NULL, 30, 8, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
-(10, 'Modal-Based Editing', 'Inline Efficiency', 'Using modals for quick article edits.', 'Full content of article 9...', 'article', 'modal-editing', NULL, 39, 9, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1),
-(11, 'Search Optimization', 'Fast & Relevant', 'Improving search relevance and speed.', 'Full content of article 10...', 'article', 'search-optimization', 'banner10.jpg', 0, 10, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(12, 'Legacy CMS Refactor', 'Modernizing Systems', 'Strategies for refactoring legacy CMS platforms.', 'Full content of article 11...', 'article', 'legacy-refactor', 'banner11.jpg', 0, 11, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(13, 'Content Snippets', 'Reusable Blocks', 'Creating reusable content snippets.', 'Full content of article 12...', 'article', 'content-snippets', 'banner12.jpg', 0, 12, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(14, 'Desktop-Only UI', 'Focused Design', 'Why desktop-first UI still matters.', 'Full content of article 13...', 'article', 'desktop-ui', 'banner13.jpg', 0, 13, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(15, 'Error Reporting in PHP', 'Debugging Smartly', 'Enabling error reporting for better debugging.', 'Full content of article 14...', 'article', 'php-errors', 'banner14.jpg', 0, 14, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(16, 'SQL Troubleshooting', 'Root Cause Isolation', 'Finding and fixing SQL issues.', 'Full content of article 15...', 'article', 'sql-troubleshooting', 'banner15.jpg', 0, 15, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(17, 'Advanced Filters', 'Precision Tools', 'Adding advanced filters to editorial tools.', 'Full content of article 16...', 'article', 'advanced-filters', 'banner16.jpg', 0, 16, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(18, 'Scalable CMS Design', 'Future-Proofing', 'Designing CMS for long-term scalability.', 'Full content of article 17...', 'article', 'scalable-cms', 'banner17.jpg', 0, 17, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(19, 'Collaborative Development', 'Step-by-Step Builds', 'Working with feedback-driven development.', 'Full content of article 18...', 'article', 'collab-dev', 'banner18.jpg', 0, 18, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(20, 'Clean Code Practices', 'Maintainable Systems', 'Writing clean, maintainable PHP.', 'Full content of article 19...', 'article', 'clean-code', 'banner19.jpg', 0, 19, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(21, 'UI Feedback Loops', 'Iterative Design', 'Using feedback to refine UI.', 'Full content of article 20...', 'article', 'ui-feedback', 'banner20.jpg', 0, 20, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(22, 'CMS Testing Strategies', 'Catch the Bugs', 'Testing CMS workflows effectively.', 'Full content of article 21...', 'article', 'cms-testing', 'banner21.jpg', 0, 21, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(23, 'Content Assignment UX', 'Frictionless Flow', 'Improving article assignment UX.', 'Full content of article 22...', 'article', 'assignment-ux', 'banner22.jpg', 0, 22, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(24, 'Banner Image Tips', 'Visual Impact', 'Choosing effective banner images.', 'Full content of article 23...', 'article', 'banner-tips', 'banner23.jpg', 0, 23, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(25, 'URL Structuring', 'SEO & Clarity', 'Structuring article URLs for clarity and SEO.', 'Full content of article 24...', 'article', 'url-structure', 'banner24.jpg', 0, 24, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(26, 'CMS Entry Points', 'Where It Begins', 'Designing intuitive entry points for editors.', 'Full content of article 25...', 'article', 'cms-entry', 'banner25.jpg', 0, 25, 'on', '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL),
-(36, 'True strength begins with self-awareness and the emotional connection', '', 'We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'We live in a world where stress, anxiety and depression are becoming increasingly common.  We live in a world where stress, anxiety and depression are becoming increasingly common.  We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'article', 'true-strength-begins-with-self-awareness-and-emotional-connection', '', 0, 0, 'on', '2025-10-05 05:30:29', '2025-10-05 05:30:29', 1, 1),
-(38, 'PHP+MySQL Combination', 'How it Works', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms. \r\n', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n\r\n\r\n<h1>What is the PHP + MySQL Combination?</h1>\r\n\r\n<p>\r\nThe PHP + MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n</p>\r\n\r\n<h2>How the Combination Works</h2>\r\n<p>\r\nThe interaction between PHP and MySQL is a server-side process, meaning most of the work happens on the web server before the user sees the final page.\r\n</p>\r\n\r\n<div class=\"flow-diagram\">\r\n<div class=\"step\">\r\n<h3>1. Request</h3>\r\n<p>A user\'s web browser sends an HTTP request for a page (e.g., <code>example.com/products.php</code>).</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>2. Processing (PHP)</h3>\r\n<p>The web server receives the request and executes the PHP script, which performs server-side tasks like processing user input, managing sessions, and building dynamic content.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>3. Database Query (PHP + MySQL)</h3>\r\n<p>If data is needed, the PHP script connects to the MySQL database and sends a Structured Query Language (SQL) statement.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>4. Database Response (MySQL)</h3>\r\n<p>MySQL processes the SQL query and returns the requested data to the PHP script.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>5. Page Generation (PHP)</h3>\r\n<p>The PHP script uses the data from MySQL to generate a final HTML page.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>6. Response</h3>\r\n<p>The web server sends the completed HTML page back to the user\'s browser, which then renders it for the user.</p>\r\n</div>\r\n</div>\r\n\r\n<h2>What Each Component Does</h2>\r\n\r\n<h3>PHP (Hypertext Preprocessor)</h3>\r\n<p>PHP is a server-side scripting language designed specifically for web development.</p>\r\n<ul>\r\n<li><b>Role:</b> Acts as the \"middleman,\" connecting the user\'s web browser with the database.</li>\r\n<li><b>Purpose:</b> Used for tasks that happen behind the scenes, such as:\r\n<ul>\r\n<li>Handling form submissions</li>\r\n<li>Communicating with the database</li>\r\n<li>Controlling user access</li>\r\n<li>Generating dynamic content</li>\r\n</ul>\r\n</li>\r\n</ul>\r\n\r\n<h3>MySQL</h3>\r\n<p>MySQL is an open-source relational database management system (RDBMS).</p>\r\n<ul>\r\n<li><b>Role:</b> Used for storing and managing data in a structured way.</li>\r\n<li><b>Purpose:</b> Organizes data into tables, columns, and rows, making it easy for PHP to perform CRUD (Create, Read, Update, Delete) operations.</li>\r\n</ul>\r\n\r\n<h2>How PHP Connects to MySQL</h2>\r\n<p>Modern PHP offers two primary extensions for connecting to a MySQL database:</p>\r\n<ul>\r\n<li>\r\n<b>MySQLi (\"MySQL improved\"):</b> An extension specific to MySQL databases that offers both procedural and object-oriented interfaces.\r\n</li>\r\n<li>\r\n<b>PDO (PHP Data Objects):</b> A versatile database abstraction layer that can work with over 12 different database systems, including MySQL.\r\n</li>\r\n</ul>\r\n<p>Both MySQLi and PDO support *prepared statements*, a security feature that helps prevent SQL injection attacks.</p>', 'article', 'phpmysql-combination', 'https://images.pexels.com/photos/3866816/pexels-photo-3866816.jpeg', 0, 0, 'on', '2025-10-12 02:35:26', '2025-10-12 02:35:26', 1, 1);
+INSERT INTO `articles` (`key_articles`, `key_media_banner`, `title`, `title_sub`, `article_snippet`, `article_content`, `content_type`, `book_indent_level`, `url`, `banner_image_url`, `sort`, `entry_date_time`, `update_date_time`, `created_by`, `updated_by`, `status`) VALUES
+(2, 28, 'The Rise of Minimal CMS', 'Streamlined Editorial Tools', 'Exploring how minimal CMS platforms empower editorial teams.', 'Full content of article 1...', '', 0, 'minimal-cms', NULL, 1, '2025-09-25 15:13:08', '2025-09-25 15:13:08', 1, 1, 'on'),
+(3, 25, 'Designing for Editors', 'UI That Works', 'Why editorial-first design matters in publishing workflows.', 'Full content of article 2 3 4', '', 0, 'editorial-ui', NULL, 2, '2025-09-25 15:13:08', '2025-09-27 12:05:22', NULL, 1, 'on'),
+(4, 11, 'PHP Without Frameworks', 'Native Power', 'Building robust apps with native PHP and no frameworks.', 'Full content of article 3...', '', 0, 'php-native', NULL, 3, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1, 'on'),
+(5, 5, 'Modular CRUD Systems', 'Scalable Architecture', 'How modular CRUD design improves maintainability.', 'Full content of article 4...', '', 0, 'modular-crud', NULL, 4, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1, 'on'),
+(6, 37, 'Debounce in Search', 'Performance Boosts', 'Using debounce to optimize search-triggered loading.', 'Full content of article 5...', '', 0, 'debounce-search', NULL, 5, '2025-09-25 15:13:08', '2025-09-30 13:34:45', NULL, 1, 'on'),
+(7, 6, 'Pagination Patterns', 'Smart Loading', 'Best practices for implementing pagination in CMS.', 'Full content of article 6...', '', 0, 'pagination-patterns', NULL, 6, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1, 'on'),
+(8, 34, 'Editorial Workflows', 'From Draft to Publish', 'Mapping out efficient editorial workflows.', 'Full content of article 7...', '', 0, 'editorial-workflows', NULL, 7, '2025-09-25 15:13:08', '2025-09-29 22:11:15', NULL, 1, 'on'),
+(9, 30, 'Category Management', 'Organized Content', 'Tips for managing categories in publishing systems.', 'Full content of article 8...', '', 0, 'category-management', NULL, 8, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1, 'on'),
+(10, 39, 'Modal-Based Editing', 'Inline Efficiency', 'Using modals for quick article edits.', 'Full content of article 9...', '', 0, 'modal-editing', NULL, 9, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, 1, 'on'),
+(11, 0, 'Search Optimization', 'Fast & Relevant', 'Improving search relevance and speed.', 'Full content of article 10...', '', 0, 'search-optimization', 'banner10.jpg', 10, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(12, 0, 'Legacy CMS Refactor', 'Modernizing Systems', 'Strategies for refactoring legacy CMS platforms.', 'Full content of article 11...', '', 0, 'legacy-refactor', 'banner11.jpg', 11, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(13, 0, 'Content Snippets', 'Reusable Blocks', 'Creating reusable content snippets.', 'Full content of article 12...', '', 0, 'content-snippets', 'banner12.jpg', 12, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(14, 0, 'Desktop-Only UI', 'Focused Design', 'Why desktop-first UI still matters.', 'Full content of article 13...', '', 0, 'desktop-ui', 'banner13.jpg', 13, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(15, 0, 'Error Reporting in PHP', 'Debugging Smartly', 'Enabling error reporting for better debugging.', 'Full content of article 14...', '', 0, 'php-errors', 'banner14.jpg', 14, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(16, 0, 'SQL Troubleshooting', 'Root Cause Isolation', 'Finding and fixing SQL issues.', 'Full content of article 15...', '', 0, 'sql-troubleshooting', 'banner15.jpg', 15, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(17, 0, 'Advanced Filters', 'Precision Tools', 'Adding advanced filters to editorial tools.', 'Full content of article 16...', '', 0, 'advanced-filters', 'banner16.jpg', 16, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(18, 0, 'Scalable CMS Design', 'Future-Proofing', 'Designing CMS for long-term scalability.', 'Full content of article 17...', '', 0, 'scalable-cms', 'banner17.jpg', 17, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(19, 0, 'Collaborative Development', 'Step-by-Step Builds', 'Working with feedback-driven development.', 'Full content of article 18...', '', 0, 'collab-dev', 'banner18.jpg', 18, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(20, 0, 'Clean Code Practices', 'Maintainable Systems', 'Writing clean, maintainable PHP.', 'Full content of article 19...', '', 0, 'clean-code', 'banner19.jpg', 19, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(21, 0, 'UI Feedback Loops', 'Iterative Design', 'Using feedback to refine UI.', 'Full content of article 20...', '', 0, 'ui-feedback', 'banner20.jpg', 20, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(22, 0, 'CMS Testing Strategies', 'Catch the Bugs', 'Testing CMS workflows effectively.', 'Full content of article 21...', '', 0, 'cms-testing', 'banner21.jpg', 21, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(23, 0, 'Content Assignment UX', 'Frictionless Flow', 'Improving article assignment UX.', 'Full content of article 22...', '', 0, 'assignment-ux', 'banner22.jpg', 22, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(24, 0, 'Banner Image Tips', 'Visual Impact', 'Choosing effective banner images.', 'Full content of article 23...', '', 0, 'banner-tips', 'banner23.jpg', 23, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(25, 0, 'URL Structuring', 'SEO & Clarity', 'Structuring article URLs for clarity and SEO.', 'Full content of article 24...', '', 0, 'url-structure', 'banner24.jpg', 24, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(26, 0, 'CMS Entry Points', 'Where It Begins', 'Designing intuitive entry points for editors.', 'Full content of article 25...', '', 0, 'cms-entry', 'banner25.jpg', 25, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
+(36, 0, 'True strength begins with self-awareness and the emotional connection', '', 'We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'We live in a world where stress, anxiety and depression are becoming increasingly common.  We live in a world where stress, anxiety and depression are becoming increasingly common.  We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'article', 0, 'true-strength-begins-with-self-awareness-and-emotional-connection', '', 0, '2025-10-05 05:30:29', '2025-10-05 05:30:29', 1, 1, 'on'),
+(38, 0, 'PHP+MySQL Combination', 'How it Works', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms. \r\n', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n\r\n\r\n<h1>What is the PHP + MySQL Combination?</h1>\r\n\r\n<p>\r\nThe PHP + MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n</p>\r\n\r\n<h2>How the Combination Works</h2>\r\n<p>\r\nThe interaction between PHP and MySQL is a server-side process, meaning most of the work happens on the web server before the user sees the final page.\r\n</p>\r\n\r\n<div class=\"flow-diagram\">\r\n<div class=\"step\">\r\n<h3>1. Request</h3>\r\n<p>A user\'s web browser sends an HTTP request for a page (e.g., <code>example.com/products.php</code>).</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>2. Processing (PHP)</h3>\r\n<p>The web server receives the request and executes the PHP script, which performs server-side tasks like processing user input, managing sessions, and building dynamic content.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>3. Database Query (PHP + MySQL)</h3>\r\n<p>If data is needed, the PHP script connects to the MySQL database and sends a Structured Query Language (SQL) statement.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>4. Database Response (MySQL)</h3>\r\n<p>MySQL processes the SQL query and returns the requested data to the PHP script.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>5. Page Generation (PHP)</h3>\r\n<p>The PHP script uses the data from MySQL to generate a final HTML page.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>6. Response</h3>\r\n<p>The web server sends the completed HTML page back to the user\'s browser, which then renders it for the user.</p>\r\n</div>\r\n</div>\r\n\r\n<h2>What Each Component Does</h2>\r\n\r\n<h3>PHP (Hypertext Preprocessor)</h3>\r\n<p>PHP is a server-side scripting language designed specifically for web development.</p>\r\n<ul>\r\n<li><b>Role:</b> Acts as the \"middleman,\" connecting the user\'s web browser with the database.</li>\r\n<li><b>Purpose:</b> Used for tasks that happen behind the scenes, such as:\r\n<ul>\r\n<li>Handling form submissions</li>\r\n<li>Communicating with the database</li>\r\n<li>Controlling user access</li>\r\n<li>Generating dynamic content</li>\r\n</ul>\r\n</li>\r\n</ul>\r\n\r\n<h3>MySQL</h3>\r\n<p>MySQL is an open-source relational database management system (RDBMS).</p>\r\n<ul>\r\n<li><b>Role:</b> Used for storing and managing data in a structured way.</li>\r\n<li><b>Purpose:</b> Organizes data into tables, columns, and rows, making it easy for PHP to perform CRUD (Create, Read, Update, Delete) operations.</li>\r\n</ul>\r\n\r\n<h2>How PHP Connects to MySQL</h2>\r\n<p>Modern PHP offers two primary extensions for connecting to a MySQL database:</p>\r\n<ul>\r\n<li>\r\n<b>MySQLi (\"MySQL improved\"):</b> An extension specific to MySQL databases that offers both procedural and object-oriented interfaces.\r\n</li>\r\n<li>\r\n<b>PDO (PHP Data Objects):</b> A versatile database abstraction layer that can work with over 12 different database systems, including MySQL.\r\n</li>\r\n</ul>\r\n<p>Both MySQLi and PDO support *prepared statements*, a security feature that helps prevent SQL injection attacks.</p>', 'translation', 0, 'phpmysql-combination', 'https://images.pexels.com/photos/3866816/pexels-photo-3866816.jpeg', 0, '2025-10-12 02:35:26', '2025-10-12 02:35:26', 1, 1, 'on');
 
 -- --------------------------------------------------------
 
@@ -135,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `article_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=MyISAM AUTO_INCREMENT=88 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=138 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_categories`
@@ -158,16 +159,16 @@ INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`)
 (70, 3, 11, NULL),
 (63, 34, 1, NULL),
 (57, 35, 18, NULL),
-(83, 36, 6, NULL),
+(136, 36, 4, NULL),
 (43, 0, 2, NULL),
 (44, 0, 15, NULL),
 (45, 0, 4, NULL),
-(82, 36, 4, NULL),
+(137, 36, 6, NULL),
 (71, 4, 5, NULL),
 (72, 4, 9, NULL),
 (73, 4, 14, NULL),
-(87, 38, 12, NULL),
-(86, 38, 4, NULL);
+(135, 38, 12, NULL),
+(134, 38, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -219,7 +220,7 @@ INSERT INTO `authors` (`key_authors`, `name`, `email`, `phone`, `website`, `url`
 (12, 'Haseena Imtiaz', 'haseenaimtiaz@gmail.com', '123-456-7848', '', 'haseena-imtiaz', '', '', '', '', '', '', '', 35, '', 'on', '2025-10-01 17:23:56', '2025-10-01 17:23:56', NULL, 1),
 (13, 'Sumrina Khan', 'sumrinakhan@hotmail.com', '548-455-5548', '', '', '', '', '', '', '', '', '', NULL, '', 'on', '2025-10-01 17:26:39', '2025-10-01 17:26:39', 1, NULL),
 (14, 'Taimur Sarfaraz', 'taimursarfaraz@gmail.com', '', '', 'tamir-sarfaraz-ahmad', '', '', '', 'Karachi', '', '', '', 28, '', 'on', '2025-10-05 05:09:57', '2025-10-05 05:09:57', 1, 1),
-(16, 'Ikram Mughal', '', '', '', 'ikram-mughal', '', '', '', '', '', '', '', 0, '', 'on', '2025-10-12 07:54:52', '2025-10-12 07:54:52', 1, 1);
+(16, 'Ikram Mughal', '', '', '', 'ikram-mughal', '', '', '', '', '', '', '', 36, '', 'on', '2025-10-12 07:54:52', '2025-10-12 07:54:52', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -231,6 +232,7 @@ DROP TABLE IF EXISTS `blocks`;
 CREATE TABLE IF NOT EXISTS `blocks` (
   `key_blocks` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `key_media_banner` int(10) UNSIGNED DEFAULT NULL,
+  `block_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `block_content` varchar(10000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `show_on_pages` varchar(1000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
@@ -244,23 +246,26 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `key_photo_gallery` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`key_blocks`),
   KEY `fk_blocks_media` (`key_media_banner`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `blocks`
 --
 
-INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `title`, `block_content`, `show_on_pages`, `show_in_region`, `sort`, `module_file`, `status`, `entry_date_time`, `created_by`, `updated_by`, `key_photo_gallery`) VALUES
-(1, 0, 'Authors', '', '', 'sidebar_right', 4, 'authors_91558', 'on', '2025-09-29 22:09:45', NULL, 1, NULL),
-(2, 0, 'Photo Gallery', '', '', 'sidebar_right', 5, 'photos_56467', 'on', '2025-09-24 03:58:17', NULL, 1, NULL),
-(3, 1, 'Youtube Gallery', '', '', 'sidebar_right', 6, 'youtube_15578', 'on', '2025-09-24 03:58:23', NULL, 1, NULL),
-(4, 0, 'Articles', '', '', 'sidebar_right', 1, 'articles_34548', 'on', '2025-09-29 22:10:15', NULL, 1, NULL),
-(5, 0, 'Books', '', '', 'sidebar_right', 3, 'books_84538', 'on', '2025-10-01 17:49:57', 1, 1, NULL),
-(6, 0, 'Topics', '', '', 'sidebar_right', 2, 'categories_55448', 'on', '2025-10-08 09:37:28', 1, 1, 0),
-(7, 0, '<none>', '<div id=\"home-banner\" style=\"background-image:url(/templates/default/images/pexels-wasifmehmood997-19442078.jpg)\"   data-animate=\"fade\">', 'home', 'below_header', 1, '', 'on', '2025-10-10 13:13:56', 1, 1, NULL),
-(8, 0, '<none>', 'Default Template Â© CopilotCMS', '', 'footer', 10, '', 'on', '2025-10-10 13:40:38', 1, 1, NULL),
-(9, 0, '<none>', '<span>Phone</span> <a href=\"tel:1234567890\">(123)456-7890</a> \r\n<span>Email</span> <a href=\"mailto:myemail@outlook.com\">myemail@outlook.com</a> ', '', 'above_header', 0, '', 'on', '2025-10-10 14:47:52', 1, 1, NULL),
-(10, 0, '<none>', '<a href=\"/page/privacy-policy\">Privacy Policy</a> | <a href=\"/page/terms-of-use\">Term of Use</a>', '', 'below_footer', 16, '', 'on', '2025-10-10 14:49:16', 1, 1, 19);
+INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `block_name`, `title`, `block_content`, `show_on_pages`, `show_in_region`, `sort`, `module_file`, `status`, `entry_date_time`, `created_by`, `updated_by`, `key_photo_gallery`) VALUES
+(1, 0, '', 'Authors', '', '', 'sidebar_right', 4, 'authors_91558', 'on', '2025-09-29 22:09:45', NULL, 1, NULL),
+(2, 0, '', 'Photo Gallery', '', '', 'sidebar_right', 5, 'photos_56467', 'on', '2025-09-24 03:58:17', NULL, 1, NULL),
+(3, 1, '', 'Youtube Gallery', '', '', 'sidebar_right', 6, 'youtube_15578', 'on', '2025-09-24 03:58:23', NULL, 1, NULL),
+(4, 0, '', 'Articles', '', '', 'sidebar_right', 1, 'articles_34548', 'on', '2025-09-29 22:10:15', NULL, 1, NULL),
+(5, 0, '', 'Books', '', '', 'sidebar_right', 3, 'books_84538', 'on', '2025-10-01 17:49:57', 1, 1, NULL),
+(6, 0, '', 'Topics', '', '', 'sidebar_right', 2, 'categories_55448', 'on', '2025-10-08 09:37:28', 1, 1, 0),
+(15, 0, 'Image Slideshow Categories', '<none>', '', 'categories', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:28:00', 1, NULL, 22),
+(8, 0, 'Copyright Message', '<none>', 'Default Template Â© CopilotCMS', '', 'footer', 12, '', 'on', '2025-10-10 13:40:38', 1, 1, NULL),
+(9, 0, 'Phone Email', '<none>', '<span>Phone</span> <a href=\"tel:1234567890\">(123)456-7890</a> \r\n<span>Email</span> <a href=\"mailto:myemail@outlook.com\">myemail@outlook.com</a> ', '', 'above_header', 0, '', 'on', '2025-10-10 14:47:52', 1, 1, NULL),
+(10, 0, 'Privacy Terms Links', '<none>', '<a href=\"/page/privacy-policy\">Privacy Policy</a> | <a href=\"/page/terms-of-use\">Term of Use</a>', '', 'below_footer', 16, '', 'on', '2025-10-10 14:49:16', 1, 1, NULL),
+(12, 0, 'Image Slideshow Home', '<none>', '', 'home', 'below_header', 11, 'photo_gallery_carousel_5645645', 'on', '2025-10-13 18:11:01', 1, 1, 17),
+(14, 0, 'Image Slideshow Articles', '<none>', '', 'articles', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:25:45', 1, NULL, 24),
+(16, 0, 'Image Slideshow Books', '<none>', '', 'books', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:30:41', 1, NULL, 20);
 
 -- --------------------------------------------------------
 
@@ -613,7 +618,7 @@ CREATE TABLE IF NOT EXISTS `photo_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_photo_gallery`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `photo_categories`
@@ -631,15 +636,15 @@ INSERT INTO `photo_categories` (`id`, `key_photo_gallery`, `key_categories`, `ur
 (39, 11, 15, NULL),
 (40, 13, 15, NULL),
 (42, 15, 13, NULL),
-(43, 17, 26, NULL),
+(74, 17, 26, NULL),
 (44, 16, 25, NULL),
 (45, 18, 26, NULL),
 (46, 19, 26, NULL),
-(47, 20, 23, NULL),
+(77, 20, 23, NULL),
 (48, 21, 24, NULL),
-(61, 22, 23, NULL),
+(75, 22, 23, NULL),
 (60, 23, 26, NULL),
-(59, 24, 26, NULL);
+(72, 24, 26, NULL);
 
 -- --------------------------------------------------------
 
@@ -661,24 +666,27 @@ CREATE TABLE IF NOT EXISTS `photo_gallery` (
   `updated_by` int(10) UNSIGNED DEFAULT NULL,
   `url` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   `available_for_blocks` varchar(3) COLLATE utf8_unicode_ci DEFAULT '',
+  `css` varchar(500) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `slideshow_enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `navigation_type` enum('arrows','slideshow','both','none') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'slideshow',
   PRIMARY KEY (`key_photo_gallery`),
   KEY `fk_photo_gallery_media` (`key_media_banner`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `photo_gallery`
 --
 
-INSERT INTO `photo_gallery` (`key_photo_gallery`, `key_media_banner`, `title`, `image_url`, `description`, `status`, `entry_date_time`, `update_date_time`, `created_by`, `updated_by`, `url`, `available_for_blocks`) VALUES
-(22, 0, 'Sydney Opera House Australia', '/media/images/2025/sydney-opera-house-australia.jpg', '', 'on', '2025-10-10 12:54:56', '2025-10-10 07:54:56', 1, 1, 'sydney-opera-house-australia', 'on'),
-(20, 10, 'Golden Gate Bridge San Francisco California United States', '/media/images/2025/golden-gate-bridge-san-francisco-california-united-states.jpg', '', 'on', '2025-10-10 12:53:38', '2025-10-10 07:53:38', 1, NULL, 'golden-gate-bridge-san-francisco-california-united-states', '0'),
-(21, 11, 'Great Wall of China', '/media/images/2025/great-wall-of-china.jpg', '', 'on', '2025-10-10 12:54:09', '2025-10-10 07:54:09', 1, NULL, 'great-wall-of-china', '0'),
-(17, 0, 'Bosphorus Istanbul Turkey', '/media/images/2025/bosphorus-istanbul-turkey.jpg', '', 'on', '2025-10-10 12:41:00', '2025-10-10 07:41:00', 1, 1, 'bosphorus-istanbul-turkey', '0'),
-(18, 9, 'Eiffel Tower Paris France', 'http://copilot/media/images/2025/eiffel-tower-paris-france.jpg', '', 'on', '2025-10-10 12:52:14', '2025-10-10 07:52:14', 1, NULL, 'eiffel-tower-paris-france', '0'),
-(19, 6, 'Ferris Wheel Singapore', '/media/images/2025/ferris-wheel-singapore.jpg', '', 'on', '2025-10-10 12:52:51', '2025-10-10 07:52:51', 1, NULL, 'ferris-wheel-singapore', '0'),
-(16, 0, 'Oxford University London', '/media/images/2025/oxford-london-united-kingdom.jpg', '', 'on', '2025-10-08 14:47:00', '2025-10-08 09:47:00', 1, 1, 'oxford-university-london', '0'),
-(23, 0, 'Taj Mahal India', '/media/images/2025/taj-mahal-india.jpg', '', 'on', '2025-10-10 12:55:31', '2025-10-10 07:55:31', 1, 1, 'taj-mahal-india', 'on'),
-(24, 0, 'Badshahi Mosque Lahore, Pakistan', '/media/images/2025/badshahi-mosque-lahore-pakistan.jpg', '', 'on', '2025-10-10 12:55:55', '2025-10-10 07:55:55', 1, 1, 'badshahi-mosque-lahore-pakistan', 'on');
+INSERT INTO `photo_gallery` (`key_photo_gallery`, `key_media_banner`, `title`, `image_url`, `description`, `status`, `entry_date_time`, `update_date_time`, `created_by`, `updated_by`, `url`, `available_for_blocks`, `css`, `slideshow_enabled`, `navigation_type`) VALUES
+(22, 0, 'Sydney Opera House Australia', '/media/images/2025/sydney-opera-house-australia.jpg', '', 'on', '2025-10-10 12:54:56', '2025-10-10 07:54:56', 1, 1, 'sydney-opera-house-australia', 'on', 'height:400px;', 1, 'arrows'),
+(20, 0, 'Golden Gate Bridge San Francisco California United States', '/media/images/2025/golden-gate-bridge-san-francisco-california-united-states.jpg', '', 'on', '2025-10-10 12:53:38', '2025-10-10 07:53:38', 1, 1, 'golden-gate-bridge-san-francisco-california-united-states', 'on', 'height:400px;', 1, 'arrows'),
+(21, 11, 'Great Wall of China', '/media/images/2025/great-wall-of-china.jpg', '', 'on', '2025-10-10 12:54:09', '2025-10-10 07:54:09', 1, NULL, 'great-wall-of-china', '0', '', 1, 'slideshow'),
+(17, 0, 'Bosphorus Istanbul Turkey', '/media/images/2025/bosphorus-istanbul-turkey.jpg', '', 'on', '2025-10-10 12:41:00', '2025-10-10 07:41:00', 1, 1, 'bosphorus-istanbul-turkey', 'on', 'width:100%;height:550px;', 1, 'arrows'),
+(18, 9, 'Eiffel Tower Paris France', 'http://copilot/media/images/2025/eiffel-tower-paris-france.jpg', '', 'on', '2025-10-10 12:52:14', '2025-10-10 07:52:14', 1, NULL, 'eiffel-tower-paris-france', '0', '', 1, 'slideshow'),
+(19, 6, 'Ferris Wheel Singapore', '/media/images/2025/ferris-wheel-singapore.jpg', '', 'on', '2025-10-10 12:52:51', '2025-10-10 07:52:51', 1, NULL, 'ferris-wheel-singapore', '0', '', 1, 'slideshow'),
+(16, 0, 'Oxford University London', '/media/images/2025/oxford-london-united-kingdom.jpg', '', 'on', '2025-10-08 14:47:00', '2025-10-08 09:47:00', 1, 1, 'oxford-university-london', '0', '', 1, 'slideshow'),
+(23, 0, 'Taj Mahal India', '/media/images/2025/taj-mahal-india.jpg', '', 'on', '2025-10-10 12:55:31', '2025-10-10 07:55:31', 1, 1, 'taj-mahal-india', 'on', '', 1, 'slideshow'),
+(24, 0, 'Badshahi Mosque Lahore, Pakistan', '/media/images/2025/badshahi-mosque-lahore-pakistan.jpg', '', 'on', '2025-10-10 12:55:55', '2025-10-10 07:55:55', 1, 1, 'badshahi-mosque-lahore-pakistan', 'on', 'width:100%;height:400px;', 1, 'arrows');
 
 -- --------------------------------------------------------
 
@@ -732,10 +740,10 @@ INSERT INTO `photo_gallery_images` (`key_image`, `key_media_banner`, `key_photo_
 (39, 7, 23, 0, '2025-10-10 10:43:09', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
 (40, 14, 23, 0, '2025-10-10 10:43:17', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
 (41, 15, 23, 0, '2025-10-10 10:43:32', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
-(42, 12, 22, 0, '2025-10-10 10:44:01', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
-(43, 17, 22, 0, '2025-10-10 10:44:09', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
-(44, 18, 22, 0, '2025-10-10 10:44:12', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
-(45, 19, 22, 0, '2025-10-10 10:44:15', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
+(42, 12, 22, 0, '2025-10-10 10:44:01', 'Sydney Opera', '', '', 1, 0, 'Hello', 'https://copilotcms.org', 'none', 'right', '#ffffff', '', NULL, NULL, 'on'),
+(43, 17, 22, 0, '2025-10-10 10:44:09', '', '', '', 1, 0, '', '', 'none', 'center', '#ffffff', '', NULL, NULL, 'on'),
+(44, 18, 22, 0, '2025-10-10 10:44:12', '', '', '', 1, 0, '', '', 'none', 'center', '#ffffff', '', NULL, NULL, 'on'),
+(45, 19, 22, 0, '2025-10-10 10:44:15', '', '', '', 1, 0, '', '', 'none', 'center', '#ffffff', '', NULL, NULL, 'on'),
 (46, 11, 21, 0, '2025-10-10 10:44:34', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
 (47, 25, 21, 0, '2025-10-10 10:44:40', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
 (48, 23, 21, 0, '2025-10-10 10:44:51', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
@@ -756,7 +764,7 @@ INSERT INTO `photo_gallery_images` (`key_image`, `key_media_banner`, `key_photo_
 (63, 36, 17, 0, '2025-10-10 10:46:51', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
 (67, 20, 16, 0, '2025-10-10 10:47:21', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
 (68, 13, 16, 0, '2025-10-10 10:47:24', NULL, NULL, NULL, 1, 0, NULL, NULL, 'fade', 'center', '#ffffff', NULL, NULL, NULL, 'on'),
-(69, NULL, 24, 0, '2025-10-13 06:07:02', 'Badshahi Mosque Aerial View', '', '', 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on');
+(69, NULL, 24, 0, '2025-10-13 06:07:02', 'Badshahi Mosque Aerial View', '', '', 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'off');
 
 -- --------------------------------------------------------
 
@@ -979,7 +987,7 @@ INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting
 (34, 'frontend_cache_ttl', '300', 'debug', 'number', 1, '2025-10-06 18:07:08'),
 (35, 'frontend_ajax_timeout', '5000', 'debug', 'number', 1, '2025-10-06 18:07:08'),
 (37, 'template_folder', 'editorial', 'ui', 'dropdown', 1, '2025-10-06 18:59:28'),
-(38, 'template_default_logo', '/templates/default/images/copilogcms.jpg', 'ui', 'text', 1, '2025-10-10 12:11:50'),
+(38, 'template_default_logo', '/templates/default/images/copilogcms.png', 'ui', 'text', 1, '2025-10-14 16:04:48'),
 (39, 'template_default_cover_image', '/templates/default/images/pexels-wasifmehmood997-19442078.jpg', 'ui', 'text', 1, '2025-10-10 13:02:14');
 
 -- --------------------------------------------------------
@@ -1103,7 +1111,7 @@ INSERT INTO `youtube_gallery` (`key_youtube_gallery`, `key_media_banner`, `title
 --
 -- Indexes for table `articles`
 --
-ALTER TABLE `articles` ADD FULLTEXT KEY `title` (`title`,`title_sub`,`content_type`,`article_snippet`,`article_content`);
+ALTER TABLE `articles` ADD FULLTEXT KEY `title` (`title`,`title_sub`,`article_snippet`,`article_content`);
 
 --
 -- Indexes for table `authors`

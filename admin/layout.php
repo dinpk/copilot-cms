@@ -26,21 +26,21 @@ $title
 <div class="container">
 	<div class="sidebar">
 	  <h3>$username</h3>
-	  <a href="../index.php">📊 Dashboard</a>
-	  <a href="../main_menu/list.php">🧭 Main Menu</a>
-	  <a href="../articles/list.php">📝 Articles</a>
-	  <a href="../pages/list.php">📘 Pages</a>
-	  <a href="../categories/list.php">🏷️ Categories</a>
-	  <a href="../authors/list.php">🧑‍ Authors</a>
-	  <a href="../books/list.php">📚 Books</a>
-	  <a href="../photo_gallery/list.php">🖼️ Photo Gallery</a>
-	  <a href="../youtube_gallery/list.php">🎥 YouTube Gallery</a>
-	  <a href="../products/list.php">🛍️ Products</a>
-	  <a href="../blocks/list.php">🧩 Blocks</a>
-	  <a href="../users/list.php">👥 Users</a>
-	  <a href="../media_library/list.php">🛠️ Media Library</a>
-	  <a href="../settings/list.php">🛠️ Settings</a>
-	  <a href="../users/logout.php">🚪 Logout</a>
+	<a href="../index.php"><span>📊</span> Dashboard</a>
+	<a href="../main_menu/list.php"><span>🧭</span> Main Menu</a>
+	<a href="../articles/list.php"><span>📰</span> Articles</a>
+	<a href="../pages/list.php"><span>📄</span> Pages</a>
+	<a href="../categories/list.php"><span>🗂️</span> Categories</a>
+	<a href="../authors/list.php"><span>👤</span> Authors</a>
+	<a href="../books/list.php"><span>📖</span> Books</a>
+	<a href="../photo_gallery/list.php"><span>🖼️</span> Photo Gallery</a>
+	<a href="../youtube_gallery/list.php"><span>📺</span> YouTube Gallery</a>
+	<a href="../products/list.php"><span>📦</span> Products</a>
+	<a href="../blocks/list.php"><span>🧱</span> Blocks</a>
+	<a href="../users/list.php"><span>👥</span> Users</a>
+	<a href="../media_library/list.php"><span>🎞️</span> Media Library</a>
+	<a href="../settings/list.php"><span>⚙️</span> Settings</a>
+	<a href="../users/logout.php"><span>🚪</span> Logout</a>
 	</div>
 
   
@@ -68,7 +68,7 @@ function endLayout() {
 
 
 <footer>
-  Powered by Copilot &mdash; Built with clarity, collaboration, and care. &copy; <?= date('Y') ?> CopilotCMS. All rights reserved.
+  Powered by Copilot &mdash; Built with clarity, collaboration, and care. &copy; <?= date('Y') ?> CopilotCMS.
 </footer>
 
 </body>

@@ -62,6 +62,8 @@ include '../users/auth.php';
 
 <!-- Modal Form -->
 <div id="modal" class="modal">
+	<a href="#" onclick="closeModal();" class="close-icon">✖</a>
+
   <h3 id="modal-title">Add Setting</h3>
   <form id="modal-form" method="post" action="add.php">
     <input type="hidden" name="key_settings" id="key_settings">
@@ -118,7 +120,6 @@ include '../users/auth.php';
     </label><br>
 
     <input type="submit" value="Save">
-    <button type="button" onclick="closeModal()">Cancel</button>
   </form>
 </div>
 

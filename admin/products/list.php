@@ -100,6 +100,7 @@ include '../users/auth.php';
 
 <!-- Modal Form — Add/Edit -->
 <div id="modal" class="modal">
+	<a href="#" onclick="closeModal();" class="close-icon">✖</a>
   <h3 id="modal-title">Add Product</h3>
   <form id="modal-form" method="post">
 	<input type="hidden" name="key_product" id="key_product">
@@ -169,7 +170,6 @@ include '../users/auth.php';
     </div>
 
     <input type="submit" value="Save">
-    <button type="button" onclick="closeModal()">Cancel</button>
   </form>
 </div>
 
@@ -204,6 +204,7 @@ include '../users/auth.php';
 
 <!-- Media Modal Form -->
 <div id="media-modal" class="modal">
+	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
   <h3>Select Banner Image</h3>
   <div id="media-grid">
     <?php
@@ -216,7 +217,6 @@ include '../users/auth.php';
     }
     ?>
   </div>
-  <button type="button" onclick="closeMediaModal()">Cancel</button>
 </div>
 
 
