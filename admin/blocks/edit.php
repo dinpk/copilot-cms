@@ -1,42 +1,33 @@
-<?php 
+<?php
 include '../db.php';
-include '../users/auth.php'; 
-
-if ($_SESSION["role"] == "viewer") {
+include '../users/auth.php';
+if ('viewer' == $_SESSION['role']) {
 	echo "'⚠ You do not have access to edit a record';";
 	exit;
 }
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
-  $id = intval($_GET['id']);
-  $status = isset($_POST['status']) ? 'on' : 'off';	
+if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
+	$id = intval($_GET['id']);
+	$status = isset($_POST['status']) ? 'on' : 'off';
 	$updatedBy = $_SESSION['key_user'];
-
-  $stmt = $conn->prepare("UPDATE blocks SET
-    block_name = ?, title = ?, block_content = ?, show_on_pages = ?, show_in_region = ?,
-    sort = ?, module_file = ?, status = ?,
-    updated_by = ?, key_media_banner = ?, key_photo_gallery = ?  
-    WHERE key_blocks = ?");
-
-  if (!$stmt) {
-    die("Prepare failed: " . $conn->error);
-  }
-
-  $stmt->bind_param("sssssissiiii",
-    $_POST['block_name'],
-    $_POST['title'],
-    $_POST['block_content'],
-    $_POST['show_on_pages'],
-    $_POST['show_in_region'],
-    $_POST['sort'],
-    $_POST['module_file'],
-    $status,
+	$stmt = $conn->prepare('
+	UPDATE blocks 
+	SET block_name = ?, title = ?, block_content = ?, show_on_pages = ?, show_in_region = ?, sort = ?, module_file = ?, status = ?, updated_by = ?, key_media_banner = ?, key_photo_gallery = ? 
+	WHERE key_blocks = ?
+	');
+	$stmt->bind_param('sssssissiiii',
+	$_POST['block_name'],
+	$_POST['title'],
+	$_POST['block_content'],
+	$_POST['show_on_pages'],
+	$_POST['show_in_region'],
+	$_POST['sort'],
+	$_POST['module_file'],
+	$status,
 	$updatedBy,
 	$_POST['key_media_banner'],
 	$_POST['key_photo_gallery'],
-    $id
-  );
-
-  $stmt->execute();
+	$id
+	);
+	$stmt->execute();
 }
 ?>

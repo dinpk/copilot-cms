@@ -17,7 +17,7 @@ include __DIR__ . '/layout.php';
 	$sql = "SELECT pages.*, m.file_url AS banner FROM pages 
 							  LEFT JOIN media_library m ON pages.key_media_banner = m.key_media
 							  WHERE pages.status='on' ";
-	$sql .= " ORDER BY entry_date_time DESC LIMIT $limit OFFSET $offset";
+	$sql .= " ORDER BY sort ASC LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);
 	while ($a = $records->fetch_assoc()) {
 		echo "<div class='snippet-card'>

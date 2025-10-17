@@ -15,36 +15,37 @@ $action_button_link_url = $conn->real_escape_string($_POST['action_button_link_u
 $animation_type = $conn->real_escape_string($_POST['animation_type'] ?? 'fade');
 $text_position = $conn->real_escape_string($_POST['text_position'] ?? 'center');
 $text_color = $conn->real_escape_string($_POST['text_color'] ?? '#ffffff');
-$button_style = $conn->real_escape_string($_POST['button_style'] ?? '');
+$image_wrapper_class = $conn->real_escape_string($_POST['image_wrapper_class'] ?? '');
 $status = $conn->real_escape_string($_POST['status'] ?? 'on');
 
 if ($key_image) {
-  // Update existing record
-  $sql = "UPDATE photo_gallery_images SET
-    title = '$title',
-    description = '$description',
-    opacity = $opacity,
-    action_button = $action_button,
-    action_button_text = '$action_button_text',
-    action_button_link_url = '$action_button_link_url',
-    animation_type = '$animation_type',
-    text_position = '$text_position',
-    text_color = '$text_color',
-    button_style = '$button_style',
-    status = '$status'
-  WHERE key_image = $key_image";
+	// Update existing record
+	$sql = "UPDATE photo_gallery_images SET
+		title = '$title',
+		description = '$description',
+		opacity = $opacity,
+		action_button = $action_button,
+		action_button_text = '$action_button_text',
+		action_button_link_url = '$action_button_link_url',
+		animation_type = '$animation_type',
+		text_position = '$text_position',
+		text_color = '$text_color',
+		image_wrapper_class = '$image_wrapper_class',
+		status = '$status'
+	WHERE key_image = $key_image";
 } else {
-  // Insert new record
-  $sql = "INSERT INTO photo_gallery_images (
-    key_photo_gallery, title, description, opacity,
-    action_button, action_button_text, action_button_link_url,
-    animation_type, text_position, text_color, button_style, status
-  ) VALUES (
-    $key_photo_gallery, '$title', '$description', $opacity,
-    $action_button, '$action_button_text', '$action_button_link_url',
-    '$animation_type', '$text_position', '$text_color', '$button_style', '$status'
-  )";
+	// Insert new record
+	$sql = "INSERT INTO photo_gallery_images (
+		key_photo_gallery, title, description, opacity,
+		action_button, action_button_text, action_button_link_url,
+		animation_type, text_position, text_color, image_wrapper_class, status
+	) VALUES (
+		$key_photo_gallery, '$title', '$description', $opacity,
+		$action_button, '$action_button_text', '$action_button_link_url',
+		'$animation_type', '$text_position', '$text_color', '$image_wrapper_class', '$status'
+	)";
 }
 
 $conn->query($sql);
 header("Location: list_photo_gallery_images.php?gallery_id=$key_photo_gallery");
+?>

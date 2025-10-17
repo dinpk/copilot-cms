@@ -52,15 +52,17 @@ startLayout("YouTube Gallery");
 
 	$res = $conn->query($sql);
 
-	echo "<div class='gallery-grid'>";
+	echo "<div class='flex-wrap-center'>";
 	while ($v = $res->fetch_assoc()) {
-	  $thumb = "https://img.youtube.com/vi/{$v['youtube_id']}/hqdefault.jpg";
-	  $title = htmlspecialchars($v['title']);
-	  $desc = htmlspecialchars($v['description']);
-	  echo "<div class='video-card'>
-			  <img src='$thumb' width='300' onclick=\"openModal('{$v['youtube_id']}', '$title', '$desc')\">
-			  <h3>$title</h3>
+		echo '<div>';
+		$thumb = "https://img.youtube.com/vi/{$v['youtube_id']}/hqdefault.jpg";
+		$title = htmlspecialchars($v['title']);
+		$desc = htmlspecialchars($v['description']);
+		echo "<div class='video-card'>
+				<img src='$thumb' width='300' onclick=\"openModal('{$v['youtube_id']}', '$title', '$desc')\">
+				<h3>$title</h3>
 			</div>";
+		echo '</div>';
 	}
 	echo "</div>";
 	?>
@@ -75,24 +77,24 @@ startLayout("YouTube Gallery");
 
 <!-- Modal -->
 <div id="videoModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000000cc; z-index:9999;">
-  <div style="position:relative; width:80%; max-width:800px; margin:5% auto; background:#fff; padding:20px;">
-    <span onclick="closeModal()" style="position:absolute; top:10px; right:20px; cursor:pointer; font-size:24px;">&times;</span>
-    <h2 id="videoTitle"></h2>
-    <iframe id="videoFrame" width="100%" height="450" frameborder="0" allowfullscreen></iframe>
-    <p id="videoDesc" style="margin-top:10px;"></p>
-  </div>
+	<div style="position:relative; width:80%; max-width:800px; margin:5% auto; background:#fff; padding:20px;">
+		<span onclick="closeModal()" style="position:absolute; top:10px; right:20px; cursor:pointer; font-size:24px;">&times;</span>
+		<h2 id="videoTitle"></h2>
+		<iframe id="videoFrame" width="100%" height="450" frameborder="0" allowfullscreen></iframe>
+		<p id="videoDesc" style="margin-top:10px;"></p>
+	</div>
 </div>
 
 <script>
 function openModal(videoId, title, desc) {
-  document.getElementById('videoFrame').src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
-  document.getElementById('videoTitle').innerText = title;
-  document.getElementById('videoDesc').innerText = desc;
-  document.getElementById('videoModal').style.display = 'block';
+	document.getElementById('videoFrame').src = "https://www.youtube.com/embed/" + videoId + "?autoplay=1";
+	document.getElementById('videoTitle').innerText = title;
+	document.getElementById('videoDesc').innerText = desc;
+	document.getElementById('videoModal').style.display = 'block';
 }
 function closeModal() {
-  document.getElementById('videoFrame').src = "";
-  document.getElementById('videoModal').style.display = 'none';
+	document.getElementById('videoFrame').src = "";
+	document.getElementById('videoModal').style.display = 'none';
 }
 </script>
 

@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 		const modalForm = document.querySelector('#modal-form');
 		if (modalForm) {
 			document.getElementById('modal-form').addEventListener('submit', function(e) {
+			  if (e.target.classList.contains('skip-submit-listener')) return; // #model-form that submit directly
 			  e.preventDefault();
 
 			  const form = e.target;
@@ -206,6 +207,7 @@ function openAssignModal(bookId) {
   fetch('get_assigned_articles.php?book_id=' + bookId)
     .then(res => res.json())
     .then(data => {
+		console.log(data);
       let html = '';
       data.forEach(article => {
         html += `<label><input type="checkbox" name="article_ids[]" value="${article.key_articles}" checked> ${article.title}</label><br>`;
@@ -291,8 +293,9 @@ function closeMediaModal() {
   document.getElementById('media-modal').style.display = 'none';
 }
 
-function selectMedia(id, url) {
+function selectMedia(id, url, url_field) {
   document.getElementById('key_media_banner').value = id;
+  if (url_field) document.getElementById(url_field).value = url;
   document.getElementById('media-preview').innerHTML = "<img src='" + url + "' width='100'>";
   console.log(document.getElementById('key_media_banner').value);
   closeMediaModal();

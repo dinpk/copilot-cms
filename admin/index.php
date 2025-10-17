@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['key_user'])) {
-  header("Location: users/login.php");
-  exit;
+	header("Location: users/login.php");
+	exit;
 }
 
 $username = $_SESSION["username"];
@@ -19,18 +19,17 @@ function getCount($table, $statusCol = 'status') {
 }
 
 function getRecent($table, $titleCol, $dateCol, $limit = 5) {
-    global $conn;
+	global $conn;
 
-    $sql = "SELECT $titleCol, $dateCol FROM $table ORDER BY $dateCol DESC LIMIT $limit";
-    $result = $conn->query($sql);
+	$sql = "SELECT $titleCol, $dateCol FROM $table ORDER BY $dateCol DESC LIMIT $limit";
+	$result = $conn->query($sql);
 
-    $rows = [];
-    while ($row = $result->fetch_assoc()) {
-        $rows[] = $row;
-    }
-    return $rows;
+	$rows = [];
+	while ($row = $result->fetch_assoc()) {
+		$rows[] = $row;
+	}
+	return $rows;
 }
-
 
 // Metrics
 $totalArticles = getCount("articles");
@@ -57,17 +56,17 @@ $recentYoutube = getRecent("youtube_gallery", "title", "entry_date_time", 5);
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 <header>
-Dashboard
+	Dashboard
 </header>
 <div class="container">
-  <div class="sidebar">
-    <h2>Welcome, <?= $username ?></h2>
-    <ul class="dashboard-links">
+	<div class="sidebar">
+	<h2>Welcome, <?= $username ?></h2>
+	<ul class="dashboard-links">
 	<li><a href="index.php"><span>📊</span> Dashboard</a></li>
 	<li><a href="main_menu/list.php"><span>🧭</span> Main Menu</a></li>
 	<li><a href="articles/list.php"><span>📰</span> Articles</a></li>
@@ -83,107 +82,94 @@ Dashboard
 	<li><a href="media_library/list.php"><span>🎞️</span> Media Library</a></li>
 	<li><a href="settings/list.php"><span>⚙️</span> Settings</a></li>
 	<li><a href="users/logout.php"><span>🚪</span> Logout</a></li>
-    </ul>
-  </div>
-
-  <div class="main">
-    <h2>📊 Dashboard Overview</h2>
-
-    <div class="dashboard-metrics">
-      <div class="metric-box">📰 Articles<br><span><?= $totalArticles ?></span></div>
-      <div class="metric-box">👤 Authors<br><span><?= $totalAuthors ?></span></div>
-      <div class="metric-box">📰 Pages<br><span><?= $totalPages ?></span></div>
-      <div class="metric-box">📰 Videos<br><span><?= $totalVideos ?></span></div>
-      <div class="metric-box">📰 Photos<br><span><?= $totalPhotos ?></span></div>
-      <div class="metric-box">📚 Books<br><span><?= $totalBooks ?></span></div>
-      <div class="metric-box" style="display:none;">🧱 Products<br><span><?= $totalProducts ?></span></div>
-      <div class="metric-box" style="display:none;">🛒 Orders<br><span><?= $totalOrders ?></span></div>
-    </div>
-	
-	<div class="recents">
-
-		<div class="recent-activity">
-		  <h3>🕒 Recent Articles</h3>
-		  <ul>
-			<?php foreach ($recentArticles as $item): ?>
-			  <li><?= htmlspecialchars($item['title']) ?><br> <small><?= $item['entry_date_time'] ?></small></li>
-			<?php endforeach; ?>
-		  </ul>
-		</div>
-
-		<div class="recent-activity">
-		  <h3>🕒 Recent Books</h3>
-		  <ul>
-			<?php foreach ($recentBooks as $item): ?>
-			  <li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-			<?php endforeach; ?>
-		  </ul>
-		</div>
-
-		<div class="recent-activity">
-		  <h3>🕒 Recent Pages</h3>
-		  <ul>
-			<?php foreach ($recentPages as $item): ?>
-			  <li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-			<?php endforeach; ?>
-		  </ul>
-		</div>
-
-		<div class="recent-activity">
-		  <h3>🕒 Recent Categories</h3>
-		  <ul>
-			<?php foreach ($recentCategories as $item): ?>
-			  <li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-			<?php endforeach; ?>
-		  </ul>
-		</div>
-
-		<div class="recent-activity">
-		  <h3>🕒 Recent Authors</h3>
-		  <ul>
-			<?php foreach ($recentAuthors as $item): ?>
-			  <li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-			<?php endforeach; ?>
-		  </ul>
-		</div>
-
-		<div class="recent-activity" style="display:none;">
-		  <h3>🕒 Recent Products</h3>
-		  <ul>
-			<?php foreach ($recentProducts  as $item): ?>
-			  <li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-			<?php endforeach; ?>
-		  </ul>
-		</div>
-
-
-		<div class="recent-activity">
-		  <h3>🕒 Recent Youtube</h3>
-		  <ul>
-			<?php foreach ($recentYoutube as $item): ?>
-			  <li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-			<?php endforeach; ?>
-		  </ul>
-		</div>
-
-		<div class="recent-activity">
-		  <h3>🕒 Recent Photo Gallery</h3>
-		  <ul>
-			<?php foreach ($recentGallery as $item): ?>
-			  <li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-			<?php endforeach; ?>
-		  </ul>
-		</div>
-		
+	</ul>
 	</div>
 
-    <p style="margin-top:2em; color:#666;">All changes are live. You’re in full control.</p>
-  </div>
+	<div class="main">
+		<h2>📊 Dashboard Overview</h2>
+		<div class="dashboard-metrics">
+			<div class="metric-box">📰 Articles<br><span><?= $totalArticles ?></span></div>
+			<div class="metric-box">👤 Authors<br><span><?= $totalAuthors ?></span></div>
+			<div class="metric-box">📰 Pages<br><span><?= $totalPages ?></span></div>
+			<div class="metric-box">📰 Videos<br><span><?= $totalVideos ?></span></div>
+			<div class="metric-box">📰 Photos<br><span><?= $totalPhotos ?></span></div>
+			<div class="metric-box">📚 Books<br><span><?= $totalBooks ?></span></div>
+			<div class="metric-box" style="display:none;">🧱 Products<br><span><?= $totalProducts ?></span></div>
+			<div class="metric-box" style="display:none;">🛒 Orders<br><span><?= $totalOrders ?></span></div>
+		</div>
+		<div class="recents">
+			<div class="recent-activity">
+				<h3>🕒 Recent Articles</h3>
+				<ul>
+				<?php foreach ($recentArticles as $item): ?>
+					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= $item['entry_date_time'] ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Books</h3>
+				<ul>
+				<?php foreach ($recentBooks as $item): ?>
+					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Pages</h3>
+				<ul>
+				<?php foreach ($recentPages as $item): ?>
+					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Categories</h3>
+				<ul>
+				<?php foreach ($recentCategories as $item): ?>
+					<li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Authors</h3>
+				<ul>
+				<?php foreach ($recentAuthors as $item): ?>
+					<li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity" style="display:none;">
+				<h3>🕒 Recent Products</h3>
+				<ul>
+				<?php foreach ($recentProducts	as $item): ?>
+					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Youtube</h3>
+				<ul>
+				<?php foreach ($recentYoutube as $item): ?>
+					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Photo Gallery</h3>
+				<ul>
+				<?php foreach ($recentGallery as $item): ?>
+					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+		</div>
+		<p style="margin-top:2em; color:#666;">All changes are live. You’re in full control.</p>
+	</div>
 </div>
 
 <footer>
-  Powered by Copilot &mdash; Built with clarity, collaboration, and care.<br>
-  &copy; <?= date('Y') ?> CopilotCMS.
+	Powered by Copilot &mdash; Built with clarity, collaboration, and care.<br>
+	&copy; <?= date('Y') ?> CopilotCMS.
 </footer>
 
 </body>

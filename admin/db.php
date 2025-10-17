@@ -85,11 +85,6 @@ function isUrlTaken($slug, $excludeTable = '', $excludeKey = 0) {
   return false;
 }
 
-
-
-
-
-
 function sortLink($label, $column, $currentSort, $currentDir) {
     $newDir = ($currentSort === $column && $currentDir === 'asc') ? 'desc' : 'asc';
     $icon = '';
@@ -106,6 +101,50 @@ function sortLink($label, $column, $currentSort, $currentDir) {
     return "<a href=\"$url\">$label$icon</a>";
 }
 
+
+function resizeImage($sourcePath, $targetPath, $maxWidth, $maxHeight) {
+  list($width, $height, $type) = getimagesize($sourcePath);
+
+  // Skip if already within limits
+  if ($width <= $maxWidth && $height <= $maxHeight) {
+    return copy($sourcePath, $targetPath); // Just duplicate
+  }
+
+  $src = imagecreatefromstring(file_get_contents($sourcePath));
+  if (!$src) return false;
+
+  $ratio = min($maxWidth / $width, $maxHeight / $height);
+  $newWidth = intval($width * $ratio);
+  $newHeight = intval($height * $ratio);
+
+  $dst = imagecreatetruecolor($newWidth, $newHeight);
+  imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+
+  $success = false;
+  switch ($type) {
+    case IMAGETYPE_JPEG: $success = imagejpeg($dst, $targetPath, 90); break;
+    case IMAGETYPE_PNG: $success = imagepng($dst, $targetPath); break;
+    case IMAGETYPE_WEBP: $success = imagewebp($dst, $targetPath); break;
+  }
+
+  imagedestroy($src);
+  imagedestroy($dst);
+  return $success;
+}
+
+
+function cleanUtf8($data) {
+  if (is_array($data)) {
+    foreach ($data as $key => $value) {
+      $data[$key] = cleanUtf8($value);
+    }
+    return $data;
+  } elseif (is_string($data)) {
+    return mb_convert_encoding($data, 'UTF-8', 'UTF-8');
+  } else {
+    return $data;
+  }
+}
 
 
 

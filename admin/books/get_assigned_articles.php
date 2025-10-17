@@ -1,11 +1,13 @@
 <?php
 include '../db.php';
-
+include '../users/auth.php';
 $book_id = intval($_GET['book_id']);
-$result = $conn->query("SELECT a.key_articles, a.title FROM articles a
-  JOIN book_articles ba ON a.key_articles = ba.key_articles
-  WHERE ba.key_books = $book_id");
-
+// INNER JOIN: Only those articles that have key in the junction table 'book_articles'
+$result = $conn->query("
+	SELECT articles.key_articles, articles.title FROM articles 
+	INNER JOIN book_articles ON articles.key_articles = book_articles.key_articles 
+	WHERE book_articles.key_books = $book_id
+");
 $assigned = $result->fetch_all(MYSQLI_ASSOC);
-echo json_encode($assigned);
+echo json_encode(cleanUtf8($assigned));
 ?>

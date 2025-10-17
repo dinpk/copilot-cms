@@ -29,5 +29,4 @@ include 'layout.php';
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
 
-
 <?php endLayout(); ?>
