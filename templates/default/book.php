@@ -6,7 +6,7 @@ $slug = $_GET['slug'] ?? '';
 $slug = $conn->real_escape_string($slug);
 
 // Get book info
-$book = $conn->query("SELECT b.*, m.file_url AS banner 
+$book = $conn->query("SELECT b.*, m.file_url AS banner_url 
                       FROM books b 
                       LEFT JOIN media_library m ON b.key_media_banner = m.key_media 
                       WHERE b.url = '$slug' AND b.status = 'on'")->fetch_assoc();
@@ -24,11 +24,18 @@ startLayout("Book: " . htmlspecialchars($book['title']));
 	<h1><?= htmlspecialchars($book['title']) ?></h1>
 	<h3><?= htmlspecialchars($book['subtitle']) ?></h3>
 
-	<?php if ($book['banner']): ?>
-	  <img src="<?= htmlspecialchars($book['banner']) ?>" width="600"><br>
-	<?php endif; ?>
-
-	<p>Author: <em><?= htmlspecialchars($book['author_name']) ?></em></p>
+	<?php
+		if ($book['banner_image_url']) { // pasted link url 
+			echo "<div id='main-banner' style='background-image:url(" . $book['banner_image_url'] . ")'></div>";
+		} else if ($book['banner_url']) { // uploaded file url
+			echo "<div id='main-banner' style='background-image:url(" . $book['banner_url'] . ")'></div>";
+		}
+		
+		if (!empty($book['author_name'])) {
+			echo "<p><b>Author:</b> " . htmlspecialchars($book['author_name']) .  "</p>";
+		}
+	?>
+	
 	<p><em><?= htmlspecialchars($book['description']) ?></em></p>
 
 	<br><hr><br>
@@ -55,7 +62,6 @@ startLayout("Book: " . htmlspecialchars($book['title']));
 	?>
 
 </div>
-
 
 <div id="sidebar">
 	<?php renderBlocks("sidebar_right"); ?>

@@ -122,7 +122,7 @@ include '../users/auth.php';
 	<h3>Select Banner Image</h3>
 	<div id="media-grid">
 	<?php
-	$mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
+	$mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='images' ORDER BY entry_date_time DESC");
 	while ($media = $mediaRes->fetch_assoc()) {
 		echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
 				<img src='{$media['file_url']}' width='100'><br>

@@ -18,6 +18,7 @@ if (!$article) {
 
 
 startLayout(htmlspecialchars($article['title']));
+
 ?>
 
 
@@ -26,11 +27,11 @@ startLayout(htmlspecialchars($article['title']));
 	<h1><?= htmlspecialchars($article['title']) ?></h1>
 	<h3><?= htmlspecialchars($article['title_sub']) ?></h3>
 
-	<?php 
-		if ($article['banner_url']) { // from media_library table
-			echo "<div id='main-banner' style='background-image:url(" . $article['banner_url'] . ")'></div>";
-		} else if ($article['banner_image_url']) { // from articles table
+	<?php
+		if ($article['banner_image_url']) { // pasted link url from articles table
 			echo "<div id='main-banner' style='background-image:url(" . $article['banner_image_url'] . ")'></div>";
+		} else if ($article['banner_url']) { // uploaded file url from media_library table
+			echo "<div id='main-banner' style='background-image:url(" . $article['banner_url'] . ")'></div>";
 		}
 	?>
 

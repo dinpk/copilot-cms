@@ -14,15 +14,16 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$createdBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	authors (name, email, phone, website, url, social_url_media1, social_url_media2, social_url_media3, city, state, country, description, status, created_by, key_media_banner) 
-	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	authors (name, email, phone, website, url, banner_image_url, social_url_media1, social_url_media2, social_url_media3, city, state, country, description, status, created_by, key_media_banner) 
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('sssssssssssssii',
+	$stmt->bind_param('ssssssssssssssii',
 	$_POST['name'],
 	$_POST['email'],
 	$_POST['phone'],
 	$_POST['website'],
 	$_POST['url'],
+	$_POST['banner_image_url'],
 	$_POST['social_url_media1'],
 	$_POST['social_url_media2'],
 	$_POST['social_url_media3'],

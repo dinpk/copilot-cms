@@ -14,7 +14,7 @@ include __DIR__ . '/layout.php';
 	$page = max(1, intval($_GET['page'] ?? 1));
 	$limit = 6;
 	$offset = ($page - 1) * $limit;
-	$sql = "SELECT pages.*, m.file_url AS banner FROM pages 
+	$sql = "SELECT pages.*, m.file_url_thumbnail AS banner FROM pages 
 							  LEFT JOIN media_library m ON pages.key_media_banner = m.key_media
 							  WHERE pages.status='on' ";
 	$sql .= " ORDER BY sort ASC LIMIT $limit OFFSET $offset";

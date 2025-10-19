@@ -13,13 +13,14 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$status = isset($_POST['status']) ? 'on' : 'off';
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	categories (name, description, url, sort, status, category_type, key_media_banner) 
-	VALUES (?, ?, ?, ?, ?, ?, ?)
+	categories (name, description, url, banner_image_url, sort, status, category_type, key_media_banner) 
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('sssissi',
+	$stmt->bind_param('ssssissi',
 	$_POST['name'],
 	$_POST['description'],
 	$_POST['url'],
+	$_POST['banner_image_url'],
 	$_POST['sort'],
 	$status,
 	$_POST['category_type'],

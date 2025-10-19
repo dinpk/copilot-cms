@@ -61,7 +61,7 @@ include '../users/auth.php';
 			<td>{$row['category_type']}</td>
 			<td>{$row['status']}</td>
 			<td class='record-action-links'>
-				<a href='#' onclick='editItem({$row['key_categories']}, \"get_category.php\", [\"name\",\"description\",\"url\",\"sort\",\"status\"]); return false;'>Edit</a> 
+				<a href='#' onclick='editItem({$row['key_categories']}, \"get_category.php\", [\"name\",\"description\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"status\"]); return false;'>Edit</a> 
 				<a href='delete.php?id={$row['key_categories']}' onclick='return confirm(\"Delete this category?\")' style='display:none'>Delete</a>
 			</td>
 	  </tr>";
@@ -86,29 +86,16 @@ include '../users/auth.php';
 			<option value="video_gallery">Video Gallery</option>
 			<option value="global">Global</option>
 		</select> <label>Type</label><br>
+		<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"> <label>URL</label><br><br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
-		<button type="button" onclick="openMediaModal()">Select Banner Image</button><br>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_categories').value)">Select Banner Image from Media Library</button><br>
 		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
 		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
 		<input type="submit" value="Save">
 	</form>
 </div>
 
-<div id="media-modal" class="modal">
-	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
-	<h3>Select Banner Image</h3>
-	<div id="media-grid">
-	<?php
-	$mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
-	while ($media = $mediaRes->fetch_assoc()) {
-	  echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
-				<img src='{$media['file_url']}' width='100'><br>
-				<small>" . htmlspecialchars($media['alt_text']) . "</small>
-			</div>";
-	}
-	?>
-	</div>
-</div>
+<div id="media-library-modal" class="modal modal-90"></div>
 
 <?php endLayout(); ?>

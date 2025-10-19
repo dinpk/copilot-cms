@@ -12,7 +12,7 @@ include __DIR__ . '/layout.php';
 	$page = max(1, intval($_GET['page'] ?? 1));
 	$limit = 6;
 	$offset = ($page - 1) * $limit;
-	$sql = "SELECT authors.*, m.file_url AS banner FROM authors 
+	$sql = "SELECT authors.*, m.file_url_thumbnail AS banner FROM authors 
 							  LEFT JOIN media_library m ON authors.key_media_banner = m.key_media
 							  WHERE authors.status='on' ";
 	$sql .= " ORDER BY entry_date_time DESC LIMIT $limit OFFSET $offset";

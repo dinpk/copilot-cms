@@ -248,6 +248,11 @@ label {
 	box-sizing:border-box;
 }
 
+.modal-90 {
+	width:90vw;
+	height:70vh	
+}
+
 
 .close-icon {
 	position:absolute;
@@ -292,9 +297,25 @@ label {
 	padding:20px;
 }
 
-#select-categories legend {
+#select-categories h4 {
+	color:seagreen;
+	margin:10px 0 10px 0;
+}
+
+#select-categories > div {
+	columns:3;
+	column-gap:30px;
+	margin-top:20px;
+}
+
+#select-categories > div > label {
+	display:block;
+}
+
+#select-categories summary {
 	font-size:1.2em;
 	font-weight:bold;
+	cursor:pointer;
 }
 
 #articles-list { /* book articles list */
@@ -307,10 +328,6 @@ label {
 	text-align:center;
 }
 
-
-fieldset {
-	margin-top:30px;
-}
 
 #code-message {
 	display:none;

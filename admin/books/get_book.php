@@ -4,7 +4,7 @@ include '../users/auth.php';
 if (isset($_GET['id'])) {
 	$id = intval($_GET['id']);
 	$result = $conn->query("
-	SELECT books.*, media_library.file_url AS banner 
+	SELECT books.*, media_library.file_url_thumbnail AS banner 
 	FROM books 
 	LEFT JOIN media_library ON books.key_media_banner = media_library.key_media 
 	WHERE key_books = $id

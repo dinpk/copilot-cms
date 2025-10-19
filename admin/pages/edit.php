@@ -14,13 +14,14 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$status = isset($_POST['status']) ? 'on' : 'off';
 	$stmt = $conn->prepare('
 	UPDATE pages 
-	SET title = ?, page_content = ?, url = ?, status = ?, sort = ?, key_media_banner = ? 
+	SET title = ?, page_content = ?, url = ?, banner_image_url = ?, status = ?, sort = ?, key_media_banner = ? 
 	WHERE key_pages = ?
 	');
-	$stmt->bind_param('ssssiii',
+	$stmt->bind_param('sssssiii',
 	$_POST['title'],
 	$_POST['page_content'],
 	$_POST['url'],
+	$_POST['banner_image_url'],
 	$status,
 	$_POST['sort'],
 	$_POST['key_media_banner'],

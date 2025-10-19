@@ -52,7 +52,7 @@ include '../users/auth.php';
 		<td class='record-action-links'>
 		<a href='#' onclick='editItem({$row['key_user']},\"get_user.php\",
 		  [\"name\", \"username\", \"email\", \"role\", \"status\",
-			\"phone\", \"address\", \"city\", \"state\", \"country\", \"url\", \"description\"]
+			\"phone\", \"address\", \"city\", \"state\", \"country\", \"url\", \"banner_image_url\", \"key_media_banner\", \"description\"]
 		)'>Edit</a> 
 		  <a href='delete.php?id={$row['key_user']}' onclick='return confirm(\"Delete this user?\")' style='display:none'>Delete</a>
 		</td>
@@ -101,10 +101,15 @@ include '../users/auth.php';
 			<option value="editor">Editor</option>
 			<option value="viewer">Viewer</option>
 		</select> <label>Role</label><br>
-		<br>
+		<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"> <label>URL</label><br><br>
+		<input type="hidden" name="key_media_banner" id="key_media_banner">
+		<div id="media-preview"></div>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_user').value)">Select Banner Image from Media Library</button><br>
 		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
 		<input type="submit" value="Save">
 	</form>
 </div>
+
+<div id="media-library-modal" class="modal modal-90"></div>
 
 <?php endLayout(); ?>

@@ -6,7 +6,7 @@ $slug = $_GET['slug'] ?? '';
 $slug = $conn->real_escape_string($slug);
 
 // Get category info
-$category = $conn->query("SELECT c.*, m.file_url AS banner 
+$category = $conn->query("SELECT c.*, m.file_url AS banner_url 
                           FROM categories c 
                           LEFT JOIN media_library m ON c.key_media_banner = m.key_media 
                           WHERE c.url = '$slug'")->fetch_assoc();
@@ -23,11 +23,14 @@ startLayout("Category: " . htmlspecialchars($category['name']));
 
 	<?php
 
+	// PAGINATION NEEDED
+
 	echo "<h1>Category: " . htmlspecialchars($category['name']) . "</h1>";
 
-
-	if ($category['banner']) {
-	  echo "<img src='" . htmlspecialchars($category['banner']) . "' width='600'><br>";
+	if ($category['banner_image_url']) { // pasted link url from articles table
+		echo "<div id='main-banner' style='background-image:url(" . $category['banner_image_url'] . ")'></div>";
+	} else if ($category['banner_url']) { // uploaded file url from media_library table
+		echo "<div id='main-banner' style='background-image:url(" . $category['banner_url'] . ")'></div>";
 	}
 
 	// Get articles in this category

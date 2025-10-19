@@ -14,9 +14,9 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	users (name, username, password_hash, email, role, status, phone, address, city, state, country, description, url) 
-	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-	$stmt->bind_param('sssssssssssss',
+	users (name, username, password_hash, email, role, status, phone, address, city, state, country, description, url, banner_image_url, key_media_banner) 
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+	$stmt->bind_param('ssssssssssssssi',
 	$_POST['name'],
 	$_POST['username'],
 	$passwordHash,
@@ -29,7 +29,9 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$_POST['state'],
 	$_POST['country'],
 	$_POST['description'],
-	$_POST['url']
+	$_POST['url'],
+	$_POST['banner_image_url'],
+	$_POST['key_media_banner']
 	);
 	$stmt->execute();
 }

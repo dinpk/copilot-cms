@@ -13,14 +13,14 @@ include __DIR__ . '/layout.php';
 	$page = max(1, intval($_GET['page'] ?? 1));
 	$limit = 6;
 	$offset = ($page - 1) * $limit;
-	$sql = "SELECT books.*, m.file_url AS banner FROM books 
+	$sql = "SELECT books.*, m.file_url_thumbnail AS banner_url FROM books 
 							  LEFT JOIN media_library m ON books.key_media_banner = m.key_media
 							  WHERE books.status='on' ";
 	$sql .= " ORDER BY entry_date_time DESC LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);
 	while ($a = $records->fetch_assoc()) {
 		echo "<div class='snippet-card'>
-				<div><img src='{$a['banner']}' width='300'></div>
+				<div><img src='{$a['banner_url']}' width='300'></div>
 				<div>
 					<h2>{$a['title']}</h2>
 					<p>" . firstWords($a['description'], 40) . "</p>

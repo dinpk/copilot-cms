@@ -3,6 +3,7 @@ include '../db.php';
 include '../users/auth.php';
 
 $key_image = intval($_POST['key_image'] ?? 0);
+$key_media_banner = intval($_POST['key_media_banner'] ?? 0);
 $key_photo_gallery = intval($_POST['key_photo_gallery'] ?? 0);
 if (!$key_photo_gallery) die("Missing gallery ID");
 
@@ -22,6 +23,7 @@ if ($key_image) {
 	// Update existing record
 	$sql = "UPDATE photo_gallery_images SET
 		title = '$title',
+		key_media_banner = '$key_media_banner',
 		description = '$description',
 		opacity = $opacity,
 		action_button = $action_button,
@@ -36,16 +38,16 @@ if ($key_image) {
 } else {
 	// Insert new record
 	$sql = "INSERT INTO photo_gallery_images (
-		key_photo_gallery, title, description, opacity,
+		key_photo_gallery, key_media_banner, title, description, opacity,
 		action_button, action_button_text, action_button_link_url,
 		animation_type, text_position, text_color, image_wrapper_class, status
 	) VALUES (
-		$key_photo_gallery, '$title', '$description', $opacity,
+		$key_photo_gallery, $key_media_banner, '$title', '$description', $opacity,
 		$action_button, '$action_button_text', '$action_button_link_url',
 		'$animation_type', '$text_position', '$text_color', '$image_wrapper_class', '$status'
 	)";
 }
 
 $conn->query($sql);
-header("Location: list_photo_gallery_images.php?gallery_id=$key_photo_gallery");
+header("Location: photo_gallery_images_list.php?gallery_id=$key_photo_gallery");
 ?>

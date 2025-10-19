@@ -14,14 +14,15 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$createdBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	books (title, subtitle, description, url, author_name, publisher, publish_year, isbn, is_featured, language, format, weight_grams, sku, status, created_by, key_media_banner) 
-	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	books (title, subtitle, description, url, banner_image_url, author_name, publisher, publish_year, isbn, is_featured, language, format, weight_grams, sku, status, created_by, key_media_banner) 
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('ssssssssisssisii',
+	$stmt->bind_param('sssssssssisssisii',
 		$_POST['title'],
 		$_POST['subtitle'],
 		$_POST['description'],
 		$_POST['url'],
+		$_POST['banner_image_url'],
 		$_POST['author_name'],
 		$_POST['publisher'],
 		$_POST['publish_year'],

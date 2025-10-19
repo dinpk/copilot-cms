@@ -61,7 +61,7 @@ include '../users/auth.php';
 		<td>{$createdUpdated['updater']}</td>
 		<td>{$row['status']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_authors']}, \"get_author.php\", [\"name\",\"email\",\"phone\",\"website\",\"url\",\"social_url_media1\",\"social_url_media2\",\"social_url_media3\",\"city\",\"state\",\"country\",\"description\",\"status\"])'>Edit</a> 
+		  <a href='#' onclick='editItem({$row['key_authors']}, \"get_author.php\", [\"name\",\"email\",\"phone\",\"website\",\"url\",\"banner_image_url\",\"social_url_media1\",\"social_url_media2\",\"social_url_media3\",\"city\",\"state\",\"key_media_banner\",\"country\",\"description\",\"status\"])'>Edit</a> 
 		  <a href='delete.php?id={$row['key_authors']}' onclick='return confirm(\"Delete this author?\")' style='display:none'>Delete</a>
 		</td>
 	  </tr>";
@@ -104,28 +104,15 @@ include '../users/auth.php';
 		<input type="text" name="city" id="city" placeholder="City" maxlength="200"> <label>City</label><br>
 		<input type="text" name="state" id="state" placeholder="State" maxlength="200"> <label>State</label><br>
 		<input type="text" name="country" id="country" placeholder="Country" maxlength="200"> <label>Country</label><br>
+		<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"> <label>URL</label><br><br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
-		<button type="button" onclick="openMediaModal()">Select Banner Image</button><br>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_authors').value)">Select Banner Image from Media Library</button><br>
 		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
 		<input type="submit" value="Save">
 	</form>
 </div>
 
-<div id="media-modal" class="modal">
-	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
-	<h3>Select Banner Image</h3>
-	<div id="media-grid">
-	<?php
-	$mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
-	while ($media = $mediaRes->fetch_assoc()) {
-	  echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
-				<img src='{$media['file_url']}' width='100'><br>
-				<small>" . htmlspecialchars($media['alt_text']) . "</small>
-			</div>";
-	}
-	?>
-	</div>
-</div>
+<div id="media-library-modal" class="modal modal-90"></div>
 
 <?php endLayout(); ?>

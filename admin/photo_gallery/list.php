@@ -55,9 +55,9 @@ include '../users/auth.php';
 		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
 		<td>{$row['status']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo.php\", [\"title\",\"url\",\"image_url\",\"description\",\"navigation_type\",\"css\",\"available_for_blocks\",\"status\"])'>Edit</a> 
-		  <a href='delete.php?id={$row['key_photo_gallery']}' onclick='return confirm(\"Delete this photo?\")'>Delete</a> 
-		  <a href='list_photo_gallery_images.php?gallery_id={$row['key_photo_gallery']}' target='_blank'>Assign Images</a>
+		  <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo_gallery.php\", [\"title\",\"url\",\"image_url\",\"description\",\"navigation_type\",\"css\",\"available_for_blocks\",\"status\"])'>Edit</a> 
+		  <a href='photo_gallery_delete.php?id={$row['key_photo_gallery']}' onclick='return confirm(\"Delete this photo?\")'>Delete</a> 
+		  <a href='photo_gallery_images_list.php?gallery_id={$row['key_photo_gallery']}' target='_blank'>Assign Images</a>
 
 		</td>
 	  </tr>";
@@ -104,23 +104,21 @@ include '../users/auth.php';
 		<label><input type="checkbox" name="available_for_blocks" id="available_for_blocks" value="on"> Available for Blocks</label><br>
 		<input type="text" name="css" id="css" maxlength="500"> <label>CSS</label><br>
 		<label><input type="checkbox" name="status" id="status" value="on" checked> Active</label><br>
-		<fieldset id="select-categories">
-			<legend>Categories</legend>
+		<details id="select-categories">
+			<summary>Categories</summary>
+			<div>
 			<?php
-			$types = ['photo_gallery', 'book', 'article', 'video_gallery', 'global'];
+			$types = ['article', 'book', 'photo_gallery', 'video_gallery', 'global'];
 			foreach ($types as $type) {
-			  echo "<div style='color:margin:10px 0;'>";
-			  echo "<div style='color:Navy;padding:10px 0 10px 0;'>" . ucfirst(str_replace('_', ' ', $type)) . "</div>";
+			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
 			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
 			  while ($cat = $catResult->fetch_assoc()) {
-				echo "<label style='display:block;'>
-						<input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}
-					  </label>";
+				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
 			  }
-			  echo "</div>";
 			}
 			?>
-		</fieldset>
+			</div>
+		</details>
 		<input type="submit" value="Save">
 	</form>
 </div>

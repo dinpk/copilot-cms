@@ -14,10 +14,11 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$status = isset($_POST['status']) ? 'on' : 'off';
 	$stmt = $conn->prepare('
 	UPDATE users 
-	SET name = ?, username = ?, email = ?, role = ?, status = ?, phone = ?, address = ?, city = ?, state = ?, country = ?, description = ?, url = ? 
+	SET name = ?, username = ?, email = ?, role = ?, status = ?, phone = ?, address = ?, city = ?, 
+	state = ?, country = ?, description = ?, url = ?, banner_image_url = ?, key_media_banner = ? 
 	WHERE key_user = ?
 	');
-	$stmt->bind_param('ssssssssssssi',
+	$stmt->bind_param('sssssssssssssii',
 	$_POST['name'],
 	$_POST['username'],
 	$_POST['email'],
@@ -30,6 +31,8 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$_POST['country'],
 	$_POST['description'],
 	$_POST['url'],
+	$_POST['banner_image_url'],
+	$_POST['key_media_banner'],
 	$id
 	);
 	$stmt->execute();

@@ -74,7 +74,7 @@ include '../users/auth.php';
 		<td><small>{$createdUpdated['updater']} $date_updated</small></td>
 		<td>{$row['status']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"content_type\",\"book_indent_level\",\"banner_image_url\",\"sort\",\"status\"])'>Edit</a> 
+		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"content_type\",\"book_indent_level\",\"banner_image_url\",\"key_media_banner\",\"sort\",\"status\"])'>Edit</a> 
 		  <a href='#' onclick='openAuthorModal({$row['key_articles']})'>Authors</a> 
 		  <a href='preview.php?id={$row['key_articles']}' target='_blank'>Preview</a> 
 		  <a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")' style='display:none'>Delete</a>
@@ -123,26 +123,24 @@ include '../users/auth.php';
 		<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"> <label>URL</label><br><br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
-		<button type="button" onclick="openMediaModal()">Select Banner Image from Media Library</button><br><br>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_articles').value)">Select Banner Image from Media Library</button><br>
 		<input type="number" name="sort" id="sort" placeholder="Sort Order" value="0" min="0" max="32767"> <label>Sort</label><br>
 		<label><input type="checkbox" name="status" id="status" value="on" checked> Active</label><br>
-		<fieldset id="select-categories">
-			<legend>Categories</legend>
+		<details id="select-categories">
+			<summary>Categories</summary>
+			<div>
 			<?php
-			$types = ['photo_gallery', 'book', 'article', 'video_gallery', 'global'];
+			$types = ['article', 'book', 'photo_gallery', 'video_gallery', 'global'];
 			foreach ($types as $type) {
-			  echo "<div style='color:margin:10px 0;'>";
-			  echo "<div style='color:Navy;padding:10px 0 10px 0;'>" . ucfirst(str_replace('_', ' ', $type)) . "</div>";
+			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
 			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
 			  while ($cat = $catResult->fetch_assoc()) {
-				echo "<label style='display:block;'>
-						<input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}
-					</label>";
+				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
 			  }
-			  echo "</div>";
 			}
 			?>
-		</fieldset>
+			</div>
+		</details>
 		<input type="submit" value="Save">
 	</form>
 </div>
@@ -159,20 +157,6 @@ include '../users/auth.php';
 	</form>
 </div>
 
-<div id="media-modal" class="modal">
-	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
-	<h3>Select Banner Image</h3>
-	<div id="media-grid">
-		<?php
-	$mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
-	while ($media = $mediaRes->fetch_assoc()) {
-	  echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
-			  <img src='{$media['file_url']}' width='100'><br>
-			  <small>" . htmlspecialchars($media['alt_text']) . "</small>
-			</div>";
-	}
-	?>
-	</div>
-</div>
+<div id="media-library-modal" class="modal modal-90"></div>
 
 <?php endLayout(); ?>

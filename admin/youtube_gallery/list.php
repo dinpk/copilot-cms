@@ -89,49 +89,55 @@ include '../users/auth.php';
 	<form id="modal-form" method="post">
 		<input type="hidden" name="key_youtube_gallery" id="key_youtube_gallery">
 		<input type="text" name="title" id="title" onchange="setCleanURL(this.value)" required maxlength="255"> <label>Title</label><br>
-		<input type="text" name="youtube_id" id="youtube_id" required maxlength="20" pattern="^[a-zA-Z0-9_-]{11,20}$" > <label>Video ID</label><br>
+		<input type="text" name="youtube_id" id="youtube_id" required maxlength="20" pattern="^[a-zA-Z0-9_-]{11,20}$"> <label>Video ID</label><br>
 		<input type="url" name="thumbnail_url" id="thumbnail_url" placeholder="Thumbnail URL" maxlength="2000"> <label>Thumbnail URL</label><br>
-		<input type="hidden" name="key_media_banner" id="key_media_banner">
-		<div id="media-preview"></div>
-		<button type="button" onclick="openMediaModal()">Select Banner Image from Media Library</button><br>
 		<input type="text" name="url" id="url" maxlength="200" pattern="^[a-z0-9\-\/]+$" title="Lowercase letters, numbers, hyphens"> <label>Slug</label><br>
 		<textarea name="description" id="description" placeholder="Description"></textarea><br>
 		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
-		<fieldset id="select-categories">
-			<legend>Categories</legend>
+		<details id="select-categories">
+			<summary>Categories</summary>
+			<div>
 			<?php
-			$types = ['photo_gallery', 'book', 'article', 'video_gallery', 'global'];
+			$types = ['article', 'book', 'photo_gallery', 'video_gallery', 'global'];
 			foreach ($types as $type) {
-			  echo "<div style='color:margin:10px 0;'>";
-			  echo "<div style='color:Navy;padding:10px 0 10px 0;'>" . ucfirst(str_replace('_', ' ', $type)) . "</div>";
+			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
 			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
 			  while ($cat = $catResult->fetch_assoc()) {
-				echo "<label style='display:block;'>
-						<input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}
-					</label>";
-				}
-				echo "</div>";
+				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
+			  }
 			}
 			?>
-		</fieldset>
+			</div>
+		</details>
 		<input type="submit" value="Save">
 	</form>
 </div>
 
-<div id="media-modal" class="modal">
-	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
-	<h3>Select Banner Image</h3>
-	<div id="media-grid">
-	<?php
-	$mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
-	while ($media = $mediaRes->fetch_assoc()) {
-	echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
-			<img src='{$media['file_url']}' width='100'><br>
-			<small>" . htmlspecialchars($media['alt_text']) . "</small>
-			</div>";
-	}
-	?>
-	</div>
-</div>
-
 <?php endLayout(); ?>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+	const youtubeIdField = document.getElementById("youtube_id");
+	const thumbnailUrlField = document.getElementById("thumbnail_url");
+
+	if (youtubeIdField && thumbnailUrlField) {
+		youtubeIdField.addEventListener("input", function () {
+			const videoId = youtubeIdField.value.trim();
+			if (videoId) {
+				const thumbnailUrl = `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+				thumbnailUrlField.value = thumbnailUrl;
+			} else {
+				thumbnailUrlField.value = "";
+			}
+		});
+	}
+});
+
+/*
+maxresdefault.jpg 	— (highest resolution)
+hqdefault.jpg 		— (high quality)
+mqdefault.jpg 		— (medium quality)
+default.jpg 		— (low quality)
+*/
+
+</script>

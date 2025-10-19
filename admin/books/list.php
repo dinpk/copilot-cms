@@ -61,7 +61,7 @@ include '../users/auth.php';
 		<td>{$createdUpdated['updater']}</td>
 		<td>{$row['status']}</td>
 		<td class='record-action-links'>
-		<a href='#' onclick='editItem({$row['key_books']}, \"get_book.php\", [\"title\",\"subtitle\",\"description\",\"url\",\"author_name\",\"publisher\",\"publish_year\",\"status\"])'>Edit</a> 
+		<a href='#' onclick='editItem({$row['key_books']}, \"get_book.php\", [\"title\",\"subtitle\",\"description\",\"url\",\"banner_image_url\",\"author_name\",\"publisher\",\"publish_year\",\"key_media_banner\",\"status\"])'>Edit</a> 
 		<a href='delete.php?id={$row['key_books']}' onclick='return confirm(\"Delete this book?\")' style='display:none'>Delete</a> 
 		<a href='#' onclick='openAssignModal({$row['key_books']})'>Assign Articles</a>
 		</td>
@@ -96,9 +96,6 @@ include '../users/auth.php';
 		<input type="text" name="title" id="title" onchange="setCleanURL(this.value)" required maxlength="200"> <label>Title</label><br>
 		<input type="text" name="subtitle" id="subtitle" maxlength="200"> <label>Sub Title</label><br>
 		<textarea name="description" id="description" placeholder="Description"></textarea><br>
-		<input type="hidden" name="key_media_banner" id="key_media_banner">
-		<div id="media-preview"></div>
-		<button type="button" onclick="openMediaModal()">Select Banner Image</button><br>
 		<input type="text" name="url" id="url" maxlength="200" pattern="^[a-z0-9\-\/]+$" title="Lowercase letters, numbers, and hyphens only"> <label>Slug</label><br>
 		<input type="text" name="author_name" id="author_name" maxlength="200"> <label>Author Name</label><br>
 		<input type="text" name="publisher" id="publisher" maxlength="200"> <label>Publisher</label><br>
@@ -110,24 +107,26 @@ include '../users/auth.php';
 		<input type="text" name="sku" id="sku" maxlength="50"> <label>SKU</label><br>
 		<input type="checkbox" name="is_featured" id="is_featured" value="1"> <label>Featured</label><br>
 		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
+		<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"> <label>URL</label><br><br>
+		<input type="hidden" name="key_media_banner" id="key_media_banner">
+		<div id="media-preview"></div>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_books').value)">Select Banner Image from Media Library</button><br>
 		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
-		<fieldset id="select-categories">
-			<legend>Categories</legend>
+		<details id="select-categories">
+			<summary>Categories</summary>
+			<div>
 			<?php
-			$types = ['photo_gallery', 'book', 'article', 'video_gallery', 'global'];
+			$types = ['article', 'book', 'photo_gallery', 'video_gallery', 'global'];
 			foreach ($types as $type) {
-			  echo "<div style='color:margin:10px 0;'>";
-			  echo "<div style='color:Navy;padding:10px 0 10px 0;'>" . ucfirst(str_replace('_', ' ', $type)) . "</div>";
+			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
 			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
 			  while ($cat = $catResult->fetch_assoc()) {
-				echo "<label style='display:block;'>
-						<input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}
-					</label>";
-				}
-				echo "</div>";
+				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
+			  }
 			}
 			?>
-		</fieldset>
+			</div>
+		</details>
 		<input type="submit" value="Save">
 	</form>
 </div>
@@ -143,20 +142,6 @@ include '../users/auth.php';
 	</form>
 </div>
 
-<div id="media-modal" class="modal">
-	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
-	<h3>Select Banner Image</h3>
-	<div id="media-grid">
-	<?php
-	$mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
-	while ($media = $mediaRes->fetch_assoc()) {
-	  echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
-			  <img src='{$media['file_url']}' width='100'><br>
-			  <small>" . htmlspecialchars($media['alt_text']) . "</small>
-			</div>";
-	}
-	?>
-	</div>
-</div>
+<div id="media-library-modal" class="modal modal-90"></div>
 
 <?php endLayout(); ?>

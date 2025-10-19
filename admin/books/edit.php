@@ -15,14 +15,15 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$updatedBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	UPDATE books 
-	SET title = ?, subtitle = ?, description = ?, url = ?, author_name = ?, publisher = ?, publish_year = ?, status = ?, updated_by = ?, key_media_banner = ? 
+	SET title = ?, subtitle = ?, description = ?, url = ?, banner_image_url = ?, author_name = ?, publisher = ?, publish_year = ?, status = ?, updated_by = ?, key_media_banner = ? 
 	WHERE key_books = ?
 	');
-	$stmt->bind_param('ssssssssiii',
+	$stmt->bind_param('sssssssssiii',
 	$_POST['title'],
 	$_POST['subtitle'],
 	$_POST['description'],
 	$_POST['url'],
+	$_POST['banner_image_url'],
 	$_POST['author_name'],
 	$_POST['publisher'],
 	$_POST['publish_year'],

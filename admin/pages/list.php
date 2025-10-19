@@ -46,7 +46,7 @@ include '../layout.php';
 			<td>{$row['sort']}</td>
 			<td>{$row['status']}</td>
 			<td class='record-action-links'>
-			  <a href='#' onclick='editItem({$row['key_pages']}, \"get_page.php\", [\"title\",\"page_content\",\"url\",\"sort\",\"status\"])'>Edit</a> 
+			  <a href='#' onclick='editItem({$row['key_pages']}, \"get_page.php\", [\"title\",\"page_content\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"status\"])'>Edit</a> 
 			  <a href='delete.php?id={$row['key_pages']}' onclick='return confirm(\"Delete this page?\")'>Delete</a>
 			</td>
 		</tr>";
@@ -63,29 +63,16 @@ include '../layout.php';
 		<input type="text" name="title" id="title" onchange="setCleanURL(this.value)" required maxlength="200"> <label>Title</label><br>
 		<textarea name="page_content" id="page_content" placeholder="Content" title="Content"></textarea><br>
 		<input type="text" name="url" id="url" maxlength="200" pattern="^[a-z0-9\-\/]+$" title="Lowercase letters, numbers, hyphens, forward slashes"> <label>Slug</label><br>
+		<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"> <label>URL</label><br><br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
-		<button type="button" onclick="openMediaModal()">Select Banner Image</button><br>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_pages').value)">Select Banner Image from Media Library</button><br>
 		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
 		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
 		<input type="submit" value="Save">
 	</form>
 </div>
 
-<div id="media-modal" class="modal">
-	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
-	<h3>Select Banner Image</h3>
-	<div id="media-grid">
-	<?php
-	$mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
-	while ($media = $mediaRes->fetch_assoc()) {
-	  echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
-			  <img src='{$media['file_url']}' width='100'><br>
-			  <small>" . htmlspecialchars($media['alt_text']) . "</small>
-			</div>";
-	}
-	?>
-	</div>
-</div>
+<div id="media-library-modal" class="modal modal-90"></div>
 
 <?php endLayout(); ?>

@@ -108,22 +108,21 @@ include '../users/auth.php';
 		<input type="checkbox" name="is_featured" id="is_featured" value="1"> <label>Featured</label><br>
 		<input type="number" name="sort" id="sort" placeholder="Sort Order" value="0" min="0" max="2000"> <label>Sort</label><br>
 		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
-		<fieldset id="select-categories">
-			<legend>Categories</legend>
+		<details id="select-categories">
+			<summary>Categories</summary>
+			<div>
 			<?php
-			$catResult = $conn->query("SELECT key_categories, name, category_type FROM categories WHERE status='on' ORDER BY category_type, sort");
-			$lastType = '';
-			while ($cat = $catResult->fetch_assoc()) {
-				if ($cat['category_type'] !== $lastType) {
-					echo "<div style='color:Navy;padding:10px 0;'>" . ucfirst(str_replace('_', ' ', $cat['category_type'])) . "</div>";
-					$lastType = $cat['category_type'];
-				}
-				echo "<label style='display:block;'>
-						<input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}
-					</label>";
+			$types = ['article', 'book', 'photo_gallery', 'video_gallery', 'global'];
+			foreach ($types as $type) {
+			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
+			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
+			  while ($cat = $catResult->fetch_assoc()) {
+				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
+			  }
 			}
-			  ?>
-		</fieldset>
+			?>
+			</div>
+		</details>
 		<input type="submit" value="Save">
 	</form>
 </div>
@@ -142,20 +141,6 @@ include '../users/auth.php';
 	<button type="button" onclick="closeImageModal()">Close</button>
 </div>
 
-<div id="media-modal" class="modal">
-	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
-	<h3>Select Banner Image</h3>
-	<div id="media-grid">
-	<?php
-	$mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='image' ORDER BY entry_date_time DESC");
-	while ($media = $mediaRes->fetch_assoc()) {
-	  echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\")'>
-			  <img src='{$media['file_url']}' width='100'><br>
-			  <small>" . htmlspecialchars($media['alt_text']) . "</small>
-			</div>";
-	}
-	?>
-	</div>
-</div>
+
 
 <?php endLayout(); ?>

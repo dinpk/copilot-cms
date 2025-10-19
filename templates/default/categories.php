@@ -11,11 +11,23 @@ include __DIR__ . '/layout.php';
 	<h1>Categories</h1>
 
 	<?php
+
+	// Show category list
+	$sql = "SELECT key_categories, name, url FROM categories WHERE status = 'on' ORDER BY name ASC";
+	$categories = $conn->query($sql);
+	echo "<ul class='category-list'>";
+	while ($c = $categories->fetch_assoc()) {
+		echo "<li><a href='/category/{$c['url']}'>{$c['name']}</a></li>";
+	}
+	echo "</ul><hr>";
+	
+	
+	/* instead of showing category snippets on this page, we show it on /category/url
+
+
+
 	$cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
-
-
-	// Show articles for selected category
 	if ($cat_id) {
 		$page = max(1, intval($_GET['page'] ?? 1));
 		$limit = 6;
@@ -66,16 +78,9 @@ include __DIR__ . '/layout.php';
 		echo "</div>";
 	}
 	
+	*/
 	
-	// Show category list
-	$sql = "SELECT key_categories, name FROM categories ORDER BY name ASC";
-	$categories = $conn->query($sql);
-	echo "<ul class='category-list'>";
-	while ($c = $categories->fetch_assoc()) {
-		$active = ($cat_id === intval($c['key_categories'])) ? " class='active'" : "";
-		echo "<li{$active}><a href='?cat={$c['key_categories']}'>{$c['name']}</a></li>";
-	}
-	echo "</ul><hr>";
+
 
 	
 	?>

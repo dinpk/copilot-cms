@@ -6,7 +6,7 @@ $slug = $_GET['slug'] ?? '';
 $slug = $conn->real_escape_string($slug);
 
 // Get page info
-$page = $conn->query("SELECT p.*, m.file_url AS banner 
+$page = $conn->query("SELECT p.*, m.file_url AS banner_url  
                       FROM pages p 
                       LEFT JOIN media_library m ON p.key_media_banner = m.key_media 
                       WHERE p.url = '$slug' AND p.status = 'on'")->fetch_assoc();
@@ -31,9 +31,11 @@ startLayout(htmlspecialchars($page['title']));
 	<?php endif; ?>
 
 	<?php
-	if ($page['banner']) {
-		echo "<div><img src='" . htmlspecialchars($page['banner']) . "' width='600'></div>";
-	}
+		if ($page['banner_image_url']) { // pasted link url from articles table
+			echo "<div id='main-banner' style='background-image:url(" . $page['banner_image_url'] . ")'></div>";
+		} else if ($page['banner_url']) { // uploaded file url from media_library table
+			echo "<div id='main-banner' style='background-image:url(" . $page['banner_url'] . ")'></div>";
+		}
 	?>
 
 	<div><?= $page['page_content'] ?></div>
