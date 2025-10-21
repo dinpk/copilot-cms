@@ -211,6 +211,9 @@ label {
 	font-weight:bold;
 }
 
+label span {
+	text-transform:lowercase;
+}
 
 .record-action-links {
 	text-transform:uppercase;

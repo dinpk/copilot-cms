@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 19, 2025 at 08:56 AM
+-- Generation Time: Oct 21, 2025 at 07:15 AM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -234,6 +234,7 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `key_media_banner` int(10) UNSIGNED DEFAULT NULL,
   `block_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `visible_on` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'desktop,mobile',
   `block_content` varchar(10000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `show_on_pages` varchar(1000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `show_in_region` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
@@ -246,28 +247,27 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `key_photo_gallery` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`key_blocks`),
   KEY `fk_blocks_media` (`key_media_banner`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `blocks`
 --
 
-INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `block_name`, `title`, `block_content`, `show_on_pages`, `show_in_region`, `sort`, `module_file`, `status`, `entry_date_time`, `created_by`, `updated_by`, `key_photo_gallery`) VALUES
-(1, 0, '', 'Authors', '', '', 'sidebar_right', 4, 'authors_91558', 'on', '2025-09-29 22:09:45', NULL, 1, NULL),
-(2, 0, '', 'Photo Gallery', '', '', 'sidebar_right', 5, 'photos_56467', 'on', '2025-09-24 03:58:17', NULL, 1, NULL),
-(3, 1, '', 'Youtube Gallery', '', '', 'sidebar_right', 6, 'youtube_15578', 'on', '2025-09-24 03:58:23', NULL, 1, NULL),
-(4, 0, '', 'Articles', '', '', 'sidebar_right', 1, 'articles_34548', 'on', '2025-09-29 22:10:15', NULL, 1, NULL),
-(5, 0, '', 'Books', '', '', 'sidebar_right', 3, 'books_84538', 'on', '2025-10-01 17:49:57', 1, 1, NULL),
-(6, 0, '', 'Topics', '', '', 'sidebar_right', 2, 'categories_55448', 'on', '2025-10-08 09:37:28', 1, 1, 0),
-(8, 0, 'Copyright Message', '<none>', 'Default Template Â© CopilotCMS', '', 'footer', 12, '', 'on', '2025-10-10 13:40:38', 1, 1, NULL),
-(9, 0, 'Phone Email', '<none>', '<span>Phone</span><a href=\"tel:1234567890\">(123)456-7890</a>\r\n<span>Email</span><a href=\"mailto:myemail@outlook.com\">myemail@outlook.com</a>', '', 'above_header', 0, '', 'on', '2025-10-10 14:47:52', 1, 1, NULL),
-(10, 0, 'Privacy Terms Links', '<none>', '<a href=\"/page/privacy-policy\">Privacy Policy</a> | <a href=\"/page/terms-of-use\">Term of Use</a>', '', 'below_footer', 16, '', 'on', '2025-10-10 14:49:16', 1, 1, NULL),
-(12, 0, 'Image Slideshow Home', '<none>', '', 'home', 'below_header', 11, 'photo_gallery_carousel_5645645', 'on', '2025-10-13 18:11:01', 1, 1, 33),
-(14, 0, 'Image Slideshow Articles', '<none>', '', 'articles', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:25:45', 1, 1, 29),
-(15, 0, 'Image Slideshow Categories', '<none>', '', 'categories', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:28:00', 1, 1, 30),
-(16, 0, 'Image Slideshow Books', '<none>', '', 'books', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:30:41', 1, 1, 31),
-(17, 0, 'Image Slideshow Authors', '<none>', '', 'authors', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-16 19:58:45', 1, 1, 32),
-(18, 0, 'Sidebar Books to Check', 'Block Title', 'Block Content', '', 'sidebar_right', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-17 05:22:11', 1, 1, 34);
+INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `block_name`, `title`, `visible_on`, `block_content`, `show_on_pages`, `show_in_region`, `sort`, `module_file`, `status`, `entry_date_time`, `created_by`, `updated_by`, `key_photo_gallery`) VALUES
+(1, 0, 'Authors', 'Authors', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 4, 'authors_91558', 'on', '2025-09-29 22:09:45', NULL, 1, NULL),
+(2, 0, 'Photo Galleries', 'Photo Gallery', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 5, 'photos_56467', 'on', '2025-09-24 03:58:17', NULL, 1, NULL),
+(3, 0, 'YouTube Gallery', 'Youtube Gallery', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 6, 'youtube_15578', 'on', '2025-09-24 03:58:23', NULL, 1, NULL),
+(4, 0, 'Latest Articles', 'Articles', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 1, 'articles_34548', 'on', '2025-09-29 22:10:15', NULL, 1, NULL),
+(5, 0, 'Latest Books', 'Books', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 3, 'books_84538', 'on', '2025-10-01 17:49:57', 1, 1, NULL),
+(6, 0, 'Categories', 'Topics', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 2, 'categories_55448', 'on', '2025-10-08 09:37:28', 1, 1, NULL),
+(8, 0, 'Copyright Message', '<none>', 'large-desktop,desktop,tablet,mobile', '<div style=\'padding:5px 0px 5px 10px;border-top:1px solid #CCC;margin-top:10px;text-align:center;\'><a href=\"/page/privacy-policy\">Privacy Policy</a> | <a href=\"/page/terms-of-use\">Term of Use</a> â€” Default Template Â© CopilotCMS </div>', '', 'footer', 12, '', 'on', '2025-10-10 13:40:38', 1, 1, NULL),
+(9, 0, 'Phone Email', '<none>', 'large-desktop,desktop,tablet,mobile,print', '<span>Phone</span><a href=\"tel:1234567890\">(123)456-7890</a>\r\n<span>Email</span><a href=\"mailto:myemail@outlook.com\">myemail@outlook.com</a>', '', 'above_header', 0, '', 'on', '2025-10-10 14:47:52', 1, 1, NULL),
+(12, 0, 'Image Slideshow Home', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'home', 'below_header', 11, 'photo_gallery_carousel_5645645', 'on', '2025-10-13 18:11:01', 1, 1, 33),
+(14, 0, 'Image Slideshow Articles', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'articles', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:25:45', 1, 1, 29),
+(15, 0, 'Image Slideshow Categories', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'categories', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:28:00', 1, 1, 30),
+(16, 0, 'Image Slideshow Books', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'books', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:30:41', 1, 1, 31),
+(17, 0, 'Image Slideshow Authors', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'authors', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-16 19:58:45', 1, 1, 32),
+(18, 0, 'Sidebar Books to Check', 'Block Title', 'large-desktop,desktop,tablet,mobile', 'Block Content', '', 'sidebar_right', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-17 05:22:11', 1, 1, 34);
 
 -- --------------------------------------------------------
 
@@ -381,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `book_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_books`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `book_categories`
@@ -421,7 +421,7 @@ INSERT INTO `book_categories` (`id`, `key_books`, `key_categories`, `url`) VALUE
 (93, 2, 8, NULL),
 (94, 2, 12, NULL),
 (99, 59, 11, NULL),
-(101, 62, 9, NULL);
+(102, 62, 9, NULL);
 
 -- --------------------------------------------------------
 
@@ -674,7 +674,7 @@ CREATE TABLE IF NOT EXISTS `photo_gallery` (
   `navigation_type` enum('arrows','slideshow','both','none') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'slideshow',
   PRIMARY KEY (`key_photo_gallery`),
   KEY `fk_photo_gallery_media` (`key_media_banner`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `photo_gallery`
@@ -699,7 +699,6 @@ CREATE TABLE IF NOT EXISTS `photo_gallery_images` (
   `key_image` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `key_media_banner` int(10) UNSIGNED DEFAULT NULL,
   `key_photo_gallery` int(10) UNSIGNED NOT NULL,
-  `sort_order` smallint(5) UNSIGNED DEFAULT '0',
   `entry_date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci,
@@ -714,42 +713,43 @@ CREATE TABLE IF NOT EXISTS `photo_gallery_images` (
   `image_wrapper_class` varchar(100) COLLATE utf8_unicode_ci DEFAULT '',
   `visibility_start` datetime DEFAULT NULL,
   `visibility_end` datetime DEFAULT NULL,
+  `sort` smallint(6) NOT NULL DEFAULT '0',
   `status` varchar(3) COLLATE utf8_unicode_ci DEFAULT 'on',
   PRIMARY KEY (`key_image`),
   KEY `key_photo_gallery` (`key_photo_gallery`),
   KEY `fk_photo_gallery_images_media` (`key_media_banner`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `photo_gallery_images`
 --
 
-INSERT INTO `photo_gallery_images` (`key_image`, `key_media_banner`, `key_photo_gallery`, `sort_order`, `entry_date_time`, `title`, `description`, `image_mobile_url`, `opacity`, `action_button`, `action_button_text`, `action_button_link_url`, `animation_type`, `text_position`, `text_color`, `image_wrapper_class`, `visibility_start`, `visibility_end`, `status`) VALUES
-(79, 116, 29, 0, '2025-10-16 19:35:59', '<none>', '', NULL, 1, 0, '', '', 'zoom', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(80, 115, 29, 0, '2025-10-16 19:36:11', '<none>', '', NULL, 1, 0, '', '', 'zoom', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(81, 113, 29, 0, '2025-10-16 19:36:23', '<none>', '', NULL, 1, 0, '', '', 'zoom', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(82, 114, 29, 0, '2025-10-16 19:36:35', '<none>', '', NULL, 1, 0, '', '', 'zoom', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(83, 112, 29, 0, '2025-10-16 19:39:35', '<none>', '', NULL, 1, 0, '', '', 'zoom', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(84, 124, 30, 0, '2025-10-16 19:48:30', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(85, 123, 30, 0, '2025-10-16 19:48:40', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(86, 122, 30, 0, '2025-10-16 19:48:47', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(87, 101, 30, 0, '2025-10-16 19:48:53', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(88, 119, 31, 0, '2025-10-16 19:52:08', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(89, 118, 31, 0, '2025-10-16 19:52:12', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(90, 121, 31, 0, '2025-10-16 19:52:15', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(91, 120, 31, 0, '2025-10-16 19:52:19', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(92, 105, 32, 0, '2025-10-16 19:56:10', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(93, 104, 32, 0, '2025-10-16 19:56:14', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(94, 103, 32, 0, '2025-10-16 19:56:19', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(95, 109, 32, 0, '2025-10-16 19:56:24', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(96, 128, 33, 0, '2025-10-16 20:28:17', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(97, 127, 33, 0, '2025-10-16 20:28:23', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(98, 126, 33, 0, '2025-10-16 20:28:28', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(99, 125, 33, 0, '2025-10-16 20:28:34', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(101, 110, 34, 0, '2025-10-17 05:18:59', 'Cover 2', 'Description of book 2', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(102, 131, 34, 0, '2025-10-17 05:19:03', 'Cover 3', 'Description of book 3', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(103, 121, 34, 0, '2025-10-17 05:19:13', 'Cover 4', 'Description of book 4', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on'),
-(104, 132, 34, 0, '2025-10-18 19:32:11', 'Cover 5', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 'on');
+INSERT INTO `photo_gallery_images` (`key_image`, `key_media_banner`, `key_photo_gallery`, `entry_date_time`, `title`, `description`, `image_mobile_url`, `opacity`, `action_button`, `action_button_text`, `action_button_link_url`, `animation_type`, `text_position`, `text_color`, `image_wrapper_class`, `visibility_start`, `visibility_end`, `sort`, `status`) VALUES
+(79, 116, 29, '2025-10-16 19:35:59', '<none>', '', NULL, 1, 0, '', '', 'zoom', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(80, 115, 29, '2025-10-16 19:36:11', '<none>', '', NULL, 1, 0, '', '', 'zoom', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(81, 113, 29, '2025-10-16 19:36:23', '<none>', '', NULL, 1, 0, '', '', 'zoom', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(82, 114, 29, '2025-10-16 19:36:35', '<none>', '', NULL, 1, 0, '', '', 'zoom', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(83, 112, 29, '2025-10-16 19:39:35', '<none>', '', NULL, 1, 0, '', '', 'zoom', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(84, 124, 30, '2025-10-16 19:48:30', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(85, 123, 30, '2025-10-16 19:48:40', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(86, 122, 30, '2025-10-16 19:48:47', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(87, 101, 30, '2025-10-16 19:48:53', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(88, 119, 31, '2025-10-16 19:52:08', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(89, 118, 31, '2025-10-16 19:52:12', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(90, 121, 31, '2025-10-16 19:52:15', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(91, 120, 31, '2025-10-16 19:52:19', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(92, 105, 32, '2025-10-16 19:56:10', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(93, 104, 32, '2025-10-16 19:56:14', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(94, 103, 32, '2025-10-16 19:56:19', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(95, 109, 32, '2025-10-16 19:56:24', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(96, 128, 33, '2025-10-16 20:28:17', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 2, 'on'),
+(97, 127, 33, '2025-10-16 20:28:23', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 1, 'on'),
+(98, 126, 33, '2025-10-16 20:28:28', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 1, 'on'),
+(99, 125, 33, '2025-10-16 20:28:34', '<none>', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 1, 'on'),
+(101, 110, 34, '2025-10-17 05:18:59', 'Cover 2', 'Description of book 2', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(102, 122, 34, '2025-10-17 05:19:03', 'Cover 3', 'Description of book 3', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(103, 121, 34, '2025-10-17 05:19:13', 'Cover 4', 'Description of book 4', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on'),
+(104, 132, 34, '2025-10-18 19:32:11', 'Cover 5', '', NULL, 1, 0, '', '', 'fade', 'center', '#ffffff', '', NULL, NULL, 0, 'on');
 
 -- --------------------------------------------------------
 
@@ -929,7 +929,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `is_active` tinyint(1) DEFAULT '1',
   `entry_date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_settings`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings`
@@ -939,43 +939,48 @@ INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting
 (1, 'site_name', 'Copilot CMS', 'general', 'text', 1, '2025-10-06 18:07:08'),
 (2, 'site_slogan', 'Clarity. Collaboration. Control.', 'general', 'text', 1, '2025-10-06 18:07:08'),
 (3, 'base_url', 'https://www.mysite.com', 'general', 'url', 1, '2025-10-06 18:18:10'),
-(4, 'powered_by', 'Powered by Copilot', 'general', 'text', 1, '2025-10-06 18:07:08'),
-(5, 'homepage_featured_articles_count', '5', 'homepage', 'number', 1, '2025-10-06 18:07:08'),
-(6, 'homepage_featured_books_count', '3', 'homepage', 'number', 1, '2025-10-06 18:07:08'),
-(7, 'homepage_blocks_region', 'main', 'homepage', 'text', 1, '2025-10-06 18:07:08'),
-(8, 'homepage_banner_text', 'Welcome to Our Editorial Hub', 'homepage', 'text', 1, '2025-10-06 18:07:08'),
-(9, 'homepage_cta_button_text', 'Explore More', 'homepage', 'text', 1, '2025-10-06 18:07:08'),
-(10, 'homepage_cta_button_url', '/books', 'homepage', 'url', 1, '2025-10-06 18:07:08'),
-(11, 'article_show_author', '1', 'article_view', 'boolean', 1, '2025-10-06 18:07:08'),
-(12, 'article_show_categories', '1', 'article_view', 'boolean', 1, '2025-10-06 18:07:08'),
-(13, 'article_show_related_books', '1', 'article_view', 'boolean', 1, '2025-10-06 18:07:08'),
-(14, 'article_snippet_length', '300', 'article_view', 'number', 1, '2025-10-06 18:07:08'),
-(15, 'article_banner_height', '400px', 'article_view', 'text', 1, '2025-10-06 18:07:08'),
-(16, 'book_show_assigned_articles', '1', 'book_view', 'boolean', 1, '2025-10-06 18:07:08'),
-(17, 'product_show_price_history', '1', 'product_view', 'boolean', 1, '2025-10-06 18:07:08'),
-(18, 'product_gallery_layout', 'grid', 'product_view', 'text', 1, '2025-10-06 18:07:08'),
-(19, 'product_default_currency', 'PKR', 'product_view', 'text', 1, '2025-10-06 18:07:08'),
-(20, 'photo_gallery_layout', 'grid', 'gallery', 'text', 1, '2025-10-06 18:07:08'),
-(21, 'youtube_gallery_embed_style', 'iframe', 'gallery', 'text', 1, '2025-10-06 18:07:08'),
-(22, 'gallery_items_per_page', '12', 'gallery', 'number', 1, '2025-10-06 18:07:08'),
-(23, 'default_font_family', 'Arial, sans-serif', 'ui', 'text', 1, '2025-10-06 18:07:08'),
-(24, 'template_default_color', '#0055aa', 'ui', 'color', 1, '2025-10-10 13:01:14'),
-(25, 'default_button_style', 'rounded', 'ui', 'text', 1, '2025-10-06 18:07:08'),
-(26, 'default_loading_spinner', 'spinner-circle', 'ui', 'text', 1, '2025-10-06 18:07:08'),
-(27, 'default_404_message', 'Page not found.', 'ui', 'text', 1, '2025-10-06 18:07:08'),
-(28, 'default_empty_state_message', 'No content available.', 'ui', 'text', 1, '2025-10-06 18:07:08'),
-(29, 'menu_max_depth', '3', 'seo', 'number', 1, '2025-10-06 18:07:08'),
-(30, 'seo_enable_canonical_links', '1', 'seo', 'boolean', 1, '2025-10-06 18:07:08'),
-(31, 'seo_enable_open_graph', '1', 'seo', 'boolean', 1, '2025-10-06 18:07:08'),
-(32, 'seo_default_image_url', '/assets/images/default-og.jpg', 'seo', 'url', 1, '2025-10-06 18:07:08'),
-(33, 'frontend_debug_mode', '0', 'debug', 'boolean', 1, '2025-10-06 18:07:08'),
-(34, 'frontend_cache_ttl', '300', 'debug', 'number', 1, '2025-10-06 18:07:08'),
-(35, 'frontend_ajax_timeout', '5000', 'debug', 'number', 1, '2025-10-06 18:07:08'),
+(4, 'powered_by', 'Powered by Copilot', 'general', 'text', 0, '2025-10-06 18:07:08'),
+(5, 'homepage_featured_articles_count', '5', 'homepage', 'number', 0, '2025-10-06 18:07:08'),
+(6, 'homepage_featured_books_count', '3', 'homepage', 'number', 0, '2025-10-06 18:07:08'),
+(7, 'homepage_blocks_region', 'main', 'homepage', 'text', 0, '2025-10-06 18:07:08'),
+(8, 'homepage_banner_text', 'Welcome to Our Editorial Hub', 'homepage', 'text', 0, '2025-10-06 18:07:08'),
+(9, 'homepage_cta_button_text', 'Explore More', 'homepage', 'text', 0, '2025-10-06 18:07:08'),
+(10, 'homepage_cta_button_url', '/books', 'homepage', 'url', 0, '2025-10-06 18:07:08'),
+(11, 'article_show_author', '1', 'article_view', 'boolean', 0, '2025-10-06 18:07:08'),
+(12, 'article_show_categories', '1', 'article_view', 'boolean', 0, '2025-10-06 18:07:08'),
+(13, 'article_show_related_books', '1', 'article_view', 'boolean', 0, '2025-10-06 18:07:08'),
+(14, 'article_snippet_length', '300', 'article_view', 'number', 0, '2025-10-06 18:07:08'),
+(15, 'article_banner_height', '400px', 'article_view', 'text', 0, '2025-10-06 18:07:08'),
+(16, 'book_show_assigned_articles', '1', 'book_view', 'boolean', 0, '2025-10-06 18:07:08'),
+(17, 'product_show_price_history', '1', 'product_view', 'boolean', 0, '2025-10-06 18:07:08'),
+(18, 'product_gallery_layout', 'grid', 'product_view', 'text', 0, '2025-10-06 18:07:08'),
+(19, 'product_default_currency', 'PKR', 'product_view', 'text', 0, '2025-10-06 18:07:08'),
+(20, 'photo_gallery_layout', 'grid', 'gallery', 'text', 0, '2025-10-06 18:07:08'),
+(21, 'youtube_gallery_embed_style', 'iframe', 'gallery', 'text', 0, '2025-10-06 18:07:08'),
+(22, 'gallery_items_per_page', '12', 'gallery', 'number', 0, '2025-10-06 18:07:08'),
+(23, 'default_font_family', 'Arial, sans-serif', 'ui', 'text', 0, '2025-10-06 18:07:08'),
+(24, 'template_default_color', '#0055aa', 'ui', 'color', 0, '2025-10-10 13:01:14'),
+(25, 'default_button_style', 'rounded', 'ui', 'text', 0, '2025-10-06 18:07:08'),
+(26, 'default_loading_spinner', 'spinner-circle', 'ui', 'text', 0, '2025-10-06 18:07:08'),
+(27, 'default_404_message', 'Page not found.', 'ui', 'text', 0, '2025-10-06 18:07:08'),
+(28, 'default_empty_state_message', 'No content available.', 'ui', 'text', 0, '2025-10-06 18:07:08'),
+(29, 'menu_max_depth', '3', 'seo', 'number', 0, '2025-10-06 18:07:08'),
+(30, 'seo_enable_canonical_links', '1', 'seo', 'boolean', 0, '2025-10-06 18:07:08'),
+(31, 'seo_enable_open_graph', '1', 'seo', 'boolean', 0, '2025-10-06 18:07:08'),
+(32, 'seo_default_image_url', '/assets/images/default-og.jpg', 'seo', 'url', 0, '2025-10-06 18:07:08'),
+(33, 'frontend_debug_mode', '0', 'debug', 'boolean', 0, '2025-10-06 18:07:08'),
+(34, 'frontend_cache_ttl', '300', 'debug', 'number', 0, '2025-10-06 18:07:08'),
+(35, 'frontend_ajax_timeout', '5000', 'debug', 'number', 0, '2025-10-06 18:07:08'),
 (37, 'template_folder', 'editorial', 'ui', 'dropdown', 1, '2025-10-06 18:59:28'),
 (38, 'template_default_logo', '/templates/default/images/copilogcms.png', 'ui', 'text', 1, '2025-10-14 23:56:36'),
-(39, 'template_default_cover_image', '/templates/default/images/pexels-wasifmehmood997-19442078.jpg', 'ui', 'text', 1, '2025-10-10 13:02:14'),
+(39, 'template_default_cover_image', '/templates/default/images/pexels-wasifmehmood997-19442078.jpg', 'ui', 'text', 0, '2025-10-10 13:02:14'),
 (40, 'max_upload_image_width', '2000', 'media_library', 'number', 1, '2025-10-15 17:12:04'),
-(41, 'max_upload_image_height', '1000', 'media_library', 'number', 1, '2025-10-15 17:12:09');
+(41, 'max_upload_image_height', '1000', 'media_library', 'number', 1, '2025-10-15 17:12:09'),
+(42, 'template_text_color', 'navy', 'ui', 'text', 1, '2025-10-20 16:23:28'),
+(43, 'template_background_color', '#FFF', 'ui', 'text', 1, '2025-10-20 16:27:30'),
+(44, 'template_font_family', 'calibri', 'ui', 'text', 1, '2025-10-20 16:27:50'),
+(45, 'items_background_color', 'seagreen', 'ui', 'text', 1, '2025-10-20 16:28:26'),
+(46, 'sidebar_background_color', '#F4F4F4', 'ui', 'text', 1, '2025-10-20 18:27:22');
 
 -- --------------------------------------------------------
 

@@ -19,11 +19,11 @@ $images = $conn->query("
 	WHERE i.key_photo_gallery = $key_photo_gallery AND i.status = 'on'
 		AND (i.visibility_start IS NULL OR i.visibility_start <= NOW())
 		AND (i.visibility_end IS NULL OR i.visibility_end >= NOW())
-	ORDER BY i.sort_order ASC
+	ORDER BY i.sort ASC
 ");
 
 // Render carousel
-echo "<div class='carousel-wrapper' id='carousel-$key_photo_gallery'>";
+echo "<div class='carousel-wrapper' id='carousel-$key_photo_gallery' data-navigation-type='$navigation_type'>";
 if ($navigation_type === 'arrows') {
 	echo '<div class="carousel-arrow left">&#10094;</div>';
 	echo '<div class="carousel-arrow right">&#10095;</div>';
@@ -94,72 +94,42 @@ if (!defined('CAROUSEL_INLINE_ASSETS')) {
 
 <script>
 
-	document.addEventListener("DOMContentLoaded", function() {
-		
-		let slides = document.querySelectorAll(".carousel-slide");
-		let current = 0;
-
-		// treat each carousel-wrapper individually to avoid conflicts between multiple slideshows
+	document.addEventListener("DOMContentLoaded", function () {
 		document.querySelectorAll('.carousel-wrapper').forEach(wrapper => {
-		  const slides = wrapper.querySelectorAll('.carousel-slide');
-		  let current = 0;
+			const slides = wrapper.querySelectorAll('.carousel-slide');
+			const navType = wrapper.dataset.navigationType || 'slideshow'; // fallback
+			let current = 0;
 
-		  function showSlide(index) {
-			slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-		  }
+			function showSlide(index) {
+				slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+			}
 
-		  showSlide(current);
-
-		  // Setup navigation or slideshow timer scoped to this wrapper
-		  // For example, if slideshow:
-		  setInterval(() => {
-			current = (current + 1) % slides.length;
 			showSlide(current);
-		  }, 5000);
 
-		  // If arrows navigation, bind arrow events inside this wrapper only
-		  const leftArrow = wrapper.querySelector('.carousel-arrow.left');
-		  const rightArrow = wrapper.querySelector('.carousel-arrow.right');
-		  if (leftArrow && rightArrow) {
-			leftArrow.addEventListener('click', () => {
-			  current = (current - 1 + slides.length) % slides.length;
-			  showSlide(current);
-			});
-			rightArrow.addEventListener('click', () => {
-			  current = (current + 1) % slides.length;
-			  showSlide(current);
-			});
-		  }
+			if (navType === 'slideshow') {
+				setInterval(() => {
+					current = (current + 1) % slides.length;
+					showSlide(current);
+				}, 5000);
+			}
+
+			if (navType === 'arrows') {
+				const leftArrow = wrapper.querySelector('.carousel-arrow.left');
+				const rightArrow = wrapper.querySelector('.carousel-arrow.right');
+				if (leftArrow && rightArrow) {
+					leftArrow.addEventListener('click', () => {
+						current = (current - 1 + slides.length) % slides.length;
+						showSlide(current);
+					});
+					rightArrow.addEventListener('click', () => {
+						current = (current + 1) % slides.length;
+						showSlide(current);
+					});
+				}
+			}
 		});
+	});
 
-
-
-		function showSlide(index) {
-			slides.forEach((s, i) => s.classList.toggle("active", i === index));
-		}
-
-
-		showSlide(current);
-		if ('<?= $navigation_type ?>' === 'slideshow') {
-			setInterval(() => {
-			current = (current + 1) % slides.length;
-			showSlide(current);
-			}, 5000);
-		}
-
-		if ('<?= $navigation_type ?>'  === 'arrows') {
-			document.querySelector(".carousel-arrow.left").addEventListener("click", () => {
-			current = (current - 1 + slides.length) % slides.length;
-			showSlide(current);
-			});
-
-			document.querySelector(".carousel-arrow.right").addEventListener("click", () => {
-			current = (current + 1) % slides.length;
-			showSlide(current);
-			});
-		}
-
-	}); // DOMContentLoaded 
 </script>';
 	
 <?php } // defined('CAROUSEL_INLINE_ASSETS') ?>

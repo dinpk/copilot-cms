@@ -2,10 +2,20 @@
 // --------------------- Common Modal for add.php/edit.php
 
 function openModal() {
-  document.getElementById('modal-title').innerText = "Add";
-  document.getElementById('modal-form').action = "add.php";
-  document.querySelectorAll('#modal-form form > input, #modal-form textarea').forEach(el => el.value = '');
-  document.getElementById('modal').style.display = "block";
+	document.getElementById('modal-title').innerText = "Add";
+	document.getElementById('modal-form').action = "add.php";
+	document.getElementById('modal-form').reset;
+	//document.querySelectorAll('#modal-form input, #modal-form textarea').forEach(el => el.value = '');
+	document.getElementById('modal').style.display = "block";
+	setTimeout(() => {
+		const inputs = document.querySelectorAll('#modal-form input, select, textarea');
+		for (const el of inputs) {
+			if (el.offsetParent !== null) {
+				el.focus();
+				break;
+			}
+		}
+	}, 250);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -13,113 +23,127 @@ document.addEventListener('DOMContentLoaded', function () {
 		const modalForm = document.querySelector('#modal-form');
 		if (modalForm) {
 			document.getElementById('modal-form').addEventListener('submit', function(e) {
-			  if (e.target.classList.contains('skip-submit-listener')) return; // #modal-form that submits using its action attribute
-			  e.preventDefault();
+				if (e.target.classList.contains('skip-submit-listener')) return; // #modal-form that submits using its action attribute
+				e.preventDefault();
 
-			  const form = e.target;
-			  const formData = new FormData(form);
+				const form = e.target;
+				const formData = new FormData(form);
 
-			  fetch(form.action, {
+				fetch(form.action, {
 				method: 'POST',
 				body: formData
-			  })
-			  .then(response => response.text())
-			  .then(data => {
+				})
+				.then(response => response.text())
+				.then(data => {
 
 				//console.log(data); // to see the errors produced by add/edit
 				//return;
 
 				if (data.includes('❌') || data.includes('⚠')) {
-				  alert(data);
-				  return
-				  //closeModal();
+					alert(data);
+					return
+					//closeModal();
 				} else {
-				  location.reload();
+					location.reload();
 				}
-			  })
-			  .catch(error => {
+				})
+				.catch(error => {
 				alert('❌ Submission failed.');
 				console.error(error);
-			  });
+				});
 			});	
 		}
 		
 
 		// image modal form used by (1) products assign image (2) photo gallery assign image ------- to be removed
-	  const imageForm = document.querySelector('#image-modal form');
-	  if (imageForm) {
+		const imageForm = document.querySelector('#image-modal form');
+		if (imageForm) {
 		imageForm.addEventListener('submit', function (e) {
-		  e.preventDefault();
-		  
-		  const data = new FormData(imageForm);
-		  const id = document.getElementById('image_hidden_key').value;
-		  const record_key = document.getElementById('image_hidden_key').name; // key_product, key_photo_gallery
-		  fetch('assign_image.php', {
+			e.preventDefault();
+			
+			const data = new FormData(imageForm);
+			const id = document.getElementById('image_hidden_key').value;
+			const record_key = document.getElementById('image_hidden_key').name; // key_product, key_photo_gallery
+			fetch('assign_image.php', {
 			method: 'POST',
 			body: data
-		  })
-		  .then(() => fetch('get_images.php?' + record_key + '=' + id))
-		  .then(res => res.text())
-		  .then(html => {
+			})
+			.then(() => fetch('get_images.php?' + record_key + '=' + id))
+			.then(res => res.text())
+			.then(html => {
 			document.getElementById('image-list').innerHTML = html;
 			imageForm.reset();
-		  });
+			});
 		});
 	}
 
 });
 
 function editItem(id, endpoint, fields) {
-  fetch(endpoint + '?id=' + id)
+	
+	setTimeout(() => {
+		const inputs = document.querySelectorAll('#modal-form input, select, textarea');
+		for (const el of inputs) {
+			if (el.offsetParent !== null) {
+				el.focus();
+				break;
+			}
+		}
+	}, 150);	
+	
+	fetch(endpoint + '?id=' + id)
 	.then(res => res.json())
 	.then(data => {
 			
 			//console.log(data);
 			//return;
 			
-		  document.getElementById('modal-title').innerText = "Edit";
-		  document.getElementById('modal-form').action = "edit.php?id=" + id;
+			document.getElementById('modal-title').innerText = "Edit";
+			document.getElementById('modal-form').action = "edit.php?id=" + id;
 
-		  fields.forEach(key => {
+			fields.forEach(key => {
 			const el = document.getElementById(key);
-			if (el) el.value = data[key];
-		  });
+				if (el) el.value = data[key];
+			});
 
-		  // Set category_type dropdown
-		  if (data.banner && document.getElementById('media-preview')) {
-			document.getElementById('media-preview').innerHTML = "<img src='" + data.banner + "'>";
-		  }
-
-		  // Set category_type dropdown
-		  if (data.category_type && document.getElementById('category_type')) {
-			document.getElementById('category_type').value = data.category_type;
-		  }
-
-		  // Set content_type dropdown
-		  if (data.content_type && document.getElementById('content_type')) {
-			document.getElementById('content_type').value = data.content_type;
-		  }
-
-			// Selected categories (articles, books, photo, youtube)
-			if (data.categories && Array.isArray(data.categories)) {
-			  document.querySelectorAll('input[name="categories[]"]').forEach(cb => {
-				cb.checked = data.categories.includes(parseInt(cb.value));
-			  });
+			if (data.banner && document.getElementById('media-preview')) {
+				document.getElementById('media-preview').innerHTML = "<img src='" + data.banner + "'>";
 			}
 
-		  // Set status checkbox
-		  if (document.getElementById('status')) {
-			document.getElementById('status').checked = (data.status === 'on');
-		  }
+			if (data.category_type && document.getElementById('category_type')) {
+				document.getElementById('category_type').value = data.category_type;
+			}
 
-		  if (document.getElementById('available_for_blocks')) {
-			document.getElementById('available_for_blocks').checked = (data.available_for_blocks === 'on');
-		  }
+			if (data.content_type && document.getElementById('content_type')) {
+				document.getElementById('content_type').value = data.content_type;
+			}
 
-		  // Set parent_id if used
-		  if (document.getElementById('parent_id') && data.parent_id !== undefined) {
-			document.getElementById('parent_id').value = data.parent_id;
-		  }
+			// Selected categories (articles, books, photo_gallery, youtube_gallery)
+			if (data.categories && Array.isArray(data.categories)) {
+				document.querySelectorAll('input[name="categories[]"]').forEach(cb => {
+				cb.checked = data.categories.includes(parseInt(cb.value));
+				});
+			}
+
+			// Visible on (desktop, mobile, print, etc.)
+			if (data.visible_on && Array.isArray(data.visible_on)) {
+				document.querySelectorAll('input[name="visible_on[]"]').forEach(cb => {
+				cb.checked = data.visible_on.includes(cb.value);
+				});
+			}
+
+			if (document.getElementById('status')) {
+				document.getElementById('status').checked = (data.status === 'on');
+			}
+
+			if (document.getElementById('available_for_blocks')) {
+				document.getElementById('available_for_blocks').checked = (data.available_for_blocks === 'on');
+			}
+
+			// Set parent_id if used
+			if (document.getElementById('parent_id') && data.parent_id !== undefined) {
+				document.getElementById('parent_id').value = data.parent_id;
+			}
 
 			document.getElementById('modal').style.display = "block";
 	});

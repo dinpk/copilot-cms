@@ -24,7 +24,7 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 	</thead>
 	<tbody>
 	<?php
-	$result = $conn->query("SELECT * FROM photo_gallery_images WHERE key_photo_gallery = $key_photo_gallery ORDER BY sort_order ASC");
+	$result = $conn->query("SELECT * FROM photo_gallery_images WHERE key_photo_gallery = $key_photo_gallery ORDER BY sort ASC");
 	while ($row = $result->fetch_assoc()):
 	  $media = $row['key_media_banner'] ? $conn->query("SELECT file_url_thumbnail FROM media_library WHERE key_media = {$row['key_media_banner']}")->fetch_assoc() : null;
 	?>
@@ -37,7 +37,7 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 				<?php endif; ?>
 			</td>
 			<td><?= htmlspecialchars($row['title']) ?></td>
-			<td><?= $row['sort_order'] ?></td>
+			<td><?= $row['sort'] ?></td>
 			<td><?= $row['status'] ?></td>
 			<td class='record-action-links'>
 				<a href="#" onclick="galleryImage_editItem(<?= $row['key_image'] ?>)">Edit</a> 
@@ -68,13 +68,13 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 		<select name="animation_type" id="galleryImage_animation_type">
 			<option value="fade">Fade</option>
 			<option value="zoom">Zoom</option>
-			<option value="slide">Slide</option>
 			<option value="none">None</option>
 		</select> <label>Animation Type</label><br>
 		<input type="checkbox" name="action_button" id="galleryImage_action_button" value="1"> <label>Show Action Button</label><br>
 		<input type="text" name="action_button_text" id="galleryImage_action_button_text"> <label>Button Text</label><br>
 		<input type="text" name="action_button_link_url" id="galleryImage_action_button_link_url"> <label>Button Link URL</label><br>
 		<input type="text" name="image_wrapper_class" id="galleryImage_image_wrapper_class" title="Image Wrapper CSS Class"> <label>Wrapper CSS Class</label><br>
+		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
 		<select name="status" id="galleryImage_status">
 			<option value="on">Active</option>
 			<option value="off">Inactive</option>
@@ -109,6 +109,13 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 			.then(data => {
 				document.getElementById('photo-gallery-image-modal-title').innerText = 'Edit Image';
 				document.getElementById('photo_gallery_images_key_image').value = id;
+				document.getElementById('key_media_banner').value = data.key_media_banner;
+				document.getElementById('sort').value = data.sort;
+
+				if (data.banner && document.getElementById('media-preview')) {
+					document.getElementById('media-preview').innerHTML = "<img src='" + data.banner + "'>";
+				}
+				
 				[
 					'title', 'description', 'opacity', 'action_button',
 					'action_button_text', 'action_button_link_url', 'animation_type',

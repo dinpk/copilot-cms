@@ -3,9 +3,25 @@
 $page_slug = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
 function startLayout($title = "CopilotCMS") {
-	echo "<!DOCTYPE html><html><head><title>$title</title>
-        <link rel='stylesheet' href='/templates/default/style.css'>
-        </head><body>";
+	echo "
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>$title</title>
+			<meta charset='utf-8'>
+			<link rel='stylesheet' href='/templates/default/style.css'>
+        </head>
+		<style>
+			:root {
+				--template-text-color:  " . getSetting('template_text_color') . ";
+				--template-background-color:  " . getSetting('template_background_color') . ";
+				--template-font-family: " . getSetting('template_font_family') . ";
+				--sidebar-background-color:  " . getSetting('sidebar_background_color') . ";
+				--content-background-color:  " . getSetting('content_background_color') . ";
+				--items-background-color:  " . getSetting('items_background_color') . ";
+			}
+		</style>
+	<body>";
 
 	echo "<div id='above-header'>";
 		renderBlocks("above_header");
@@ -77,11 +93,10 @@ function renderMainMenu() {
 }
 
 
-
 // Blocks
 function renderBlocks($region, $currentPage = '') {
 	global $conn;
-	$sql = "SELECT key_blocks, key_photo_gallery, title, block_content, module_file FROM blocks 
+	$sql = "SELECT key_blocks, key_photo_gallery, title, block_content, module_file, visible_on FROM blocks 
 					   WHERE status = 'on' 
 					   AND show_in_region = '$region' 
 					   AND (show_on_pages = '' OR FIND_IN_SET('$currentPage', show_on_pages)) 
@@ -89,12 +104,17 @@ function renderBlocks($region, $currentPage = '') {
 	$res = $conn->query($sql);
 	// echo __FILE__;
 	while ($row = $res->fetch_assoc()) {
+		$devices_array = explode(',', $row['visible_on']);
+		$visibilityClasses = '';
+		foreach ($devices_array as $device) $visibilityClasses .= ' visible-on-' . $device;
 		$key_photo_gallery = $row['key_photo_gallery'];
+		echo "<div class='block $visibilityClasses'>";
 		echo "<h2>" . $row['title'] . "</h2>";
-		echo "<div class='block_content'>" . $row['block_content'] . "</div>";
+		echo "<div class='block-content'>" .  $row['block_content'] . "</div>";
 		if ($row['module_file'] != '') {
 			include("modules/" . $row['module_file'] . ".php");
 		}
+		echo "</div>";
 	}
 }
 

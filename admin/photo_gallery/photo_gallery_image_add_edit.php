@@ -17,6 +17,7 @@ $animation_type = $conn->real_escape_string($_POST['animation_type'] ?? 'fade');
 $text_position = $conn->real_escape_string($_POST['text_position'] ?? 'center');
 $text_color = $conn->real_escape_string($_POST['text_color'] ?? '#ffffff');
 $image_wrapper_class = $conn->real_escape_string($_POST['image_wrapper_class'] ?? '');
+$sort = intval($_POST['sort'] ?? 0);
 $status = $conn->real_escape_string($_POST['status'] ?? 'on');
 
 if ($key_image) {
@@ -33,6 +34,7 @@ if ($key_image) {
 		text_position = '$text_position',
 		text_color = '$text_color',
 		image_wrapper_class = '$image_wrapper_class',
+		sort = $sort,
 		status = '$status'
 	WHERE key_image = $key_image";
 } else {
@@ -40,14 +42,15 @@ if ($key_image) {
 	$sql = "INSERT INTO photo_gallery_images (
 		key_photo_gallery, key_media_banner, title, description, opacity,
 		action_button, action_button_text, action_button_link_url,
-		animation_type, text_position, text_color, image_wrapper_class, status
+		animation_type, text_position, text_color, image_wrapper_class, sort, status
 	) VALUES (
 		$key_photo_gallery, $key_media_banner, '$title', '$description', $opacity,
 		$action_button, '$action_button_text', '$action_button_link_url',
-		'$animation_type', '$text_position', '$text_color', '$image_wrapper_class', '$status'
+		'$animation_type', '$text_position', '$text_color', '$image_wrapper_class', $sort, '$status'
 	)";
 }
 
 $conn->query($sql);
+
 header("Location: photo_gallery_images_list.php?gallery_id=$key_photo_gallery");
 ?>

@@ -8,9 +8,27 @@ include '../users/auth.php';
 
 <p><a href="#" onclick="openModal()">➕ Add New Setting</a></p>
 
+<?php
+$groupOptions = [];
+$groupResult = $conn->query("SELECT DISTINCT setting_group FROM settings WHERE is_active = 1 ORDER BY setting_group ASC");
+while ($g = $groupResult->fetch_assoc()) {
+	$groupOptions[] = $g['setting_group'];
+}
+?>
+
 <form method="get">
-	<input type="text" name="q" placeholder="Search settings..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
-	<input type="submit" value="Search">
+    <input type="text" name="q" placeholder="Search settings..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
+    
+    <select name="group">
+        <option value="">All Groups</option>
+        <?php foreach ($groupOptions as $group): ?>
+            <option value="<?= htmlspecialchars($group) ?>" <?= ($_GET['group'] ?? '') === $group ? 'selected' : '' ?>>
+                <?= htmlspecialchars($group) ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+    
+    <input type="submit" value="Search">
 </form>
 
 <table>
@@ -34,9 +52,15 @@ include '../users/auth.php';
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
+	$group = $_GET['group'] ?? '';
+	$group = $conn->real_escape_string($group);
+
 	$sql = "SELECT * FROM settings WHERE is_active = 1";
 	if ($q !== '') {
-	  $sql .= " AND MATCH(setting_key, setting_value) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+		$sql .= " AND MATCH(setting_key, setting_value) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+	}
+	if ($group !== '') {
+		$sql .= " AND setting_group = '$group'";
 	}
 	$sql .= " ORDER BY $sort $dir";
 	$result = $conn->query($sql);
@@ -49,7 +73,7 @@ include '../users/auth.php';
 		<td>" . ($row['is_active'] ? '✅' : '❌') . "</td>
 		<td class='record-action-links'>
 			<a href='#' onclick='editItem({$row['key_settings']}, \"get_setting.php\", [\"setting_key\",\"setting_value\",\"setting_group\",\"setting_type\",\"is_active\"])'>Edit</a> 
-			<a href='delete.php?id={$row['key_settings']}' onclick='return confirm(\"Delete this setting?\")' style='display:none'>Delete</a>
+			<a href='delete.php?id={$row['key_settings']}' onclick='return confirm(\"Delete this setting?\")'>Delete</a>
 		</td>
 	  </tr>";
 	}

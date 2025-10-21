@@ -53,7 +53,7 @@ include '../users/auth.php';
 		<td>{$row['sort']}</td>
 		<td>{$row['status']}</td>
 		<td class='record-action-links'>
-			<a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"block_name\",\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"sort\",\"module_file\",\"key_photo_gallery\",\"status\"])'>Edit</a> 
+			<a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"block_name\",\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"visible_on\",\"sort\",\"module_file\",\"key_photo_gallery\",\"status\"])'>Edit</a> 
 			<a href='delete.php?id={$row['key_blocks']}' onclick='return confirm(\"Delete this block?\")'>Delete</a>
 		</td>
 		</tr>";
@@ -97,13 +97,23 @@ include '../users/auth.php';
 			}
 			?>
 		</select> <label>Module File</label><br>
+		
+		<label>Visible On <span> — Leave unchecked for all devices</label><br>
 		<?php
-		// Fetch active photo galleries
+		// Visible on devices
+		$deviceOptions = ['large-desktop', 'desktop', 'tablet', 'mobile', 'print'];
+		foreach ($deviceOptions as $device) {
+			echo "&nbsp; &nbsp; <label><input type='checkbox' name='visible_on[]' value='" . $device . "'> &nbsp;$device</label><br>";
+		}
+		?>
+
+		<?php
+		// Photo galleries available for blocks
 		$galleryQuery = "SELECT key_photo_gallery, title FROM photo_gallery WHERE status = 'on' AND available_for_blocks = 'on' ORDER BY entry_date_time DESC";
 		$galleryResult = mysqli_query($conn, $galleryQuery);
 		?>
 		<select name="key_photo_gallery" id="key_photo_gallery" class="form-control">
-			<option value="">-- None --</option>
+			<option value=""></option>
 			<?php while ($gallery = mysqli_fetch_assoc($galleryResult)): ?>
 			<option value="<?= $gallery['key_photo_gallery']; ?>"
 				<?= ($block['key_photo_gallery'] ?? '') == $gallery['key_photo_gallery'] ? 'selected' : ''; ?>>
@@ -111,6 +121,7 @@ include '../users/auth.php';
 			</option>
 			<?php endwhile; ?>
 		</select> <label>Assign Photo Gallery</label><br>
+		
 		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
 		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
 		<input type="submit" value="Save">
