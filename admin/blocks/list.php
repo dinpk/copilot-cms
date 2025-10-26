@@ -86,6 +86,24 @@ include '../users/auth.php';
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
 		<button type="button" onclick="openMediaModal()" style="display:none;">Select Banner Image</button>
+		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
+		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
+		
+		<details>
+		<summary>Visibility</summary>
+		<?php
+		// Visible on devices
+		$deviceOptions = ['large-desktop', 'desktop', 'tablet', 'mobile', 'print'];
+		foreach ($deviceOptions as $device) {
+			$checked = ($device == 'print') ? '' : 'checked';
+			echo "&nbsp; &nbsp; <label><input type='checkbox' name='visible_on[]' value='" . $device . "' $checked> &nbsp;$device</label><br>";
+		}
+		?>
+		</details>
+
+		<details>
+		<summary>Module / Photo Gallery</summary>
+
 		<select name='module_file' id='module_file'>
 			<option value=''></option>
 			<?php
@@ -97,15 +115,6 @@ include '../users/auth.php';
 			}
 			?>
 		</select> <label>Module File</label><br>
-		
-		<label>Visible On <span> — Leave unchecked for all devices</label><br>
-		<?php
-		// Visible on devices
-		$deviceOptions = ['large-desktop', 'desktop', 'tablet', 'mobile', 'print'];
-		foreach ($deviceOptions as $device) {
-			echo "&nbsp; &nbsp; <label><input type='checkbox' name='visible_on[]' value='" . $device . "'> &nbsp;$device</label><br>";
-		}
-		?>
 
 		<?php
 		// Photo galleries available for blocks
@@ -121,9 +130,11 @@ include '../users/auth.php';
 			</option>
 			<?php endwhile; ?>
 		</select> <label>Assign Photo Gallery</label><br>
+		</details>
 		
-		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
-		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
+
+
+
 		<input type="submit" value="Save">
 	</form>
 </div>

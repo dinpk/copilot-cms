@@ -21,14 +21,17 @@ startLayout("Book: " . htmlspecialchars($book['title']));
 
 <div id="content">
 
-	<h1><?= htmlspecialchars($book['title']) ?></h1>
-	<h3><?= htmlspecialchars($book['subtitle']) ?></h3>
+	<h1>
+	Book: <?= htmlspecialchars($book['title']) ?>
+	<div><?= htmlspecialchars($book['subtitle']) ?></div>
+	</h1>
+	
 
 	<?php
 		if ($book['banner_image_url']) { // pasted link url 
-			echo "<div id='main-banner' style='background-image:url(" . $book['banner_image_url'] . ")'></div>";
+			echo "<div id='content-banner' style='background-image:url(" . $book['banner_image_url'] . ")'></div>";
 		} else if ($book['banner_url']) { // uploaded file url
-			echo "<div id='main-banner' style='background-image:url(" . $book['banner_url'] . ")'></div>";
+			echo "<div id='content-banner' style='background-image:url(" . $book['banner_url'] . ")'></div>";
 		}
 		
 		if (!empty($book['author_name'])) {
@@ -38,10 +41,8 @@ startLayout("Book: " . htmlspecialchars($book['title']));
 	
 	<p><em><?= htmlspecialchars($book['description']) ?></em></p>
 
-	<br><hr><br>
+	<hr>
 
-	<!-- Linked Articles -->
-	<h2>Articles in this Book</h2>
 	<?php
 	$articles = $conn->query("SELECT a.*, m.file_url AS banner 
 							  FROM articles a

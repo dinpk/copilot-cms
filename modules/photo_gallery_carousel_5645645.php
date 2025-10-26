@@ -130,6 +130,6 @@ if (!defined('CAROUSEL_INLINE_ASSETS')) {
 		});
 	});
 
-</script>';
+</script>
 	
 <?php } // defined('CAROUSEL_INLINE_ASSETS') ?>

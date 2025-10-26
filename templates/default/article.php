@@ -29,9 +29,9 @@ startLayout(htmlspecialchars($article['title']));
 
 	<?php
 		if ($article['banner_image_url']) { // pasted link url from articles table
-			echo "<div id='main-banner' style='background-image:url(" . $article['banner_image_url'] . ")'></div>";
+			echo "<div id='content-banner' style='background-image:url(" . $article['banner_image_url'] . ")'></div>";
 		} else if ($article['banner_url']) { // uploaded file url from media_library table
-			echo "<div id='main-banner' style='background-image:url(" . $article['banner_url'] . ")'></div>";
+			echo "<div id='content-banner' style='background-image:url(" . $article['banner_url'] . ")'></div>";
 		}
 	?>
 

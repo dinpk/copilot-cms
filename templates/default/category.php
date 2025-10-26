@@ -28,9 +28,9 @@ startLayout("Category: " . htmlspecialchars($category['name']));
 	echo "<h1>Category: " . htmlspecialchars($category['name']) . "</h1>";
 
 	if ($category['banner_image_url']) { // pasted link url from articles table
-		echo "<div id='main-banner' style='background-image:url(" . $category['banner_image_url'] . ")'></div>";
+		echo "<div id='content-banner' style='background-image:url(" . $category['banner_image_url'] . ")'></div>";
 	} else if ($category['banner_url']) { // uploaded file url from media_library table
-		echo "<div id='main-banner' style='background-image:url(" . $category['banner_url'] . ")'></div>";
+		echo "<div id='content-banner' style='background-image:url(" . $category['banner_url'] . ")'></div>";
 	}
 
 	// Get articles in this category

@@ -13,12 +13,13 @@ function startLayout($title = "CopilotCMS") {
         </head>
 		<style>
 			:root {
+				--site-direction:  " . getSetting('site_direction') . ";
 				--template-text-color:  " . getSetting('template_text_color') . ";
 				--template-background-color:  " . getSetting('template_background_color') . ";
 				--template-font-family: " . getSetting('template_font_family') . ";
 				--sidebar-background-color:  " . getSetting('sidebar_background_color') . ";
 				--content-background-color:  " . getSetting('content_background_color') . ";
-				--items-background-color:  " . getSetting('items_background_color') . ";
+				--items-brand-color:  " . getSetting('items_brand_color') . ";
 			}
 		</style>
 	<body>";
@@ -36,7 +37,24 @@ function startLayout($title = "CopilotCMS") {
 	echo "<div id='below_header'>";
 	renderBlocks("below_header", $page_slug);
 	echo "</div>";
-	
+
+
+
+	echo "<div id='breadcrumb'>";
+	global $segments;
+	$breadcrumbs = generateBreadcrumb($segments);
+	for ($i = 0; $i < sizeof($breadcrumbs); $i++) {
+		$crumb = $breadcrumbs[$i];
+		if ($i < 2) {
+			echo '<a href="' . htmlspecialchars($crumb['url']) . '">' . htmlspecialchars($crumb['label']) . '</a>';
+		} else {
+			echo htmlspecialchars($crumb['label']);
+		}
+		if ($i < sizeof($breadcrumbs)-1) echo ' &raquo; ';
+	}
+	echo "</div>";
+
+
 	echo "<main>";
 }
 
@@ -119,14 +137,6 @@ function renderBlocks($region, $currentPage = '') {
 }
 
 
-
-/**
- * Clean HTML by removing specific tags and wrapping text nodes in <p>.
- *
- * @param string $html The raw HTML input.
- * @param array $tagsToRemove Tags to remove completely (e.g., ['script', 'h1']).
- * @return string Sanitized HTML with <p>-wrapped text.
- */
 function unwantedTagsToParagraphs(string $html, array $tagsToRemove = []): string {
     libxml_use_internal_errors(true);
     $doc = new DOMDocument();
@@ -158,5 +168,102 @@ function unwantedTagsToParagraphs(string $html, array $tagsToRemove = []): strin
     return $cleanHtml;
 }
 
+
+
+
+
+// breadcrumb functions
+
+function generateBreadcrumb($segments) {
+    $breadcrumbs = [];
+    $baseUrl = '/'; // Adjust if your site is in a subdirectory
+
+    // Home link
+    $breadcrumbs[] = ['label' => 'Home', 'url' => $baseUrl];
+
+    // Map of static labels
+    $labels = [
+        'articles' => 'Articles',
+        'article' => 'Article',
+        'categories' => 'Categories',
+        'category' => 'Category',
+        'books' => 'Books',
+        'book' => 'Book',
+        'pages' => 'Pages',
+        'page' => 'Page',
+        'authors' => 'Authors',
+        'author' => 'Author',
+        'youtube-gallery' => 'YouTube Gallery',
+        'photo-gallery' => 'Photo Gallery',
+        'search' => 'Search Results'
+    ];
+
+
+	$listingMap = [
+		'article' => 'articles',
+		'book' => 'books',
+		'author' => 'authors',
+		'category' => 'categories',
+		'page' => 'pages'
+	];
+
+	if (isset($listingMap[$segments[0]])) {
+		$listingRoute = $listingMap[$segments[0]];
+		$breadcrumbs[] = [
+			'label' => ucfirst($listingRoute),
+			'url' => $baseUrl . $listingRoute
+		];
+	} else if (!empty($segments[0]) && isset($labels[$segments[0]])) {
+        $breadcrumbs[] = [
+            'label' => $labels[$segments[0]],
+            'url' => $baseUrl . $segments[0]
+        ];
+    }
+
+    // Second segment (slug)
+    if (!empty($segments[1])) {
+        $label = ucwords(str_replace('-', ' ', $segments[1]));
+
+        // Optional: fetch title from DB for specific routes
+        if (in_array($segments[0], ['article', 'book', 'author', 'category', 'page'])) {
+            $label = fetchTitleBySlug($segments[0], $segments[1]) ?? $label;
+        }
+
+        $breadcrumbs[] = [
+            'label' => $label,
+            'url' => $baseUrl . $segments[0] . '/' . $segments[1]
+        ];
+    }
+
+    return $breadcrumbs;
+}
+
+
+function fetchTitleBySlug($type, $slug) {
+	global $conn;
+    $tableMap = [
+        'article' => ['table' => 'articles', 'field' => 'title'],
+        'book' => ['table' => 'books', 'field' => 'title'],
+        'author' => ['table' => 'authors', 'field' => 'name'],
+        'category' => ['table' => 'categories', 'field' => 'name'],
+        'page' => ['table' => 'pages', 'field' => 'title']
+    ];
+
+    if (!isset($tableMap[$type])) return null;
+
+    $table = $tableMap[$type]['table'];
+    $field = $tableMap[$type]['field'];
+
+    $stmt = $conn->prepare("SELECT `$field` FROM `$table` WHERE url = ? AND status = 'on' LIMIT 1");
+    $stmt->bind_param("s", $slug);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($row = $result->fetch_assoc()) {
+        return $row[$field];
+    }
+
+    return null;
+}
 
 ?>

@@ -5,7 +5,6 @@ $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
 $slug = $segments[1] ?? '';
 
-
 switch ($segments[0]) {
 	case '':
 	case 'home':
@@ -61,8 +60,6 @@ switch ($segments[0]) {
 	  $_GET['q'] = $_GET['q'] ?? '';
 	  include 'templates/default/search.php';
 	  break;
-
-	// Add more cases as needed
 	default:
 		echo "404 - Page not found";
 }

@@ -295,7 +295,6 @@ label span {
 }
 
 #select-categories {
-	margin:30px 0;
 	border:1px solid #777;
 	padding:20px;
 }
@@ -315,10 +314,15 @@ label span {
 	display:block;
 }
 
-#select-categories summary {
-	font-size:1.2em;
+details {
+	margin:20px 0;
+}
+
+summary {
+	font-size:1em;
 	font-weight:bold;
 	cursor:pointer;
+	margin-bottom:10px;
 }
 
 #articles-list { /* book articles list */

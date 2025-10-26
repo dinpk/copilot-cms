@@ -34,7 +34,6 @@ include __DIR__ . '/layout.php';
 	$totalPages = ceil($total / $limit);
 	?>
 
-	<br><hr>
 	<div id='pager'>
 	<?php
 	if ($page > 1) {

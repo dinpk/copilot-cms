@@ -32,9 +32,9 @@ startLayout(htmlspecialchars($page['title']));
 
 	<?php
 		if ($page['banner_image_url']) { // pasted link url from articles table
-			echo "<div id='main-banner' style='background-image:url(" . $page['banner_image_url'] . ")'></div>";
+			echo "<div id='content-banner' style='background-image:url(" . $page['banner_image_url'] . ")'></div>";
 		} else if ($page['banner_url']) { // uploaded file url from media_library table
-			echo "<div id='main-banner' style='background-image:url(" . $page['banner_url'] . ")'></div>";
+			echo "<div id='content-banner' style='background-image:url(" . $page['banner_url'] . ")'></div>";
 		}
 	?>
 

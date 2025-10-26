@@ -29,9 +29,9 @@ startLayout("Author: " . htmlspecialchars($author['name']));
 	}
 
 	if ($author['banner_url']) { // from media_library table
-		echo "<div id='main-banner' style='background-image:url(" . $author['banner_url'] . ")'></div>";
+		echo "<div id='content-banner' style='background-image:url(" . $author['banner_url'] . ")'></div>";
 	} else if ($author['banner_image_url']) { // from articles table
-		echo "<div id='main-banner' style='background-image:url(" . $author['banner_image_url'] . ")'></div>";
+		echo "<div id='content-banner' style='background-image:url(" . $author['banner_image_url'] . ")'></div>";
 	}
 
 	// Get articles by this author
