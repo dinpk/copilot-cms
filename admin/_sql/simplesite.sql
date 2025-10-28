@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 26, 2025 at 03:13 PM
+-- Generation Time: Oct 28, 2025 at 04:17 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -84,7 +84,7 @@ INSERT INTO `articles` (`key_articles`, `key_media_banner`, `document_number`, `
 (25, 0, '', 'URL Structuring', 'SEO & Clarity', 'Structuring article URLs for clarity and SEO.', 'Full content of article 24...', '', 0, 'url-structure', 'banner24.jpg', 24, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
 (26, 0, '', 'CMS Entry Points', 'Where It Begins', 'Designing intuitive entry points for editors.', 'Full content of article 25...', '', 0, 'cms-entry', 'banner25.jpg', 25, '2025-09-25 15:13:08', '2025-09-25 15:13:08', NULL, NULL, 'on'),
 (36, 113, '', 'True strength begins with self-awareness and the emotional connection', '', 'We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'We live in a world where stress, anxiety and depression are becoming increasingly common.   ', 'article', 0, 'true-strength-begins-with-self-awareness-and-emotional-connection', '', 0, '2025-10-05 05:30:29', '2025-10-05 05:30:29', 1, 1, 'on'),
-(38, 122, '', 'PHP+MySQL Combination', 'How it Works', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms. \r\n', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n\r\n\r\n<p>\r\nThe PHP + MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n</p>\r\n\r\n<h2>How the Combination Works</h2>\r\n<p>\r\nThe interaction between PHP and MySQL is a server-side process, meaning most of the work happens on the web server before the user sees the final page.\r\n</p>\r\n\r\n<div class=\"flow-diagram\">\r\n<div class=\"step\">\r\n<h3>1. Request</h3>\r\n<p>A user\'s web browser sends an HTTP request for a page (e.g., <code>example.com/products.php</code>).</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>2. Processing (PHP)</h3>\r\n<p>The web server receives the request and executes the PHP script, which performs server-side tasks like processing user input, managing sessions, and building dynamic content.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>3. Database Query (PHP + MySQL)</h3>\r\n<p>If data is needed, the PHP script connects to the MySQL database and sends a Structured Query Language (SQL) statement.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>4. Database Response (MySQL)</h3>\r\n<p>MySQL processes the SQL query and returns the requested data to the PHP script.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>5. Page Generation (PHP)</h3>\r\n<p>The PHP script uses the data from MySQL to generate a final HTML page.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>6. Response</h3>\r\n<p>The web server sends the completed HTML page back to the user\'s browser, which then renders it for the user.</p>\r\n</div>\r\n</div>\r\n\r\n<h2>What Each Component Does</h2>\r\n\r\n<h3>PHP (Hypertext Preprocessor)</h3>\r\n<p>PHP is a server-side scripting language designed specifically for web development.</p>\r\n<ul>\r\n<li><b>Role:</b> Acts as the \"middleman,\" connecting the user\'s web browser with the database.</li>\r\n<li><b>Purpose:</b> Used for tasks that happen behind the scenes, such as:\r\n<ul>\r\n<li>Handling form submissions</li>\r\n<li>Communicating with the database</li>\r\n<li>Controlling user access</li>\r\n<li>Generating dynamic content</li>\r\n</ul>\r\n</li>\r\n</ul>\r\n\r\n<h3>MySQL</h3>\r\n<p>MySQL is an open-source relational database management system (RDBMS).</p>\r\n<ul>\r\n<li><b>Role:</b> Used for storing and managing data in a structured way.</li>\r\n<li><b>Purpose:</b> Organizes data into tables, columns, and rows, making it easy for PHP to perform CRUD (Create, Read, Update, Delete) operations.</li>\r\n</ul>\r\n\r\n<h2>How PHP Connects to MySQL</h2>\r\n<p>Modern PHP offers two primary extensions for connecting to a MySQL database:</p>\r\n<ul>\r\n<li>\r\n<b>MySQLi (\"MySQL improved\"):</b> An extension specific to MySQL databases that offers both procedural and object-oriented interfaces.\r\n</li>\r\n<li>\r\n<b>PDO (PHP Data Objects):</b> A versatile database abstraction layer that can work with over 12 different database systems, including MySQL.\r\n</li>\r\n</ul>\r\n<p>Both MySQLi and PDO support *prepared statements*, a security feature that helps prevent SQL injection attacks.</p>', 'translation', 0, 'phpmysql-combination', 'https://images.pexels.com/photos/18287652/pexels-photo-18287652.jpeg?cs=srgb&dl=pexels-fotios-photos-18287652.jpg&fm=jpg', 0, '2025-10-12 02:35:26', '2025-10-12 02:35:26', 1, 1, 'on');
+(38, 122, '', 'PHP+MySQL Combination', 'How it Works', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms. \r\n', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n\r\n<p style=\"font-family:Noto Nastaliq Urdu;direction:rtl\">\r\nâ€™â€™Ø«Ø±ÛŒØ§ Ø³Û’ Ø²Ù…ÛŒÚº Ù¾Ø± Ø¢Ø³Ù…Ø§Úº Ù†Û’ ÛÙ… Ú©Ùˆ Ø¯Û’ Ù…Ø§Ø±Ø§â€˜â€˜ Ø¯Ø±Ø§ØµÙ„ Ø§ÛŒÚ© Ø§Ø³ØªØ¹Ø§Ø±Ø§ØªÛŒ Ù…Ù†Ø¸Ø± ÛÛ’Û” Ø§Ù‚Ø¨Ø§Ù„ Ú¯ÙˆÛŒØ§ ÛŒÛ Ú©ÛÛ Ø±ÛÛ’ ÛÛŒÚº Ú©Û ÛÙ… Ø§Ù¾Ù†ÛŒ Ø¨Ù„Ù†Ø¯ÛŒ Ø³Û’ Ø®ÙˆØ¯ Ú¯Ø±Û’ Ù†ÛÛŒÚºØŒ Ø¨Ù„Ú©Û ØªÙ‚Ø¯ÛŒØ± Ù†Û’ ÛŒØ§ Ù‚Ø¯Ø±Øª Ú©Û’ ØªÚ©ÙˆÛŒÙ†ÛŒ Ù†Ø¸Ø§Ù… Ù†Û’ ÛÙ…ÛŒÚº ÛÙ…Ø§Ø±Û’ Ú©Ø±ØªÙˆØªÙˆÚº Ú©ÛŒ ÙˆØ¬Û Ø³Û’ Ø¯Ú¾Ú©ÛŒÙ„ Ø¯ÛŒØ§Û” ÛŒÛ â€™â€™Ø¯Û’ Ù…Ø§Ø±Ø§â€˜â€˜ Ù…Ø­Ø¶ Ø¬Ø³Ù…Ø§Ù†ÛŒ ØªÙ†Ø²Ù„ÛŒ Ù†ÛÛŒÚº Ø¨Ù„Ú©Û Ø§Ø®Ù„Ø§Ù‚ÛŒØŒ ÙÚ©Ø±ÛŒØŒ Ø±ÙˆØ­Ø§Ù†ÛŒ Ø§ÙˆØ± ØªÛØ°ÛŒØ¨ÛŒ Ø§Ù†Ø­Ø·Ø§Ø· Ú©ÛŒ Ø·Ø±Ù Ø§Ø´Ø§Ø±Û ÛÛ’Û”\r\n\r\n</p>\r\n\r\n<p>\r\nThe PHP + MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n</p>\r\n\r\n<h2>How the Combination Works</h2>\r\n<p>\r\nThe interaction between PHP and MySQL is a server-side process, meaning most of the work happens on the web server before the user sees the final page.\r\n</p>\r\n\r\n<div class=\"flow-diagram\">\r\n<div class=\"step\">\r\n<h3>1. Request</h3>\r\n<p>A user\'s web browser sends an HTTP request for a page (e.g., <code>example.com/products.php</code>).</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>2. Processing (PHP)</h3>\r\n<p>The web server receives the request and executes the PHP script, which performs server-side tasks like processing user input, managing sessions, and building dynamic content.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>3. Database Query (PHP + MySQL)</h3>\r\n<p>If data is needed, the PHP script connects to the MySQL database and sends a Structured Query Language (SQL) statement.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>4. Database Response (MySQL)</h3>\r\n<p>MySQL processes the SQL query and returns the requested data to the PHP script.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>5. Page Generation (PHP)</h3>\r\n<p>The PHP script uses the data from MySQL to generate a final HTML page.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>6. Response</h3>\r\n<p>The web server sends the completed HTML page back to the user\'s browser, which then renders it for the user.</p>\r\n</div>\r\n</div>\r\n\r\n<h2>What Each Component Does</h2>\r\n\r\n<h3>PHP (Hypertext Preprocessor)</h3>\r\n<p>PHP is a server-side scripting language designed specifically for web development.</p>\r\n<ul>\r\n<li><b>Role:</b> Acts as the \"middleman,\" connecting the user\'s web browser with the database.</li>\r\n<li><b>Purpose:</b> Used for tasks that happen behind the scenes, such as:\r\n<ul>\r\n<li>Handling form submissions</li>\r\n<li>Communicating with the database</li>\r\n<li>Controlling user access</li>\r\n<li>Generating dynamic content</li>\r\n</ul>\r\n</li>\r\n</ul>\r\n\r\n<h3>MySQL</h3>\r\n<p>MySQL is an open-source relational database management system (RDBMS).</p>\r\n<ul>\r\n<li><b>Role:</b> Used for storing and managing data in a structured way.</li>\r\n<li><b>Purpose:</b> Organizes data into tables, columns, and rows, making it easy for PHP to perform CRUD (Create, Read, Update, Delete) operations.</li>\r\n</ul>\r\n\r\n<h2>How PHP Connects to MySQL</h2>\r\n<p>Modern PHP offers two primary extensions for connecting to a MySQL database:</p>\r\n<ul>\r\n<li>\r\n<b>MySQLi (\"MySQL improved\"):</b> An extension specific to MySQL databases that offers both procedural and object-oriented interfaces.\r\n</li>\r\n<li>\r\n<b>PDO (PHP Data Objects):</b> A versatile database abstraction layer that can work with over 12 different database systems, including MySQL.\r\n</li>\r\n</ul>\r\n<p>Both MySQLi and PDO support *prepared statements*, a security feature that helps prevent SQL injection attacks.</p>', 'translation', 0, 'phpmysql-combination', 'https://images.pexels.com/photos/18287652/pexels-photo-18287652.jpeg?cs=srgb&dl=pexels-fotios-photos-18287652.jpg&fm=jpg', 0, '2025-10-12 02:35:26', '2025-10-12 02:35:26', 1, 1, 'on');
 
 -- --------------------------------------------------------
 
@@ -138,7 +138,7 @@ CREATE TABLE IF NOT EXISTS `article_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=InnoDB AUTO_INCREMENT=164 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=168 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_categories`
@@ -170,7 +170,7 @@ INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`)
 (157, 4, 14, NULL),
 (161, 36, 4, NULL),
 (162, 36, 6, NULL),
-(163, 38, 4, NULL);
+(167, 38, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `key_photo_gallery` int(10) UNSIGNED DEFAULT NULL,
   PRIMARY KEY (`key_blocks`),
   KEY `fk_blocks_media` (`key_media_banner`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `blocks`
@@ -269,7 +269,8 @@ INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `block_name`, `title`, `
 (15, 0, 'Image Slideshow Categories', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'categories', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:28:00', 1, 1, 30),
 (16, 0, 'Image Slideshow Books', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'books', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-14 19:30:41', 1, 1, 31),
 (17, 0, 'Image Slideshow Authors', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'authors', 'below_header', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-16 19:58:45', 1, 1, 32),
-(18, 0, 'Sidebar Books to Check', 'Block Title', 'large-desktop,desktop,tablet,mobile', 'Block Content', '', 'sidebar_right', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-17 05:22:11', 1, 1, 34);
+(18, 0, 'Sidebar Books to Check', 'Block Title', 'large-desktop,desktop,tablet,mobile', 'Block Content', '', 'sidebar_right', 0, 'photo_gallery_carousel_5645645', 'on', '2025-10-17 05:22:11', 1, 1, 34),
+(19, 0, 'Search Block', 'Search', 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', -1, 'search6545645', 'on', '2025-10-28 16:02:04', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -931,7 +932,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `is_active` tinyint(1) DEFAULT '1',
   `entry_date_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_settings`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings`
@@ -978,12 +979,13 @@ INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting
 (39, 'template_default_cover_image', '/templates/default/images/pexels-wasifmehmood997-19442078.jpg', 'ui', 'text', 0, '2025-10-10 13:02:14'),
 (40, 'max_upload_image_width', '2000', 'media_library', 'number', 1, '2025-10-15 17:12:04'),
 (41, 'max_upload_image_height', '1000', 'media_library', 'number', 1, '2025-10-15 17:12:09'),
-(42, 'template_text_color', 'navy', 'ui', 'text', 1, '2025-10-20 16:23:28'),
+(42, 'template_text_color', 'black', 'ui', 'text', 1, '2025-10-20 16:23:28'),
 (43, 'template_background_color', '#FFF', 'ui', 'text', 1, '2025-10-20 16:27:30'),
 (44, 'template_font_family', 'calibri', 'ui', 'text', 1, '2025-10-20 16:27:50'),
 (45, 'items_brand_color', 'SeaGreen', 'ui', 'text', 1, '2025-10-20 16:28:26'),
 (46, 'sidebar_background_color', '#F4F4F4', 'ui', 'text', 1, '2025-10-20 18:27:22'),
-(47, 'site_direction', 'ltr', 'ui', 'text', 1, '2025-10-22 02:37:19');
+(47, 'site_direction', 'ltr', 'ui', 'text', 1, '2025-10-22 02:37:19'),
+(48, 'google_fonts', 'Noto Nastaliq Urdu, Gulzar', 'ui', 'text', 1, '2025-10-27 16:33:32');
 
 -- --------------------------------------------------------
 

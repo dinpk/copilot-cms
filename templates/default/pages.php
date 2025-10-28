@@ -6,7 +6,6 @@ include __DIR__ . '/layout.php';
 <?php startLayout("Info / About"); ?>
 
 
-
 <div id="content">
 
 	<h1>Info / About</h1>

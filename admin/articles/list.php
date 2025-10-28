@@ -40,7 +40,7 @@ include '../users/auth.php';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
 	$sql = "SELECT key_articles, title, content_type, article_snippet, entry_date_time, update_date_time, status FROM articles";
 	if ($q !== '') {
-		$sql .= " WHERE MATCH(title, title_sub, content_type, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+		$sql .= " WHERE MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
 	$sql .= " ORDER BY $sort $dir LIMIT $limit OFFSET $offset";
 	$result = $conn->query($sql);
@@ -83,7 +83,7 @@ include '../users/auth.php';
 	}
 	$countSql = "SELECT COUNT(*) AS total FROM articles";
 	if ($q !== '') {
-		$countSql .= " WHERE MATCH(title, title_sub, content_type, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+		$countSql .= " WHERE MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
 	$countResult = $conn->query($countSql);
 	$totalArticles = $countResult->fetch_assoc()['total'];

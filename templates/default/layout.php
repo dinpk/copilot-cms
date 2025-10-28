@@ -11,7 +11,9 @@ function startLayout($title = "CopilotCMS") {
 			<meta charset='utf-8'>
 			<link rel='stylesheet' href='/templates/default/style.css'>
         </head>
-		<style>
+		<style>";
+
+		echo "
 			:root {
 				--site-direction:  " . getSetting('site_direction') . ";
 				--template-text-color:  " . getSetting('template_text_color') . ";
@@ -20,7 +22,14 @@ function startLayout($title = "CopilotCMS") {
 				--sidebar-background-color:  " . getSetting('sidebar_background_color') . ";
 				--content-background-color:  " . getSetting('content_background_color') . ";
 				--items-brand-color:  " . getSetting('items_brand_color') . ";
-			}
+			}";
+
+		$google_fonts = explode(",", getSetting("google_fonts"));
+		foreach ($google_fonts as $font) {
+			echo "@import url('https://fonts.googleapis.com/css2?family=" . $font . ":wght@500&display=swap');";
+		}
+
+	echo"
 		</style>
 	<body>";
 

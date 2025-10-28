@@ -86,7 +86,7 @@ include '../users/auth.php';
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
 		<button type="button" onclick="openMediaModal()" style="display:none;">Select Banner Image</button>
-		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
+		<input type="number" name="sort" id="sort" value="0" min="-200" max="2000"> <label>Sort</label><br>
 		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
 		
 		<details>
