@@ -1,6 +1,7 @@
 <?php 
-include '../db.php';
-include '../users/auth.php';
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
 $id = intval($_GET['id']);
 $result = $conn->query("
 	SELECT authors.*, media_library.file_url_thumbnail AS banner 

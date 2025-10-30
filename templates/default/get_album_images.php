@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . '/../../admin/db.php';
+include(__DIR__ . '/../../dbconnection.php');
 $id = intval($_GET['id'] ?? 0);
 $res = $conn->query("SELECT m.file_url, m.alt_text
 FROM photo_gallery_images i

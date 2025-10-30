@@ -1,7 +1,8 @@
 <?php
-include '../db.php';
-include '../layout.php';
-include '../users/auth.php';
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
+include_once('../layout.php');
 ?>
 
 <?php startLayout('Blocks List'); ?>
@@ -76,7 +77,9 @@ include '../users/auth.php';
 			<option value="header">Header</option>
 			<option value="below_header">Below Header</option>
 			<option value="sidebar_right">Sidebar Right</option>
+			<option value="above_content">Above Content</option>
 			<option value="content">Content</option>
+			<option value="below_content">Below Content</option>
 			<option value="sidebar_left">Sidebar Left</option>
 			<option value="above_footer">Above Footer</option>
 			<option value="footer">Footer</option>

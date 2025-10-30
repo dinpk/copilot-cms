@@ -1,64 +1,73 @@
 <?php 
 
+include_once 'templates/settings.php';
+function getSetting($key, $default = null) {
+	global $settings;
+	return $settings[$key] ?? $default;
+}
+$template = getSetting('template_folder', 'default');
+
+
 
 $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
 $slug = $segments[1] ?? '';
 
+
 switch ($segments[0]) {
 	case '':
 	case 'home':
-		include 'templates/default/homepage.php';
+		include("templates/$template/homepage.php");
 		break;
 	case 'articles':
 		$_GET['slug'] = $slug;
-		include 'templates/default/articles.php';
+		include("templates/$template/articles.php");
 		break;
 	case 'article':
 		$_GET['slug'] = $slug;
-		include 'templates/default/article.php';
+		include("templates/$template/article.php");
 		break;
 	case 'categories':
 		$_GET['slug'] = $slug;
-		include 'templates/default/categories.php';
+		include("templates/$template/categories.php");
 		break;
 	case 'category':
 		$_GET['slug'] = $slug;
-		include 'templates/default/category.php';
+		include("templates/$template/category.php");
 		break;
 	case 'books':
 		$_GET['slug'] = $slug;
-		include 'templates/default/books.php';
+		include("templates/$template/books.php");
 		break;
 	case 'book':
 		$_GET['slug'] = $slug;
-		include 'templates/default/book.php';
+		include("templates/$template/book.php");
 		break;
 	case 'pages':
 		$_GET['slug'] = $slug;
-		include 'templates/default/pages.php';
+		include("templates/$template/pages.php");
 		break;
 	case 'page':
 		$_GET['slug'] = $slug;
-		include 'templates/default/page.php';
+		include("templates/$template/page.php");
 		break;
 	case 'authors':
 	  $_GET['slug'] = $slug;
-	  include 'templates/default/authors.php';
+	  include("templates/$template/authors.php");
 	  break;
 	case 'author':
 	  $_GET['slug'] = $slug;
-	  include 'templates/default/author.php';
+	  include("templates/$template/author.php");
 	  break;
 	case 'youtube-gallery':
-	  include 'templates/default/youtube_gallery.php';
+	  include("templates/$template/youtube_gallery.php");
 	  break;
 	case 'photo-gallery':
-	  include 'templates/default/photo_gallery.php';
+	  include("templates/$template/photo_gallery.php");
 	  break;
 	case 'search':
 	  $_GET['q'] = $_GET['q'] ?? '';
-	  include 'templates/default/search.php';
+	  include("templates/$template/search.php");
 	  break;
 	default:
 		echo "404 - Page not found";

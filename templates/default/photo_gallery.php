@@ -1,6 +1,6 @@
 <?php 
-include __DIR__ . '/../../admin/db.php';
-include __DIR__ . '/layout.php';
+include(__DIR__ . '/../../dbconnection.php');
+include(__DIR__ . '/layout.php');
 
 $category_url = $_GET['category'] ?? '';
 $category_url = $conn->real_escape_string($category_url);

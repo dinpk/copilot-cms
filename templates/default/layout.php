@@ -22,7 +22,8 @@ function startLayout($title = "CopilotCMS") {
 				--sidebar-background-color:  " . getSetting('sidebar_background_color') . ";
 				--content-background-color:  " . getSetting('content_background_color') . ";
 				--items-brand-color:  " . getSetting('items_brand_color') . ";
-			}";
+			}
+			";
 
 		$google_fonts = explode(",", getSetting("google_fonts"));
 		foreach ($google_fonts as $font) {
@@ -273,6 +274,11 @@ function fetchTitleBySlug($type, $slug) {
     }
 
     return null;
+}
+
+
+function firstWords($text, $limit = 15) {
+  return implode(' ', array_slice(explode(' ', strip_tags($text)), 0, $limit));
 }
 
 ?>

@@ -1,6 +1,7 @@
 <?php
-include '../db.php';
-include '../users/auth.php';
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
 $book_id = intval($_POST['key_books']);
 $article_ids = $_POST['article_ids'] ?? [];
 $conn->query("DELETE FROM book_articles WHERE key_books = $book_id");

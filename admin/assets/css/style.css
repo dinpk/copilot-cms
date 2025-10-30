@@ -1,6 +1,7 @@
 body {
 	margin:0;
 	font-family:Arial, sans-serif;
+	font-size:14px;
 }
 
 a {
@@ -29,19 +30,17 @@ header {
 .sidebar {
 	background:seagreen;
 	color:#fff;
-	padding:0 20px;
+	padding:0 10px;
 }
 
-.sidebar h2 {
-	font-size:1.2em;
-	margin-bottom:1em;
+.sidebar h3 {
+	margin:0 0 20px 0;
 }
 
 .sidebar a {
 	display:block;
-	margin-bottom:5px;
 	color:#ecf0f1;
-	padding:0.4em;
+	padding:0.2em 0.4em 0.2em 0.4em;
 	border-radius:4px;
 }
 
@@ -49,15 +48,12 @@ header {
 	background:#41a56d;
 }
 
-.sidebar a span {
-	padding:5px;
-	width:24px;
-	text-align:center;
-	height:20px;
-	margin-right:5px;
-	border-radius:55px;
-	background-color:#FFF;
+
+.sidebar-icon {
+	vertical-align:middle;
 	display:inline-block;
+	margin:0 5px 4px 0;
+	opacity:.5;
 }
 
 .dashboard-links {

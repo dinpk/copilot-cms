@@ -1,6 +1,7 @@
 <?php
-include '../db.php';
-include '../users/auth.php';
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
 if ('admin' != $_SESSION['role'] && 'creaditor' != $_SESSION['role']) {
 	echo "'⚠ You do not have access to add a record';";
 	exit;
@@ -21,4 +22,23 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	);
 	$stmt->execute();
 }
+
+
+
+$settingsArray = [];
+$sql = "SELECT setting_key, setting_value FROM settings WHERE is_active = 1";
+$result = $conn->query($sql);
+while ($row = $result->fetch_assoc()) {
+	$settingsArray[$row['setting_key']] = $row['setting_value'];
+}
+
+foreach ($settingsArray as $key => $value) {
+	$escapedValue = var_export($value, true);
+	$lines[] = "\$settings['{$key}'] = {$escapedValue};";
+}
+
+$lines_text = implode("\n", $lines);
+file_put_contents('../../templates/settings.php', "<?php\n\$settings = [];\n$lines_text");
+
+
 ?>

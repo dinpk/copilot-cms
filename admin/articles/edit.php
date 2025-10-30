@@ -1,6 +1,7 @@
 <?php
-include '../db.php';
-include '../users/auth.php';
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
 if ('viewer' == $_SESSION['role']) {
 	 echo "'⚠ You do not have access to edit a record';";
 	 exit;

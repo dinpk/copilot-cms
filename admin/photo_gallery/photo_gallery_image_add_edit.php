@@ -1,7 +1,7 @@
 <?php
-include '../db.php';
-include '../users/auth.php';
-
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
 $key_image = intval($_POST['key_image'] ?? 0);
 $key_media_banner = intval($_POST['key_media_banner'] ?? 0);
 $key_photo_gallery = intval($_POST['key_photo_gallery'] ?? 0);

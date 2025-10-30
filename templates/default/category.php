@@ -1,6 +1,6 @@
 <?php 
-include __DIR__ . '/../../admin/db.php';
-include __DIR__ . '/layout.php';
+include(__DIR__ . '/../../dbconnection.php');
+include(__DIR__ . '/layout.php');
 
 $slug = $_GET['slug'] ?? '';
 $slug = $conn->real_escape_string($slug);

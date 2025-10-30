@@ -1,6 +1,7 @@
 <?php 
-include '../db.php';
-include '../users/auth.php';
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
 $id = intval($_GET['id']);
 $res = $conn->query("SELECT * FROM product_prices_history WHERE key_product = $id ORDER BY change_date DESC");
 if ($res->num_rows === 0) {

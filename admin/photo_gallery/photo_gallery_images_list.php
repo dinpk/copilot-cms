@@ -1,7 +1,8 @@
 <?php 
-include '../db.php';
-include '../layout.php'; 
-include '../users/auth.php'; 
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
+include_once('../layout.php'); 
 
 $key_photo_gallery = intval($_GET['gallery_id'] ?? 0);
 if (!$key_photo_gallery) die("Invalid gallery ID");

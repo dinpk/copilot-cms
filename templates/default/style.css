@@ -31,8 +31,20 @@ img {
 }
 
 p {
-    text-indent: 2em;
+    text-indent: 1.5em;
 }
+
+
+/* solving (main-menu li ul) issue */
+header {
+	position:relative;
+	z-index:10;
+}
+#header_below {
+	position:relative;
+	z-index:1;
+}
+
 
 #above-header {
     background: #F4F4F4;
@@ -52,7 +64,7 @@ p {
 }
 
 #site-logo img {
-    max-height: 60px;
+    max-width: 300px;
     display: inline-block;
 }
 
@@ -247,6 +259,15 @@ main ul {
 .flex-wrap-center > div {
     width: 17.5em;
 }
+
+.indent-level-1 {
+	margin-inline-start:1.5rem;
+}
+
+.indent-level-2 {
+	margin-inline-start:3rem;
+}
+
 
 #pager {
     display: flex;

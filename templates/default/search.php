@@ -1,6 +1,6 @@
 <?php 
-include __DIR__ . '/../../admin/db.php';
-include __DIR__ . '/layout.php';
+include(__DIR__ . '/../../dbconnection.php');
+include(__DIR__ . '/layout.php');
 
 $q = $_GET['q'] ?? '';
 $q = $conn->real_escape_string(trim($q));

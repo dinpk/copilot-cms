@@ -20,22 +20,22 @@ function startLayout($title = "Admin Panel") {
 	. '</header>
 	<div class="container">
 		<div class="sidebar">
-			<h3>' . $username. '</h3>
-		<a href="../index.php"><span>📊</span> Dashboard</a>
-		<a href="../main_menu/list.php"><span>🧭</span> Main Menu</a>
-		<a href="../articles/list.php"><span>📰</span> Articles</a>
-		<a href="../pages/list.php"><span>📄</span> Pages</a>
-		<a href="../categories/list.php"><span>🗂️</span> Categories</a>
-		<a href="../authors/list.php"><span>👤</span> Authors</a>
-		<a href="../books/list.php"><span>📖</span> Books</a>
-		<a href="../photo_gallery/list.php"><span>🖼️</span> Photo Gallery</a>
-		<a href="../youtube_gallery/list.php"><span>📺</span> YouTube Gallery</a>
-		<!-- <a href="../products/list.php"><span>📦</span> Products</a> -->
-		<a href="../blocks/list.php"><span>🧱</span> Blocks</a>
-		<a href="../users/list.php"><span>👥</span> Users</a>
-		<a href="../media_library/list.php"><span>🎞️</span> Media Library</a>
-		<a href="../settings/list.php"><span>⚙️</span> Settings</a>
-		<a href="../users/logout.php"><span>🚪</span> Logout</a>
+		<h3>' . $username. '</h3>
+		<a href="../index.php"><img src="../assets/images/icon-dashboard.png" class="sidebar-icon"> Dashboard</a>
+		<a href="../main_menu/list.php"><img src="../assets/images/icon-main-menu.png" class="sidebar-icon"> Main Menu</a>
+		<a href="../articles/list.php"><img src="../assets/images/icon-articles.png" class="sidebar-icon"> Articles</a>
+		<a href="../pages/list.php"><img src="../assets/images/icon-pages.png" class="sidebar-icon"> Pages</a>
+		<a href="../categories/list.php"><img src="../assets/images/icon-categories.png" class="sidebar-icon"> Categories</a>
+		<a href="../authors/list.php"><img src="../assets/images/icon-authors.png" class="sidebar-icon"> Authors</a>
+		<a href="../books/list.php"><img src="../assets/images/icon-books.png" class="sidebar-icon"> Books</a>
+		<a href="../photo_gallery/list.php"><img src="../assets/images/icon-photo-gallery.png" class="sidebar-icon"> Photo Gallery</a>
+		<a href="../youtube_gallery/list.php"><img src="../assets/images/icon-youtube-gallery.png" class="sidebar-icon"> YouTube Gallery</a>
+		<!-- <a href="../products/list.php"><img src="../assets/images/icon-products.png" class="sidebar-icon"> Products</a> -->
+		<a href="../blocks/list.php"><img src="../assets/images/icon-blocks.png" class="sidebar-icon"> Blocks</a>
+		<a href="../users/list.php"><img src="../assets/images/icon-users.png" class="sidebar-icon"> Users</a>
+		<a href="../media_library/list.php"><img src="../assets/images/icon-media-library.png" class="sidebar-icon"> Media Library</a>
+		<a href="../settings/list.php"><img src="../assets/images/icon-settings.png" class="sidebar-icon"> Settings</a>
+		<a href="../users/logout.php"><img src="../assets/images/icon-logout.png" class="sidebar-icon"> Logout</a>
 		</div>
 		
 		<div id="info-modal" class="modal">
@@ -52,7 +52,7 @@ function endLayout() {
 		</div> <!-- main -->
 		</div> <!-- container -->
 		<footer>
-			Powered by Copilot &mdash; Built with clarity, collaboration, and care. &copy; ' . date('Y') . ' CopilotCMS.
+			Powered by Copilot &mdash; Built with clarity, collaboration, and care.
 		</footer>
 		</body>
 		</html>

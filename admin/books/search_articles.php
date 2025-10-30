@@ -1,6 +1,7 @@
 <?php
-include '../db.php';
-include '../users/auth.php';
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
 $q = $conn->real_escape_string($_GET['q'] ?? '');
 $book_id = intval($_GET['book_id']);
 $result = $conn->query("

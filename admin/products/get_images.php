@@ -1,6 +1,7 @@
 <?php
-include_once('../db.php');
-include '../users/auth.php';
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
 $keyProduct = intval($_GET['key_product']);
 $res = $conn->query('
 		SELECT product_images.key_image, media_library.file_url AS banner_url 

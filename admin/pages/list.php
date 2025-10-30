@@ -1,7 +1,8 @@
 <?php 
-include '../db.php';
-include '../users/auth.php'; 
-include '../layout.php'; 
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
+include_once('../layout.php'); 
 ?>
 
 <?php startLayout("Pages List"); ?>

@@ -1,6 +1,6 @@
 <?php 
-include $_SERVER['DOCUMENT_ROOT'] . '/admin/db.php';
-include 'layout.php';
+include(__DIR__ . '/../../dbconnection.php');
+include(__DIR__ . '/layout.php');
 ?>
 
 <?php startLayout("Home"); ?>

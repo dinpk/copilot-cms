@@ -1,7 +1,8 @@
 <?php 
-include '../db.php';
-include '../layout.php'; 
-include '../users/auth.php'; 
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
+include_once('../layout.php'); 
 ?>
 
 <?php startLayout("Articles"); ?>
@@ -113,10 +114,11 @@ include '../users/auth.php';
 		<textarea name="article_content" id="article_content" placeholder="Content"></textarea><br>
 		<select name="content_type" id="content_type" required>
 			<option value="article">Article</option>
-			<option value="post">Post</option>
+			<option value="blog_post">Blog Post</option>
 			<option value="news_release">News Release</option>
 			<option value="translation">Translation</option>
 			<option value="transcript">Transcript</option>
+			<option value="interview">Interview</option>
 		</select> <label>Content Type</label><br>
 		<input type="number" name="book_indent_level" id="book_indent_level" value="0" min="0" max="3000"> <label>Book Indent Level</label><br>
 		<input type="text" name="url" id="url" placeholder="Slug" maxlength="200" pattern="^[a-z0-9\-\/]+$" title="Lowercase letters, numbers, and hyphens only"> <label>Slug</label><br>

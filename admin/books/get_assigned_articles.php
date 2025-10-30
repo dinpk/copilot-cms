@@ -1,6 +1,7 @@
 <?php
-include '../db.php';
-include '../users/auth.php';
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
 $book_id = intval($_GET['book_id']);
 // INNER JOIN: Only those articles that have key in the junction table 'book_articles'
 $result = $conn->query("
