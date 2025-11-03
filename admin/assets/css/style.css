@@ -148,6 +148,7 @@ form {
 	
 }
 
+form input[type="date"],
 form input[type="color"],
 form button,
 form input[type="checkbox"] {
@@ -252,6 +253,9 @@ label span {
 	height:70vh	
 }
 
+.modal h4 {
+	margin:5px 0 5px 0;
+}
 
 .close-icon {
 	position:absolute;
@@ -290,23 +294,23 @@ label span {
 	margin-top:20px;	
 }
 
-#select-categories {
+.detail-checkboxes {
 	border:1px solid #777;
 	padding:20px;
 }
 
-#select-categories h4 {
+.detail-checkboxes h4 {
 	color:seagreen;
 	margin:10px 0 10px 0;
 }
 
-#select-categories > div {
+.detail-checkboxes > div {
 	columns:3;
 	column-gap:30px;
 	margin-top:20px;
 }
 
-#select-categories > div > label {
+.detail-checkboxes > div > label {
 	display:block;
 }
 

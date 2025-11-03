@@ -27,6 +27,14 @@ switch ($segments[0]) {
 		$_GET['slug'] = $slug;
 		include("templates/$template/article.php");
 		break;
+	case 'content-types':
+		$_GET['slug'] = $slug;
+		include("templates/$template/content_types.php");
+		break;
+	case 'content':
+		$_GET['slug'] = $slug;
+		include("templates/$template/content_type.php");
+		break;
 	case 'categories':
 		$_GET['slug'] = $slug;
 		include("templates/$template/categories.php");

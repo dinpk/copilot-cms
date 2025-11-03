@@ -4,9 +4,7 @@ include(__DIR__ . '/layout.php');
 
 $category_url = $_GET['category'] ?? '';
 $category_url = $conn->real_escape_string($category_url);
-$page = max(1, intval($_GET['page'] ?? 1));
-$limit = 6;
-$offset = ($page - 1) * $limit;
+
 
 // Get selected category ID
 $category_id = null;
@@ -39,6 +37,9 @@ startLayout("Photo Gallery");
 
 	<!-- Album Grid -->
 	<?php
+	$page = max(1, intval($_GET['page'] ?? 1));
+	$limit = 6;
+	$offset = ($page - 1) * $limit;
 	$sql = "SELECT key_photo_gallery, title, image_url FROM photo_gallery WHERE status = 'on'";
 	if ($category_id) {
 	  $sql .= " AND EXISTS (

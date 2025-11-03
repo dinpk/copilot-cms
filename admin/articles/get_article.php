@@ -11,12 +11,23 @@ if (isset($_GET['id'])) {
 	WHERE key_articles = $id
 	");
 	$data = $result->fetch_assoc();
+	
+	// content types
+	$catRes = $conn->query("SELECT key_content_types FROM article_content_types WHERE key_articles = $id");
+	$assigned = [];
+	while ($cat = $catRes->fetch_assoc()) {
+		$assigned[] = (int)$cat['key_content_types'];
+	}
+	$data['content_types'] = $assigned;
+	
+	// categories
 	$catRes = $conn->query("SELECT key_categories FROM article_categories WHERE key_articles = $id");
 	$assigned = [];
 	while ($cat = $catRes->fetch_assoc()) {
 		$assigned[] = (int)$cat['key_categories'];
 	}
 	$data['categories'] = $assigned;
+	
 	header('Content-Type: application/json');
 	echo json_encode(cleanUtf8($data));
 }

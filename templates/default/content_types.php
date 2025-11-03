@@ -3,16 +3,16 @@ include(__DIR__ . '/../../dbconnection.php');
 include(__DIR__ . '/../template_content.php');
 include(__DIR__ . '/layout.php');
 
-startLayout("Categories"); 
+startLayout("Content Types"); 
 ?>
 
 <div id="content">
-	<h1>Categories</h1>
+	<h1>Content Types</h1>
 	<?php
-	$categories = getCategories($conn);
+	$records = getContentTypes($conn);
 	echo "<ul class='category-list'>";
-	while ($category = $categories->fetch_assoc()) {
-		echo "<li><a href='/category/{$category['url']}'>{$category['name']}</a></li>";
+	while ($record = $records->fetch_assoc()) {
+		echo "<li><a href='/content/{$record['url']}'>{$record['name']}</a></li>";
 	}
 	echo "</ul>
 	<br>

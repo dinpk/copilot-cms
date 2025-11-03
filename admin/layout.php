@@ -24,6 +24,7 @@ function startLayout($title = "Admin Panel") {
 		<a href="../index.php"><img src="../assets/images/icon-dashboard.png" class="sidebar-icon"> Dashboard</a>
 		<a href="../main_menu/list.php"><img src="../assets/images/icon-main-menu.png" class="sidebar-icon"> Main Menu</a>
 		<a href="../articles/list.php"><img src="../assets/images/icon-articles.png" class="sidebar-icon"> Articles</a>
+		<a href="../content_types/list.php"><img src="../assets/images/icon-categories.png" class="sidebar-icon"> Content Types</a>
 		<a href="../pages/list.php"><img src="../assets/images/icon-pages.png" class="sidebar-icon"> Pages</a>
 		<a href="../categories/list.php"><img src="../assets/images/icon-categories.png" class="sidebar-icon"> Categories</a>
 		<a href="../authors/list.php"><img src="../assets/images/icon-authors.png" class="sidebar-icon"> Authors</a>

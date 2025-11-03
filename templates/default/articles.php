@@ -12,8 +12,9 @@ include(__DIR__ . '/layout.php');
 	$records = $data['records'];
 	$pagination = $data['pagination'];
 	while ($record = $records->fetch_assoc()) {
+		$banner_url = empty($record['banner_image_url']) ? $record['banner'] : $record['banner_image_url'];
 		echo "<div class='snippet-card'>
-  			  <div><img src='{$record['banner']}' data-animate='fade'></div>
+  			  <div><img src='$banner_url' data-animate='fade'></div>
 			  <div class='snippet-content'>
 			  <h2>{$record['title']}</h2>
 			  <p>{$record['article_snippet']}</p>

@@ -36,6 +36,9 @@ startLayout("YouTube Gallery");
 
 	<?php
 	// Fetch videos
+	$page = max(1, intval($_GET['page'] ?? 1));
+	$limit = getSetting('snippets_per_page');
+	$offset = ($page - 1) * $limit;
 	$sql = "SELECT y.title, y.youtube_id, y.description 
 			FROM youtube_gallery y 
 			WHERE y.status = 'on'";
@@ -48,7 +51,7 @@ startLayout("YouTube Gallery");
 				)";
 	}
 
-	$sql .= " ORDER BY y.entry_date_time DESC";
+	$sql .= " ORDER BY y.entry_date_time DESC LIMIT $limit OFFSET $offset";
 
 	$res = $conn->query($sql);
 
@@ -65,14 +68,36 @@ startLayout("YouTube Gallery");
 		echo '</div>';
 	}
 	echo "</div>";
-	?>
+	
+	
+	// Pagination
+	$countSql = "SELECT COUNT(*) AS total FROM youtube_gallery WHERE status = 'on'";
+	if ($category_id) {
+		$countSql .= " AND EXISTS (
+						SELECT 1 FROM youtube_gallery yg 
+						WHERE yg.key_youtube_gallery = youtube_gallery.key_youtube_gallery 
+						AND yg.key_categories = $category_id
+					)";
+	}
+	$total = $conn->query($countSql)->fetch_assoc()['total'];
+	$totalPages = ceil($total / $limit);
+
+	echo "<div id='pager'>";
+	if ($page > 1) {
+		echo "<a href='?page=" . ($page - 1) . "&category=" . urlencode($category_url) . "'>⬅ Prev</a> ";
+	}
+	echo "Page $page of $totalPages ";
+	if ($page < $totalPages) {
+		echo "<a href='?page=" . ($page + 1) . "&category=" . urlencode($category_url) . "'>Next ➡</a>";
+	}
+	echo "</div>";
+	?>	
+
 </div>
 
 <div id="sidebar">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
-
-
 
 
 <!-- Modal -->

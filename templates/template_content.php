@@ -34,7 +34,10 @@ function getPagination($totalItems, $currentPage = 1, $perPage = 10, $baseUrl = 
 	];
 }
 
-/* --------------------- ARTICLES ---------------------- */
+
+
+
+/* --------------------- HOMEPAGE / ARTICLES ---------------------- */
 
 function getPaginatedArticles($conn, $page = 1, $limit = 10) {
 	$offset = ($page - 1) * $limit;
@@ -52,7 +55,7 @@ function getPaginatedArticles($conn, $page = 1, $limit = 10) {
 
 	return [
 		'records' => $records,
-		'pagination' => getPagination($total, $page, $limit, "articles?page=")
+		'pagination' => getPagination($total, $page, $limit, "?page=")
 	];
 }
 
@@ -94,7 +97,7 @@ function getPaginatedAuthors($conn, $page = 1, $limit = 10) {
 
 	return [
 		'records' => $records,
-		'pagination' => getPagination($total, $page, $limit, "authors?page=")
+		'pagination' => getPagination($total, $page, $limit, "?page=")
 	];
 }
 
@@ -131,7 +134,7 @@ function getPaginatedBooks($conn, $page = 1, $limit = 10) {
 
 	return [
 		'records' => $records,
-		'pagination' => getPagination($total, $page, $limit, "books?page=")
+		'pagination' => getPagination($total, $page, $limit, "?page=")
 	];
 }
 
@@ -153,5 +156,134 @@ function getArticlesForBook($conn, $key) {
 			ORDER BY a.sort";
 	return $conn->query($sql);
 }
+
+
+/* --------------------- CONTENT TYPES ---------------------- */
+
+function getContentTypes($conn) {
+	return $conn->query("
+		SELECT DISTINCT c.key_content_types, c.name, c.url
+		FROM content_types c
+		INNER JOIN article_content_types ac ON c.key_content_types = ac.key_content_types
+		WHERE c.status = 'on'
+		ORDER BY c.name ASC
+	");}
+
+
+function getContentTypeBySlug($conn, $slug) {
+	$slug = $conn->real_escape_string($slug);
+	$sql = "SELECT c.*, m.file_url AS banner_url 
+	FROM content_types c 
+	LEFT JOIN media_library m ON c.key_media_banner = m.key_media 
+	WHERE c.url = '$slug'";
+	return $conn->query($sql)->fetch_assoc();
+}
+
+function getPaginatedArticlesForContentType($conn, $key, $page = 1, $limit = 10) {
+	$offset = ($page - 1) * $limit;
+
+	$countSql = "SELECT COUNT(*) AS total FROM articles a 
+				JOIN article_content_types ac ON a.key_articles = ac.key_articles 
+				WHERE ac.key_content_types = $key AND a.status = 'on'";
+	$total = $conn->query($countSql)->fetch_assoc()['total'];
+
+	$sql = "SELECT a.*, m.file_url AS banner 
+	FROM articles a 
+	JOIN article_content_types ac ON a.key_articles = ac.key_articles 
+	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
+	WHERE ac.key_content_types = $key AND a.status = 'on' 
+	LIMIT $limit OFFSET $offset";
+	$records = $conn->query($sql);
+
+	return [
+		'records' => $records,
+		'pagination' => getPagination($total, $page, $limit, "?page=")
+	];	
+
+}
+
+
+/* --------------------- CATEGORIES ---------------------- */
+
+function getCategories($conn) {
+	return $conn->query("
+		SELECT DISTINCT c.key_categories, c.name, c.url
+		FROM categories c
+		INNER JOIN article_categories ac ON c.key_categories = ac.key_categories
+		WHERE c.status = 'on'
+		ORDER BY c.name ASC
+	");
+}
+
+
+function getCategoryBySlug($conn, $slug) {
+	$slug = $conn->real_escape_string($slug);
+	$sql = "SELECT c.*, m.file_url AS banner_url 
+	FROM categories c 
+	LEFT JOIN media_library m ON c.key_media_banner = m.key_media 
+	WHERE c.url = '$slug'";
+	return $conn->query($sql)->fetch_assoc();
+}
+
+function getPaginatedArticlesForCategory($conn, $key, $page = 1, $limit = 10) {
+	$offset = ($page - 1) * $limit;
+
+	$countSql = "SELECT COUNT(*) AS total FROM articles a 
+				JOIN article_categories ac ON a.key_articles = ac.key_articles 
+				WHERE ac.key_categories = $key AND a.status = 'on'";
+	$total = $conn->query($countSql)->fetch_assoc()['total'];
+
+	$sql = "SELECT a.*, m.file_url AS banner 
+	FROM articles a 
+	JOIN article_categories ac ON a.key_articles = ac.key_articles 
+	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
+	WHERE ac.key_categories = $key AND a.status = 'on' 
+	LIMIT $limit OFFSET $offset";
+	$records = $conn->query($sql);
+
+	return [
+		'records' => $records,
+		'pagination' => getPagination($total, $page, $limit, "?page=")
+	];	
+
+}
+
+
+/* --------------------- PAGES ---------------------- */
+
+
+
+function getPaginatedPages($conn, $page = 1, $limit = 10) {
+	$offset = ($page - 1) * $limit;
+
+	$countSql = "SELECT COUNT(*) AS total FROM pages WHERE status = 'on'";
+	$total = $conn->query($countSql)->fetch_assoc()['total'];
+
+	$sql = "SELECT pages.*, m.file_url_thumbnail AS banner FROM pages 
+		  LEFT JOIN media_library m ON pages.key_media_banner = m.key_media 
+		  WHERE pages.status='on' ORDER BY sort ASC LIMIT $limit OFFSET $offset";
+	$records = $conn->query($sql);
+
+	return [
+		'records' => $records,
+		'pagination' => getPagination($total, $page, $limit, "?page=")
+	];
+}
+
+function getPageBySlug($conn, $slug) {
+	$slug = $conn->real_escape_string($slug);
+	$sql = "SELECT p.*, m.file_url AS banner_url 
+			FROM pages p 
+			LEFT JOIN media_library m ON p.key_media_banner = m.key_media 
+			WHERE p.url = '$slug' AND p.status = 'on'";
+	return $conn->query($sql)->fetch_assoc();
+}
+
+
+
+
+
+
+
 
 ?>

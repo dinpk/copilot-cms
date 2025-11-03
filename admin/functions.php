@@ -27,6 +27,7 @@ function isUrlTaken($slug, $excludeTable = '', $excludeKey = 0) {
 	'articles' => 'key_articles',
 	'pages' => 'key_pages',
 	'categories' => 'key_categories',
+	'content_types' => 'key_content_types',
 	'books' => 'key_books',
 	'products' => 'key_product',
 	'authors' => 'key_authors',
@@ -42,7 +43,6 @@ function isUrlTaken($slug, $excludeTable = '', $excludeKey = 0) {
   $slugEscaped = $conn->real_escape_string($slug);
 
   foreach ($tables as $table => $keyField) {
-	  echo "SELECT COUNT(*) AS total FROM `$table` WHERE url = '$slugEscaped'";
 	$query = "SELECT COUNT(*) AS total FROM `$table` WHERE url = '$slugEscaped'";
 
 	if ($table === $excludeTable && $excludeKey) {
