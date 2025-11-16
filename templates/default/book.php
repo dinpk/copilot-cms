@@ -11,8 +11,10 @@ if (!$book) {
 }
 startLayout("Book: " . htmlspecialchars($book['title']));
 ?>
-
 <div id="content">
+	<div id="above-content">
+		<?php renderBlocks("above_content"); ?>
+	</div>
 	<?php
 	echo "<h1>Book:" . htmlspecialchars($book['title']) . "<div>" . htmlspecialchars($book['subtitle']) . "</div></h1>";
 	if ($book['banner_image_url']) {
@@ -33,10 +35,14 @@ startLayout("Book: " . htmlspecialchars($book['title']));
 			</div>";
 	}
 	?>
+	<div id="below-content">
+		<?php renderBlocks("below_content"); ?>
+	</div>
 </div>
-
-<div id="sidebar">
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
+<div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
-
 <?php endLayout(); ?>

@@ -12,15 +12,15 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$availableForBlocks = isset($_POST['available_for_blocks']) ? 'on' : 'off';
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$availableForBlocks = isset($_POST['available_for_blocks']) ? '1' : '0';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$updatedBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	UPDATE photo_gallery 
-	SET title = ?, url = ?, image_url = ?, description = ?, navigation_type = ?, css = ?, available_for_blocks = ?, status = ?, updated_by = ?, key_media_banner = ? 
+	SET title = ?, url = ?, image_url = ?, description = ?, navigation_type = ?, css = ?, available_for_blocks = ?, is_active = ?, updated_by = ?, key_media_banner = ? 
 	WHERE key_photo_gallery = ?
 	');
-	$stmt->bind_param('ssssssssiii',
+	$stmt->bind_param('ssssssiiiii',
 	$_POST['title'],
 	$_POST['url'],
 	$_POST['image_url'],
@@ -28,7 +28,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$_POST['navigation_type'],
 	$_POST['css'],
 	$availableForBlocks,
-	$status,
+	$isActive,
 	$updatedBy,
 	$_POST['key_media_banner'],
 	$id

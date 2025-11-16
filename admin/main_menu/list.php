@@ -40,7 +40,7 @@ $menuTree = buildMenuTree($menuItems);
 	  <th>Title</th>
 	  <th>URL-Link</th>
 	  <th>Sort</th>
-	  <th>Status</th>
+	  <th>Active</th>
 	  <th>Actions</th>
 	</tr>
   </thead>
@@ -53,9 +53,9 @@ $menuTree = buildMenuTree($menuItems);
 			<td>{$indent}{$item['title']}</td>
 			<td>{$item['url_link']}</td>
 			<td>{$item['sort']}</td>
-			<td>{$item['status']}</td>
+			<td>{$item['is_active']}</td>
 			<td class='record-action-links'>
-			<a href='#' onclick='editItem({$item['key_main_menu']}, \"get_menu.php\", [\"title\",\"url_link\",\"sort\",\"status\",\"parent_id\"])'>Edit</a> 
+			<a href='#' onclick='editItem({$item['key_main_menu']}, \"get_menu.php\", [\"title\",\"url_link\",\"sort\",\"is_active\",\"parent_id\"])'>Edit</a> 
 			<a href='delete.php?id={$item['key_main_menu']}' onclick='return confirm(\"Delete this menu item?\")' style='display:none'>Delete</a>
 			</td>
 		</tr>";
@@ -77,7 +77,7 @@ $menuTree = buildMenuTree($menuItems);
 		<input type="text" name="title" id="title" required maxlength="200"> <label>Title</label><br>
 		<input type="text" name="url_link" id="url_link" pattern="^[a-z0-9\-\/]+$" maxlength="200"> <label>URL Link</label><br>
 		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
-		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
+		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		<select name="parent_id" id="parent_id">
 			<option value="0">Top Level</option>
 			<?php

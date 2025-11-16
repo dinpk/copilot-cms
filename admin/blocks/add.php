@@ -8,14 +8,14 @@ if ('admin' != $_SESSION['role'] && 'creaditor' != $_SESSION['role']) {
 }
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$visible_on = implode(',', $_POST['visible_on'] ?? []);
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$createdBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	blocks (block_name, title, block_content, show_on_pages, show_in_region, sort, module_file, visible_on, status, created_by, key_media_banner, key_photo_gallery) 
+	blocks (block_name, title, block_content, show_on_pages, show_in_region, sort, module_file, visible_on, is_active, created_by, key_media_banner, key_photo_gallery) 
 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('sssssisssiii',
+	$stmt->bind_param('sssssissiiii',
 	$_POST['block_name'],
 	$_POST['title'],
 	$_POST['block_content'],
@@ -24,7 +24,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$_POST['sort'],
 	$_POST['module_file'],
 	$visible_on,
-	$status,
+	$isActive,
 	$createdBy,
 	$_POST['key_media_banner'],
 	$_POST['key_photo_gallery']

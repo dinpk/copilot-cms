@@ -12,19 +12,19 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$stmt = $conn->prepare('
 	UPDATE content_types 
-	SET name = ?, description = ?, url = ?, banner_image_url = ?, sort = ?, status = ?, key_media_banner = ? 
+	SET name = ?, description = ?, url = ?, banner_image_url = ?, sort = ?, is_active = ?, key_media_banner = ? 
 	WHERE key_content_types = ?
 	');
-	$stmt->bind_param('ssssisii',
+	$stmt->bind_param('ssssiiii',
 	$_POST['name'],
 	$_POST['description'],
 	$_POST['url'],
 	$_POST['banner_image_url'],
 	$_POST['sort'],
-	$status,
+	$isActive,
 	$_POST['key_media_banner'],
 	$id
 	);

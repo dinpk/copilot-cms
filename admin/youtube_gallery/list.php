@@ -21,7 +21,7 @@ include_once('../layout.php');
 			<th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Created</th>
 			<th>Updated</th>
-			<th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+			<th><?= sortLink('Active', 'is_active', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -34,7 +34,7 @@ include_once('../layout.php');
 	$q = $conn->real_escape_string($q);
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['name', 'email', 'city', 'country', 'status', 'entry_date_time'];
+	$allowedSorts = ['name', 'email', 'city', 'country', 'is_active', 'entry_date_time'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
@@ -56,9 +56,9 @@ include_once('../layout.php');
 		<td>{$row['title']}</td>
 		<td>{$createdUpdated['creator']}</td>
 		<td>{$createdUpdated['updater']}</td>
-		<td>{$row['status']}</td>
+		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_youtube_gallery']}, \"get_video.php\", [\"title\",\"youtube_id\",\"thumbnail_url\",\"url\",\"description\",\"status\"])'>Edit</a> 
+		  <a href='#' onclick='editItem({$row['key_youtube_gallery']}, \"get_video.php\", [\"title\",\"youtube_id\",\"thumbnail_url\",\"url\",\"description\",\"is_active\"])'>Edit</a> 
 		  <a href='delete.php?id={$row['key_youtube_gallery']}' onclick='return confirm(\"Delete this video?\")' style='display:none'>Delete</a>
 		</td>
 	  </tr>";
@@ -90,11 +90,11 @@ include_once('../layout.php');
 	<form id="modal-form" method="post">
 		<input type="hidden" name="key_youtube_gallery" id="key_youtube_gallery">
 		<input type="text" name="title" id="title" onchange="setCleanURL(this.value)" required maxlength="255"> <label>Title</label><br>
-		<input type="text" name="youtube_id" id="youtube_id" required maxlength="20" pattern="^[a-zA-Z0-9_-]{11,20}$"> <label>Video ID</label><br>
+		<input type="text" name="youtube_id" id="youtube_id" required maxlength="20"> <label>Video ID</label><br>
 		<input type="url" name="thumbnail_url" id="thumbnail_url" placeholder="Thumbnail URL" maxlength="2000"> <label>Thumbnail URL</label><br>
 		<input type="text" name="url" id="url" maxlength="200" pattern="^[a-z0-9\-\/]+$" title="Lowercase letters, numbers, hyphens"> <label>Slug</label><br>
 		<textarea name="description" id="description" placeholder="Description"></textarea><br>
-		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
+		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		<details id="select-categories">
 			<summary>Categories</summary>
 			<div>
@@ -102,7 +102,7 @@ include_once('../layout.php');
 			$types = ['article', 'book', 'photo_gallery', 'video_gallery', 'global'];
 			foreach ($types as $type) {
 			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
-			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
+			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND is_active = 1 ORDER BY sort");
 			  while ($cat = $catResult->fetch_assoc()) {
 				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
 			  }

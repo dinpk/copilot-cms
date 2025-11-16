@@ -25,8 +25,9 @@ function startLayout($title = "Admin Panel") {
 		<a href="../main_menu/list.php"><img src="../assets/images/icon-main-menu.png" class="sidebar-icon"> Main Menu</a>
 		<a href="../articles/list.php"><img src="../assets/images/icon-articles.png" class="sidebar-icon"> Articles</a>
 		<a href="../content_types/list.php"><img src="../assets/images/icon-categories.png" class="sidebar-icon"> Content Types</a>
-		<a href="../pages/list.php"><img src="../assets/images/icon-pages.png" class="sidebar-icon"> Pages</a>
 		<a href="../categories/list.php"><img src="../assets/images/icon-categories.png" class="sidebar-icon"> Categories</a>
+		<a href="../tags/list.php"><img src="../assets/images/icon-categories.png" class="sidebar-icon"> Tags</a>
+		<a href="../pages/list.php"><img src="../assets/images/icon-pages.png" class="sidebar-icon"> Pages</a>
 		<a href="../authors/list.php"><img src="../assets/images/icon-authors.png" class="sidebar-icon"> Authors</a>
 		<a href="../books/list.php"><img src="../assets/images/icon-books.png" class="sidebar-icon"> Books</a>
 		<a href="../photo_gallery/list.php"><img src="../assets/images/icon-photo-gallery.png" class="sidebar-icon"> Photo Gallery</a>

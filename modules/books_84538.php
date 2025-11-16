@@ -3,7 +3,7 @@
 	<?php
 	$cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
-	$sql = "SELECT key_books, title, url FROM books ORDER BY entry_date_time DESC LIMIT 5";
+	$sql = "SELECT key_books, title, url FROM books ORDER BY entry_date_time DESC LIMIT  " . getSetting('module_total_records');
 	$books = $conn->query($sql);
 	echo "<ul class='category-list'>";
 	while ($c = $books->fetch_assoc()) {
@@ -11,6 +11,6 @@
 		echo "<li{$active}><a href='/book/{$c['url']}'>{$c['title']}</a></li>";
 	}
 	echo "</ul>";
-	echo "<p><a href='/books'>More</a></p>";
+	echo "<p><a href='/books'>" . getSetting('module_more_label') . "</a></p>";
 	?>
 </div>

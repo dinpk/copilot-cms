@@ -12,19 +12,19 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$stmt = $conn->prepare('
 	UPDATE categories 
-	SET name = ?, description = ?, url = ?, banner_image_url = ?, sort = ?, status = ?, category_type = ?, key_media_banner = ? 
+	SET name = ?, description = ?, url = ?, banner_image_url = ?, sort = ?, is_active = ?, category_type = ?, key_media_banner = ? 
 	WHERE key_categories = ?
 	');
-	$stmt->bind_param('ssssissii',
+	$stmt->bind_param('ssssiisii',
 	$_POST['name'],
 	$_POST['description'],
 	$_POST['url'],
 	$_POST['banner_image_url'],
 	$_POST['sort'],
-	$status,
+	$isActive,
 	$_POST['category_type'],
 	$_POST['key_media_banner'],
 	$id

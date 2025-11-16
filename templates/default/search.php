@@ -1,5 +1,6 @@
 <?php 
 include(__DIR__ . '/../../dbconnection.php');
+include(__DIR__ . '/../template_content.php');
 include(__DIR__ . '/layout.php');
 
 $q = $_GET['q'] ?? '';
@@ -9,7 +10,7 @@ $page = max(1, intval($_GET['page'] ?? 1));
 $limit = 5;
 $offset = ($page - 1) * $limit;
 
-startLayout("Search: " . htmlspecialchars($q));
+startLayout(getSetting('search_label') . ": " . htmlspecialchars($q));
 ?>
 
 <div id="content">
@@ -19,14 +20,14 @@ startLayout("Search: " . htmlspecialchars($q));
 	</form>
 
 	<?php
-	if ($q) echo "<h1>Search Results for: " . htmlspecialchars($q) . "</h1>";
-	$res = $conn->query("SELECT title, title_sub, article_snippet, url FROM articles WHERE status = 'on' AND MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q')
+	if ($q) echo "<h1>" . getSetting('search_label') . ": " . htmlspecialchars($q) . "</h1>";
+	$res = $conn->query("SELECT title, title_sub, article_snippet, url FROM articles WHERE is_active = 1 AND MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q')
 	LIMIT $limit OFFSET $offset
 	");
 	while ($a = $res->fetch_assoc()) {
-		echo "<div><h3>{$a['title']}</h3><p>{$a['article_snippet']}</p><a href='/article/{$a['url']}'>Read More</a></div>";
+		echo "<div><h3>{$a['title']}</h3><p>{$a['article_snippet']}</p><a href='/article/{$a['url']}'>" . getSetting('readmore_label') . "</a></div>";
 	}
-	$countSql = "SELECT COUNT(*) AS total FROM articles WHERE status = 'on' AND MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q')";
+	$countSql = "SELECT COUNT(*) AS total FROM articles WHERE is_active = 1 AND MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q')";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
 	$totalPages = ceil($total / $limit);
 
@@ -44,11 +45,9 @@ startLayout("Search: " . htmlspecialchars($q));
 	?>
 	</div>
 </div>
-
-<div id="sidebar">
+<div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
-
 <?php
 endLayout();
 ?>

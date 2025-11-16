@@ -1,5 +1,6 @@
 <?php 
 include(__DIR__ . '/../../dbconnection.php');
+include(__DIR__ . '/../template_content.php');
 include(__DIR__ . '/layout.php');
 
 $category_url = $_GET['category'] ?? '';
@@ -10,22 +11,21 @@ $category_url = $conn->real_escape_string($category_url);
 $category_id = null;
 if ($category_url) {
   $cat = $conn->query("SELECT key_categories FROM categories 
-                       WHERE url = '$category_url' AND status = 'on' AND category_type = 'photo_gallery'")->fetch_assoc();
+                       WHERE url = '$category_url' AND is_active = 1 AND category_type = 'photo_gallery'")->fetch_assoc();
   $category_id = $cat['key_categories'] ?? null;
 }
 
-startLayout("Photo Gallery");
+startLayout(getSetting('photo_gallery_label'));
 
 ?>
-
 <div id="content">
 
-	<h1>Photo Gallery</h1>
+	<h1><?= getSetting('photo_gallery_label') ?></h1>
 	<!-- Category Filters -->
 	<div class="category-tags">
 	  <?php
 	  $cats = $conn->query("SELECT name, url FROM categories 
-							WHERE status = 'on' AND category_type = 'photo_gallery' 
+							WHERE is_active = 1 AND category_type = 'photo_gallery' 
 							ORDER BY sort");
 	  while ($c = $cats->fetch_assoc()) {
 		$active = ($c['url'] === $category_url) ? "style='font-weight:bold;'" : "";
@@ -40,7 +40,7 @@ startLayout("Photo Gallery");
 	$page = max(1, intval($_GET['page'] ?? 1));
 	$limit = 6;
 	$offset = ($page - 1) * $limit;
-	$sql = "SELECT key_photo_gallery, title, image_url FROM photo_gallery WHERE status = 'on'";
+	$sql = "SELECT key_photo_gallery, title, image_url FROM photo_gallery WHERE is_active = 1";
 	if ($category_id) {
 	  $sql .= " AND EXISTS (
 				  SELECT 1 FROM photo_categories pc 
@@ -66,7 +66,7 @@ startLayout("Photo Gallery");
 	echo "</div>";
 
 	// Pagination
-	$countSql = "SELECT COUNT(*) AS total FROM photo_gallery WHERE status = 'on'";
+	$countSql = "SELECT COUNT(*) AS total FROM photo_gallery WHERE is_active = 1";
 	if ($category_id) {
 		$countSql .= " AND EXISTS (
 						SELECT 1 FROM photo_categories pc 
@@ -90,9 +90,6 @@ startLayout("Photo Gallery");
 
 </div>
 
-<div id="sidebar">
-	<?php renderBlocks("sidebar_right"); ?>
-</div>
 
 
 <!-- Modal Viewer with Arrows -->

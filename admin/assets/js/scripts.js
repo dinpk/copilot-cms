@@ -139,6 +139,12 @@ function editItem(id, endpoint, fields) {
 				});
 			}
 
+			// Selected tags
+			if (data.tags && Array.isArray(data.tags)) {
+				document.querySelectorAll('input[name="tags[]"]').forEach(cb => {
+				cb.checked = data.tags.includes(parseInt(cb.value));
+				});
+			}
 
 			// Selected categories
 			if (data.categories && Array.isArray(data.categories)) {
@@ -154,12 +160,20 @@ function editItem(id, endpoint, fields) {
 				});
 			}
 
-			if (document.getElementById('status')) {
-				document.getElementById('status').checked = (data.status === 'on');
+			if (document.getElementById('is_featured')) {
+				document.getElementById('is_featured').checked = (data.is_featured === '1');
+			}
+
+			if (document.getElementById('show_on_home')) {
+				document.getElementById('show_on_home').checked = (data.show_on_home === '1');
+			}
+
+			if (document.getElementById('is_active')) {
+				document.getElementById('is_active').checked = (data.is_active === '1');
 			}
 
 			if (document.getElementById('available_for_blocks')) {
-				document.getElementById('available_for_blocks').checked = (data.available_for_blocks === 'on');
+				document.getElementById('available_for_blocks').checked = (data.available_for_blocks === '1');
 			}
 
 			// Set parent_id if used

@@ -3,7 +3,7 @@
 	<?php
 	$cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
-	$sql = "SELECT key_authors, name, url FROM authors ORDER BY RAND() LIMIT 5";
+	$sql = "SELECT key_authors, name, url FROM authors ORDER BY RAND() LIMIT  " . getSetting('module_total_records');
 	$authors = $conn->query($sql);
 	echo "<ul class='category-list'>";
 	while ($c = $authors->fetch_assoc()) {
@@ -11,6 +11,6 @@
 		echo "<li{$active}><a href='/author/{$c['url']}'>{$c['name']}</a></li>";
 	}
 	echo "</ul>";
-	echo "<p><a href='/authors'>More</a></p>";
+	echo "<p><a href='/authors'>" . getSetting('module_more_label') . "</a></p>";
 	?>
 </div>

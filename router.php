@@ -13,9 +13,9 @@ $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
 $slug = $segments[1] ?? '';
 
+if (empty($segments[0])) header("location:home");
 
 switch ($segments[0]) {
-	case '':
 	case 'home':
 		include("templates/$template/homepage.php");
 		break;
@@ -31,9 +31,17 @@ switch ($segments[0]) {
 		$_GET['slug'] = $slug;
 		include("templates/$template/content_types.php");
 		break;
-	case 'content':
+	case 'content-type':
 		$_GET['slug'] = $slug;
 		include("templates/$template/content_type.php");
+		break;
+	case 'tags':
+		$_GET['slug'] = $slug;
+		include("templates/$template/tags.php");
+		break;
+	case 'tag':
+		$_GET['slug'] = $slug;
+		include("templates/$template/tag.php");
 		break;
 	case 'categories':
 		$_GET['slug'] = $slug;

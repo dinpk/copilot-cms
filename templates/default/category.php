@@ -11,6 +11,9 @@ if (!$category) {
 startLayout("Category: " . htmlspecialchars($category['name']));
 ?>
 <div id="content">
+	<div id="above-content">
+		<?php renderBlocks("above_content"); ?>
+	</div>
 	<?php
 	echo "<h1>Category: " . htmlspecialchars($category['name']) . "</h1>";
 	if ($category['banner_image_url']) {
@@ -27,13 +30,19 @@ startLayout("Category: " . htmlspecialchars($category['name']));
 			  <img src='{$record['banner']}' width='300'>
 			  <h2>{$record['title']}</h2>
 			  <p>{$record['article_snippet']}</p>
-			  <a href='/article/{$record['url']}'>Read More</a>
+			  <a href='/article/{$record['url']}'>" . getSetting('readmore_label') . "</a>
 			</div>";
 	}
 	echo $pagination['html'];
 	?>
+	<div id="below-content">
+		<?php renderBlocks("below_content"); ?>
+	</div>
 </div>
-<div id="sidebar">
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
+<div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
 <?php endLayout(); ?>

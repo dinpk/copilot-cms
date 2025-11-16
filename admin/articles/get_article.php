@@ -20,6 +20,14 @@ if (isset($_GET['id'])) {
 	}
 	$data['content_types'] = $assigned;
 	
+	// tags
+	$catRes = $conn->query("SELECT key_tags FROM article_tags WHERE key_articles = $id");
+	$assigned = [];
+	while ($cat = $catRes->fetch_assoc()) {
+		$assigned[] = (int)$cat['key_tags'];
+	}
+	$data['tags'] = $assigned;
+	
 	// categories
 	$catRes = $conn->query("SELECT key_categories FROM article_categories WHERE key_articles = $id");
 	$assigned = [];

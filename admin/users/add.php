@@ -11,19 +11,18 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	users (name, username, password_hash, email, role, status, phone, address, city, state, country, description, url, banner_image_url, key_media_banner) 
+	users (name, username, password_hash, email, role, phone, address, city, state, country, description, url, banner_image_url, is_active, key_media_banner) 
 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
-	$stmt->bind_param('ssssssssssssssi',
+	$stmt->bind_param('sssssssssssssii',
 	$_POST['name'],
 	$_POST['username'],
 	$passwordHash,
 	$_POST['email'],
 	$_POST['role'],
-	$status,
 	$_POST['phone'],
 	$_POST['address'],
 	$_POST['city'],
@@ -32,6 +31,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$_POST['description'],
 	$_POST['url'],
 	$_POST['banner_image_url'],
+	$isActive,
 	$_POST['key_media_banner']
 	);
 	$stmt->execute();

@@ -122,6 +122,9 @@ function cleanUtf8($data) {
   }
 }
 
+function firstWords($text, $limit = 15) {
+	return implode(' ', array_slice(explode(' ', strip_tags($text)), 0, $limit));
+}
 
 
 ?>

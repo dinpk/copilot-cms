@@ -20,7 +20,7 @@ include('../layout.php');
 			<th>Image</th>
 			<th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Created / Updated</th>
-			<th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+			<th><?= sortLink('Active', 'is_active', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -33,7 +33,7 @@ include('../layout.php');
 	$q = $conn->real_escape_string($q);
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['title', 'status'];
+	$allowedSorts = ['title', 'is_active'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
@@ -54,9 +54,9 @@ include('../layout.php');
 		<td><img src='{$row['image_url']}' width='120'></td>
 		<td>{$row['title']}</td>
 		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
-		<td>{$row['status']}</td>
+		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo_gallery.php\", [\"title\",\"url\",\"image_url\",\"description\",\"navigation_type\",\"css\",\"available_for_blocks\",\"status\"])'>Edit</a> 
+		  <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo_gallery.php\", [\"title\",\"url\",\"image_url\",\"description\",\"navigation_type\",\"css\",\"available_for_blocks\",\"is_active\"])'>Edit</a> 
 		  <a href='photo_gallery_delete.php?id={$row['key_photo_gallery']}' onclick='return confirm(\"Delete this photo?\")'>Delete</a> 
 		  <a href='photo_gallery_images_list.php?gallery_id={$row['key_photo_gallery']}' target='_blank'>Assign Images</a>
 
@@ -102,9 +102,9 @@ include('../layout.php');
 			<option value="slideshow">Slideshow</option>
 		</select> <label>Navigation type</label>
 		<br>
-		<label><input type="checkbox" name="available_for_blocks" id="available_for_blocks" value="on"> Available for Blocks</label><br>
+		<label><input type="checkbox" name="available_for_blocks" id="available_for_blocks"> Available for Blocks</label><br>
 		<input type="text" name="css" id="css" maxlength="500"> <label>CSS</label><br>
-		<label><input type="checkbox" name="status" id="status" value="on" checked> Active</label><br>
+		<label><input type="checkbox" name="is_active" id="is_active" checked> Active</label><br>
 		<details id="select-categories">
 			<summary>Categories</summary>
 			<div>
@@ -112,7 +112,7 @@ include('../layout.php');
 			$types = ['article', 'book', 'photo_gallery', 'video_gallery', 'global'];
 			foreach ($types as $type) {
 			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
-			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
+			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND is_active = 1 ORDER BY sort");
 			  while ($cat = $catResult->fetch_assoc()) {
 				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
 			  }

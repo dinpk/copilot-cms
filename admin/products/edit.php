@@ -13,16 +13,16 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$current = $conn->query("SELECT price FROM products WHERE key_product = $id")->fetch_assoc(); // old/new price
 	$oldPrice = floatval($current['price']);
 	$newPrice = floatval($_POST['price']);
 	$stmt = $conn->prepare('
 	UPDATE products 
-	SET title = ?, description = ?, sku = ?, price = ?, stock_quantity = ?, product_type = ?, url = ?, status = ?, sort = ?, updated_by = ? 
+	SET title = ?, description = ?, sku = ?, price = ?, stock_quantity = ?, product_type = ?, url = ?, is_active = ?, sort = ?, updated_by = ? 
 	WHERE key_product = ?
 	');
-	$stmt->bind_param('sssdisssiii',
+	$stmt->bind_param('sssdissiiii',
 	$_POST['title'],
 	$_POST['description'],
 	$_POST['sku'],
@@ -30,7 +30,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$_POST['stock_quantity'],
 	$_POST['product_type'],
 	$_POST['url'],
-	$status,
+	$isActive,
 	$_POST['sort'],
 	$updatedBy,
 	$id

@@ -12,7 +12,13 @@ if (!$article) {
 startLayout(htmlspecialchars($article['title']));
 ?>
 
+
 <div id="content">
+
+	<div id="above-content">
+		<?php renderBlocks("above_content"); ?>
+	</div>
+
 	<article>
 	<h1><?= htmlspecialchars($article['title']) ?></h1>
 	<h3><?= htmlspecialchars($article['title_sub']) ?></h3>
@@ -32,19 +38,29 @@ startLayout(htmlspecialchars($article['title']));
 	while ($author = $authors->fetch_assoc()) {
 		$author_names[] = "<a href='/author/{$author['url']}'>" . htmlspecialchars($author['name']) . "</a>";
 	}
-	echo "<p><strong>By:</strong> " . implode(', ', $author_names) . "</p>";
+	echo "<p>" . implode(', ', $author_names) . "</p>";
 
 	$categories = getCategoriesForArticle($conn, $article['key_articles']);
 	$category_names = [];
 	while ($category = $categories->fetch_assoc()) {
 		$category_names[] = "<a href='/category/{$category['url']}'>" . htmlspecialchars($category['name']) . "</a>";
 	}
-	echo "<p><strong>Categories:</strong> " . implode(', ', $category_names) . "</p>";
+	echo "<p>" . implode(', ', $category_names) . "</p>";
 	?>
 	</article>
+	
+	<div id="below-content">
+		<?php renderBlocks("below_content"); ?>
+	</div>
+	
 </div>
 
-<div id="sidebar">
+
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
+
+<div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
 

@@ -11,14 +11,14 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$createdBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	authors (name, email, phone, website, url, banner_image_url, social_url_media1, social_url_media2, social_url_media3, city, state, country, description, status, created_by, key_media_banner) 
+	authors (name, email, phone, website, url, banner_image_url, social_url_media1, social_url_media2, social_url_media3, city, state, country, description, is_active, created_by, key_media_banner) 
 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('ssssssssssssssii',
+	$stmt->bind_param('sssssssssssssiii',
 	$_POST['name'],
 	$_POST['email'],
 	$_POST['phone'],
@@ -32,7 +32,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$_POST['state'],
 	$_POST['country'],
 	$_POST['description'],
-	$status,
+	$isActive,
 	$createdBy,
 	$_POST['key_media_banner']
   );

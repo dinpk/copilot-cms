@@ -3,9 +3,12 @@ include(__DIR__ . '/../../dbconnection.php');
 include(__DIR__ . '/../template_content.php');
 include(__DIR__ . '/layout.php');
 ?>
-<?php startLayout("Info / About"); ?>
+<?php startLayout(getSetting('pages_label')); ?>
 <div id="content">
-	<h1>Info / About</h1>
+	<div id="above-content">
+		<?php renderBlocks("above_content"); ?>
+	</div>
+	<h1><?= getSetting('pages_label') ?></h1>
 	<?php
 	$page = intval($_GET['page'] ?? 1);
 	$data = getPaginatedPages($conn, $page, getSetting('snippets_per_page'));
@@ -17,14 +20,20 @@ include(__DIR__ . '/layout.php');
 				<div class='snippet-content'>
 					<h2>{$record['title']}</h2>
 					<p>" . firstWords($record['page_content'], getSetting('snippet_words')) . "…" . "</p>
-					<a href='/page/{$record['url']}'>Read More</a>
+					<a href='/page/{$record['url']}'>" . getSetting('readmore_label') . "</a>
 				</div>
 			</div>";
 	}
 	echo $pagination['html'];
 	?>
+	<div id="below-content">
+		<?php renderBlocks("below_content"); ?>
+	</div>
 </div>
-<div id="sidebar">
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
+<div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
-<?php endLayout();?>
+<?php endLayout(); ?>

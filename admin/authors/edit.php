@@ -12,14 +12,14 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$updatedBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	UPDATE authors 
-	SET name = ?, email = ?, phone = ?, website = ?, url = ?, banner_image_url = ?, social_url_media1 = ?, social_url_media2 = ?, social_url_media3 = ?, city = ?, state = ?, country = ?, description = ?, status = ?, updated_by = ?, key_media_banner = ? 
+	SET name = ?, email = ?, phone = ?, website = ?, url = ?, banner_image_url = ?, social_url_media1 = ?, social_url_media2 = ?, social_url_media3 = ?, city = ?, state = ?, country = ?, description = ?, is_active = ?, updated_by = ?, key_media_banner = ? 
 	WHERE key_authors = ?
 	');
-	$stmt->bind_param('ssssssssssssssiii',
+	$stmt->bind_param('sssssssssssssiiii',
 	$_POST['name'],
 	$_POST['email'],
 	$_POST['phone'],
@@ -33,7 +33,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$_POST['state'],
 	$_POST['country'],
 	$_POST['description'],
-	$status,
+	$isActive,
 	$updatedBy,
 	$_POST['key_media_banner'],
 	$id

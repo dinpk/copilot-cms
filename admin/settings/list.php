@@ -39,7 +39,7 @@ while ($g = $groupResult->fetch_assoc()) {
 			<th>Value</th>
 			<th><?= sortLink('Group', 'setting_group', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Type</th>
-			<th>Status</th>
+			<th>Active</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -94,7 +94,15 @@ while ($g = $groupResult->fetch_assoc()) {
 			<textarea name="setting_value" id="setting_value" required></textarea>
 		</div>
 		<label>Group</label><br>
-		<input type="text" name="setting_group" id="setting_group" title="homepage, ui, article_view etc." maxlength="50"><br>
+		<select name="setting_group" id="setting_group">
+			<option value="php_template">PHP Template</option>
+			<option value="css_template">CSS Template</option>
+			<option value="css_fonts">CSS Fonts</option>
+			<option value="css_colors">CSS Colors</option>
+			<option value="media_library">Media Library</option>
+			<option value="general">General</option>
+		</select><br>
+
 		<label>Type</label><br>
 		<select name="setting_type" id="setting_type">
 			<option value="text">Text</option>

@@ -2,8 +2,8 @@
 // $key_photo_gallery fetched in renderBlocks() 
 if (!$key_photo_gallery) return;
 
-$gallery = $conn->query("SELECT * FROM photo_gallery WHERE key_photo_gallery = $key_photo_gallery AND status = 'on'")->fetch_assoc();
-if (!$gallery || $gallery['available_for_blocks'] !== 'on') return;
+$gallery = $conn->query("SELECT * FROM photo_gallery WHERE key_photo_gallery = $key_photo_gallery AND is_active = 1")->fetch_assoc();
+if (!$gallery || $gallery['available_for_blocks'] !== 1) return;
 $gallery_css = $gallery['css'];
 $navigation_type = $gallery['navigation_type'] ?? 'slideshow';
 $valid_types = ['slideshow', 'arrows'];
@@ -16,7 +16,7 @@ $images = $conn->query("
 	SELECT i.*, m.file_url, m.alt_text
 	FROM photo_gallery_images i
 	LEFT JOIN media_library m ON i.key_media_banner = m.key_media
-	WHERE i.key_photo_gallery = $key_photo_gallery AND i.status = 'on'
+	WHERE i.key_photo_gallery = $key_photo_gallery AND i.is_active = 1
 		AND (i.visibility_start IS NULL OR i.visibility_start <= NOW())
 		AND (i.visibility_end IS NULL OR i.visibility_end >= NOW())
 	ORDER BY i.sort ASC
@@ -53,83 +53,3 @@ while ($img = $images->fetch_assoc()) {
 }
 echo '</div>';
 ?>
-
-<?php
-// Only include assets once per page load
-if (!defined('CAROUSEL_INLINE_ASSETS')) {
-	define('CAROUSEL_INLINE_ASSETS', true);
-?>
-
-<style>
-	.carousel-wrapper { position: relative; overflow: hidden;}
-	.carousel-slide { display: none; transition: opacity 1s ease-in-out; }
-	.carousel-slide img {object-fit:cover;object-position:50% 50%;width:100%;height:100%;}
-	.carousel-slide.active { display: block; }
-	.carousel-text { position: absolute; bottom: 20px; width: 100%; text-align: center; }
-	.carousel-btn { padding: 10px 20px; background: #000; color: #fff; text-decoration: none; }
-
-	.carousel-slide[data-animation="fade"] { animation: fadeIn 1s ease-in-out; }
-	.carousel-slide[data-animation="slide"] { animation: slideIn 1s ease-in-out; }
-	.carousel-slide[data-animation="zoom"] { animation: zoomIn 1s ease-in-out; }
-
-	@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-	@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
-	@keyframes zoomIn { from { transform: scale(0.8); } to { transform: scale(1); } }
-
-	.carousel-arrow {
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		font-size: 2rem;
-		color: #fff;
-		cursor: pointer;
-		z-index: 10;
-		padding: 10px;
-		background: rgba(0,0,0,0.5);
-	}
-	.carousel-arrow.left { left: 10px; }
-	.carousel-arrow.right { right: 10px; }
-	
-</style>
-
-<script>
-
-	document.addEventListener("DOMContentLoaded", function () {
-		document.querySelectorAll('.carousel-wrapper').forEach(wrapper => {
-			const slides = wrapper.querySelectorAll('.carousel-slide');
-			const navType = wrapper.dataset.navigationType || 'slideshow'; // fallback
-			let current = 0;
-
-			function showSlide(index) {
-				slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
-			}
-
-			showSlide(current);
-
-			if (navType === 'slideshow') {
-				setInterval(() => {
-					current = (current + 1) % slides.length;
-					showSlide(current);
-				}, 5000);
-			}
-
-			if (navType === 'arrows') {
-				const leftArrow = wrapper.querySelector('.carousel-arrow.left');
-				const rightArrow = wrapper.querySelector('.carousel-arrow.right');
-				if (leftArrow && rightArrow) {
-					leftArrow.addEventListener('click', () => {
-						current = (current - 1 + slides.length) % slides.length;
-						showSlide(current);
-					});
-					rightArrow.addEventListener('click', () => {
-						current = (current + 1) % slides.length;
-						showSlide(current);
-					});
-				}
-			}
-		});
-	});
-
-</script>
-	
-<?php } // defined('CAROUSEL_INLINE_ASSETS') ?>

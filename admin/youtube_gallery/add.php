@@ -11,20 +11,20 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$createdBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	youtube_gallery (title, youtube_id, thumbnail_url, url, description, status, created_by, key_media_banner) 
+	youtube_gallery (title, youtube_id, thumbnail_url, url, description, is_active, created_by, key_media_banner) 
 	VALUES (?, ?, ?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('ssssssii',
+	$stmt->bind_param('sssssiii',
 	$_POST['title'],
 	$_POST['youtube_id'],
 	$_POST['thumbnail_url'],
 	$_POST['url'],
 	$_POST['description'],
-	$status,
+	$isActive,
 	$createdBy,
 	$_POST['key_media_banner']
 	);

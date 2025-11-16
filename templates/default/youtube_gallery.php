@@ -1,5 +1,6 @@
 <?php 
 include(__DIR__ . '/../../dbconnection.php');
+include(__DIR__ . '/../template_content.php');
 include(__DIR__ . '/layout.php');
 
 $category_url = $_GET['category'] ?? '';
@@ -9,23 +10,22 @@ $category_url = $conn->real_escape_string($category_url);
 $category_id = null;
 if ($category_url) {
   $cat = $conn->query("SELECT key_categories FROM categories 
-                       WHERE url = '$category_url' AND status = 'on' AND category_type = 'video_gallery'")->fetch_assoc();
+                       WHERE url = '$category_url' AND is_active = 1 AND category_type = 'video_gallery'")->fetch_assoc();
   $category_id = $cat['key_categories'] ?? null;
 }
 
-startLayout("YouTube Gallery");
+startLayout(getSetting('youtube_gallery_label'));
 
 ?>
 
 <div id="content">
-	<h1>YouTube Gallery</h1>
+
+	<h1><?= getSetting('youtube_gallery_label') ?></h1>
 	
 	<!-- Category Tags -->
 	<div class="category-tags">
 	  <?php
-	  $cats = $conn->query("SELECT name, url FROM categories 
-							WHERE status = 'on' AND category_type = 'video_gallery' 
-							ORDER BY sort");
+	  $cats = $conn->query("SELECT name, url FROM categories WHERE is_active = 1 AND category_type = 'video_gallery' ORDER BY sort");
 	  while ($c = $cats->fetch_assoc()) {
 		$active = ($c['url'] === $category_url) ? "style='font-weight:bold;'" : "";
 		echo "<a href='/youtube-gallery?category={$c['url']}' class='tag' $active>" . htmlspecialchars($c['name']) . "</a> &nbsp; ";
@@ -41,7 +41,7 @@ startLayout("YouTube Gallery");
 	$offset = ($page - 1) * $limit;
 	$sql = "SELECT y.title, y.youtube_id, y.description 
 			FROM youtube_gallery y 
-			WHERE y.status = 'on'";
+			WHERE y.is_active = 1";
 
 	if ($category_id) {
 	  $sql .= " AND EXISTS (
@@ -71,7 +71,7 @@ startLayout("YouTube Gallery");
 	
 	
 	// Pagination
-	$countSql = "SELECT COUNT(*) AS total FROM youtube_gallery WHERE status = 'on'";
+	$countSql = "SELECT COUNT(*) AS total FROM youtube_gallery WHERE is_active = 1";
 	if ($category_id) {
 		$countSql .= " AND EXISTS (
 						SELECT 1 FROM youtube_gallery yg 
@@ -95,9 +95,6 @@ startLayout("YouTube Gallery");
 
 </div>
 
-<div id="sidebar">
-	<?php renderBlocks("sidebar_right"); ?>
-</div>
 
 
 <!-- Modal -->

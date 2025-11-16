@@ -3,11 +3,36 @@ include_once('../../dbconnection.php');
 include_once('../functions.php');
 include_once('../users/auth.php');
 include_once('../layout.php');
+
+$regionOptions = [
+	"above_header"   => "Above Header",
+	"header"         => "Header",
+	"below_header"   => "Below Header",
+	"sidebar_right"  => "Sidebar Right",
+	"above_content"  => "Above Content",
+	"below_content"  => "Below Content",
+	"sidebar_left"   => "Sidebar Left",
+	"above_footer"   => "Above Footer",
+	"footer"         => "Footer",
+	"below_footer"   => "Below Footer"
+];
+
 ?>
 
 <?php startLayout('Blocks List'); ?>
 
-<a href="#" onclick="openModal()">➕ Add New Block</a>
+<a href="#" onclick="openModal()">➕ Add New Block</a><br><br>
+
+<form method="get">
+    <select name="region_filter" id="region_filter" onchange="this.form.submit()">
+        <option value="">All Regions</option>
+        <?php foreach ($regionOptions as $value => $label): ?>
+            <option value="<?= $value ?>" <?= ($_GET['region_filter'] ?? '') === $value ? 'selected' : '' ?>>
+                <?= $label ?>
+            </option>
+        <?php endforeach; ?>
+    </select> Filter
+</form>
 
 <table>
 	<thead>
@@ -19,7 +44,7 @@ include_once('../layout.php');
 		<th><?= sortLink('Module', 'module_file', $_GET['sort'] ?? '', $_GET['dir'] ?? ''); ?></th>
 		<th>Created / Updated</th>
 		<th><?= sortLink('Sort', 'sort', $_GET['sort'] ?? '', $_GET['dir'] ?? ''); ?></th>
-		<th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? ''); ?></th>
+		<th><?= sortLink('Active', 'is_active', $_GET['sort'] ?? '', $_GET['dir'] ?? ''); ?></th>
 		<th>Actions</th>
 	</tr>
 	</thead>
@@ -27,7 +52,7 @@ include_once('../layout.php');
 	<?php
 	$sort = $_GET['sort'] ?? 'sort';
 	$dir = $_GET['dir'] ?? 'asc';
-	$allowedSorts = ['title', 'region', 'pages', 'sort', 'status'];
+	$allowedSorts = ['title', 'region', 'pages', 'sort', 'is_active'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) {
 		$sort = 'entry_date_time';
@@ -35,7 +60,12 @@ include_once('../layout.php');
 	if (!in_array($dir, $allowedDirs)) {
 		$dir = 'desc';
 	}
-	$sql = "SELECT * FROM blocks ORDER BY $sort $dir";
+	$regionFilter = $_GET['region_filter'] ?? '';
+	$sql = "SELECT * FROM blocks";
+	if ($regionFilter !== '') {
+		$sql .= " WHERE show_in_region = '" . $conn->real_escape_string($regionFilter) . "'";
+	}
+	$sql .= " ORDER BY $sort $dir";	
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
 		$keyBlocks = $row['key_blocks'];
@@ -52,9 +82,9 @@ include_once('../layout.php');
 		<td>{$row['module_file']}</td>
 		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
 		<td>{$row['sort']}</td>
-		<td>{$row['status']}</td>
+		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-			<a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"block_name\",\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"visible_on\",\"sort\",\"module_file\",\"key_photo_gallery\",\"status\"])'>Edit</a> 
+			<a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"block_name\",\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"visible_on\",\"sort\",\"module_file\",\"key_photo_gallery\",\"is_active\"])'>Edit</a> 
 			<a href='delete.php?id={$row['key_blocks']}' onclick='return confirm(\"Delete this block?\")'>Delete</a>
 		</td>
 		</tr>";
@@ -72,25 +102,17 @@ include_once('../layout.php');
 		<textarea name="block_content" id="block_content" placeholder="Content" title="Content" maxlength="10000"></textarea><br>
 		<br>
 		<input type="text" name="block_name" id="block_name" required maxlength="200"> <label>Block Name</label><br>
-		<select name='show_in_region' id='show_in_region'>
-			<option value="above_header">Above Header</option>
-			<option value="header">Header</option>
-			<option value="below_header">Below Header</option>
-			<option value="sidebar_right">Sidebar Right</option>
-			<option value="above_content">Above Content</option>
-			<option value="content">Content</option>
-			<option value="below_content">Below Content</option>
-			<option value="sidebar_left">Sidebar Left</option>
-			<option value="above_footer">Above Footer</option>
-			<option value="footer">Footer</option>
-			<option value="below_footer">Below Footer</option>
+		<select name="show_in_region" id="show_in_region">
+			<?php foreach ($regionOptions as $value => $label): ?>
+				<option value="<?= $value ?>"><?= $label ?></option>
+			<?php endforeach; ?>
 		</select> <label>Show in Region</label><br>
 		<textarea name="show_on_pages" id="show_on_pages" placeholder="Show on Pages (comma separated)" title="Show on Pages (comma separated)" maxlength="1000"></textarea><br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
 		<button type="button" onclick="openMediaModal()" style="display:none;">Select Banner Image</button>
 		<input type="number" name="sort" id="sort" value="0" min="-200" max="2000"> <label>Sort</label><br>
-		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
+		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		
 		<details>
 		<summary>Visibility</summary>
@@ -121,7 +143,7 @@ include_once('../layout.php');
 
 		<?php
 		// Photo galleries available for blocks
-		$galleryQuery = "SELECT key_photo_gallery, title FROM photo_gallery WHERE status = 'on' AND available_for_blocks = 'on' ORDER BY entry_date_time DESC";
+		$galleryQuery = "SELECT key_photo_gallery, title FROM photo_gallery WHERE is_active = 1 AND available_for_blocks = 1 ORDER BY entry_date_time DESC";
 		$galleryResult = mysqli_query($conn, $galleryQuery);
 		?>
 		<select name="key_photo_gallery" id="key_photo_gallery" class="form-control">

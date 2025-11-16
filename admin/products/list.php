@@ -23,7 +23,7 @@ include_once('../layout.php');
 			<th>Stock</th>
 			<th>SKU</th>
 			<th>Created / Updated</th>
-			<th>Status</th>
+			<th>Active</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -35,7 +35,7 @@ include_once('../layout.php');
 	$q = $conn->real_escape_string($_GET['q'] ?? '');
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['title', 'price', 'stock_quantity', 'sku', 'status'];
+	$allowedSorts = ['title', 'price', 'stock_quantity', 'sku', 'is_active'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
@@ -59,9 +59,9 @@ include_once('../layout.php');
 		<td>{$row['stock_quantity']}</td>
 		<td>{$row['sku']}</td>
 		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
-		<td>{$row['status']}</td>
+		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_product']}, \"get_product.php\", [\"title\",\"description\",\"price\",\"stock_quantity\",\"sku\",\"product_type\",\"url\",\"status\"])'>Edit</a> 
+		  <a href='#' onclick='editItem({$row['key_product']}, \"get_product.php\", [\"title\",\"description\",\"price\",\"stock_quantity\",\"sku\",\"product_type\",\"url\",\"is_active\"])'>Edit</a> 
 		  <a href='delete.php?id={$row['key_product']}' onclick='return confirm(\"Delete this product?\")' style='display:none'>Delete</a> 
 		  <a href='#' onclick='loadPriceHistory({$row['key_product']})'>Price History</a> 
 			<a href='#' onclick='openImageModal({$row['key_product']})'>Assign Images</a>
@@ -108,7 +108,7 @@ include_once('../layout.php');
 		<input type="text" name="sku" id="sku" maxlength="50"> <label>SKU</label><br>
 		<input type="checkbox" name="is_featured" id="is_featured" value="1"> <label>Featured</label><br>
 		<input type="number" name="sort" id="sort" placeholder="Sort Order" value="0" min="0" max="2000"> <label>Sort</label><br>
-		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
+		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		<details id="select-categories">
 			<summary>Categories</summary>
 			<div>
@@ -116,7 +116,7 @@ include_once('../layout.php');
 			$types = ['article', 'book', 'photo_gallery', 'video_gallery', 'global'];
 			foreach ($types as $type) {
 			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
-			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
+			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND is_active = 1 ORDER BY sort");
 			  while ($cat = $catResult->fetch_assoc()) {
 				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
 			  }

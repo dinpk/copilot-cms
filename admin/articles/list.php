@@ -10,8 +10,19 @@ include_once('../layout.php');
 <p><a href="#" onclick="openModal()">➕ Add New Article</a></p>
 
 <form method="get">
-	<input type="text" name="q" placeholder="Search articles..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
-	<input type="submit" value="Search">
+    <input type="text" name="q" placeholder="Search articles..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
+    
+    <select name="filter" onchange="this.form.submit()">
+        <option value="">All Articles</option>
+        <option value="media_banner" <?= ($_GET['filter'] ?? '') === 'media_banner' ? 'selected' : '' ?>>Have Media Banner</option>
+        <option value="no_media_banner" <?= ($_GET['filter'] ?? '') === 'no_media_banner' ? 'selected' : '' ?>>No Media Banner</option>
+        <option value="url_banner" <?= ($_GET['filter'] ?? '') === 'url_banner' ? 'selected' : '' ?>>Have URL Banner</option>
+        <option value="no_url_banner" <?= ($_GET['filter'] ?? '') === 'no_url_banner' ? 'selected' : '' ?>>No URL Banner</option>
+        <option value="featured" <?= ($_GET['filter'] ?? '') === 'featured' ? 'selected' : '' ?>>Featured</option>
+        <option value="not_published" <?= ($_GET['filter'] ?? '') === 'not_published' ? 'selected' : '' ?>>Not Published</option>
+    </select>
+    
+    <input type="submit" value="Search">
 </form>
 
 <table>
@@ -21,7 +32,7 @@ include_once('../layout.php');
 			<th>Authors</th>
 			<th><?= sortLink('Created', 'entry_date_time', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th><?= sortLink('Updated', 'update_date_time', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
-			<th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+			<th><?= sortLink('Status', 'is_active', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -34,15 +45,50 @@ include_once('../layout.php');
 	$q = $conn->real_escape_string($q);
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['title', 'status', 'entry_date_time', 'update_date_time'];
+	$allowedSorts = ['title', 'is_active', 'entry_date_time', 'update_date_time'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
-	$sql = "SELECT key_articles, title, article_snippet, entry_date_time, update_date_time, status FROM articles";
+	
+	$sql = "SELECT key_articles, title, article_snippet, entry_date_time, update_date_time, is_active 
+			FROM articles";
+
+	$whereClauses = [];
+
+	// Search condition
 	if ($q !== '') {
-		$sql .= " WHERE MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+		$whereClauses[] = "MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
+
+	// Filter condition
+	$filter = $_GET['filter'] ?? '';
+	switch ($filter) {
+		case 'media_banner':
+			$whereClauses[] = "key_media_banner = 1";
+			break;
+		case 'no_media_banner':
+			$whereClauses[] = "key_media_banner = 0";
+			break;
+		case 'url_banner':
+			$whereClauses[] = "banner_image_url != ''";
+			break;
+		case 'no_url_banner':
+			$whereClauses[] = "banner_image_url = ''";
+			break;
+		case 'featured':
+			$whereClauses[] = "is_featured = 1";
+			break;
+		case 'not_published':
+			$whereClauses[] = "is_active != 1";
+			break;
+	}
+
+	if (!empty($whereClauses)) {
+		$sql .= " WHERE " . implode(" AND ", $whereClauses);
+	}
+
 	$sql .= " ORDER BY $sort $dir LIMIT $limit OFFSET $offset";
+
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
 		$keyArticles = $row['key_articles'];
@@ -70,19 +116,21 @@ include_once('../layout.php');
 		<td>" . htmlspecialchars($authorDisplay) . "</td>
 		<td><small>{$createdUpdated['creator']} $date_created</small></td>
 		<td><small>{$createdUpdated['updater']} $date_updated</small></td>
-		<td>{$row['status']}</td>
+		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"book_indent_level\",\"banner_image_url\",\"key_media_banner\",\"sort\",\"entry_date_time\",\"update_date_time\",\"status\"])'>Edit</a> 
+		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"book_indent_level\",\"banner_image_url\",\"key_media_banner\",\"sort\",\"entry_date_time\",\"update_date_time\",\"is_featured\",\"show_on_home\",\"is_active\"])'>Edit</a> 
 		  <a href='#' onclick='openAuthorModal({$row['key_articles']})'>Authors</a> 
 		  <a href='preview.php?id={$row['key_articles']}' target='_blank'>Preview</a> 
-		  <a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")' style='display:none'>Delete</a>
+		  <a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'>Delete</a>
 		</td>
 		</tr>";
 	}
+
 	$countSql = "SELECT COUNT(*) AS total FROM articles";
-	if ($q !== '') {
-		$countSql .= " WHERE MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+	if (!empty($whereClauses)) {
+		$countSql .= " WHERE " . implode(" AND ", $whereClauses);
 	}
+
 	$countResult = $conn->query($countSql);
 	$totalArticles = $countResult->fetch_assoc()['total'];
 	$totalPages = ceil($totalArticles / $limit);
@@ -115,15 +163,17 @@ include_once('../layout.php');
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
 		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_articles').value)">Select Banner Image from Media Library</button><br>
+		<!-- 
 		<input type="date" name="entry_date_time" id="entry_date_time" required> <label>Published</label><br>
 		<input type="date" name="update_date_time" id="update_date_time" required> <label>Updated</label><br>
+		-->
 		<input type="number" name="sort" id="sort" placeholder="Sort Order" value="0" min="0" max="32767"> <label>Sort</label><br>
 
 		<details class="detail-checkboxes">
 			<summary>Content Types</summary>
 			<div>
 			<?php
-			  $contResult = $conn->query("SELECT key_content_types, name FROM content_types WHERE status='on' ORDER BY sort, name");
+			  $contResult = $conn->query("SELECT key_content_types, name FROM content_types WHERE is_active = 1 ORDER BY sort, name");
 			  while ($cat = $contResult->fetch_assoc()) {
 				echo "<label><input type='checkbox' name='content_types[]' value='{$cat['key_content_types']}'> {$cat['name']}</label>";
 			  }
@@ -138,7 +188,7 @@ include_once('../layout.php');
 			$types = ['article', 'book', 'photo_gallery', 'video_gallery', 'global'];
 			foreach ($types as $type) {
 			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
-			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
+			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND is_active = 1 ORDER BY sort");
 			  while ($cat = $catResult->fetch_assoc()) {
 				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
 			  }
@@ -146,7 +196,25 @@ include_once('../layout.php');
 			?>
 			</div>
 		</details>
-		<label><input type="checkbox" name="status" id="status" value="on" checked> Active</label><br>
+		
+		<details class="detail-checkboxes">
+			<summary>Tags</summary>
+			<div>
+			<?php
+			  $contResult = $conn->query("SELECT key_tags, name FROM tags WHERE is_active = 1 ORDER BY sort, name");
+			  while ($cat = $contResult->fetch_assoc()) {
+				echo "<label><input type='checkbox' name='tags[]' value='{$cat['key_tags']}'> {$cat['name']}</label>";
+			  }
+			?>
+			</div>
+		</details>
+		
+		<label><input type="checkbox" name="is_featured" id="is_featured"> Featured</label><br>
+		<label><input type="checkbox" name="show_on_home" id="show_on_home" checked> Show on Home</label><br>
+		<select name="is_active" id="is_active">
+			<option value="1">Published</option>
+			<option value="0">Not Published</option>
+		</select><br>
 		<input type="submit" value="Save">
 	</form>
 </div>

@@ -23,7 +23,7 @@ include_once('../layout.php');
 			<th><?= sortLink('Year', 'publish_year', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Created</th>
 			<th>Updated</th>
-			<th>Status</th>
+			<th>Active</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -36,7 +36,7 @@ include_once('../layout.php');
 	$q = $conn->real_escape_string($q);
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['title', 'publisher', 'publish_year', 'status'];
+	$allowedSorts = ['title', 'publisher', 'publish_year', 'is_active'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
@@ -60,9 +60,9 @@ include_once('../layout.php');
 		<td>{$row['publish_year']}</td>
 		<td>{$createdUpdated['creator']}</td>
 		<td>{$createdUpdated['updater']}</td>
-		<td>{$row['status']}</td>
+		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		<a href='#' onclick='editItem({$row['key_books']}, \"get_book.php\", [\"title\",\"subtitle\",\"description\",\"url\",\"banner_image_url\",\"author_name\",\"publisher\",\"publish_year\",\"key_media_banner\",\"status\"])'>Edit</a> 
+		<a href='#' onclick='editItem({$row['key_books']}, \"get_book.php\", [\"title\",\"subtitle\",\"description\",\"url\",\"banner_image_url\",\"author_name\",\"publisher\",\"publish_year\",\"key_media_banner\",\"is_active\"])'>Edit</a> 
 		<a href='delete.php?id={$row['key_books']}' onclick='return confirm(\"Delete this book?\")' style='display:none'>Delete</a> 
 		<a href='#' onclick='openAssignModal({$row['key_books']})'>Assign Articles</a>
 		</td>
@@ -112,7 +112,7 @@ include_once('../layout.php');
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
 		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_books').value)">Select Banner Image from Media Library</button><br>
-		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
+		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		<details id="select-categories">
 			<summary>Categories</summary>
 			<div>
@@ -120,7 +120,7 @@ include_once('../layout.php');
 			$types = ['article', 'book', 'photo_gallery', 'video_gallery', 'global'];
 			foreach ($types as $type) {
 			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
-			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND status='on' ORDER BY sort");
+			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND is_active = 1 ORDER BY sort");
 			  while ($cat = $catResult->fetch_assoc()) {
 				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
 			  }

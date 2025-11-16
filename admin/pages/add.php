@@ -11,18 +11,18 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	pages (title, page_content, url, banner_image_url, status, key_media_banner) 
+	pages (title, page_content, url, banner_image_url, is_active, key_media_banner) 
 	VALUES (?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('sssssi',
+	$stmt->bind_param('ssssii',
 		$_POST['title'],
 		$_POST['page_content'],
 		$_POST['url'],
 		$_POST['banner_image_url'],
-		$status,
+		$isActive,
 		$_POST['key_media_banner']
 	  );
 	$stmt->execute();

@@ -12,17 +12,16 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
-	$entry_date_time = $_POST['entry_date_time'] . " " . date('H:m:s');
-	$update_date_time = $_POST['update_date_time'] . " " . date('H:m:s');
+	$is_featured = isset($_POST['is_featured']) ? '1' : '0';
+	$show_on_home = isset($_POST['show_on_home']) ? '1' : '0';
 	$updatedBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	UPDATE articles 
 	SET	title = ?, title_sub = ?, article_snippet = ?, article_content = ?, url = ?, book_indent_level = ?, banner_image_url = ?, sort = ?, 
-	entry_date_time = ?, update_date_time = ?, status = ?, updated_by = ?, key_media_banner = ?
+	is_active = ?, is_featured = ?, show_on_home = ?, updated_by = ?, key_media_banner = ?
 	WHERE key_articles = ?
 	');
-	$stmt->bind_param('sssssisisssiii',
+	$stmt->bind_param('sssssisisiiiii',
 	$_POST['title'],
 	$_POST['title_sub'],
 	$_POST['article_snippet'],
@@ -31,15 +30,14 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$_POST['book_indent_level'],
 	$_POST['banner_image_url'],
 	$_POST['sort'],
-	$entry_date_time,
-	$update_date_time,
-	$status,
+	$_POST['is_active'],
+	$is_featured,
+	$show_on_home,
 	$updatedBy,
 	$_POST['key_media_banner'],
 	$id
 	);
 	$stmt->execute();
-
 
 	$conn->query("DELETE FROM article_categories WHERE key_articles = $id");
 	if (!empty($_POST['categories'])) {
@@ -49,7 +47,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 				$stmtCat->execute();
 		}
 	}
-	
+
 	$conn->query("DELETE FROM article_content_types WHERE key_articles = $id");
 	if (!empty($_POST['content_types'])) {
 		$stmtCat = $conn->prepare('INSERT IGNORE INTO article_content_types (key_articles, key_content_types) VALUES (?, ?)');
@@ -58,6 +56,15 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 				$stmtCat->execute();
 		}
 	}
-	
+
+	$conn->query("DELETE FROM article_tags WHERE key_articles = $id");
+	if (!empty($_POST['tags'])) {
+		$stmtCat = $conn->prepare('INSERT IGNORE INTO article_tags (key_articles, key_tags) VALUES (?, ?)');
+		foreach ($_POST['tags'] as $tagId) {
+				$stmtCat->bind_param('ii', $id, $tagId);
+				$stmtCat->execute();
+		}
+	}
+
 }
 ?>

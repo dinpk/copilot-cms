@@ -19,7 +19,7 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 			<th>Preview</th>
 			<th>Title</th>
 			<th>Sort</th>
-			<th>Status</th>
+			<th>Active</th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -39,7 +39,7 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 			</td>
 			<td><?= htmlspecialchars($row['title']) ?></td>
 			<td><?= $row['sort'] ?></td>
-			<td><?= $row['status'] ?></td>
+			<td><?= $row['is_active'] ?></td>
 			<td class='record-action-links'>
 				<a href="#" onclick="galleryImage_editItem(<?= $row['key_image'] ?>)">Edit</a> 
 				<!-- <a href="#" onclick="galleryImage_openMediaModal(<?= $row['key_image'] ?>)">Assign Image</a> -->
@@ -76,10 +76,10 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 		<input type="text" name="action_button_link_url" id="galleryImage_action_button_link_url"> <label>Button Link URL</label><br>
 		<input type="text" name="image_wrapper_class" id="galleryImage_image_wrapper_class" title="Image Wrapper CSS Class"> <label>Wrapper CSS Class</label><br>
 		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
-		<select name="status" id="galleryImage_status">
-			<option value="on">Active</option>
-			<option value="off">Inactive</option>
-		</select> <label>Status</label><br>
+		<select name="is_active" id="galleryImage_is_active">
+			<option value="1">Active</option>
+			<option value="0">Inactive</option>
+		</select><br>
 		<br>
 		
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
@@ -120,13 +120,13 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 				[
 					'title', 'description', 'opacity', 'action_button',
 					'action_button_text', 'action_button_link_url', 'animation_type',
-					'text_position', 'text_color', 'image_wrapper_class', 'status'
+					'text_position', 'text_color', 'image_wrapper_class', 'is_active'
 				].forEach(field => {
 					const el = document.getElementById('galleryImage_' + field);
 					if (el.type === 'checkbox') {
 						el.checked = data[field] == '1';
 					} else {
-						el.value = data[field] || '';
+						el.value = data[field] || '0';
 					}
 				});
 				document.getElementById('photo-gallery-image-modal').style.display = 'block';

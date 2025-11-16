@@ -10,9 +10,9 @@ $username = $_SESSION["username"];
 include("../dbconnection.php");
 
 // Utility functions
-function getCount($table, $statusCol = 'status') {
+function getCount($table, $statusCol = 'is_active') {
 	global $conn;
-	$sql = "SELECT COUNT(*) as count FROM $table WHERE $statusCol = 'on'";
+	$sql = "SELECT COUNT(*) as count FROM $table WHERE $statusCol = 1";
 	$result = $conn->query($sql);
 	$row = $result->fetch_assoc();
 	return $row["count"];
@@ -37,20 +37,25 @@ $totalPages = getCount("pages");
 $totalVideos = getCount("youtube_gallery");
 $totalPhotos = getCount("photo_gallery");
 $totalBooks = getCount("books");
+$totalContentTypes = getCount("content_types");
+$totalCategories = getCount("categories");
+$totalTags = getCount("tags");
 
 $totalProducts = getCount("products");
 $totalAuthors = getCount("authors");
-$totalOrders = getCount("product_orders", "status");
+$totalOrders = getCount("product_orders");
 
 // Recent Articles
 $recentArticles = getRecent("articles", "title", "entry_date_time", 5);
 $recentBooks = getRecent("books", "title", "entry_date_time", 5);
-$recentCategories = getRecent("categories", "name", "entry_date_time", 5);
 $recentPages = getRecent("pages", "title", "entry_date_time", 5);
 $recentAuthors = getRecent("authors", "name", "entry_date_time", 5);
 $recentProducts = getRecent("products", "title", "entry_date_time", 5);
 $recentGallery = getRecent("photo_gallery", "title", "entry_date_time", 5);
 $recentYoutube = getRecent("youtube_gallery", "title", "entry_date_time", 5);
+$recentContentTypes = getRecent("content_types", "name", "entry_date_time", 5);
+$recentCategories = getRecent("categories", "name", "entry_date_time", 5);
+$recentTags = getRecent("tags", "name", "entry_date_time", 5);
 ?>
 
 <!DOCTYPE html>
@@ -70,8 +75,9 @@ $recentYoutube = getRecent("youtube_gallery", "title", "entry_date_time", 5);
 		<a href="main_menu/list.php"><img src="assets/images/icon-main-menu.png" class="sidebar-icon"> Main Menu</a>
 		<a href="articles/list.php"><img src="assets/images/icon-articles.png" class="sidebar-icon"> Articles</a>
 		<a href="content_types/list.php"><img src="assets/images/icon-categories.png" class="sidebar-icon"> Content Types</a>
-		<a href="pages/list.php"><img src="assets/images/icon-pages.png" class="sidebar-icon"> Pages</a>
 		<a href="categories/list.php"><img src="assets/images/icon-categories.png" class="sidebar-icon"> Categories</a>
+		<a href="tags/list.php"><img src="assets/images/icon-categories.png" class="sidebar-icon"> Tags</a>
+		<a href="pages/list.php"><img src="assets/images/icon-pages.png" class="sidebar-icon"> Pages</a>
 		<a href="authors/list.php"><img src="assets/images/icon-authors.png" class="sidebar-icon"> Authors</a>
 		<a href="books/list.php"><img src="assets/images/icon-books.png" class="sidebar-icon"> Books</a>
 		<a href="photo_gallery/list.php"><img src="assets/images/icon-photo-gallery.png" class="sidebar-icon"> Photo Gallery</a>
@@ -93,6 +99,9 @@ $recentYoutube = getRecent("youtube_gallery", "title", "entry_date_time", 5);
 			<div class="metric-box">📰 Videos<br><span><?= $totalVideos ?></span></div>
 			<div class="metric-box">📰 Photos<br><span><?= $totalPhotos ?></span></div>
 			<div class="metric-box">📚 Books<br><span><?= $totalBooks ?></span></div>
+			<div class="metric-box">📚 Content Types<br><span><?= $totalContentTypes ?></span></div>
+			<div class="metric-box">📚 Categories<br><span><?= $totalCategories ?></span></div>
+			<div class="metric-box">📚 Tags<br><span><?= $totalTags ?></span></div>
 			<div class="metric-box" style="display:none;">🧱 Products<br><span><?= $totalProducts ?></span></div>
 			<div class="metric-box" style="display:none;">🛒 Orders<br><span><?= $totalOrders ?></span></div>
 		</div>
@@ -122,14 +131,6 @@ $recentYoutube = getRecent("youtube_gallery", "title", "entry_date_time", 5);
 				</ul>
 			</div>
 			<div class="recent-activity">
-				<h3>🕒 Recent Categories</h3>
-				<ul>
-				<?php foreach ($recentCategories as $item): ?>
-					<li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-				<?php endforeach; ?>
-				</ul>
-			</div>
-			<div class="recent-activity">
 				<h3>🕒 Recent Authors</h3>
 				<ul>
 				<?php foreach ($recentAuthors as $item): ?>
@@ -142,6 +143,30 @@ $recentYoutube = getRecent("youtube_gallery", "title", "entry_date_time", 5);
 				<ul>
 				<?php foreach ($recentProducts	as $item): ?>
 					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Content Types</h3>
+				<ul>
+				<?php foreach ($recentContentTypes as $item): ?>
+					<li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Categories</h3>
+				<ul>
+				<?php foreach ($recentCategories as $item): ?>
+					<li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Tags</h3>
+				<ul>
+				<?php foreach ($recentTags as $item): ?>
+					<li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
 				<?php endforeach; ?>
 				</ul>
 			</div>

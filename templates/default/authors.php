@@ -2,10 +2,13 @@
 include(__DIR__ . '/../../dbconnection.php');
 include(__DIR__ . '/../template_content.php');
 include(__DIR__ . '/layout.php');
-startLayout("Authors"); 
+startLayout(getSetting('authors_label')); 
 ?>
 <div id="content">
-	<h1>Authors</h1>
+	<div id="above-content">
+		<?php renderBlocks("above_content"); ?>
+	</div>
+	<h1><?= getSetting('authors_label') ?></h1>
 	<?php
 	$page = intval($_GET['page'] ?? 1);
 	$data = getPaginatedAuthors($conn, $page, getSetting('snippets_per_page'));
@@ -15,16 +18,24 @@ startLayout("Authors");
 		echo "<div class='snippet-card'>
 				<div><img src='{$record['banner']}' width='300'></div>
 				<div>
-					<h2>{$record['name']}</h2>
-					<p>" . firstWords($record['description'], getSetting('snippet_words')) . "…" . "</p>
-					<a href='/author/{$record['url']}'>Read More</a>
+					<h2><a href='/author/{$record['url']}'>{$record['name']}</a></h2>
+					<div>
+					" . firstWords($record['description'], getSetting('snippet_words')) . "…" . " 
+					<a href='/author/{$record['url']}'>" . getSetting('readmore_label') . "</a>
+					</div>
 				</div>
 			</div>";
 	}
 	echo $pagination['html'];
 	?>
+	<div id="below-content">
+		<?php renderBlocks("below_content"); ?>
+	</div>
 </div>
-<div id="sidebar">
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
+<div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
 <?php endLayout();?>

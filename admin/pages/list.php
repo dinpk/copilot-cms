@@ -20,7 +20,7 @@ include_once('../layout.php');
 			<th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>URL</th>
 			<th><?= sortLink('Sort', 'sort', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
-			<th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+			<th><?= sortLink('Active', 'is_active', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -30,7 +30,7 @@ include_once('../layout.php');
 	$q = $conn->real_escape_string($q);
 	$sort = $_GET['sort'] ?? 'sort';
 	$dir = $_GET['dir'] ?? 'asc';
-	$allowedSorts = ['title', 'sort', 'status'];
+	$allowedSorts = ['title', 'sort', 'is_active'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
@@ -45,9 +45,9 @@ include_once('../layout.php');
 			<td>{$row['title']}</td>
 			<td>{$row['url']}</td>
 			<td>{$row['sort']}</td>
-			<td>{$row['status']}</td>
+			<td>{$row['is_active']}</td>
 			<td class='record-action-links'>
-			  <a href='#' onclick='editItem({$row['key_pages']}, \"get_page.php\", [\"title\",\"page_content\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"status\"])'>Edit</a> 
+			  <a href='#' onclick='editItem({$row['key_pages']}, \"get_page.php\", [\"title\",\"page_content\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"is_active\"])'>Edit</a> 
 			  <a href='delete.php?id={$row['key_pages']}' onclick='return confirm(\"Delete this page?\")'>Delete</a>
 			</td>
 		</tr>";
@@ -69,7 +69,7 @@ include_once('../layout.php');
 		<div id="media-preview"></div>
 		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_pages').value)">Select Banner Image from Media Library</button><br>
 		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
-		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
+		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		<input type="submit" value="Save">
 	</form>
 </div>

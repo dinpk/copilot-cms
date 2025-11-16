@@ -3,7 +3,11 @@
 	<?php
 	$cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
-	$sql = "SELECT key_categories, name, url FROM categories ORDER BY name ASC LIMIT 5";
+	$sql = "SELECT DISTINCT c.key_categories, c.name, c.url
+		FROM categories c
+		INNER JOIN article_categories ac ON c.key_categories = ac.key_categories
+		WHERE c.is_active = 1 
+		ORDER BY c.name ASC LIMIT " . getSetting('module_total_records');
 	$categories = $conn->query($sql);
 	echo "<ul class='category-list'>";
 	while ($c = $categories->fetch_assoc()) {
@@ -11,6 +15,6 @@
 		echo "<li{$active}><a href='/category/{$c['url']}'>{$c['name']}</a></li>";
 	}
 	echo "</ul>";
-	echo "<p><a href='/categories'>More</a></p>";
+	echo "<p><a href='/categories'>" . getSetting('module_more_label') . "</a></p>";
 	?>
 </div>

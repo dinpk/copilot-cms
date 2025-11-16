@@ -4,7 +4,7 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$username = $_POST['username'];
 	$password = $_POST['password'];
-	$stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND status = 'on' LIMIT 1");
+	$stmt = $conn->prepare("SELECT * FROM users WHERE username = ? AND is_active = 1 LIMIT 1");
 	$stmt->bind_param("s", $username);
 	$stmt->execute();
 	$result = $stmt->get_result();

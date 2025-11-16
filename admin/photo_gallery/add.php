@@ -11,15 +11,15 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$availableForBlocks = isset($_POST['available_for_blocks']) ? 'on' : 'off';
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$availableForBlocks = isset($_POST['available_for_blocks']) ? '1' : '0';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$createdBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	photo_gallery (title, url, image_url, description, navigation_type, css, available_for_blocks, status, created_by, key_media_banner) 
+	photo_gallery (title, url, image_url, description, navigation_type, css, available_for_blocks, is_active, created_by, key_media_banner) 
 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('ssssssssii',
+	$stmt->bind_param('ssssssiiii',
 	$_POST['title'],
 	$_POST['url'],
 	$_POST['image_url'],
@@ -27,7 +27,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$_POST['navigation_type'],
 	$_POST['css'],
 	$availableForBlocks,
-	$status,
+	$isActive,
 	$createdBy,
 	$_POST['key_media_banner']
 	);

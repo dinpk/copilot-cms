@@ -11,14 +11,14 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$createdBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	books (title, subtitle, description, url, banner_image_url, author_name, publisher, publish_year, isbn, is_featured, language, format, weight_grams, sku, status, created_by, key_media_banner) 
+	books (title, subtitle, description, url, banner_image_url, author_name, publisher, publish_year, isbn, is_featured, language, format, weight_grams, sku, is_active, created_by, key_media_banner) 
 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('sssssssssisssisii',
+	$stmt->bind_param('sssssssssisssiiii',
 		$_POST['title'],
 		$_POST['subtitle'],
 		$_POST['description'],
@@ -33,7 +33,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 		$_POST['format'],
 		$_POST['weight_grams'],
 		$_POST['sku'],
-		$status,
+		$isActive,
 		$createdBy,
 		$_POST['key_media_banner']
 	);

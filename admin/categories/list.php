@@ -29,7 +29,7 @@ include_once('../layout.php');
 			<th>Description</th>
 			<th><?= sortLink('URL', 'url', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th><?= sortLink('Type', 'category_type', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
-			<th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+			<th><?= sortLink('Active', 'is_active', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -39,7 +39,7 @@ include_once('../layout.php');
 	$q = $conn->real_escape_string($q);
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['name', 'url', 'status', 'category_type'];
+	$allowedSorts = ['name', 'url', 'is_active', 'category_type'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
@@ -60,9 +60,9 @@ include_once('../layout.php');
 			<td>{$row['description']}</td>
 			<td>{$row['url']}</td>
 			<td>{$row['category_type']}</td>
-			<td>{$row['status']}</td>
+			<td>{$row['is_active']}</td>
 			<td class='record-action-links'>
-				<a href='#' onclick='editItem({$row['key_categories']}, \"get_category.php\", [\"name\",\"description\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"status\"]); return false;'>Edit</a> 
+				<a href='#' onclick='editItem({$row['key_categories']}, \"get_category.php\", [\"name\",\"description\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"is_active\"]); return false;'>Edit</a> 
 				<a href='delete.php?id={$row['key_categories']}' onclick='return confirm(\"Delete this category?\")' style='display:none'>Delete</a>
 			</td>
 	  </tr>";
@@ -92,7 +92,7 @@ include_once('../layout.php');
 		<div id="media-preview"></div>
 		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_categories').value)">Select Banner Image from Media Library</button><br>
 		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
-		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
+		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		<input type="submit" value="Save">
 	</form>
 </div>

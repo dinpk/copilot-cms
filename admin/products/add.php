@@ -13,12 +13,12 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	}
 	$createdBy = $_SESSION['key_user'];
 	echo $createdBy.'<br>';
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$stmt = $conn->prepare('
-	INSERT INTO products (title, description, sku, price, stock_quantity, product_type, url, status, sort, created_by) 
+	INSERT INTO products (title, description, sku, price, stock_quantity, product_type, url, is_active, sort, created_by) 
 	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('sssdisssii',
+	$stmt->bind_param('sssdissiii',
 	$_POST['title'],
 	$_POST['description'],
 	$_POST['sku'],
@@ -26,7 +26,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$_POST['stock_quantity'],
 	$_POST['product_type'],
 	$_POST['url'],
-	$status,
+	$isActive,
 	$_POST['sort'],
 	$createdBy
 	);

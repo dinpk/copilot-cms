@@ -11,8 +11,10 @@ if (!$author) {
 }
 startLayout("Author: " . htmlspecialchars($author['name']));
 ?>
-
 <div id="content">
+	<div id="above-content">
+		<?php renderBlocks("above_content"); ?>
+	</div>
 	<?php
 	echo "<h1>" . htmlspecialchars($author['name']) . "</h1>";
 	if (!empty($author['description'])) {
@@ -31,15 +33,19 @@ startLayout("Author: " . htmlspecialchars($author['name']));
 				<div class='snippet-content'>
 				  <h3>{$a['title']}</h3>
 				  <p>{$a['article_snippet']}</p>
-				  <a href='/article/{$a['url']}'>Read More</a>
+				  <a href='/article/{$a['url']}'>" . getSetting('readmore_label') . "</a>
 				</div>
 			</div>";
 	}
 	?>
+	<div id="below-content">
+		<?php renderBlocks("below_content"); ?>
+	</div>
 </div>
-
-<div id="sidebar">
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
+<div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
-
 <?php endLayout(); ?>

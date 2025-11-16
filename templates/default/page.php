@@ -13,6 +13,9 @@ if (!$page) {
 startLayout(htmlspecialchars($page['title']));
 ?>
 <div id="content">
+	<div id="above-content">
+		<?php renderBlocks("above_content"); ?>
+	</div>
 	<?php
 	echo "<h1>" . htmlspecialchars($page['title']) . "</h1>";
 	if (!empty($page['title_sub'])) echo "<h3>" . htmlspecialchars($page['title_sub']) . "</h3>";
@@ -23,10 +26,14 @@ startLayout(htmlspecialchars($page['title']));
 	}
 	echo "<div>" . $page['page_content'] . "</div>";
 	?>
+	<div id="below-content">
+		<?php renderBlocks("below_content"); ?>
+	</div>
 </div>
-
-<div id="sidebar">
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
+<div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
-
 <?php endLayout(); ?>

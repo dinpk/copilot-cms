@@ -12,20 +12,20 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$updatedBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 		UPDATE youtube_gallery 
-		SET title = ?, youtube_id = ?, thumbnail_url = ?, url = ?, description = ?, status = ?, updated_by = ?, key_media_banner = ? 
+		SET title = ?, youtube_id = ?, thumbnail_url = ?, url = ?, description = ?, is_active = ?, updated_by = ?, key_media_banner = ? 
 		WHERE key_youtube_gallery = ?
 		');
-	$stmt->bind_param('ssssssiii',
+	$stmt->bind_param('sssssiiii',
 		$_POST['title'],
 		$_POST['youtube_id'],
 		$_POST['thumbnail_url'],
 		$_POST['url'],
 		$_POST['description'],
-		$status,
+		$isActive,
 		$updatedBy,
 		$_POST['key_media_banner'],
 		$id

@@ -1,0 +1,33 @@
+<?php
+include_once('../../dbconnection.php');
+include_once('../functions.php');
+include_once('../users/auth.php');
+if ('viewer' == $_SESSION['role']) {
+	echo "'⚠ You do not have access to edit a record';";
+	exit;
+}
+if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
+	$id = intval($_GET['id']);
+	if (isUrlTaken($_POST['url'], 'tags', $id)) {
+		echo '❌ This URL is already used in another module. Please choose a unique one.';
+		exit;
+	}
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
+	$stmt = $conn->prepare('
+	UPDATE tags 
+	SET name = ?, description = ?, url = ?, banner_image_url = ?, sort = ?, is_active = ?, key_media_banner = ? 
+	WHERE key_tags = ?
+	');
+	$stmt->bind_param('ssssiiii',
+	$_POST['name'],
+	$_POST['description'],
+	$_POST['url'],
+	$_POST['banner_image_url'],
+	$_POST['sort'],
+	$isActive,
+	$_POST['key_media_banner'],
+	$id
+	);
+	$stmt->execute();
+}
+?>

@@ -9,14 +9,14 @@ if ('viewer' == $_SESSION['role']) {
 if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$id = intval($_GET['id']);
 	$visible_on = implode(',', $_POST['visible_on'] ?? []);
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$updatedBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	UPDATE blocks 
-	SET block_name = ?, title = ?, block_content = ?, show_on_pages = ?, show_in_region = ?, sort = ?, module_file = ?, visible_on = ?, status = ?, updated_by = ?, key_media_banner = ?, key_photo_gallery = ? 
+	SET block_name = ?, title = ?, block_content = ?, show_on_pages = ?, show_in_region = ?, sort = ?, module_file = ?, visible_on = ?, is_active = ?, updated_by = ?, key_media_banner = ?, key_photo_gallery = ? 
 	WHERE key_blocks = ?
 	');
-	$stmt->bind_param('sssssisssiiii',
+	$stmt->bind_param('sssssissiiiii',
 	$_POST['block_name'],
 	$_POST['title'],
 	$_POST['block_content'],
@@ -25,7 +25,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$_POST['sort'],
 	$_POST['module_file'],
 	$visible_on,
-	$status,
+	$isActive,
 	$updatedBy,
 	$_POST['key_media_banner'],
 	$_POST['key_photo_gallery'],

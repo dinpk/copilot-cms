@@ -8,7 +8,7 @@ if ($_SESSION["role"] != "admin") {
 }
 if (isset($_GET['id'])) {
 	$id = intval($_GET['id']);
-	$conn->query("UPDATE users SET status = 'off' WHERE key_user = $id");
+	$conn->query("UPDATE users SET is_active = 0 WHERE key_user = $id");
 }
 header("Location: list.php");
 exit;

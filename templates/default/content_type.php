@@ -11,8 +11,11 @@ if (!$content_type) {
 startLayout("Content: " . htmlspecialchars($content_type['name']));
 ?>
 <div id="content">
+	<div id="above-content">
+		<?php renderBlocks("above_content"); ?>
+	</div>
 	<?php
-	echo "<h1>Content: " . htmlspecialchars($content_type['name']) . "</h1>";
+	echo "<h1>" . htmlspecialchars($content_type['name']) . "</h1>";
 	if ($content_type['banner_image_url']) {
 		echo "<div id='content-banner' style='background-image:url(" . $content_type['banner_image_url'] . ")'></div>";
 	} else if ($content_type['banner_url']) {
@@ -23,17 +26,26 @@ startLayout("Content: " . htmlspecialchars($content_type['name']));
 	$records = $data['records'];
 	$pagination = $data['pagination'];
 	while ($record = $records->fetch_assoc()) {
-	  echo "<div class='article-card'>
-			  <img src='{$record['banner']}' width='300'>
-			  <h2>{$record['title']}</h2>
-			  <p>{$record['article_snippet']}</p>
-			  <a href='/article/{$record['url']}'>Read More</a>
+		$banner_url = empty($record['banner_image_url']) ? $record['banner'] : $record['banner_image_url'];
+		$article_snippet = (empty($record['article_snippet']) ? firstWords($record['article_content'], getSetting('snippet_words')) : firstWords($record['article_snippet'], getSetting('snippet_words')));
+		echo "<div class='snippet-card'>
+  			  <div><img src='$banner_url' data-animate='fade'></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/{$record['url']}'>{$record['title']}</a></h2>
+			  <div>$article_snippet <a href='/article/{$record['url']}'>" . getSetting('readmore_label') . "</a></div>
+			  </div>
 			</div>";
 	}
 	echo $pagination['html'];
 	?>
+	<div id="below-content">
+		<?php renderBlocks("below_content"); ?>
+	</div>
 </div>
-<div id="sidebar">
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
+<div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
 <?php endLayout(); ?>

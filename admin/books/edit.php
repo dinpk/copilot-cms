@@ -12,14 +12,14 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 		echo '❌ This URL is already used in another module. Please choose a unique one.';
 		exit;
 	}
-	$status = isset($_POST['status']) ? 'on' : 'off';
+	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$updatedBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	UPDATE books 
-	SET title = ?, subtitle = ?, description = ?, url = ?, banner_image_url = ?, author_name = ?, publisher = ?, publish_year = ?, status = ?, updated_by = ?, key_media_banner = ? 
+	SET title = ?, subtitle = ?, description = ?, url = ?, banner_image_url = ?, author_name = ?, publisher = ?, publish_year = ?, is_active = ?, updated_by = ?, key_media_banner = ? 
 	WHERE key_books = ?
 	');
-	$stmt->bind_param('sssssssssiii',
+	$stmt->bind_param('ssssssssiiii',
 	$_POST['title'],
 	$_POST['subtitle'],
 	$_POST['description'],
@@ -28,7 +28,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$_POST['author_name'],
 	$_POST['publisher'],
 	$_POST['publish_year'],
-	$status,
+	$isActive,
 	$updatedBy,
 	$_POST['key_media_banner'],
 	$id

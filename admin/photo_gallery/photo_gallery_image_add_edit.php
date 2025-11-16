@@ -18,7 +18,7 @@ $text_position = $conn->real_escape_string($_POST['text_position'] ?? 'center');
 $text_color = $conn->real_escape_string($_POST['text_color'] ?? '#ffffff');
 $image_wrapper_class = $conn->real_escape_string($_POST['image_wrapper_class'] ?? '');
 $sort = intval($_POST['sort'] ?? 0);
-$status = $conn->real_escape_string($_POST['status'] ?? 'on');
+$isActive = intval($_POST['is_active'] ?? 0);
 
 if ($key_image) {
 	// Update existing record
@@ -35,18 +35,18 @@ if ($key_image) {
 		text_color = '$text_color',
 		image_wrapper_class = '$image_wrapper_class',
 		sort = $sort,
-		status = '$status'
+		is_active = $isActive
 	WHERE key_image = $key_image";
 } else {
 	// Insert new record
 	$sql = "INSERT INTO photo_gallery_images (
 		key_photo_gallery, key_media_banner, title, description, opacity,
 		action_button, action_button_text, action_button_link_url,
-		animation_type, text_position, text_color, image_wrapper_class, sort, status
+		animation_type, text_position, text_color, image_wrapper_class, sort, is_active
 	) VALUES (
 		$key_photo_gallery, $key_media_banner, '$title', '$description', $opacity,
 		$action_button, '$action_button_text', '$action_button_link_url',
-		'$animation_type', '$text_position', '$text_color', '$image_wrapper_class', $sort, '$status'
+		'$animation_type', '$text_position', '$text_color', '$image_wrapper_class', $sort, $isActive
 	)";
 }
 

@@ -23,7 +23,7 @@ include_once('../layout.php');
 			<th><?= sortLink('Country', 'country', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Created</th>
 			<th>Updated</th>
-			<th><?= sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
+			<th><?= sortLink('Active', 'is_active', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -34,7 +34,7 @@ include_once('../layout.php');
 	$offset = ($page - 1) * $limit;
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['name', 'email', 'city', 'country', 'status', 'entry_date_time'];
+	$allowedSorts = ['name', 'email', 'city', 'country', 'is_active', 'entry_date_time'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
@@ -60,9 +60,9 @@ include_once('../layout.php');
 		<td>{$row['country']}</td>
 		<td>{$createdUpdated['creator']}</td>
 		<td>{$createdUpdated['updater']}</td>
-		<td>{$row['status']}</td>
+		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_authors']}, \"get_author.php\", [\"name\",\"email\",\"phone\",\"website\",\"url\",\"banner_image_url\",\"social_url_media1\",\"social_url_media2\",\"social_url_media3\",\"city\",\"state\",\"key_media_banner\",\"country\",\"description\",\"status\"])'>Edit</a> 
+		  <a href='#' onclick='editItem({$row['key_authors']}, \"get_author.php\", [\"name\",\"email\",\"phone\",\"website\",\"url\",\"banner_image_url\",\"social_url_media1\",\"social_url_media2\",\"social_url_media3\",\"city\",\"state\",\"key_media_banner\",\"country\",\"description\",\"is_active\"])'>Edit</a> 
 		  <a href='delete.php?id={$row['key_authors']}' onclick='return confirm(\"Delete this author?\")' style='display:none'>Delete</a>
 		</td>
 	  </tr>";
@@ -109,7 +109,7 @@ include_once('../layout.php');
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
 		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_authors').value)">Select Banner Image from Media Library</button><br>
-		<input type="checkbox" name="status" id="status" value="on" checked> <label>Active</label><br>
+		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		<input type="submit" value="Save">
 	</form>
 </div>
