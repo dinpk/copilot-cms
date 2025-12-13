@@ -119,7 +119,7 @@ include_once('../layout.php');
 		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
 		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"book_indent_level\",\"banner_image_url\",\"key_media_banner\",\"sort\",\"entry_date_time\",\"update_date_time\",\"is_featured\",\"show_on_home\",\"is_active\"])'>Edit</a> 
-		  <a href='#' onclick='openAuthorModal({$row['key_articles']})'>Authors</a> 
+		  <a href='#' onclick='openAuthorModal({$row['key_articles']},\"{$row['title']}\")'>Authors</a> 
 		  <a href='preview.php?id={$row['key_articles']}' target='_blank'>Preview</a> 
 		  <a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'>Delete</a>
 		</td>
@@ -220,15 +220,34 @@ include_once('../layout.php');
 </div>
 
 <div id="author-modal" class="modal">
-	<a href="#" onclick="document.getElementById('author-modal').style.display='none'" class="close-icon">✖</a>
-	<h3>Assign Authors</h3>
-	<form id="author-form" method="post" action="assign_authors.php">
-		<input type="hidden" name="key_articles" id="author_article_id">
-		<div id="author-list">
-			<!-- JS will populate this with checkboxes -->
-		</div>
-		<input type="submit" value="Assign">
-	</form>
+  <a href="#" onclick="document.getElementById('author-modal').style.display='none'" class="close-icon">✖</a>
+
+  <h3>Assign Authors for:</h3>
+  <div id="author-article-title"></div>
+  <br>
+
+  <form id="author-form" method="post" action="assign_authors.php">
+
+    <input type="hidden" name="key_articles" id="author_article_id">
+
+    <!-- Search box -->
+    <input type="text" id="author-search" placeholder="Search author by name">
+
+    <div id="author-list">
+      <!-- JS will populate this with checkboxes + work label fields -->
+    </div>
+
+    <!-- datalist for work labels -->
+    <datalist id="work-labels">
+      <option value="Translation">
+      <option value="Review">
+      <option value="Editing">
+      <option value="Proofreading">
+      <option value="Contribution">
+    </datalist>
+
+    <input type="submit" value="Assign">
+  </form>
 </div>
 
 <div id="media-library-modal" class="modal modal-90"></div>

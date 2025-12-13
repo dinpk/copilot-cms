@@ -140,8 +140,8 @@ table th {
 	color:seagreen;
 }
 
-tr:nth-child(even) {
-	background:#f9f9f9;
+tr:hover {
+	background-color:honeydew;
 }
 
 form {

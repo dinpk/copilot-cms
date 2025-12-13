@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 16, 2025 at 11:58 AM
+-- Generation Time: Dec 13, 2025 at 07:39 AM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS `articles` (
   KEY `is_active` (`is_active`),
   KEY `is_featured` (`is_featured`),
   KEY `document_code` (`document_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `articles`
@@ -68,7 +68,7 @@ INSERT INTO `articles` (`key_articles`, `key_media_banner`, `document_code`, `ti
 (5, 129, '', 'Modular CRUD Systems', 'Scalable Architecture', 'How modular CRUD design improves maintainability.', 'Full content of article 4...', 'article', 0, 'modular-crud', '', 4, '2025-09-25 18:11:36', '2025-11-16 07:45:54', NULL, 1, 1, 1, 1),
 (6, 37, '', 'Debounce in Search', 'Performance Boosts', 'Using debounce to optimize search-triggered loading.', 'Full content of article 5...', '', 0, 'debounce-search', NULL, 5, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
 (7, 6, '', 'Pagination Patterns', 'Smart Loading', 'Best practices for implementing pagination in CMS.', 'Full content of article 6...', 'article', 0, 'pagination-patterns', '', 6, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
-(8, 34, '', 'Editorial Workflows', 'From Draft to Publish', 'Mapping out efficient editorial workflows.', 'Full content of article 7...', '', 0, 'editorial-workflows', NULL, 7, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
+(8, 34, '', 'Editorial Workflows', 'From Draft to Publish', 'Mapping out efficient editorial workflows.', 'Full content of article 7...', '', 0, 'editorial-workflows', '', 7, '2025-09-25 20:13:08', '2025-11-17 10:25:38', NULL, 1, 0, 1, 1),
 (9, 30, '', 'Category Management', 'Organized Content', 'Tips for managing categories in publishing systems.', 'Full content of article 8...', 'article', 0, 'category-management', '', 8, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
 (10, 39, '', 'Modal-Based Editing', 'Inline Efficiency', 'Using modals for quick article edits.', 'Full content of article 9...', '', 0, 'modal-editing', NULL, 9, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
 (11, 0, '', 'Search Optimization', 'Fast & Relevant', 'Improving search relevance and speed.', 'Full content of article 10...', '', 0, 'search-optimization', 'banner10.jpg', 10, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, NULL, 0, 1, 1),
@@ -87,7 +87,7 @@ INSERT INTO `articles` (`key_articles`, `key_media_banner`, `document_code`, `ti
 (24, 0, '', 'Banner Image Tips', 'Visual Impact', 'Choosing effective banner images.', 'Full content of article 23...', '', 0, 'banner-tips', '', 23, '2025-09-25 18:11:10', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
 (25, 0, '', 'URL Structuring', 'SEO & Clarity', 'Structuring article URLs for clarity and SEO.', 'Full content of article 24...', 'article', 0, 'url-structure', '', 24, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
 (26, 0, '', 'CMS Entry Points', 'Where It Begins', 'Designing intuitive entry points for editors.', 'Full content of article 25...', '', 0, 'cms-entry', 'banner25.jpg', 25, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, NULL, 0, 1, 1),
-(36, 113, '', 'True strength begins with self-awareness and the emotional connection', '', 'We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'We live in a world where stress, anxiety and depression are becoming increasingly common.   ', 'article', 0, 'true-strength-begins-with-self-awareness-and-emotional-connection', '', 0, '2025-10-05 10:30:29', '2025-11-16 07:45:54', 1, 1, 0, 1, 1),
+(36, 113, '', 'True strength begins with self-awareness and the emotional connection', 'Living in a world of Stress, Anxiety and Depression', 'We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'We live in a world where stress, anxiety and depression are becoming increasingly common.   ', 'article', 0, 'true-strength-begins-with-self-awareness-and-emotional-connection', '', 0, '2025-10-05 10:30:29', '2025-12-08 21:07:00', 1, 1, 0, 1, 1),
 (38, 122, '', 'PHP+MySQL Combination', 'How it Works', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms. \r\n', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n\r\n<p style=\"font-family:Noto Nastaliq Urdu;direction:rtl\">\r\nâ€™â€™Ø«Ø±ÛŒØ§ Ø³Û’ Ø²Ù…ÛŒÚº Ù¾Ø± Ø¢Ø³Ù…Ø§Úº Ù†Û’ ÛÙ… Ú©Ùˆ Ø¯Û’ Ù…Ø§Ø±Ø§â€˜â€˜ Ø¯Ø±Ø§ØµÙ„ Ø§ÛŒÚ© Ø§Ø³ØªØ¹Ø§Ø±Ø§ØªÛŒ Ù…Ù†Ø¸Ø± ÛÛ’Û” Ø§Ù‚Ø¨Ø§Ù„ Ú¯ÙˆÛŒØ§ ÛŒÛ Ú©ÛÛ Ø±ÛÛ’ ÛÛŒÚº Ú©Û ÛÙ… Ø§Ù¾Ù†ÛŒ Ø¨Ù„Ù†Ø¯ÛŒ Ø³Û’ Ø®ÙˆØ¯ Ú¯Ø±Û’ Ù†ÛÛŒÚºØŒ Ø¨Ù„Ú©Û ØªÙ‚Ø¯ÛŒØ± Ù†Û’ ÛŒØ§ Ù‚Ø¯Ø±Øª Ú©Û’ ØªÚ©ÙˆÛŒÙ†ÛŒ Ù†Ø¸Ø§Ù… Ù†Û’ ÛÙ…ÛŒÚº ÛÙ…Ø§Ø±Û’ Ú©Ø±ØªÙˆØªÙˆÚº Ú©ÛŒ ÙˆØ¬Û Ø³Û’ Ø¯Ú¾Ú©ÛŒÙ„ Ø¯ÛŒØ§Û” ÛŒÛ â€™â€™Ø¯Û’ Ù…Ø§Ø±Ø§â€˜â€˜ Ù…Ø­Ø¶ Ø¬Ø³Ù…Ø§Ù†ÛŒ ØªÙ†Ø²Ù„ÛŒ Ù†ÛÛŒÚº Ø¨Ù„Ú©Û Ø§Ø®Ù„Ø§Ù‚ÛŒØŒ ÙÚ©Ø±ÛŒØŒ Ø±ÙˆØ­Ø§Ù†ÛŒ Ø§ÙˆØ± ØªÛØ°ÛŒØ¨ÛŒ Ø§Ù†Ø­Ø·Ø§Ø· Ú©ÛŒ Ø·Ø±Ù Ø§Ø´Ø§Ø±Û ÛÛ’Û”\r\n\r\n</p>\r\n\r\n<p>\r\nThe PHP + MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n</p>\r\n\r\n<h2>How the Combination Works</h2>\r\n<p>\r\nThe interaction between PHP and MySQL is a server-side process, meaning most of the work happens on the web server before the user sees the final page.\r\n</p>\r\n\r\n<div class=\"flow-diagram\">\r\n<div class=\"step\">\r\n<h3>1. Request</h3>\r\n<p>A user\'s web browser sends an HTTP request for a page (e.g., <code>example.com/products.php</code>).</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>2. Processing (PHP)</h3>\r\n<p>The web server receives the request and executes the PHP script, which performs server-side tasks like processing user input, managing sessions, and building dynamic content.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>3. Database Query (PHP + MySQL)</h3>\r\n<p>If data is needed, the PHP script connects to the MySQL database and sends a Structured Query Language (SQL) statement.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>4. Database Response (MySQL)</h3>\r\n<p>MySQL processes the SQL query and returns the requested data to the PHP script.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>5. Page Generation (PHP)</h3>\r\n<p>The PHP script uses the data from MySQL to generate a final HTML page.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>6. Response</h3>\r\n<p>The web server sends the completed HTML page back to the user\'s browser, which then renders it for the user.</p>\r\n</div>\r\n</div>\r\n\r\n<h2>What Each Component Does</h2>\r\n\r\n<h3>PHP (Hypertext Preprocessor)</h3>\r\n<p>PHP is a server-side scripting language designed specifically for web development.</p>\r\n<ul>\r\n<li><b>Role:</b> Acts as the \"middleman,\" connecting the user\'s web browser with the database.</li>\r\n<li><b>Purpose:</b> Used for tasks that happen behind the scenes, such as:\r\n<ul>\r\n<li>Handling form submissions</li>\r\n<li>Communicating with the database</li>\r\n<li>Controlling user access</li>\r\n<li>Generating dynamic content</li>\r\n</ul>\r\n</li>\r\n</ul>\r\n\r\n<h3>MySQL</h3>\r\n<p>MySQL is an open-source relational database management system (RDBMS).</p>\r\n<ul>\r\n<li><b>Role:</b> Used for storing and managing data in a structured way.</li>\r\n<li><b>Purpose:</b> Organizes data into tables, columns, and rows, making it easy for PHP to perform CRUD (Create, Read, Update, Delete) operations.</li>\r\n</ul>\r\n\r\n<h2>How PHP Connects to MySQL</h2>\r\n<p>Modern PHP offers two primary extensions for connecting to a MySQL database:</p>\r\n<ul>\r\n<li>\r\n<b>MySQLi (\"MySQL improved\"):</b> An extension specific to MySQL databases that offers both procedural and object-oriented interfaces.\r\n</li>\r\n<li>\r\n<b>PDO (PHP Data Objects):</b> A versatile database abstraction layer that can work with over 12 different database systems, including MySQL.\r\n</li>\r\n</ul>\r\n<p>Both MySQLi and PDO support *prepared statements*, a security feature that helps prevent SQL injection attacks.</p>', 'translation', 0, 'phpmysql-combination', 'https://images.pexels.com/photos/18287652/pexels-photo-18287652.jpeg?cs=srgb&dl=pexels-fotios-photos-18287652.jpg&fm=jpg', 0, '2025-10-12 07:35:26', '2025-11-16 16:19:50', 1, 1, 0, 1, 1),
 (41, 0, '', 'Test 3', '', '', '', '', 0, 'test-3', '', 0, '2016-11-08 00:00:00', '2025-11-16 07:45:54', 1, NULL, 0, 1, 1);
 
@@ -102,31 +102,33 @@ CREATE TABLE IF NOT EXISTS `article_authors` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `key_articles` int(10) UNSIGNED NOT NULL,
   `key_authors` int(10) UNSIGNED NOT NULL,
+  `article_work_label` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY (`id`),
   KEY `key_articles` (`key_articles`),
   KEY `key_authors` (`key_authors`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_authors`
 --
 
-INSERT INTO `article_authors` (`id`, `key_articles`, `key_authors`) VALUES
-(2, 8, 8),
-(3, 8, 6),
-(6, 4, 3),
-(7, 4, 5),
-(8, 34, 8),
-(9, 2, 5),
-(10, 33, 11),
-(11, 6, 13),
-(12, 10, 11),
-(13, 9, 2),
-(14, 5, 6),
-(15, 7, 5),
-(16, 3, 9),
-(17, 36, 14),
-(18, 38, 10);
+INSERT INTO `article_authors` (`id`, `key_articles`, `key_authors`, `article_work_label`) VALUES
+(8, 34, 8, ''),
+(9, 2, 5, ''),
+(10, 33, 11, ''),
+(11, 6, 13, ''),
+(13, 9, 2, ''),
+(14, 5, 6, ''),
+(15, 7, 5, ''),
+(16, 3, 9, ''),
+(17, 36, 14, ''),
+(21, 10, 11, ''),
+(22, 4, 6, 'Contribution'),
+(32, 8, 2, 'Contribution'),
+(33, 8, 16, 'Editing'),
+(34, 8, 14, 'Translation'),
+(35, 38, 10, 'Editing'),
+(36, 38, 5, 'Review');
 
 -- --------------------------------------------------------
 
@@ -143,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `article_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=InnoDB AUTO_INCREMENT=193 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_categories`
@@ -168,14 +170,6 @@ INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`)
 (63, 34, 1, NULL),
 (68, 6, 8, NULL),
 (69, 6, 18, NULL),
-(148, 3, 23, NULL),
-(149, 3, 11, NULL),
-(168, 4, 5, NULL),
-(169, 4, 9, NULL),
-(170, 4, 14, NULL),
-(173, 36, 13, NULL),
-(174, 36, 4, NULL),
-(175, 36, 6, NULL),
 (178, 9, 13, NULL),
 (181, 25, 13, NULL),
 (182, 2, 13, NULL),
@@ -183,7 +177,15 @@ INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`)
 (187, 18, 13, NULL),
 (188, 5, 13, NULL),
 (191, 38, 13, NULL),
-(192, 38, 4, NULL);
+(192, 38, 4, NULL),
+(196, 3, 23, NULL),
+(197, 3, 11, NULL),
+(198, 4, 5, NULL),
+(199, 4, 9, NULL),
+(200, 4, 14, NULL),
+(207, 36, 13, NULL),
+(208, 36, 4, NULL),
+(209, 36, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -232,14 +234,18 @@ CREATE TABLE IF NOT EXISTS `article_tags` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_tags`),
   KEY `key_tags` (`key_tags`)
-) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_tags`
 --
 
 INSERT INTO `article_tags` (`id`, `key_articles`, `key_tags`, `url`) VALUES
-(193, 43, 51, NULL);
+(193, 43, 51, NULL),
+(195, 3, 53, NULL),
+(196, 4, 53, NULL),
+(197, 8, 53, NULL),
+(200, 36, 64, NULL);
 
 -- --------------------------------------------------------
 
@@ -302,47 +308,59 @@ INSERT INTO `authors` (`key_authors`, `name`, `email`, `phone`, `website`, `url`
 DROP TABLE IF EXISTS `blocks`;
 CREATE TABLE IF NOT EXISTS `blocks` (
   `key_blocks` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `key_media_banner` int(10) UNSIGNED DEFAULT NULL,
+  `key_media_banner` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `key_photo_gallery` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `key_content_types` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `key_categories` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `key_tags` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `module_file` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `block_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `css` varchar(300) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `number_of_records` smallint(3) NOT NULL DEFAULT '0',
   `visible_on` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'desktop,mobile',
   `block_content` varchar(10000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `show_on_pages` varchar(1000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `show_in_region` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `sort` smallint(6) NOT NULL DEFAULT '0',
-  `module_file` varchar(100) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `is_active` tinyint(1) DEFAULT '1',
   `entry_date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `created_by` int(10) UNSIGNED DEFAULT NULL,
-  `updated_by` int(10) UNSIGNED DEFAULT NULL,
-  `key_photo_gallery` int(10) UNSIGNED DEFAULT NULL,
+  `created_by` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `updated_by` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `sort` smallint(6) NOT NULL DEFAULT '0',
+  `is_dynamic` tinyint(1) NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`key_blocks`),
   KEY `fk_blocks_media` (`key_media_banner`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `blocks`
 --
 
-INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `block_name`, `title`, `visible_on`, `block_content`, `show_on_pages`, `show_in_region`, `sort`, `module_file`, `is_active`, `entry_date_time`, `created_by`, `updated_by`, `key_photo_gallery`) VALUES
-(1, 0, 'Authors', 'Authors', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 9, 'authors_91558', 1, '2025-09-30 03:09:45', NULL, 1, NULL),
-(2, 0, 'Photo Galleries', 'Photo Gallery', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 7, 'photos_56467', 1, '2025-09-24 08:58:17', NULL, 1, NULL),
-(3, 0, 'YouTube Gallery', 'Youtube Gallery', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 6, 'youtube_15578', 1, '2025-09-24 08:58:23', NULL, 1, NULL),
-(4, 0, 'Latest Articles', 'Articles', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 4, 'articles_34548', 1, '2025-09-30 03:10:15', NULL, 1, NULL),
-(5, 0, 'Latest Books', 'Books', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 5, 'books_84538', 1, '2025-10-01 22:49:57', 1, 1, NULL),
-(6, 0, 'Categories', 'Topics', 'large-desktop,desktop,tablet', '', '', 'sidebar_right', 2, 'categories_55448', 1, '2025-10-08 14:37:28', 1, 1, NULL),
-(8, 0, 'Copyright Message', '<none>', 'large-desktop,desktop,tablet,mobile', '<div style=\'text-align:center;\'><a href=\"/page/privacy-policy\">Privacy Policy</a> | <a href=\"/page/terms-of-use\">Term of Use</a> â€” Default Template Â© Powered by CopilotCMS </div>', '', 'footer', 12, '', 1, '2025-10-10 18:40:38', 1, 1, NULL),
-(9, 0, 'Phone Email', '<none>', 'large-desktop,desktop,tablet,mobile', '<span>Phone</span><a href=\"tel:1234567890\">(123)456-7890</a>\r\n<span>Email</span><a href=\"mailto:myemail@outlook.com\">myemail@outlook.com</a>', '', 'above_header', 0, '', 1, '2025-10-10 19:47:52', 1, 1, NULL),
-(12, 0, 'Image Slideshow Home', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'home', 'below_header', 11, 'photo_gallery_carousel_5645645', 1, '2025-10-13 23:11:01', 1, 1, 33),
-(14, 0, 'Image Slideshow Articles', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'articles', 'below_header', 0, 'photo_gallery_carousel_5645645', 1, '2025-10-15 00:25:45', 1, 1, 29),
-(15, 0, 'Image Slideshow Categories', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'categories', 'below_header', 0, 'photo_gallery_carousel_5645645', 1, '2025-10-15 00:28:00', 1, 1, 30),
-(16, 0, 'Image Slideshow Books', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'books', 'below_header', 0, 'photo_gallery_carousel_5645645', 1, '2025-10-15 00:30:41', 1, 1, 31),
-(17, 0, 'Image Slideshow Authors', '<none>', 'large-desktop,desktop,tablet,mobile', '', 'authors', 'below_header', 0, 'photo_gallery_carousel_5645645', 1, '2025-10-17 00:58:45', 1, 1, 32),
-(18, 0, 'Sidebar Books to Check', 'Block Title', 'large-desktop,desktop,tablet,mobile', 'Block Content', '', 'sidebar_left', 0, 'photo_gallery_carousel_5645645', 1, '2025-10-17 10:22:11', 1, 1, 34),
-(19, 0, 'Search Block', 'Search', 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', -1, 'search6545645', 1, '2025-10-28 21:02:04', 1, 1, NULL),
-(20, 0, 'Content Types', 'Content Types', 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', 1, 'content_types_55448', 1, '2025-11-04 00:07:23', 1, 1, NULL),
-(21, 0, 'Tags', 'Tags', 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', 3, 'tags_55448', 1, '2025-11-04 17:06:47', 1, 1, NULL),
-(22, 0, 'Featured Articles', 'Featured', 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', 0, 'articles_featured5468741', 1, '2025-11-14 18:15:04', 1, NULL, 0);
+INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `key_photo_gallery`, `key_content_types`, `key_categories`, `key_tags`, `module_file`, `block_name`, `title`, `css`, `number_of_records`, `visible_on`, `block_content`, `show_on_pages`, `show_in_region`, `entry_date_time`, `created_by`, `updated_by`, `sort`, `is_dynamic`, `is_active`) VALUES
+(1, 0, 0, 0, 0, 0, 'authors_91558', 'Authors', 'Authors', '', 5, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-09-30 03:09:45', 0, 1, 9, 0, 1),
+(2, 0, 0, 0, 0, 0, 'photos_56467', 'Photo Galleries', 'Photo Gallery', '', 5, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-09-24 08:58:17', 0, 1, 7, 0, 1),
+(3, 0, 0, 0, 0, 0, 'youtube_15578', 'YouTube Gallery', 'Youtube Gallery', '', 5, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-09-24 08:58:23', 0, 1, 6, 0, 1),
+(4, 0, 0, 0, 0, 0, 'articles_34548', 'Latest Articles', 'Articles', '', 5, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-09-30 03:10:15', 0, 1, 4, 0, 1),
+(5, 0, 0, 0, 0, 0, 'books_84538', 'Latest Books', 'Books', '', 5, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-10-01 22:49:57', 1, 1, 5, 0, 1),
+(6, 0, 0, 0, 0, 0, 'categories_55448', 'Categories', 'Topics', '', 10, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-10-08 14:37:28', 1, 1, 2, 0, 1),
+(8, 0, 0, 0, 0, 0, '', 'Copyright Message', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '<div style=\'text-align:center;\'><a href=\"/page/privacy-policy\">Privacy Policy</a> | <a href=\"/page/terms-of-use\">Term of Use</a> â€” Default Template Â© Powered by CopilotCMS </div>', '', 'footer', '2025-10-10 18:40:38', 1, 1, 12, 0, 1),
+(9, 0, 0, 0, 0, 0, '', 'Phone Email', '', '', 0, 'large-desktop,desktop,tablet,mobile', '<span>Phone</span><a href=\"tel:1234567890\">(123)456-7890</a>\r\n<span>Email</span><a href=\"mailto:myemail@outlook.com\">myemail@outlook.com</a>', '', 'above_header', '2025-10-10 19:47:52', 1, 1, 0, 0, 1),
+(12, 0, 33, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Home', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'home', 'below_header', '2025-10-13 23:11:01', 1, 1, 11, 0, 1),
+(14, 0, 29, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Articles', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'articles', 'below_header', '2025-10-15 00:25:45', 1, 1, 0, 0, 1),
+(15, 0, 30, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Categories', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'categories', 'below_header', '2025-10-15 00:28:00', 1, 1, 0, 0, 1),
+(16, 0, 31, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Books', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'books', 'below_header', '2025-10-15 00:30:41', 1, 1, 0, 0, 1),
+(17, 0, 32, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Authors', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'authors', 'below_header', '2025-10-17 00:58:45', 1, 1, 0, 0, 1),
+(18, 0, 34, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Sidebar Books to Check', 'Block Title', '', 0, 'large-desktop,desktop,tablet,mobile', 'Block Content', '', 'sidebar_left', '2025-10-17 10:22:11', 1, 1, 0, 0, 1),
+(19, 0, 0, 0, 0, 0, 'search6545645', 'Search Block', 'Search', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-10-28 21:02:04', 1, 1, -1, 0, 1),
+(20, 0, 0, 0, 0, 0, 'content_types_55448', 'Content Types', 'Content Types', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-11-04 00:07:23', 1, 1, 1, 0, 1),
+(21, 0, 0, 0, 0, 0, 'tags_55448', 'Tags', 'Tags', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-11-04 17:06:47', 1, 1, 3, 0, 1),
+(22, 0, 0, 0, 0, 0, 'articles_featured5468741', 'Featured Articles', 'Featured', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-14 18:15:04', 1, 0, 0, 0, 1),
+(23, 0, 0, 0, 0, 53, 'articles_of_tag565786548', 'Tag \'Ireland\' ', 'Ireland Articles', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-17 10:26:47', 1, 1, 4, 0, 1),
+(24, 0, 0, 39, 0, 0, 'articles_of_content_type565786548', 'Content Type \'Interview\' ', 'Interview Articles', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-17 10:48:23', 1, 1, 6, 0, 1),
+(25, 0, 0, 0, 6, 0, 'articles_of_categories565786548', 'Category \'Content Strategy\' ', 'Content Strategy Articles', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-17 10:54:31', 1, 1, 6, 0, 1),
+(26, 0, 0, 0, 0, 0, 'months_recent4456787818', 'Yearly > Monthly Archive', 'Archive', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-27 20:59:22', 1, 0, 16, 0, 1),
+(29, 0, 0, 0, 0, 0, 'articles_random5468741', 'Random Articles', 'Random Articles', '', 10, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-12-12 23:39:18', 1, 1, 0, 1, 1),
+(30, 0, 0, 0, 0, 0, 'articles_random5468741', 'Article Random', 'Articles Random', '', 7, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-12-13 12:25:30', 1, 1, 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -642,13 +660,13 @@ INSERT INTO `main_menu` (`key_main_menu`, `parent_id`, `title`, `url_link`, `sor
 DROP TABLE IF EXISTS `media_library`;
 CREATE TABLE IF NOT EXISTS `media_library` (
   `key_media` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `file_url` varchar(2000) COLLATE utf8_unicode_ci NOT NULL,
-  `file_url_thumbnail` varchar(2000) COLLATE utf8_unicode_ci DEFAULT '',
+  `file_url` varchar(2000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `file_url_thumbnail` varchar(2000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `file_type` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'images',
-  `alt_text` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `tags` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `uploaded_by` int(10) UNSIGNED DEFAULT NULL,
-  `entry_date_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `alt_text` varchar(500) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `tags` varchar(500) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `uploaded_by` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `entry_date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_media`),
   KEY `uploaded_by` (`uploaded_by`)
 ) ENGINE=InnoDB AUTO_INCREMENT=133 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -659,37 +677,37 @@ CREATE TABLE IF NOT EXISTS `media_library` (
 
 INSERT INTO `media_library` (`key_media`, `file_url`, `file_url_thumbnail`, `file_type`, `alt_text`, `tags`, `uploaded_by`, `entry_date_time`) VALUES
 (101, '/media/images/2025/1760632521_pexels-ingo-609768.jpg', '/media/thumbnails/images/2025/1760632521_pexels-ingo-609768.jpg', 'images', '', 'tags', 1, '2025-10-16 21:35:22'),
-(102, '/media/images/2025/1760632762_0_pexels-polina-kovaleva-5828620.jpg', '/media/thumbnails/images/2025/1760632762_0_pexels-polina-kovaleva-5828620.jpg', 'images', NULL, 'author', 1, '2025-10-16 21:39:23'),
-(103, '/media/images/2025/1760632763_1_pexels-kampus-8430295.jpg', '/media/thumbnails/images/2025/1760632763_1_pexels-kampus-8430295.jpg', 'images', NULL, 'author', 1, '2025-10-16 21:39:24'),
-(104, '/media/images/2025/1760632764_2_pexels-cup-of-couple-7657607.jpg', '/media/thumbnails/images/2025/1760632764_2_pexels-cup-of-couple-7657607.jpg', 'images', NULL, 'author', 1, '2025-10-16 21:39:25'),
-(105, '/media/images/2025/1760632765_3_pexels-fotios-photos-851213.jpg', '/media/thumbnails/images/2025/1760632765_3_pexels-fotios-photos-851213.jpg', 'images', NULL, 'author', 1, '2025-10-16 21:39:26'),
-(106, '/media/images/2025/1760637341_0_pexels-negativespace-34658.jpg', '/media/thumbnails/images/2025/1760637341_0_pexels-negativespace-34658.jpg', 'images', NULL, 'page', 1, '2025-10-16 22:55:42'),
-(107, '/media/images/2025/1760637342_1_pexels-junjira-konsang-31613677-9029751.jpg', '/media/thumbnails/images/2025/1760637342_1_pexels-junjira-konsang-31613677-9029751.jpg', 'images', NULL, 'page', 1, '2025-10-16 22:55:43'),
-(108, '/media/images/2025/1760637343_2_pexels-freephotos-64776.jpg', '/media/thumbnails/images/2025/1760637343_2_pexels-freephotos-64776.jpg', 'images', NULL, 'page', 1, '2025-10-16 22:55:44'),
-(109, '/media/images/2025/1760637344_3_pexels-karolina-grabowska-4195330.jpg', '/media/thumbnails/images/2025/1760637344_3_pexels-karolina-grabowska-4195330.jpg', 'images', NULL, 'page', 1, '2025-10-16 22:55:45'),
-(110, '/media/images/2025/1760637345_4_pexels-goumbik-317355.jpg', '/media/thumbnails/images/2025/1760637345_4_pexels-goumbik-317355.jpg', 'images', NULL, 'page', 1, '2025-10-16 22:55:46'),
-(111, '/media/images/2025/1760637346_5_pexels-mohammad-danish-290641-891059.jpg', '/media/thumbnails/images/2025/1760637346_5_pexels-mohammad-danish-290641-891059.jpg', 'images', NULL, 'page', 1, '2025-10-16 22:55:47'),
-(112, '/media/images/2025/1760643493_0_pexels-nappy-935979.jpg', '/media/thumbnails/images/2025/1760643493_0_pexels-nappy-935979.jpg', 'images', NULL, 'newspaper', 1, '2025-10-17 00:38:14'),
-(113, '/media/images/2025/1760643494_1_pexels-jimmy-liao-3615017-12392803.jpg', '/media/thumbnails/images/2025/1760643494_1_pexels-jimmy-liao-3615017-12392803.jpg', 'images', NULL, 'newspaper', 1, '2025-10-17 00:38:15'),
-(114, '/media/images/2025/1760643495_2_pexels-matreding-14044938.jpg', '/media/thumbnails/images/2025/1760643495_2_pexels-matreding-14044938.jpg', 'images', NULL, 'newspaper', 1, '2025-10-17 00:38:15'),
-(115, '/media/images/2025/1760643495_3_pexels-mographe-15360540.jpg', '/media/thumbnails/images/2025/1760643495_3_pexels-mographe-15360540.jpg', 'images', NULL, 'newspaper', 1, '2025-10-17 00:38:16'),
-(116, '/media/images/2025/1760643496_4_pexels-brotin-biswas-158640-518543.jpg', '/media/thumbnails/images/2025/1760643496_4_pexels-brotin-biswas-158640-518543.jpg', 'images', NULL, 'newspaper', 1, '2025-10-17 00:38:17'),
-(117, '/media/images/2025/1760643533_0_pexels-pixabay-301926.jpg', '/media/thumbnails/images/2025/1760643533_0_pexels-pixabay-301926.jpg', 'images', NULL, 'books', 1, '2025-10-17 00:38:54'),
-(118, '/media/images/2025/1760643534_1_pexels-dlxmedia-hu-215591835-11911071.jpg', '/media/thumbnails/images/2025/1760643534_1_pexels-dlxmedia-hu-215591835-11911071.jpg', 'images', NULL, 'books', 1, '2025-10-17 00:38:55'),
-(119, '/media/images/2025/1760643535_2_pexels-towfiqu-barbhuiya-3440682-11484114.jpg', '/media/thumbnails/images/2025/1760643535_2_pexels-towfiqu-barbhuiya-3440682-11484114.jpg', 'images', NULL, 'books', 1, '2025-10-17 00:38:56'),
-(120, '/media/images/2025/1760643536_3_pexels-pixabay-289738.jpg', '/media/thumbnails/images/2025/1760643536_3_pexels-pixabay-289738.jpg', 'images', NULL, 'books', 1, '2025-10-17 00:38:57'),
-(121, '/media/images/2025/1760643537_4_pexels-atomlaborblog-1090941.jpg', '/media/thumbnails/images/2025/1760643537_4_pexels-atomlaborblog-1090941.jpg', 'images', NULL, 'books', 1, '2025-10-17 00:38:58'),
-(122, '/media/images/2025/1760644207_0_pexels-polina-kovaleva-8100514.jpg', '/media/thumbnails/images/2025/1760644207_0_pexels-polina-kovaleva-8100514.jpg', 'images', NULL, 'tags', 1, '2025-10-17 00:50:08'),
-(123, '/media/images/2025/1760644208_1_pexels-eva-bronzini-8058803.jpg', '/media/thumbnails/images/2025/1760644208_1_pexels-eva-bronzini-8058803.jpg', 'images', NULL, 'tags', 1, '2025-10-17 00:50:09'),
-(124, '/media/images/2025/1760644209_2_pexels-padrinan-1111319.jpg', '/media/thumbnails/images/2025/1760644209_2_pexels-padrinan-1111319.jpg', 'images', NULL, 'tags', 1, '2025-10-17 00:50:10'),
-(125, '/media/images/2025/1760646407_0_pexels-fotios-photos-16129703.jpg', '/media/thumbnails/images/2025/1760646407_0_pexels-fotios-photos-16129703.jpg', 'images', NULL, 'tech', 1, '2025-10-17 01:26:48'),
-(126, '/media/images/2025/1760646409_1_pexels-lalorosas-907489.jpg', '/media/thumbnails/images/2025/1760646409_1_pexels-lalorosas-907489.jpg', 'images', NULL, 'tech', 1, '2025-10-17 01:26:50'),
-(127, '/media/images/2025/1760646410_2_pexels-picjumbo-com-55570-196644.jpg', '/media/thumbnails/images/2025/1760646410_2_pexels-picjumbo-com-55570-196644.jpg', 'images', NULL, 'tech', 1, '2025-10-17 01:26:51'),
-(128, '/media/images/2025/1760646411_3_Copilot_20251017_011751.png', '/media/thumbnails/images/2025/1760646411_3_Copilot_20251017_011751.png', 'images', NULL, 'tech', 1, '2025-10-17 01:26:54'),
-(129, '/media/images/2025/1760678272_0_book-cover-sample4.jpg', '/media/thumbnails/images/2025/1760678272_0_book-cover-sample4.jpg', 'images', NULL, 'book covers', 1, '2025-10-17 10:17:52'),
-(130, '/media/images/2025/1760678272_1_book-cover-sample3.jpg', '/media/thumbnails/images/2025/1760678272_1_book-cover-sample3.jpg', 'images', NULL, 'book covers', 1, '2025-10-17 10:17:53'),
-(131, '/media/images/2025/1760678273_2_book-cover-sample2.jpg', '/media/thumbnails/images/2025/1760678273_2_book-cover-sample2.jpg', 'images', NULL, 'book covers', 1, '2025-10-17 10:17:53'),
-(132, '/media/images/2025/1760678273_3_book-cover-sample1.jpg', '/media/thumbnails/images/2025/1760678273_3_book-cover-sample1.jpg', 'images', NULL, 'book covers', 1, '2025-10-17 10:17:53');
+(102, '/media/images/2025/1760632762_0_pexels-polina-kovaleva-5828620.jpg', '/media/thumbnails/images/2025/1760632762_0_pexels-polina-kovaleva-5828620.jpg', 'images', '', 'author', 1, '2025-10-16 21:39:23'),
+(103, '/media/images/2025/1760632763_1_pexels-kampus-8430295.jpg', '/media/thumbnails/images/2025/1760632763_1_pexels-kampus-8430295.jpg', 'images', '', 'author', 1, '2025-10-16 21:39:24'),
+(104, '/media/images/2025/1760632764_2_pexels-cup-of-couple-7657607.jpg', '/media/thumbnails/images/2025/1760632764_2_pexels-cup-of-couple-7657607.jpg', 'images', '', 'author', 1, '2025-10-16 21:39:25'),
+(105, '/media/images/2025/1760632765_3_pexels-fotios-photos-851213.jpg', '/media/thumbnails/images/2025/1760632765_3_pexels-fotios-photos-851213.jpg', 'images', '', 'author', 1, '2025-10-16 21:39:26'),
+(106, '/media/images/2025/1760637341_0_pexels-negativespace-34658.jpg', '/media/thumbnails/images/2025/1760637341_0_pexels-negativespace-34658.jpg', 'images', '', 'page', 1, '2025-10-16 22:55:42'),
+(107, '/media/images/2025/1760637342_1_pexels-junjira-konsang-31613677-9029751.jpg', '/media/thumbnails/images/2025/1760637342_1_pexels-junjira-konsang-31613677-9029751.jpg', 'images', '', 'page', 1, '2025-10-16 22:55:43'),
+(108, '/media/images/2025/1760637343_2_pexels-freephotos-64776.jpg', '/media/thumbnails/images/2025/1760637343_2_pexels-freephotos-64776.jpg', 'images', '', 'page', 1, '2025-10-16 22:55:44'),
+(109, '/media/images/2025/1760637344_3_pexels-karolina-grabowska-4195330.jpg', '/media/thumbnails/images/2025/1760637344_3_pexels-karolina-grabowska-4195330.jpg', 'images', '', 'page', 1, '2025-10-16 22:55:45'),
+(110, '/media/images/2025/1760637345_4_pexels-goumbik-317355.jpg', '/media/thumbnails/images/2025/1760637345_4_pexels-goumbik-317355.jpg', 'images', '', 'page', 1, '2025-10-16 22:55:46'),
+(111, '/media/images/2025/1760637346_5_pexels-mohammad-danish-290641-891059.jpg', '/media/thumbnails/images/2025/1760637346_5_pexels-mohammad-danish-290641-891059.jpg', 'images', '', 'page', 1, '2025-10-16 22:55:47'),
+(112, '/media/images/2025/1760643493_0_pexels-nappy-935979.jpg', '/media/thumbnails/images/2025/1760643493_0_pexels-nappy-935979.jpg', 'images', '', 'newspaper', 1, '2025-10-17 00:38:14'),
+(113, '/media/images/2025/1760643494_1_pexels-jimmy-liao-3615017-12392803.jpg', '/media/thumbnails/images/2025/1760643494_1_pexels-jimmy-liao-3615017-12392803.jpg', 'images', '', 'newspaper', 1, '2025-10-17 00:38:15'),
+(114, '/media/images/2025/1760643495_2_pexels-matreding-14044938.jpg', '/media/thumbnails/images/2025/1760643495_2_pexels-matreding-14044938.jpg', 'images', '', 'newspaper', 1, '2025-10-17 00:38:15'),
+(115, '/media/images/2025/1760643495_3_pexels-mographe-15360540.jpg', '/media/thumbnails/images/2025/1760643495_3_pexels-mographe-15360540.jpg', 'images', '', 'newspaper', 1, '2025-10-17 00:38:16'),
+(116, '/media/images/2025/1760643496_4_pexels-brotin-biswas-158640-518543.jpg', '/media/thumbnails/images/2025/1760643496_4_pexels-brotin-biswas-158640-518543.jpg', 'images', '', 'newspaper', 1, '2025-10-17 00:38:17'),
+(117, '/media/images/2025/1760643533_0_pexels-pixabay-301926.jpg', '/media/thumbnails/images/2025/1760643533_0_pexels-pixabay-301926.jpg', 'images', '', 'books', 1, '2025-10-17 00:38:54'),
+(118, '/media/images/2025/1760643534_1_pexels-dlxmedia-hu-215591835-11911071.jpg', '/media/thumbnails/images/2025/1760643534_1_pexels-dlxmedia-hu-215591835-11911071.jpg', 'images', '', 'books', 1, '2025-10-17 00:38:55'),
+(119, '/media/images/2025/1760643535_2_pexels-towfiqu-barbhuiya-3440682-11484114.jpg', '/media/thumbnails/images/2025/1760643535_2_pexels-towfiqu-barbhuiya-3440682-11484114.jpg', 'images', '', 'books', 1, '2025-10-17 00:38:56'),
+(120, '/media/images/2025/1760643536_3_pexels-pixabay-289738.jpg', '/media/thumbnails/images/2025/1760643536_3_pexels-pixabay-289738.jpg', 'images', '', 'books', 1, '2025-10-17 00:38:57'),
+(121, '/media/images/2025/1760643537_4_pexels-atomlaborblog-1090941.jpg', '/media/thumbnails/images/2025/1760643537_4_pexels-atomlaborblog-1090941.jpg', 'images', '', 'books', 1, '2025-10-17 00:38:58'),
+(122, '/media/images/2025/1760644207_0_pexels-polina-kovaleva-8100514.jpg', '/media/thumbnails/images/2025/1760644207_0_pexels-polina-kovaleva-8100514.jpg', 'images', '', 'tags', 1, '2025-10-17 00:50:08'),
+(123, '/media/images/2025/1760644208_1_pexels-eva-bronzini-8058803.jpg', '/media/thumbnails/images/2025/1760644208_1_pexels-eva-bronzini-8058803.jpg', 'images', '', 'tags', 1, '2025-10-17 00:50:09'),
+(124, '/media/images/2025/1760644209_2_pexels-padrinan-1111319.jpg', '/media/thumbnails/images/2025/1760644209_2_pexels-padrinan-1111319.jpg', 'images', '', 'tags', 1, '2025-10-17 00:50:10'),
+(125, '/media/images/2025/1760646407_0_pexels-fotios-photos-16129703.jpg', '/media/thumbnails/images/2025/1760646407_0_pexels-fotios-photos-16129703.jpg', 'images', '', 'tech', 1, '2025-10-17 01:26:48'),
+(126, '/media/images/2025/1760646409_1_pexels-lalorosas-907489.jpg', '/media/thumbnails/images/2025/1760646409_1_pexels-lalorosas-907489.jpg', 'images', '', 'tech', 1, '2025-10-17 01:26:50'),
+(127, '/media/images/2025/1760646410_2_pexels-picjumbo-com-55570-196644.jpg', '/media/thumbnails/images/2025/1760646410_2_pexels-picjumbo-com-55570-196644.jpg', 'images', '', 'tech', 1, '2025-10-17 01:26:51'),
+(128, '/media/images/2025/1760646411_3_Copilot_20251017_011751.png', '/media/thumbnails/images/2025/1760646411_3_Copilot_20251017_011751.png', 'images', '', 'tech', 1, '2025-10-17 01:26:54'),
+(129, '/media/images/2025/1760678272_0_book-cover-sample4.jpg', '/media/thumbnails/images/2025/1760678272_0_book-cover-sample4.jpg', 'images', '', 'book covers', 1, '2025-10-17 10:17:52'),
+(130, '/media/images/2025/1760678272_1_book-cover-sample3.jpg', '/media/thumbnails/images/2025/1760678272_1_book-cover-sample3.jpg', 'images', '', 'book covers', 1, '2025-10-17 10:17:53'),
+(131, '/media/images/2025/1760678273_2_book-cover-sample2.jpg', '/media/thumbnails/images/2025/1760678273_2_book-cover-sample2.jpg', 'images', '', 'book covers', 1, '2025-10-17 10:17:53'),
+(132, '/media/images/2025/1760678273_3_book-cover-sample1.jpg', '/media/thumbnails/images/2025/1760678273_3_book-cover-sample1.jpg', 'images', '', 'book covers', 1, '2025-10-17 10:17:53');
 
 -- --------------------------------------------------------
 
@@ -1049,7 +1067,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `is_active` tinyint(1) DEFAULT '1',
   `entry_date_time` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_settings`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings`
@@ -1105,7 +1123,7 @@ INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting
 (48, 'google_fonts', 'Noto Nastaliq Urdu, Gulzar', 'css_fonts', 'text', 1, '2025-10-27 21:33:32'),
 (49, 'snippets_per_page', '15', 'php_template', 'text', 1, '2025-10-30 09:49:38'),
 (50, 'snippet_words', '80', 'php_template', 'text', 1, '2025-10-30 11:14:33'),
-(51, 'module_total_records', '7', 'php_template', 'text', 1, '2025-11-06 19:49:34'),
+(51, 'module_total_records', '7', 'php_template', 'text', 0, '2025-11-06 19:49:34'),
 (52, 'pager_next_label', 'Next', 'php_template', 'text', 1, '2025-11-06 19:52:48'),
 (53, 'pager_prev_label', 'Prev', 'php_template', 'text', 1, '2025-11-06 19:53:02'),
 (54, 'readmore_label', 'Read more', 'php_template', 'text', 1, '2025-11-06 19:54:21'),
@@ -1128,7 +1146,10 @@ INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting
 (71, 'authors_label', 'Authors', 'php_template', 'text', 1, '2025-11-16 16:38:49'),
 (72, 'youtube_gallery_label', 'Youtube Gallery', 'php_template', 'text', 1, '2025-11-16 16:39:19'),
 (73, 'photo_gallery_label', 'Photo Gallery', 'php_template', 'text', 1, '2025-11-16 16:39:35'),
-(74, 'search_label', 'Search', 'php_template', 'text', 1, '2025-11-16 16:40:10');
+(74, 'search_label', 'Search', 'php_template', 'text', 1, '2025-11-16 16:40:10'),
+(75, 'cache_duration_days', '1', 'cache', 'text', 1, '2025-12-07 18:36:21'),
+(76, 'cache_enabled', 'yes', 'cache', 'text', 1, '2025-12-07 18:36:52'),
+(77, 'css_version', '1', 'css_template', 'text', 1, '2025-12-09 23:46:37');
 
 -- --------------------------------------------------------
 

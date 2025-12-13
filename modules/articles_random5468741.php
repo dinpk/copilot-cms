@@ -1,9 +1,9 @@
 
-<div class="block">
+<div class="block" style="<?= $css ?>">
 	<?php
 	$cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
-	$sql = "SELECT key_articles, title, url FROM articles ORDER BY RAND() LIMIT " . getSetting('module_total_records');
+	$sql = "SELECT key_articles, title, url FROM articles ORDER BY RAND() LIMIT $number_of_records";
 	$articles = $conn->query($sql);
 	echo "<ul class='category-list'>";
 	while ($c = $articles->fetch_assoc()) {

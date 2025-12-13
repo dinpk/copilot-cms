@@ -1,5 +1,8 @@
 <?php
 
+include_once('template_blocks.php');
+
+
 function getPagination($totalItems, $currentPage = 1, $perPage = 10, $baseUrl = '?page=') {
 	$totalPages = max(1, ceil($totalItems / $perPage));
 	$currentPage = max(1, min($currentPage, $totalPages));
@@ -75,10 +78,24 @@ function getAuthorsForArticle($conn, $key) {
 	return $conn->query($sql);
 }
 
+function getContentTypesForArticle($conn, $key) {
+	$sql = "SELECT name, content_types.url FROM content_types
+			JOIN article_content_types ON content_types.key_content_types = article_content_types.key_content_types
+			WHERE article_content_types.key_articles = $key";
+	return $conn->query($sql);
+}
+
 function getCategoriesForArticle($conn, $key) {
 	$sql = "SELECT name, categories.url FROM categories
 			JOIN article_categories ON categories.key_categories = article_categories.key_categories
 			WHERE article_categories.key_articles = $key";
+	return $conn->query($sql);
+}
+
+function getTagsForArticle($conn, $key) {
+	$sql = "SELECT name, tags.url FROM tags
+			JOIN article_tags ON tags.key_tags = article_tags.key_tags
+			WHERE article_tags.key_articles = $key";
 	return $conn->query($sql);
 }
 
@@ -110,7 +127,7 @@ function getAuthorBySlug($conn, $slug) {
 }
 
 function getArticlesForAuthor($conn, $key) {
-	$sql = "SELECT a.title, a.article_snippet, a.url, m.file_url AS banner 
+	$sql = "SELECT a.title, a.article_snippet, a.url, m.file_url_thumbnail AS banner 
 			FROM articles a 
 			JOIN article_authors aa ON a.key_articles = aa.key_articles 
 			LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
@@ -148,7 +165,7 @@ function getBookBySlug($conn, $slug) {
 }
 
 function getArticlesForBook($conn, $key) {
-	$sql = "SELECT a.title, a.url, a.book_indent_level, m.file_url AS banner 
+	$sql = "SELECT a.title, a.url, a.book_indent_level, m.file_url_thumbnail AS banner 
 			FROM articles a 
 			JOIN book_articles ba ON a.key_articles = ba.key_articles 
 			LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
@@ -187,11 +204,12 @@ function getPaginatedArticlesForContentType($conn, $key, $page = 1, $limit = 10)
 				WHERE ac.key_content_types = $key AND a.is_active = 1";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
 
-	$sql = "SELECT a.*, m.file_url AS banner 
+	$sql = "SELECT a.*, m.file_url_thumbnail AS banner 
 	FROM articles a 
 	JOIN article_content_types ac ON a.key_articles = ac.key_articles 
 	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
 	WHERE ac.key_content_types = $key AND a.is_active = 1 
+	ORDER BY entry_date_time DESC 
 	LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);
 
@@ -232,7 +250,7 @@ function getPaginatedArticlesForTag($conn, $key, $page = 1, $limit = 10) {
 				WHERE ac.key_tags = $key AND a.is_active = 1";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
 
-	$sql = "SELECT a.*, m.file_url AS banner 
+	$sql = "SELECT a.*, m.file_url_thumbnail AS banner 
 	FROM articles a 
 	JOIN article_tags ac ON a.key_articles = ac.key_articles 
 	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
@@ -278,7 +296,7 @@ function getPaginatedArticlesForCategory($conn, $key, $page = 1, $limit = 10) {
 				WHERE ac.key_categories = $key AND a.is_active = 1";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
 
-	$sql = "SELECT a.*, m.file_url AS banner 
+	$sql = "SELECT a.*, m.file_url_thumbnail AS banner 
 	FROM articles a 
 	JOIN article_categories ac ON a.key_articles = ac.key_articles 
 	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
@@ -358,33 +376,6 @@ function renderMainMenu() {
     echo "</nav>";
 }
 
-
-/* --------------------- RENDER BLOCKS ---------------------- */
-
-
-function renderBlocks($region, $currentPage = '') {
-	global $conn;
-	$sql = "SELECT key_blocks, key_photo_gallery, title, block_content, module_file, visible_on FROM blocks 
-					   WHERE is_active = 1  
-					   AND show_in_region = '$region' 
-					   AND (show_on_pages = '' OR FIND_IN_SET('$currentPage', show_on_pages)) 
-					   ORDER BY sort";
-	$res = $conn->query($sql);
-	// echo __FILE__;
-	while ($row = $res->fetch_assoc()) {
-		$devices_array = explode(',', $row['visible_on']);
-		$visibilityClasses = '';
-		foreach ($devices_array as $device) $visibilityClasses .= ' visible-on-' . $device;
-		$key_photo_gallery = $row['key_photo_gallery'];
-		echo "<div class='block $visibilityClasses'>";
-		echo "<h2>" . $row['title'] . "</h2>";
-		echo "<div class='block-content'>" .  $row['block_content'] . "</div>";
-		if ($row['module_file'] != '') {
-			include("modules/" . $row['module_file'] . ".php");
-		}
-		echo "</div>";
-	}
-}
 
 
 /* --------------------- BREADCRUMB ---------------------- */

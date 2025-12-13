@@ -1,19 +1,12 @@
 <?php 
 
-include_once 'templates/settings.php';
-function getSetting($key, $default = null) {
-	global $settings;
-	return $settings[$key] ?? $default;
-}
-$template = getSetting('template_folder', 'default');
-
-
-
 $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
 $slug = $segments[1] ?? '';
 
 if (empty($segments[0])) header("location:home");
+
+$template = getSetting('template_folder', 'default');
 
 switch ($segments[0]) {
 	case 'home':
@@ -81,6 +74,14 @@ switch ($segments[0]) {
 	case 'photo-gallery':
 	  include("templates/$template/photo_gallery.php");
 	  break;
+	case 'monthly':
+		$_GET['slug'] = $slug;
+		include("templates/$template/monthly.php");
+		break;
+	case 'monthly-articles':
+		$_GET['slug'] = $slug;
+		include("templates/$template/monthly-articles.php");
+		break;
 	case 'search':
 	  $_GET['q'] = $_GET['q'] ?? '';
 	  include("templates/$template/search.php");

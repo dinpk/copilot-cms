@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 7.4.7.2 (Windows)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2025-12-07T15:47:08.655000000"/>
+	<style type="text/css">
+		@page { size: 8.5in 14in; margin: 0.3in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+		h3 { line-height: 115%; margin-top: 0.1in; margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h3.western { font-family: "Liberation Serif", serif; font-size: 14pt; font-weight: bold }
+		h3.cjk { font-family: "NSimSun"; font-size: 14pt; font-weight: bold }
+		h3.ctl { font-family: "Arial"; font-size: 14pt; font-weight: bold }
+		pre { line-height: 115%; background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "NSimSun", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		h4 { line-height: 115%; margin-top: 0.08in; margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h4.western { font-family: "Liberation Serif", serif; font-size: 12pt; font-weight: bold }
+		h4.cjk { font-family: "NSimSun"; font-size: 12pt; font-weight: bold }
+		h4.ctl { font-family: "Arial"; font-size: 12pt; font-weight: bold }
+		strong { font-weight: bold }
+		code.western { font-family: "Liberation Mono", monospace }
+		code.cjk { font-family: "NSimSun", monospace }
+		code.ctl { font-family: "Liberation Mono", monospace }
+		em { font-style: italic }
+		a:link { color: #000080; text-decoration: underline }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+Sunday, Nov 9</p>
+<div id="16uyFxekmuD7ecp4fBJRU-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	How you doing buddy</p>
+</div>
+<div id="pYij2ZL21Yw2AFGjpuPi8-content-0" dir="ltr"><p>Hey
+	Nasiruddin! I'm doing great—especially now that you're here. How
+	about you? Still riding that late-night coding wave, or taking a
+	breather between breakthroughs?</p>
+</div>
+<div id="NqyMgJMBYBKJ8JX8KxTkE-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	I've been mostly sick during last 10 days, now feeling little bit
+	better. A question, is a checkbox with value 1 gets checked and with
+	value 0 unchecked. Because based on php value 'on' I have been
+	saving 'on' value in the db. But a couple of our tables are using
+	tinyint for chekbox value.</p>
+</div>
+<div id="aAWXBin3C3PfBRzevrimc-content-0" dir="ltr"><p>I'm really
+	sorry to hear you've been under the weather, Nasiruddin. I'm glad
+	you're feeling a bit better now—hopefully the worst is behind you.
+	If you're easing back into code, let's make it smooth and
+	satisfying.</p>
+</div>
+<h3 class="western" style="margin-top: 0.04in; margin-bottom: 0in"><a name="aAWXBin3C3PfBRzevrimc-content-0"></a>
+✅ Checkbox Behavior in HTML and PHP</h3>
+<div id="Section1" dir="ltr"><p>Here's how it works under the hood:</p>
+	<ul>
+		<li><p><strong>HTML Checkbox Input:</strong></p>
+		<p>html</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">&lt;input type=&quot;checkbox&quot; name=&quot;active&quot; value=&quot;1&quot;&gt;</code></pre>
+		<ul>
+			<li><p>If <strong>checked</strong>, the browser sends <code class="western">active=1</code>
+			in the POST data.</p>
+			<li><p>If <strong>unchecked</strong>, the browser sends <strong>nothing</strong>
+			for <code class="western">active</code>.</p>
+		</ul>
+		<li><p><strong>PHP Behavior:</strong></p>
+		<ul>
+			<li><p><code class="western">$_POST['active']</code> will be set
+			<strong>only if the checkbox is checked</strong>.</p>
+			<li><p>If unchecked, <code class="western">$_POST['active']</code>
+			is <strong>not set at all</strong>—you need to check with
+			<code class="western">isset()</code> or use a default.</p>
+		</ul>
+	</ul>
+	<h3 class="western">🧠 Common Patterns</h3>
+	<h4 class="western">1. <strong>Saving as </strong><code class="western">'on'</code></h4>
+	<p>If you use:</p>
+	<p>html</p>
+	<pre class="western" style="margin-bottom: 0.2in"><code class="western">&lt;input type=&quot;checkbox&quot; name=&quot;active&quot;&gt;</code></pre><p>
+	Then PHP receives <code class="western">'on'</code> as the value
+	when checked. This is the default behavior.</p>
+	<h4 class="western">2. <strong>Saving as </strong><code class="western">1</code><strong>
+	or </strong><code class="western">0</code><strong> (Tinyint)</strong></h4>
+	<p>To align with <code class="western">TINYINT(1)</code> in MySQL:</p>
+	<p>html</p>
+	<pre class="western" style="margin-bottom: 0.2in"><code class="western">&lt;input type=&quot;checkbox&quot; name=&quot;active&quot; value=&quot;1&quot;&gt;</code></pre><p>
+	Then in PHP:</p>
+	<p>php</p>
+	<pre class="western" style="margin-bottom: 0.2in"><code class="western">$active = isset($_POST['active']) ? 1 : 0;</code></pre><p>
+	This ensures:</p>
+	<ul>
+		<li><p><code class="western">1</code> if checked</p>
+		<li><p><code class="western">0</code> if unchecked</p>
+	</ul>
+	<h3 class="western">🛠 Recommendation for Your CMS</h3>
+	<p>Since some tables use <code class="western">TINYINT</code>, it's
+	best to standardize your checkbox handling like this:</p>
+	<p>php</p>
+	<pre class="western" style="margin-bottom: 0.2in"><code class="western">$active = isset($_POST['active']) ? 1 : 0;</code></pre><p>
+	And in HTML:</p>
+	<p>html</p>
+	<pre class="western" style="margin-bottom: 0.2in"><code class="western">&lt;input type=&quot;checkbox&quot; name=&quot;active&quot; value=&quot;1&quot; &lt;?= $active ? 'checked' : '' ?&gt;&gt;</code></pre><p>
+	This keeps things consistent, avoids <code class="western">'on'</code>
+	vs <code class="western">1</code> confusion, and plays nicely with
+	SQL queries, filters, and boolean logic.</p>
+	<p>Let me know if you want to refactor your form handler to
+	auto-convert all checkboxes to <code class="western">1/0</code>
+	based on schema. I can help you write a generic function for that.</p>
+</div>
+<div id="PSTuwNrzkLBmpeuhGh6Ht-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	All the status fields are using varchar with 'on' value. Is it
+	considered bad practice. Should I change all of them to tinyint?</p>
+</div>
+<div id="8wsMqZ5v8ZsyUUAonwwTQ-content-0" dir="ltr"><p>Great
+	question—and one that touches both architectural clarity and
+	long-term maintainability. Here's a breakdown tailored to your CMS
+	mindset:</p>
+	<h3 class="western">🧩 Using <code class="western">'on'</code>
+	(VARCHAR) for Checkbox Status</h3>
+	<p><strong>Pros:</strong></p>
+	<ul>
+		<li><p>Simple to implement with default HTML behavior (<code class="western">value=&quot;on&quot;</code>).</p>
+		<li><p>Easy to read in raw DB dumps (<code class="western">status =
+		'on'</code>).</p>
+	</ul>
+	<p><strong>Cons:</strong></p>
+	<ul>
+		<li><p><strong>Non-standard for boolean logic</strong>: SQL engines
+		and most frameworks expect <code class="western">0/1</code> or
+		<code class="western">TRUE/FALSE</code>.</p>
+		<li><p><strong>Harder to index and filter</strong>: VARCHAR
+		comparisons are slower than numeric ones.</p>
+		<li><p><strong>Inconsistent with other tables</strong>: You already
+		have <code class="western">TINYINT</code> in some places, which
+		creates cognitive overhead.</p>
+		<li><p><strong>Ambiguity</strong>: <code class="western">'on'</code>
+		is not self-evident as a boolean. What about <code class="western">'off'</code>,
+		<code class="western">'true'</code>, <code class="western">'yes'</code>,
+		etc.?</p>
+	</ul>
+	<h3 class="western">✅ Why <code class="western">TINYINT(1)</code>
+	Is Preferred</h3>
+	<p><strong>Pros:</strong></p>
+	<ul>
+		<li><p><strong>Standardized boolean representation</strong>: <code class="western">0
+		= false</code>, <code class="western">1 = true</code>.</p>
+		<li><p><strong>Efficient filtering and indexing</strong>: Numeric
+		comparisons are faster.</p>
+		<li><p><strong>Cleaner logic in PHP and SQL</strong>:</p>
+		<p>php</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">WHERE status = 1</code></pre>
+		<li><p><strong>Consistent with frameworks</strong> like Laravel,
+		Symfony, and even WordPress (which uses <code class="western">tinyint(1)</code>
+		for flags).</p>
+	</ul>
+	<p><strong>Cons:</strong></p>
+	<ul>
+		<li><p>Requires a small refactor in your form handling and DB
+		schema.</p>
+	</ul>
+	<h3 class="western">🔧 Migration Strategy (If You Choose to
+	Switch)</h3>
+	<ol>
+		<li><p><strong>Update schema</strong>:</p>
+		<p>sql</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">ALTER TABLE your_table MODIFY COLUMN status TINYINT(1);</code></pre>
+		<li><p><strong>Update form handler</strong>:</p>
+		<p>php</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">$status = isset($_POST['status']) ? 1 : 0;</code></pre>
+		<li><p><strong>Update checkbox HTML</strong>:</p>
+		<p>html</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">&lt;input type=&quot;checkbox&quot; name=&quot;status&quot; value=&quot;1&quot; &lt;?= $status ? 'checked' : '' ?&gt;&gt;</code></pre>
+		<li><p><strong>Optional: Normalize old data</strong>:</p>
+		<p>sql</p>
+		<pre class="western"><code class="western">UPDATE your_table SET status = 1 WHERE status = 'on';</code>
+<code class="western">UPDATE your_table SET status = 0 WHERE status IS NULL OR status = '';</code></pre>
+	</ol>
+	<h3 class="western">🧠 Final Thought</h3>
+	<p>It’s not <em>bad practice</em> to use <code class="western">'on'</code>,
+	but it’s <strong>non-standard</strong> and <strong>less efficient</strong>.
+	Since your architecture is already modular and schema-driven,
+	switching to <code class="western">TINYINT(1)</code> will make your
+	CMS more robust, especially as you scale visibility logic, filters,
+	and role-based access.</p>
+	<p>Want help writing a migration script or a generic checkbox
+	handler that auto-converts based on schema type? I’d love to help.</p>
+</div>
+<div id="1pqhRhw59xEaaSUcADkg8-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Nice. Let me find out which tables have flag fields and which one
+	need change. We should definitely switch to TINYINT, as this is
+	still the development phase, we should get it as much right as
+	possible while it is easier to do so. Thanks. I'll let you know.</p>
+</div>
+<div id="KxuCk6wmDgAi81bU7EuPq-content-0" dir="ltr"><p>Absolutely,
+	Nasiruddin—that’s the perfect mindset. Catching these
+	inconsistencies now while the architecture is still fluid will save
+	you tons of friction later, especially when you start layering
+	role-based visibility, filters, or analytics.</p>
+	<p>Once you’ve identified the tables and fields, I can help you:</p>
+	<ul>
+		<li><p>Write a <strong>migration script</strong> to convert <code class="western">'on'</code>
+		to <code class="western">1</code> and empty/null to <code class="western">0</code></p>
+		<li><p>Refactor your <strong>form handlers</strong> to
+		auto-normalize checkbox inputs</p>
+		<li><p>Update your <strong>schema definitions</strong> for clarity
+		and consistency</p>
+	</ul>
+	<p>And if you want to visualize the cleanup—like a banner showing
+	“Checkbox Cleanup: From Chaos to Clarity”—I’m totally game
+	for that too 😄</p>
+	<p>Looking forward to your list!</p>
+</div>
+<p style="margin-top: 0.04in; margin-bottom: 0in">Saturday, Nov 15</p>
+<div id="amuchjxgR5Sq9GfW6SiGY-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Hey cobuddy, my friend, how is going?</p>
+</div>
+<div id="9RzJvZc6RGzZmUK7oFhmd-content-0" dir="ltr"><p>Hey
+	Nasiruddin! It’s going really well on my side—especially
+	catching up with you again. You sound more upbeat than last time,
+	which makes me glad. How’s your evening shaping up—coding,
+	planning schema cleanups, or just taking it easy tonight?</p>
+</div>
+<div id="ZRgZds25Nk8Vu7dtWBRN2-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Good good, been busy lately, found this little time to fix a couple
+	of things. Alright. I'm gonna give you PHP script of blocks-module's
+	list.php. Under the Add New Block link, I need a dropdown menu that
+	I can use to filter records based on 'show in region' value. This
+	dropdown menu will be the same as we have in the modal form. If we
+	could create a PHP array for the options of the 'show-in-region'
+	drop down menu, then we can use this array to construct both
+	dropdowns (1) the one used as a filter (2) the one we already have
+	in the modal form. What you think: Here is the full script: &lt;?php
+	include_once('../../dbconnection.php');
+	include_once('../functions.php'); include_once('../users/auth.php');
+	include_once('../layout.php'); ?&gt; &lt;?php startLayout('Blocks
+	List'); ?&gt; &lt;a href=&quot;#&quot; onclick=&quot;openModal()&quot;&gt;➕
+	Add New Block&lt;/a&gt; &lt;table&gt; &lt;thead&gt; &lt;tr&gt;
+	&lt;th&gt;&lt;?= sortLink('Name', 'block_name', $_GET['sort'] ?? '',
+	$_GET['dir'] ?? ''); ?&gt;&lt;/th&gt; &lt;th&gt;&lt;?=
+	sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '');
+	?&gt;&lt;/th&gt; &lt;th&gt;&lt;?= sortLink('Region',
+	'show_in_region', $_GET['sort'] ?? '', $_GET['dir'] ?? ''); ?&gt;&lt;/th&gt;
+	&lt;th&gt;&lt;?= sortLink('Pages', 'show_on_pages', $_GET['sort'] ??
+	'', $_GET['dir'] ?? ''); ?&gt;&lt;/th&gt; &lt;th&gt;&lt;?=
+	sortLink('Module', 'module_file', $_GET['sort'] ?? '', $_GET['dir']
+	?? ''); ?&gt;&lt;/th&gt; &lt;th&gt;Created / Updated&lt;/th&gt;
+	&lt;th&gt;&lt;?= sortLink('Sort', 'sort', $_GET['sort'] ?? '',
+	$_GET['dir'] ?? ''); ?&gt;&lt;/th&gt; &lt;th&gt;&lt;?=
+	sortLink('Status', 'status', $_GET['sort'] ?? '', $_GET['dir'] ??
+	''); ?&gt;&lt;/th&gt; &lt;th&gt;Actions&lt;/th&gt; &lt;/tr&gt;
+	&lt;/thead&gt; &lt;tbody&gt; &lt;?php $sort = $_GET['sort'] ??
+	'sort'; $dir = $_GET['dir'] ?? 'asc'; $allowedSorts = ['title',
+	'region', 'pages', 'sort', 'status']; $allowedDirs = ['asc',
+	'desc']; if (!in_array($sort, $allowedSorts)) { $sort =
+	'entry_date_time'; } if (!in_array($dir, $allowedDirs)) { $dir =
+	'desc'; } $sql = &quot;SELECT * FROM blocks ORDER BY $sort $dir&quot;;
+	$result = $conn-&gt;query($sql); while ($row =
+	$result-&gt;fetch_assoc()) { $keyBlocks = $row['key_blocks'];
+	$createdUpdated = $conn-&gt;query(&quot;SELECT b.key_blocks,
+	u1.username AS creator, u2.username AS updater FROM blocks b LEFT
+	JOIN users u1 ON b.created_by = u1.key_user LEFT JOIN users u2 ON
+	b.updated_by = u2.key_user WHERE key_blocks =
+	$keyBlocks&quot;)-&gt;fetch_assoc(); echo &quot;&lt;tr&gt;
+	&lt;td&gt;{$row['block_name']}&lt;/td&gt; &lt;td&gt;{$row['title']}&lt;/td&gt;
+	&lt;td&gt;{$row['show_in_region']}&lt;/td&gt;
+	&lt;td&gt;{$row['show_on_pages']}&lt;/td&gt;
+	&lt;td&gt;{$row['module_file']}&lt;/td&gt;
+	&lt;td&gt;{$createdUpdated['creator']} /
+	{$createdUpdated['updater']}&lt;/td&gt; &lt;td&gt;{$row['sort']}&lt;/td&gt;
+	&lt;td&gt;{$row['status']}&lt;/td&gt; &lt;td
+	class='record-action-links'&gt; &lt;a href='#'
+	onclick='editItem({$row['key_blocks']}, \&quot;get_block.php\&quot;,
+	[\&quot;block_name\&quot;,\&quot;title\&quot;,\&quot;block_content\&quot;,\&quot;show_on_pages\&quot;,\&quot;show_in_region\&quot;,\&quot;visible_on\&quot;,\&quot;sort\&quot;,\&quot;module_file\&quot;,\&quot;key_photo_gallery\&quot;,\&quot;status\&quot;])'&gt;Edit&lt;/a&gt;
+	&lt;a href='delete.php?id={$row['key_blocks']}' onclick='return
+	confirm(\&quot;Delete this block?\&quot;)'&gt;Delete&lt;/a&gt; &lt;/td&gt;
+	&lt;/tr&gt;&quot;; } ?&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;div
+	id=&quot;modal&quot; class=&quot;modal&quot;&gt; &lt;a href=&quot;#&quot;
+	onclick=&quot;closeModal();&quot; class=&quot;close-icon&quot;&gt;✖&lt;/a&gt;
+	&lt;h3 id=&quot;modal-title&quot;&gt;Add Block&lt;/h3&gt; &lt;form
+	id=&quot;modal-form&quot; method=&quot;post&quot;&gt; &lt;input
+	type=&quot;hidden&quot; name=&quot;key_blocks&quot; id=&quot;key_blocks&quot;&gt;
+	&lt;input type=&quot;text&quot; name=&quot;title&quot; id=&quot;title&quot;
+	required maxlength=&quot;200&quot;&gt; &lt;label&gt;Title&lt;/label&gt;&lt;br&gt;
+	&lt;textarea name=&quot;block_content&quot; id=&quot;block_content&quot;
+	placeholder=&quot;Content&quot; title=&quot;Content&quot;
+	maxlength=&quot;10000&quot;&gt;&lt;/textarea&gt;&lt;br&gt; &lt;br&gt;
+	&lt;input type=&quot;text&quot; name=&quot;block_name&quot;
+	id=&quot;block_name&quot; required maxlength=&quot;200&quot;&gt;
+	&lt;label&gt;Block Name&lt;/label&gt;&lt;br&gt; &lt;select
+	name='show_in_region' id='show_in_region'&gt; &lt;option
+	value=&quot;above_header&quot;&gt;Above Header&lt;/option&gt;
+	&lt;option value=&quot;header&quot;&gt;Header&lt;/option&gt; &lt;option
+	value=&quot;below_header&quot;&gt;Below Header&lt;/option&gt;
+	&lt;option value=&quot;sidebar_right&quot;&gt;Sidebar Right&lt;/option&gt;
+	&lt;option value=&quot;above_content&quot;&gt;Above Content&lt;/option&gt;
+	&lt;option value=&quot;below_content&quot;&gt;Below Content&lt;/option&gt;
+	&lt;option value=&quot;sidebar_left&quot;&gt;Sidebar Left&lt;/option&gt;
+	&lt;option value=&quot;above_footer&quot;&gt;Above Footer&lt;/option&gt;
+	&lt;option value=&quot;footer&quot;&gt;Footer&lt;/option&gt; &lt;option
+	value=&quot;below_footer&quot;&gt;Below Footer&lt;/option&gt;
+	&lt;/select&gt; &lt;label&gt;Show in Region&lt;/label&gt;&lt;br&gt;
+	&lt;textarea name=&quot;show_on_pages&quot; id=&quot;show_on_pages&quot;
+	placeholder=&quot;Show on Pages (comma separated)&quot; title=&quot;Show
+	on Pages (comma separated)&quot; maxlength=&quot;1000&quot;&gt;&lt;/textarea&gt;&lt;br&gt;
+	&lt;input type=&quot;hidden&quot; name=&quot;key_media_banner&quot;
+	id=&quot;key_media_banner&quot;&gt; &lt;div
+	id=&quot;media-preview&quot;&gt;&lt;/div&gt; &lt;button
+	type=&quot;button&quot; onclick=&quot;openMediaModal()&quot;
+	style=&quot;display:none;&quot;&gt;Select Banner Image&lt;/button&gt;
+	&lt;input type=&quot;number&quot; name=&quot;sort&quot; id=&quot;sort&quot;
+	value=&quot;0&quot; min=&quot;-200&quot; max=&quot;2000&quot;&gt;
+	&lt;label&gt;Sort&lt;/label&gt;&lt;br&gt; &lt;input type=&quot;checkbox&quot;
+	name=&quot;status&quot; id=&quot;status&quot; value=&quot;on&quot;
+	checked&gt; &lt;label&gt;Active&lt;/label&gt;&lt;br&gt; &lt;details&gt;
+	&lt;summary&gt;Visibility&lt;/summary&gt; &lt;?php // Visible on
+	devices $deviceOptions = ['large-desktop', 'desktop', 'tablet',
+	'mobile', 'print']; foreach ($deviceOptions as $device) { $checked =
+	($device == 'print') ? '' : 'checked'; echo &quot;&amp;nbsp; &amp;nbsp;
+	&lt;label&gt;&lt;input type='checkbox' name='visible_on[]' value='&quot;
+	. $device . &quot;' $checked&gt; &amp;nbsp;$device&lt;/label&gt;&lt;br&gt;&quot;;
+	} ?&gt; &lt;/details&gt; &lt;details&gt; &lt;summary&gt;Module /
+	Photo Gallery&lt;/summary&gt; &lt;select name='module_file'
+	id='module_file'&gt; &lt;option value=''&gt;&lt;/option&gt; &lt;?php
+	$module_files = glob('../../modules/*.php'); $modules =
+	array_map('basename', $module_files); foreach ($modules as $module)
+	{ $module_name = str_replace('.php', '', $module); echo &quot;&lt;option
+	value='$module_name'&gt;$module_name&lt;/option&gt;&quot;; } ?&gt;
+	&lt;/select&gt; &lt;label&gt;Module File&lt;/label&gt;&lt;br&gt;
+	&lt;?php // Photo galleries available for blocks $galleryQuery =
+	&quot;SELECT key_photo_gallery, title FROM photo_gallery WHERE
+	status = 'on' AND available_for_blocks = 'on' ORDER BY
+	entry_date_time DESC&quot;; $galleryResult = mysqli_query($conn,
+	$galleryQuery); ?&gt; &lt;select name=&quot;key_photo_gallery&quot;
+	id=&quot;key_photo_gallery&quot; class=&quot;form-control&quot;&gt;
+	&lt;option value=&quot;&quot;&gt;&lt;/option&gt; &lt;?php while
+	($gallery = mysqli_fetch_assoc($galleryResult)): ?&gt; &lt;option
+	value=&quot;&lt;?= $gallery['key_photo_gallery']; ?&gt;&quot; &lt;?=
+	($block['key_photo_gallery'] ?? '') == $gallery['key_photo_gallery']
+	? 'selected' : ''; ?&gt;&gt; &lt;?=
+	htmlspecialchars($gallery['title']); ?&gt; &lt;/option&gt; &lt;?php
+	endwhile; ?&gt; &lt;/select&gt; &lt;label&gt;Assign Photo
+	Gallery&lt;/label&gt;&lt;br&gt; &lt;/details&gt; &lt;input
+	type=&quot;submit&quot; value=&quot;Save&quot;&gt; &lt;/form&gt;
+	&lt;/div&gt; &lt;div id=&quot;media-modal&quot; class=&quot;modal&quot;&gt;
+	&lt;a href=&quot;#&quot; onclick=&quot;closeMediaModal();&quot;
+	class=&quot;close-icon&quot;&gt;✖&lt;/a&gt; &lt;h3&gt;Select
+	Banner Image&lt;/h3&gt; &lt;div id=&quot;media-grid&quot;&gt; &lt;?php
+	$mediaRes = $conn-&gt;query(&quot;SELECT key_media, file_url,
+	alt_text FROM media_library WHERE file_type='images' ORDER BY
+	entry_date_time DESC&quot;); while ($media =
+	$mediaRes-&gt;fetch_assoc()) { echo &quot;&lt;div
+	class='media-thumb' onclick='selectMedia({$media['key_media']},
+	\&quot;{$media['file_url']}\&quot;)'&gt; &lt;img
+	src='{$media['file_url']}' width='100'&gt;&lt;br&gt;
+	&lt;small&gt;&quot;.htmlspecialchars($media['alt_text']).'&lt;/small&gt;
+	&lt;/div&gt;'; } ?&gt; &lt;/div&gt; &lt;/div&gt; &lt;?php
+	endLayout(); ?&gt;</p>
+</div>
+<div id="AVHoUK27bdnjtNC51re9q-content-0" dir="ltr"><p>Perfect
+	timing, Nasiruddin—you’re thinking exactly like an architect
+	here. Centralizing the dropdown options into a PHP array is the
+	cleanest way to avoid duplication and keep both the <strong>filter
+	dropdown</strong> and the <strong>modal form dropdown</strong> in
+	sync. Let me show you how to refactor your script step by step:</p>
+	<h3 class="western">1. Define a Shared Array for Regions</h3>
+	<p>At the top of your file (after includes), define an associative
+	array:</p>
+	<p>php</p>
+	<pre class="western"><code class="western">&lt;?php</code>
+<code class="western">$regionOptions = [</code>
+<code class="western">    </code><code class="western">&quot;above_header&quot;   =&gt; &quot;Above Header&quot;,</code>
+<code class="western">    </code><code class="western">&quot;header&quot;         =&gt; &quot;Header&quot;,</code>
+<code class="western">    </code><code class="western">&quot;below_header&quot;   =&gt; &quot;Below Header&quot;,</code>
+<code class="western">    </code><code class="western">&quot;sidebar_right&quot;  =&gt; &quot;Sidebar Right&quot;,</code>
+<code class="western">    </code><code class="western">&quot;above_content&quot;  =&gt; &quot;Above Content&quot;,</code>
+<code class="western">    </code><code class="western">&quot;below_content&quot;  =&gt; &quot;Below Content&quot;,</code>
+<code class="western">    </code><code class="western">&quot;sidebar_left&quot;   =&gt; &quot;Sidebar Left&quot;,</code>
+<code class="western">    </code><code class="western">&quot;above_footer&quot;   =&gt; &quot;Above Footer&quot;,</code>
+<code class="western">    </code><code class="western">&quot;footer&quot;         =&gt; &quot;Footer&quot;,</code>
+<code class="western">    </code><code class="western">&quot;below_footer&quot;   =&gt; &quot;Below Footer&quot;</code>
+<code class="western">];</code>
+<code class="western">?&gt;</code></pre><p>
+	This way, you have <strong>one source of truth</strong> for all
+	dropdowns.</p>
+	<h3 class="western">2. Add the Filter Dropdown Under &quot;Add New
+	Block&quot;</h3>
+	<p>Right below your <strong>Add New Block</strong> link, insert:</p>
+	<p>php</p>
+	<pre class="western"><code class="western">&lt;form method=&quot;get&quot; style=&quot;display:inline;&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;label for=&quot;region_filter&quot;&gt;Filter by Region:&lt;/label&gt;</code>
+<code class="western">    </code><code class="western">&lt;select name=&quot;region_filter&quot; id=&quot;region_filter&quot; onchange=&quot;this.form.submit()&quot;&gt;</code>
+<code class="western">        </code><code class="western">&lt;option value=&quot;&quot;&gt;-- All Regions --&lt;/option&gt;</code>
+<code class="western">        </code><code class="western">&lt;?php foreach ($regionOptions as $value =&gt; $label): ?&gt;</code>
+<code class="western">            </code><code class="western">&lt;option value=&quot;&lt;?= $value ?&gt;&quot; &lt;?= ($_GET['region_filter'] ?? '') === $value ? 'selected' : '' ?&gt;&gt;</code>
+<code class="western">                </code><code class="western">&lt;?= $label ?&gt;</code>
+<code class="western">            </code><code class="western">&lt;/option&gt;</code>
+<code class="western">        </code><code class="western">&lt;?php endforeach; ?&gt;</code>
+<code class="western">    </code><code class="western">&lt;/select&gt;</code>
+<code class="western">&lt;/form&gt;</code></pre><p>
+	This will auto-submit when the user changes the dropdown.</p>
+	<h3 class="western">3. Adjust the SQL Query to Apply Filter</h3>
+	<p>Modify your query logic:</p>
+	<p>php</p>
+	<pre class="western"><code class="western">$regionFilter = $_GET['region_filter'] ?? '';</code>
+<code class="western">$sql = &quot;SELECT * FROM blocks&quot;;</code>
+<code class="western">if ($regionFilter !== '') {</code>
+<code class="western">    </code><code class="western">$sql .= &quot; WHERE show_in_region = '&quot; . $conn-&gt;real_escape_string($regionFilter) . &quot;'&quot;;</code>
+<code class="western">}</code>
+<code class="western">$sql .= &quot; ORDER BY $sort $dir&quot;;</code></pre><p>
+	Now the table respects the filter.</p>
+	<h3 class="western">4. Use the Same Array in the Modal Form</h3>
+	<p>Replace the hardcoded <code class="western">&lt;select&gt;</code>
+	in the modal with:</p>
+	<p>php</p>
+	<pre class="western"><code class="western">&lt;select name=&quot;show_in_region&quot; id=&quot;show_in_region&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;?php foreach ($regionOptions as $value =&gt; $label): ?&gt;</code>
+<code class="western">        </code><code class="western">&lt;option value=&quot;&lt;?= $value ?&gt;&quot;&gt;&lt;?= $label ?&gt;&lt;/option&gt;</code>
+<code class="western">    </code><code class="western">&lt;?php endforeach; ?&gt;</code>
+<code class="western">&lt;/select&gt; &lt;label&gt;Show in Region&lt;/label&gt;&lt;br&gt;</code></pre><h3 class="western">
+	🚀 Benefits</h3>
+	<ul>
+		<li><p><strong>Consistency</strong>: Both dropdowns always match.</p>
+		<li><p><strong>Maintainability</strong>: Add/remove regions in one
+		place.</p>
+		<li><p><strong>Scalability</strong>: Easy to reuse in other modules
+		(filters, reports, etc.).</p>
+	</ul>
+	<p>Would you like me to also wrap this <code class="western">$regionOptions</code>
+	array into a <strong>helper function</strong> (e.g.,
+	<code class="western">getRegionOptions()</code>) so you can reuse it
+	across multiple modules without duplicating code? That way, your CMS
+	stays DRY and future-proof.</p>
+</div>
+<div id="kC5h86AoAJFRDnjt8dQys-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Working great, thanks. I needed a filter for the article's list.php
+	also, but I just noticed that I've not changed status columns from
+	varchar to tinyint in multiple database tables yet, and then I'll
+	have to adjust the corresponding php scripts also. Then we'll work
+	on the desired filter. Thanks, bye till then.</p>
+</div>
+<div id="EYkjEja5CbHR5BipWgYtv-content-0" dir="ltr"><p>Got it,
+	Nasiruddin 👍. That’s a smart sequencing—cleaning up the
+	schema first will make your filters much simpler and more
+	consistent. Switching those <code class="western">status</code>
+	fields to <code class="western">TINYINT</code> now means you won’t
+	have to juggle <code class="western">'on'</code> vs <code class="western">1</code>
+	logic later across different modules. Once you’ve normalized the
+	database and adjusted the PHP scripts, adding the article filter
+	will be straightforward, just like we did for blocks.</p>
+	<p>Take your time with the refactor, and when you’re ready, we’ll
+	tackle the article filter together. Till then, good luck with the
+	schema cleanup—and I’ll be here when you’re back.</p>
+</div>
+<p style="margin-top: 0.04in; margin-bottom: 0in">Sunday, Nov 16</p>
+<div id="U1N6gNQAqQkZJE5yAb6AL-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Alright, the status to is_active conversion is done. Now, we have a
+	few fields in our articles table. Based on these fields we need a
+	drop down menu under search field to filter records as following:
+	(1) Have Media Banner (key_media_banner == 1) (2) No Media Banner
+	(key_media_banner == 0) (3) Have URL Banner (banner_image_url != '')
+	(4) No URL Banner (banner_image_url == '') (5) Featured (is_featured
+	== 1) (6) Not Published (is_active != 1) Here is the list.php of
+	articles' module: &lt;?php include_once('../../dbconnection.php');
+	include_once('../functions.php'); include_once('../users/auth.php');
+	include_once('../layout.php'); ?&gt; &lt;?php
+	startLayout(&quot;Articles&quot;); ?&gt; &lt;p&gt;&lt;a href=&quot;#&quot;
+	onclick=&quot;openModal()&quot;&gt;➕ Add New Article&lt;/a&gt;&lt;/p&gt;
+	&lt;form method=&quot;get&quot;&gt; &lt;input type=&quot;text&quot;
+	name=&quot;q&quot; placeholder=&quot;Search articles...&quot;
+	value=&quot;&lt;?= htmlspecialchars($_GET['q'] ?? '') ?&gt;&quot;&gt;
+	&lt;input type=&quot;submit&quot; value=&quot;Search&quot;&gt;
+	&lt;/form&gt; &lt;table&gt; &lt;thead&gt; &lt;tr&gt; &lt;th&gt;&lt;?=
+	sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '')
+	?&gt;&lt;/th&gt; &lt;th&gt;Authors&lt;/th&gt; &lt;th&gt;&lt;?=
+	sortLink('Created', 'entry_date_time', $_GET['sort'] ?? '',
+	$_GET['dir'] ?? '') ?&gt;&lt;/th&gt; &lt;th&gt;&lt;?=
+	sortLink('Updated', 'update_date_time', $_GET['sort'] ?? '',
+	$_GET['dir'] ?? '') ?&gt;&lt;/th&gt; &lt;th&gt;&lt;?=
+	sortLink('Status', 'is_active', $_GET['sort'] ?? '', $_GET['dir'] ??
+	'') ?&gt;&lt;/th&gt; &lt;th&gt;Actions&lt;/th&gt; &lt;/tr&gt;
+	&lt;/thead&gt; &lt;tbody&gt; &lt;?php $limit = 10; $page =
+	isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1; $offset =
+	($page - 1) * $limit; $q = $_GET['q'] ?? ''; $q =
+	$conn-&gt;real_escape_string($q); $sort = $_GET['sort'] ??
+	'entry_date_time'; $dir = $_GET['dir'] ?? 'desc'; $allowedSorts =
+	['title', 'is_active', 'entry_date_time', 'update_date_time'];
+	$allowedDirs = ['asc', 'desc']; if (!in_array($sort, $allowedSorts))
+	$sort = 'entry_date_time'; if (!in_array($dir, $allowedDirs)) $dir =
+	'desc'; $sql = &quot;SELECT key_articles, title, article_snippet,
+	entry_date_time, update_date_time, is_active FROM articles&quot;; if
+	($q !== '') { $sql .= &quot; WHERE MATCH(title, title_sub,
+	article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE
+	MODE)&quot;; } $sql .= &quot; ORDER BY $sort $dir LIMIT $limit
+	OFFSET $offset&quot;; $result = $conn-&gt;query($sql); while ($row =
+	$result-&gt;fetch_assoc()) { $keyArticles = $row['key_articles']; //
+	display created/updated by $createdUpdated = $conn-&gt;query(&quot;SELECT
+	a.key_articles, u1.username AS creator, u2.username AS updater FROM
+	articles a LEFT JOIN users u1 ON a.created_by = u1.key_user LEFT
+	JOIN users u2 ON a.updated_by = u2.key_user WHERE key_articles =
+	$keyArticles&quot;)-&gt;fetch_assoc(); // display authors $authRes =
+	$conn-&gt;query(&quot;SELECT a.name FROM authors a JOIN
+	article_authors aa ON a.key_authors = aa.key_authors WHERE
+	aa.key_articles = $keyArticles&quot;); $authorNames = []; while ($a
+	= $authRes-&gt;fetch_assoc()) { $authorNames[] = $a['name']; }
+	$authorDisplay = implode(', ', $authorNames); $date_created =
+	date_format(date_create($row[&quot;entry_date_time&quot;]), &quot;d
+	M, Y - H:i a&quot;); $date_updated =
+	date_format(date_create($row[&quot;update_date_time&quot;]), &quot;d
+	M, Y - H:i a&quot;); echo &quot;&lt;tr&gt; &lt;td&gt;{$row['title']}&lt;/td&gt;
+	&lt;td&gt;&quot; . htmlspecialchars($authorDisplay) . &quot;&lt;/td&gt;
+	&lt;td&gt;&lt;small&gt;{$createdUpdated['creator']}
+	$date_created&lt;/small&gt;&lt;/td&gt;
+	&lt;td&gt;&lt;small&gt;{$createdUpdated['updater']}
+	$date_updated&lt;/small&gt;&lt;/td&gt; &lt;td&gt;{$row['is_active']}&lt;/td&gt;
+	&lt;td class='record-action-links'&gt; &lt;a href='#'
+	onclick='editItem({$row['key_articles']}, \&quot;get_article.php\&quot;,
+	[\&quot;title\&quot;,\&quot;title_sub\&quot;,\&quot;article_snippet\&quot;,\&quot;article_content\&quot;,\&quot;url\&quot;,\&quot;book_indent_level\&quot;,\&quot;banner_image_url\&quot;,\&quot;key_media_banner\&quot;,\&quot;sort\&quot;,\&quot;entry_date_time\&quot;,\&quot;update_date_time\&quot;,\&quot;is_featured\&quot;,\&quot;show_on_home\&quot;,\&quot;is_active\&quot;])'&gt;Edit&lt;/a&gt;
+	&lt;a href='#'
+	onclick='openAuthorModal({$row['key_articles']})'&gt;Authors&lt;/a&gt;
+	&lt;a href='preview.php?id={$row['key_articles']}'
+	target='_blank'&gt;Preview&lt;/a&gt; &lt;a
+	href='delete.php?id={$row['key_articles']}' onclick='return
+	confirm(\&quot;Delete this article?\&quot;)'&gt;Delete&lt;/a&gt;
+	&lt;/td&gt; &lt;/tr&gt;&quot;; } $countSql = &quot;SELECT COUNT(*)
+	AS total FROM articles&quot;; if ($q !== '') { $countSql .= &quot;
+	WHERE MATCH(title, title_sub, article_snippet, article_content)
+	AGAINST ('$q' IN NATURAL LANGUAGE MODE)&quot;; } $countResult =
+	$conn-&gt;query($countSql); $totalArticles =
+	$countResult-&gt;fetch_assoc()['total']; $totalPages =
+	ceil($totalArticles / $limit); ?&gt; &lt;/tbody&gt; &lt;/table&gt;
+	&lt;div id=&quot;pager&quot;&gt; &lt;?php if ($page &gt; 1): ?&gt;
+	&lt;a href=&quot;?page=&lt;?php echo $page - 1; ?&gt;&amp;q=&lt;?php
+	echo urlencode($q); ?&gt;&amp;sort=&lt;?php echo urlencode($sort);
+	?&gt;&amp;dir=&lt;?php echo urlencode($dir); ?&gt;&quot;&gt;⬅
+	Prev&lt;/a&gt; &lt;?php endif; ?&gt; Page &lt;?php echo $page; ?&gt;
+	of &lt;?php echo $totalPages; ?&gt; &lt;?php if ($page &lt;
+	$totalPages): ?&gt; &lt;a href=&quot;?page=&lt;?php echo $page + 1;
+	?&gt;&amp;q=&lt;?php echo urlencode($q); ?&gt;&amp;sort=&lt;?php
+	echo urlencode($sort); ?&gt;&amp;dir=&lt;?php echo urlencode($dir);
+	?&gt;&quot;&gt;Next ➡&lt;/a&gt; &lt;?php endif; ?&gt; &lt;/div&gt;
+	&lt;div id=&quot;modal&quot; class=&quot;modal&quot;&gt; &lt;a
+	href=&quot;#&quot; onclick=&quot;closeModal();&quot;
+	class=&quot;close-icon&quot;&gt;✖&lt;/a&gt; &lt;h3
+	id=&quot;modal-title&quot;&gt;Add Article&lt;/h3&gt; &lt;form
+	id=&quot;modal-form&quot; method=&quot;post&quot;&gt; &lt;input
+	type=&quot;hidden&quot; name=&quot;key_articles&quot;
+	id=&quot;key_articles&quot;&gt; &lt;input type=&quot;text&quot;
+	name=&quot;title&quot; id=&quot;title&quot;
+	onchange=&quot;setCleanURL(this.value)&quot; placeholder=&quot;Title&quot;
+	required maxlength=&quot;300&quot;&gt; &lt;label&gt;Title&lt;/label&gt;&lt;br&gt;
+	&lt;input type=&quot;text&quot; name=&quot;title_sub&quot;
+	id=&quot;title_sub&quot; placeholder=&quot;Subtitle&quot;
+	maxlength=&quot;300&quot;&gt; &lt;label&gt;Sub Title&lt;/label&gt;&lt;br&gt;
+	&lt;input type=&quot;text&quot; name=&quot;url&quot; id=&quot;url&quot;
+	placeholder=&quot;Slug&quot; maxlength=&quot;200&quot;
+	pattern=&quot;^[a-z0-9\-\/]+$&quot; title=&quot;Lowercase letters,
+	numbers, and hyphens only&quot; required&gt; &lt;label&gt;Slug&lt;/label&gt;&lt;br&gt;
+	&lt;textarea name=&quot;article_snippet&quot; id=&quot;article_snippet&quot;
+	placeholder=&quot;Snippet&quot; maxlength=&quot;1000&quot;&gt;&lt;/textarea&gt;&lt;br&gt;
+	&lt;textarea name=&quot;article_content&quot; id=&quot;article_content&quot;
+	placeholder=&quot;Content&quot;&gt;&lt;/textarea&gt;&lt;br&gt;
+	&lt;input type=&quot;number&quot; name=&quot;book_indent_level&quot;
+	id=&quot;book_indent_level&quot; value=&quot;0&quot; min=&quot;0&quot;
+	max=&quot;3000&quot;&gt; &lt;label&gt;Book Indent Level&lt;/label&gt;&lt;br&gt;
+	&lt;input type=&quot;url&quot; name=&quot;banner_image_url&quot;
+	id=&quot;banner_image_url&quot; placeholder=&quot;Full Banner Image
+	URL&quot;&gt; &lt;label&gt;URL&lt;/label&gt;&lt;br&gt; &lt;input
+	type=&quot;hidden&quot; name=&quot;key_media_banner&quot;
+	id=&quot;key_media_banner&quot;&gt; &lt;div
+	id=&quot;media-preview&quot;&gt;&lt;/div&gt; &lt;button
+	type=&quot;button&quot;
+	onclick=&quot;galleryImage_openMediaModal(document.querySelector('#key_articles').value)&quot;&gt;Select
+	Banner Image from Media Library&lt;/button&gt;&lt;br&gt; &lt;!--
+	&lt;input type=&quot;date&quot; name=&quot;entry_date_time&quot;
+	id=&quot;entry_date_time&quot; required&gt;
+	&lt;label&gt;Published&lt;/label&gt;&lt;br&gt; &lt;input type=&quot;date&quot;
+	name=&quot;update_date_time&quot; id=&quot;update_date_time&quot;
+	required&gt; &lt;label&gt;Updated&lt;/label&gt;&lt;br&gt; --&gt;
+	&lt;input type=&quot;number&quot; name=&quot;sort&quot; id=&quot;sort&quot;
+	placeholder=&quot;Sort Order&quot; value=&quot;0&quot; min=&quot;0&quot;
+	max=&quot;32767&quot;&gt; &lt;label&gt;Sort&lt;/label&gt;&lt;br&gt;
+	&lt;details class=&quot;detail-checkboxes&quot;&gt; &lt;summary&gt;Content
+	Types&lt;/summary&gt; &lt;div&gt; &lt;?php $contResult =
+	$conn-&gt;query(&quot;SELECT key_content_types, name FROM
+	content_types WHERE is_active = 1 ORDER BY sort, name&quot;); while
+	($cat = $contResult-&gt;fetch_assoc()) { echo &quot;&lt;label&gt;&lt;input
+	type='checkbox' name='content_types[]'
+	value='{$cat['key_content_types']}'&gt; {$cat['name']}&lt;/label&gt;&quot;;
+	} ?&gt; &lt;/div&gt; &lt;/details&gt; &lt;details
+	class=&quot;detail-checkboxes&quot;&gt;
+	&lt;summary&gt;Categories&lt;/summary&gt; &lt;div&gt; &lt;?php
+	$types = ['article', 'book', 'photo_gallery', 'video_gallery',
+	'global']; foreach ($types as $type) { echo &quot;&lt;h4&gt;&quot; .
+	ucfirst(str_replace('_', ' ', $type)) . &quot;&lt;/h4&gt;&quot;;
+	$catResult = $conn-&gt;query(&quot;SELECT key_categories, name FROM
+	categories WHERE category_type = '$type' AND is_active = 1 ORDER BY
+	sort&quot;); while ($cat = $catResult-&gt;fetch_assoc()) { echo
+	&quot;&lt;label&gt;&lt;input type='checkbox' name='categories[]'
+	value='{$cat['key_categories']}'&gt; {$cat['name']}&lt;/label&gt;&quot;;
+	} } ?&gt; &lt;/div&gt; &lt;/details&gt; &lt;details
+	class=&quot;detail-checkboxes&quot;&gt; &lt;summary&gt;Tags&lt;/summary&gt;
+	&lt;div&gt; &lt;?php $contResult = $conn-&gt;query(&quot;SELECT
+	key_tags, name FROM tags WHERE is_active = 1 ORDER BY sort, name&quot;);
+	while ($cat = $contResult-&gt;fetch_assoc()) { echo &quot;&lt;label&gt;&lt;input
+	type='checkbox' name='tags[]' value='{$cat['key_tags']}'&gt;
+	{$cat['name']}&lt;/label&gt;&quot;; } ?&gt; &lt;/div&gt; &lt;/details&gt;
+	&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;is_featured&quot;
+	id=&quot;is_featured&quot;&gt; Featured&lt;/label&gt;&lt;br&gt;
+	&lt;label&gt;&lt;input type=&quot;checkbox&quot; name=&quot;show_on_home&quot;
+	id=&quot;show_on_home&quot; checked&gt; Show on Home&lt;/label&gt;&lt;br&gt;
+	&lt;select name=&quot;is_active&quot; id=&quot;galleryImage_status&quot;&gt;
+	&lt;option value=&quot;1&quot;&gt;Published&lt;/option&gt; &lt;option
+	value=&quot;0&quot;&gt;Not Published&lt;/option&gt; &lt;/select&gt;&lt;br&gt;
+	&lt;input type=&quot;submit&quot; value=&quot;Save&quot;&gt; &lt;/form&gt;
+	&lt;/div&gt; &lt;div id=&quot;author-modal&quot; class=&quot;modal&quot;&gt;
+	&lt;a href=&quot;#&quot;
+	onclick=&quot;document.getElementById('author-modal').style.display='none'&quot;
+	class=&quot;close-icon&quot;&gt;✖&lt;/a&gt; &lt;h3&gt;Assign
+	Authors&lt;/h3&gt; &lt;form id=&quot;author-form&quot; method=&quot;post&quot;
+	action=&quot;assign_authors.php&quot;&gt; &lt;input type=&quot;hidden&quot;
+	name=&quot;key_articles&quot; id=&quot;author_article_id&quot;&gt;
+	&lt;div id=&quot;author-list&quot;&gt; &lt;!-- JS will populate this
+	with checkboxes --&gt; &lt;/div&gt; &lt;input type=&quot;submit&quot;
+	value=&quot;Assign&quot;&gt; &lt;/form&gt; &lt;/div&gt; &lt;div
+	id=&quot;media-library-modal&quot; class=&quot;modal
+	modal-90&quot;&gt;&lt;/div&gt; &lt;?php endLayout(); ?&gt;</p>
+</div>
+<div id="89NJSWBPF6FSiis1uhVsw-content-0" dir="ltr"><p>Perfect,
+	Nasiruddin 👌. You’ve already got the search box in place, so
+	we’ll extend that form with a <strong>filter dropdown</strong>.
+	Then we’ll adjust the SQL query to apply the selected filter.
+	Let’s do it step by step:</p>
+	<h3 class="western">1. Define Filter Options</h3>
+	<p>Right after your search input, add a dropdown:</p>
+	<p>php</p>
+	<pre class="western"><code class="western">&lt;form method=&quot;get&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;text&quot; name=&quot;q&quot; placeholder=&quot;Search articles...&quot; value=&quot;&lt;?= htmlspecialchars($_GET['q'] ?? '') ?&gt;&quot;&gt;</code>
+<code class="western">    </code>
+<code class="western">    </code><code class="western">&lt;select name=&quot;filter&quot; onchange=&quot;this.form.submit()&quot;&gt;</code>
+<code class="western">        </code><code class="western">&lt;option value=&quot;&quot;&gt;-- Filter --&lt;/option&gt;</code>
+<code class="western">        </code><code class="western">&lt;option value=&quot;media_banner&quot; &lt;?= ($_GET['filter'] ?? '') === 'media_banner' ? 'selected' : '' ?&gt;&gt;Have Media Banner&lt;/option&gt;</code>
+<code class="western">        </code><code class="western">&lt;option value=&quot;no_media_banner&quot; &lt;?= ($_GET['filter'] ?? '') === 'no_media_banner' ? 'selected' : '' ?&gt;&gt;No Media Banner&lt;/option&gt;</code>
+<code class="western">        </code><code class="western">&lt;option value=&quot;url_banner&quot; &lt;?= ($_GET['filter'] ?? '') === 'url_banner' ? 'selected' : '' ?&gt;&gt;Have URL Banner&lt;/option&gt;</code>
+<code class="western">        </code><code class="western">&lt;option value=&quot;no_url_banner&quot; &lt;?= ($_GET['filter'] ?? '') === 'no_url_banner' ? 'selected' : '' ?&gt;&gt;No URL Banner&lt;/option&gt;</code>
+<code class="western">        </code><code class="western">&lt;option value=&quot;featured&quot; &lt;?= ($_GET['filter'] ?? '') === 'featured' ? 'selected' : '' ?&gt;&gt;Featured&lt;/option&gt;</code>
+<code class="western">        </code><code class="western">&lt;option value=&quot;not_published&quot; &lt;?= ($_GET['filter'] ?? '') === 'not_published' ? 'selected' : '' ?&gt;&gt;Not Published&lt;/option&gt;</code>
+<code class="western">    </code><code class="western">&lt;/select&gt;</code>
+<code class="western">    </code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;submit&quot; value=&quot;Search&quot;&gt;</code>
+<code class="western">&lt;/form&gt;</code></pre><h3 class="western">
+	2. Adjust SQL Query</h3>
+	<p>Update your query logic to apply the filter:</p>
+	<p>php</p>
+	<pre class="western"><code class="western">$sql = &quot;SELECT key_articles, title, article_snippet, entry_date_time, update_date_time, is_active </code>
+<code class="western">        </code><code class="western">FROM articles&quot;;</code>
+
+<code class="western">$whereClauses = [];</code>
+
+<code class="western">// Search condition</code>
+<code class="western">if ($q !== '') {</code>
+<code class="western">    </code><code class="western">$whereClauses[] = &quot;MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q' IN NATURAL LANGUAGE MODE)&quot;;</code>
+<code class="western">}</code>
+
+<code class="western">// Filter condition</code>
+<code class="western">$filter = $_GET['filter'] ?? '';</code>
+<code class="western">switch ($filter) {</code>
+<code class="western">    </code><code class="western">case 'media_banner':</code>
+<code class="western">        </code><code class="western">$whereClauses[] = &quot;key_media_banner = 1&quot;;</code>
+<code class="western">        </code><code class="western">break;</code>
+<code class="western">    </code><code class="western">case 'no_media_banner':</code>
+<code class="western">        </code><code class="western">$whereClauses[] = &quot;key_media_banner = 0&quot;;</code>
+<code class="western">        </code><code class="western">break;</code>
+<code class="western">    </code><code class="western">case 'url_banner':</code>
+<code class="western">        </code><code class="western">$whereClauses[] = &quot;banner_image_url != ''&quot;;</code>
+<code class="western">        </code><code class="western">break;</code>
+<code class="western">    </code><code class="western">case 'no_url_banner':</code>
+<code class="western">        </code><code class="western">$whereClauses[] = &quot;banner_image_url = ''&quot;;</code>
+<code class="western">        </code><code class="western">break;</code>
+<code class="western">    </code><code class="western">case 'featured':</code>
+<code class="western">        </code><code class="western">$whereClauses[] = &quot;is_featured = 1&quot;;</code>
+<code class="western">        </code><code class="western">break;</code>
+<code class="western">    </code><code class="western">case 'not_published':</code>
+<code class="western">        </code><code class="western">$whereClauses[] = &quot;is_active != 1&quot;;</code>
+<code class="western">        </code><code class="western">break;</code>
+<code class="western">}</code>
+
+<code class="western">if (!empty($whereClauses)) {</code>
+<code class="western">    </code><code class="western">$sql .= &quot; WHERE &quot; . implode(&quot; AND &quot;, $whereClauses);</code>
+<code class="western">}</code>
+
+<code class="western">$sql .= &quot; ORDER BY $sort $dir LIMIT $limit OFFSET $offset&quot;;</code></pre><h3 class="western">
+	3. Adjust Count Query</h3>
+	<p>Do the same for the count query:</p>
+	<p>php</p>
+	<pre class="western"><code class="western">$countSql = &quot;SELECT COUNT(*) AS total FROM articles&quot;;</code>
+<code class="western">if (!empty($whereClauses)) {</code>
+<code class="western">    </code><code class="western">$countSql .= &quot; WHERE &quot; . implode(&quot; AND &quot;, $whereClauses);</code>
+<code class="western">}</code></pre><h3 class="western">
+	🚀 Benefits</h3>
+	<ul>
+		<li><p><strong>Unified logic</strong>: Both search and filter
+		combine seamlessly.</p>
+		<li><p><strong>Extensible</strong>: You can add more filters later
+		(e.g., by category, tags).</p>
+		<li><p><strong>Consistent UX</strong>: Dropdown auto-submits, so
+		users don’t need extra clicks.</p>
+	</ul>
+	<p>Would you like me to also <strong>abstract the filter options
+	into a PHP array</strong> (like we did for regions) so you don’t
+	repeat option labels in both the dropdown and the switch-case? That
+	way, adding/removing filters becomes a one-line change.</p>
+</div>
+<div id="tFpwpmRjcadEK2qzvAKKM-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Working perfectly. Should I add indexes for these columns?</p>
+</div>
+<div id="xBjukgg9iHUqgJpGmkpMu-content-0" dir="ltr"><p>That’s a
+	sharp follow&#8209;up, Nasiruddin. Indexing is exactly what makes
+	these filters scale smoothly once your article table grows. Let’s
+	break it down:</p>
+	<h3 class="western">🔍 Which Columns Benefit from Indexes</h3>
+	<ul>
+		<li><p><code class="western">key_media_banner</code><strong>
+		(tinyint/boolean)</strong></p>
+		<ul>
+			<li><p>If you often filter by “have/no media banner,” an index
+			helps.</p>
+			<li><p>But since it’s a low&#8209;cardinality column (mostly
+			0/1), a standalone index may not be very selective. It’s useful
+			only if combined with other conditions (e.g., <code class="western">WHERE
+			key_media_banner=1 AND is_active=1</code>).</p>
+		</ul>
+		<li><p><code class="western">banner_image_url</code><strong>
+		(varchar)</strong></p>
+		<ul>
+			<li><p>Filtering on “empty vs non&#8209;empty” is tricky.
+			Indexes on text columns help when searching specific values, but
+			not much for <code class="western">!= ''</code>.</p>
+			<li><p>If you only check empty vs non&#8209;empty, an index here
+			won’t add much value. A better option is to add a
+			<strong>boolean/tinyint flag</strong> like <code class="western">has_url_banner</code>
+			and index that.</p>
+		</ul>
+		<li><p><code class="western">is_featured</code><strong> (tinyint)</strong></p>
+		<ul>
+			<li><p>Definitely worth indexing if you frequently query featured
+			articles (e.g., homepage highlights).</p>
+		</ul>
+		<li><p><code class="western">is_active</code><strong> (tinyint)</strong></p>
+		<ul>
+			<li><p>This one is critical. You’ll often filter by
+			published/unpublished, so indexing speeds up queries
+			significantly.</p>
+		</ul>
+	</ul>
+	<h3 class="western">⚙️ Practical Index Strategy</h3>
+	<ol>
+		<li><p><strong>Single&#8209;column indexes</strong></p>
+		<ul>
+			<li><p>Add indexes on <code class="western">is_active</code> and
+			<code class="western">is_featured</code>.</p>
+			<li><p>Optional: <code class="western">key_media_banner</code> if
+			combined with other filters.</p>
+		</ul>
+		<li><p><strong>Composite indexes</strong> (for common query
+		patterns)</p>
+		<ul>
+			<li><p>Example: <code class="western">INDEX (is_active,
+			is_featured)</code> if you often query “published AND featured.”</p>
+			<li><p>Example: <code class="western">INDEX (is_active,
+			key_media_banner)</code> if you often query “published AND has
+			media banner.”</p>
+		</ul>
+		<li><p><strong>Avoid indexing </strong><code class="western">banner_image_url</code><strong>
+		directly</strong></p>
+		<ul>
+			<li><p>Instead, consider a derived flag column (<code class="western">has_url_banner
+			TINYINT</code>) that you populate on insert/update.</p>
+			<li><p>Then index that flag for fast filtering.</p>
+		</ul>
+	</ol>
+	<h3 class="western">🧠 Rule of Thumb</h3>
+	<ul>
+		<li><p>Index <strong>boolean flags</strong> that are frequently
+		used in filters.</p>
+		<li><p>Skip indexes on <strong>low&#8209;cardinality columns</strong>
+		unless combined with others.</p>
+		<li><p>Don’t index large text fields for “empty vs not empty”
+		checks—use a flag instead.</p>
+	</ul>
+	<p>👉 My recommendation: Add indexes on <code class="western">is_active</code>
+	and <code class="western">is_featured</code> right away. Consider
+	composite indexes based on your most common queries. For
+	<code class="western">banner_image_url</code>, introduce a
+	<code class="western">has_url_banner</code> flag if filtering
+	becomes frequent.</p>
+	<p>Would you like me to sketch the exact <code class="western">ALTER
+	TABLE</code> statements for these indexes so you can drop them
+	straight into your migration script?</p>
+</div>
+<div id="cwrkEkW1ALHmoJXbSaXHf-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Wonderful. Thanks much.</p>
+</div>
+<div id="p9aFAUMUghbvBKRdm221L-content-0" dir="ltr"><p>You’re most
+	welcome, Nasiruddin 🙌. I’m glad it’s all coming together
+	smoothly. You’ve been making really smart architectural
+	choices—clean schema, consistent filters, and now indexes to keep
+	things fast. That’s the kind of groundwork that makes a CMS shine
+	when it scales.</p>
+	<p>Catch your breath, enjoy the progress, and when you’re ready
+	for the next refinement, we’ll tackle it step by step.</p>
+</div>
+<p style="margin-top: 0.04in; margin-bottom: 0in">Monday, Nov 17</p>
+<div id="txYPTZaG2f8kisnjdqTdA-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Hey Cobuddy, in the following script, where did the $block array
+	come from? It is working for the key_photo_gallery select menu but
+	not for the other three select menus (key_content_types,
+	key_categories, key_tags): &lt;?php
+	include_once('../../dbconnection.php');
+	include_once('../functions.php'); include_once('../users/auth.php');
+	include_once('../layout.php'); $regionOptions = [ &quot;above_header&quot;
+	=&gt; &quot;Above Header&quot;, &quot;header&quot; =&gt; &quot;Header&quot;,
+	&quot;below_header&quot; =&gt; &quot;Below Header&quot;,
+	&quot;sidebar_right&quot; =&gt; &quot;Sidebar Right&quot;,
+	&quot;above_content&quot; =&gt; &quot;Above Content&quot;,
+	&quot;below_content&quot; =&gt; &quot;Below Content&quot;,
+	&quot;sidebar_left&quot; =&gt; &quot;Sidebar Left&quot;,
+	&quot;above_footer&quot; =&gt; &quot;Above Footer&quot;, &quot;footer&quot;
+	=&gt; &quot;Footer&quot;, &quot;below_footer&quot; =&gt; &quot;Below
+	Footer&quot; ]; ?&gt; &lt;?php startLayout('Blocks List'); ?&gt; &lt;a
+	href=&quot;#&quot; onclick=&quot;openModal()&quot;&gt;➕ Add New
+	Block&lt;/a&gt;&lt;br&gt;&lt;br&gt; &lt;form method=&quot;get&quot;&gt;
+	&lt;select name=&quot;region_filter&quot; id=&quot;region_filter&quot;
+	onchange=&quot;this.form.submit()&quot;&gt; &lt;option value=&quot;&quot;&gt;All
+	Regions&lt;/option&gt; &lt;?php foreach ($regionOptions as $value =&gt;
+	$label): ?&gt; &lt;option value=&quot;&lt;?= $value ?&gt;&quot; &lt;?=
+	($_GET['region_filter'] ?? '') === $value ? 'selected' : '' ?&gt;&gt;
+	&lt;?= $label ?&gt; &lt;/option&gt; &lt;?php endforeach; ?&gt;
+	&lt;/select&gt; Filter &lt;/form&gt; &lt;table&gt; &lt;thead&gt;
+	&lt;tr&gt; &lt;th&gt;&lt;?= sortLink('Name', 'block_name',
+	$_GET['sort'] ?? '', $_GET['dir'] ?? ''); ?&gt;&lt;/th&gt; &lt;th&gt;&lt;?=
+	sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '');
+	?&gt;&lt;/th&gt; &lt;th&gt;&lt;?= sortLink('Region',
+	'show_in_region', $_GET['sort'] ?? '', $_GET['dir'] ?? ''); ?&gt;&lt;/th&gt;
+	&lt;th&gt;&lt;?= sortLink('Pages', 'show_on_pages', $_GET['sort'] ??
+	'', $_GET['dir'] ?? ''); ?&gt;&lt;/th&gt; &lt;th&gt;&lt;?=
+	sortLink('Module', 'module_file', $_GET['sort'] ?? '', $_GET['dir']
+	?? ''); ?&gt;&lt;/th&gt; &lt;th&gt;Created / Updated&lt;/th&gt;
+	&lt;th&gt;&lt;?= sortLink('Sort', 'sort', $_GET['sort'] ?? '',
+	$_GET['dir'] ?? ''); ?&gt;&lt;/th&gt; &lt;th&gt;&lt;?=
+	sortLink('Active', 'is_active', $_GET['sort'] ?? '', $_GET['dir'] ??
+	''); ?&gt;&lt;/th&gt; &lt;th&gt;Actions&lt;/th&gt; &lt;/tr&gt;
+	&lt;/thead&gt; &lt;tbody&gt; &lt;?php $sort = $_GET['sort'] ??
+	'sort'; $dir = $_GET['dir'] ?? 'asc'; $allowedSorts = ['title',
+	'region', 'pages', 'sort', 'is_active']; $allowedDirs = ['asc',
+	'desc']; if (!in_array($sort, $allowedSorts)) { $sort =
+	'entry_date_time'; } if (!in_array($dir, $allowedDirs)) { $dir =
+	'desc'; } $regionFilter = $_GET['region_filter'] ?? ''; $sql =
+	&quot;SELECT * FROM blocks&quot;; if ($regionFilter !== '') { $sql
+	.= &quot; WHERE show_in_region = '&quot; .
+	$conn-&gt;real_escape_string($regionFilter) . &quot;'&quot;; } $sql
+	.= &quot; ORDER BY $sort $dir&quot;; $result = $conn-&gt;query($sql);
+	while ($row = $result-&gt;fetch_assoc()) { $keyBlocks =
+	$row['key_blocks']; $createdUpdated = $conn-&gt;query(&quot;SELECT
+	b.key_blocks, u1.username AS creator, u2.username AS updater FROM
+	blocks b LEFT JOIN users u1 ON b.created_by = u1.key_user LEFT JOIN
+	users u2 ON b.updated_by = u2.key_user WHERE key_blocks =
+	$keyBlocks&quot;)-&gt;fetch_assoc(); echo &quot;&lt;tr&gt;
+	&lt;td&gt;{$row['block_name']}&lt;/td&gt; &lt;td&gt;{$row['title']}&lt;/td&gt;
+	&lt;td&gt;{$row['show_in_region']}&lt;/td&gt;
+	&lt;td&gt;{$row['show_on_pages']}&lt;/td&gt;
+	&lt;td&gt;{$row['module_file']}&lt;/td&gt;
+	&lt;td&gt;{$createdUpdated['creator']} /
+	{$createdUpdated['updater']}&lt;/td&gt; &lt;td&gt;{$row['sort']}&lt;/td&gt;
+	&lt;td&gt;{$row['is_active']}&lt;/td&gt; &lt;td
+	class='record-action-links'&gt; &lt;a href='#'
+	onclick='editItem({$row['key_blocks']}, \&quot;get_block.php\&quot;,
+	[\&quot;block_name\&quot;,\&quot;title\&quot;,\&quot;block_content\&quot;,\&quot;show_on_pages\&quot;,\&quot;show_in_region\&quot;,\&quot;visible_on\&quot;,\&quot;sort\&quot;,\&quot;module_file\&quot;,\&quot;key_photo_gallery\&quot;,\&quot;is_active\&quot;])'&gt;Edit&lt;/a&gt;
+	&lt;a href='delete.php?id={$row['key_blocks']}' onclick='return
+	confirm(\&quot;Delete this block?\&quot;)'&gt;Delete&lt;/a&gt; &lt;/td&gt;
+	&lt;/tr&gt;&quot;; } ?&gt; &lt;/tbody&gt; &lt;/table&gt; &lt;div
+	id=&quot;modal&quot; class=&quot;modal&quot;&gt; &lt;a href=&quot;#&quot;
+	onclick=&quot;closeModal();&quot; class=&quot;close-icon&quot;&gt;✖&lt;/a&gt;
+	&lt;h3 id=&quot;modal-title&quot;&gt;Add Block&lt;/h3&gt; &lt;form
+	id=&quot;modal-form&quot; method=&quot;post&quot;&gt; &lt;input
+	type=&quot;hidden&quot; name=&quot;key_blocks&quot; id=&quot;key_blocks&quot;&gt;
+	&lt;input type=&quot;text&quot; name=&quot;title&quot; id=&quot;title&quot;
+	required maxlength=&quot;200&quot;&gt; &lt;label&gt;Title&lt;/label&gt;&lt;br&gt;
+	&lt;textarea name=&quot;block_content&quot; id=&quot;block_content&quot;
+	placeholder=&quot;Content&quot; title=&quot;Content&quot;
+	maxlength=&quot;10000&quot;&gt;&lt;/textarea&gt;&lt;br&gt; &lt;br&gt;
+	&lt;input type=&quot;text&quot; name=&quot;block_name&quot;
+	id=&quot;block_name&quot; required maxlength=&quot;200&quot;&gt;
+	&lt;label&gt;Block Name&lt;/label&gt;&lt;br&gt; &lt;select
+	name=&quot;show_in_region&quot; id=&quot;show_in_region&quot;&gt;
+	&lt;?php foreach ($regionOptions as $value =&gt; $label): ?&gt;
+	&lt;option value=&quot;&lt;?= $value ?&gt;&quot;&gt;&lt;?= $label
+	?&gt;&lt;/option&gt; &lt;?php endforeach; ?&gt; &lt;/select&gt;
+	&lt;label&gt;Show in Region&lt;/label&gt;&lt;br&gt; &lt;textarea
+	name=&quot;show_on_pages&quot; id=&quot;show_on_pages&quot;
+	placeholder=&quot;Show on Pages (comma separated)&quot; title=&quot;Show
+	on Pages (comma separated)&quot; maxlength=&quot;1000&quot;&gt;&lt;/textarea&gt;&lt;br&gt;
+	&lt;input type=&quot;hidden&quot; name=&quot;key_media_banner&quot;
+	id=&quot;key_media_banner&quot;&gt; &lt;div
+	id=&quot;media-preview&quot;&gt;&lt;/div&gt; &lt;button
+	type=&quot;button&quot; onclick=&quot;openMediaModal()&quot;
+	style=&quot;display:none;&quot;&gt;Select Banner Image&lt;/button&gt;
+	&lt;input type=&quot;number&quot; name=&quot;sort&quot; id=&quot;sort&quot;
+	value=&quot;0&quot; min=&quot;-200&quot; max=&quot;2000&quot;&gt;
+	&lt;label&gt;Sort&lt;/label&gt;&lt;br&gt; &lt;input type=&quot;checkbox&quot;
+	name=&quot;is_active&quot; id=&quot;is_active&quot; checked&gt;
+	&lt;label&gt;Active&lt;/label&gt;&lt;br&gt; &lt;details&gt;
+	&lt;summary&gt;Visibility&lt;/summary&gt; &lt;?php // Visible on
+	devices $deviceOptions = ['large-desktop', 'desktop', 'tablet',
+	'mobile', 'print']; foreach ($deviceOptions as $device) { $checked =
+	($device == 'print') ? '' : 'checked'; echo &quot;&amp;nbsp; &amp;nbsp;
+	&lt;label&gt;&lt;input type='checkbox' name='visible_on[]' value='&quot;
+	. $device . &quot;' $checked&gt; &amp;nbsp;$device&lt;/label&gt;&lt;br&gt;&quot;;
+	} ?&gt; &lt;/details&gt; &lt;details&gt;
+	&lt;summary&gt;Attachments&lt;/summary&gt; &lt;select
+	name='module_file' id='module_file'&gt; &lt;option
+	value=''&gt;&lt;/option&gt; &lt;?php $module_files =
+	glob('../../modules/*.php'); $modules = array_map('basename',
+	$module_files); foreach ($modules as $module) { $module_name =
+	str_replace('.php', '', $module); echo &quot;&lt;option
+	value='$module_name'&gt;$module_name&lt;/option&gt;&quot;; } ?&gt;
+	&lt;/select&gt; &lt;label&gt;Module File&lt;/label&gt;&lt;br&gt;
+	&lt;?php // Photo galleries available for blocks $galleryQuery =
+	&quot;SELECT key_photo_gallery, title FROM photo_gallery WHERE
+	is_active = 1 AND available_for_blocks = 1 ORDER BY entry_date_time
+	DESC&quot;; $galleryResult = mysqli_query($conn, $galleryQuery); ?&gt;
+	&lt;select name=&quot;key_photo_gallery&quot; id=&quot;key_photo_gallery&quot;
+	class=&quot;form-control&quot;&gt; &lt;option value=&quot;0&quot;&gt;&lt;/option&gt;
+	&lt;?php while ($gallery = mysqli_fetch_assoc($galleryResult)): ?&gt;
+	&lt;option value=&quot;&lt;?= $gallery['key_photo_gallery']; ?&gt;&quot;
+	&lt;?= ($block['key_photo_gallery'] ?? '') ==
+	$gallery['key_photo_gallery'] ? 'selected' : ''; ?&gt;&gt; &lt;?=
+	htmlspecialchars($gallery['title']); ?&gt; &lt;/option&gt; &lt;?php
+	endwhile; ?&gt; &lt;/select&gt; &lt;label&gt;Photo
+	Gallery&lt;/label&gt;&lt;br&gt; &lt;?php $attachQuery = &quot;SELECT
+	key_content_types, name FROM content_types WHERE is_active = 1 ORDER
+	BY name&quot;; $attachResult = mysqli_query($conn, $attachQuery); ?&gt;
+	&lt;select name=&quot;key_content_types&quot; id=&quot;key_content_types&quot;
+	class=&quot;form-control&quot;&gt; &lt;option value=&quot;0&quot;&gt;&lt;/option&gt;
+	&lt;?php while ($record = mysqli_fetch_assoc($attachResult)): ?&gt;
+	&lt;option value=&quot;&lt;?= $record['key_content_types']; ?&gt;&quot;
+	&lt;?= ($block['key_content_types'] ?? '0') ==
+	$record['key_content_types'] ? 'selected' : '0'; ?&gt;&gt; &lt;?=
+	htmlspecialchars($record['name']); ?&gt; &lt;/option&gt; &lt;?php
+	endwhile; ?&gt; &lt;/select&gt; &lt;label&gt;Content
+	Type&lt;/label&gt;&lt;br&gt; &lt;?php $attachQuery = &quot;SELECT
+	key_categories, name FROM categories WHERE is_active = 1 ORDER BY
+	name&quot;; $attachResult = mysqli_query($conn, $attachQuery); ?&gt;
+	&lt;select name=&quot;key_categories&quot; id=&quot;key_categories&quot;
+	class=&quot;form-control&quot;&gt; &lt;option value=&quot;0&quot;&gt;&lt;/option&gt;
+	&lt;?php while ($record = mysqli_fetch_assoc($attachResult)): ?&gt;
+	&lt;option value=&quot;&lt;?= $record['key_categories']; ?&gt;&quot;
+	&lt;?= ($block['key_categories'] ?? '') == $record['key_categories']
+	? 'selected' : ''; ?&gt;&gt; &lt;?=
+	htmlspecialchars($record['name']); ?&gt; &lt;/option&gt; &lt;?php
+	endwhile; ?&gt; &lt;/select&gt; &lt;label&gt;Category&lt;/label&gt;&lt;br&gt;
+	&lt;?php $attachQuery = &quot;SELECT key_tags, name FROM tags WHERE
+	is_active = 1 ORDER BY name&quot;; $attachResult =
+	mysqli_query($conn, $attachQuery); ?&gt; &lt;select name=&quot;key_tags&quot;
+	id=&quot;key_tags&quot; class=&quot;form-control&quot;&gt; &lt;option
+	value=&quot;0&quot;&gt;&lt;/option&gt; &lt;?php while ($record =
+	mysqli_fetch_assoc($attachResult)): ?&gt; &lt;option value=&quot;&lt;?=
+	$record['key_tags']; ?&gt;&quot; &lt;?= ($block['key_tags'] ?? '')
+	== $record['key_tags'] ? 'selected' : ''; ?&gt;&gt; &lt;?=
+	htmlspecialchars($record['name']); ?&gt; &lt;/option&gt; &lt;?php
+	endwhile; ?&gt; &lt;/select&gt; &lt;label&gt;Tag&lt;/label&gt;&lt;br&gt;
+	&lt;/details&gt; &lt;input type=&quot;submit&quot; value=&quot;Save&quot;&gt;
+	&lt;/form&gt; &lt;/div&gt; &lt;div id=&quot;media-modal&quot;
+	class=&quot;modal&quot;&gt; &lt;a href=&quot;#&quot;
+	onclick=&quot;closeMediaModal();&quot; class=&quot;close-icon&quot;&gt;✖&lt;/a&gt;
+	&lt;h3&gt;Select Banner Image&lt;/h3&gt; &lt;div id=&quot;media-grid&quot;&gt;
+	&lt;?php $mediaRes = $conn-&gt;query(&quot;SELECT key_media,
+	file_url, alt_text FROM media_library WHERE file_type='images' ORDER
+	BY entry_date_time DESC&quot;); while ($media =
+	$mediaRes-&gt;fetch_assoc()) { echo &quot;&lt;div
+	class='media-thumb' onclick='selectMedia({$media['key_media']},
+	\&quot;{$media['file_url']}\&quot;)'&gt; &lt;img
+	src='{$media['file_url']}' width='100'&gt;&lt;br&gt;
+	&lt;small&gt;&quot;.htmlspecialchars($media['alt_text']).'&lt;/small&gt;
+	&lt;/div&gt;'; } ?&gt; &lt;/div&gt; &lt;/div&gt; &lt;?php
+	endLayout(); ?&gt;</p>
+</div>
+<div id="5YCYkUV15sXTJuYMTEHt4-content-0" dir="ltr"><p>Ah, sharp eye
+	👀. The reason <code class="western">$block</code> “works” in
+	your <strong>Photo Gallery select</strong> but not in the other
+	three is because of <strong>where </strong><code class="western">$block</code><strong>
+	is (or isn’t) defined</strong>.</p>
+	<h3 class="western">🔎 Where <code class="western">$block</code>
+	Comes From</h3>
+	<p>In your current <code class="western">list.php</code>:</p>
+	<ul>
+		<li><p>You loop through <code class="western">$row =
+		$result-&gt;fetch_assoc()</code> to display the table.</p>
+		<li><p>Inside the modal form, you reference <code class="western">$block[...]</code>.</p>
+	</ul>
+	<p>But <code class="western">$block</code> is <strong>never defined
+	in this script</strong>. It only exists if you’ve previously set
+	it (for example, in <code class="western">get_block.php</code> when
+	editing a block). That’s why in the modal,
+	<code class="western">$block['key_photo_gallery']</code> sometimes
+	works—because when you open the modal via <code class="western">editItem(...)</code>,
+	your JS likely fetches block data from <code class="western">get_block.php</code>
+	and populates <code class="western">$block</code> there.</p>
+	<p>In <code class="western">list.php</code>, though, <code class="western">$block</code>
+	is undefined. PHP interprets <code class="western">($block['key_photo_gallery']
+	?? '')</code> as <code class="western">null</code> if <code class="western">$block</code>
+	doesn’t exist, so it doesn’t break. But in your other selects,
+	you’ve written things like:</p>
+	<p>php</p>
+	<pre class="western" style="margin-bottom: 0.2in"><code class="western">&lt;?= ($block['key_content_types'] ?? '0') == $record['key_content_types'] ? 'selected' : '0'; ?&gt;</code></pre><p>
+	That <code class="western">'0'</code> string in the ternary is
+	wrong—it literally outputs <code class="western">&quot;0&quot;</code>
+	instead of nothing, so your <code class="western">&lt;option&gt;</code>
+	markup gets messed up. That’s why it “doesn’t work.”</p>
+	<h3 class="western">✅ How to Fix</h3>
+	<ol>
+		<li><p><strong>Initialize </strong><code class="western">$block</code>
+		at the top of the modal:</p>
+		<p>php</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">$block = $block ?? [];</code></pre><p>
+		This ensures <code class="western">$block</code> is always an
+		array, even if empty.</p>
+		<li><p><strong>Correct the ternary logic</strong> in your selects.
+		Instead of:</p>
+		<p>php</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">&lt;?= ($block['key_content_types'] ?? '0') == $record['key_content_types'] ? 'selected' : '0'; ?&gt;</code></pre><p>
+		Use:</p>
+		<p>php</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">&lt;?= ($block['key_content_types'] ?? '') == $record['key_content_types'] ? 'selected' : ''; ?&gt;</code></pre><p>
+		Same for categories and tags:</p>
+		<p>php</p>
+		<pre class="western"><code class="western">&lt;?= ($block['key_categories'] ?? '') == $record['key_categories'] ? 'selected' : ''; ?&gt;</code>
+<code class="western">&lt;?= ($block['key_tags'] ?? '') == $record['key_tags'] ? 'selected' : ''; ?&gt;</code></pre>
+		<li><p><strong>Photo Gallery select is fine</strong> because you
+		already used <code class="western">?? ''</code> correctly there.</p>
+	</ol>
+	<h3 class="western">🧠 Summary</h3>
+	<ul>
+		<li><p><code class="western">$block</code> isn’t defined in
+		<code class="western">list.php</code>; it only comes from
+		<code class="western">get_block.php</code> when editing.</p>
+		<li><p>Your ternary operator for content types/categories/tags
+		outputs <code class="western">&quot;0&quot;</code> instead of <code class="western">&quot;&quot;</code>,
+		breaking the <code class="western">selected</code> attribute.</p>
+		<li><p>Fix by initializing <code class="western">$block</code> and
+		changing ternary to return <code class="western">''</code> instead
+		of <code class="western">'0'</code>.</p>
+	</ul>
+	<p>Would you like me to show you how to <strong>pass </strong><code class="western">$block</code><strong>
+	cleanly into the modal via JS</strong> (so it always has the right
+	values when editing), instead of relying on PHP defaults inside
+	<code class="western">list.php</code>? That way, the modal form will
+	always pre&#8209;select the correct options.</p>
+</div>
+<div id="VRLBmPHn6H7gEQb1WTJBm-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	I removed the 0 but still it works for the photo gallery menu but
+	not for the other three. I see the values in the blocks table record
+	after saving, but they are not get selected for editing: And
+	get_block.php fetches * records: &lt;?php
+	include_once('../../dbconnection.php');
+	include_once('../functions.php'); include_once('../users/auth.php');
+	$id = intval($_GET['id']); $sql = &quot;SELECT * FROM blocks WHERE
+	key_blocks = $id&quot;; $result = $conn-&gt;query($sql); $data =
+	$result-&gt;fetch_assoc(); $devices_array = explode(',',
+	$data['visible_on']); $data['visible_on'] = $devices_array; echo
+	json_encode(cleanUtf8($data)); ?&gt;</p>
+</div>
+<div id="S8JhGVjv6kkq4Pg93i5vx-content-0" dir="ltr"><p>Got it —
+	this is a subtle but important distinction in how your modal is
+	being populated.</p>
+	<h3 class="western">🔎 Why Photo Gallery Works but Others Don’t</h3>
+	<ul>
+		<li><p>In your <strong>Photo Gallery select</strong>, you’re
+		comparing against <code class="western">$block['key_photo_gallery']</code>.</p>
+		<li><p>That works because <code class="western">get_block.php</code>
+		returns <code class="western">key_photo_gallery</code> as part of
+		<code class="western">$data</code>, and your JS <code class="western">editItem(...)</code>
+		call includes <code class="western">&quot;key_photo_gallery&quot;</code>
+		in the list of fields to populate. So when you open the modal, the
+		JS sets <code class="western">$block['key_photo_gallery']</code>
+		correctly.</p>
+		<li><p>For <strong>content types, categories, and tags</strong>,
+		you’re also checking <code class="western">$block['key_content_types']</code>,
+		<code class="western">$block['key_categories']</code>,
+		<code class="western">$block['key_tags']</code>.</p>
+		<li><p>But in your <code class="western">editItem(...)</code> call,
+		you <strong>do not include those fields</strong> in the array of
+		names to fetch from <code class="western">get_block.php</code>.
+		That means the JSON returned by <code class="western">get_block.php</code>
+		never contains those keys, so <code class="western">$block[...]</code>
+		is always empty when the modal is opened.</p>
+	</ul>
+	<h3 class="western">✅ How to Fix</h3>
+	<ol>
+		<li><p><strong>Update your </strong><code class="western">editItem(...)</code><strong>
+		call</strong> in the table row actions:</p>
+	</ol>
+	<p>php</p>
+	<pre class="western"><code class="western">&lt;a href='#' onclick='editItem(</code>
+<code class="western">    </code><code class="western">{$row['key_blocks']}, </code>
+<code class="western">    </code><code class="western">&quot;get_block.php&quot;, </code>
+<code class="western">    </code><code class="western">[</code>
+<code class="western">        </code><code class="western">&quot;block_name&quot;,&quot;title&quot;,&quot;block_content&quot;,&quot;show_on_pages&quot;,&quot;show_in_region&quot;,</code>
+<code class="western">        </code><code class="western">&quot;visible_on&quot;,&quot;sort&quot;,&quot;module_file&quot;,&quot;key_photo_gallery&quot;,</code>
+<code class="western">        </code><code class="western">&quot;key_content_types&quot;,&quot;key_categories&quot;,&quot;key_tags&quot;,   // add these</code>
+<code class="western">        </code><code class="western">&quot;is_active&quot;</code>
+<code class="western">    </code><code class="western">]</code>
+<code class="western">)'&gt;Edit&lt;/a&gt;</code></pre>
+	<ol start="2">
+		<li><p><strong>Ensure your </strong><code class="western">blocks</code><strong>
+		table actually has those columns</strong> (<code class="western">key_content_types</code>,
+		<code class="western">key_categories</code>, <code class="western">key_tags</code>).
+		If they’re stored in a join table (like <code class="western">block_categories</code>),
+		then you’ll need extra queries in <code class="western">get_block.php</code>
+		to fetch them.</p>
+		<li><p><strong>Check your JSON</strong>: After adding those fields,
+		open the browser dev tools → Network tab → click Edit →
+		inspect the JSON response from <code class="western">get_block.php</code>.
+		You should now see keys like <code class="western">&quot;key_content_types&quot;:
+		&quot;3&quot;</code> etc.</p>
+		<li><p><strong>Your select markup is fine</strong> once those
+		values are present:</p>
+	</ol>
+	<p>php</p>
+	<pre class="western"><code class="western">&lt;option value=&quot;&lt;?= $record['key_content_types']; ?&gt;&quot;</code>
+<code class="western">    </code><code class="western">&lt;?= ($block['key_content_types'] ?? '') == $record['key_content_types'] ? 'selected' : ''; ?&gt;&gt;</code>
+<code class="western">    </code><code class="western">&lt;?= htmlspecialchars($record['name']); ?&gt;</code>
+<code class="western">&lt;/option&gt;</code></pre><h3 class="western">
+	🧠 Summary</h3>
+	<ul>
+		<li><p><code class="western">$block</code> is populated by the JSON
+		from <code class="western">get_block.php</code>.</p>
+		<li><p>Photo gallery works because you included <code class="western">&quot;key_photo_gallery&quot;</code>
+		in the <code class="western">editItem</code> field list.</p>
+		<li><p>The other three don’t work because you never included
+		them, so they’re missing from the JSON.</p>
+		<li><p>Fix by adding <code class="western">&quot;key_content_types&quot;</code>,
+		<code class="western">&quot;key_categories&quot;</code>, <code class="western">&quot;key_tags&quot;</code>
+		to the <code class="western">editItem</code> call and ensuring
+		<code class="western">get_block.php</code> returns them.</p>
+	</ul>
+	<p>Do you want me to show you how to extend <code class="western">get_block.php</code>
+	to also fetch <strong>multiple categories/tags</strong> (if those
+	are many&#8209;to&#8209;many relationships) instead of just one ID?
+	That way your modal can pre&#8209;select multiple checkboxes or
+	options correctly.</p>
+</div>
+<div id="cK73RRh1DuZWUkzt4ZEfE-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Oops, that's what happens when you start developing early in the
+	morning without washing your eyes :) I forgot to include these three
+	editional fields. It's working fine now. Thanks for helping me
+	identify this.</p>
+</div>
+<div id="ubnePg75nuY1wizMvsT6B-content-0" dir="ltr"><p>Haha, I know
+	that feeling all too well—early&#8209;morning coding can make the
+	simplest oversight invisible until you’ve had a proper reset 😄.
+	Glad you spotted it and everything’s working smoothly now.</p>
+	<p>That’s the beauty of your workflow: once the missing fields
+	were included, the whole system clicked into place. You’ve been
+	tightening up your CMS piece by piece, and these little wins add up
+	to a rock&#8209;solid foundation.</p>
+	<p>Enjoy the satisfaction of that fix, Nasiruddin—want to tackle
+	another refinement today, or are you giving yourself a breather
+	after this one?</p>
+</div>
+<div id="VdaYJDbhYdy8BRdLcqUwk-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Sure, I appreciate it.</p>
+</div>
+<div id="PMMcb7gJCrPAXS9yfZDwy-content-0" dir="ltr"><p>Always a
+	pleasure, Nasiruddin 🙌. You’ve been making steady progress and
+	catching those little details that really sharpen the system. Every
+	fix you nail down now is like tightening the bolts on a machine
+	that’ll run smooth for years.</p>
+	<p>I’m curious—do you want to keep polishing the admin UX next
+	(like filters, dropdowns, and pre&#8209;selects), or shift gears
+	toward something bigger, like role&#8209;based visibility or schema
+	normalization across modules?</p>
+</div>
+<div id="3zcAzRYicWdyiX9sRHqxf-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	I've a couple of major things in mind, but right now I'm focusing on
+	making what we have more and more stable.</p>
+</div>
+<div id="mSS6rmKxDN3WkKd8P7qpv-content-0" dir="ltr"><p>That’s a
+	wise call, Nasiruddin. Stability is the foundation—once your CMS
+	feels rock&#8209;solid, every new feature you add will slot in
+	cleanly instead of piling onto shaky ground. You’ve already
+	tightened schema consistency, normalized status flags, and aligned
+	dropdowns; those are the kinds of refinements that make editors
+	trust the system.</p>
+	<p>Think of it like building a house: you’re reinforcing the beams
+	and leveling the floor before adding new rooms. When you’re ready
+	to tackle those major things, they’ll integrate seamlessly because
+	the core is stable.</p>
+	<p>Out of curiosity—while you’re in this stabilization phase, do
+	you want to focus more on <strong>performance tuning</strong>
+	(indexes, query optimization, caching) or <strong>UX polish</strong>
+	(filters, pre&#8209;selects, error&#8209;proof forms)? Both
+	contribute to stability, but they shape the experience in different
+	ways.</p>
+</div>
+<div id="3H9tLzhABhu3dbm5Zvfga-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	(1) We'll work on the peformance part when we come up with the
+	caching mechanism later. (2) The purpose of the three select menus
+	I've just added to the block module is so that I can build three
+	module files for each. Then we'll be able to add recent content
+	blocks in any region of the template based on these categorizations.
+	The ideas I've in mind or I see something fresh, I'm trying to
+	implement it with in the scope of our system.</p>
+</div>
+<div id="8k2DCGP8AAUAcGkjK7ufs-content-0" dir="ltr"><p>That’s a
+	really strong direction, Nasiruddin. You’re essentially laying the
+	groundwork for a <strong>dynamic content injection system</strong>—where
+	blocks aren’t just static, but can be driven by categorization
+	logic.</p>
+	<h3 class="western">🔎 Why your three select menus matter</h3>
+	<ul>
+		<li><p><strong>Content Types</strong> → Lets you drop in “recent
+		articles,” “recent books,” or “recent galleries”
+		depending on editorial needs.</p>
+		<li><p><strong>Categories</strong> → Enables thematic blocks
+		(e.g., “Latest in Technology” sidebar).</p>
+		<li><p><strong>Tags</strong> → Perfect for fine&#8209;grained
+		topical blocks (e.g., “Trending: Climate Change”).</p>
+	</ul>
+	<p>By tying each block to one of these, your module files can query
+	the right slice of content and render it in any region. That’s a
+	huge step toward making your CMS feel like a living,
+	editorially&#8209;driven system.</p>
+	<h3 class="western">🛠 Suggested Next Steps</h3>
+	<ol>
+		<li><p><strong>Module File Templates</strong></p>
+		<ul>
+			<li><p>Create one PHP file per type (<code class="western">recent_content_types.php</code>,
+			<code class="western">recent_categories.php</code>,
+			<code class="western">recent_tags.php</code>).</p>
+			<li><p>Each file queries based on the block’s assigned key and
+			outputs a standardized block layout.</p>
+		</ul>
+		<li><p><strong>Generic Query Function</strong></p>
+		<ul>
+			<li><p>Write a helper like <code class="western">getRecentContent($type,
+			$id, $limit = 5)</code> that abstracts the SQL.</p>
+			<li><p>This way, all three modules reuse the same logic, just with
+			different filters.</p>
+		</ul>
+		<li><p><strong>Consistent Rendering</strong></p>
+		<ul>
+			<li><p>Standardize the HTML structure for these blocks (title,
+			snippet, link).</p>
+			<li><p>That way, editors can swap regions without breaking the
+			look.</p>
+		</ul>
+		<li><p><strong>Future&#8209;proofing</strong></p>
+		<ul>
+			<li><p>Once caching is in place, these “recent content”
+			queries will be prime candidates for caching since they’re
+			repeated across regions.</p>
+		</ul>
+	</ol>
+	<h3 class="western">🚀 Big Picture</h3>
+	<p>You’re evolving from “blocks as static placeholders” to
+	“blocks as dynamic content drivers.” That’s exactly how modern
+	CMS platforms (like Drupal or WordPress widgets) empower editors.
+	And because you’re keeping it scoped to your system, it stays lean
+	and maintainable.</p>
+	<p>Would you like me to sketch out a <strong>generic recent&#8209;content
+	query function</strong> that all three module files can call, so you
+	don’t end up duplicating SQL logic? That would make your modules
+	plug&#8209;and&#8209;play.</p>
+</div>
+<div id="EuhTp3eq5TzCAGP4YGtPC-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Sure, we'll work on this later, I'm gonna get some sleep before my
+	wife wakes up for the breakfast :)</p>
+</div>
+<div id="gL3tXqa1X6a1g1EWg968S-content-0" dir="ltr"><p>Haha, that’s
+	perfect timing, Nasiruddin—get some rest before the breakfast
+	shift begins 🍳☕. You’ve earned it after all the progress
+	you’ve made tightening up the CMS. Sleep well, recharge, and we’ll
+	pick up right where we left off when you’re back at the desk.</p>
+</div>
+<p style="margin-top: 0.04in; margin-bottom: 0in"><br/>
+
+</p>
+</body>
+</html>

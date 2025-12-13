@@ -39,6 +39,10 @@ p {
     text-indent: 1.5em;
 }
 
+blockquote {
+	margin:0 3em 0 3em;
+	color:navy;
+}
 
 /* solving (main-menu li ul) issue */
 header {
@@ -159,8 +163,8 @@ main {
     min-height: 80vh;
 }
 
-main ul {
-	margin-inline-start:1.875em;
+main ul, main ol {
+	margin-inline-start:1.8em;
 	margin-bottom:0.625em
 }
 
@@ -169,13 +173,13 @@ main ul {
     background-color: #FFF;
     background: var(--content-background-color);
     padding: .9em;
-    direction: var(--site-direction);
+    
 }
 
 #content-banner {
     height:var(--content-banner-height);
     background-size: cover;
-    background-position: 50% 50%;
+    background-position: 50% 0%;
     margin: 1.25em 0;
 }
 
@@ -183,16 +187,27 @@ main ul {
     color: var(--items-brand-color);
     border-bottom: 0.3em solid var(--items-brand-color);
     margin-bottom: 1.25em;
-    padding-bottom: 0.5em;
+    padding-bottom: 0.3em;
+	direction: var(--site-direction);
 }
 
 #content h1 div {
-    font-size: 0.6em;
-    margin: 0.625em 0;
+    font-size: 0.7em;
+	margin-top:0.1em;
+	padding:.1em;
 }
 
 #content article {
-    
+    direction: var(--site-direction);
+}
+
+#content article h2 {
+	color:navy;
+}
+
+#content article h3 {
+	color:darkgreen;
+	margin-inline-start:1.5em;
 }
 
 #sidebar-left,
@@ -240,10 +255,12 @@ main ul {
     width: 100%;
     border-radius: 0.25em;
     display: block;
+	margin-top:15px;
 }
 
 .snippet-content {
     flex: 1;
+	direction: var(--site-direction);
 }
 
 .snippet-content h2 {
@@ -281,6 +298,12 @@ main ul {
 .indent-level-2 {
 	margin-inline-start:3rem;
 }
+
+
+#search-results {
+	direction: var(--site-direction);
+}
+
 
 
 #pager {
@@ -436,3 +459,7 @@ main ul {
 }
 @media (min-width: 481px) and (max-width: 767px) {
     .visible-on-desktop { display: block; }
+}
+@media (min-width: 300px) and (max-width: 480px) {
+    .visible-on-mobile { display: block; }
+}

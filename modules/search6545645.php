@@ -1,5 +1,5 @@
 
-<div class="block">
+<div class="block" style="<?= $css ?>">
 	<form method="get" action="/search" class="search-form">
 		<input type="text" name="q"> &nbsp; 
 		<input type="submit" value="Go">

@@ -1,9 +1,9 @@
 
-<div class="block">
+<div class="block" style="<?= $css ?>">
 	<?php
 	$cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
-	$sql = "SELECT key_tags, name, url FROM tags ORDER BY name ASC LIMIT  " . getSetting('module_total_records');
+	$sql = "SELECT key_tags, name, url FROM tags ORDER BY name ASC LIMIT $number_of_records";
 	$tags = $conn->query($sql);
 	echo "<ul class='category-list'>";
 	while ($c = $tags->fetch_assoc()) {

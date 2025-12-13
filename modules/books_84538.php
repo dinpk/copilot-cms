@@ -1,9 +1,9 @@
 
-<div class="block">
+<div class="block" style="<?= $css ?>">
 	<?php
 	$cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
-	$sql = "SELECT key_books, title, url FROM books ORDER BY entry_date_time DESC LIMIT  " . getSetting('module_total_records');
+	$sql = "SELECT key_books, title, url FROM books ORDER BY entry_date_time DESC LIMIT $number_of_records";
 	$books = $conn->query($sql);
 	echo "<ul class='category-list'>";
 	while ($c = $books->fetch_assoc()) {

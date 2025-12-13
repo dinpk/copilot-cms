@@ -126,5 +126,12 @@ function firstWords($text, $limit = 15) {
 	return implode(' ', array_slice(explode(' ', strip_tags($text)), 0, $limit));
 }
 
+function removeDigits($input) {
+	return preg_replace('/\d+/', '', $input);
+}
+
+function titleCase($str) {
+	return ucwords(strtolower($str));
+}
 
 ?>

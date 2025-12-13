@@ -168,6 +168,10 @@ function editItem(id, endpoint, fields) {
 				document.getElementById('show_on_home').checked = (data.show_on_home === '1');
 			}
 
+			if (document.getElementById('is_dynamic')) {
+				document.getElementById('is_dynamic').checked = (data.is_dynamic === '1');
+			}
+
 			if (document.getElementById('is_active')) {
 				document.getElementById('is_active').checked = (data.is_active === '1');
 			}
@@ -221,20 +225,73 @@ function deleteImage(imageId, id) {
 
 // --------------------- Article Author Assignment Modal
 
-function openAuthorModal(articleId) {
-	document.getElementById('author_article_id').value = articleId;
-	fetch('get_authors.php?article_id=' + articleId)
-	.then(res => res.json())
-	.then(data => {
-		let html = '';
-		data.authors.forEach(author => {
-		const checked = data.assigned.includes(author.key_authors) ? 'checked' : '';
-		html += `<label><input type="checkbox" name="author_ids[]" value="${author.key_authors}" ${checked}> ${author.name}</label><br>`;
+function openAuthorModal(articleId, articleTitle) {
+  document.getElementById('author_article_id').value = articleId;
+  document.getElementById('author-modal').style.display = 'block';
+  document.getElementById('author-article-title').textContent = articleTitle;
+  
+  // initial load: show already assigned authors
+  fetch('get_authors.php?article_id=' + articleId)
+    .then(res => res.json())
+    .then(data => {
+      let html = '';
+      data.assigned.forEach(a => {
+        html += `
+          <div class="author-item">
+            <label>
+              <input type="checkbox" name="author_ids[]" value="${a.key_authors}" checked>
+              ${a.name}
+            </label>
+            <input type="text" name="work_labels[${a.key_authors}]" list="work-labels" value="${a.article_work_label}" placeholder="Work label">
+          </div>
+        `;
+      });
+      document.getElementById('author-list').innerHTML = html;
+    });
+
+  // attach search handler
+	document.getElementById('author-search').oninput = function() {
+	  const query = this.value;
+	  fetch('get_authors.php?article_id=' + articleId + '&search=' + encodeURIComponent(query))
+		.then(res => res.json())
+		.then(data => {
+		  let html = '';
+
+		  // Always show assigned authors first
+		  data.assigned.forEach(a => {
+			html += `
+			  <div class="author-item">
+				<label>
+				  <input type="checkbox" name="author_ids[]" value="${a.key_authors}" checked>
+				  ${a.name}
+				</label>
+				<input type="text" name="work_labels[${a.key_authors}]" list="work-labels" value="${a.article_work_label}" placeholder="Work label">
+			  </div>
+			`;
+		  });
+
+		  // Then show search results, skipping ones already assigned
+		  data.authors.forEach(author => {
+			const assigned = data.assigned.find(a => a.key_authors == author.key_authors);
+			if (assigned) return; // skip duplicates
+
+			html += `
+			  <div class="author-item">
+				<label>
+				  <input type="checkbox" name="author_ids[]" value="${author.key_authors}">
+				  ${author.name}
+				</label>
+				<input type="text" name="work_labels[${author.key_authors}]" list="work-labels" placeholder="Work label">
+			  </div>
+			`;
+		  });
+
+		  document.getElementById('author-list').innerHTML = html;
 		});
-		document.getElementById('author-list').innerHTML = html;
-		document.getElementById('author-modal').style.display = 'block';
-	});
+	};
+
 }
+
 
 function closeAuthorModal() {
 	document.getElementById('author-modal').style.display = 'none';

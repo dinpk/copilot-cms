@@ -101,6 +101,7 @@ while ($g = $groupResult->fetch_assoc()) {
 			<option value="css_colors">CSS Colors</option>
 			<option value="media_library">Media Library</option>
 			<option value="general">General</option>
+			<option value="cache">Cache</option>
 		</select><br>
 
 		<label>Type</label><br>

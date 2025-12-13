@@ -1,12 +1,12 @@
 
-<div class="block">
+<div class="block" style="<?= $css ?>">
 	<?php
 	$sql = "SELECT a.*, m.file_url_thumbnail AS banner
 			FROM articles a 
 			LEFT JOIN media_library m ON a.key_media_banner = m.key_media
 			WHERE a.is_active = 1 AND a.is_featured = 1 
-			ORDER BY sort 
-			LIMIT " . getSetting('module_total_records');
+			ORDER BY RAND()  
+			LIMIT $number_of_records";
 	$articles = $conn->query($sql);
 	while ($record = $articles->fetch_assoc()) {
 		$banner_url = empty($record['banner_image_url']) ? $record['banner'] : $record['banner_image_url'];

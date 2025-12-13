@@ -21,12 +21,19 @@ startLayout(getSetting('search_label') . ": " . htmlspecialchars($q));
 
 	<?php
 	if ($q) echo "<h1>" . getSetting('search_label') . ": " . htmlspecialchars($q) . "</h1>";
+	echo "<div id='search-results'>";
 	$res = $conn->query("SELECT title, title_sub, article_snippet, url FROM articles WHERE is_active = 1 AND MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q')
 	LIMIT $limit OFFSET $offset
 	");
 	while ($a = $res->fetch_assoc()) {
-		echo "<div><h3>{$a['title']}</h3><p>{$a['article_snippet']}</p><a href='/article/{$a['url']}'>" . getSetting('readmore_label') . "</a></div>";
+		echo "<div>
+			<h3><a href='/article/{$a['url']}'>{$a['title']}</a></h3>
+			<p>{$a['article_snippet']}</p>
+			<a href='/article/{$a['url']}'>" . getSetting('readmore_label') . "</a>
+			</div>";
 	}
+	echo "</div>";
+	
 	$countSql = "SELECT COUNT(*) AS total FROM articles WHERE is_active = 1 AND MATCH(title, title_sub, article_snippet, article_content) AGAINST ('$q')";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
 	$totalPages = ceil($total / $limit);

@@ -1,5 +1,5 @@
 
-<div class="block">
+<div class="block" style="<?= $css ?>">
 	<?php
 	$cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
@@ -7,7 +7,7 @@
 		FROM categories c
 		INNER JOIN article_categories ac ON c.key_categories = ac.key_categories
 		WHERE c.is_active = 1 
-		ORDER BY c.name ASC LIMIT " . getSetting('module_total_records');
+		ORDER BY c.name ASC LIMIT $number_of_records";
 	$categories = $conn->query($sql);
 	echo "<ul class='category-list'>";
 	while ($c = $categories->fetch_assoc()) {
