@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 13, 2025 at 07:39 AM
+-- Generation Time: Dec 14, 2025 at 07:49 AM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `article_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=InnoDB AUTO_INCREMENT=210 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_categories`
@@ -176,8 +176,6 @@ INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`)
 (184, 14, 13, NULL),
 (187, 18, 13, NULL),
 (188, 5, 13, NULL),
-(191, 38, 13, NULL),
-(192, 38, 4, NULL),
 (196, 3, 23, NULL),
 (197, 3, 11, NULL),
 (198, 4, 5, NULL),
@@ -185,7 +183,9 @@ INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`)
 (200, 4, 14, NULL),
 (207, 36, 13, NULL),
 (208, 36, 4, NULL),
-(209, 36, 6, NULL);
+(209, 36, 6, NULL),
+(214, 38, 13, NULL),
+(215, 38, 4, NULL);
 
 -- --------------------------------------------------------
 
@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `article_content_types` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_content_types`),
   KEY `key_content_types` (`key_content_types`)
-) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_content_types`
@@ -217,7 +217,8 @@ INSERT INTO `article_content_types` (`id`, `key_articles`, `key_content_types`, 
 (177, 14, 42, NULL),
 (179, 24, 47, NULL),
 (181, 18, 39, NULL),
-(182, 5, 33, NULL);
+(182, 5, 33, NULL),
+(183, 38, 32, NULL);
 
 -- --------------------------------------------------------
 
@@ -234,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `article_tags` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_tags`),
   KEY `key_tags` (`key_tags`)
-) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_tags`
@@ -245,7 +246,9 @@ INSERT INTO `article_tags` (`id`, `key_articles`, `key_tags`, `url`) VALUES
 (195, 3, 53, NULL),
 (196, 4, 53, NULL),
 (197, 8, 53, NULL),
-(200, 36, 64, NULL);
+(200, 36, 64, NULL),
+(205, 38, 60, NULL),
+(206, 38, 59, NULL);
 
 -- --------------------------------------------------------
 
@@ -343,13 +346,13 @@ INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `key_photo_gallery`, `ke
 (4, 0, 0, 0, 0, 0, 'articles_34548', 'Latest Articles', 'Articles', '', 5, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-09-30 03:10:15', 0, 1, 4, 0, 1),
 (5, 0, 0, 0, 0, 0, 'books_84538', 'Latest Books', 'Books', '', 5, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-10-01 22:49:57', 1, 1, 5, 0, 1),
 (6, 0, 0, 0, 0, 0, 'categories_55448', 'Categories', 'Topics', '', 10, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-10-08 14:37:28', 1, 1, 2, 0, 1),
-(8, 0, 0, 0, 0, 0, '', 'Copyright Message', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '<div style=\'text-align:center;\'><a href=\"/page/privacy-policy\">Privacy Policy</a> | <a href=\"/page/terms-of-use\">Term of Use</a> â€” Default Template Â© Powered by CopilotCMS </div>', '', 'footer', '2025-10-10 18:40:38', 1, 1, 12, 0, 1),
+(8, 0, 0, 0, 0, 0, '', 'Copyright Message', '', '', 0, 'large-desktop,desktop,tablet,mobile', '<div style=\'text-align:center;\'><a href=\"/page/privacy-policy\">Privacy Policy</a> | <a href=\"/page/terms-of-use\">Term of Use</a> â€” Default Template Â© Powered by CopilotCMS </div>', '', 'footer', '2025-10-10 18:40:38', 1, 1, 12, 0, 1),
 (9, 0, 0, 0, 0, 0, '', 'Phone Email', '', '', 0, 'large-desktop,desktop,tablet,mobile', '<span>Phone</span><a href=\"tel:1234567890\">(123)456-7890</a>\r\n<span>Email</span><a href=\"mailto:myemail@outlook.com\">myemail@outlook.com</a>', '', 'above_header', '2025-10-10 19:47:52', 1, 1, 0, 0, 1),
-(12, 0, 33, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Home', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'home', 'below_header', '2025-10-13 23:11:01', 1, 1, 11, 0, 1),
-(14, 0, 29, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Articles', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'articles', 'below_header', '2025-10-15 00:25:45', 1, 1, 0, 0, 1),
-(15, 0, 30, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Categories', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'categories', 'below_header', '2025-10-15 00:28:00', 1, 1, 0, 0, 1),
-(16, 0, 31, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Books', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'books', 'below_header', '2025-10-15 00:30:41', 1, 1, 0, 0, 1),
-(17, 0, 32, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Authors', '<none>', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'authors', 'below_header', '2025-10-17 00:58:45', 1, 1, 0, 0, 1),
+(12, 0, 33, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Home', '', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'home', 'below_header', '2025-10-13 23:11:01', 1, 1, 11, 0, 1),
+(14, 0, 29, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Articles', '', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'articles', 'below_header', '2025-10-15 00:25:45', 1, 1, 0, 0, 1),
+(15, 0, 30, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Categories', '', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'categories', 'below_header', '2025-10-15 00:28:00', 1, 1, 0, 0, 1),
+(16, 0, 31, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Books', '', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'books', 'below_header', '2025-10-15 00:30:41', 1, 1, 0, 0, 1),
+(17, 0, 32, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Authors', '', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'authors', 'below_header', '2025-10-17 00:58:45', 1, 1, 0, 0, 1),
 (18, 0, 34, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Sidebar Books to Check', 'Block Title', '', 0, 'large-desktop,desktop,tablet,mobile', 'Block Content', '', 'sidebar_left', '2025-10-17 10:22:11', 1, 1, 0, 0, 1),
 (19, 0, 0, 0, 0, 0, 'search6545645', 'Search Block', 'Search', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-10-28 21:02:04', 1, 1, -1, 0, 1),
 (20, 0, 0, 0, 0, 0, 'content_types_55448', 'Content Types', 'Content Types', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-11-04 00:07:23', 1, 1, 1, 0, 1),
@@ -1067,7 +1070,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `is_active` tinyint(1) DEFAULT '1',
   `entry_date_time` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_settings`)
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings`
@@ -1076,7 +1079,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting_group`, `setting_type`, `is_active`, `entry_date_time`) VALUES
 (1, 'site_name', 'Copilot CMS', 'general', 'text', 1, '2025-10-06 23:07:08'),
 (2, 'site_slogan', 'Clarity. Collaboration. Control.', 'general', 'text', 1, '2025-10-06 23:07:08'),
-(3, 'base_url', 'https://www.mysite.com', 'general', 'url', 1, '2025-10-06 23:18:10'),
+(3, 'base_url', 'http://copilot/', 'general', 'url', 1, '2025-10-06 23:18:10'),
 (4, 'powered_by', 'Powered by Copilot', 'general', 'text', 0, '2025-10-06 23:07:08'),
 (5, 'homepage_featured_articles_count', '5', 'homepage', 'number', 0, '2025-10-06 23:07:08'),
 (6, 'homepage_featured_books_count', '3', 'homepage', 'number', 0, '2025-10-06 23:07:08'),
@@ -1149,7 +1152,11 @@ INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting
 (74, 'search_label', 'Search', 'php_template', 'text', 1, '2025-11-16 16:40:10'),
 (75, 'cache_duration_days', '1', 'cache', 'text', 1, '2025-12-07 18:36:21'),
 (76, 'cache_enabled', 'yes', 'cache', 'text', 1, '2025-12-07 18:36:52'),
-(77, 'css_version', '1', 'css_template', 'text', 1, '2025-12-09 23:46:37');
+(77, 'css_version', '1', 'css_template', 'text', 1, '2025-12-09 23:46:37'),
+(78, 'article_authors_label', 'Authors', 'php_template', 'text', 1, '2025-12-13 12:54:06'),
+(79, 'article_categories_label', 'Categories', 'php_template', 'text', 1, '2025-12-13 12:57:00'),
+(80, 'article_content_types_label', 'Content Types', 'php_template', 'text', 1, '2025-12-13 12:57:20'),
+(81, 'article_tags_label', 'Tags', 'php_template', 'text', 1, '2025-12-13 12:57:46');
 
 -- --------------------------------------------------------
 

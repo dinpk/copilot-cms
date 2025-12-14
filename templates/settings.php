@@ -2,7 +2,7 @@
 $settings = [];
 $settings['site_name'] = 'Copilot CMS';
 $settings['site_slogan'] = 'Clarity. Collaboration. Control.';
-$settings['base_url'] = 'https://www.mysite.com';
+$settings['base_url'] = 'http://copilot/';
 $settings['template_folder'] = 'default';
 $settings['template_default_logo'] = '/templates/default/images/copilogcms.png';
 $settings['max_upload_image_width'] = '2000';
@@ -39,7 +39,7 @@ $settings['youtube_gallery_label'] = 'Youtube Gallery';
 $settings['photo_gallery_label'] = 'Photo Gallery';
 $settings['search_label'] = 'Search';
 $settings['cache_duration_days'] = '1';
-$settings['cache_enabled'] = 'no';
+$settings['cache_enabled'] = 'yes';
 $settings['css_version'] = '1';
 $settings['article_authors_label'] = 'Authors';
 $settings['article_categories_label'] = 'Categories';

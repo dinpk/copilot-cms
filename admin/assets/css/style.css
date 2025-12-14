@@ -349,7 +349,11 @@ summary {
 	cursor:pointer;"
 }
 
-
+.success-message {
+	color:darkgreen;
+	padding:5px 5px 5px 10px;
+	background-color:#ccffe6;
+}
 
 /* Footer */
 footer {

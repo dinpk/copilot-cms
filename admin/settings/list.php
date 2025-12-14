@@ -7,7 +7,7 @@ include_once('../layout.php');
 
 <?php startLayout("Settings List"); ?>
 
-<p><a href="#" onclick="openModal()">➕ Add New Setting</a></p>
+<p><a href="#" onclick="openModal()">➕ Add New Setting</a> &nbsp;  📁 <a href="settings_misc.php">Misc Settings</a></p>
 
 <?php
 $groupOptions = [];

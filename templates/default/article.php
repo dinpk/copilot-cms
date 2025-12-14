@@ -32,7 +32,6 @@ startLayout(htmlspecialchars($article['title']));
 	} else if ($article['banner_url']) { // media library file
 		echo "<div id='content-banner' style='background-image:url(" . $article['banner_url'] . ")'></div>";
 	}
-	echo "<p><em>" . htmlspecialchars($article['article_snippet']) . "</em></p>";
 	echo "<div>" . $article['article_content'] . "</div>";
 
 

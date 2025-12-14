@@ -16,7 +16,7 @@ include(__DIR__ . '/layout.php');
 	while ($record = $records->fetch_assoc()) {
 		if ($record['show_on_home'] == 0) continue;
 		$banner_url = empty($record['banner_image_url']) ? $record['banner'] : $record['banner_image_url'];
-		$article_snippet = (empty($record['article_snippet']) ? firstWords($record['article_content'], getSetting('snippet_words')) : firstWords($record['article_snippet'], getSetting('snippet_words')));
+		$article_snippet = empty($record['article_snippet']) ? firstWords($record['article_content'], getSetting('snippet_words')) : $record['article_snippet'];
 		echo "<div class='snippet-card'>
   			  <div><a href='/article/{$record['url']}'><img src='$banner_url' data-animate='fade'></a></div>
 			  <div class='snippet-content'>
