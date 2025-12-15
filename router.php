@@ -4,7 +4,10 @@ $path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 $segments = explode('/', $path);
 $slug = $segments[1] ?? '';
 
-if (empty($segments[0])) header("location:home");
+if (empty($segments[0])) {
+	$segments[0] = 'home';
+	$_SERVER['REQUEST_URI'] = '/home';
+}
 
 $template = getSetting('template_folder', 'default');
 
@@ -88,5 +91,6 @@ switch ($segments[0]) {
 	  break;
 	default:
 		echo "404 - Page not found";
+		echo $segments[0];
 }
 ?>

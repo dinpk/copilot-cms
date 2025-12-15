@@ -321,6 +321,7 @@ main ul, main ol {
 	box-shadow: 0 0.0625em 0.1875em rgba(0, 0, 0, 0.05);
 	font-family: var(--pager-font);
 	font-size: .85em;
+	direction:var(--site-direction);
 }
 
 #pager a {

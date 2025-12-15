@@ -5,6 +5,7 @@
             FROM articles a 
             LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
             WHERE a.is_active = 1 AND a.key_media_banner != 0 AND a.is_featured = 1 
+			ORDER BY RAND() 
             LIMIT $number_of_records";
     $articles = $conn->query($sql);
     while ($record = $articles->fetch_assoc()) {
