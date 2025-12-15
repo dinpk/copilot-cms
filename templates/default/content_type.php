@@ -42,9 +42,6 @@ startLayout("Content: " . htmlspecialchars($content_type['name']));
 		<?php renderBlocks("below_content"); ?>
 	</div>
 </div>
-<div id="sidebar-left">
-	<?php renderBlocks("sidebar_left"); ?>
-</div>
 <div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>

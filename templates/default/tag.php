@@ -33,9 +33,6 @@ startLayout("Tag: " . htmlspecialchars($tag['name']));
 	echo $pagination['html'];
 	?>
 </div>
-<div id="sidebar-left">
-	<?php renderBlocks("sidebar_left"); ?>
-</div>
 <div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>

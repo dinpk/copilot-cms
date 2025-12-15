@@ -1,0 +1,206 @@
+
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Home</title>
+			<meta charset='utf-8'>
+			<meta name='viewport' content='width=device-width, initial-scale=1'>
+			<link rel='stylesheet' href='/templates/settings.css'>
+			<link rel='stylesheet' href='/templates/default/style.css?version=1'>
+			<link rel='stylesheet' href='/templates/carousel.css'>
+        </head>
+	<body><div id='above-header'><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2></h2><div class='block-content'><span>Phone</span><a href="tel:1234567890">(123)456-7890</a>
+<span>Email</span><a href="mailto:myemail@outlook.com">myemail@outlook.com</a></div></div></div><header data-animate='fade'><div id='site-logo'><a href='/home'><img src='/templates/default/images/copilogcms.png'></a></div><button class='menu-toggle' onclick="document.querySelector('.main-menu').classList.toggle('open')">☰ Menu</button><nav class='main-menu'><ul><li><a href='/home'>Home</a></li><li><a href='/articles'>Articles</a></li><li><a href='/categories'>Topics</a></li><li><a href='/books'>Books</a></li><li><a href='/authors'>Authors</a></li><li><a href='/photo-gallery'>Albums</a></li><li><a href='/pages'>Info</a><ul><li><a href='/page/about-us'>About Us</a></li><li><a href='/page/careers'>Careers</a></li></ul></li><li><a href='/youtube-gallery'>Youtube</a></li></ul></nav></header><div id='below_header'><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2></h2><div class='block-content'></div></div></div><div id='breadcrumb' data-animate='fade'><a href="/">Home</a></div><main><div id="content">
+	<div id="above-content">
+		<div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2></h2><div class='block-content'></div><div class="articles-featured" style="display:flex;overflow:hidden;white-space:nowrap;height:400px;height:300px;">
+
+    <div style='flex:0 0 auto;margin-right:10px;'>
+                <a href='/article/modular-crud'>
+                    <div style='position:relative;height:100%;width:100%;'>
+                        <img src='/media/images/2025/1760678272_0_book-cover-sample4.jpg' style='object-fit:cover;object-position:center;height:100%;'>
+                        <div style='direction:var(--site-direction);font-size:1.3em;background:#000;padding:10px;text-align:center;opacity:.7;position:absolute;bottom:0;width:100%;color:#fff;white-space:normal;word-wrap:break-word;'>Modular CRUD Systems</div>
+                    </div>
+                </a>
+              </div><div style='flex:0 0 auto;margin-right:10px;'>
+                <a href='/article/debounce-search'>
+                    <div style='position:relative;height:100%;width:100%;'>
+                        <img src='/media/images/2025/1760644208_1_pexels-eva-bronzini-8058803.jpg' style='object-fit:cover;object-position:center;height:100%;'>
+                        <div style='direction:var(--site-direction);font-size:1.3em;background:#000;padding:10px;text-align:center;opacity:.7;position:absolute;bottom:0;width:100%;color:#fff;white-space:normal;word-wrap:break-word;'>Debounce in Search</div>
+                    </div>
+                </a>
+              </div><div style='flex:0 0 auto;margin-right:10px;'>
+                <a href='/article/sql-troubleshooting'>
+                    <div style='position:relative;height:100%;width:100%;'>
+                        <img src='/media/images/2025/1760646409_1_pexels-lalorosas-907489.jpg' style='object-fit:cover;object-position:center;height:100%;'>
+                        <div style='direction:var(--site-direction);font-size:1.3em;background:#000;padding:10px;text-align:center;opacity:.7;position:absolute;bottom:0;width:100%;color:#fff;white-space:normal;word-wrap:break-word;'>SQL Troubleshooting</div>
+                    </div>
+                </a>
+              </div><div style='flex:0 0 auto;margin-right:10px;'>
+                <a href='/article/phpmysql-combination'>
+                    <div style='position:relative;height:100%;width:100%;'>
+                        <img src='https://images.pexels.com/photos/18287652/pexels-photo-18287652.jpeg?cs=srgb&dl=pexels-fotios-photos-18287652.jpg&fm=jpg' style='object-fit:cover;object-position:center;height:100%;'>
+                        <div style='direction:var(--site-direction);font-size:1.3em;background:#000;padding:10px;text-align:center;opacity:.7;position:absolute;bottom:0;width:100%;color:#fff;white-space:normal;word-wrap:break-word;'>PHP+MySQL Combination</div>
+                    </div>
+                </a>
+              </div></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector(".articles-featured");
+  let scrollAmount = 1.5; 
+  let direction = 1;      // start moving right
+
+  // make sure we start at the very left edge
+  container.scrollLeft = container.scrollWidth;
+
+  function autoScroll() {
+    container.scrollLeft += scrollAmount * direction;
+
+    if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
+      direction = -1; // reached right end → go left
+    } else if (container.scrollLeft <= 0) {
+      direction = 1; // reached left end → go right
+    }
+
+    requestAnimationFrame(autoScroll);
+  }
+
+  autoScroll();
+});
+
+
+</script>
+</div>	</div>
+	<div class='snippet-card'>
+  			  <div><a href='/article/phpmysql-combination'><img src='https://images.pexels.com/photos/18287652/pexels-photo-18287652.jpeg?cs=srgb&dl=pexels-fotios-photos-18287652.jpg&fm=jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/phpmysql-combination'>PHP+MySQL Combination</a></h2>
+			  <div>The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms. 
+ … <a href='/article/phpmysql-combination'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'><img src='/media/thumbnails/images/2025/1760643494_1_pexels-jimmy-liao-3615017-12392803.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'>True strength begins with self-awareness and the emotional connection</a></h2>
+			  <div>We live in a world where stress, anxiety and depression are becoming increasingly common.  … <a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/editorial-ui'><img src='' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/editorial-ui'>Designing for Editors</a></h2>
+			  <div>Why editorial-first design matters in publishing workflows. … <a href='/article/editorial-ui'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/php-native'><img src='/media/thumbnails/images/2025/1760644207_0_pexels-polina-kovaleva-8100514.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/php-native'>PHP Without Frameworks</a></h2>
+			  <div>Building robust apps with native PHP and no frameworks. … <a href='/article/php-native'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/debounce-search'><img src='/media/thumbnails/images/2025/1760644208_1_pexels-eva-bronzini-8058803.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/debounce-search'>Debounce in Search</a></h2>
+			  <div>Using debounce to optimize search-triggered loading. … <a href='/article/debounce-search'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/pagination-patterns'><img src='' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/pagination-patterns'>Pagination Patterns</a></h2>
+			  <div>Best practices for implementing pagination in CMS. … <a href='/article/pagination-patterns'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/editorial-workflows'><img src='' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/editorial-workflows'>Editorial Workflows</a></h2>
+			  <div>Mapping out efficient editorial workflows. … <a href='/article/editorial-workflows'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/category-management'><img src='' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/category-management'>Category Management</a></h2>
+			  <div>Tips for managing categories in publishing systems. … <a href='/article/category-management'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/modal-editing'><img src='/media/thumbnails/images/2025/1760643537_4_pexels-atomlaborblog-1090941.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/modal-editing'>Modal-Based Editing</a></h2>
+			  <div>Using modals for quick article edits. … <a href='/article/modal-editing'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/search-optimization1'><img src='/media/thumbnails/images/2025/1760646407_0_pexels-fotios-photos-16129703.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/search-optimization1'>Search Optimization</a></h2>
+			  <div>Improving search relevance and speed. … <a href='/article/search-optimization1'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/legacy-refactor'><img src='' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/legacy-refactor'>Legacy CMS Refactor</a></h2>
+			  <div>Strategies for refactoring legacy CMS platforms. … <a href='/article/legacy-refactor'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/content-snippets'><img src='banner12.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/content-snippets'>Content Snippets</a></h2>
+			  <div>Creating reusable content snippets. … <a href='/article/content-snippets'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/php-errors'><img src='banner14.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/php-errors'>Error Reporting in PHP</a></h2>
+			  <div>Enabling error reporting for better debugging. … <a href='/article/php-errors'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/sql-troubleshooting'><img src='/media/thumbnails/images/2025/1760646409_1_pexels-lalorosas-907489.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/sql-troubleshooting'>SQL Troubleshooting</a></h2>
+			  <div>Finding and fixing SQL issues. … <a href='/article/sql-troubleshooting'>Read more</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/advanced-filters'><img src='banner16.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content'>
+			  <h2><a href='/article/advanced-filters'>Advanced Filters</a></h2>
+			  <div>Adding advanced filters to editorial tools. … <a href='/article/advanced-filters'>Read more</a></div>
+			  </div>
+			</div><div id='pager'>Page 1 of 2 <a href='?page=2'>Next</a></div>	<div id="below-content">
+			</div>
+</div>
+<div id="sidebar-left">
+	<div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Search</h2><div class='block-content'></div>
+<div class="block" style="">
+	<form method="get" action="/search" class="search-form">
+		<input type="text" name="q"> &nbsp; 
+		<input type="submit" value="Go">
+	</form>
+</div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Block Title</h2><div class='block-content'>Block Content</div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Random Articles</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/article/cms-testing'>CMS Testing Strategies</a></li><li><a href='/article/ui-feedback'>UI Feedback Loops</a></li><li><a href='/article/legacy-refactor'>Legacy CMS Refactor</a></li><li><a href='/article/clean-code'>Clean Code Practices</a></li><li><a href='/article/sql-troubleshooting'>SQL Troubleshooting</a></li><li><a href='/article/desktop-ui2'>Desktop-Only UI</a></li><li><a href='/article/editorial-ui'>Designing for Editors</a></li><li><a href='/article/debounce-search'>Debounce in Search</a></li><li><a href='/article/modal-editing'>Modal-Based Editing</a></li><li><a href='/article/scalable-cms'>Scalable CMS Design</a></li></ul><p><a href='/articles'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Ireland Articles</h2><div class='block-content'></div><div class="block" style="">
+	<ul class='category-list'></ul><p><a href='/tag/ireland'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Interview Articles</h2><div class='block-content'></div><div class="block" style="">
+	<ul class='category-list'></ul><p><a href='/content-type/interview'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Content Strategy Articles</h2><div class='block-content'></div><div class="block" style="">
+	<ul class='category-list'></ul><p><a href='/category/content-strategy'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Archive</h2><div class='block-content'></div>
+<div class="block" style="">
+
+<div dir='ltr'><p>No articles found.</p></div><p><a href='/monthly'>More</a></p></div></div></div>
+<div id="sidebar-right">
+	<div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Articles Random</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/article/banner-tips'>Banner Image Tips</a></li><li><a href='/article/clean-code'>Clean Code Practices</a></li><li><a href='/article/debounce-search'>Debounce in Search</a></li><li><a href='/article/php-errors'>Error Reporting in PHP</a></li><li><a href='/article/sql-troubleshooting'>SQL Troubleshooting</a></li><li><a href='/article/assignment-ux'>Content Assignment UX</a></li><li><a href='/article/cms-entry'>CMS Entry Points</a></li></ul><p><a href='/articles'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Content Types</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/content-type/article'>Article</a></li><li><a href='/content-type/biography'>Biography</a></li><li><a href='/content-type/blog-post'>Blog Post</a></li><li><a href='/content-type/interview'>Interview</a></li><li><a href='/content-type/opinion'>Opinion</a></li></ul><p><a href='/content-types'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Topics</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/category/advanced-filter'>Advanced Filters</a></li><li><a href='/category/content-curation'>Content Curation</a></li><li><a href='/category/content-strategy'>Content Strategy</a></li><li><a href='/category/desktop-ui'>Desktop UI</a></li><li><a href='/category/editorial-design'>Editorial Design</a></li><li><a href='/category/category/education'>Education</a></li><li><a href='/category/legacy-systems-legacy'>Legacy Systems</a></li><li><a href='/category/modern-architecture'>Modern Architecture</a></li><li><a href='/category/modular-design'>Modular Design</a></li><li><a href='/category/php-development'>PHP Development</a></li></ul><p><a href='/categories'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Tags</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/tag/afghanistan'>Afghanistan</a></li><li><a href='/tag/egypt'>Egypt</a></li><li><a href='/tag/france'>France</a></li><li><a href='/tag/india'>India</a></li><li><a href='/tag/iran'>Iran</a></li></ul><p><a href='/tags'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Articles</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/article/phpmysql-combination'>PHP+MySQL Combination</a></li><li><a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'>True strength begins with self-awareness and the emotional connection</a></li><li><a href='/article/editorial-ui'>Designing for Editors</a></li><li><a href='/article/php-native'>PHP Without Frameworks</a></li><li><a href='/article/debounce-search'>Debounce in Search</a></li></ul><p><a href='/articles'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Books</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/book/pink-flowers-in-the-world'>Pink Flowers in the World</a></li><li><a href='/book/php-for-non-publishers'>PHP for Non Publisher</a></li><li><a href='/book/new-world-of-app-dev-with-ai'>New World of App Dev with A-I</a></li><li><a href='/book/designing-editorial-systems'>Designing Editorial Syste</a></li><li><a href='/book/php-for-publishers'>PHP for Publisher</a></li></ul><p><a href='/books'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Youtube Gallery</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li>Best Set of the Year</li><li>The Big Swimming Race</li><li>England vs South Africa - Highlights</li><li>Best Goals in Football</li></ul><p><a href='/youtube-gallery'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Photo Gallery</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li>Authors</li><li>Books to Check</li><li>Topics</li><li>Articles</li><li>Books</li></ul><p><a href='/photo-gallery'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Authors</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/author/imran-qureshi'>Imran Qureshi</a></li><li><a href='/author/amina-siddiqui'>Amina Siddiqui</a></li><li><a href='/author/tariq-mehmood'>Tariq Mehmood</a></li><li><a href='/author/'>Sumrina Khan</a></li><li><a href='/author/tamir-sarfaraz-ahmad'>Taimur Sarfaraz</a></li></ul><p><a href='/authors'>More</a></p></div></div></div>
+</main><div id='above-footer'></div><div id='footer'><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2></h2><div class='block-content'><div style='text-align:center;'><a href="/page/privacy-policy">Privacy Policy</a> | <a href="/page/terms-of-use">Term of Use</a> — Default Template © Powered by CopilotCMS </div></div></div></div><div id='below-footer'></div></body></html>
+	<script src='/templates/carousel.js'></script>
+	

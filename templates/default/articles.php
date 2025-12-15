@@ -9,6 +9,7 @@ include(__DIR__ . '/layout.php');
 		<?php renderBlocks("above_content"); ?>
 	</div>
 	<h1><?= getSetting('articles_label') ?></h1>
+	<article>
 	<?php
 	$page = intval($_GET['page'] ?? 1);
 	$data = getPaginatedArticles($conn, $page, getSetting('snippets_per_page'));
@@ -27,12 +28,10 @@ include(__DIR__ . '/layout.php');
 	}
 	echo $pagination['html'];
 	?>
+	</article>
 	<div id="below-content">
 		<?php renderBlocks("below_content"); ?>
 	</div>
-</div>
-<div id="sidebar-left">
-	<?php renderBlocks("sidebar_left"); ?>
 </div>
 <div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>

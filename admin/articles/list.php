@@ -19,10 +19,10 @@ include_once('../layout.php');
         <option value="url_banner" <?= ($_GET['filter'] ?? '') === 'url_banner' ? 'selected' : '' ?>>Have URL Banner</option>
         <option value="no_url_banner" <?= ($_GET['filter'] ?? '') === 'no_url_banner' ? 'selected' : '' ?>>No URL Banner</option>
         <option value="featured" <?= ($_GET['filter'] ?? '') === 'featured' ? 'selected' : '' ?>>Featured</option>
+        <option value="not_featured" <?= ($_GET['filter'] ?? '') === 'not_featured' ? 'selected' : '' ?>>Not Featured</option>
         <option value="not_published" <?= ($_GET['filter'] ?? '') === 'not_published' ? 'selected' : '' ?>>Not Published</option>
     </select>
     
-    <input type="submit" value="Search">
 </form>
 
 <table>
@@ -64,7 +64,7 @@ include_once('../layout.php');
 	$filter = $_GET['filter'] ?? '';
 	switch ($filter) {
 		case 'media_banner':
-			$whereClauses[] = "key_media_banner = 1";
+			$whereClauses[] = "key_media_banner != 0";
 			break;
 		case 'no_media_banner':
 			$whereClauses[] = "key_media_banner = 0";
@@ -77,6 +77,9 @@ include_once('../layout.php');
 			break;
 		case 'featured':
 			$whereClauses[] = "is_featured = 1";
+			break;
+		case 'not_featured':
+			$whereClauses[] = "is_featured = 0";
 			break;
 		case 'not_published':
 			$whereClauses[] = "is_active != 1";
@@ -140,11 +143,11 @@ include_once('../layout.php');
 
 <div id="pager">
 	<?php if ($page > 1): ?>
-	<a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">⬅ Prev</a>
+	<a href="?page=<?php echo $page - 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir)?>&filter=<?php echo urlencode($filter); ?>">⬅ Prev</a>
 	<?php endif; ?>
 	Page <?php echo $page; ?> of <?php echo $totalPages; ?>
 	<?php if ($page < $totalPages): ?>
-	<a href="?page=<?php echo $page + 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir); ?>">Next ➡</a>
+	<a href="?page=<?php echo $page + 1; ?>&q=<?php echo urlencode($q); ?>&sort=<?php echo urlencode($sort); ?>&dir=<?php echo urlencode($dir)?>&filter=<?php echo urlencode($filter); ?>">Next ➡</a>
 	<?php endif; ?>
 </div>
 

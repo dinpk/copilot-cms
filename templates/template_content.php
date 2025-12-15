@@ -1,8 +1,5 @@
 <?php
 
-include_once('template_blocks.php');
-
-
 function getPagination($totalItems, $currentPage = 1, $perPage = 10, $baseUrl = '?page=') {
 	$totalPages = max(1, ceil($totalItems / $perPage));
 	$currentPage = max(1, min($currentPage, $totalPages));
@@ -480,6 +477,40 @@ function fetchTitleBySlug($type, $slug) {
 
     return null;
 }
+
+
+function renderBlocks($region) {
+	global $conn;
+	$currentPage = str_replace("/", "", $_SERVER['REQUEST_URI']);
+	$sql = "SELECT * FROM blocks 
+					   WHERE is_active = 1  
+					   AND show_in_region = '$region' 
+					   AND (show_on_pages = '' OR FIND_IN_SET('$currentPage', show_on_pages)) 
+					   ORDER BY sort";
+	$res = $conn->query($sql);
+	// echo __FILE__;
+	while ($row = $res->fetch_assoc()) {
+		$devices_array = explode(',', $row['visible_on']);
+		$visibilityClasses = '';
+		foreach ($devices_array as $device) $visibilityClasses .= ' visible-on-' . $device;
+		echo "<div class='block $visibilityClasses'>";
+		if (!empty($row['title'])) echo "<h2>" . $row['title'] . "</h2>";
+		echo "<div class='block-content'>" .  $row['block_content'] . "</div>";
+
+		// keys used by included modules 
+		$key_photo_gallery = $row['key_photo_gallery']; 
+		$key_content_types = $row['key_content_types']; 
+		$key_categories = $row['key_categories']; 
+		$key_tags = $row['key_tags']; 
+		$css = $row['css']; 
+		$number_of_records = $row['number_of_records'];		
+		if ($row['module_file'] != '') {
+			include("modules/" . $row['module_file'] . ".php");
+		}
+		echo "</div>";
+	}
+}
+
 
 
 /* --------------------- MISC ---------------------- */

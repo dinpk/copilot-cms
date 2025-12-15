@@ -15,82 +15,82 @@ $message = '';
 if (isset($_POST['save_submit'])) {
 
 
-	$cache_folder = "../../cache";
+	$cacheFolder = "../../cache";
 
 	if (isset($_POST["home"])) {
-		$file_hash = md5("/home");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("home");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
 	if (isset($_POST["articles"])) {
-		$file_hash = md5("/articles");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("articles");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
 	if (isset($_POST["content_types"])) {
-		$file_hash = md5("/content-types");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("content-types");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
 	if (isset($_POST["categories"])) {
-		$file_hash = md5("/categories");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("categories");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
 	if (isset($_POST["tags"])) {
-		$file_hash = md5("/tags");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("tags");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
 	if (isset($_POST["pages"])) {
-		$file_hash = md5("/pages");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("pages");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
 	if (isset($_POST["authors"])) {
-		$file_hash = md5("/authors");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("authors");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
 	if (isset($_POST["books"])) {
-		$file_hash = md5("/books");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("books");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
 	if (isset($_POST["photo_gallery"])) {
-		$file_hash = md5("/photo-gallery");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("photo-gallery");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
 	if (isset($_POST["youtube_gallery"])) {
-		$file_hash = md5("/youtube-gallery");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("youtube-gallery");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
 	if (isset($_POST["users"])) {
-		$file_hash = md5("/users");
-		$cache_file = str_replace("//", "/", "$cache_folder/$file_hash");
-		if (file_exists($cache_file)) unlink($cache_file);
+		$fileHash = md5("users");
+		$cacheFile = "$cacheFolder/$fileHash";
+		if (file_exists($cacheFile)) unlink($cacheFile);
 		$message = "<div class='success-result'>Cache cleared successfully</div>";
 	}
 
@@ -98,7 +98,7 @@ if (isset($_POST['save_submit'])) {
 
 
 	if (isset($_POST["all"])) {
-		$files = glob($cache_folder . '/*');
+		$files = glob($cacheFolder . '/*');
 		if (array_walk($files, function ($file) {unlink($file);})) {
 			$message = "<div class='success-result'>Cache cleared successfully</div>";
 		} else {

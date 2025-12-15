@@ -44,9 +44,6 @@ startLayout("Articles by Month");
   </div>
 </div>
 
-<div id="sidebar-left">
-  <?php renderBlocks("sidebar_left"); ?>
-</div>
 <div id="sidebar-right">
   <?php renderBlocks("sidebar_right"); ?>
 </div>

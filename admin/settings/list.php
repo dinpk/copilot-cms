@@ -20,7 +20,7 @@ while ($g = $groupResult->fetch_assoc()) {
 <form method="get">
     <input type="text" name="q" placeholder="Search settings..." value="<?= htmlspecialchars($_GET['q'] ?? '') ?>">
     
-    <select name="group">
+    <select name="group" onchange="this.form.submit()">
         <option value="">All Groups</option>
         <?php foreach ($groupOptions as $group): ?>
             <option value="<?= htmlspecialchars($group) ?>" <?= ($_GET['group'] ?? '') === $group ? 'selected' : '' ?>>
@@ -29,7 +29,6 @@ while ($g = $groupResult->fetch_assoc()) {
         <?php endforeach; ?>
     </select>
     
-    <input type="submit" value="Search">
 </form>
 
 <table>

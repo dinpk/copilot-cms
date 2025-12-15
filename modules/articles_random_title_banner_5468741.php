@@ -3,8 +3,8 @@
 	<?php
 	$sql = "SELECT a.*, m.file_url_thumbnail AS banner
 			FROM articles a 
-			LEFT JOIN media_library m ON a.key_media_banner = m.key_media
-			WHERE a.is_active = 1 AND a.is_featured = 1 
+			LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
+			WHERE a.is_active = 1 AND key_media_banner != 0 
 			ORDER BY RAND()  
 			LIMIT $number_of_records";
 	$articles = $conn->query($sql);

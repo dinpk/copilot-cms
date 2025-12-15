@@ -1,0 +1,104 @@
+
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Category: Modular Design</title>
+			<meta charset='utf-8'>
+			<meta name='viewport' content='width=device-width, initial-scale=1'>
+			<link rel='stylesheet' href='/templates/settings.css'>
+			<link rel='stylesheet' href='/templates/default/style.css?version=1'>
+			<link rel='stylesheet' href='/templates/carousel.css'>
+        </head>
+	<body><div id='above-header'><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2></h2><div class='block-content'><span>Phone</span><a href="tel:1234567890">(123)456-7890</a>
+<span>Email</span><a href="mailto:myemail@outlook.com">myemail@outlook.com</a></div></div></div><header data-animate='fade'><div id='site-logo'><a href='/home'><img src='/templates/default/images/copilogcms.png'></a></div><button class='menu-toggle' onclick="document.querySelector('.main-menu').classList.toggle('open')">☰ Menu</button><nav class='main-menu'><ul><li><a href='/home'>Home</a></li><li><a href='/articles'>Articles</a></li><li><a href='/categories'>Topics</a></li><li><a href='/books'>Books</a></li><li><a href='/authors'>Authors</a></li><li><a href='/photo-gallery'>Albums</a></li><li><a href='/pages'>Info</a><ul><li><a href='/page/about-us'>About Us</a></li><li><a href='/page/careers'>Careers</a></li></ul></li><li><a href='/youtube-gallery'>Youtube</a></li></ul></nav></header><div id='below_header'></div><div id='breadcrumb' data-animate='fade'><a href="/">Home</a> &raquo; <a href="/categories">Categories</a> &raquo; Modular Design</div><main><div id="content">
+	<div id="above-content">
+		<div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2></h2><div class='block-content'></div><div class="articles-featured" style="display:flex;overflow:hidden;white-space:nowrap;height:400px;height:300px;">
+
+    <div style='flex:0 0 auto;margin-right:10px;'>
+                <a href='/article/modular-crud'>
+                    <div style='position:relative;height:100%;width:100%;'>
+                        <img src='/media/images/2025/1760678272_0_book-cover-sample4.jpg' style='object-fit:cover;object-position:center;height:100%;'>
+                        <div style='direction:var(--site-direction);font-size:1.3em;background:#000;padding:10px;text-align:center;opacity:.7;position:absolute;bottom:0;width:100%;color:#fff;white-space:normal;word-wrap:break-word;'>Modular CRUD Systems</div>
+                    </div>
+                </a>
+              </div><div style='flex:0 0 auto;margin-right:10px;'>
+                <a href='/article/debounce-search'>
+                    <div style='position:relative;height:100%;width:100%;'>
+                        <img src='/media/images/2025/1760644208_1_pexels-eva-bronzini-8058803.jpg' style='object-fit:cover;object-position:center;height:100%;'>
+                        <div style='direction:var(--site-direction);font-size:1.3em;background:#000;padding:10px;text-align:center;opacity:.7;position:absolute;bottom:0;width:100%;color:#fff;white-space:normal;word-wrap:break-word;'>Debounce in Search</div>
+                    </div>
+                </a>
+              </div><div style='flex:0 0 auto;margin-right:10px;'>
+                <a href='/article/sql-troubleshooting'>
+                    <div style='position:relative;height:100%;width:100%;'>
+                        <img src='/media/images/2025/1760646409_1_pexels-lalorosas-907489.jpg' style='object-fit:cover;object-position:center;height:100%;'>
+                        <div style='direction:var(--site-direction);font-size:1.3em;background:#000;padding:10px;text-align:center;opacity:.7;position:absolute;bottom:0;width:100%;color:#fff;white-space:normal;word-wrap:break-word;'>SQL Troubleshooting</div>
+                    </div>
+                </a>
+              </div><div style='flex:0 0 auto;margin-right:10px;'>
+                <a href='/article/phpmysql-combination'>
+                    <div style='position:relative;height:100%;width:100%;'>
+                        <img src='https://images.pexels.com/photos/18287652/pexels-photo-18287652.jpeg?cs=srgb&dl=pexels-fotios-photos-18287652.jpg&fm=jpg' style='object-fit:cover;object-position:center;height:100%;'>
+                        <div style='direction:var(--site-direction);font-size:1.3em;background:#000;padding:10px;text-align:center;opacity:.7;position:absolute;bottom:0;width:100%;color:#fff;white-space:normal;word-wrap:break-word;'>PHP+MySQL Combination</div>
+                    </div>
+                </a>
+              </div></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const container = document.querySelector(".articles-featured");
+  let scrollAmount = 1.5; 
+  let direction = 1;      // start moving right
+
+  // make sure we start at the very left edge
+  container.scrollLeft = container.scrollWidth;
+
+  function autoScroll() {
+    container.scrollLeft += scrollAmount * direction;
+
+    if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
+      direction = -1; // reached right end → go left
+    } else if (container.scrollLeft <= 0) {
+      direction = 1; // reached left end → go right
+    }
+
+    requestAnimationFrame(autoScroll);
+  }
+
+  autoScroll();
+});
+
+
+</script>
+</div>	</div>
+	<h1>Category: Modular Design</h1><div class='article-card'>
+			  <img src='/media/thumbnails/images/2025/1760644207_0_pexels-polina-kovaleva-8100514.jpg' width='300'>
+			  <h2>PHP Without Frameworks</h2>
+			  <p>Building robust apps with native PHP and no frameworks.</p>
+			  <a href='/article/php-native'>Read more</a>
+			</div><div id='pager'>Page 1 of 1 </div>	<div id="below-content">
+			</div>
+</div>
+<div id="sidebar-right">
+	<div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Articles Random</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/article/modular-crud'>Modular CRUD Systems</a></li><li><a href='/article/advanced-filters'>Advanced Filters</a></li><li><a href='/article/url-structure'>URL Structuring</a></li><li><a href='/article/scalable-cms'>Scalable CMS Design</a></li><li><a href='/article/clean-code'>Clean Code Practices</a></li><li><a href='/article/minimal-cms'>The Rise of Minimal CMS</a></li><li><a href='/article/editorial-ui'>Designing for Editors</a></li></ul><p><a href='/articles'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Content Types</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/content-type/article'>Article</a></li><li><a href='/content-type/biography'>Biography</a></li><li><a href='/content-type/blog-post'>Blog Post</a></li><li><a href='/content-type/interview'>Interview</a></li><li><a href='/content-type/opinion'>Opinion</a></li></ul><p><a href='/content-types'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Topics</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/category/advanced-filter'>Advanced Filters</a></li><li><a href='/category/content-curation'>Content Curation</a></li><li><a href='/category/content-strategy'>Content Strategy</a></li><li><a href='/category/desktop-ui'>Desktop UI</a></li><li><a href='/category/editorial-design'>Editorial Design</a></li><li><a href='/category/category/education'>Education</a></li><li><a href='/category/legacy-systems-legacy'>Legacy Systems</a></li><li><a href='/category/modern-architecture'>Modern Architecture</a></li><li><a href='/category/modular-design'>Modular Design</a></li><li><a href='/category/php-development'>PHP Development</a></li></ul><p><a href='/categories'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Tags</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/tag/afghanistan'>Afghanistan</a></li><li><a href='/tag/egypt'>Egypt</a></li><li><a href='/tag/france'>France</a></li><li><a href='/tag/india'>India</a></li><li><a href='/tag/iran'>Iran</a></li></ul><p><a href='/tags'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Articles</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/article/phpmysql-combination'>PHP+MySQL Combination</a></li><li><a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'>True strength begins with self-awareness and the emotional connection</a></li><li><a href='/article/editorial-ui'>Designing for Editors</a></li><li><a href='/article/php-native'>PHP Without Frameworks</a></li><li><a href='/article/debounce-search'>Debounce in Search</a></li></ul><p><a href='/articles'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Books</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/book/pink-flowers-in-the-world'>Pink Flowers in the World</a></li><li><a href='/book/php-for-non-publishers'>PHP for Non Publisher</a></li><li><a href='/book/new-world-of-app-dev-with-ai'>New World of App Dev with A-I</a></li><li><a href='/book/designing-editorial-systems'>Designing Editorial Syste</a></li><li><a href='/book/php-for-publishers'>PHP for Publisher</a></li></ul><p><a href='/books'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Youtube Gallery</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li>The Big Swimming Race</li><li>Best Goals in Football</li><li>Best Set of the Year</li><li>England vs South Africa - Highlights</li></ul><p><a href='/youtube-gallery'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Photo Gallery</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li>Articles</li><li>Topics</li><li>Home</li><li>Books</li><li>Books to Check</li></ul><p><a href='/photo-gallery'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Authors</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/author/sana-raza'>Sana Raza</a></li><li><a href='/author/imran-qureshi'>Imran Qureshi</a></li><li><a href='/author/hina-javed'>Hina Javed</a></li><li><a href='/author/tamir-sarfaraz-ahmad'>Taimur Sarfaraz</a></li><li><a href='/author/usman-rafiq'>Usman Rafiq</a></li></ul><p><a href='/authors'>More</a></p></div></div></div>
+</main><div id='above-footer'></div><div id='footer'><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2></h2><div class='block-content'><div style='text-align:center;'><a href="/page/privacy-policy">Privacy Policy</a> | <a href="/page/terms-of-use">Term of Use</a> — Default Template © Powered by CopilotCMS </div></div></div></div><div id='below-footer'></div></body></html>
+	<script src='/templates/carousel.js'></script>
+	

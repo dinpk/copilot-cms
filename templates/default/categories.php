@@ -9,6 +9,7 @@ startLayout(getSetting('categories_label'));
 		<?php renderBlocks("above_content"); ?>
 	</div>
 	<h1><?= getSetting('categories_label') ?></h1>
+	<article>
 	<?php
 	$categories = getCategories($conn);
 	echo "<ul class='category-list'>";
@@ -19,12 +20,10 @@ startLayout(getSetting('categories_label'));
 	<br>
 	<hr>";
 	?>
+	</article>
 	<div id="below-content">
 		<?php renderBlocks("below_content"); ?>
 	</div>
-</div>
-<div id="sidebar-left">
-	<?php renderBlocks("sidebar_left"); ?>
 </div>
 <div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>

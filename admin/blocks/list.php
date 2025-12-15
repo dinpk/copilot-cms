@@ -115,7 +115,7 @@ $regionOptions = [
 		<button type="button" onclick="openMediaModal()" style="display:none;">Select Banner Image</button>
 		<input type="text" name="css" id="css"> <label>CSS</label><br>
 		<input type="number" name="sort" id="sort" value="0" min="-200" max="2000"> <label>Sort</label><br>
-		<label> <input type="checkbox" name="is_dynamic" id="is_dynamic"> Dynamic</label><br>
+		<div style="display:none;"><label> <input type="checkbox" name="is_dynamic" id="is_dynamic"> Dynamic</label><br></div>
 		<label> <input type="checkbox" name="is_active" id="is_active" checked> Active</label><br>
 		
 		<details>

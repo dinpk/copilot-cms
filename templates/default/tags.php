@@ -11,6 +11,7 @@ startLayout(getSetting('tags_label'));
 		<?php renderBlocks("above_content"); ?>
 	</div>
 	<h1><?= getSetting('tags_label') ?></h1>
+	<article>
 	<?php
 	$records = getTags($conn);
 	echo "<ul class='category-list'>";
@@ -21,15 +22,11 @@ startLayout(getSetting('tags_label'));
 	<br>
 	<hr>";
 	?>
+	</article>
 	<div id="below-content">
 		<?php renderBlocks("below_content"); ?>
 	</div>
 </div>
-
-<div id="sidebar-left">
-	<?php renderBlocks("sidebar_left"); ?>
-</div>
-
 <div id="sidebar-right">
 	<?php renderBlocks("sidebar_right"); ?>
 </div>
