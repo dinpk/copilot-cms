@@ -172,6 +172,14 @@ function editItem(id, endpoint, fields) {
 				document.getElementById('is_dynamic').checked = (data.is_dynamic === '1');
 			}
 
+			if (document.getElementById('setting_key')) {
+				document.getElementById('setting_key').setAttribute("readonly", "");
+			}
+
+			if (document.getElementById('is_permanent')) {
+				document.getElementById('is_permanent').checked = (data.is_permanent === '1');
+			}
+
 			if (document.getElementById('is_active')) {
 				document.getElementById('is_active').checked = (data.is_active === '1');
 			}

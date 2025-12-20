@@ -521,7 +521,43 @@ function firstWords($text, $limit = 15) {
 }
 
 
+function articleCreatedUpdated($datetime) {
+	$dateTime = new DateTime($datetime);
+	return $dateTime->format('d/M/Y – h:ia');
+}
+
+
+
+function parseLocale($locale, $displayLang = 'en') {
+
+    // Extract components
+    $language = Locale::getPrimaryLanguage($locale);
+    $region   = Locale::getRegion($locale);
+    $script   = Locale::getScript($locale);
+
+    // Convert to readable names
+    $languageName = Locale::getDisplayLanguage($locale, $displayLang);
+    $countryName  = $region ? Locale::getDisplayRegion('-' . $region, $displayLang) : null;
+    $scriptName   = $script ? Locale::getDisplayScript($locale, $displayLang) : null;
+
+    // Determine text direction
+    $rtlLanguages = ['ar', 'fa', 'ur', 'he', 'ps', 'sd'];
+    $direction = in_array($language, $rtlLanguages) ? 'RTL' : 'LTR';
+
+    // Build result
+    return [
+        'locale'        => $locale,
+        'language_code' => $language,
+        'language_name' => $languageName,
+        'country_code'  => $region,
+        'country_name'  => $countryName,
+        'script'        => $scriptName,
+        'direction'     => $direction,
+        'display_name'  => Locale::getDisplayName($locale, $displayLang)
+    ];
+}
 
 
 
 ?>
+

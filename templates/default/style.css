@@ -1,7 +1,7 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
@@ -14,12 +14,12 @@ body {
 }
 
 a {
-    color: var(--items-brand-color);
-    text-decoration: none;
+	color: var(--items-brand-color);
+	text-decoration: none;
 }
 
 a:hover {
-    filter: brightness(80%);
+	filter: brightness(80%);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -27,16 +27,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 hr {
-    border-top: 0.125em solid var(--items-brand-color);
-    margin: 1em 0;
+	border-top: 0.125em solid var(--items-brand-color);
+	margin: 1em 0;
 }
 
 img {
-    max-width: 100%;
-}
-
-p {
-    text-indent: 1.5em;
+	max-width: 100%;
 }
 
 blockquote {
@@ -56,16 +52,16 @@ header {
 
 
 #above-header {
-    background: #F4F4F4;
-    padding: 0.5em 1em;
-    text-align: right;
-    word-spacing: 0.3em;
-    letter-spacing: 0.05em;
-    font-size: 0.875em;
+	background: #F4F4F4;
+	padding: 0.5em 1em;
+	text-align: right;
+	word-spacing: 0.3em;
+	letter-spacing: 0.05em;
+	font-size: 0.875em;
 }
 
 #above-header span {
-    padding-right: 0.5em;
+	padding-right: 0.5em;
 }
 
 #site-logo {
@@ -98,12 +94,13 @@ header {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	gap: 1em;
+	gap: .5em;
 	background: var(--items-brand-color);
 	padding: 0.625em 1.25em;
 	direction: var(--site-direction);
 	margin-bottom:1px;
 	line-height:1;
+	font-size:.9em;
 }
 
 .main-menu li {
@@ -198,16 +195,36 @@ main ul, main ol {
 }
 
 #content article {
-    direction: var(--site-direction);
+	direction: var(--site-direction);
 }
 
 #content article h2 {
 	color:navy;
+	margin-top:.5em;
 }
 
 #content article h3 {
 	color:darkgreen;
 	margin-inline-start:1.5em;
+	margin-top:.5em;
+}
+
+#content article p {
+	text-indent: 2em;
+	margin:.3em 0 .3em 0;
+	font-size:1.1em;
+}
+
+#content article .article_date_time {
+	color:#888;
+	letter-spacing:1px;
+	word-spacing:2px;
+	text-align:right;
+	margin:3em 0 0 0;
+	padding:1em 0 0 0;
+	font-family:Arial;
+	font-size:.7em;
+	line-height:1.5;
 }
 
 #sidebar-left,

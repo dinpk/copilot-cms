@@ -70,6 +70,17 @@ startLayout(htmlspecialchars($article['title']));
 	if (!empty($tag_names)) echo "<b>" . getSetting('article_tags_label') . "</b>";
 	echo "<p>" . implode(', ', $tag_names) . "</p>";
 
+
+	if (getSetting('show_article_created_updated') == 'yes') {
+		$locale = parseLocale(getSetting('site_locale'));
+		echo "
+		<div class='article_date_time'>
+		Created: " . articleCreatedUpdated($article['entry_date_time']) . 
+		"<br>Updated: " . articleCreatedUpdated($article['update_date_time']) . 
+		"<br>"  . $locale['language_name'] . " – " . $locale['country_name'] . 
+		"</div>";
+	}
+
 	?>
 	</article>
 	

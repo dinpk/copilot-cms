@@ -1,5 +1,7 @@
 <?php
 
+Locale::setDefault('ur_PK');
+
 $page_slug = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
 function startLayout($title = "CopilotCMS") {

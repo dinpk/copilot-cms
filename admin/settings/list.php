@@ -11,7 +11,7 @@ include_once('../layout.php');
 
 <?php
 $groupOptions = [];
-$groupResult = $conn->query("SELECT DISTINCT setting_group FROM settings WHERE is_active = 1 ORDER BY setting_group ASC");
+$groupResult = $conn->query("SELECT DISTINCT setting_group FROM settings ORDER BY setting_group ASC");
 while ($g = $groupResult->fetch_assoc()) {
 	$groupOptions[] = $g['setting_group'];
 }
@@ -37,8 +37,7 @@ while ($g = $groupResult->fetch_assoc()) {
 			<th><?= sortLink('Key', 'setting_key', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Value</th>
 			<th><?= sortLink('Group', 'setting_group', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
-			<th>Type</th>
-			<th>Active</th>
+			<th><?= sortLink('Permanent', 'is_permanent', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -48,34 +47,37 @@ while ($g = $groupResult->fetch_assoc()) {
 	$q = $conn->real_escape_string($q);
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['setting_key', 'setting_group', 'setting_type'];
+	$allowedSorts = ['setting_key', 'setting_group', 'is_permanent'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
 	$group = $_GET['group'] ?? '';
 	$group = $conn->real_escape_string($group);
 
-	$sql = "SELECT * FROM settings WHERE is_active = 1";
+	$sql = "SELECT * FROM settings ";
 	if ($q !== '') {
-		$sql .= " AND MATCH(setting_key, setting_value) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
+		$sql .= " WHERE MATCH(setting_key, setting_value) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
+	$where_and = empty($q) ? "WHERE" : "AND";
 	if ($group !== '') {
-		$sql .= " AND setting_group = '$group'";
+		$sql .= " $where_and setting_group = '$group'";
 	}
 	$sql .= " ORDER BY $sort $dir";
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
-	  echo "<tr>
-		<td>{$row['setting_key']}</td>
-		<td>{$row['setting_value']}</td>
-		<td>{$row['setting_group']}</td>
-		<td>{$row['setting_type']}</td>
-		<td>" . ($row['is_active'] ? '✅' : '❌') . "</td>
-		<td class='record-action-links'>
-			<a href='#' onclick='editItem({$row['key_settings']}, \"get_setting.php\", [\"setting_key\",\"setting_value\",\"setting_group\",\"setting_type\",\"is_active\"])'>Edit</a> 
-			<a href='delete.php?id={$row['key_settings']}' onclick='return confirm(\"Delete this setting?\")'>Delete</a>
-		</td>
-	  </tr>";
+		echo "<tr>
+			<td>{$row['setting_key']}</td>
+			<td>{$row['setting_value']}</td>
+			<td>{$row['setting_group']}</td>
+			<td>" . ($row['is_permanent'] ? 'Permanent' : '') . "</td>
+			<td class='record-action-links'>
+				<a href='#' onclick='editItem({$row['key_settings']}, \"get_setting.php\", [\"setting_key\",\"setting_value\",\"setting_group\",\"is_permanent\"])'>Edit</a> ";
+			if ($row['is_permanent'] == 0) {
+				echo "<a href='delete.php?id={$row['key_settings']}' onclick='return confirm(\"Delete this setting?\")'>Delete</a>";
+			}
+		echo "
+			</td>
+		</tr>";
 	}
 	?>
 	</tbody>
@@ -103,43 +105,13 @@ while ($g = $groupResult->fetch_assoc()) {
 			<option value="cache">Cache</option>
 		</select><br>
 
-		<label>Type</label><br>
-		<select name="setting_type" id="setting_type">
-			<option value="text">Text</option>
-			<option value="number">Number</option>
-			<option value="boolean">Boolean</option>
-			<option value="url">URL</option>
-			<option value="color">Color</option>
-			<option value="json">JSON</option>
-			<option value="dropdown">dropdown</option>
-		</select><br>
 		<label>
-			<input type="checkbox" name="is_active" id="is_active" value="1" checked>
-			Active
+			<input type="checkbox" name="is_permanent" id="is_permanent">
+			Permanent
 		</label><br>
 		<input type="submit" value="Save">
 	</form>
 </div>
 
-<?php
-$folders = array_filter(glob('../../templates/*'), 'is_dir');
-$templateOptions = array_map('basename', $folders);
-$dropdownHTML = "<select name='setting_value' id='setting_value'>";
-foreach ($templateOptions as $folder) {
-	$dropdownHTML .= "<option value='$folder'>$folder</option>";
-}
-$dropdownHTML .= "</select>";
-?>
-<script>
-	document.getElementById('setting_type').addEventListener('change', function() {
-		const wrapper = document.getElementById('value-wrapper');
-		const type = this.value;
-		if (type === 'dropdown') {
-			wrapper.innerHTML = <?= json_encode($dropdownHTML) ?> ;
-		} else {
-			wrapper.innerHTML = `<textarea name="setting_value" id="setting_value" required></textarea>`;
-		}
-	});
-</script>
 
 <?php endLayout(); ?>

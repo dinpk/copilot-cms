@@ -11,8 +11,8 @@ $settingsArray = [];
 $generatedCSS = "";
 $googleFontsArray = [];
 
-$sql = "SELECT setting_key, setting_value, setting_group FROM settings WHERE is_active = 1";
-$result = $conn->query($sql);
+
+$result = $conn->query("SELECT setting_key, setting_value, setting_group FROM settings");
 while ($row = $result->fetch_assoc()) {
 	if (strpos($row['setting_group'], 'css_') > -1) {
 		$generatedCSS .= "--" . str_replace("_", "-", $row['setting_key']) . ":" . $row['setting_value'] . ";\n	";
@@ -33,7 +33,14 @@ $googleFonts = "";
 foreach ($googleFontsArray as $font) {
 	$googleFonts .= "@import url('https://fonts.googleapis.com/css2?family=" . $font . ":wght@400&display=swap');\n";
 }
-file_put_contents('../../templates/settings.css', $googleFonts . "\n" . $generatedCSS);
+
+$uploadedFonts = "";
+$result = $conn->query("SELECT * FROM fonts");
+while ($row = $result->fetch_assoc()) {
+	$uploadedFonts .= "@font-face {font-family:'" . $row['font_label'] . "';font-style:normal;font-weight:400;src:url(/fonts/" . $row['file_name'] . ") format('truetype');}\n";
+}
+
+file_put_contents('../../templates/settings.css', $googleFonts . $uploadedFonts . "\n" . $generatedCSS);
 
 
 // settings.php

@@ -8,7 +8,7 @@ if ($_SESSION["role"] != "admin") {
 }
 if (isset($_GET['id'])) {
 	$id = intval($_GET['id']);
-	$conn->query("UPDATE settings SET is_active = 0 WHERE key_settings = $id");
+	$conn->query("DELETE FROM settings WHERE key_settings = $id");
 }
 header("Location: list.php");
 exit;

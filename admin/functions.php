@@ -8,7 +8,7 @@ if (basename($_SERVER['SCRIPT_FILENAME']) === basename(__FILE__)) {
 
 
 $settings = [];
-$sql = "SELECT setting_key, setting_value FROM settings WHERE is_active = 1";
+$sql = "SELECT setting_key, setting_value FROM settings";
 $result = $conn->query($sql);
 while ($row = $result->fetch_assoc()) {
 	$settings[$row['setting_key']] = $row['setting_value'];

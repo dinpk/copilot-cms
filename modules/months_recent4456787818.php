@@ -13,7 +13,7 @@
 	echo "<div dir='ltr'>";
 	if ($result->num_rows > 0) {
 		while ($row = $result->fetch_assoc()) {
-		  echo "<p><a href='/monthly-articles/{$row['ym']}'>" . htmlspecialchars($row['month_label']) . "</a></p>";
+		  echo "<p><small><a href='/monthly-articles/{$row['ym']}'>" . htmlspecialchars($row['month_label']) . "</a></small></p>";
 		}
 	} else {
 		echo "<p>No articles found.</p>";

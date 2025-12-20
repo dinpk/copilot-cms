@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 14, 2025 at 07:49 AM
+-- Generation Time: Dec 20, 2025 at 05:58 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -66,12 +66,12 @@ INSERT INTO `articles` (`key_articles`, `key_media_banner`, `document_code`, `ti
 (3, 0, '', 'Designing for Editors', 'UI That Works', 'Why editorial-first design matters in publishing workflows.', 'Full content of article 2 3 4', 'article', 0, 'editorial-ui', '', 2, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
 (4, 122, '', 'PHP Without Frameworks', 'Native Power', 'Building robust apps with native PHP and no frameworks.', 'Full content of article 3...', 'article', 1, 'php-native', '', 3, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
 (5, 129, '', 'Modular CRUD Systems', 'Scalable Architecture', 'How modular CRUD design improves maintainability.', 'Full content of article 4...', 'article', 0, 'modular-crud', '', 4, '2025-09-25 18:11:36', '2025-11-16 07:45:54', NULL, 1, 1, 1, 1),
-(6, 37, '', 'Debounce in Search', 'Performance Boosts', 'Using debounce to optimize search-triggered loading.', 'Full content of article 5...', '', 0, 'debounce-search', NULL, 5, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
+(6, 123, '', 'Debounce in Search', 'Performance Boosts', 'Using debounce to optimize search-triggered loading.', 'Full content of article 5...', '', 0, 'debounce-search', '', 5, '2025-09-25 20:13:08', '2025-12-14 20:32:39', NULL, 1, 1, 1, 1),
 (7, 6, '', 'Pagination Patterns', 'Smart Loading', 'Best practices for implementing pagination in CMS.', 'Full content of article 6...', 'article', 0, 'pagination-patterns', '', 6, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
 (8, 34, '', 'Editorial Workflows', 'From Draft to Publish', 'Mapping out efficient editorial workflows.', 'Full content of article 7...', '', 0, 'editorial-workflows', '', 7, '2025-09-25 20:13:08', '2025-11-17 10:25:38', NULL, 1, 0, 1, 1),
 (9, 30, '', 'Category Management', 'Organized Content', 'Tips for managing categories in publishing systems.', 'Full content of article 8...', 'article', 0, 'category-management', '', 8, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
-(10, 39, '', 'Modal-Based Editing', 'Inline Efficiency', 'Using modals for quick article edits.', 'Full content of article 9...', '', 0, 'modal-editing', NULL, 9, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
-(11, 0, '', 'Search Optimization', 'Fast & Relevant', 'Improving search relevance and speed.', 'Full content of article 10...', '', 0, 'search-optimization', 'banner10.jpg', 10, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, NULL, 0, 1, 1),
+(10, 121, '', 'Modal-Based Editing', 'Inline Efficiency', 'Using modals for quick article edits.', 'Full content of article 9...', '', 0, 'modal-editing', '', 9, '2025-09-25 20:13:08', '2025-12-14 20:32:45', NULL, 1, 0, 1, 1),
+(11, 125, '', 'Search Optimization', 'Fast & Relevant', 'Improving search relevance and speed.', 'Full content of article 10...', '', 0, 'search-optimization1', '', 10, '2025-09-25 20:13:08', '2025-12-14 20:33:02', NULL, 1, 0, 1, 1),
 (12, 0, '', 'Legacy CMS Refactor', 'Modernizing Systems', 'Strategies for refactoring legacy CMS platforms.', 'Full content of article 11...', '', 0, 'legacy-refactor', '', 11, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
 (13, 0, '', 'Content Snippets', 'Reusable Blocks', 'Creating reusable content snippets.', 'Full content of article 12...', '', 0, 'content-snippets', 'banner12.jpg', 12, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, NULL, 0, 1, 1),
 (14, 0, '', 'Desktop-Only UI', 'Focused Design', 'Why desktop-first UI still matters.', 'Full content of article 13...', 'article', 0, 'desktop-ui2', '', 13, '2025-09-25 18:11:46', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
@@ -88,7 +88,7 @@ INSERT INTO `articles` (`key_articles`, `key_media_banner`, `document_code`, `ti
 (25, 0, '', 'URL Structuring', 'SEO & Clarity', 'Structuring article URLs for clarity and SEO.', 'Full content of article 24...', 'article', 0, 'url-structure', '', 24, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, 1, 0, 1, 1),
 (26, 0, '', 'CMS Entry Points', 'Where It Begins', 'Designing intuitive entry points for editors.', 'Full content of article 25...', '', 0, 'cms-entry', 'banner25.jpg', 25, '2025-09-25 20:13:08', '2025-11-16 07:45:54', NULL, NULL, 0, 1, 1),
 (36, 113, '', 'True strength begins with self-awareness and the emotional connection', 'Living in a world of Stress, Anxiety and Depression', 'We live in a world where stress, anxiety and depression are becoming increasingly common. ', 'We live in a world where stress, anxiety and depression are becoming increasingly common.   ', 'article', 0, 'true-strength-begins-with-self-awareness-and-emotional-connection', '', 0, '2025-10-05 10:30:29', '2025-12-08 21:07:00', 1, 1, 0, 1, 1),
-(38, 122, '', 'PHP+MySQL Combination', 'How it Works', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms. \r\n', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n\r\n<p style=\"font-family:Noto Nastaliq Urdu;direction:rtl\">\r\nâ€™â€™Ø«Ø±ÛŒØ§ Ø³Û’ Ø²Ù…ÛŒÚº Ù¾Ø± Ø¢Ø³Ù…Ø§Úº Ù†Û’ ÛÙ… Ú©Ùˆ Ø¯Û’ Ù…Ø§Ø±Ø§â€˜â€˜ Ø¯Ø±Ø§ØµÙ„ Ø§ÛŒÚ© Ø§Ø³ØªØ¹Ø§Ø±Ø§ØªÛŒ Ù…Ù†Ø¸Ø± ÛÛ’Û” Ø§Ù‚Ø¨Ø§Ù„ Ú¯ÙˆÛŒØ§ ÛŒÛ Ú©ÛÛ Ø±ÛÛ’ ÛÛŒÚº Ú©Û ÛÙ… Ø§Ù¾Ù†ÛŒ Ø¨Ù„Ù†Ø¯ÛŒ Ø³Û’ Ø®ÙˆØ¯ Ú¯Ø±Û’ Ù†ÛÛŒÚºØŒ Ø¨Ù„Ú©Û ØªÙ‚Ø¯ÛŒØ± Ù†Û’ ÛŒØ§ Ù‚Ø¯Ø±Øª Ú©Û’ ØªÚ©ÙˆÛŒÙ†ÛŒ Ù†Ø¸Ø§Ù… Ù†Û’ ÛÙ…ÛŒÚº ÛÙ…Ø§Ø±Û’ Ú©Ø±ØªÙˆØªÙˆÚº Ú©ÛŒ ÙˆØ¬Û Ø³Û’ Ø¯Ú¾Ú©ÛŒÙ„ Ø¯ÛŒØ§Û” ÛŒÛ â€™â€™Ø¯Û’ Ù…Ø§Ø±Ø§â€˜â€˜ Ù…Ø­Ø¶ Ø¬Ø³Ù…Ø§Ù†ÛŒ ØªÙ†Ø²Ù„ÛŒ Ù†ÛÛŒÚº Ø¨Ù„Ú©Û Ø§Ø®Ù„Ø§Ù‚ÛŒØŒ ÙÚ©Ø±ÛŒØŒ Ø±ÙˆØ­Ø§Ù†ÛŒ Ø§ÙˆØ± ØªÛØ°ÛŒØ¨ÛŒ Ø§Ù†Ø­Ø·Ø§Ø· Ú©ÛŒ Ø·Ø±Ù Ø§Ø´Ø§Ø±Û ÛÛ’Û”\r\n\r\n</p>\r\n\r\n<p>\r\nThe PHP + MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n</p>\r\n\r\n<h2>How the Combination Works</h2>\r\n<p>\r\nThe interaction between PHP and MySQL is a server-side process, meaning most of the work happens on the web server before the user sees the final page.\r\n</p>\r\n\r\n<div class=\"flow-diagram\">\r\n<div class=\"step\">\r\n<h3>1. Request</h3>\r\n<p>A user\'s web browser sends an HTTP request for a page (e.g., <code>example.com/products.php</code>).</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>2. Processing (PHP)</h3>\r\n<p>The web server receives the request and executes the PHP script, which performs server-side tasks like processing user input, managing sessions, and building dynamic content.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>3. Database Query (PHP + MySQL)</h3>\r\n<p>If data is needed, the PHP script connects to the MySQL database and sends a Structured Query Language (SQL) statement.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>4. Database Response (MySQL)</h3>\r\n<p>MySQL processes the SQL query and returns the requested data to the PHP script.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>5. Page Generation (PHP)</h3>\r\n<p>The PHP script uses the data from MySQL to generate a final HTML page.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>6. Response</h3>\r\n<p>The web server sends the completed HTML page back to the user\'s browser, which then renders it for the user.</p>\r\n</div>\r\n</div>\r\n\r\n<h2>What Each Component Does</h2>\r\n\r\n<h3>PHP (Hypertext Preprocessor)</h3>\r\n<p>PHP is a server-side scripting language designed specifically for web development.</p>\r\n<ul>\r\n<li><b>Role:</b> Acts as the \"middleman,\" connecting the user\'s web browser with the database.</li>\r\n<li><b>Purpose:</b> Used for tasks that happen behind the scenes, such as:\r\n<ul>\r\n<li>Handling form submissions</li>\r\n<li>Communicating with the database</li>\r\n<li>Controlling user access</li>\r\n<li>Generating dynamic content</li>\r\n</ul>\r\n</li>\r\n</ul>\r\n\r\n<h3>MySQL</h3>\r\n<p>MySQL is an open-source relational database management system (RDBMS).</p>\r\n<ul>\r\n<li><b>Role:</b> Used for storing and managing data in a structured way.</li>\r\n<li><b>Purpose:</b> Organizes data into tables, columns, and rows, making it easy for PHP to perform CRUD (Create, Read, Update, Delete) operations.</li>\r\n</ul>\r\n\r\n<h2>How PHP Connects to MySQL</h2>\r\n<p>Modern PHP offers two primary extensions for connecting to a MySQL database:</p>\r\n<ul>\r\n<li>\r\n<b>MySQLi (\"MySQL improved\"):</b> An extension specific to MySQL databases that offers both procedural and object-oriented interfaces.\r\n</li>\r\n<li>\r\n<b>PDO (PHP Data Objects):</b> A versatile database abstraction layer that can work with over 12 different database systems, including MySQL.\r\n</li>\r\n</ul>\r\n<p>Both MySQLi and PDO support *prepared statements*, a security feature that helps prevent SQL injection attacks.</p>', 'translation', 0, 'phpmysql-combination', 'https://images.pexels.com/photos/18287652/pexels-photo-18287652.jpeg?cs=srgb&dl=pexels-fotios-photos-18287652.jpg&fm=jpg', 0, '2025-10-12 07:35:26', '2025-11-16 16:19:50', 1, 1, 0, 1, 1),
+(38, 122, '', 'PHP+MySQL Combination', 'How it Works', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms. \r\n', 'The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n\r\n<p style=\"font-family:Noto Nastaliq Urdu;direction:rtl\">\r\nâ€™â€™Ø«Ø±ÛŒØ§ Ø³Û’ Ø²Ù…ÛŒÚº Ù¾Ø± Ø¢Ø³Ù…Ø§Úº Ù†Û’ ÛÙ… Ú©Ùˆ Ø¯Û’ Ù…Ø§Ø±Ø§â€˜â€˜ Ø¯Ø±Ø§ØµÙ„ Ø§ÛŒÚ© Ø§Ø³ØªØ¹Ø§Ø±Ø§ØªÛŒ Ù…Ù†Ø¸Ø± ÛÛ’Û” Ø§Ù‚Ø¨Ø§Ù„ Ú¯ÙˆÛŒØ§ ÛŒÛ Ú©ÛÛ Ø±ÛÛ’ ÛÛŒÚº Ú©Û ÛÙ… Ø§Ù¾Ù†ÛŒ Ø¨Ù„Ù†Ø¯ÛŒ Ø³Û’ Ø®ÙˆØ¯ Ú¯Ø±Û’ Ù†ÛÛŒÚºØŒ Ø¨Ù„Ú©Û ØªÙ‚Ø¯ÛŒØ± Ù†Û’ ÛŒØ§ Ù‚Ø¯Ø±Øª Ú©Û’ ØªÚ©ÙˆÛŒÙ†ÛŒ Ù†Ø¸Ø§Ù… Ù†Û’ ÛÙ…ÛŒÚº ÛÙ…Ø§Ø±Û’ Ú©Ø±ØªÙˆØªÙˆÚº Ú©ÛŒ ÙˆØ¬Û Ø³Û’ Ø¯Ú¾Ú©ÛŒÙ„ Ø¯ÛŒØ§Û” ÛŒÛ â€™â€™Ø¯Û’ Ù…Ø§Ø±Ø§â€˜â€˜ Ù…Ø­Ø¶ Ø¬Ø³Ù…Ø§Ù†ÛŒ ØªÙ†Ø²Ù„ÛŒ Ù†ÛÛŒÚº Ø¨Ù„Ú©Û Ø§Ø®Ù„Ø§Ù‚ÛŒØŒ ÙÚ©Ø±ÛŒØŒ Ø±ÙˆØ­Ø§Ù†ÛŒ Ø§ÙˆØ± ØªÛØ°ÛŒØ¨ÛŒ Ø§Ù†Ø­Ø·Ø§Ø· Ú©ÛŒ Ø·Ø±Ù Ø§Ø´Ø§Ø±Û ÛÛ’Û”\r\n\r\n</p>\r\n\r\n<p>\r\nThe PHP + MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms.\r\n</p>\r\n\r\n<h2>How the Combination Works</h2>\r\n<p>\r\nThe interaction between PHP and MySQL is a server-side process, meaning most of the work happens on the web server before the user sees the final page.\r\n</p>\r\n\r\n<div class=\"flow-diagram\">\r\n<div class=\"step\">\r\n<h3>1. Request</h3>\r\n<p>A user\'s web browser sends an HTTP request for a page (e.g., <code>example.com/products.php</code>).</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>2. Processing (PHP)</h3>\r\n<p>The web server receives the request and executes the PHP script, which performs server-side tasks like processing user input, managing sessions, and building dynamic content.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>3. Database Query (PHP + MySQL)</h3>\r\n<p>If data is needed, the PHP script connects to the MySQL database and sends a Structured Query Language (SQL) statement.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>4. Database Response (MySQL)</h3>\r\n<p>MySQL processes the SQL query and returns the requested data to the PHP script.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>5. Page Generation (PHP)</h3>\r\n<p>The PHP script uses the data from MySQL to generate a final HTML page.</p>\r\n</div>\r\n<div class=\"step\">\r\n<h3>6. Response</h3>\r\n<p>The web server sends the completed HTML page back to the user\'s browser, which then renders it for the user.</p>\r\n</div>\r\n</div>\r\n\r\n<h2>What Each Component Does</h2>\r\n\r\n<h3>PHP (Hypertext Preprocessor)</h3>\r\n<p>PHP is a server-side scripting language designed specifically for web development.</p>\r\n<ul>\r\n<li><b>Role:</b> Acts as the \"middleman,\" connecting the user\'s web browser with the database.</li>\r\n<li><b>Purpose:</b> Used for tasks that happen behind the scenes, such as:\r\n<ul>\r\n<li>Handling form submissions</li>\r\n<li>Communicating with the database</li>\r\n<li>Controlling user access</li>\r\n<li>Generating dynamic content</li>\r\n</ul>\r\n</li>\r\n</ul>\r\n\r\n<h3>MySQL</h3>\r\n<p>MySQL is an open-source relational database management system (RDBMS).</p>\r\n<ul>\r\n<li><b>Role:</b> Used for storing and managing data in a structured way.</li>\r\n<li><b>Purpose:</b> Organizes data into tables, columns, and rows, making it easy for PHP to perform CRUD (Create, Read, Update, Delete) operations.</li>\r\n</ul>\r\n\r\n<h2>How PHP Connects to MySQL</h2>\r\n<p>Modern PHP offers two primary extensions for connecting to a MySQL database:</p>\r\n<ul>\r\n<li>\r\n<b>MySQLi (\"MySQL improved\"):</b> An extension specific to MySQL databases that offers both procedural and object-oriented interfaces.\r\n</li>\r\n<li>\r\n<b>PDO (PHP Data Objects):</b> A versatile database abstraction layer that can work with over 12 different database systems, including MySQL.\r\n</li>\r\n</ul>\r\n<p>Both MySQLi and PDO support *prepared statements*, a security feature that helps prevent SQL injection attacks.</p>', 'translation', 0, 'phpmysql-combination', 'https://images.pexels.com/photos/18287652/pexels-photo-18287652.jpeg?cs=srgb&dl=pexels-fotios-photos-18287652.jpg&fm=jpg', 0, '2025-10-12 07:35:26', '2025-12-14 20:32:28', 1, 1, 1, 1, 1),
 (41, 0, '', 'Test 3', '', '', '', '', 0, 'test-3', '', 0, '2016-11-08 00:00:00', '2025-11-16 07:45:54', 1, NULL, 0, 1, 1);
 
 -- --------------------------------------------------------
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `article_categories` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_categories`),
   KEY `key_categories` (`key_categories`)
-) ENGINE=InnoDB AUTO_INCREMENT=216 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=220 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_categories`
@@ -168,8 +168,6 @@ INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`)
 (45, 0, 4, NULL),
 (57, 35, 18, NULL),
 (63, 34, 1, NULL),
-(68, 6, 8, NULL),
-(69, 6, 18, NULL),
 (178, 9, 13, NULL),
 (181, 25, 13, NULL),
 (182, 2, 13, NULL),
@@ -184,8 +182,10 @@ INSERT INTO `article_categories` (`id`, `key_articles`, `key_categories`, `url`)
 (207, 36, 13, NULL),
 (208, 36, 4, NULL),
 (209, 36, 6, NULL),
-(214, 38, 13, NULL),
-(215, 38, 4, NULL);
+(216, 38, 13, NULL),
+(217, 38, 4, NULL),
+(218, 6, 8, NULL),
+(219, 6, 18, NULL);
 
 -- --------------------------------------------------------
 
@@ -202,7 +202,7 @@ CREATE TABLE IF NOT EXISTS `article_content_types` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_content_types`),
   KEY `key_content_types` (`key_content_types`)
-) ENGINE=InnoDB AUTO_INCREMENT=184 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=185 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_content_types`
@@ -218,7 +218,7 @@ INSERT INTO `article_content_types` (`id`, `key_articles`, `key_content_types`, 
 (179, 24, 47, NULL),
 (181, 18, 39, NULL),
 (182, 5, 33, NULL),
-(183, 38, 32, NULL);
+(184, 38, 32, NULL);
 
 -- --------------------------------------------------------
 
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `article_tags` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_pair` (`key_articles`,`key_tags`),
   KEY `key_tags` (`key_tags`)
-) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `article_tags`
@@ -247,8 +247,8 @@ INSERT INTO `article_tags` (`id`, `key_articles`, `key_tags`, `url`) VALUES
 (196, 4, 53, NULL),
 (197, 8, 53, NULL),
 (200, 36, 64, NULL),
-(205, 38, 60, NULL),
-(206, 38, 59, NULL);
+(207, 38, 60, NULL),
+(208, 38, 59, NULL);
 
 -- --------------------------------------------------------
 
@@ -333,7 +333,7 @@ CREATE TABLE IF NOT EXISTS `blocks` (
   `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`key_blocks`),
   KEY `fk_blocks_media` (`key_media_banner`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `blocks`
@@ -347,7 +347,7 @@ INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `key_photo_gallery`, `ke
 (5, 0, 0, 0, 0, 0, 'books_84538', 'Latest Books', 'Books', '', 5, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-10-01 22:49:57', 1, 1, 5, 0, 1),
 (6, 0, 0, 0, 0, 0, 'categories_55448', 'Categories', 'Topics', '', 10, 'large-desktop,desktop,tablet', '', '', 'sidebar_right', '2025-10-08 14:37:28', 1, 1, 2, 0, 1),
 (8, 0, 0, 0, 0, 0, '', 'Copyright Message', '', '', 0, 'large-desktop,desktop,tablet,mobile', '<div style=\'text-align:center;\'><a href=\"/page/privacy-policy\">Privacy Policy</a> | <a href=\"/page/terms-of-use\">Term of Use</a> â€” Default Template Â© Powered by CopilotCMS </div>', '', 'footer', '2025-10-10 18:40:38', 1, 1, 12, 0, 1),
-(9, 0, 0, 0, 0, 0, '', 'Phone Email', '', '', 0, 'large-desktop,desktop,tablet,mobile', '<span>Phone</span><a href=\"tel:1234567890\">(123)456-7890</a>\r\n<span>Email</span><a href=\"mailto:myemail@outlook.com\">myemail@outlook.com</a>', '', 'above_header', '2025-10-10 19:47:52', 1, 1, 0, 0, 1),
+(9, 0, 0, 0, 0, 0, '', 'Phone Email', '', '', 0, 'large-desktop,desktop,tablet,mobile', '<span>Phone</span><a href=\"tel:1234567890\">(123)456-7890</a>\r\n<span>Email</span><a href=\"mailto:myemail@outlook.com\">myemail@outlook.com</a>', '', 'above_header', '2025-10-10 19:47:52', 1, 1, 0, 0, 0),
 (12, 0, 33, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Home', '', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'home', 'below_header', '2025-10-13 23:11:01', 1, 1, 11, 0, 1),
 (14, 0, 29, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Articles', '', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'articles', 'below_header', '2025-10-15 00:25:45', 1, 1, 0, 0, 1),
 (15, 0, 30, 0, 0, 0, 'photo_gallery_carousel_5645645', 'Image Slideshow Categories', '', '', 0, 'large-desktop,desktop,tablet,mobile', '', 'categories', 'below_header', '2025-10-15 00:28:00', 1, 1, 0, 0, 1),
@@ -357,13 +357,14 @@ INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `key_photo_gallery`, `ke
 (19, 0, 0, 0, 0, 0, 'search6545645', 'Search Block', 'Search', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-10-28 21:02:04', 1, 1, -1, 0, 1),
 (20, 0, 0, 0, 0, 0, 'content_types_55448', 'Content Types', 'Content Types', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-11-04 00:07:23', 1, 1, 1, 0, 1),
 (21, 0, 0, 0, 0, 0, 'tags_55448', 'Tags', 'Tags', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-11-04 17:06:47', 1, 1, 3, 0, 1),
-(22, 0, 0, 0, 0, 0, 'articles_featured5468741', 'Featured Articles', 'Featured', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-14 18:15:04', 1, 0, 0, 0, 1),
+(22, 0, 0, 0, 0, 0, 'articles_featured_544678786', 'Featured Articles', '', 'height:300px;', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'above_content', '2025-11-14 18:15:04', 1, 1, 0, 0, 1),
 (23, 0, 0, 0, 0, 53, 'articles_of_tag565786548', 'Tag \'Ireland\' ', 'Ireland Articles', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-17 10:26:47', 1, 1, 4, 0, 1),
 (24, 0, 0, 39, 0, 0, 'articles_of_content_type565786548', 'Content Type \'Interview\' ', 'Interview Articles', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-17 10:48:23', 1, 1, 6, 0, 1),
 (25, 0, 0, 0, 6, 0, 'articles_of_categories565786548', 'Category \'Content Strategy\' ', 'Content Strategy Articles', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-17 10:54:31', 1, 1, 6, 0, 1),
 (26, 0, 0, 0, 0, 0, 'months_recent4456787818', 'Yearly > Monthly Archive', 'Archive', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-27 20:59:22', 1, 0, 16, 0, 1),
 (29, 0, 0, 0, 0, 0, 'articles_random5468741', 'Random Articles', 'Random Articles', '', 10, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-12-12 23:39:18', 1, 1, 0, 1, 1),
-(30, 0, 0, 0, 0, 0, 'articles_random5468741', 'Article Random', 'Articles Random', '', 7, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-12-13 12:25:30', 1, 1, 0, 1, 1);
+(30, 0, 0, 0, 0, 0, 'articles_random5468741', 'Article Random', 'Articles Random', '', 7, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-12-13 12:25:30', 1, 1, 0, 1, 1),
+(31, 0, 0, 0, 0, 0, 'local_weather_time_89465465468', 'Local Weather Time', '', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'above_header', '2025-12-15 13:21:08', 1, 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -619,6 +620,22 @@ INSERT INTO `content_types` (`key_content_types`, `key_media_banner`, `name`, `d
 (48, 0, 'Editorial', '', 'editorial', '', 0, 1, '2025-11-03 20:50:32'),
 (49, 0, 'Breaking', '', 'breaking', '', 0, 1, '2025-11-03 20:50:39'),
 (50, 0, 'Featured', '', 'featured', '', 0, 1, '2025-11-03 20:50:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fonts`
+--
+
+DROP TABLE IF EXISTS `fonts`;
+CREATE TABLE IF NOT EXISTS `fonts` (
+  `key_fonts` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `font_label` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `file_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  PRIMARY KEY (`key_fonts`),
+  UNIQUE KEY `font_label` (`font_label`),
+  UNIQUE KEY `file_name` (`file_name`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -1065,98 +1082,76 @@ CREATE TABLE IF NOT EXISTS `settings` (
   `key_settings` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `setting_key` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `setting_value` text COLLATE utf8_unicode_ci NOT NULL,
-  `setting_group` varchar(50) COLLATE utf8_unicode_ci DEFAULT 'general',
-  `setting_type` enum('text','number','boolean','url','color','json','dropdown') COLLATE utf8_unicode_ci DEFAULT 'text',
-  `is_active` tinyint(1) DEFAULT '1',
-  `entry_date_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `setting_group` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'general',
+  `is_permanent` tinyint(1) NOT NULL DEFAULT '0',
+  `entry_date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_settings`)
-) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting_group`, `setting_type`, `is_active`, `entry_date_time`) VALUES
-(1, 'site_name', 'Copilot CMS', 'general', 'text', 1, '2025-10-06 23:07:08'),
-(2, 'site_slogan', 'Clarity. Collaboration. Control.', 'general', 'text', 1, '2025-10-06 23:07:08'),
-(3, 'base_url', 'http://copilot/', 'general', 'url', 1, '2025-10-06 23:18:10'),
-(4, 'powered_by', 'Powered by Copilot', 'general', 'text', 0, '2025-10-06 23:07:08'),
-(5, 'homepage_featured_articles_count', '5', 'homepage', 'number', 0, '2025-10-06 23:07:08'),
-(6, 'homepage_featured_books_count', '3', 'homepage', 'number', 0, '2025-10-06 23:07:08'),
-(7, 'homepage_blocks_region', 'main', 'homepage', 'text', 0, '2025-10-06 23:07:08'),
-(8, 'homepage_banner_text', 'Welcome to Our Editorial Hub', 'homepage', 'text', 0, '2025-10-06 23:07:08'),
-(9, 'homepage_cta_button_text', 'Explore More', 'homepage', 'text', 0, '2025-10-06 23:07:08'),
-(10, 'homepage_cta_button_url', '/books', 'homepage', 'url', 0, '2025-10-06 23:07:08'),
-(11, 'article_show_author', '1', 'article_view', 'boolean', 0, '2025-10-06 23:07:08'),
-(12, 'article_show_categories', '1', 'article_view', 'boolean', 0, '2025-10-06 23:07:08'),
-(13, 'article_show_related_books', '1', 'article_view', 'boolean', 0, '2025-10-06 23:07:08'),
-(14, 'article_snippet_length', '300', 'article_view', 'number', 0, '2025-10-06 23:07:08'),
-(15, 'article_banner_height', '400px', 'article_view', 'text', 0, '2025-10-06 23:07:08'),
-(16, 'book_show_assigned_articles', '1', 'book_view', 'boolean', 0, '2025-10-06 23:07:08'),
-(17, 'product_show_price_history', '1', 'product_view', 'boolean', 0, '2025-10-06 23:07:08'),
-(18, 'product_gallery_layout', 'grid', 'product_view', 'text', 0, '2025-10-06 23:07:08'),
-(19, 'product_default_currency', 'PKR', 'product_view', 'text', 0, '2025-10-06 23:07:08'),
-(20, 'photo_gallery_layout', 'grid', 'gallery', 'text', 0, '2025-10-06 23:07:08'),
-(21, 'youtube_gallery_embed_style', 'iframe', 'gallery', 'text', 0, '2025-10-06 23:07:08'),
-(22, 'gallery_items_per_page', '12', 'gallery', 'number', 0, '2025-10-06 23:07:08'),
-(23, 'default_font_family', 'Arial, sans-serif', 'ui', 'text', 0, '2025-10-06 23:07:08'),
-(24, 'template_default_color', '#0055aa', 'ui', 'color', 0, '2025-10-10 18:01:14'),
-(25, 'default_button_style', 'rounded', 'ui', 'text', 0, '2025-10-06 23:07:08'),
-(26, 'default_loading_spinner', 'spinner-circle', 'ui', 'text', 0, '2025-10-06 23:07:08'),
-(27, 'default_404_message', 'Page not found.', 'ui', 'text', 0, '2025-10-06 23:07:08'),
-(28, 'default_empty_state_message', 'No content available.', 'ui', 'text', 0, '2025-10-06 23:07:08'),
-(29, 'menu_max_depth', '3', 'seo', 'number', 0, '2025-10-06 23:07:08'),
-(30, 'seo_enable_canonical_links', '1', 'seo', 'boolean', 0, '2025-10-06 23:07:08'),
-(31, 'seo_enable_open_graph', '1', 'seo', 'boolean', 0, '2025-10-06 23:07:08'),
-(32, 'seo_default_image_url', '/assets/images/default-og.jpg', 'seo', 'url', 0, '2025-10-06 23:07:08'),
-(33, 'frontend_debug_mode', '0', 'debug', 'boolean', 0, '2025-10-06 23:07:08'),
-(34, 'frontend_cache_ttl', '300', 'debug', 'number', 0, '2025-10-06 23:07:08'),
-(35, 'frontend_ajax_timeout', '5000', 'debug', 'number', 0, '2025-10-06 23:07:08'),
-(37, 'template_folder', 'default', 'php_template', 'dropdown', 1, '2025-10-06 23:59:28'),
-(38, 'template_default_logo', '/templates/default/images/copilogcms.png', 'general', 'text', 1, '2025-10-15 04:56:36'),
-(39, 'template_default_cover_image', '/templates/default/images/pexels-wasifmehmood997-19442078.jpg', 'ui', 'text', 0, '2025-10-10 18:02:14'),
-(40, 'max_upload_image_width', '2000', 'media_library', 'number', 1, '2025-10-15 22:12:04'),
-(41, 'max_upload_image_height', '1000', 'media_library', 'number', 1, '2025-10-15 22:12:09'),
-(42, 'template_text_color', 'black', 'css_colors', 'text', 1, '2025-10-20 21:23:28'),
-(43, 'template_background_color', '#FFF', 'css_colors', 'text', 1, '2025-10-20 21:27:30'),
-(44, 'template_font_family', 'calibri', 'css_fonts', 'text', 1, '2025-10-20 21:27:50'),
-(45, 'items_brand_color', 'SeaGreen', 'css_colors', 'text', 1, '2025-10-20 21:28:26'),
-(46, 'sidebar_background_color', '#F4F4F4', 'css_colors', 'text', 1, '2025-10-20 23:27:22'),
-(47, 'site_direction', 'ltr', 'css_template', 'text', 1, '2025-10-22 07:37:19'),
-(48, 'google_fonts', 'Noto Nastaliq Urdu, Gulzar', 'css_fonts', 'text', 1, '2025-10-27 21:33:32'),
-(49, 'snippets_per_page', '15', 'php_template', 'text', 1, '2025-10-30 09:49:38'),
-(50, 'snippet_words', '80', 'php_template', 'text', 1, '2025-10-30 11:14:33'),
-(51, 'module_total_records', '7', 'php_template', 'text', 0, '2025-11-06 19:49:34'),
-(52, 'pager_next_label', 'Next', 'php_template', 'text', 1, '2025-11-06 19:52:48'),
-(53, 'pager_prev_label', 'Prev', 'php_template', 'text', 1, '2025-11-06 19:53:02'),
-(54, 'readmore_label', 'Read more', 'php_template', 'text', 1, '2025-11-06 19:54:21'),
-(55, 'module_more_label', 'More', 'php_template', 'text', 1, '2025-11-07 16:38:31'),
-(56, 'template_max_width', '1300px', 'css_template', 'text', 1, '2025-11-07 17:21:27'),
-(57, 'main_menu_font', 'Arial', 'css_fonts', 'text', 1, '2025-11-07 18:40:16'),
-(58, 'breadcrumb_font', 'Arial', 'css_fonts', 'text', 1, '2025-11-07 18:54:58'),
-(59, 'block_heading_font', 'Arial', 'css_fonts', 'text', 1, '2025-11-07 20:10:46'),
-(60, 'pager_font', 'Arial', 'css_fonts', 'text', 1, '2025-11-07 20:15:54'),
-(61, 'footer_font', 'Arial', 'css_fonts', 'text', 1, '2025-11-07 21:16:04'),
-(62, 'template_font_size', '15px', 'css_fonts', 'text', 1, '2025-11-08 17:44:20'),
-(63, 'test_key', 'test_value', 'css_template', 'text', 0, '2025-11-10 20:31:54'),
-(64, 'content_banner_height', '20vh', 'css_template', 'text', 1, '2025-11-14 22:02:08'),
-(65, 'articles_label', 'Articles', 'php_template', 'text', 1, '2025-11-16 16:37:06'),
-(66, 'content_types_label', 'Content Types', 'php_template', 'text', 1, '2025-11-16 16:37:26'),
-(67, 'categories_label', 'Categories', 'php_template', 'text', 1, '2025-11-16 16:37:50'),
-(68, 'tags_label', 'Tags', 'php_template', 'text', 1, '2025-11-16 16:37:58'),
-(69, 'books_label', 'Books', 'php_template', 'text', 1, '2025-11-16 16:38:14'),
-(70, 'pages_label', 'Info', 'php_template', 'text', 1, '2025-11-16 16:38:37'),
-(71, 'authors_label', 'Authors', 'php_template', 'text', 1, '2025-11-16 16:38:49'),
-(72, 'youtube_gallery_label', 'Youtube Gallery', 'php_template', 'text', 1, '2025-11-16 16:39:19'),
-(73, 'photo_gallery_label', 'Photo Gallery', 'php_template', 'text', 1, '2025-11-16 16:39:35'),
-(74, 'search_label', 'Search', 'php_template', 'text', 1, '2025-11-16 16:40:10'),
-(75, 'cache_duration_days', '1', 'cache', 'text', 1, '2025-12-07 18:36:21'),
-(76, 'cache_enabled', 'yes', 'cache', 'text', 1, '2025-12-07 18:36:52'),
-(77, 'css_version', '1', 'css_template', 'text', 1, '2025-12-09 23:46:37'),
-(78, 'article_authors_label', 'Authors', 'php_template', 'text', 1, '2025-12-13 12:54:06'),
-(79, 'article_categories_label', 'Categories', 'php_template', 'text', 1, '2025-12-13 12:57:00'),
-(80, 'article_content_types_label', 'Content Types', 'php_template', 'text', 1, '2025-12-13 12:57:20'),
-(81, 'article_tags_label', 'Tags', 'php_template', 'text', 1, '2025-12-13 12:57:46');
+INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting_group`, `is_permanent`, `entry_date_time`) VALUES
+(1, 'site_name', 'Copilot CMS', 'general', 0, '2025-10-06 23:07:08'),
+(2, 'site_slogan', 'Clarity. Collaboration. Control.', 'general', 0, '2025-10-06 23:07:08'),
+(3, 'base_url', 'http://copilot/', 'general', 0, '2025-10-06 23:18:10'),
+(4, 'powered_by', 'Powered by Copilot', 'general', 0, '2025-10-06 23:07:08'),
+(11, 'article_show_author', '1', 'article_view', 0, '2025-10-06 23:07:08'),
+(12, 'article_show_categories', '1', 'article_view', 0, '2025-10-06 23:07:08'),
+(13, 'article_show_related_books', '1', 'article_view', 0, '2025-10-06 23:07:08'),
+(14, 'article_snippet_length', '300', 'article_view', 0, '2025-10-06 23:07:08'),
+(15, 'article_banner_height', '400px', 'article_view', 0, '2025-10-06 23:07:08'),
+(22, 'gallery_items_per_page', '12', 'gallery', 0, '2025-10-06 23:07:08'),
+(24, 'template_default_color', '#0055aa', 'ui', 0, '2025-10-10 18:01:14'),
+(27, 'default_404_message', 'Page not found.', 'ui', 0, '2025-10-06 23:07:08'),
+(37, 'template_folder', 'default', 'php_template', 1, '2025-10-06 23:59:28'),
+(38, 'template_default_logo', '/templates/default/images/copilogcms.png', 'general', 0, '2025-10-15 04:56:36'),
+(39, 'template_default_cover_image', '/templates/default/images/pexels-wasifmehmood997-19442078.jpg', 'ui', 0, '2025-10-10 18:02:14'),
+(40, 'max_upload_image_width', '2000', 'media_library', 0, '2025-10-15 22:12:04'),
+(41, 'max_upload_image_height', '1000', 'media_library', 0, '2025-10-15 22:12:09'),
+(42, 'template_text_color', 'black', 'css_colors', 0, '2025-10-20 21:23:28'),
+(43, 'template_background_color', '#FFF', 'css_colors', 0, '2025-10-20 21:27:30'),
+(44, 'template_font_family', 'Mehr Urdu 2', 'css_fonts', 0, '2025-10-20 21:27:50'),
+(45, 'items_brand_color', 'SeaGreen', 'css_colors', 0, '2025-10-20 21:28:26'),
+(46, 'sidebar_background_color', '#F4F4F4', 'css_colors', 0, '2025-10-20 23:27:22'),
+(47, 'site_direction', 'ltr', 'css_template', 0, '2025-10-22 07:37:19'),
+(48, 'google_fonts', 'Noto Nastaliq Urdu, Gulzar', 'css_fonts', 0, '2025-10-27 21:33:32'),
+(49, 'snippets_per_page', '15', 'php_template', 0, '2025-10-30 09:49:38'),
+(50, 'snippet_words', '80', 'php_template', 0, '2025-10-30 11:14:33'),
+(51, 'module_total_records', '7', 'php_template', 0, '2025-11-06 19:49:34'),
+(52, 'pager_next_label', 'Next', 'php_template', 0, '2025-11-06 19:52:48'),
+(53, 'pager_prev_label', 'Prev', 'php_template', 0, '2025-11-06 19:53:02'),
+(54, 'readmore_label', 'Read more', 'php_template', 0, '2025-11-06 19:54:21'),
+(55, 'module_more_label', 'More', 'php_template', 0, '2025-11-07 16:38:31'),
+(56, 'template_max_width', '1300px', 'css_template', 0, '2025-11-07 17:21:27'),
+(57, 'main_menu_font', 'Arial', 'css_fonts', 0, '2025-11-07 18:40:16'),
+(58, 'breadcrumb_font', 'Arial', 'css_fonts', 0, '2025-11-07 18:54:58'),
+(59, 'block_heading_font', 'Arial', 'css_fonts', 0, '2025-11-07 20:10:46'),
+(60, 'pager_font', 'Arial', 'css_fonts', 0, '2025-11-07 20:15:54'),
+(61, 'footer_font', 'Arial', 'css_fonts', 0, '2025-11-07 21:16:04'),
+(62, 'template_font_size', '15px', 'css_fonts', 0, '2025-11-08 17:44:20'),
+(63, 'test_key', 'test_value', 'css_template', 0, '2025-11-10 20:31:54'),
+(64, 'content_banner_height', '20vh', 'css_template', 0, '2025-11-14 22:02:08'),
+(65, 'articles_label', 'Articles', 'php_template', 0, '2025-11-16 16:37:06'),
+(66, 'content_types_label', 'Content Types', 'php_template', 0, '2025-11-16 16:37:26'),
+(67, 'categories_label', 'Categories', 'php_template', 0, '2025-11-16 16:37:50'),
+(68, 'tags_label', 'Tags', 'php_template', 0, '2025-11-16 16:37:58'),
+(69, 'books_label', 'Books', 'php_template', 0, '2025-11-16 16:38:14'),
+(70, 'pages_label', 'Info', 'php_template', 0, '2025-11-16 16:38:37'),
+(71, 'authors_label', 'Authors', 'php_template', 0, '2025-11-16 16:38:49'),
+(72, 'youtube_gallery_label', 'Youtube Gallery', 'php_template', 0, '2025-11-16 16:39:19'),
+(73, 'photo_gallery_label', 'Photo Gallery', 'php_template', 0, '2025-11-16 16:39:35'),
+(74, 'search_label', 'Search', 'php_template', 0, '2025-11-16 16:40:10'),
+(75, 'cache_duration_hours', '1', 'cache', 0, '2025-12-07 18:36:21'),
+(76, 'cache_enabled', 'yes', 'cache', 0, '2025-12-07 18:36:52'),
+(77, 'css_version', '1', 'css_template', 0, '2025-12-09 23:46:37'),
+(78, 'article_authors_label', 'Authors', 'php_template', 0, '2025-12-13 12:54:06'),
+(79, 'article_categories_label', 'Categories', 'php_template', 0, '2025-12-13 12:57:00'),
+(80, 'article_content_types_label', 'Content Types', 'php_template', 0, '2025-12-13 12:57:20'),
+(81, 'article_tags_label', 'Tags', 'php_template', 0, '2025-12-13 12:57:46'),
+(82, 'show_article_created_updated', 'yes', 'php_template', 0, '2025-12-20 18:41:46'),
+(83, 'site_locale', 'en_PK', 'php_template', 0, '2025-12-20 19:06:46');
 
 -- --------------------------------------------------------
 
