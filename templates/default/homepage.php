@@ -19,9 +19,9 @@ include(__DIR__ . '/layout.php');
 		$article_snippet = empty($record['article_snippet']) ? firstWords($record['article_content'], getSetting('snippet_words')) : $record['article_snippet'];
 		echo "<div class='snippet-card'>
   			  <div><a href='/article/{$record['url']}'><img src='$banner_url' data-animate='fade'></a></div>
-			  <div class='snippet-content'>
+			  <div class='snippet-content " . $record['content_direction'] . "'>
 			  <h2><a href='/article/{$record['url']}'>{$record['title']}</a></h2>
-			  <div>$article_snippet … <a href='/article/{$record['url']}'>" . getSetting('readmore_label') . "</a></div>
+			  <div>$article_snippet …<br><a href='/article/{$record['url']}'>" . getSetting('readmore_label') . "</a></div>
 			  </div>
 			</div>";
 	}

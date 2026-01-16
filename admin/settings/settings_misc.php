@@ -25,8 +25,15 @@ $message = '';
 		if (isset($_POST["home"])) {
 			$fileHash = md5("home");
 			$cacheFile = "$cacheFolder/$fileHash";
-			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			if (file_exists($cacheFile)){
+				unlink($cacheFile);
+				$message = "<div class='success-message'>Cache cleared successfully</div>";
+			}
+			$cacheFile = "$cacheFolder/home";
+			if (file_exists($cacheFile)){
+				unlink($cacheFile);
+				$message = "<div class='success-message'>Cache cleared successfully</div>";
+			}
 		}
 
 		if (isset($_POST["articles"])) {

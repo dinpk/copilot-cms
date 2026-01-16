@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto Nastaliq Urdu:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family= Gulzar:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family= Noto Kufi Arabic:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family= Noto Naskh Arabic:wght@400&display=swap');
+@font-face {font-family:'Alqalam';font-style:normal;font-weight:400;src:url(/fonts/Alqalam_1766253707.ttf) format('truetype');}
 
 :root {
 	--template-text-color:black;
 	--template-background-color:#FFF;
-	--template-font-family:Calibri;
 	--items-brand-color:SeaGreen;
 	--sidebar-background-color:#F4F4F4;
 	--site-direction:ltr;
-	--google-fonts:Noto Nastaliq Urdu, Gulzar;
+	--google-fonts:Noto Nastaliq Urdu, Gulzar, Noto Kufi Arabic, Noto Naskh Arabic;
 	--template-max-width:1300px;
 	--main-menu-font:Arial;
 	--breadcrumb-font:Arial;
@@ -16,8 +18,10 @@
 	--pager-font:Arial;
 	--footer-font:Arial;
 	--template-font-size:15px;
-	--test-key:test_value;
 	--content-banner-height:20vh;
 	--css-version:1;
+	--template-font-rtl:Noto Kufi Arabic;
+	--template-font-ltr:calibri;
+	--template-font-family:calibri;
 	
 }

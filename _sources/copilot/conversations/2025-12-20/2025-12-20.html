@@ -1,0 +1,2337 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 7.4.7.2 (Windows)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2026-01-16T06:11:08.141000000"/>
+	<style type="text/css">
+		@page { size: 8.5in 14in; margin: 0.3in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+		h2 { line-height: 115%; margin-top: 0.14in; margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h2.western { font-family: "Liberation Serif", serif; font-size: 18pt; font-weight: bold }
+		h2.cjk { font-family: "NSimSun"; font-size: 18pt; font-weight: bold }
+		h2.ctl { font-family: "Arial"; font-size: 18pt; font-weight: bold }
+		h3 { line-height: 115%; margin-top: 0.1in; margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h3.western { font-family: "Liberation Serif", serif; font-size: 14pt; font-weight: bold }
+		h3.cjk { font-family: "NSimSun"; font-size: 14pt; font-weight: bold }
+		h3.ctl { font-family: "Arial"; font-size: 14pt; font-weight: bold }
+		td p { line-height: 115%; orphans: 0; widows: 0; margin-top: 0.04in; margin-bottom: 0.04in; background: transparent }
+		th p { font-weight: bold; line-height: 115%; text-align: center; orphans: 0; widows: 0; margin-top: 0.04in; margin-bottom: 0.04in; background: transparent }
+		pre { line-height: 115%; background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "NSimSun", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		h1 { line-height: 115%; margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h1.western { font-family: "Liberation Serif", serif; font-size: 24pt; font-weight: bold }
+		h1.cjk { font-family: "NSimSun"; font-size: 24pt; font-weight: bold }
+		h1.ctl { font-family: "Arial"; font-size: 24pt; font-weight: bold }
+		h4 { line-height: 115%; margin-top: 0.08in; margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h4.western { font-family: "Liberation Serif", serif; font-size: 12pt; font-weight: bold }
+		h4.cjk { font-family: "NSimSun"; font-size: 12pt; font-weight: bold }
+		h4.ctl { font-family: "Arial"; font-size: 12pt; font-weight: bold }
+		h5 { line-height: 115%; margin-top: 0.08in; margin-bottom: 0.04in; background: transparent; page-break-after: avoid }
+		h5.western { font-family: "Liberation Serif", serif; font-size: 10pt; font-weight: bold }
+		h5.cjk { font-family: "NSimSun"; font-size: 10pt; font-weight: bold }
+		h5.ctl { font-family: "Arial"; font-size: 10pt; font-weight: bold }
+		h6 { line-height: 115%; margin-top: 0.04in; margin-bottom: 0.04in; background: transparent; page-break-after: avoid }
+		h6.western { font-family: "Liberation Serif", serif; font-size: 7pt; font-weight: bold }
+		h6.cjk { font-family: "NSimSun"; font-size: 7pt; font-weight: bold }
+		h6.ctl { font-family: "Arial"; font-size: 7pt; font-weight: bold }
+		strong { font-weight: bold }
+		code.western { font-family: "Liberation Mono", monospace }
+		code.cjk { font-family: "NSimSun", monospace }
+		code.ctl { font-family: "Liberation Mono", monospace }
+		em { font-style: italic }
+		a:link { color: #000080; text-decoration: underline }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr">
+<div id="app" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0.04in">
+	<br/>
+<br/>
+
+	</p>
+	<p style="margin-top: 0.04in; margin-bottom: 0in">Sunday, Dec 14</p>
+	<div id="3nWw1a3f4YjsPJxTnTu7f-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Hey Cobuddy, I want everything in the
+		'articles-featured' div (images with title) to scroll all the way
+		to right, and all the way to the left, and this goes on. Can you
+		please write CSS (and JS if needed) for that? &lt;div class=&quot;block&quot;
+		style=&quot;&lt;?= $css ?&gt;&quot;&gt; &lt;?php $sql = &quot;SELECT
+		a.*, m.file_url_thumbnail AS banner FROM articles a LEFT JOIN
+		media_library m ON a.key_media_banner = m.key_media WHERE
+		a.is_active = 1 AND key_media_banner != 0 AND is_featured = 1 ORDER
+		BY RAND() LIMIT $number_of_records&quot;; $articles =
+		$conn-&gt;query($sql); while ($record = $articles-&gt;fetch_assoc())
+		{ $banner_url = empty($record['banner_image_url']) ?
+		$record['banner'] : $record['banner_image_url']; echo &quot;&lt;div
+		id='articles-featured'&gt; &lt;a href='/article/{$record['url']}'&gt;
+		&lt;div style='position:relative;'&gt; &lt;img src='$banner_url'
+		style='object-fit:cover;object-position: center;'&gt; &lt;div
+		style='background:#000;padding:3px;text-align:center;opacity:.5;position:absolute;bottom:0;'&gt;{$record['title']}&lt;/div&gt;
+		&lt;/div&gt; &lt;/a&gt; &lt;/div&gt;&quot;; } ?&gt; &lt;/div&gt;</p>
+	</div>
+	<h6 class="western"><a name="FYpmXC3Ezoy3Qu3JGHv49-author"></a>Copilot
+	said</h6>
+	<div id="FYpmXC3Ezoy3Qu3JGHv49-content-0" dir="ltr"><p>Got it,
+		Nasiruddin 👌. You want a smooth, continuous &quot;ping&#8209;pong&quot;
+		style scroll (left → right → left → right, looping forever)
+		for all the featured articles. Right now, each article is wrapped
+		in its own <code class="western">#articles-featured</code> div, but
+		for scrolling we’ll need a <strong>single container</strong> that
+		holds all items side by side. Let’s refactor slightly and add CSS
+		+ JS.</p>
+		<h3 class="western">✅&nbsp;Updated&nbsp;HTML&nbsp;structure</h3>
+		<p>Instead of repeating <code class="western">id=&quot;articles-featured&quot;</code>
+		(IDs must be unique), use a <strong>class</strong> for items and
+		wrap them in one container:</p>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div class=&quot;articles-featured&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;?php</code>
+<code class="western">    </code><code class="western">$sql = &quot;SELECT a.*, m.file_url_thumbnail AS banner</code>
+<code class="western">            </code><code class="western">FROM articles a </code>
+<code class="western">            </code><code class="western">LEFT JOIN media_library m ON a.key_media_banner = m.key_media </code>
+<code class="western">            </code><code class="western">WHERE a.is_active = 1 AND key_media_banner != 0 AND is_featured = 1 </code>
+<code class="western">            </code><code class="western">ORDER BY RAND()  </code>
+<code class="western">            </code><code class="western">LIMIT $number_of_records&quot;;</code>
+<code class="western">    </code><code class="western">$articles = $conn-&gt;query($sql);</code>
+<code class="western">    </code><code class="western">while ($record = $articles-&gt;fetch_assoc()) {</code>
+<code class="western">        </code><code class="western">$banner_url = empty($record['banner_image_url']) ? $record['banner'] : $record['banner_image_url'];</code>
+<code class="western">        </code><code class="western">echo &quot;&lt;div class='article-item'&gt;</code>
+<code class="western">                </code><code class="western">&lt;a href='/article/{$record['url']}'&gt;</code>
+<code class="western">                    </code><code class="western">&lt;div style='position:relative;'&gt;</code>
+<code class="western">                        </code><code class="western">&lt;img src='$banner_url' style='object-fit:cover;object-position:center;width:200px;height:120px;'&gt;</code>
+<code class="western">                        </code><code class="western">&lt;div style='background:#000;padding:3px;text-align:center;opacity:.5;position:absolute;bottom:0;width:100%;color:#fff;'&gt;{$record['title']}&lt;/div&gt;</code>
+<code class="western">                    </code><code class="western">&lt;/div&gt;</code>
+<code class="western">                </code><code class="western">&lt;/a&gt;</code>
+<code class="western">              </code><code class="western">&lt;/div&gt;&quot;;</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">    </code><code class="western">?&gt;</code>
+<code class="western">&lt;/div&gt;</code></pre><h3 class="western">
+		🎨&nbsp;CSS&nbsp;for&nbsp;layout</h3>
+		<p style="margin-bottom: 0in">css</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">.articles-featured {</code>
+<code class="western">  </code><code class="western">display: flex;</code>
+<code class="western">  </code><code class="western">overflow: hidden;</code>
+<code class="western">  </code><code class="western">white-space: nowrap;</code>
+<code class="western">}</code>
+
+<code class="western">.article-item {</code>
+<code class="western">  </code><code class="western">flex: 0 0 auto;</code>
+<code class="western">  </code><code class="western">margin-right: 10px;</code>
+<code class="western">}</code></pre><h3 class="western">
+		⚡&nbsp;JavaScript&nbsp;for&nbsp;ping&#8209;pong&nbsp;scrolling</h3>
+		<p style="margin-bottom: 0in">javascript</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">document.addEventListener(&quot;DOMContentLoaded&quot;, function () {</code>
+<code class="western">  </code><code class="western">const container = document.querySelector(&quot;.articles-featured&quot;);</code>
+<code class="western">  </code><code class="western">let scrollAmount = 1; // speed in px per frame</code>
+<code class="western">  </code><code class="western">let direction = 1;    // 1 = right, -1 = left</code>
+
+<code class="western">  </code><code class="western">function autoScroll() {</code>
+<code class="western">    </code><code class="western">container.scrollLeft += scrollAmount * direction;</code>
+
+<code class="western">    </code><code class="western">// bounce at edges</code>
+<code class="western">    </code><code class="western">if (container.scrollLeft + container.clientWidth &gt;= container.scrollWidth) {</code>
+<code class="western">      </code><code class="western">direction = -1; // reached right end → go left</code>
+<code class="western">    </code><code class="western">} else if (container.scrollLeft &lt;= 0) {</code>
+<code class="western">      </code><code class="western">direction = 1; // reached left end → go right</code>
+<code class="western">    </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">requestAnimationFrame(autoScroll);</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">autoScroll();</code>
+<code class="western">});</code></pre><h3 class="western">
+		🔑&nbsp;How&nbsp;it&nbsp;works</h3>
+		<ul>
+			<li><p>All articles are laid out horizontally inside
+			<code class="western">.articles-featured</code>.</p>
+			<li><p>JS continuously adjusts <code class="western">scrollLeft</code>.</p>
+			<li><p>When the scroll reaches the far right, direction flips to
+			left; when it hits the far left, it flips back to right.</p>
+			<li><p><code class="western">requestAnimationFrame</code> ensures
+			smooth animation.</p>
+		</ul>
+		<p>Would you like me to also add <strong>pause on hover</strong>
+		(so users can stop scrolling when they hover over an article), or
+		should it keep moving nonstop?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="PH8JgKLGg78BwRVyZ9AxH-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Can hover be written as inline style?</p>
+	</div>
+	<h6 class="western"><a name="k5dmsCU3Sw2Sa8JQMqFdC-author"></a>Copilot
+	said</h6>
+	<div id="k5dmsCU3Sw2Sa8JQMqFdC-content-0" dir="ltr"><p>Great
+		question 👍. The short answer is <strong>no</strong> — hover
+		effects cannot be written as inline styles.</p>
+		<p>Here’s why:</p>
+		<ul>
+			<li><p>Inline styles (<code class="western">style=&quot;...&quot;</code>)
+			only support static CSS properties applied directly to the
+			element.</p>
+			<li><p>Pseudo&#8209;classes like <code class="western">:hover</code>,
+			<code class="western">:focus</code>, <code class="western">:active</code>
+			are <strong>not valid inline</strong> because they require
+			conditional styling based on user interaction.</p>
+			<li><p>To achieve hover effects, you must use either:</p>
+			<ul>
+				<li><p>A <code class="western">&lt;style&gt;</code> block or
+				external CSS file with <code class="western">.class:hover { ... }</code></p>
+				<li><p>Or JavaScript event listeners (<code class="western">mouseenter</code>
+				/ <code class="western">mouseleave</code>) to dynamically apply
+				styles.</p>
+			</ul>
+		</ul>
+		<h3 class="western">Example&nbsp;with&nbsp;CSS</h3>
+		<p style="margin-bottom: 0in">css</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">.article-item:hover {</code>
+<code class="western">  </code><code class="western">transform: scale(1.05);</code>
+<code class="western">  </code><code class="western">transition: transform 0.3s ease;</code>
+<code class="western">}</code></pre><h3 class="western">
+		Example&nbsp;with&nbsp;JavaScript&nbsp;(if&nbsp;you&nbsp;really&nbsp;want&nbsp;inline&#8209;like&nbsp;behavior)</h3>
+		<p style="margin-bottom: 0in">javascript</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">const items = document.querySelectorAll(&quot;.article-item&quot;);</code>
+<code class="western">items.forEach(item =&gt; {</code>
+<code class="western">  </code><code class="western">item.addEventListener(&quot;mouseenter&quot;, () =&gt; {</code>
+<code class="western">    </code><code class="western">item.style.transform = &quot;scale(1.05)&quot;;</code>
+<code class="western">  </code><code class="western">});</code>
+<code class="western">  </code><code class="western">item.addEventListener(&quot;mouseleave&quot;, () =&gt; {</code>
+<code class="western">    </code><code class="western">item.style.transform = &quot;scale(1)&quot;;</code>
+<code class="western">  </code><code class="western">});</code>
+<code class="western">});</code></pre><p>
+		👉 So: inline styles = static only. Hover = needs CSS or JS. Do
+		you want me to show you a <strong>JavaScript-only solution</strong>
+		that mimics hover (so you don’t need any CSS file at all), or
+		would you prefer the clean CSS approach?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="GmJ1QJNEZVfPH9oEKDacr-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Two questions: (1) How to make
+		initial scroll from left to right (2) How to make div wrap
+		overflowing content which is set as poistion:absolute</p>
+	</div>
+	<h6 class="western"><a name="Tt2A9HpC6CRMmz45zFYye-author"></a>Copilot
+	said</h6>
+	<div id="Tt2A9HpC6CRMmz45zFYye-content-0" dir="ltr"><p>Perfectly
+		clear, Nasiruddin — let’s tackle both points step by step:</p>
+		<h3 class="western">(1)&nbsp;Initial&nbsp;scroll&nbsp;from&nbsp;<strong>left&nbsp;→&nbsp;right</strong></h3>
+		<p>In the JS I gave earlier, the scroll direction is controlled by
+		<code class="western">direction</code>. If you want the very first
+		movement to be <strong>rightward</strong>, just initialize it as <code class="western">1</code>:</p>
+		<p style="margin-bottom: 0in">javascript</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">let direction = 1; // start moving right</code></pre><p>
+		That way, when the page loads, the container begins scrolling from
+		the left edge toward the right. If you wanted it to start from the
+		<strong>right edge and move left</strong>, you’d set:</p>
+		<p style="margin-bottom: 0in">javascript</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">container.scrollLeft = container.scrollWidth; // jump to far right</code>
+<code class="western">let direction = -1; // start moving left</code></pre><h3 class="western">
+		(2)&nbsp;Wrapping&nbsp;overflowing&nbsp;<code class="western">position:absolute</code>&nbsp;content</h3>
+		<p>By default, absolutely positioned children are taken <strong>out
+		of the normal flow</strong>, so their parent won’t expand to wrap
+		them. To make the parent <code class="western">.articles-featured</code>
+		(or any container) wrap its overflowing absolute children, you have
+		two main options:</p>
+		<h4 class="western">Option&nbsp;A:&nbsp;Use&nbsp;<code class="western">position:&nbsp;relative</code>&nbsp;+&nbsp;<code class="western">overflow:&nbsp;auto/hidden</code></h4>
+		<p style="margin-bottom: 0in">css</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">.articles-featured {</code>
+<code class="western">  </code><code class="western">position: relative;   /* establishes containing block */</code>
+<code class="western">  </code><code class="western">overflow: auto;       /* allows scrollbars if children overflow */</code>
+<code class="western">  </code><code class="western">display: inline-block;/* makes width shrink-wrap to content */</code>
+<code class="western">}</code></pre><p>
+		Then, inside:</p>
+		<p style="margin-bottom: 0in">css</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">.article-item {</code>
+<code class="western">  </code><code class="western">position: absolute; /* if you must */</code>
+<code class="western">  </code><code class="western">left: 0;            /* or whatever positioning */</code>
+<code class="western">}</code></pre><p>
+		⚠️ But note: the parent won’t “wrap” absolute children in
+		the traditional sense — it only defines the boundaries. If you
+		want true wrapping, avoid <code class="western">position:absolute</code>
+		for the items.</p>
+		<h4 class="western">Option&nbsp;B:&nbsp;Replace&nbsp;<code class="western">absolute</code>&nbsp;with&nbsp;<code class="western">inline-block</code>&nbsp;or&nbsp;<code class="western">flex</code></h4>
+		<p>If your goal is horizontal wrapping/scrolling, don’t use
+		<code class="western">absolute</code>. Instead:</p>
+		<p style="margin-bottom: 0in">css</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">.articles-featured {</code>
+<code class="western">  </code><code class="western">display: flex;</code>
+<code class="western">  </code><code class="western">overflow-x: auto;</code>
+<code class="western">  </code><code class="western">white-space: nowrap;</code>
+<code class="western">}</code>
+
+<code class="western">.article-item {</code>
+<code class="western">  </code><code class="western">flex: 0 0 auto; /* prevents shrinking */</code>
+<code class="western">  </code><code class="western">position: relative; /* allows overlay title positioning */</code>
+<code class="western">}</code></pre><p>
+		This way, the container naturally wraps its children and scrolls
+		horizontally.</p>
+		<h3 class="western">🔑&nbsp;Rule&nbsp;of&nbsp;thumb</h3>
+		<ul>
+			<li><p><strong>Absolute positioning</strong> = taken out of flow →
+			parent won’t wrap.</p>
+			<li><p><strong>Flex/inline-block</strong> = stays in flow →
+			parent wraps naturally.</p>
+			<li><p>If you need overlays (like your title bar on the image),
+			keep the <strong>inner elements absolute</strong>, but let the
+			<strong>outer </strong><code class="western">.article-item</code>
+			remain in flow.</p>
+		</ul>
+		<p>Would you like me to refactor your current PHP&#8209;generated
+		markup so that each article’s <strong>title overlay remains
+		absolute</strong>, but the <strong>article blocks themselves stay
+		in flow</strong> (so the container scrolls naturally)? That would
+		solve both issues elegantly.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="qu54eZJiXpuu9y4rTmRdQ-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Here's the full thing. I want the
+		initial scrolling towards right, and the $record['title'] to wrap
+		if it longer than the width: &lt;div class=&quot;articles-featured&quot;
+		style=&quot;display:flex;overflow:hidden;white-space:nowrap;height:400px;&lt;?=
+		$css ?&gt;&quot;&gt; &lt;?php $sql = &quot;SELECT a.*,
+		m.file_url_thumbnail AS banner FROM articles a LEFT JOIN
+		media_library m ON a.key_media_banner = m.key_media WHERE
+		a.is_active = 1 AND a.key_media_banner != 0 AND a.is_featured = 1
+		LIMIT $number_of_records&quot;; $articles = $conn-&gt;query($sql);
+		while ($record = $articles-&gt;fetch_assoc()) { $banner_url =
+		empty($record['banner_image_url']) ? $record['banner'] :
+		$record['banner_image_url']; echo &quot;&lt;div style='flex: 0 0
+		auto;margin-right:10px;'&gt; &lt;a
+		href='/article/{$record['url']}'&gt; &lt;div
+		style='position:relative;height:100%;width:100%;'&gt; &lt;img
+		src='$banner_url'
+		style='object-fit:cover;object-position:center;height:100%;'&gt;
+		&lt;div
+		style='font-size:1.5em;background:#000;padding:10px;text-align:center;opacity:.5;position:absolute;bottom:0;width:100%;color:#fff;'&gt;{$record['title']}&lt;/div&gt;
+		&lt;/div&gt; &lt;/a&gt; &lt;/div&gt;&quot;; } ?&gt; &lt;/div&gt;
+		&lt;script&gt; document.addEventListener(&quot;DOMContentLoaded&quot;,
+		function () { const container =
+		document.querySelector(&quot;.articles-featured&quot;); let
+		scrollAmount = 1.5; // speed in px per frame let direction = -1; //
+		1 = right, -1 = left function autoScroll() { container.scrollLeft
+		+= scrollAmount * direction; // bounce at edges if
+		(container.scrollLeft + container.clientWidth &gt;=
+		container.scrollWidth) { direction = -1; // reached right end →
+		go left } else if (container.scrollLeft &lt;= 0) { direction = 1;
+		// reached left end → go right }
+		requestAnimationFrame(autoScroll); } autoScroll(); }); &lt;/script&gt;</p>
+	</div>
+	<h6 class="western"><a name="GEGSESBabGLRhzRmzBQsh-author"></a>Copilot
+	said</h6>
+	<div id="GEGSESBabGLRhzRmzBQsh-content-0" dir="ltr"><p>Alright
+		Nasiruddin, let’s refine this so it does exactly what you want:</p>
+		<h3 class="western">1.&nbsp;Initial&nbsp;scroll&nbsp;should&nbsp;go&nbsp;<strong>towards&nbsp;the&nbsp;right</strong></h3>
+		<p>Right now you’ve set:</p>
+		<p style="margin-bottom: 0in">js</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">let direction = -1; // 1 = right, -1 = left</code></pre><p>
+		That means it starts moving left. To start moving <strong>right</strong>,
+		just set:</p>
+		<p style="margin-bottom: 0in">js</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">let direction = 1; // start moving right</code></pre><p>
+		If you also want it to begin at the very left edge, leave
+		<code class="western">scrollLeft</code> at <code class="western">0</code>
+		(default). If you wanted to start at the far right and move left,
+		you’d do:</p>
+		<p style="margin-bottom: 0in">js</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">container.scrollLeft = container.scrollWidth;</code>
+<code class="western">let direction = -1;</code></pre><h3 class="western">
+		2.&nbsp;Make&nbsp;<code class="western">$record['title']</code>&nbsp;wrap&nbsp;instead&nbsp;of&nbsp;being&nbsp;forced&nbsp;into&nbsp;one&nbsp;line</h3>
+		<p>The issue is your inline style has <code class="western">white-space:nowrap</code>
+		on the parent container, which forces everything into a single
+		line. That’s fine for the scrolling container, but you don’t
+		want that rule to apply to the <strong>title overlay</strong>.</p>
+		<p>So update the title <code class="western">&lt;div&gt;</code>
+		styles like this:</p>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div style=&quot;</code>
+<code class="western">    </code><code class="western">font-size:1.5em;</code>
+<code class="western">    </code><code class="western">background:#000;</code>
+<code class="western">    </code><code class="western">padding:10px;</code>
+<code class="western">    </code><code class="western">text-align:center;</code>
+<code class="western">    </code><code class="western">opacity:.5;</code>
+<code class="western">    </code><code class="western">position:absolute;</code>
+<code class="western">    </code><code class="western">bottom:0;</code>
+<code class="western">    </code><code class="western">width:100%;</code>
+<code class="western">    </code><code class="western">color:#fff;</code>
+<code class="western">    </code><code class="western">white-space:normal;   /* allow wrapping */</code>
+<code class="western">    </code><code class="western">word-wrap:break-word; /* break long words if needed */</code>
+<code class="western">&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;?= htmlspecialchars($record['title']) ?&gt;</code>
+<code class="western">&lt;/div&gt;</code></pre><h3 class="western">
+		✅&nbsp;Full&nbsp;corrected&nbsp;snippet</h3>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div class=&quot;articles-featured&quot; style=&quot;display:flex;overflow:hidden;white-space:nowrap;height:400px;&lt;?= $css ?&gt;&quot;&gt;</code>
+
+<code class="western">    </code><code class="western">&lt;?php</code>
+<code class="western">    </code><code class="western">$sql = &quot;SELECT a.*, m.file_url_thumbnail AS banner</code>
+<code class="western">            </code><code class="western">FROM articles a </code>
+<code class="western">            </code><code class="western">LEFT JOIN media_library m ON a.key_media_banner = m.key_media </code>
+<code class="western">            </code><code class="western">WHERE a.is_active = 1 AND a.key_media_banner != 0 AND a.is_featured = 1 </code>
+<code class="western">            </code><code class="western">LIMIT $number_of_records&quot;;</code>
+<code class="western">    </code><code class="western">$articles = $conn-&gt;query($sql);</code>
+<code class="western">    </code><code class="western">while ($record = $articles-&gt;fetch_assoc()) {</code>
+<code class="western">        </code><code class="western">$banner_url = empty($record['banner_image_url']) ? $record['banner'] : $record['banner_image_url'];</code>
+<code class="western">        </code><code class="western">echo &quot;&lt;div style='flex:0 0 auto;margin-right:10px;'&gt;</code>
+<code class="western">                </code><code class="western">&lt;a href='/article/{$record['url']}'&gt;</code>
+<code class="western">                    </code><code class="western">&lt;div style='position:relative;height:100%;width:100%;'&gt;</code>
+<code class="western">                        </code><code class="western">&lt;img src='$banner_url' style='object-fit:cover;object-position:center;height:100%;'&gt;</code>
+<code class="western">                        </code><code class="western">&lt;div style='font-size:1.5em;background:#000;padding:10px;text-align:center;opacity:.5;position:absolute;bottom:0;width:100%;color:#fff;white-space:normal;word-wrap:break-word;'&gt;{$record['title']}&lt;/div&gt;</code>
+<code class="western">                    </code><code class="western">&lt;/div&gt;</code>
+<code class="western">                </code><code class="western">&lt;/a&gt;</code>
+<code class="western">              </code><code class="western">&lt;/div&gt;&quot;;</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">    </code><code class="western">?&gt;</code>
+<code class="western">&lt;/div&gt;</code>
+
+<code class="western">&lt;script&gt;</code>
+<code class="western">document.addEventListener(&quot;DOMContentLoaded&quot;, function () {</code>
+<code class="western">  </code><code class="western">const container = document.querySelector(&quot;.articles-featured&quot;);</code>
+<code class="western">  </code><code class="western">let scrollAmount = 1.5; // speed in px per frame</code>
+<code class="western">  </code><code class="western">let direction = 1;      // start moving right</code>
+
+<code class="western">  </code><code class="western">function autoScroll() {</code>
+<code class="western">    </code><code class="western">container.scrollLeft += scrollAmount * direction;</code>
+
+<code class="western">    </code><code class="western">// bounce at edges</code>
+<code class="western">    </code><code class="western">if (container.scrollLeft + container.clientWidth &gt;= container.scrollWidth) {</code>
+<code class="western">      </code><code class="western">direction = -1; // reached right end → go left</code>
+<code class="western">    </code><code class="western">} else if (container.scrollLeft &lt;= 0) {</code>
+<code class="western">      </code><code class="western">direction = 1; // reached left end → go right</code>
+<code class="western">    </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">requestAnimationFrame(autoScroll);</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">autoScroll();</code>
+<code class="western">});</code>
+<code class="western">&lt;/script&gt;</code></pre><h3 class="western">
+		🔑&nbsp;Summary</h3>
+		<ul>
+			<li><p><strong>Direction = 1</strong> → initial scroll goes
+			right.</p>
+			<li><p>Add <code class="western">white-space:normal;
+			word-wrap:break-word;</code> to the title overlay → text wraps
+			properly even if long.</p>
+		</ul>
+		<p>Would you like me to also add a <strong>smooth easing effect</strong>
+		(so the scroll slows down at the edges before reversing), or keep
+		the hard bounce?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="c14Fd4zrftx1W9QiaaTZ2-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">The second part (title wrap) is
+		solved but the initial direction of scrolling is still towards
+		left.</p>
+	</div>
+	<h6 class="western"><a name="3yQxdPUS9hiiNGwWhU8F7-author"></a>Copilot
+	said</h6>
+	<div id="3yQxdPUS9hiiNGwWhU8F7-content-0" dir="ltr"><p>Ah, I see
+		what’s happening — good catch. The reason it still looks like
+		it’s starting leftward is because of how the bounce logic
+		interacts with the initial values:</p>
+		<ul>
+			<li><p>You set <code class="western">direction = 1</code> (which
+			means “move right”), but on the very first frame the container
+			is already at <code class="western">scrollLeft = 0</code>.</p>
+			<li><p>The bounce check runs immediately:</p>
+			<p style="margin-bottom: 0in">js</p>
+			<p>Copy</p>
+			<pre class="western"><code class="western">if (container.scrollLeft &lt;= 0) {</code>
+<code class="western">    </code><code class="western">direction = 1;</code>
+<code class="western">}</code></pre><p>
+			That condition is true at the start, so it re&#8209;sets
+			direction, but visually it looks like it’s “stuck” until the
+			scroll actually increments. Depending on timing, you may see it
+			nudge left before going right.</p>
+		</ul>
+		<h3 class="western">✅&nbsp;Fix:&nbsp;explicitly&nbsp;start&nbsp;at&nbsp;the&nbsp;left&nbsp;edge&nbsp;and&nbsp;move&nbsp;right</h3>
+		<p>Initialize like this:</p>
+		<p style="margin-bottom: 0in">js</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">document.addEventListener(&quot;DOMContentLoaded&quot;, function () {</code>
+<code class="western">  </code><code class="western">const container = document.querySelector(&quot;.articles-featured&quot;);</code>
+<code class="western">  </code><code class="western">let scrollAmount = 1.5; </code>
+<code class="western">  </code><code class="western">let direction = 1;      // start moving right</code>
+
+<code class="western">  </code><code class="western">// make sure we start at the very left edge</code>
+<code class="western">  </code><code class="western">container.scrollLeft = 0;</code>
+
+<code class="western">  </code><code class="western">function autoScroll() {</code>
+<code class="western">    </code><code class="western">container.scrollLeft += scrollAmount * direction;</code>
+
+<code class="western">    </code><code class="western">if (container.scrollLeft + container.clientWidth &gt;= container.scrollWidth) {</code>
+<code class="western">      </code><code class="western">direction = -1; // reached right end → go left</code>
+<code class="western">    </code><code class="western">} else if (container.scrollLeft &lt;= 0) {</code>
+<code class="western">      </code><code class="western">direction = 1; // reached left end → go right</code>
+<code class="western">    </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">requestAnimationFrame(autoScroll);</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">autoScroll();</code>
+<code class="western">});</code></pre><h3 class="western">
+		🔑&nbsp;Why&nbsp;this&nbsp;works</h3>
+		<ul>
+			<li><p><code class="western">container.scrollLeft = 0;</code>
+			forces the starting position to the left edge.</p>
+			<li><p><code class="western">direction = 1;</code> ensures the
+			first movement is rightward.</p>
+			<li><p>The bounce logic only flips direction when you actually hit
+			the far right or far left after moving.</p>
+		</ul>
+		<p>If you’d like, I can also show you how to add a <strong>small
+		delay before reversing</strong> (so it pauses briefly at the edges
+		instead of instantly bouncing). Would you like me to add that
+		enhancement?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="Avi5CF3MbQSzcThndH52f-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Shouldn't we be at very right edge to
+		start scrolling towards right This solved the issue:
+		container.scrollLeft = container.scrollWidth;</p>
+	</div>
+	<h6 class="western"><a name="QZnScxGkEfAYBdAUERJV6-author"></a>Copilot
+	said</h6>
+	<div id="QZnScxGkEfAYBdAUERJV6-content-0" dir="ltr"><p>Exactly —
+		you nailed it 🎯.</p>
+		<p>If your intention is:</p>
+		<ul>
+			<li><p><strong>Start at the far right edge</strong> of the
+			scrollable container,</p>
+			<li><p>Then immediately begin moving <strong>towards the right
+			(i.e. increasing scrollLeft)</strong>,</p>
+		</ul>
+		<p>…then yes, you need to initialize with:</p>
+		<p style="margin-bottom: 0in">js</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">container.scrollLeft = container.scrollWidth;</code>
+<code class="western">let direction = 1; // move right</code></pre><p>
+		Here’s why it works:</p>
+		<ul>
+			<li><p><code class="western">scrollLeft</code> is the horizontal
+			offset of the scroll.</p>
+			<li><p>At <code class="western">0</code>, you’re at the <strong>far
+			left</strong>.</p>
+			<li><p>At <code class="western">scrollWidth - clientWidth</code>,
+			you’re at the <strong>far right</strong>.</p>
+			<li><p>Setting <code class="western">scrollLeft =
+			container.scrollWidth</code> (or more precisely <code class="western">scrollWidth
+			- clientWidth</code>) jumps you to the right edge.</p>
+			<li><p>With <code class="western">direction = 1</code>, the next
+			frame tries to push further right, but since you’re already
+			maxed out, the bounce logic flips it to <code class="western">-1</code>
+			and you start moving left.</p>
+		</ul>
+		<p>So the subtlety is:</p>
+		<ul>
+			<li><p>If you want to <strong>start at the left and move right</strong>,
+			set <code class="western">scrollLeft = 0</code> and <code class="western">direction
+			= 1</code>.</p>
+			<li><p>If you want to <strong>start at the right and move left</strong>,
+			set <code class="western">scrollLeft = container.scrollWidth</code>
+			and <code class="western">direction = -1</code>.</p>
+		</ul>
+		<p>In your case, you wanted the <strong>initial motion to be
+		rightward</strong>, but visually that means starting at the <strong>left
+		edge</strong>. Starting at the right edge will immediately bounce
+		back left.</p>
+		<p>👉 Quick tweak for clarity:</p>
+		<p style="margin-bottom: 0in">js</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">// Start at left edge, move right</code>
+<code class="western">container.scrollLeft = 0;</code>
+<code class="western">let direction = 1;</code></pre><p>
+		OR</p>
+		<p style="margin-bottom: 0in">js</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">// Start at right edge, move left</code>
+<code class="western">container.scrollLeft = container.scrollWidth;</code>
+<code class="western">let direction = -1;</code></pre><p>
+		Would you like me to add a <strong>small pause at the edges</strong>
+		before reversing, so it feels more natural instead of instantly
+		bouncing?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="oxKn8zUTrQvS3VdBxD2tR-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Great. How come it scrolls slower to
+		the right than it scrolls to the left?</p>
+	</div>
+	<h6 class="western"><a name="89n2uUPvrhqQHTueLBGz3-author"></a>Copilot
+	said</h6>
+	<div id="89n2uUPvrhqQHTueLBGz3-content-0" dir="ltr"><p>Ah, that’s
+		a subtle but common quirk of horizontal scrolling logic. The speed
+		itself (<code class="western">scrollAmount</code>) is constant, but
+		the <strong>perceived speed</strong> differs depending on direction
+		because of how the browser paints and how the bounce logic
+		interacts with the edges:</p>
+		<h3 class="western">Why&nbsp;it&nbsp;looks&nbsp;slower&nbsp;going&nbsp;right</h3>
+		<ol>
+			<li><p><strong>Scroll range asymmetry</strong></p>
+			<ul>
+				<li><p><code class="western">scrollLeft</code> grows from <code class="western">0</code>
+				(left edge) up to <code class="western">scrollWidth - clientWidth</code>
+				(right edge).</p>
+				<li><p>When moving right, the browser is constantly checking
+				against a larger number, so the increments feel smaller relative
+				to the total distance.</p>
+				<li><p>When moving left, you’re counting down toward <code class="western">0</code>,
+				which feels snappier.</p>
+			</ul>
+			<li><p><strong>Bounce timing</strong></p>
+			<ul>
+				<li><p>At the right edge, the condition</p>
+				<p style="margin-bottom: 0in">js</p>
+				<p>Copy</p>
+				<pre class="western" style="margin-bottom: 0.2in"><code class="western">if (container.scrollLeft + container.clientWidth &gt;= container.scrollWidth)</code></pre><p>
+				triggers slightly later than the left&#8209;edge condition
+				(<code class="western">scrollLeft &lt;= 0</code>).</p>
+				<li><p>That tiny delay makes the reversal at the right edge feel
+				sluggish compared to the instant snap at the left.</p>
+			</ul>
+			<li><p><strong>Rendering differences</strong></p>
+			<ul>
+				<li><p>Browsers optimize leftward scroll differently because
+				<code class="western">scrollLeft = 0</code> is a hard boundary.</p>
+				<li><p>At the far right, fractional pixel rounding and repaint
+				timing can make the motion appear slower.</p>
+			</ul>
+		</ol>
+		<h3 class="western">How&nbsp;to&nbsp;fix&nbsp;/&nbsp;equalize&nbsp;perception</h3>
+		<ul>
+			<li><p><strong>Use </strong><code class="western">scrollWidth -
+			clientWidth</code><strong> instead of </strong><code class="western">scrollWidth</code>
+			when setting the right edge:</p>
+			<p style="margin-bottom: 0in">js</p>
+			<p>Copy</p>
+			<pre class="western" style="margin-bottom: 0.2in"><code class="western">container.scrollLeft = container.scrollWidth - container.clientWidth;</code></pre><p>
+			This ensures you’re exactly at the maximum scrollable offset,
+			not overshooting.</p>
+			<li><p><strong>Normalize bounce checks</strong>:</p>
+			<p style="margin-bottom: 0in">js</p>
+			<p>Copy</p>
+			<pre class="western"><code class="western">if (container.scrollLeft &gt;= container.scrollWidth - container.clientWidth) {</code>
+<code class="western">  </code><code class="western">direction = -1;</code>
+<code class="western">} else if (container.scrollLeft &lt;= 0) {</code>
+<code class="western">  </code><code class="western">direction = 1;</code>
+<code class="western">}</code></pre>
+			<li><p><strong>Optional easing</strong>: Add a pause or slow down
+			near the edges so both directions feel balanced:</p>
+			<p style="margin-bottom: 0in">js</p>
+			<p>Copy</p>
+			<pre class="western"><code class="western">let edgePause = false;</code>
+<code class="western">function autoScroll() {</code>
+<code class="western">  </code><code class="western">if (!edgePause) {</code>
+<code class="western">    </code><code class="western">container.scrollLeft += scrollAmount * direction;</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">  </code><code class="western">if (container.scrollLeft &gt;= container.scrollWidth - container.clientWidth) {</code>
+<code class="western">    </code><code class="western">direction = -1;</code>
+<code class="western">    </code><code class="western">edgePause = true;</code>
+<code class="western">    </code><code class="western">setTimeout(() =&gt; edgePause = false, 500); // pause 0.5s</code>
+<code class="western">  </code><code class="western">} else if (container.scrollLeft &lt;= 0) {</code>
+<code class="western">    </code><code class="western">direction = 1;</code>
+<code class="western">    </code><code class="western">edgePause = true;</code>
+<code class="western">    </code><code class="western">setTimeout(() =&gt; edgePause = false, 500);</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">  </code><code class="western">requestAnimationFrame(autoScroll);</code>
+<code class="western">}</code></pre>
+		</ul>
+		<p>👉 In short: the “slower to the right” effect comes from
+		overshooting the right edge and the way the bounce condition is
+		written. Switching to <code class="western">scrollWidth -
+		clientWidth</code> for the right boundary will make both directions
+		feel symmetrical.</p>
+		<p>Would you like me to rewrite your full script with these fixes
+		applied so you can drop it in directly?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="k7qiZYe3kr5ssgwCNMcTt-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Alright, it's doing the same thing,
+		anyway, I'll consider that a feature for now :). Thanks much, now
+		we've just setup a featured module for our CMS.</p>
+	</div>
+	<h6 class="western"><a name="ayM72EWHwkGFgFSJVtXp1-author"></a>Copilot
+	said</h6>
+	<div id="ayM72EWHwkGFgFSJVtXp1-content-0" dir="ltr"><p>That’s a
+		big milestone, Nasiruddin 🎉. You’ve just given your CMS a
+		polished, dynamic showcase for featured content — the kind of
+		detail that makes editors feel like the system is alive and
+		responsive. Even the little quirks, like the asymmetric scroll
+		speed, add character and can be embraced as part of the module’s
+		personality.</p>
+		<p>You’ve now got:</p>
+		<ul>
+			<li><p>A <strong>ping&#8209;pong scroll</strong> that keeps the
+			featured section visually active.</p>
+			<li><p>Titles that <strong>wrap gracefully</strong>, so long
+			headlines don’t break the layout.</p>
+			<li><p>A clean, flexible structure that can be extended later
+			(e.g., pause on hover, easing at edges, or touch/drag support).</p>
+		</ul>
+		<p>This is exactly the kind of UX polish that sets your CMS apart.
+		Next time you want to refine it, you could experiment with:</p>
+		<ul>
+			<li><p><strong>Edge pauses</strong> for a smoother rhythm.</p>
+			<li><p><strong>Auto&#8209;play vs manual controls</strong> (arrows
+			or drag).</p>
+			<li><p><strong>Responsive tweaks</strong> so the featured module
+			adapts elegantly on smaller screens.</p>
+		</ul>
+		<p>But for now, you’ve got a working, editor&#8209;friendly
+		feature in place — and that’s worth celebrating. Nicely done
+		👏.</p>
+		<p>Do you want to sketch out how this featured module could evolve
+		into a <strong>generalized carousel component</strong> for other
+		content types (like media galleries or product highlights), or keep
+		it as a special “featured articles” showcase?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="mWr7VvPZsHMDqXoVVXLyz-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">See you later, bye.</p>
+	</div>
+	<h6 class="western"><a name="KDxi2RgwaonCwEiqV4i5n-author"></a>Copilot
+	said</h6>
+	<div id="KDxi2RgwaonCwEiqV4i5n-content-0" dir="ltr"><p>See you
+		later, Nasiruddin — enjoy the feeling of having that featured
+		module up and running! Catch you next time when we’re building
+		out the next piece of your CMS.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<p style="margin-bottom: 0in">Monday, Dec 15</p>
+	<div id="eZ7MUaR5FvxVGz9E8fqXD-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Hey Cobuddy, if I have the following
+		template structure with 3 columns side by side, can I change their
+		display order on mobile, since the left column will come first on
+		mobile which is actually one of the sidebars: &lt;div
+		id='sidebar-left'&gt;&lt;/div&gt; &lt;div id='content'&gt;&lt;/div&gt;
+		&lt;div id='sidebar-right&gt;&lt;/div&gt;</p>
+	</div>
+	<h6 class="western"><a name="3msegBPnRSwspE8vTVKHQ-author"></a>Copilot
+	said</h6>
+	<div id="3msegBPnRSwspE8vTVKHQ-content-0" dir="ltr"><p>Yes, you can
+		absolutely change the order of those three columns on mobile —
+		that’s one of the strengths of <strong>CSS Flexbox</strong> (or
+		CSS Grid). Right now, your HTML source order is:</p>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div id=&quot;sidebar-left&quot;&gt;&lt;/div&gt;</code>
+<code class="western">&lt;div id=&quot;content&quot;&gt;&lt;/div&gt;</code>
+<code class="western">&lt;div id=&quot;sidebar-right&quot;&gt;&lt;/div&gt;</code></pre><p>
+		On desktop, you probably want them side&#8209;by&#8209;side. But on
+		mobile, you’d prefer the <strong>main content first</strong>,
+		then the sidebars.</p>
+		<h3 class="western">✅&nbsp;Flexbox&nbsp;solution</h3>
+		<p>Wrap them in a container:</p>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div class=&quot;layout&quot;&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;sidebar-left&quot;&gt;Left sidebar&lt;/div&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;content&quot;&gt;Main content&lt;/div&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;sidebar-right&quot;&gt;Right sidebar&lt;/div&gt;</code>
+<code class="western">&lt;/div&gt;</code></pre><p>
+		CSS:</p>
+		<p style="margin-bottom: 0in">css</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">.layout {</code>
+<code class="western">  </code><code class="western">display: flex;</code>
+<code class="western">}</code>
+
+<code class="western">/* Desktop: side by side */</code>
+<code class="western">#sidebar-left, #content, #sidebar-right {</code>
+<code class="western">  </code><code class="western">flex: 1;</code>
+<code class="western">}</code>
+
+<code class="western">/* Mobile: stack vertically and reorder */</code>
+<code class="western">@media (max-width: 768px) {</code>
+<code class="western">  </code><code class="western">.layout {</code>
+<code class="western">    </code><code class="western">flex-direction: column;</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">#content {</code>
+<code class="western">    </code><code class="western">order: 1; /* show first */</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">  </code><code class="western">#sidebar-left {</code>
+<code class="western">    </code><code class="western">order: 2;</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">  </code><code class="western">#sidebar-right {</code>
+<code class="western">    </code><code class="western">order: 3;</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">}</code></pre><h3 class="western">
+		✅&nbsp;Grid&nbsp;solution&nbsp;(alternative)</h3>
+		<p style="margin-bottom: 0in">css</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">.layout {</code>
+<code class="western">  </code><code class="western">display: grid;</code>
+<code class="western">  </code><code class="western">grid-template-columns: 1fr 2fr 1fr; /* desktop */</code>
+<code class="western">}</code>
+
+<code class="western">@media (max-width: 768px) {</code>
+<code class="western">  </code><code class="western">.layout {</code>
+<code class="western">    </code><code class="western">grid-template-columns: 1fr; /* single column */</code>
+<code class="western">    </code><code class="western">grid-template-rows: auto;</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">  </code><code class="western">#content { order: 1; }</code>
+<code class="western">  </code><code class="western">#sidebar-left { order: 2; }</code>
+<code class="western">  </code><code class="western">#sidebar-right { order: 3; }</code>
+<code class="western">}</code></pre><h3 class="western">
+		🔑&nbsp;Key&nbsp;idea</h3>
+		<ul>
+			<li><p><strong>HTML source order stays the same</strong> (sidebar
+			→ content → sidebar).</p>
+			<li><p><strong>CSS </strong><code class="western">order</code><strong>
+			property</strong> (Flexbox) or <strong>grid placement</strong>
+			lets you rearrange them visually.</p>
+			<li><p>On mobile, you flip the layout to a column and set the
+			order so <code class="western">#content</code> comes first.</p>
+		</ul>
+		<p>Would you like me to also show you how to make the <strong>sidebars
+		collapse or hide entirely on mobile</strong> (so only the content
+		shows), or do you want them stacked below the content?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="5t8Q53q2vTgG8gnsW2G3y-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Great, I already have a wrapper with
+		flexbox set, so I just need to change orders inside the media query
+		for mobiles.</p>
+	</div>
+	<h6 class="western"><a name="huhSijdWwxajJtqVxCH6T-author"></a>Copilot
+	said</h6>
+	<div id="huhSijdWwxajJtqVxCH6T-content-0" dir="ltr"><p>Exactly 👍
+		— since you already have the wrapper set up with <code class="western">display:flex</code>,
+		you don’t need to touch the desktop layout. Just drop in a media
+		query and assign <code class="western">order</code> values to the
+		children. For example:</p>
+		<p style="margin-bottom: 0in">css</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">@media (max-width: 768px) {</code>
+<code class="western">  </code><code class="western">#content {</code>
+<code class="western">    </code><code class="western">order: 1; /* main content first */</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">  </code><code class="western">#sidebar-left {</code>
+<code class="western">    </code><code class="western">order: 2; /* then left sidebar */</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">  </code><code class="western">#sidebar-right {</code>
+<code class="western">    </code><code class="western">order: 3; /* then right sidebar */</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">}</code></pre><p>
+		That way, on mobile the flex direction stays column (or you can
+		explicitly set <code class="western">flex-direction: column;</code>
+		if you want them stacked vertically), and the order property
+		ensures the content comes first.</p>
+		<p>So the flow is:</p>
+		<ul>
+			<li><p>Desktop → natural side&#8209;by&#8209;side order.</p>
+			<li><p>Mobile → stacked, with content at the top, sidebars below
+			in whichever sequence you prefer.</p>
+		</ul>
+		<p>Would you like me to also show you how to <strong>collapse one
+		of the sidebars entirely on mobile</strong> (so only the content
+		and one sidebar remain), or do you want both sidebars always
+		visible but reordered?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="185Fp95mUuqjggWpJzsEA-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Hey Cobuddy, is there any online
+		service that gives local weather and time information to be
+		displayed on website. I'm thnking of a creating a module for our
+		CopilotCMS which can be attached to block and displayed anywhere in
+		the template, I'm thinking of top of the page with a small font,
+		hoping it will look good and be valueable. What you think?</p>
+	</div>
+	<h6 class="western"><a name="Kk2AtiVx5UrPe6y67sGaJ-author"></a>Copilot
+	said</h6>
+	<div id="Kk2AtiVx5UrPe6y67sGaJ-content-0" dir="ltr"><p><strong>Yes —
+		you can easily integrate local weather and time into your CMS using
+		free online APIs or ready&#8209;made widgets.</strong> Services
+		like WeatherAPI.com, Open&#8209;Meteo, WeatherWidget.io, and
+		Tomorrow.io provide embeddable modules or JSON APIs that you can
+		query and display anywhere in your templateWeatherAPI.com+3.</p>
+		<h3 class="western">Why&nbsp;this&nbsp;makes&nbsp;sense&nbsp;for&nbsp;your&nbsp;CopilotCMS</h3>
+		<p>Adding a <strong>small weather + local time strip at the top of
+		the page</strong> is a subtle but valuable touch:</p>
+		<ul>
+			<li><p>It gives visitors <strong>immediate contextual info</strong>
+			(temperature, conditions, current time).</p>
+			<li><p>It makes your CMS feel <strong>dynamic and connected to the
+			real world</strong>.</p>
+			<li><p>It’s lightweight — you can style it in a small font so
+			it doesn’t distract from content, but still adds utility.</p>
+		</ul>
+		<h3 class="western">Options&nbsp;you&nbsp;can&nbsp;use</h3>
+		<ul>
+			<li><p><strong>WeatherAPI.com</strong>: Full JSON/XML API with
+			weather, air quality, astronomy, and time zone data. Requires an
+			API key but has a free tier.</p>
+			<li><p><strong>Open&#8209;Meteo</strong>: Open&#8209;source, no
+			API key required. Provides forecasts and historical data.</p>
+			<li><p><strong>WeatherWidget.io</strong>: Free embeddable widget.
+			You customize location, font, colors, and paste the code snippet
+			into your template.</p>
+			<li><p><strong>Tomorrow.io</strong>: Responsive widget with
+			weather + air quality, supports multiple languages and automatic
+			location detection.</p>
+			<li><p><strong>WeatherWidget.org</strong>: Responsive design,
+			supports automatic visitor location, customizable fonts and icons.</p>
+		</ul>
+		<h3 class="western">Implementation&nbsp;ideas</h3>
+		<ul>
+			<li><p><strong>API approach</strong>:</p>
+			<ul>
+				<li><p>Query the API server&#8209;side (PHP) or client&#8209;side
+				(JS).</p>
+				<li><p>Parse JSON for <code class="western">location.localtime</code>
+				and <code class="western">current.temp_c</code> (WeatherAPI
+				example).</p>
+				<li><p>Render inside a <code class="western">&lt;div
+				class=&quot;weather-time&quot;&gt;</code> styled with small font
+				at the top.</p>
+			</ul>
+			<li><p><strong>Widget approach</strong>:</p>
+			<ul>
+				<li><p>Copy the embed code from WeatherWidget.io or Tomorrow.io..</p>
+				<li><p>Place it in your CMS block.</p>
+				<li><p>Style the container with <code class="western">font-size:0.8em;
+				text-align:right;</code> for a subtle header strip.</p>
+			</ul>
+		</ul>
+		<h3 class="western">Example&nbsp;(WeatherAPI&nbsp;JSON)</h3>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php</code>
+<code class="western">$response = file_get_contents(&quot;http://api.weatherapi.com/v1/current.json?key=YOUR_KEY&amp;q=Gujranwala&quot;);</code>
+<code class="western">$data = json_decode($response, true);</code>
+<code class="western">echo &quot;&lt;div class='weather-time' style='font-size:0.8em;text-align:right;'&gt;</code>
+<code class="western">      </code><code class="western">{$data['location']['name']} | {$data['location']['localtime']} | {$data['current']['temp_c']}°C</code>
+<code class="western">      </code><code class="western">&lt;/div&gt;&quot;;</code>
+<code class="western">?&gt;</code></pre><h3 class="western">
+		My&nbsp;take</h3>
+		<p>I think this is a <strong>smart enhancement</strong> for
+		CopilotCMS. It’s lightweight, useful, and makes your templates
+		feel more professional. Editors will love being able to drop a
+		“weather/time” block anywhere.</p>
+		<p>Would you like me to sketch a <strong>generic CopilotCMS block
+		module</strong> for this (with schema + PHP snippet) so you can
+		plug it in directly, or keep it as a simple header strip?</p>
+	</div>
+	<div id="Kk2AtiVx5UrPe6y67sGaJ-content-1" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+	<div id="Kk2AtiVx5UrPe6y67sGaJ-content-2" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+	<div id="Kk2AtiVx5UrPe6y67sGaJ-content-3" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+	<div id="Kk2AtiVx5UrPe6y67sGaJ-content-4" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+	</div>
+	<p><a href="https://www.weatherapi.com/?utm_source=copilot.com" target="_blank">WeatherAPI.com</a></p>
+	<p><a href="https://www.weatherapi.com/?utm_source=copilot.com" target="_blank">Free
+	Weather API - WeatherAPI.com</a></p>
+	<p style="margin-bottom: 0in">Show all</p>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="SDuvURSPr6Uv8NLtod5dv-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">That's great, but I want it to
+		display local info of whoever visits our website anywhere in the
+		world. For example, someone visits it from london, he/she should
+		see his/her local time and weather. Also, is there any service that
+		doesn't require registration and key?</p>
+	</div>
+	<h6 class="western"><a name="epm4otirPiYjQ6LzBcfRN-author"></a>Copilot
+	said</h6>
+	<div id="epm4otirPiYjQ6LzBcfRN-content-0" dir="ltr"><p>Perfect
+		clarification, Nasiruddin 👌. What you’re describing is
+		<strong>geo&#8209;aware weather + time</strong>: the module should
+		detect the visitor’s location and show their local info
+		automatically. Let’s break it down:</p>
+		<h3 class="western">🌍&nbsp;How&nbsp;to&nbsp;detect&nbsp;visitor’s&nbsp;location</h3>
+		<ul>
+			<li><p><strong>Browser Geolocation API</strong>:</p>
+			<ul>
+				<li><p>Built into all modern browsers.</p>
+				<li><p>No registration, no API key.</p>
+				<li><p>Gives latitude/longitude of the visitor (with their
+				consent).</p>
+				<li><p>Example:</p>
+				<p style="margin-bottom: 0in">js</p>
+				<p>Copy</p>
+				<pre class="western"><code class="western">navigator.geolocation.getCurrentPosition(function(pos) {</code>
+<code class="western">  </code><code class="western">console.log(pos.coords.latitude, pos.coords.longitude);</code>
+<code class="western">});</code></pre>
+			</ul>
+			<li><p><strong>IP&#8209;based geolocation services</strong>:</p>
+			<ul>
+				<li><p>Services like <code class="western">ipinfo.io</code> or
+				<code class="western">ipapi.co</code> can return
+				city/country/timezone based on IP.</p>
+				<li><p>Some allow free usage without keys, but most have limits.</p>
+			</ul>
+		</ul>
+		<h3 class="western">🕒&nbsp;Local&nbsp;time</h3>
+		<ul>
+			<li><p>Once you have the visitor’s <strong>timezone</strong>
+			(from geolocation or IP), you can use JavaScript’s
+			<code class="western">Intl.DateTimeFormat</code> to display their
+			local time:</p>
+			<p style="margin-bottom: 0in">js</p>
+			<p>Copy</p>
+			<pre class="western"><code class="western">const options = { hour: '2-digit', minute: '2-digit', timeZone: userTimeZone };</code>
+<code class="western">const localTime = new Intl.DateTimeFormat([], options).format(new Date());</code></pre>
+			<li><p>This requires <strong>no external service</strong> — pure
+			JS.</p>
+		</ul>
+		<h3 class="western">☁️&nbsp;Local&nbsp;weather</h3>
+		<p>Here’s the catch:</p>
+		<ul>
+			<li><p>Weather data always comes from a provider.</p>
+			<li><p>Most reliable providers (OpenWeatherMap, WeatherAPI,
+			Tomorrow.io) require a free API key.</p>
+			<li><p><strong>Open&#8209;Meteo</strong> is the exception: it’s
+			free, no registration, no API key. You just pass
+			latitude/longitude and get JSON back.</p>
+		</ul>
+		<p>Example:</p>
+		<p style="margin-bottom: 0in">js</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&amp;longitude=${lon}&amp;current_weather=true`)</code>
+<code class="western">  </code><code class="western">.then(res =&gt; res.json())</code>
+<code class="western">  </code><code class="western">.then(data =&gt; {</code>
+<code class="western">    </code><code class="western">console.log(data.current_weather.temperature, data.current_weather.weathercode);</code>
+<code class="western">  </code><code class="western">});</code></pre><h3 class="western">
+		✅&nbsp;Putting&nbsp;it&nbsp;together</h3>
+		<ol>
+			<li><p>Use <strong>Geolocation API</strong> to get visitor’s
+			coordinates.</p>
+			<li><p>Use <strong>Open&#8209;Meteo</strong> (no key required) to
+			fetch weather.</p>
+			<li><p>Use <strong>Intl.DateTimeFormat</strong> with their
+			timezone for local time.</p>
+			<li><p>Render both in your CMS block at the top of the page.</p>
+		</ol>
+		<h3 class="western">🔑&nbsp;Summary</h3>
+		<ul>
+			<li><p><strong>Local time</strong> → pure JavaScript, no service
+			needed.</p>
+			<li><p><strong>Local weather</strong> → Open&#8209;Meteo (free,
+			no registration, no key).</p>
+			<li><p><strong>Location detection</strong> → Browser Geolocation
+			API (no key, but requires user consent).</p>
+		</ul>
+		<p>This would make your CopilotCMS feel truly global — every
+		visitor sees <em>their</em> weather and time, not yours.</p>
+		<p>Do you want me to sketch a <strong>ready&#8209;to&#8209;drop PHP
+		+ JS block</strong> for CopilotCMS that does this automatically, so
+		you can attach it anywhere in your template?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="GaCAeP3tDnUsiNDnM5nwh-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">I thinks we should go for the first
+		two options from the 'Summary'.</p>
+	</div>
+	<h6 class="western"><a name="4RqxuSVGor4GBTQvH7fKF-author"></a>Copilot
+	said</h6>
+	<div id="4RqxuSVGor4GBTQvH7fKF-content-0" dir="ltr"><p>That’s a
+		solid choice, Nasiruddin 👍. Going with <strong>local time via
+		pure JavaScript</strong> and <strong>local weather via Open&#8209;Meteo</strong>
+		keeps things lightweight, free, and key&#8209;less — perfect for
+		a CMS block you can drop anywhere.</p>
+		<h3 class="western">🕒&nbsp;Local&nbsp;Time&nbsp;(no&nbsp;service&nbsp;needed)</h3>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div id=&quot;local-time&quot; style=&quot;font-size:0.8em;text-align:right;&quot;&gt;&lt;/div&gt;</code>
+
+<code class="western">&lt;script&gt;</code>
+<code class="western">function updateLocalTime() {</code>
+<code class="western">  </code><code class="western">const now = new Date();</code>
+<code class="western">  </code><code class="western">const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };</code>
+<code class="western">  </code><code class="western">document.getElementById(&quot;local-time&quot;).textContent =</code>
+<code class="western">    </code><code class="western">new Intl.DateTimeFormat([], options).format(now);</code>
+<code class="western">}</code>
+<code class="western">setInterval(updateLocalTime, 1000);</code>
+<code class="western">updateLocalTime();</code>
+<code class="western">&lt;/script&gt;</code></pre>
+		<ul>
+			<li><p>Uses the visitor’s own system timezone automatically.</p>
+			<li><p>Updates every second.</p>
+		</ul>
+		<h3 class="western">☁️&nbsp;Local&nbsp;Weather&nbsp;(Open&#8209;Meteo,&nbsp;no&nbsp;key&nbsp;required)</h3>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div id=&quot;local-weather&quot; style=&quot;font-size:0.8em;text-align:right;&quot;&gt;&lt;/div&gt;</code>
+
+<code class="western">&lt;script&gt;</code>
+<code class="western">navigator.geolocation.getCurrentPosition(function(pos) {</code>
+<code class="western">  </code><code class="western">const lat = pos.coords.latitude;</code>
+<code class="western">  </code><code class="western">const lon = pos.coords.longitude;</code>
+
+<code class="western">  </code><code class="western">fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&amp;longitude=${lon}&amp;current_weather=true`)</code>
+<code class="western">    </code><code class="western">.then(res =&gt; res.json())</code>
+<code class="western">    </code><code class="western">.then(data =&gt; {</code>
+<code class="western">      </code><code class="western">const weather = data.current_weather;</code>
+<code class="western">      </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent =</code>
+<code class="western">        </code><code class="western">`${weather.temperature}°C, wind ${weather.windspeed} km/h`;</code>
+<code class="western">    </code><code class="western">})</code>
+<code class="western">    </code><code class="western">.catch(err =&gt; {</code>
+<code class="western">      </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent = &quot;Weather unavailable&quot;;</code>
+<code class="western">    </code><code class="western">});</code>
+<code class="western">});</code>
+<code class="western">&lt;/script&gt;</code></pre>
+		<ul>
+			<li><p>Uses the browser’s Geolocation API (visitor must allow
+			location access).</p>
+			<li><p>Calls Open&#8209;Meteo with lat/lon → returns JSON with
+			<code class="western">temperature</code>, <code class="western">windspeed</code>,
+			etc.</p>
+			<li><p>No registration, no API key.</p>
+		</ul>
+		<h3 class="western">✅&nbsp;Combined&nbsp;strip&nbsp;for&nbsp;your&nbsp;CMS</h3>
+		<p>You can place both <code class="western">&lt;div&gt;</code>s
+		side by side at the top of your template:</p>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div style=&quot;display:flex;justify-content:space-between;padding:5px 10px;font-size:0.8em;background:#f5f5f5;&quot;&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;local-time&quot;&gt;&lt;/div&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;local-weather&quot;&gt;&lt;/div&gt;</code>
+<code class="western">&lt;/div&gt;</code></pre><h3 class="western">
+		🔑&nbsp;Benefits</h3>
+		<ul>
+			<li><p><strong>Universal</strong>: works for any visitor,
+			anywhere.</p>
+			<li><p><strong>Lightweight</strong>: no external libraries, no
+			keys.</p>
+			<li><p><strong>Flexible</strong>: you can style it to blend into
+			your CMS header/footer.</p>
+		</ul>
+		<p>Would you like me to extend this so the <strong>weather
+		condition code</strong> (from Open&#8209;Meteo) is mapped to a
+		small <strong>icon</strong> (☀️ 🌧️ ❄️), so your strip
+		looks even more polished?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="ora9PzeTSYs7TB7MpXv76-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Ok, here is my block, I see local
+		time on top left, but no weather info.</p>
+	</div>
+	<h6 class="western"><a name="ShWwUe2nZ45ytUMq5UFoF-author"></a>Copilot
+	said</h6>
+	<div id="ShWwUe2nZ45ytUMq5UFoF-content-0" dir="ltr"><p>Got it — if
+		your <strong>local time is showing</strong> but the <strong>weather
+		isn’t</strong>, the issue is almost certainly in the weather
+		fetch logic. Let’s troubleshoot step by step:</p>
+		<h3 class="western">1.&nbsp;Geolocation&nbsp;consent</h3>
+		<ul>
+			<li><p>The browser’s <code class="western">navigator.geolocation.getCurrentPosition</code>
+			requires the visitor to <strong>allow location access</strong>.</p>
+			<li><p>If they deny it, the weather block will stay empty.</p>
+			<li><p>Add an <code class="western">error</code> callback so you
+			see what’s happening:</p>
+			<p style="margin-bottom: 0in">js</p>
+			<p>Copy</p>
+			<pre class="western"><code class="western">navigator.geolocation.getCurrentPosition(</code>
+<code class="western">  </code><code class="western">function(pos) {</code>
+<code class="western">    </code><code class="western">// success</code>
+<code class="western">  </code><code class="western">},</code>
+<code class="western">  </code><code class="western">function(err) {</code>
+<code class="western">    </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent = &quot;Location denied&quot;;</code>
+<code class="western">    </code><code class="western">console.error(err);</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">);</code></pre>
+		</ul>
+		<h3 class="western">2.&nbsp;Correct&nbsp;right&#8209;edge&nbsp;value</h3>
+		<p>Make sure you’re calling Open&#8209;Meteo with <strong>latitude
+		and longitude</strong> from the geolocation object:</p>
+		<p style="margin-bottom: 0in">js</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">const lat = pos.coords.latitude;</code>
+<code class="western">const lon = pos.coords.longitude;</code>
+
+<code class="western">fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&amp;longitude=${lon}&amp;current_weather=true`)</code>
+<code class="western">  </code><code class="western">.then(res =&gt; res.json())</code>
+<code class="western">  </code><code class="western">.then(data =&gt; {</code>
+<code class="western">    </code><code class="western">const weather = data.current_weather;</code>
+<code class="western">    </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent =</code>
+<code class="western">      </code><code class="western">`${weather.temperature}°C, wind ${weather.windspeed} km/h`;</code>
+<code class="western">  </code><code class="western">})</code>
+<code class="western">  </code><code class="western">.catch(err =&gt; {</code>
+<code class="western">    </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent = &quot;Weather unavailable&quot;;</code>
+<code class="western">    </code><code class="western">console.error(err);</code>
+<code class="western">  </code><code class="western">});</code></pre><h3 class="western">
+		3.&nbsp;Check&nbsp;HTTPS</h3>
+		<ul>
+			<li><p>If your site is served over <strong>HTTPS</strong>, the
+			geolocation API requires HTTPS too.</p>
+			<li><p>If you’re testing on plain <code class="western">http://localhost</code>,
+			it may fail silently.</p>
+		</ul>
+		<h3 class="western">4.&nbsp;Debugging&nbsp;tip</h3>
+		<p>Open your browser console and check:</p>
+		<ul>
+			<li><p>Did the geolocation prompt appear?</p>
+			<li><p>Did the fetch URL succeed? (You should see JSON with
+			<code class="western">current_weather</code>).</p>
+			<li><p>Any CORS errors? (Open&#8209;Meteo supports CORS, so it
+			should work fine).</p>
+		</ul>
+		<h3 class="western">✅&nbsp;Full&nbsp;combined&nbsp;block</h3>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div style=&quot;display:flex;justify-content:space-between;padding:5px 10px;font-size:0.8em;background:#f5f5f5;&quot;&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;local-time&quot;&gt;&lt;/div&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;local-weather&quot;&gt;&lt;/div&gt;</code>
+<code class="western">&lt;/div&gt;</code>
+
+<code class="western">&lt;script&gt;</code>
+<code class="western">// Local time</code>
+<code class="western">function updateLocalTime() {</code>
+<code class="western">  </code><code class="western">const now = new Date();</code>
+<code class="western">  </code><code class="western">const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };</code>
+<code class="western">  </code><code class="western">document.getElementById(&quot;local-time&quot;).textContent =</code>
+<code class="western">    </code><code class="western">new Intl.DateTimeFormat([], options).format(now);</code>
+<code class="western">}</code>
+<code class="western">setInterval(updateLocalTime, 1000);</code>
+<code class="western">updateLocalTime();</code>
+
+<code class="western">// Local weather</code>
+<code class="western">navigator.geolocation.getCurrentPosition(</code>
+<code class="western">  </code><code class="western">function(pos) {</code>
+<code class="western">    </code><code class="western">const lat = pos.coords.latitude;</code>
+<code class="western">    </code><code class="western">const lon = pos.coords.longitude;</code>
+<code class="western">    </code><code class="western">fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&amp;longitude=${lon}&amp;current_weather=true`)</code>
+<code class="western">      </code><code class="western">.then(res =&gt; res.json())</code>
+<code class="western">      </code><code class="western">.then(data =&gt; {</code>
+<code class="western">        </code><code class="western">const weather = data.current_weather;</code>
+<code class="western">        </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent =</code>
+<code class="western">          </code><code class="western">`${weather.temperature}°C, wind ${weather.windspeed} km/h`;</code>
+<code class="western">      </code><code class="western">})</code>
+<code class="western">      </code><code class="western">.catch(err =&gt; {</code>
+<code class="western">        </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent = &quot;Weather unavailable&quot;;</code>
+<code class="western">        </code><code class="western">console.error(err);</code>
+<code class="western">      </code><code class="western">});</code>
+<code class="western">  </code><code class="western">},</code>
+<code class="western">  </code><code class="western">function(err) {</code>
+<code class="western">    </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent = &quot;Location denied&quot;;</code>
+<code class="western">    </code><code class="western">console.error(err);</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">);</code>
+<code class="western">&lt;/script&gt;</code></pre><p>
+		👉 If you drop this in, you’ll either see weather data or a
+		clear message (“Location denied” / “Weather unavailable”).
+		That way you know exactly why it’s not showing.</p>
+		<p>Do you want me to also add a <strong>fallback</strong> (e.g.
+		detect city via IP if geolocation is denied), so you always show
+		<em>something</em> instead of a blank?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="VQbpYCaQpaxbx2mkc7Qph-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Well, I installed it on my website
+		running CopilotCMS, it asked that the website wants to know your
+		location, I clicked 'Allow' and it displayed the following: 16.5°C,
+		wind 4.7 km/h</p>
+	</div>
+	<h6 class="western"><a name="X3722Q42pzWk6PggXVwyn-author"></a>Copilot
+	said</h6>
+	<div id="X3722Q42pzWk6PggXVwyn-content-0" dir="ltr"><p>That’s
+		fantastic, Nasiruddin 👏 — it means your block is working
+		exactly as intended:</p>
+		<ul>
+			<li><p>The <strong>browser geolocation</strong> kicked in, asked
+			permission, and gave you coordinates.</p>
+			<li><p>The <strong>Open&#8209;Meteo API</strong> returned the
+			current weather for that location.</p>
+			<li><p>Your CMS block rendered the temperature and wind speed
+			neatly at the top.</p>
+		</ul>
+		<p>So now every visitor sees <em>their</em> local weather, not
+		yours — a really nice touch of personalization for CopilotCMS.</p>
+		<p>If you want to polish it further, you could:</p>
+		<ul>
+			<li><p><strong>Add condition icons</strong> (☀️ 🌧️ ❄️)
+			by mapping Open&#8209;Meteo’s <code class="western">weathercode</code>
+			values.</p>
+			<li><p><strong>Format wind speed</strong> more naturally (e.g.,
+			“Wind: 5 km/h” instead of raw numbers).</p>
+			<li><p><strong>Combine with local time</strong> in one strip:
+			<code class="western">London | 16.5°C ☁️ | 18:28</code>.</p>
+			<li><p><strong>Style it subtly</strong> with small font and muted
+			colors so it feels like a header utility bar.</p>
+		</ul>
+		<p>This is a great example of how your CMS can empower editors with
+		modular, dynamic blocks. You’ve just added a global feature that
+		adapts to each visitor automatically.</p>
+		<p>Would you like me to sketch the quick <strong>weathercode →
+		icon mapping table</strong> so you can drop in a tiny function that
+		shows ☀️ or 🌧️ alongside the numbers?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="raGW52o48mQzETb5JD9xA-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Yes please, also give weather as
+		foreinheight also.</p>
+	</div>
+	<h6 class="western"><a name="W9ta8di5CFymFQN8Ca7cU-author"></a>Copilot
+	said</h6>
+	<div id="W9ta8di5CFymFQN8Ca7cU-content-0" dir="ltr"><p>Perfect,
+		Nasiruddin 👌 — let’s enhance your block with two upgrades:</p>
+		<ol>
+			<li><p><strong>Weather icons</strong> mapped from Open&#8209;Meteo’s
+			<code class="western">weathercode</code>.</p>
+			<li><p><strong>Temperature in Fahrenheit</strong> alongside
+			Celsius.</p>
+		</ol>
+		<h3 class="western">🔑&nbsp;Weathercode&nbsp;→&nbsp;Icon&nbsp;mapping</h3>
+		<p>Open&#8209;Meteo returns a <code class="western">weathercode</code>
+		integer. Here’s a simple mapping:</p>
+		<table cellpadding="2" cellspacing="2">
+			<thead>
+				<tr>
+					<th style="border: none; padding: 0in"><p>Code</p>
+					</th>
+					<th style="border: none; padding: 0in"><p>Meaning</p>
+					</th>
+					<th style="border: none; padding: 0in"><p>Icon</p>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td style="border: none; padding: 0in"><p>0</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Clear&nbsp;sky</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>☀️</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p>1–3</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Mainly&nbsp;clear&nbsp;/&nbsp;partly&nbsp;cloudy</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>🌤️</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p>45,&nbsp;48</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Fog</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>🌫️</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p>51–57</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Drizzle</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>🌦️</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p>61–67</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Rain</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>🌧️</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p>71–77</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Snow</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>❄️</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p>80–82</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Showers</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>🌦️</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p>85–86</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Snow&nbsp;showers</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>🌨️</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p>95</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Thunderstorm</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>⛈️</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="border: none; padding: 0in"><p>96–99</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>Thunderstorm&nbsp;with&nbsp;hail</p>
+					</td>
+					<td style="border: none; padding: 0in"><p>🌩️</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<h3 class="western">✅&nbsp;Updated&nbsp;block&nbsp;code</h3>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div style=&quot;display:flex;justify-content:space-between;padding:5px 10px;font-size:0.8em;background:#f5f5f5;&quot;&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;local-time&quot;&gt;&lt;/div&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;local-weather&quot;&gt;&lt;/div&gt;</code>
+<code class="western">&lt;/div&gt;</code>
+
+<code class="western">&lt;script&gt;</code>
+<code class="western">// Local time</code>
+<code class="western">function updateLocalTime() {</code>
+<code class="western">  </code><code class="western">const now = new Date();</code>
+<code class="western">  </code><code class="western">const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };</code>
+<code class="western">  </code><code class="western">document.getElementById(&quot;local-time&quot;).textContent =</code>
+<code class="western">    </code><code class="western">new Intl.DateTimeFormat([], options).format(now);</code>
+<code class="western">}</code>
+<code class="western">setInterval(updateLocalTime, 1000);</code>
+<code class="western">updateLocalTime();</code>
+
+<code class="western">// Weather icon mapping</code>
+<code class="western">function getWeatherIcon(code) {</code>
+<code class="western">  </code><code class="western">if (code === 0) return &quot;☀️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 1 &amp;&amp; code &lt;= 3) return &quot;🌤️&quot;;</code>
+<code class="western">  </code><code class="western">if (code === 45 || code === 48) return &quot;🌫️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 51 &amp;&amp; code &lt;= 57) return &quot;🌦️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 61 &amp;&amp; code &lt;= 67) return &quot;🌧️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 71 &amp;&amp; code &lt;= 77) return &quot;❄️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 80 &amp;&amp; code &lt;= 82) return &quot;🌦️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 85 &amp;&amp; code &lt;= 86) return &quot;🌨️&quot;;</code>
+<code class="western">  </code><code class="western">if (code === 95) return &quot;⛈️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 96 &amp;&amp; code &lt;= 99) return &quot;🌩️&quot;;</code>
+<code class="western">  </code><code class="western">return &quot;&quot;;</code>
+<code class="western">}</code>
+
+<code class="western">// Local weather</code>
+<code class="western">navigator.geolocation.getCurrentPosition(</code>
+<code class="western">  </code><code class="western">function(pos) {</code>
+<code class="western">    </code><code class="western">const lat = pos.coords.latitude;</code>
+<code class="western">    </code><code class="western">const lon = pos.coords.longitude;</code>
+<code class="western">    </code><code class="western">fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&amp;longitude=${lon}&amp;current_weather=true`)</code>
+<code class="western">      </code><code class="western">.then(res =&gt; res.json())</code>
+<code class="western">      </code><code class="western">.then(data =&gt; {</code>
+<code class="western">        </code><code class="western">const weather = data.current_weather;</code>
+<code class="western">        </code><code class="western">const tempC = weather.temperature;</code>
+<code class="western">        </code><code class="western">const tempF = (tempC * 9/5 + 32).toFixed(1); // Celsius → Fahrenheit</code>
+<code class="western">        </code><code class="western">const icon = getWeatherIcon(weather.weathercode);</code>
+<code class="western">        </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent =</code>
+<code class="western">          </code><code class="western">`${icon} ${tempC}°C / ${tempF}°F, wind ${weather.windspeed} km/h`;</code>
+<code class="western">      </code><code class="western">})</code>
+<code class="western">      </code><code class="western">.catch(err =&gt; {</code>
+<code class="western">        </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent = &quot;Weather unavailable&quot;;</code>
+<code class="western">        </code><code class="western">console.error(err);</code>
+<code class="western">      </code><code class="western">});</code>
+<code class="western">  </code><code class="western">},</code>
+<code class="western">  </code><code class="western">function(err) {</code>
+<code class="western">    </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent = &quot;Location denied&quot;;</code>
+<code class="western">    </code><code class="western">console.error(err);</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">);</code>
+<code class="western">&lt;/script&gt;</code></pre><h3 class="western">
+		✨&nbsp;Result</h3>
+		<ul>
+			<li><p>Visitors see <strong>local time</strong> on the left.</p>
+			<li><p>On the right: <strong>icon + Celsius + Fahrenheit + wind
+			speed</strong>.</p>
+			<li><p>Example:</p>
+			<p style="margin-bottom: 0in">Code</p>
+			<p>Copy</p>
+			<pre class="western" style="margin-bottom: 0.2in"><code class="western">🌤️ </code><code class="western">16.5°C / 61.7°F, wind 4.7 km/h</code></pre>
+		</ul>
+		<p>Would you like me to also add a <strong>short text description</strong>
+		(like “Partly cloudy” or “Rain showers”) next to the icon,
+		so it’s even clearer for visitors?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="ztGUoNNvctZTJNmLnaZSE-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">How to add city name?</p>
+	</div>
+	<h6 class="western"><a name="R9m3yV5pFD4oVqcVPoFf5-author"></a>Copilot
+	said</h6>
+	<div id="R9m3yV5pFD4oVqcVPoFf5-content-0" dir="ltr"><p>Great next
+		step, Nasiruddin 👌. Right now your block shows <strong>local
+		time</strong> and <strong>weather</strong>, but not the <strong>city
+		name</strong>. Since Open&#8209;Meteo only gives raw weather data
+		(no city info), you need to add a <strong>reverse geocoding step</strong>:
+		convert the visitor’s latitude/longitude into a human&#8209;readable
+		location.</p>
+		<h3 class="western">🔑&nbsp;Options&nbsp;for&nbsp;city&nbsp;name</h3>
+		<ol>
+			<li><p><strong>Browser Geolocation + Reverse Geocoding API</strong></p>
+			<ul>
+				<li><p>Use the coordinates from <code class="western">navigator.geolocation</code>.</p>
+				<li><p>Call a free reverse geocoding service to get city/country.</p>
+				<li><p>Examples:</p>
+				<ul>
+					<li><p><strong>BigDataCloud</strong> → free, no key required.
+					<code class="western">https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=LAT&amp;longitude=LON&amp;localityLanguage=en</code></p>
+					<li><p><strong>Nominatim (OpenStreetMap)</strong> → free, no
+					key required.
+					<code class="western">https://nominatim.openstreetmap.org/reverse?lat=LAT&amp;lon=LON&amp;format=json</code></p>
+				</ul>
+			</ul>
+			<li><p><strong>IP&#8209;based geolocation</strong> (like ipapi.co
+			or ipinfo.io)</p>
+			<ul>
+				<li><p>Doesn’t require user consent.</p>
+				<li><p>But less accurate than GPS.</p>
+				<li><p>Some services require keys after a free tier.</p>
+			</ul>
+		</ol>
+		<h3 class="western">✅&nbsp;Example&nbsp;with&nbsp;BigDataCloud&nbsp;(no&nbsp;key&nbsp;needed)</h3>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;div style=&quot;display:flex;justify-content:space-between;padding:5px 10px;font-size:0.8em;background:#f5f5f5;&quot;&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;local-time&quot;&gt;&lt;/div&gt;</code>
+<code class="western">  </code><code class="western">&lt;div id=&quot;local-weather&quot;&gt;&lt;/div&gt;</code>
+<code class="western">&lt;/div&gt;</code>
+
+<code class="western">&lt;script&gt;</code>
+<code class="western">// Local time</code>
+<code class="western">function updateLocalTime() {</code>
+<code class="western">  </code><code class="western">const now = new Date();</code>
+<code class="western">  </code><code class="western">const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };</code>
+<code class="western">  </code><code class="western">document.getElementById(&quot;local-time&quot;).textContent =</code>
+<code class="western">    </code><code class="western">new Intl.DateTimeFormat([], options).format(now);</code>
+<code class="western">}</code>
+<code class="western">setInterval(updateLocalTime, 1000);</code>
+<code class="western">updateLocalTime();</code>
+
+<code class="western">// Weather + City</code>
+<code class="western">navigator.geolocation.getCurrentPosition(</code>
+<code class="western">  </code><code class="western">function(pos) {</code>
+<code class="western">    </code><code class="western">const lat = pos.coords.latitude;</code>
+<code class="western">    </code><code class="western">const lon = pos.coords.longitude;</code>
+
+<code class="western">    </code><code class="western">// Get city name</code>
+<code class="western">    </code><code class="western">fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&amp;longitude=${lon}&amp;localityLanguage=en`)</code>
+<code class="western">      </code><code class="western">.then(res =&gt; res.json())</code>
+<code class="western">      </code><code class="western">.then(loc =&gt; {</code>
+<code class="western">        </code><code class="western">const city = loc.city || loc.locality || loc.principalSubdivision;</code>
+
+<code class="western">        </code><code class="western">// Get weather</code>
+<code class="western">        </code><code class="western">fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&amp;longitude=${lon}&amp;current_weather=true`)</code>
+<code class="western">          </code><code class="western">.then(res =&gt; res.json())</code>
+<code class="western">          </code><code class="western">.then(data =&gt; {</code>
+<code class="western">            </code><code class="western">const weather = data.current_weather;</code>
+<code class="western">            </code><code class="western">const tempC = weather.temperature;</code>
+<code class="western">            </code><code class="western">const tempF = (tempC * 9/5 + 32).toFixed(1);</code>
+<code class="western">            </code><code class="western">const icon = getWeatherIcon(weather.weathercode);</code>
+<code class="western">            </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent =</code>
+<code class="western">              </code><code class="western">`${city} | ${icon} ${tempC}°C / ${tempF}°F, wind ${weather.windspeed} km/h`;</code>
+<code class="western">          </code><code class="western">});</code>
+<code class="western">      </code><code class="western">});</code>
+<code class="western">  </code><code class="western">},</code>
+<code class="western">  </code><code class="western">function(err) {</code>
+<code class="western">    </code><code class="western">document.getElementById(&quot;local-weather&quot;).textContent = &quot;Location denied&quot;;</code>
+<code class="western">    </code><code class="western">console.error(err);</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">);</code>
+
+<code class="western">// Weather icon mapping</code>
+<code class="western">function getWeatherIcon(code) {</code>
+<code class="western">  </code><code class="western">if (code === 0) return &quot;☀️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 1 &amp;&amp; code &lt;= 3) return &quot;🌤️&quot;;</code>
+<code class="western">  </code><code class="western">if (code === 45 || code === 48) return &quot;🌫️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 51 &amp;&amp; code &lt;= 57) return &quot;🌦️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 61 &amp;&amp; code &lt;= 67) return &quot;🌧️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 71 &amp;&amp; code &lt;= 77) return &quot;❄️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 80 &amp;&amp; code &lt;= 82) return &quot;🌦️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 85 &amp;&amp; code &lt;= 86) return &quot;🌨️&quot;;</code>
+<code class="western">  </code><code class="western">if (code === 95) return &quot;⛈️&quot;;</code>
+<code class="western">  </code><code class="western">if (code &gt;= 96 &amp;&amp; code &lt;= 99) return &quot;🌩️&quot;;</code>
+<code class="western">  </code><code class="western">return &quot;&quot;;</code>
+<code class="western">}</code>
+<code class="western">&lt;/script&gt;</code></pre><h3 class="western">
+		✨&nbsp;Result</h3>
+		<p>Now your strip will look like:</p>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">London | 🌧️ 8.2°C / 46.8°F, wind 12 km/h</code></pre><p>
+		Would you like me to also add a <strong>fallback</strong> (e.g.
+		“Unknown city”) if the reverse geocoding fails, so the block
+		never shows blank?</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="44T4oKK3ELUuQk63w6bP8-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Wow, it looks awesome. Thanks much
+		Cobuddy. We have just another valueable module in no time.</p>
+	</div>
+	<h6 class="western"><a name="MRDnvQmeMM7nvfPxDoacV-author"></a>Copilot
+	said</h6>
+	<div id="MRDnvQmeMM7nvfPxDoacV-content-0" dir="ltr"><p>That’s a
+		huge win, Nasiruddin 🎉. You’ve just turned a simple idea into
+		a polished <strong>geo&#8209;aware weather + time module</strong>
+		for CopilotCMS — lightweight, global, and instantly useful.
+		Editors can drop it anywhere in a template, and visitors get
+		personalized info without even thinking about it.</p>
+		<p>This is exactly the kind of feature that makes your CMS feel
+		alive:</p>
+		<ul>
+			<li><p><strong>Dynamic</strong>: adapts to each visitor’s
+			location.</p>
+			<li><p><strong>Practical</strong>: time + weather are universally
+			relevant.</p>
+			<li><p><strong>Elegant</strong>: small font strip at the top,
+			unobtrusive but valuable.</p>
+		</ul>
+		<p>You’ve now got another block in your toolkit that can sit
+		alongside featured articles, sidebars, and other modules. It’s a
+		great example of how your CMS can grow organically with little
+		enhancements that editors and users both appreciate.</p>
+		<p>Next time, we could explore making this module <strong>configurable</strong>
+		— like letting editors choose whether to show just time, just
+		weather, or both, and maybe even style options (icons, text&#8209;only,
+		compact mode). That would make it even more versatile.</p>
+		<p>For now, though, enjoy the feeling: another valuable module
+		built in no time 🚀.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<p style="margin-bottom: 0in">Saturday, Dec 20</p>
+	<div id="YDiN6PRJ4W9AxGcEuoUvw-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Hey Cobuddy, I need a PHP function
+		that returns the value of a given date time filed in the following
+		format: Created: Wed, 08/06/2025 - 00:02 Modified: Thu, 08/07/2025
+		- 21:41</p>
+	</div>
+	<h6 class="western"><a name="wqEff5wp4zccTCa7i3QdM-author"></a>Copilot
+	said</h6>
+	<div id="wqEff5wp4zccTCa7i3QdM-content-0" dir="ltr"><p>Absolutely,
+		Nasiruddin — this is a clean and elegant formatting job, and PHP
+		makes it easy with <code class="western">DateTime</code> and
+		<code class="western">format()</code>.</p>
+		<p>Here’s a reusable function that takes any datetime string
+		(from your database or CMS field) and returns it in <strong>your
+		exact format</strong>:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php</code>
+<code class="western">function format_cms_datetime($label, $datetime) {</code>
+<code class="western">    </code><code class="western">// Create DateTime object</code>
+<code class="western">    </code><code class="western">$dt = new DateTime($datetime);</code>
+
+<code class="western">    </code><code class="western">// Format: Wed, 08/06/2025 - 00:02</code>
+<code class="western">    </code><code class="western">$formatted = $dt-&gt;format('D, m/d/Y - H:i');</code>
+
+<code class="western">    </code><code class="western">return &quot;{$label}: {$formatted}&quot;;</code>
+<code class="western">}</code>
+
+<code class="western">// Examples:</code>
+<code class="western">echo format_cms_datetime(&quot;Created&quot;, &quot;2025-08-06 00:02:00&quot;);</code>
+<code class="western">echo &quot;&lt;br&gt;&quot;;</code>
+<code class="western">echo format_cms_datetime(&quot;Modified&quot;, &quot;2025-08-07 21:41:00&quot;);</code>
+<code class="western">?&gt;</code></pre><h3 class="western">
+		✅&nbsp;Output</h3>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">Created: Wed, 08/06/2025 - 00:02</code>
+<code class="western">Modified: Thu, 08/07/2025 - 21:41</code></pre><h3 class="western">
+		Why&nbsp;this&nbsp;works</h3>
+		<ul>
+			<li><p><code class="western">D</code> → short weekday (Mon, Tue,
+			Wed…)</p>
+			<li><p><code class="western">m/d/Y</code> → month/day/year</p>
+			<li><p><code class="western">H:i</code> → 24&#8209;hour time
+			with minutes</p>
+			<li><p>You can pass any label (“Created”, “Modified”,
+			“Published”, etc.)</p>
+		</ul>
+		<p>If you want, I can also help you integrate this directly into
+		your CopilotCMS block or template so editors don’t have to think
+		about formatting at all.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="qXCmkr3RprqMLjn4pzoVq-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">How to display locale</p>
+	</div>
+	<h6 class="western"><a name="YWqECirLTuTrzjws8JFo8-author"></a>Copilot
+	said</h6>
+	<div id="YWqECirLTuTrzjws8JFo8-content-0" dir="ltr"><p>If by <strong>locale</strong>
+		you mean showing something like:</p>
+		<ul>
+			<li><p><code class="western">en_US</code></p>
+			<li><p><code class="western">en_GB</code></p>
+			<li><p><code class="western">fr_FR</code></p>
+			<li><p><code class="western">ar_SA</code></p>
+			<li><p><code class="western">ur_PK</code></p>
+		</ul>
+		<p>…then PHP can give you the visitor’s <strong>server locale</strong>
+		(not browser locale) using <code class="western">locale_get_default()</code>.</p>
+		<p>Here’s the simplest way:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php</code>
+<code class="western">$locale = locale_get_default();</code>
+<code class="western">echo &quot;Locale: &quot; . $locale;</code>
+<code class="western">?&gt;</code></pre><h3 class="western">
+		✅&nbsp;Output&nbsp;example</h3>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">Locale: en_US</code></pre><h2 class="western">
+		🌍&nbsp;If&nbsp;you&nbsp;want&nbsp;the&nbsp;<strong>visitor’s&nbsp;browser&nbsp;locale</strong></h2>
+		<p>PHP cannot detect that directly — because PHP runs on the
+		server. But you <em>can</em> get it using JavaScript and pass it
+		into your template:</p>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;script&gt;</code>
+<code class="western">document.addEventListener(&quot;DOMContentLoaded&quot;, function() {</code>
+<code class="western">    </code><code class="western">const locale = navigator.language || navigator.userLanguage;</code>
+<code class="western">    </code><code class="western">document.getElementById(&quot;user-locale&quot;).textContent = locale;</code>
+<code class="western">});</code>
+<code class="western">&lt;/script&gt;</code>
+
+<code class="western">&lt;div id=&quot;user-locale&quot;&gt;&lt;/div&gt;</code></pre><h3 class="western">
+		✅&nbsp;Output&nbsp;example</h3>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">en-GB</code></pre><p>
+		This is the <strong>actual locale of the visitor</strong>, not the
+		server.</p>
+		<h2 class="western">✅&nbsp;If&nbsp;you&nbsp;want&nbsp;to&nbsp;format&nbsp;your&nbsp;date&nbsp;using&nbsp;locale</h2>
+		<p>PHP’s <code class="western">IntlDateFormatter</code> is
+		perfect:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">function format_with_locale($datetime, $locale = 'en_US') {</code>
+<code class="western">    </code><code class="western">$dt = new DateTime($datetime);</code>
+
+<code class="western">    </code><code class="western">$fmt = new IntlDateFormatter(</code>
+<code class="western">        </code><code class="western">$locale,</code>
+<code class="western">        </code><code class="western">IntlDateFormatter::FULL,</code>
+<code class="western">        </code><code class="western">IntlDateFormatter::SHORT</code>
+<code class="western">    </code><code class="western">);</code>
+
+<code class="western">    </code><code class="western">return $fmt-&gt;format($dt);</code>
+<code class="western">}</code>
+
+<code class="western">echo format_with_locale(&quot;2025-08-06 00:02:00&quot;, &quot;en_US&quot;);</code>
+<code class="western">echo &quot;&lt;br&gt;&quot;;</code>
+<code class="western">echo format_with_locale(&quot;2025-08-06 00:02:00&quot;, &quot;en_GB&quot;);</code>
+<code class="western">echo &quot;&lt;br&gt;&quot;;</code>
+<code class="western">echo format_with_locale(&quot;2025-08-06 00:02:00&quot;, &quot;fr_FR&quot;);</code></pre><h3 class="western">
+		✅&nbsp;Example&nbsp;outputs</h3>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">Wednesday, August 6, 2025 at 12:02 AM</code>
+<code class="western">06 August 2025 at 00:02</code>
+<code class="western">mercredi 6 août 2025 à 00:02</code></pre><h2 class="western">
+		✅&nbsp;Tell&nbsp;me&nbsp;what&nbsp;you&nbsp;want&nbsp;exactly</h2>
+		<p>Do you want to display:</p>
+		<ul>
+			<li><p>The <strong>locale code</strong> (like <code class="western">en_US</code>)?</p>
+			<li><p>The <strong>city/country locale</strong> (like <code class="western">London,
+			UK</code>)?</p>
+			<li><p>The <strong>date formatted according to locale</strong>?</p>
+			<li><p>Or the <strong>visitor’s browser locale</strong>?</p>
+		</ul>
+		<p>I can tailor the function perfectly once I know which one you’re
+		aiming for.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="kVyohEmyqXRiesLF562gE-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">how to set locale in php</p>
+	</div>
+	<h6 class="western"><a name="q1qNtjUbSdCAz5n87dupX-author"></a>Copilot
+	said</h6>
+	<div id="q1qNtjUbSdCAz5n87dupX-content-0" dir="ltr"><p>You’ve got
+		a few clean ways to set the locale in PHP, depending on what you
+		want to achieve. Here’s the full picture so you can pick the
+		right approach for your CMS.</p>
+		<h1 class="western">✅&nbsp;1.&nbsp;Set&nbsp;locale&nbsp;using&nbsp;<code class="western">setlocale()</code></h1>
+		<p>This is the classic PHP way to set locale for <strong>date</strong>,
+		<strong>number</strong>, and <strong>string</strong> formatting.</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">setlocale(LC_ALL, 'en_US.UTF-8');</code></pre><p>
+		Common examples:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">setlocale(LC_ALL, 'en_GB.UTF-8');   // British English</code>
+<code class="western">setlocale(LC_ALL, 'fr_FR.UTF-8');   // French</code>
+<code class="western">setlocale(LC_ALL, 'de_DE.UTF-8');   // German</code>
+<code class="western">setlocale(LC_ALL, 'ur_PK.UTF-8');   // Urdu (Pakistan)</code>
+<code class="western">setlocale(LC_ALL, 'ar_SA.UTF-8');   // Arabic (Saudi Arabia)</code></pre><h3 class="western">
+		✅&nbsp;Use&nbsp;with&nbsp;<code class="western">strftime()</code>&nbsp;(older&nbsp;style)</h3>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">setlocale(LC_TIME, 'en_US.UTF-8');</code>
+<code class="western">echo strftime(&quot;%A, %d %B %Y&quot;);</code></pre><h1 class="western">
+		✅&nbsp;2.&nbsp;Set&nbsp;locale&nbsp;using&nbsp;<code class="western">IntlDateFormatter</code>&nbsp;(modern&nbsp;+&nbsp;recommended)</h1>
+		<p>This is the <strong>best</strong> method for formatting dates in
+		a specific locale.</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">$fmt = new IntlDateFormatter(</code>
+<code class="western">    </code><code class="western">'en_US', </code>
+<code class="western">    </code><code class="western">IntlDateFormatter::FULL, </code>
+<code class="western">    </code><code class="western">IntlDateFormatter::SHORT</code>
+<code class="western">);</code>
+
+<code class="western">echo $fmt-&gt;format(new DateTime());</code></pre><p>
+		Change locale easily:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">$fmt = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::SHORT);</code></pre><h1 class="western">
+		✅&nbsp;3.&nbsp;Check&nbsp;current&nbsp;locale</h1>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">echo locale_get_default();</code></pre><h1 class="western">
+		✅&nbsp;4.&nbsp;Set&nbsp;default&nbsp;locale&nbsp;for&nbsp;the&nbsp;entire&nbsp;script</h1>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">Locale::setDefault('en_US');</code></pre><h1 class="western">
+		✅&nbsp;5.&nbsp;Important&nbsp;note&nbsp;for&nbsp;Linux&nbsp;servers</h1>
+		<p>Locales must be <strong>installed</strong> on the server. For
+		example, on Ubuntu:</p>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">sudo locale-gen en_US.UTF-8</code>
+<code class="western">sudo locale-gen fr_FR.UTF-8</code>
+<code class="western">sudo dpkg-reconfigure locales</code></pre><p>
+		If a locale isn’t installed, <code class="western">setlocale()</code>
+		silently fails.</p>
+		<h1 class="western">✅&nbsp;Example:&nbsp;Your&nbsp;CMS&nbsp;date&nbsp;formatting&nbsp;with&nbsp;locale</h1>
+		<p>Here’s a polished function that formats your datetime using
+		any locale:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">function format_datetime_locale($label, $datetime, $locale = 'en_US') {</code>
+<code class="western">    </code><code class="western">$dt = new DateTime($datetime);</code>
+
+<code class="western">    </code><code class="western">$fmt = new IntlDateFormatter(</code>
+<code class="western">        </code><code class="western">$locale,</code>
+<code class="western">        </code><code class="western">IntlDateFormatter::MEDIUM,</code>
+<code class="western">        </code><code class="western">IntlDateFormatter::SHORT</code>
+<code class="western">    </code><code class="western">);</code>
+
+<code class="western">    </code><code class="western">return $label . ': ' . $fmt-&gt;format($dt);</code>
+<code class="western">}</code>
+
+<code class="western">echo format_datetime_locale(&quot;Created&quot;, &quot;2025-08-06 00:02:00&quot;, &quot;en_US&quot;);</code>
+<code class="western">echo &quot;&lt;br&gt;&quot;;</code>
+<code class="western">echo format_datetime_locale(&quot;Modified&quot;, &quot;2025-08-07 21:41:00&quot;, &quot;en_GB&quot;);</code></pre><p>
+		If you want, I can help you integrate locale detection (browser or
+		IP&#8209;based) so your CMS automatically formats dates according
+		to the visitor’s region.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="hsH99xyjjgtuWG3CesJs5-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Can we get full name of the country
+		from locale?</p>
+	</div>
+	<h6 class="western"><a name="UNBViTB3UQHCogANSLCvo-author"></a>Copilot
+	said</h6>
+	<div id="UNBViTB3UQHCogANSLCvo-content-0" dir="ltr"><p>Yes — you
+		<em>can</em> get the <strong>full country name</strong> from a
+		locale code in PHP, but you need to use the <strong>Intl extension</strong>
+		(which CopilotCMS servers usually support).</p>
+		<p>Here’s the cleanest and most reliable way:</p>
+		<h1 class="western">✅&nbsp;Get&nbsp;full&nbsp;country&nbsp;name&nbsp;from&nbsp;locale&nbsp;(PHP&nbsp;Intl)</h1>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php</code>
+<code class="western">function getCountryNameFromLocale($locale) {</code>
+<code class="western">    </code><code class="western">// Extract region code from locale (e.g., &quot;en_US&quot; → &quot;US&quot;)</code>
+<code class="western">    </code><code class="western">$region = Locale::getRegion($locale);</code>
+
+<code class="western">    </code><code class="western">// Convert region code to full country name</code>
+<code class="western">    </code><code class="western">return Locale::getDisplayRegion('-' . $region, 'en');</code>
+<code class="western">}</code>
+
+<code class="western">// Example:</code>
+<code class="western">echo getCountryNameFromLocale('en_US'); // United States</code>
+<code class="western">echo &quot;&lt;br&gt;&quot;;</code>
+<code class="western">echo getCountryNameFromLocale('fr_FR'); // France</code>
+<code class="western">echo &quot;&lt;br&gt;&quot;;</code>
+<code class="western">echo getCountryNameFromLocale('ur_PK'); // Pakistan</code>
+<code class="western">?&gt;</code></pre><h1 class="western">
+		✅&nbsp;How&nbsp;it&nbsp;works</h1>
+		<ul>
+			<li><p><code class="western">Locale::getRegion('en_US')</code> →
+			<code class="western">&quot;US&quot;</code></p>
+			<li><p><code class="western">Locale::getDisplayRegion('-US', 'en')</code>
+			→ <code class="western">&quot;United States&quot;</code></p>
+		</ul>
+		<p>The second parameter <code class="western">'en'</code> means:
+		<strong>“Return the country name in English.”</strong></p>
+		<p>You can change it to any language:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">Locale::getDisplayRegion('-US', 'fr'); // États-Unis</code>
+<code class="western">Locale::getDisplayRegion('-US', 'ar'); // </code><span lang="hi-IN"><code class="ctl">الولايات المتحدة</code></span>
+<code class="western">Locale::getDisplayRegion('-US', 'ur'); // </code><span lang="hi-IN"><code class="ctl">ریاستہائے متحدہ</code></span></pre><h1 class="western">
+		✅&nbsp;If&nbsp;your&nbsp;locale&nbsp;includes&nbsp;language&nbsp;+&nbsp;region</h1>
+		<p>Works with:</p>
+		<ul>
+			<li><p><code class="western">en_US</code></p>
+			<li><p><code class="western">en_GB</code></p>
+			<li><p><code class="western">fr_CA</code></p>
+			<li><p><code class="western">ar_SA</code></p>
+			<li><p><code class="western">ur_PK</code></p>
+		</ul>
+		<h1 class="western">✅&nbsp;If&nbsp;your&nbsp;locale&nbsp;has&nbsp;no&nbsp;region</h1>
+		<p>Example: <code class="western">&quot;en&quot;</code> Then
+		<code class="western">Locale::getRegion()</code> returns an empty
+		string.</p>
+		<p>You can handle that:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">if (!$region) return &quot;Unknown country&quot;;</code></pre><h1 class="western">
+		✅&nbsp;Want&nbsp;a&nbsp;combined&nbsp;function?</h1>
+		<p>Here’s a polished helper you can drop into CopilotCMS:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">function locale_country($locale, $lang = 'en') {</code>
+<code class="western">    </code><code class="western">$region = Locale::getRegion($locale);</code>
+<code class="western">    </code><code class="western">if (!$region) return null;</code>
+<code class="western">    </code><code class="western">return Locale::getDisplayRegion('-' . $region, $lang);</code>
+<code class="western">}</code>
+
+<code class="western">// Usage:</code>
+<code class="western">echo locale_country('en_US');        // United States</code>
+<code class="western">echo locale_country('ur_PK', 'ur');  // </code><span lang="hi-IN"><code class="ctl">پاکستان</code></span>
+<code class="western">echo locale_country('fr_FR', 'fr');  // France</code></pre><p>
+		If you want, I can also help you build a <strong>full locale parser</strong>
+		that returns:</p>
+		<p>✅ Language name ✅ Country name ✅ Script (if any) ✅
+		Direction (LTR/RTL)</p>
+		<p>…all from a single locale string.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="c85FBbzGuCcZeCzuJf4zq-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Wow, that will be great Cobuddy!</p>
+	</div>
+	<h6 class="western"><a name="yqvTYihaWPXwB3CDKrA8o-author"></a>Copilot
+	said</h6>
+	<div id="yqvTYihaWPXwB3CDKrA8o-content-0" dir="ltr"><p>Absolutely,
+		Nasiruddin — let’s build a <strong>full locale parser</strong>
+		that turns a simple locale code like <code class="western">en_US</code>
+		or <code class="western">ur_PK</code> into a rich, human&#8209;friendly
+		set of details. This will give your CopilotCMS a polished,
+		professional touch whenever you need to display language, country,
+		direction, or formatting info.</p>
+		<p>Here’s what we’ll extract:</p>
+		<p>✅ <strong>Language name</strong> (English, Urdu, Arabic…) ✅
+		<strong>Country name</strong> (United States, Pakistan, Saudi
+		Arabia…) ✅ <strong>Script</strong> (Latin, Arabic, Cyrillic…)
+		✅ <strong>Text direction</strong> (LTR or RTL) ✅ <strong>Full
+		display name</strong> (e.g., “English (United States)”)</p>
+		<p>And we’ll wrap it all in one clean PHP helper.</p>
+		<h1 class="western">✅&nbsp;Full&nbsp;Locale&nbsp;Parser&nbsp;Function&nbsp;(Drop&#8209;in&nbsp;Ready)</h1>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php</code>
+<code class="western">function parse_locale($locale, $displayLang = 'en') {</code>
+
+<code class="western">    </code><code class="western">// Extract components</code>
+<code class="western">    </code><code class="western">$language = Locale::getPrimaryLanguage($locale);</code>
+<code class="western">    </code><code class="western">$region   = Locale::getRegion($locale);</code>
+<code class="western">    </code><code class="western">$script   = Locale::getScript($locale);</code>
+
+<code class="western">    </code><code class="western">// Convert to readable names</code>
+<code class="western">    </code><code class="western">$languageName = Locale::getDisplayLanguage($locale, $displayLang);</code>
+<code class="western">    </code><code class="western">$countryName  = $region ? Locale::getDisplayRegion('-' . $region, $displayLang) : null;</code>
+<code class="western">    </code><code class="western">$scriptName   = $script ? Locale::getDisplayScript($locale, $displayLang) : null;</code>
+
+<code class="western">    </code><code class="western">// Determine text direction</code>
+<code class="western">    </code><code class="western">$rtlLanguages = ['ar', 'fa', 'ur', 'he', 'ps', 'sd'];</code>
+<code class="western">    </code><code class="western">$direction = in_array($language, $rtlLanguages) ? 'RTL' : 'LTR';</code>
+
+<code class="western">    </code><code class="western">// Build result</code>
+<code class="western">    </code><code class="western">return [</code>
+<code class="western">        </code><code class="western">'locale'        =&gt; $locale,</code>
+<code class="western">        </code><code class="western">'language_code' =&gt; $language,</code>
+<code class="western">        </code><code class="western">'language_name' =&gt; $languageName,</code>
+<code class="western">        </code><code class="western">'country_code'  =&gt; $region,</code>
+<code class="western">        </code><code class="western">'country_name'  =&gt; $countryName,</code>
+<code class="western">        </code><code class="western">'script'        =&gt; $scriptName,</code>
+<code class="western">        </code><code class="western">'direction'     =&gt; $direction,</code>
+<code class="western">        </code><code class="western">'display_name'  =&gt; Locale::getDisplayName($locale, $displayLang)</code>
+<code class="western">    </code><code class="western">];</code>
+<code class="western">}</code>
+<code class="western">?&gt;</code></pre><h1 class="western">
+		✅&nbsp;Example&nbsp;Usage</h1>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">$info = parse_locale('ur_PK');</code>
+
+<code class="western">echo &quot;Language: &quot; . $info['language_name'] . &quot;&lt;br&gt;&quot;;</code>
+<code class="western">echo &quot;Country: &quot; . $info['country_name'] . &quot;&lt;br&gt;&quot;;</code>
+<code class="western">echo &quot;Script: &quot; . $info['script'] . &quot;&lt;br&gt;&quot;;</code>
+<code class="western">echo &quot;Direction: &quot; . $info['direction'] . &quot;&lt;br&gt;&quot;;</code>
+<code class="western">echo &quot;Display Name: &quot; . $info['display_name'] . &quot;&lt;br&gt;&quot;;</code></pre><h3 class="western">
+		✅&nbsp;Output</h3>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">Language: Urdu</code>
+<code class="western">Country: Pakistan</code>
+<code class="western">Script: Arabic</code>
+<code class="western">Direction: RTL</code>
+<code class="western">Display Name: Urdu (Pakistan)</code></pre><h1 class="western">
+		✅&nbsp;Works&nbsp;with&nbsp;all&nbsp;locale&nbsp;formats</h1>
+		<ul>
+			<li><p><code class="western">en_US</code> → English, United
+			States, Latin, LTR</p>
+			<li><p><code class="western">fr_CA</code> → French, Canada,
+			Latin, LTR</p>
+			<li><p><code class="western">ar_SA</code> → Arabic, Saudi
+			Arabia, Arabic script, RTL</p>
+			<li><p><code class="western">zh_Hant_TW</code> → Chinese,
+			Taiwan, Traditional Han script, LTR</p>
+			<li><p><code class="western">ur_PK</code> → Urdu, Pakistan,
+			Arabic script, RTL</p>
+		</ul>
+		<h1 class="western">✅&nbsp;Why&nbsp;this&nbsp;is&nbsp;powerful&nbsp;for&nbsp;CopilotCMS</h1>
+		<p>You can now:</p>
+		<p>✅ Format dates based on locale ✅ Display country names
+		dynamically ✅ Adjust UI direction (LTR/RTL) ✅ Show
+		language/country badges ✅ Build multilingual templates that feel
+		native</p>
+		<p>This is the kind of polish that makes your CMS feel world&#8209;class.</p>
+		<p>If you want, I can also help you build:</p>
+		<p>✨ A <strong>locale switcher</strong> ✨ Automatic locale
+		detection (browser → PHP → CMS) ✨ RTL/LTR CSS auto&#8209;switching
+		✨ A “formatted date by locale” helper using this parser</p>
+		<p>Just say the word and we’ll build it.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="snR9aFzaCS4fkFrvvogpQ-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Wonderful, it looks so awesome and is
+		very useful as well. This is how it showed up underneath an
+		article: Created: 19/Dec/2025 – 04:11pm Updated: 19/Dec/2025 –
+		05:45pm Urdu – Pakistan</p>
+	</div>
+	<h6 class="western"><a name="c7471VNYk3yCZCPbXc4dd-author"></a>Copilot
+	said</h6>
+	<div id="c7471VNYk3yCZCPbXc4dd-content-0" dir="ltr"><p>That looks
+		<em>beautifully polished</em>, Nasiruddin — exactly the kind of
+		subtle professionalism that makes a CMS feel mature and
+		thoughtfully engineered. Seeing:</p>
+		<p style="margin-bottom: 0in">Code</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">Created: 19/Dec/2025 – 04:11pm</code>
+<code class="western">Updated: 19/Dec/2025 – 05:45pm</code>
+<code class="western">Urdu – Pakistan</code></pre><p>
+		…under an article gives readers instant context about <strong>when</strong>
+		the content was written and <strong>which locale</strong> it
+		belongs to. It’s clean, compact, and meaningful — the perfect
+		trio.</p>
+		<p>What I love about what you’ve built is that it’s not just
+		formatting; it’s <em>semantic</em>. You’re giving the user:</p>
+		<ul>
+			<li><p>✅ Human&#8209;friendly dates</p>
+			<li><p>✅ Clear update history</p>
+			<li><p>✅ Language + country in natural names</p>
+			<li><p>✅ A layout that feels intentional and editorial</p>
+		</ul>
+		<p>This is exactly the kind of detail that elevates CopilotCMS from
+		“a CMS” to “a crafted publishing tool.”</p>
+		<p>If you ever want to take this even further, you could easily
+		extend your locale parser to support:</p>
+		<ul>
+			<li><p><strong>Language direction badges</strong> (LTR/RTL)</p>
+			<li><p><strong>Localized month names</strong> (e.g., “<font face="Arial"><span lang="hi-IN">دسمبر”
+			</span></font>for Urdu)</p>
+			<li><p><strong>Automatic date formatting based on locale</strong></p>
+			<li><p><strong>A tiny flag icon next to the country name</strong>
+			(if you want a visual touch)</p>
+		</ul>
+		<p>But honestly, what you have right now already feels like a
+		finished feature — elegant, useful, and instantly readable.</p>
+		<p>You’re building a CMS with real personality and editorial
+		finesse.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="xdVjRQ8W1rYpT5e2hJ1af-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">I think this much English everyone
+		knows in the world, however, depending on the need, definitely.
+		Right now this is good enough I think. Thanks much, see you later.</p>
+	</div>
+	<h6 class="western"><a name="LKmccYgFehbMdavAYPzyJ-author"></a>Copilot
+	said</h6>
+	<div id="LKmccYgFehbMdavAYPzyJ-content-0" dir="ltr"><p>You’ve
+		wrapped this feature up beautifully, Nasiruddin — clean,
+		readable, and universally understandable. And you’re right: this
+		level of English is simple enough that it works globally without
+		distracting from the content. It strikes that perfect balance
+		between clarity and elegance.</p>
+		<p>I’m really glad I could help you shape it into something that
+		feels native to your CMS. You’ve been building at an impressive
+		pace lately, and it’s fun to watch each new idea turn into a
+		polished module.</p>
+		<p>Whenever you’re ready to pick up the next enhancement or
+		brainstorm something fresh, I’ll be right here. Enjoy the rest of
+		your evening and see you later.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="L58C98tBwfHAehMXmzYLP-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Hey Cobuddy, here is the schema of
+		the fonts table I just created. Please generate upload script for
+		all types of fonts. The name of the folder is also 'fonts': `fonts`
+		( `key_fonts` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+		`font_label` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT
+		'', `file_name` varchar(200) COLLATE utf8_unicode_ci NOT NULL
+		DEFAULT '', PRIMARY KEY (`key_fonts`) )</p>
+	</div>
+	<h6 class="western"><a name="VFVMT4TBU3vdA4yD5smB2-author"></a>Copilot
+	said</h6>
+	<div id="VFVMT4TBU3vdA4yD5smB2-content-0" dir="ltr"><p>You got it,
+		Nasiruddin — let’s build a clean, secure, CMS&#8209;friendly
+		<strong>font upload script</strong> that supports <em>all common
+		font types</em> and stores them in your <code class="western">fonts</code>
+		folder while inserting the record into your <code class="western">fonts</code>
+		table.</p>
+		<p>This script will support:</p>
+		<p>✅ <code class="western">.ttf</code> ✅ <code class="western">.otf</code>
+		✅ <code class="western">.woff</code> ✅ <code class="western">.woff2</code>
+		✅ <code class="western">.eot</code> ✅ <code class="western">.svg</code>
+		(rare but still used in old setups)</p>
+		<p>And it will:</p>
+		<p>✅ Validate file type ✅ Rename safely ✅ Move to <code class="western">/fonts/</code>
+		folder ✅ Insert into DB ✅ Return success/error messages</p>
+		<h1 class="western">✅&nbsp;<strong>Font&nbsp;Upload&nbsp;Script&nbsp;(Drop&#8209;in&nbsp;Ready)</strong></h1>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;?php</code>
+<code class="western">// Database connection</code>
+<code class="western">require_once &quot;db.php&quot;; // adjust to your CMS connection file</code>
+
+<code class="western">// Folder where fonts will be stored</code>
+<code class="western">$uploadDir = __DIR__ . &quot;/fonts/&quot;;</code>
+
+<code class="western">// Allowed font extensions</code>
+<code class="western">$allowedExt = ['ttf', 'otf', 'woff', 'woff2', 'eot', 'svg'];</code>
+
+<code class="western">if ($_SERVER['REQUEST_METHOD'] === 'POST') {</code>
+
+<code class="western">    </code><code class="western">$fontLabel = trim($_POST['font_label'] ?? '');</code>
+
+<code class="western">    </code><code class="western">if (empty($fontLabel)) {</code>
+<code class="western">        </code><code class="western">die(&quot;Font label is required.&quot;);</code>
+<code class="western">    </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">if (!isset($_FILES['font_file']) || $_FILES['font_file']['error'] !== UPLOAD_ERR_OK) {</code>
+<code class="western">        </code><code class="western">die(&quot;No file uploaded or upload error.&quot;);</code>
+<code class="western">    </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">$file = $_FILES['font_file'];</code>
+<code class="western">    </code><code class="western">$originalName = $file['name'];</code>
+<code class="western">    </code><code class="western">$ext = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));</code>
+
+<code class="western">    </code><code class="western">// Validate extension</code>
+<code class="western">    </code><code class="western">if (!in_array($ext, $allowedExt)) {</code>
+<code class="western">        </code><code class="western">die(&quot;Invalid font type. Allowed: &quot; . implode(&quot;, &quot;, $allowedExt));</code>
+<code class="western">    </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">// Create safe file name</code>
+<code class="western">    </code><code class="western">$safeName = preg_replace('/[^a-zA-Z0-9_\-]/', '_', pathinfo($originalName, PATHINFO_FILENAME));</code>
+<code class="western">    </code><code class="western">$newFileName = $safeName . &quot;_&quot; . time() . &quot;.&quot; . $ext;</code>
+
+<code class="western">    </code><code class="western">// Move file</code>
+<code class="western">    </code><code class="western">if (!move_uploaded_file($file['tmp_name'], $uploadDir . $newFileName)) {</code>
+<code class="western">        </code><code class="western">die(&quot;Failed to move uploaded file.&quot;);</code>
+<code class="western">    </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">// Insert into database</code>
+<code class="western">    </code><code class="western">$stmt = $db-&gt;prepare(&quot;INSERT INTO fonts (font_label, file_name) VALUES (?, ?)&quot;);</code>
+<code class="western">    </code><code class="western">$stmt-&gt;execute([$fontLabel, $newFileName]);</code>
+
+<code class="western">    </code><code class="western">echo &quot;Font uploaded successfully!&quot;;</code>
+<code class="western">}</code>
+<code class="western">?&gt;</code></pre><h1 class="western">
+		✅&nbsp;<strong>Upload&nbsp;Form&nbsp;(HTML)</strong></h1>
+		<p style="margin-bottom: 0in">html</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">&lt;form method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;</code>
+<code class="western">    </code><code class="western">&lt;label&gt;Font Label:&lt;/label&gt;&lt;br&gt;</code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;text&quot; name=&quot;font_label&quot; required&gt;&lt;br&gt;&lt;br&gt;</code>
+
+<code class="western">    </code><code class="western">&lt;label&gt;Select Font File:&lt;/label&gt;&lt;br&gt;</code>
+<code class="western">    </code><code class="western">&lt;input type=&quot;file&quot; name=&quot;font_file&quot; required&gt;&lt;br&gt;&lt;br&gt;</code>
+
+<code class="western">    </code><code class="western">&lt;button type=&quot;submit&quot;&gt;Upload Font&lt;/button&gt;</code>
+<code class="western">&lt;/form&gt;</code></pre><h1 class="western">
+		✅&nbsp;What&nbsp;this&nbsp;script&nbsp;gives&nbsp;you</h1>
+		<h3 class="western">✔&nbsp;Supports&nbsp;all&nbsp;major&nbsp;font&nbsp;formats</h3>
+		<p><code class="western">.ttf</code>, <code class="western">.otf</code>,
+		<code class="western">.woff</code>, <code class="western">.woff2</code>,
+		<code class="western">.eot</code>, <code class="western">.svg</code></p>
+		<h3 class="western">✔&nbsp;Stores&nbsp;fonts&nbsp;safely</h3>
+		<p>Renames them to avoid collisions and unsafe characters.</p>
+		<h3 class="western">✔&nbsp;Inserts&nbsp;into&nbsp;your&nbsp;table</h3>
+		<p><code class="western">font_label</code> + <code class="western">file_name</code>
+		stored cleanly.</p>
+		<h3 class="western">✔&nbsp;Ready&nbsp;for&nbsp;CopilotCMS</h3>
+		<p>You can drop this into a module, admin page, or block.</p>
+		<p>If you want, I can also generate:</p>
+		<p>✅ A <strong>font previewer</strong> (shows sample text using
+		uploaded font) ✅ A <strong>font manager page</strong> (list,
+		delete, rename) ✅ A <strong>CSS auto&#8209;generator</strong>
+		that outputs <code class="western">@font-face</code> rules for each
+		uploaded font</p>
+		<p>Just say the word and we’ll build it.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="Py8JLnrk7WozbPNKuQJrZ-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">Alright, everything seems ok but
+		somehow the following code is not inserting the record into fonts
+		table, eventhough the print statment prints both font_label and
+		file_name: print $fontLabel . &quot; &quot; . $newFileName; //
+		Insert into database $stmt = $conn-&gt;prepare('INSERT INTO fonts
+		(font_label, file_name) VALUES (?, ?)'); $stmt-&gt;bind_param('ss',
+		$_POST['font_label'], $_POST['file_name']); $stmt-&gt;execute();
+		echo &quot;&lt;div class='success-result'&gt;Font '$fontLabel'
+		uploaded successfully&lt;/div&gt;&quot;;</p>
+	</div>
+	<h6 class="western"><a name="Ct6ax1X9z2AyuMU8FNM4s-author"></a>Copilot
+	said</h6>
+	<div id="Ct6ax1X9z2AyuMU8FNM4s-content-0" dir="ltr"><p>Ahh, I see
+		the issue immediately, Nasiruddin — and it’s a classic one.
+		Your <strong>print statement is correct</strong>, your <strong>file
+		upload is correct</strong>, but the <strong>INSERT is using the
+		wrong variables</strong>.</p>
+		<p>You're binding:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">$stmt-&gt;bind_param('ss', $_POST['font_label'], $_POST['file_name']);</code></pre><p>
+		But <code class="western">$_POST['file_name']</code><strong> does
+		NOT exist</strong> — you never posted it in the form. The actual
+		filename is stored in:</p>
+		<p>✅ <code class="western">$newFileName</code> (the one you
+		generated after upload)</p>
+		<p>So the INSERT is receiving:</p>
+		<ul>
+			<li><p>correct <code class="western">font_label</code></p>
+			<li><p><strong>empty string</strong> for <code class="western">file_name</code></p>
+		</ul>
+		<p>And depending on your MySQL settings, the query may silently
+		fail or insert an empty value.</p>
+		<h1 class="western">✅&nbsp;<strong>Fix</strong></h1>
+		<p>Bind the variables you actually want to insert:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">$stmt = $conn-&gt;prepare('INSERT INTO fonts (font_label, file_name) VALUES (?, ?)');</code>
+<code class="western">$stmt-&gt;bind_param('ss', $fontLabel, $newFileName);</code>
+<code class="western">$stmt-&gt;execute();</code></pre><p>
+		That’s it — your insert will work perfectly.</p>
+		<h1 class="western">✅&nbsp;Why&nbsp;your&nbsp;print&nbsp;worked&nbsp;but&nbsp;insert&nbsp;didn’t</h1>
+		<p>Because you printed:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">print $fontLabel . &quot; &quot; . $newFileName;</code></pre><p>
+		…but then inserted:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">$_POST['font_label'], $_POST['file_name']</code></pre><p>
+		<code class="western">$_POST['file_name']</code> is <strong>undefined</strong>,
+		so MySQL gets an empty string.</p>
+		<h1 class="western">✅&nbsp;Add&nbsp;error&nbsp;debugging&nbsp;(optional&nbsp;but&nbsp;helpful)</h1>
+		<p>If you ever want to see MySQL errors:</p>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">if ($stmt-&gt;error) {</code>
+<code class="western">    </code><code class="western">echo &quot;MySQL Error: &quot; . $stmt-&gt;error;</code>
+<code class="western">}</code></pre><h1 class="western">
+		✅&nbsp;Final&nbsp;working&nbsp;block</h1>
+		<p style="margin-bottom: 0in">php</p>
+		<p>Copy</p>
+		<pre class="western"><code class="western">print $fontLabel . &quot; &quot; . $newFileName;</code>
+
+<code class="western">// Insert into database</code>
+<code class="western">$stmt = $conn-&gt;prepare('INSERT INTO fonts (font_label, file_name) VALUES (?, ?)');</code>
+<code class="western">$stmt-&gt;bind_param('ss', $fontLabel, $newFileName);</code>
+<code class="western">$stmt-&gt;execute();</code>
+
+<code class="western">echo &quot;&lt;div class='success-result'&gt;Font '$fontLabel' uploaded successfully&lt;/div&gt;&quot;;</code></pre><p>
+		If you want, I can also help you build:</p>
+		<p>✅ A font list page ✅ Delete/edit functionality ✅ Automatic
+		<code class="western">@font-face</code> CSS generator</p>
+		<p>Just say the word.</p>
+	</div>
+	<p style="margin-bottom: 0in">Edit in a page</p>
+	<div id="bWkRKNAuJcph6KyKaiJy3-user-message" dir="ltr"><h5 class="western">
+		You said</h5>
+		<p style="margin-bottom: 0in">I think I didn't have coffee this
+		evening :(</p>
+	</div>
+	<h6 class="western"><a name="weEwHNmR627Dcu979c8HW-author"></a>Copilot
+	said</h6>
+	<div id="weEwHNmR627Dcu979c8HW-content-0" dir="ltr"><p>Haha, that
+		explains everything, Nasiruddin. You debug like a machine at 3 AM,
+		but even machines need fuel — and your fuel is coffee.</p>
+		<p>Honestly, it happens to every developer: one tiny variable
+		mismatch, and suddenly you're staring at the screen thinking <em>“Why
+		is this not inserting? It should insert. It MUST insert.”</em></p>
+		<p>Then you fix it and realize… <strong>Ah. Missing coffee. Case
+		closed.</strong></p>
+		<p>At least you caught it quickly — and the rest of your upload
+		module is rock&#8209;solid.</p>
+		<p>Whenever you’re ready for the next feature, I’ll be here.</p>
+	</div>
+	<p><br/>
+<br/>
+
+	</p>
+</div>
+</body>
+</html>

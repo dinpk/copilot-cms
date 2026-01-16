@@ -1,9 +1,8 @@
 <?php
 // $key_photo_gallery fetched in renderBlocks() 
 if (!$key_photo_gallery) return;
-
 $gallery = $conn->query("SELECT * FROM photo_gallery WHERE key_photo_gallery = $key_photo_gallery AND is_active = 1")->fetch_assoc();
-if (!$gallery || $gallery['available_for_blocks'] !== 1) return;
+if (!$gallery || $gallery['available_for_blocks'] < 1) return;
 $gallery_css = $gallery['css'];
 $navigation_type = $gallery['navigation_type'] ?? 'slideshow';
 $valid_types = ['slideshow', 'arrows'];

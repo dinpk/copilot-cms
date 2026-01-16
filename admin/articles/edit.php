@@ -13,15 +13,17 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 		exit;
 	}
 	$is_featured = isset($_POST['is_featured']) ? '1' : '0';
+	$show_in_listing = isset($_POST['show_in_listing']) ? '1' : '0';
 	$show_on_home = isset($_POST['show_on_home']) ? '1' : '0';
 	$updatedBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	UPDATE articles 
-	SET	title = ?, title_sub = ?, article_snippet = ?, article_content = ?, url = ?, book_indent_level = ?, banner_image_url = ?, sort = ?, 
-	is_active = ?, is_featured = ?, show_on_home = ?, updated_by = ?, key_media_banner = ?
+	SET	content_direction = ?, title = ?, title_sub = ?, article_snippet = ?, article_content = ?, url = ?, book_indent_level = ?, banner_image_url = ?, sort = ?, 
+	is_active = ?, is_featured = ?, show_in_listing = ?, show_on_home = ?, updated_by = ?, key_media_banner = ?
 	WHERE key_articles = ?
 	');
-	$stmt->bind_param('sssssisisiiiii',
+	$stmt->bind_param('ssssssisisiiiiii',
+	$_POST['content_direction'],
 	$_POST['title'],
 	$_POST['title_sub'],
 	$_POST['article_snippet'],
@@ -32,6 +34,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$_POST['sort'],
 	$_POST['is_active'],
 	$is_featured,
+	$show_in_listing,
 	$show_on_home,
 	$updatedBy,
 	$_POST['key_media_banner'],
@@ -65,6 +68,9 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 				$stmtCat->execute();
 		}
 	}
+
+	$cacheFile = "../../cache/" . md5("article" . $_POST['url']);
+	if (file_exists($cacheFile)) unlink($cacheFile);
 
 }
 ?>

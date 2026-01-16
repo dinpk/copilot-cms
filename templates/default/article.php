@@ -19,7 +19,7 @@ startLayout(htmlspecialchars($article['title']));
 		<?php renderBlocks("above_content"); ?>
 	</div>
 
-	<article>
+	<article class="<?= $article['content_direction'] ?>">
 	<h1>
 		<?= htmlspecialchars($article['title']) ?>
 		<div><?= htmlspecialchars($article['title_sub']) ?></div>
@@ -33,10 +33,13 @@ startLayout(htmlspecialchars($article['title']));
 		echo "<div id='content-banner' style='background-image:url(" . $article['banner_url'] . ")'></div>";
 	}
 	echo "<div>" . $article['article_content'] . "</div>";
+	?>
+	</article>
 
-
+	
+	<div class="taxonomy">
+	<?php
 	echo "<hr>";
-
 
 	$authors = getAuthorsForArticle($conn, $article['key_articles']);
 	$author_names = [];
@@ -69,12 +72,14 @@ startLayout(htmlspecialchars($article['title']));
 	}
 	if (!empty($tag_names)) echo "<b>" . getSetting('article_tags_label') . "</b>";
 	echo "<p>" . implode(', ', $tag_names) . "</p>";
-
-
+	?>
+	</div>
+	
+	<?php 
 	if (getSetting('show_article_created_updated') == 'yes') {
 		$locale = parseLocale(getSetting('site_locale'));
 		echo "
-		<div class='article_date_time'>
+		<div class='date_time'>
 		Created: " . articleCreatedUpdated($article['entry_date_time']) . 
 		"<br>Updated: " . articleCreatedUpdated($article['update_date_time']) . 
 		"<br>"  . $locale['language_name'] . " – " . $locale['country_name'] . 
@@ -82,7 +87,7 @@ startLayout(htmlspecialchars($article['title']));
 	}
 
 	?>
-	</article>
+	
 	
 	<div id="below-content">
 		<?php renderBlocks("below_content"); ?>

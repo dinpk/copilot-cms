@@ -42,13 +42,13 @@ function getPagination($totalItems, $currentPage = 1, $perPage = 10, $baseUrl = 
 function getPaginatedArticles($conn, $page = 1, $limit = 10) {
 	$offset = ($page - 1) * $limit;
 
-	$countSql = "SELECT COUNT(*) AS total FROM articles WHERE is_active = 1";
+	$countSql = "SELECT COUNT(*) AS total FROM articles WHERE is_active = 1 AND show_on_home = 1";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
 
 	$sql = "SELECT a.*, m.file_url_thumbnail AS banner
 			FROM articles a 
 			LEFT JOIN media_library m ON a.key_media_banner = m.key_media
-			WHERE a.is_active = 1
+			WHERE a.is_active = 1 AND show_on_home = 1 
 			ORDER BY entry_date_time DESC
 			LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);
@@ -198,14 +198,14 @@ function getPaginatedArticlesForContentType($conn, $key, $page = 1, $limit = 10)
 
 	$countSql = "SELECT COUNT(*) AS total FROM articles a 
 				JOIN article_content_types ac ON a.key_articles = ac.key_articles 
-				WHERE ac.key_content_types = $key AND a.is_active = 1";
+				WHERE ac.key_content_types = $key AND a.is_active = 1 AND a.show_in_listing = 1";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
 
 	$sql = "SELECT a.*, m.file_url_thumbnail AS banner 
 	FROM articles a 
 	JOIN article_content_types ac ON a.key_articles = ac.key_articles 
 	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
-	WHERE ac.key_content_types = $key AND a.is_active = 1 
+	WHERE ac.key_content_types = $key AND a.is_active = 1 AND a.show_in_listing = 1 
 	ORDER BY entry_date_time DESC 
 	LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);

@@ -34,19 +34,21 @@ function startLayout($title = "CopilotCMS") {
 
 
 
-	echo "<div id='breadcrumb' data-animate='fade'>";
 	global $segments;
-	$breadcrumbs = generateBreadcrumb($segments);
-	for ($i = 0; $i < sizeof($breadcrumbs); $i++) {
-		$crumb = $breadcrumbs[$i];
-		if ($i < 2) {
-			echo '<a href="' . htmlspecialchars($crumb['url']) . '">' . htmlspecialchars($crumb['label']) . '</a>';
-		} else {
-			echo htmlspecialchars($crumb['label']);
+	if (sizeof($segments) != 1) {
+		echo "<div id='breadcrumb' data-animate='fade'>";
+		$breadcrumbs = generateBreadcrumb($segments);
+		for ($i = 0; $i < sizeof($breadcrumbs); $i++) {
+			$crumb = $breadcrumbs[$i];
+			if ($i < 2) {
+				echo '<a href="' . htmlspecialchars($crumb['url']) . '">' . htmlspecialchars($crumb['label']) . '</a>';
+			} else {
+				echo htmlspecialchars($crumb['label']);
+			}
+			if ($i < sizeof($breadcrumbs)-1) echo ' &raquo; ';
 		}
-		if ($i < sizeof($breadcrumbs)-1) echo ' &raquo; ';
+		echo "</div>";
 	}
-	echo "</div>";
 
 
 	echo "<main>";

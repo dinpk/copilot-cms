@@ -164,6 +164,10 @@ function editItem(id, endpoint, fields) {
 				document.getElementById('is_featured').checked = (data.is_featured === '1');
 			}
 
+			if (document.getElementById('show_in_listing')) {
+				document.getElementById('show_in_listing').checked = (data.show_in_listing === '1');
+			}
+
 			if (document.getElementById('show_on_home')) {
 				document.getElementById('show_on_home').checked = (data.show_on_home === '1');
 			}
@@ -327,6 +331,7 @@ function openAssignModal(bookId) {
 		data.forEach(article => {
 		html += `<label><input type="checkbox" name="article_ids[]" value="${article.key_articles}" checked> ${article.title}</label><br>`;
 		});
+		console.log(html);
 		document.getElementById('article-list').innerHTML = html;
 		document.getElementById('assign-modal').style.display = 'block';
 	});

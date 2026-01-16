@@ -121,7 +121,7 @@ include_once('../layout.php');
 		<td><small>{$createdUpdated['updater']} $date_updated</small></td>
 		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"book_indent_level\",\"banner_image_url\",\"key_media_banner\",\"sort\",\"entry_date_time\",\"update_date_time\",\"is_featured\",\"show_on_home\",\"is_active\"])'>Edit</a> 
+		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"content_direction\",\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"book_indent_level\",\"banner_image_url\",\"key_media_banner\",\"sort\",\"entry_date_time\",\"update_date_time\",\"is_featured\",\"show_in_listing\",\"show_on_home\",\"is_active\"])'>Edit</a> 
 		  <a href='#' onclick='openAuthorModal({$row['key_articles']},\"{$row['title']}\")'>Authors</a> 
 		  <a href='preview.php?id={$row['key_articles']}' target='_blank'>Preview</a> 
 		  <a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'>Delete</a>
@@ -156,6 +156,12 @@ include_once('../layout.php');
 	<h3 id="modal-title">Add Article</h3>
 	<form id="modal-form" method="post">
 		<input type="hidden" name="key_articles" id="key_articles">
+		
+		<select name="content_direction" id="content_direction" onchange="changeArticleDirection(this.value)">
+			<option value="ltr">Left to Right</option>
+			<option value="rtl">Right to Left</option>
+		</select><br>
+		
 		<input type="text" name="title" id="title" onchange="setCleanURL(this.value)" placeholder="Title" required maxlength="300"> <label>Title</label><br>
 		<input type="text" name="title_sub" id="title_sub" placeholder="Subtitle" maxlength="300"> <label>Sub Title</label><br>
 		<input type="text" name="url" id="url" placeholder="Slug" maxlength="200" pattern="^[a-z0-9\-\/]+$" title="Lowercase letters, numbers, and hyphens only" required> <label>Slug</label><br>
@@ -213,7 +219,8 @@ include_once('../layout.php');
 		</details>
 		
 		<label><input type="checkbox" name="is_featured" id="is_featured"> Featured</label><br>
-		<label><input type="checkbox" name="show_on_home" id="show_on_home" checked> Show on Home</label><br>
+		<label><input type="checkbox" name="show_in_listing" id="show_in_listing" checked> Show in Listing</label><br>
+		<label><input type="checkbox" name="show_on_home" id="show_on_home" checked> Show i Home</label><br>
 		<select name="is_active" id="is_active">
 			<option value="1">Published</option>
 			<option value="0">Not Published</option>
@@ -254,5 +261,18 @@ include_once('../layout.php');
 </div>
 
 <div id="media-library-modal" class="modal modal-90"></div>
+
+
+<script>
+
+function changeArticleDirection(direction) {
+	document.getElementById("title").style.direction = direction;
+	document.getElementById("title_sub").style.direction = direction;
+	document.getElementById("article_snippet").style.direction = direction;
+	document.getElementById("article_content").style.direction = direction;
+}
+
+</script>
+
 
 <?php endLayout(); ?>
