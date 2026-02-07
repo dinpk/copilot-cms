@@ -27,12 +27,12 @@ $message = '';
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)){
 				unlink($cacheFile);
-				$message = "<div class='success-message'>Cache cleared successfully</div>";
+				$message = "<div class='success-message'>Cache cleared successfully.</div>";
 			}
 			$cacheFile = "$cacheFolder/home";
 			if (file_exists($cacheFile)){
 				unlink($cacheFile);
-				$message = "<div class='success-message'>Cache cleared successfully</div>";
+				$message = "<div class='success-message'>Cache cleared successfully.</div>";
 			}
 		}
 
@@ -40,76 +40,76 @@ $message = '';
 			$fileHash = md5("articles");
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["content_types"])) {
 			$fileHash = md5("content-types");
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["categories"])) {
 			$fileHash = md5("categories");
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["tags"])) {
 			$fileHash = md5("tags");
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["pages"])) {
 			$fileHash = md5("pages");
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["authors"])) {
 			$fileHash = md5("authors");
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["books"])) {
 			$fileHash = md5("books");
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["photo_gallery"])) {
 			$fileHash = md5("photo-gallery");
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["youtube_gallery"])) {
 			$fileHash = md5("youtube-gallery");
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["users"])) {
 			$fileHash = md5("users");
 			$cacheFile = "$cacheFolder/$fileHash";
 			if (file_exists($cacheFile)) unlink($cacheFile);
-			$message = "<div class='success-message'>Cache cleared successfully</div>";
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["all"])) {
 			$files = glob($cacheFolder . '/*');
 			if (array_walk($files, function ($file) {unlink($file);})) {
-				$message = "<div class='success-message'>Cache cleared successfully</div>";
+				$message = "<div class='success-message'>Cache cleared successfully.</div>";
 			} else {
 				$message = "<div class='failure-result'>Some error occured, could not clear cache</div>";
 			}
@@ -151,9 +151,8 @@ $message = '';
 	<?php
 		if (isset($_POST['set_template_folder'])) {
 			$template_folder = $_POST['template_folder'];
-			$sql = "UPDATE settings SET setting_value = '$template_folder' WHERE setting_key = 'template_folder'";
+			$sql = "UPDATE settings SET template_folder = '$template_folder' WHERE key_settings = 1";
 			$conn->query($sql);
-			include_once('generate_settings_file.php');
 			
 			echo "<div class='success-message'>Template '$template_folder' is set as a default template.</div>";
 		}
@@ -164,11 +163,8 @@ $message = '';
 		<legend>Template Folder</legend>
 		<form method="post">
 		<?php
-
-			$sql = "SELECT setting_key, setting_value FROM settings";
-			$result = $conn->query("SELECT setting_value FROM settings WHERE setting_key = 'template_folder'");
-			if ($row = $result->fetch_assoc()) 	$template_folder = $row['setting_value'];
-
+			$settings_row = $conn->query("SELECT template_folder FROM settings WHERE key_settings = 1")->fetch_assoc();
+			$template_folder = $settings_row["template_folder"];
 			$folders = array_filter(glob('../../templates/*'), 'is_dir');
 			$templateOptions = array_map('basename', $folders);
 			$dropdownHTML = "<select name='template_folder'>";
@@ -236,8 +232,7 @@ $message = '';
 	<br>
 	
 	<fieldset>
-		<?php
-		?>
+
 		<legend>Upload Font</legend>	
 		<form method="post" enctype="multipart/form-data">
 			<label>Font Label:</label><br>
@@ -272,4 +267,35 @@ $message = '';
 		</div>
 	</fieldset>
 	
-<?php endLayout(); ?>
+	<br>
+
+
+	<!-- ------------------------- CUSTOM CSS -->
+
+	<fieldset>
+		<?php
+			if (isset($_POST['set_custom_css'])) {
+				$custom_css = $_POST['custom_css'];
+				$sql = "UPDATE settings SET custom_css = '$custom_css' WHERE key_settings = 1";
+				$conn->query($sql);
+				echo "<div class='success-message'>Saved successfully.</div>";
+			}
+			$settings_row = $conn->query("SELECT custom_css FROM settings WHERE key_settings = 1")->fetch_assoc();
+			$custom_css = $settings_row["custom_css"];
+
+		?>
+		<legend>Custom CSS</legend>	
+			<form method="post">
+				<textarea name="custom_css"><?= $custom_css ?></textarea>
+				<input name="set_custom_css" type="submit" value="Save">
+		</form>
+	</fieldset>
+	
+	
+<?php 
+
+endLayout(); 
+
+include_once('generate_settings_file.php');
+
+?>

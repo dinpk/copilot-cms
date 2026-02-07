@@ -12,6 +12,6 @@ if (isset($_GET['id'])) {
 	$conn->query("DELETE FROM product_prices_history WHERE key_product = $id");
 	$conn->query("DELETE FROM products WHERE key_product = $id");
 }
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 exit;
 ?>

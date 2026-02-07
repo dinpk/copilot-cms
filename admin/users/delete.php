@@ -10,6 +10,6 @@ if (isset($_GET['id'])) {
 	$id = intval($_GET['id']);
 	$conn->query("UPDATE users SET is_active = 0 WHERE key_user = $id");
 }
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 exit;
 ?>

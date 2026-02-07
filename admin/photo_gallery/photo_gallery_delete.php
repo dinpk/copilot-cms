@@ -10,5 +10,5 @@ if (isset($_GET['id'])) {
 	$id = intval($_GET['id']);
 	$conn->query("DELETE FROM photo_gallery WHERE key_photo_gallery=$id");
 }
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 exit;

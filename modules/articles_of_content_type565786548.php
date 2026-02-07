@@ -14,8 +14,9 @@
 	}
 	echo "</ul>";
 	$URLResults = $conn->query("SELECT url FROM content_types WHERE key_content_types = $key_content_types");
-	$record = $URLResults->fetch_assoc();
-	$theURL = $record['url'];
-	echo "<p><a href='/content-type/$theURL'>" . getSetting('module_more_label') . "</a></p>";
+	if ($record = $URLResults->fetch_assoc()) {
+		$theURL = $record['url'];
+		echo "<p><a href='/content-type/$theURL'>" . getSetting('module_more_label') . "</a></p>";
+	}
 	?>
 </div>

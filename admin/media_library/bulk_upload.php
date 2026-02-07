@@ -48,6 +48,6 @@ foreach ($_FILES['bulk_files']['tmp_name'] as $i => $tmpPath) {
 	
 }
 
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 exit;
 ?>

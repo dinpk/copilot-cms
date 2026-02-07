@@ -11,6 +11,6 @@ if (isset($_GET['id'])) {
 	$sql = "DELETE FROM main_menu WHERE key_main_menu = $id";
 	$conn->query($sql);
 }
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 exit;
 ?>

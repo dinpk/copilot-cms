@@ -25,6 +25,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   const container = document.querySelector(".articles-featured");
+  container.style.direction = "ltr";
   let scrollAmount = 1.5; 
   let direction = 1;      // start moving right
 

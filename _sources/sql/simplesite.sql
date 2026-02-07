@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 16, 2026 at 01:06 AM
+-- Generation Time: Feb 07, 2026 at 11:33 AM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -360,10 +360,10 @@ INSERT INTO `blocks` (`key_blocks`, `key_media_banner`, `key_photo_gallery`, `ke
 (19, 0, 0, 0, 0, 0, 'search6545645', 'Search Block', 'Search', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-10-28 21:02:04', 1, 1, -1, 0, 1),
 (20, 0, 0, 0, 0, 0, 'content_types_55448', 'Content Types', 'Content Types', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-11-04 00:07:23', 1, 1, 1, 0, 1),
 (21, 0, 0, 0, 0, 0, 'tags_55448', 'Tags', 'Tags', '', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-11-04 17:06:47', 1, 1, 3, 0, 1),
-(22, 0, 0, 0, 0, 0, 'articles_featured_544678786', 'Featured Articles', '', 'height:300px;', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'above_content', '2025-11-14 18:15:04', 1, 1, 0, 0, 1),
+(22, 0, 0, 0, 0, 0, 'articles_featured544678786', 'Featured Articles', '', 'height:300px;', 5, 'large-desktop,desktop,tablet,mobile', '', '', 'above_content', '2025-11-14 18:15:04', 1, 1, 0, 0, 1),
 (23, 0, 0, 0, 0, 53, 'articles_of_tag565786548', 'Tag \'Ireland\' ', 'Ireland Articles', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-17 10:26:47', 1, 1, 4, 0, 1),
 (24, 0, 0, 39, 0, 0, 'articles_of_content_type565786548', 'Content Type \'Interview\' ', 'Interview Articles', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-17 10:48:23', 1, 1, 6, 0, 1),
-(25, 0, 0, 0, 6, 0, 'articles_of_categories565786548', 'Category \'Content Strategy\' ', 'Content Strategy Articles', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-17 10:54:31', 1, 1, 6, 0, 1),
+(25, 0, 0, 0, 6, 0, 'articles_of_category_565786548', 'Category \'Content Strategy\' ', 'Content Strategy Articles', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-17 10:54:31', 1, 1, 6, 0, 1),
 (26, 0, 0, 0, 0, 0, 'months_recent4456787818', 'Yearly > Monthly Archive', 'Archive', '', 0, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-11-27 20:59:22', 1, 0, 16, 0, 1),
 (29, 0, 0, 0, 0, 0, 'articles_random5468741', 'Random Articles', 'Random Articles', '', 10, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_left', '2025-12-12 23:39:18', 1, 1, 0, 1, 1),
 (30, 0, 0, 0, 0, 0, 'articles_random5468741', 'Article Random', 'Articles Random', '', 7, 'large-desktop,desktop,tablet,mobile', '', '', 'sidebar_right', '2025-12-13 12:25:30', 1, 1, 0, 1, 1),
@@ -638,14 +638,14 @@ CREATE TABLE IF NOT EXISTS `fonts` (
   PRIMARY KEY (`key_fonts`),
   UNIQUE KEY `font_label` (`font_label`),
   UNIQUE KEY `file_name` (`file_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `fonts`
 --
 
 INSERT INTO `fonts` (`key_fonts`, `font_label`, `file_name`) VALUES
-(11, 'Alqalam', 'Alqalam_1766253707.ttf');
+(13, 'Asmaak', 'Asmaak_1770460266.ttf');
 
 -- --------------------------------------------------------
 
@@ -1089,80 +1089,103 @@ INSERT INTO `product_prices_history` (`key_price`, `key_product`, `old_price`, `
 
 DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
-  `key_settings` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `setting_key` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `setting_value` text COLLATE utf8_unicode_ci NOT NULL,
-  `setting_group` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'general',
-  `is_permanent` tinyint(1) NOT NULL DEFAULT '0',
-  `entry_date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `key_settings` int(10) NOT NULL DEFAULT '0',
+  `template_folder` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `custom_css` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`key_settings`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`key_settings`, `setting_key`, `setting_value`, `setting_group`, `is_permanent`, `entry_date_time`) VALUES
-(1, 'site_name', 'Copilot CMS', 'general', 0, '2025-10-06 23:07:08'),
-(2, 'site_slogan', 'Clarity. Collaboration. Control.', 'general', 0, '2025-10-06 23:07:08'),
-(3, 'base_url', 'http://copilot/', 'general', 0, '2025-10-06 23:18:10'),
-(4, 'powered_by', 'Powered by Copilot', 'general', 0, '2025-10-06 23:07:08'),
-(11, 'article_show_author', '1', 'article_view', 0, '2025-10-06 23:07:08'),
-(12, 'article_show_categories', '1', 'article_view', 0, '2025-10-06 23:07:08'),
-(13, 'article_show_related_books', '1', 'article_view', 0, '2025-10-06 23:07:08'),
-(14, 'article_snippet_length', '300', 'article_view', 0, '2025-10-06 23:07:08'),
-(15, 'article_banner_height', '400px', 'article_view', 0, '2025-10-06 23:07:08'),
-(22, 'gallery_items_per_page', '12', 'gallery', 0, '2025-10-06 23:07:08'),
-(24, 'template_default_color', '#0055aa', 'ui', 0, '2025-10-10 18:01:14'),
-(27, 'default_404_message', 'Page not found.', 'ui', 0, '2025-10-06 23:07:08'),
-(37, 'template_folder', 'default', 'php_template', 1, '2025-10-06 23:59:28'),
-(38, 'template_default_logo', '/templates/default/images/copilogcms.png', 'general', 0, '2025-10-15 04:56:36'),
-(39, 'template_default_cover_image', '/templates/default/images/pexels-wasifmehmood997-19442078.jpg', 'ui', 0, '2025-10-10 18:02:14'),
-(40, 'max_upload_image_width', '2000', 'media_library', 0, '2025-10-15 22:12:04'),
-(41, 'max_upload_image_height', '1000', 'media_library', 0, '2025-10-15 22:12:09'),
-(42, 'template_text_color', 'black', 'css_colors', 0, '2025-10-20 21:23:28'),
-(43, 'template_background_color', '#FFF', 'css_colors', 0, '2025-10-20 21:27:30'),
-(45, 'items_brand_color', 'SeaGreen', 'css_colors', 0, '2025-10-20 21:28:26'),
-(46, 'sidebar_background_color', '#F4F4F4', 'css_colors', 0, '2025-10-20 23:27:22'),
-(47, 'site_direction', 'ltr', 'css_template', 0, '2025-10-22 07:37:19'),
-(48, 'google_fonts', 'Noto Nastaliq Urdu, Gulzar, Noto Kufi Arabic, Noto Naskh Arabic', 'css_fonts', 0, '2025-10-27 21:33:32'),
-(49, 'snippets_per_page', '15', 'php_template', 0, '2025-10-30 09:49:38'),
-(50, 'snippet_words', '80', 'php_template', 0, '2025-10-30 11:14:33'),
-(51, 'module_total_records', '7', 'php_template', 0, '2025-11-06 19:49:34'),
-(52, 'pager_next_label', 'Next', 'php_template', 0, '2025-11-06 19:52:48'),
-(53, 'pager_prev_label', 'Prev', 'php_template', 0, '2025-11-06 19:53:02'),
-(54, 'readmore_label', 'â˜·', 'php_template', 0, '2025-11-06 19:54:21'),
-(55, 'module_more_label', 'More', 'php_template', 0, '2025-11-07 16:38:31'),
-(56, 'template_max_width', '1300px', 'css_template', 0, '2025-11-07 17:21:27'),
-(57, 'main_menu_font', 'Arial', 'css_fonts', 0, '2025-11-07 18:40:16'),
-(58, 'breadcrumb_font', 'Arial', 'css_fonts', 0, '2025-11-07 18:54:58'),
-(59, 'block_heading_font', 'Arial', 'css_fonts', 0, '2025-11-07 20:10:46'),
-(60, 'pager_font', 'Arial', 'css_fonts', 0, '2025-11-07 20:15:54'),
-(61, 'footer_font', 'Arial', 'css_fonts', 0, '2025-11-07 21:16:04'),
-(62, 'template_font_size', '15px', 'css_fonts', 0, '2025-11-08 17:44:20'),
-(64, 'content_banner_height', '20vh', 'css_template', 0, '2025-11-14 22:02:08'),
-(65, 'articles_label', 'Articles', 'php_template', 0, '2025-11-16 16:37:06'),
-(66, 'content_types_label', 'Content Types', 'php_template', 0, '2025-11-16 16:37:26'),
-(67, 'categories_label', 'Categories', 'php_template', 0, '2025-11-16 16:37:50'),
-(68, 'tags_label', 'Tags', 'php_template', 0, '2025-11-16 16:37:58'),
-(69, 'books_label', 'Books', 'php_template', 0, '2025-11-16 16:38:14'),
-(70, 'pages_label', 'Info', 'php_template', 0, '2025-11-16 16:38:37'),
-(71, 'authors_label', 'Authors', 'php_template', 0, '2025-11-16 16:38:49'),
-(72, 'youtube_gallery_label', 'Youtube Gallery', 'php_template', 0, '2025-11-16 16:39:19'),
-(73, 'photo_gallery_label', 'Photo Gallery', 'php_template', 0, '2025-11-16 16:39:35'),
-(74, 'search_label', 'Search', 'php_template', 0, '2025-11-16 16:40:10'),
-(75, 'cache_duration_hours', '24', 'cache', 0, '2025-12-07 18:36:21'),
-(76, 'cache_enabled', 'yes', 'cache', 0, '2025-12-07 18:36:52'),
-(77, 'css_version', '1', 'css_template', 0, '2025-12-09 23:46:37'),
-(78, 'article_authors_label', 'Authors', 'php_template', 0, '2025-12-13 12:54:06'),
-(79, 'article_categories_label', 'Categories', 'php_template', 0, '2025-12-13 12:57:00'),
-(80, 'article_content_types_label', 'Content Types', 'php_template', 0, '2025-12-13 12:57:20'),
-(81, 'article_tags_label', 'Tags', 'php_template', 0, '2025-12-13 12:57:46'),
-(82, 'show_article_created_updated', 'yes', 'php_template', 0, '2025-12-20 18:41:46'),
-(83, 'site_locale', 'en_PK', 'php_template', 0, '2025-12-20 19:06:46'),
-(87, 'template_font_rtl', 'Noto Kufi Arabic', 'css_fonts', 0, '2026-01-16 04:42:13'),
-(88, 'template_font_ltr', 'calibri', 'css_fonts', 0, '2026-01-16 04:42:37'),
-(89, 'template_font_family', 'calibri', 'css_fonts', 0, '2026-01-16 04:45:50');
+INSERT INTO `settings` (`key_settings`, `template_folder`, `custom_css`) VALUES
+(1, 'default', '.eng-references {\r\n   font-family:times new roman;\r\n   font-size:90%;\r\n}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings_key_value`
+--
+
+DROP TABLE IF EXISTS `settings_key_value`;
+CREATE TABLE IF NOT EXISTS `settings_key_value` (
+  `key_settings` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `setting_key` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `setting_value` text COLLATE utf8_unicode_ci NOT NULL,
+  `setting_group` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'general',
+  `entry_date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`key_settings`)
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `settings_key_value`
+--
+
+INSERT INTO `settings_key_value` (`key_settings`, `setting_key`, `setting_value`, `setting_group`, `entry_date_time`) VALUES
+(1, 'site_name', 'Copilot CMS', 'general', '2025-10-06 23:07:08'),
+(2, 'site_slogan', 'Clarity. Collaboration. Control.', 'general', '2025-10-06 23:07:08'),
+(3, 'base_url', 'http://copilot/', 'general', '2025-10-06 23:18:10'),
+(4, 'powered_by', 'Powered by Copilot', 'general', '2025-10-06 23:07:08'),
+(11, 'article_show_author', '1', 'article_view', '2025-10-06 23:07:08'),
+(12, 'article_show_categories', '1', 'article_view', '2025-10-06 23:07:08'),
+(13, 'article_show_related_books', '1', 'article_view', '2025-10-06 23:07:08'),
+(14, 'article_snippet_length', '300', 'article_view', '2025-10-06 23:07:08'),
+(15, 'article_banner_height', '400px', 'article_view', '2025-10-06 23:07:08'),
+(22, 'gallery_items_per_page', '12', 'gallery', '2025-10-06 23:07:08'),
+(24, 'template_default_color', '#0055aa', 'ui', '2025-10-10 18:01:14'),
+(27, 'default_404_message', 'Page not found.', 'ui', '2025-10-06 23:07:08'),
+(38, 'template_default_logo', '/templates/default/images/copilogcms.png', 'general', '2025-10-15 04:56:36'),
+(39, 'template_default_cover_image', '/templates/default/images/pexels-wasifmehmood997-19442078.jpg', 'ui', '2025-10-10 18:02:14'),
+(40, 'max_upload_image_width', '2000', 'media_library', '2025-10-15 22:12:04'),
+(41, 'max_upload_image_height', '1000', 'media_library', '2025-10-15 22:12:09'),
+(42, 'template_text_color', 'black', 'css_colors', '2025-10-20 21:23:28'),
+(43, 'template_background_color', '#FFF', 'css_colors', '2025-10-20 21:27:30'),
+(45, 'items_brand_color', 'SeaGreen', 'css_colors', '2025-10-20 21:28:26'),
+(46, 'sidebar_background_color', '#F4F4F4', 'css_colors', '2025-10-20 23:27:22'),
+(47, 'site_direction', 'ltr', 'css_template', '2025-10-22 07:37:19'),
+(48, 'google_fonts', 'Noto Nastaliq Urdu, Gulzar, Noto Kufi Arabic, Noto Naskh Arabic', 'css_fonts', '2025-10-27 21:33:32'),
+(49, 'snippets_per_page', '15', 'php_template', '2025-10-30 09:49:38'),
+(50, 'snippet_words', '80', 'php_template', '2025-10-30 11:14:33'),
+(51, 'module_total_records', '7', 'php_template', '2025-11-06 19:49:34'),
+(52, 'pager_next_label', 'Next', 'php_template', '2025-11-06 19:52:48'),
+(53, 'pager_prev_label', 'Prev', 'php_template', '2025-11-06 19:53:02'),
+(54, 'readmore_label', 'â˜·', 'php_template', '2025-11-06 19:54:21'),
+(55, 'module_more_label', 'More', 'php_template', '2025-11-07 16:38:31'),
+(56, 'template_max_width', '1300px', 'css_template', '2025-11-07 17:21:27'),
+(57, 'main_menu_font', 'Arial', 'css_fonts', '2025-11-07 18:40:16'),
+(58, 'breadcrumb_font', 'Arial', 'css_fonts', '2025-11-07 18:54:58'),
+(59, 'block_heading_font', 'Arial', 'css_fonts', '2025-11-07 20:10:46'),
+(60, 'pager_font', 'Arial', 'css_fonts', '2025-11-07 20:15:54'),
+(61, 'footer_font', 'Arial', 'css_fonts', '2025-11-07 21:16:04'),
+(62, 'template_font_size', '15px', 'css_fonts', '2025-11-08 17:44:20'),
+(64, 'content_banner_height', '20vh', 'css_template', '2025-11-14 22:02:08'),
+(65, 'articles_label', 'Articles', 'php_template', '2025-11-16 16:37:06'),
+(66, 'content_types_label', 'Content Types', 'php_template', '2025-11-16 16:37:26'),
+(67, 'categories_label', 'Categories', 'php_template', '2025-11-16 16:37:50'),
+(68, 'tags_label', 'Tags', 'php_template', '2025-11-16 16:37:58'),
+(69, 'books_label', 'Books', 'php_template', '2025-11-16 16:38:14'),
+(70, 'pages_label', 'Info', 'php_template', '2025-11-16 16:38:37'),
+(71, 'authors_label', 'Authors', 'php_template', '2025-11-16 16:38:49'),
+(72, 'youtube_gallery_label', 'Youtube Gallery', 'php_template', '2025-11-16 16:39:19'),
+(73, 'photo_gallery_label', 'Photo Gallery', 'php_template', '2025-11-16 16:39:35'),
+(74, 'search_label', 'Search', 'php_template', '2025-11-16 16:40:10'),
+(75, 'cache_duration_hours', '24', 'cache', '2025-12-07 18:36:21'),
+(76, 'cache_enabled', 'yes', 'cache', '2025-12-07 18:36:52'),
+(77, 'css_version', '1', 'css_template', '2025-12-09 23:46:37'),
+(78, 'article_authors_label', 'Authors', 'php_template', '2025-12-13 12:54:06'),
+(79, 'article_categories_label', 'Categories', 'php_template', '2025-12-13 12:57:00'),
+(80, 'article_content_types_label', 'Content Types', 'php_template', '2025-12-13 12:57:20'),
+(81, 'article_tags_label', 'Tags', 'php_template', '2025-12-13 12:57:46'),
+(82, 'show_article_created_updated', 'yes', 'php_template', '2025-12-20 18:41:46'),
+(83, 'site_locale', 'en_PK', 'php_template', '2025-12-20 19:06:46'),
+(87, 'template_font_rtl', 'Noto Kufi Arabic', 'css_fonts', '2026-01-16 04:42:13'),
+(88, 'template_font_ltr', 'calibri', 'css_fonts', '2026-01-16 04:42:37'),
+(89, 'template_font_family', 'calibri', 'css_fonts', '2026-01-16 04:45:50'),
+(90, 'template_font_rtl_line_height', '1.5', 'css_fonts', '2026-01-22 22:46:07'),
+(91, 'template_font_ltr_line_height', '1.5', 'css_fonts', '2026-01-22 22:46:20'),
+(92, 'template_font_rtl_size', '1em', 'css_fonts', '2026-01-22 22:46:39'),
+(93, 'template_font_ltr_size', '1em', 'css_fonts', '2026-01-22 22:46:59');
 
 -- --------------------------------------------------------
 
@@ -1366,9 +1389,9 @@ ALTER TABLE `photo_gallery` ADD FULLTEXT KEY `title` (`title`,`description`);
 ALTER TABLE `products` ADD FULLTEXT KEY `title` (`title`,`description`);
 
 --
--- Indexes for table `settings`
+-- Indexes for table `settings_key_value`
 --
-ALTER TABLE `settings` ADD FULLTEXT KEY `setting_key` (`setting_key`,`setting_value`);
+ALTER TABLE `settings_key_value` ADD FULLTEXT KEY `setting_key` (`setting_key`,`setting_value`);
 
 --
 -- Indexes for table `youtube_gallery`

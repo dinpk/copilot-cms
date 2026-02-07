@@ -11,6 +11,6 @@ if (isset($_GET['id'])) {
 	$sql = "DELETE FROM books WHERE key_books = $id";
 	$conn->query($sql);
 }
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 exit;
 ?>

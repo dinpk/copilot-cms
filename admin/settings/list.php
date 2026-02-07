@@ -11,7 +11,7 @@ include_once('../layout.php');
 
 <?php
 $groupOptions = [];
-$groupResult = $conn->query("SELECT DISTINCT setting_group FROM settings ORDER BY setting_group ASC");
+$groupResult = $conn->query("SELECT DISTINCT setting_group FROM settings_key_value ORDER BY setting_group ASC");
 while ($g = $groupResult->fetch_assoc()) {
 	$groupOptions[] = $g['setting_group'];
 }
@@ -37,7 +37,6 @@ while ($g = $groupResult->fetch_assoc()) {
 			<th><?= sortLink('Key', 'setting_key', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Value</th>
 			<th><?= sortLink('Group', 'setting_group', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
-			<th><?= sortLink('Permanent', 'is_permanent', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Actions</th>
 		</tr>
 	</thead>
@@ -47,14 +46,14 @@ while ($g = $groupResult->fetch_assoc()) {
 	$q = $conn->real_escape_string($q);
 	$sort = $_GET['sort'] ?? 'entry_date_time';
 	$dir = $_GET['dir'] ?? 'desc';
-	$allowedSorts = ['setting_key', 'setting_group', 'is_permanent'];
+	$allowedSorts = ['setting_key', 'setting_group'];
 	$allowedDirs = ['asc', 'desc'];
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
 	$group = $_GET['group'] ?? '';
 	$group = $conn->real_escape_string($group);
 
-	$sql = "SELECT * FROM settings ";
+	$sql = "SELECT * FROM settings_key_value ";
 	if ($q !== '') {
 		$sql .= " WHERE MATCH(setting_key, setting_value) AGAINST ('$q' IN NATURAL LANGUAGE MODE)";
 	}
@@ -69,13 +68,9 @@ while ($g = $groupResult->fetch_assoc()) {
 			<td>{$row['setting_key']}</td>
 			<td>{$row['setting_value']}</td>
 			<td>{$row['setting_group']}</td>
-			<td>" . ($row['is_permanent'] ? 'Permanent' : '') . "</td>
 			<td class='record-action-links'>
-				<a href='#' onclick='editItem({$row['key_settings']}, \"get_setting.php\", [\"setting_key\",\"setting_value\",\"setting_group\",\"is_permanent\"])'>Edit</a> ";
-			if ($row['is_permanent'] == 0) {
-				echo "<a href='delete.php?id={$row['key_settings']}' onclick='return confirm(\"Delete this setting?\")'>Delete</a>";
-			}
-		echo "
+				<a href='#' onclick='editItem({$row['key_settings']}, \"get_setting.php\", [\"setting_key\",\"setting_value\",\"setting_group\"])'>Edit</a>
+				<a href='delete.php?id={$row['key_settings']}' onclick='return confirm(\"Delete this setting?\")'>Delete</a>
 			</td>
 		</tr>";
 	}
@@ -105,10 +100,6 @@ while ($g = $groupResult->fetch_assoc()) {
 			<option value="cache">Cache</option>
 		</select><br>
 
-		<label>
-			<input type="checkbox" name="is_permanent" id="is_permanent">
-			Permanent
-		</label><br>
 		<input type="submit" value="Save">
 	</form>
 </div>

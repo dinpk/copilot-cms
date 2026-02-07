@@ -1,0 +1,267 @@
+
+
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Home</title>
+			<meta charset='utf-8'>
+			<meta name='viewport' content='width=device-width, initial-scale=1'>
+			<link rel='stylesheet' href='/templates/settings.css'>
+			<link rel='stylesheet' href='/templates/default/style.css?version=1'>
+			<link rel='stylesheet' href='/templates/carousel.css'>
+        </head>
+	<body><div id='above-header'><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><div class='block-content'></div>
+<div class="block" style="">
+	<div style="display:flex;justify-content:space-between;">
+	  <div id="local-time"></div>
+	  <div id="local-weather"></div>
+	</div>
+</div>
+
+<script>
+// Local time
+function updateLocalTime() {
+  const now = new Date();
+  const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  document.getElementById("local-time").textContent =
+    new Intl.DateTimeFormat([], options).format(now);
+}
+setInterval(updateLocalTime, 1000);
+updateLocalTime();
+
+// Weather + City
+navigator.geolocation.getCurrentPosition(
+  function(pos) {
+    const lat = pos.coords.latitude;
+    const lon = pos.coords.longitude;
+
+    // Get city name
+    fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`)
+      .then(res => res.json())
+      .then(loc => {
+        const city = loc.city || loc.locality || loc.principalSubdivision;
+
+        // Get weather
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`)
+          .then(res => res.json())
+          .then(data => {
+            const weather = data.current_weather;
+            const tempC = weather.temperature;
+            const tempF = (tempC * 9/5 + 32).toFixed(1);
+            const icon = getWeatherIcon(weather.weathercode);
+            document.getElementById("local-weather").textContent =
+              `${city} | ${icon} ${tempC}°C / ${tempF}°F, wind ${weather.windspeed} km/h`;
+          });
+      });
+  },
+  function(err) {
+    document.getElementById("local-weather").textContent = "Location denied";
+    console.error(err);
+  }
+);
+
+// Weather icon mapping
+function getWeatherIcon(code) {
+  if (code === 0) return "☀️";
+  if (code >= 1 && code <= 3) return "🌤️";
+  if (code === 45 || code === 48) return "🌫️";
+  if (code >= 51 && code <= 57) return "🌦️";
+  if (code >= 61 && code <= 67) return "🌧️";
+  if (code >= 71 && code <= 77) return "❄️";
+  if (code >= 80 && code <= 82) return "🌦️";
+  if (code >= 85 && code <= 86) return "🌨️";
+  if (code === 95) return "⛈️";
+  if (code >= 96 && code <= 99) return "🌩️";
+  return "";
+}
+</script></div></div><header data-animate='fade'><div id='site-logo'><a href='/home'><img src='/templates/default/images/copilogcms.png'></a></div><button class='menu-toggle' onclick="document.querySelector('.main-menu').classList.toggle('open')">☰ Menu</button><nav class='main-menu'><ul><li><a href='/home'>Home</a></li><li><a href='/articles'>Articles</a></li><li><a href='/categories'>Topics</a></li><li><a href='/books'>Books</a></li><li><a href='/authors'>Authors</a></li><li><a href='/photo-gallery'>Albums</a></li><li><a href='/pages'>Info</a><ul><li><a href='/page/about-us'>About Us</a></li><li><a href='/page/careers'>Careers</a></li></ul></li><li><a href='/youtube-gallery'>Youtube</a></li></ul></nav></header><div id='below_header'><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><div class='block-content'></div><div class='carousel-wrapper' id='carousel-33' data-navigation-type='arrows'><div class="carousel-arrow left">&#10094;</div><div class="carousel-arrow right">&#10095;</div><div class="carousel-slide" 
+				style="opacity:1;height:550px"
+				data-animation="fade"><img src="/media/images/2025/1760646410_2_pexels-picjumbo-com-55570-196644.jpg" alt=""><div class="carousel-text" style="color:#ffffff; text-align:center"><h3><none></h3><p></p></div></div><div class="carousel-slide" 
+				style="opacity:1;height:550px"
+				data-animation="fade"><img src="/media/images/2025/1760646409_1_pexels-lalorosas-907489.jpg" alt=""><div class="carousel-text" style="color:#ffffff; text-align:center"><h3><none></h3><p></p></div></div><div class="carousel-slide" 
+				style="opacity:1;height:550px"
+				data-animation="fade"><img src="/media/images/2025/1760646407_0_pexels-fotios-photos-16129703.jpg" alt=""><div class="carousel-text" style="color:#ffffff; text-align:center"><h3><none></h3><p></p></div></div><div class="carousel-slide" 
+				style="opacity:1;height:550px"
+				data-animation="fade"><img src="/media/images/2025/1760646411_3_Copilot_20251017_011751.png" alt=""><div class="carousel-text" style="color:#ffffff; text-align:center"><h3><none></h3><p></p></div></div></div></div></div><main><div id="content">
+	<div id="above-content">
+		<div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><div class='block-content'></div><br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: include(modules/articles_featured_544678786.php): Failed to open stream: No such file or directory in D:\OneDrive\html\copilot-cms\templates\template_content.php on line <i>508</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>7.8377</td><td bgcolor='#eeeeec' align='right'>354040</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\OneDrive\html\copilot-cms\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>10.6445</td><td bgcolor='#eeeeec' align='right'>373144</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'D:\OneDrive\html\copilot-cms\router.php</font> )</td><td title='D:\OneDrive\html\copilot-cms\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>25</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>11.6879</td><td bgcolor='#eeeeec' align='right'>373768</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'D:\OneDrive\html\copilot-cms\templates\default\homepage.php</font> )</td><td title='D:\OneDrive\html\copilot-cms\router.php' bgcolor='#eeeeec'>...\router.php<b>:</b>16</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>28.1909</td><td bgcolor='#eeeeec' align='right'>422064</td><td bgcolor='#eeeeec'>renderBlocks( <span>$region = </span><span>&#39;above_content&#39;</span> )</td><td title='D:\OneDrive\html\copilot-cms\templates\default\homepage.php' bgcolor='#eeeeec'>...\homepage.php<b>:</b>9</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: include(): Failed opening 'modules/articles_featured_544678786.php' for inclusion (include_path='.;C:\php\pear') in D:\OneDrive\html\copilot-cms\templates\template_content.php on line <i>508</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>7.8377</td><td bgcolor='#eeeeec' align='right'>354040</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\OneDrive\html\copilot-cms\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>10.6445</td><td bgcolor='#eeeeec' align='right'>373144</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'D:\OneDrive\html\copilot-cms\router.php</font> )</td><td title='D:\OneDrive\html\copilot-cms\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>25</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>11.6879</td><td bgcolor='#eeeeec' align='right'>373768</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'D:\OneDrive\html\copilot-cms\templates\default\homepage.php</font> )</td><td title='D:\OneDrive\html\copilot-cms\router.php' bgcolor='#eeeeec'>...\router.php<b>:</b>16</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>28.1909</td><td bgcolor='#eeeeec' align='right'>422064</td><td bgcolor='#eeeeec'>renderBlocks( <span>$region = </span><span>&#39;above_content&#39;</span> )</td><td title='D:\OneDrive\html\copilot-cms\templates\default\homepage.php' bgcolor='#eeeeec'>...\homepage.php<b>:</b>9</td></tr>
+</table></font>
+</div>	</div>
+	<div class='snippet-card'>
+  			  <div><a href='/article/urdu-mazmoon'><img src='' data-animate='fade'></a></div>
+			  <div class='snippet-content rtl'>
+			  <h2><a href='/article/urdu-mazmoon'>اردو مضمون عنوان</a></h2>
+			  <div>اردو مضمون مختصر سمری …<br><a href='/article/urdu-mazmoon'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/phpmysql-combination'><img src='https://images.pexels.com/photos/18287652/pexels-photo-18287652.jpeg?cs=srgb&dl=pexels-fotios-photos-18287652.jpg&fm=jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/phpmysql-combination'>PHP+MySQL Combination</a></h2>
+			  <div>The PHP+MySQL combination is a classic and robust stack for building dynamic, data-driven web applications. It consists of two powerful, open-source technologies that work together to create interactive websites, from simple blogs to complex e-commerce platforms. 
+ …<br><a href='/article/phpmysql-combination'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'><img src='/media/thumbnails/images/2025/1760643494_1_pexels-jimmy-liao-3615017-12392803.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'>True strength begins with self-awareness and the emotional connection</a></h2>
+			  <div>We live in a world where stress, anxiety and depression are becoming increasingly common.  …<br><a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/cms-entry'><img src='banner25.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/cms-entry'>CMS Entry Points</a></h2>
+			  <div>Designing intuitive entry points for editors. …<br><a href='/article/cms-entry'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/url-structure'><img src='' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/url-structure'>URL Structuring</a></h2>
+			  <div>Structuring article URLs for clarity and SEO. …<br><a href='/article/url-structure'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/assignment-ux'><img src='banner22.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/assignment-ux'>Content Assignment UX</a></h2>
+			  <div>Improving article assignment UX. …<br><a href='/article/assignment-ux'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/cms-testing'><img src='banner21.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/cms-testing'>CMS Testing Strategies</a></h2>
+			  <div>Testing CMS workflows effectively. …<br><a href='/article/cms-testing'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/ui-feedback'><img src='banner20.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/ui-feedback'>UI Feedback Loops</a></h2>
+			  <div>Using feedback to refine UI. …<br><a href='/article/ui-feedback'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/clean-code'><img src='banner19.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/clean-code'>Clean Code Practices</a></h2>
+			  <div>Writing clean, maintainable PHP. …<br><a href='/article/clean-code'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/collab-dev'><img src='banner18.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/collab-dev'>Collaborative Development</a></h2>
+			  <div>Working with feedback-driven development. …<br><a href='/article/collab-dev'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/advanced-filters'><img src='banner16.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/advanced-filters'>Advanced Filters</a></h2>
+			  <div>Adding advanced filters to editorial tools. …<br><a href='/article/advanced-filters'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/sql-troubleshooting'><img src='/media/thumbnails/images/2025/1760646409_1_pexels-lalorosas-907489.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/sql-troubleshooting'>SQL Troubleshooting</a></h2>
+			  <div>Finding and fixing SQL issues. …<br><a href='/article/sql-troubleshooting'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/php-errors'><img src='banner14.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/php-errors'>Error Reporting in PHP</a></h2>
+			  <div>Enabling error reporting for better debugging. …<br><a href='/article/php-errors'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/content-snippets'><img src='banner12.jpg' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/content-snippets'>Content Snippets</a></h2>
+			  <div>Creating reusable content snippets. …<br><a href='/article/content-snippets'>☷</a></div>
+			  </div>
+			</div><div class='snippet-card'>
+  			  <div><a href='/article/legacy-refactor'><img src='' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/legacy-refactor'>Legacy CMS Refactor</a></h2>
+			  <div>Strategies for refactoring legacy CMS platforms. …<br><a href='/article/legacy-refactor'>☷</a></div>
+			  </div>
+			</div><div id='pager'>Page 1 of 2 <a href='?page=2'>Next</a></div>	<div id="below-content">
+			</div>
+</div>
+<div id="sidebar-left">
+	<div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Search</h2><div class='block-content'></div>
+<div class="block" style="">
+	<form method="get" action="/search" class="search-form">
+		<input type="text" name="q"> &nbsp; 
+		<input type="submit" value="Go">
+	</form>
+</div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Block Title</h2><div class='block-content'>Block Content</div><div class='carousel-wrapper' id='carousel-34' data-navigation-type='arrows'><div class="carousel-arrow left">&#10094;</div><div class="carousel-arrow right">&#10095;</div><div class="carousel-slide" 
+				style="opacity:1;height:300px;"
+				data-animation="fade"><img src="/media/images/2025/1760637345_4_pexels-goumbik-317355.jpg" alt=""><div class="carousel-text" style="color:#ffffff; text-align:center"><h3>Cover 2</h3><p>Description of book 2</p></div></div><div class="carousel-slide" 
+				style="opacity:1;height:300px;"
+				data-animation="fade"><img src="/media/images/2025/1760644207_0_pexels-polina-kovaleva-8100514.jpg" alt=""><div class="carousel-text" style="color:#ffffff; text-align:center"><h3>Cover 3</h3><p>Description of book 3</p></div></div><div class="carousel-slide" 
+				style="opacity:1;height:300px;"
+				data-animation="fade"><img src="/media/images/2025/1760643537_4_pexels-atomlaborblog-1090941.jpg" alt=""><div class="carousel-text" style="color:#ffffff; text-align:center"><h3>Cover 4</h3><p>Description of book 4</p></div></div><div class="carousel-slide" 
+				style="opacity:1;height:300px;"
+				data-animation="fade"><img src="/media/images/2025/1760678273_3_book-cover-sample1.jpg" alt=""><div class="carousel-text" style="color:#ffffff; text-align:center"><h3>Cover 5</h3><p></p></div></div></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Random Articles</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'>True strength begins with self-awareness and the emotional connection</a></li><li><a href='/article/urdu-mazmoon'>اردو مضمون عنوان</a></li><li><a href='/article/modular-crud'>Modular CRUD Systems</a></li><li><a href='/article/url-structure'>URL Structuring</a></li><li><a href='/article/clean-code'>Clean Code Practices</a></li><li><a href='/article/php-native'>PHP Without Frameworks</a></li><li><a href='/article/cms-testing'>CMS Testing Strategies</a></li><li><a href='/article/banner-tips'>Banner Image Tips</a></li><li><a href='/article/sql-troubleshooting'>SQL Troubleshooting</a></li><li><a href='/article/scalable-cms'>Scalable CMS Design</a></li></ul></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Ireland Articles</h2><div class='block-content'></div><div class="block" style="">
+	<ul class='category-list'></ul><p><a href='/tag/ireland'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Interview Articles</h2><div class='block-content'></div><div class="block" style="">
+	<ul class='category-list'></ul><p><a href='/content-type/interview'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Content Strategy Articles</h2><div class='block-content'></div><br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: include(modules/articles_of_categories565786548.php): Failed to open stream: No such file or directory in D:\OneDrive\html\copilot-cms\templates\template_content.php on line <i>508</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>7.8377</td><td bgcolor='#eeeeec' align='right'>354040</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\OneDrive\html\copilot-cms\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>10.6445</td><td bgcolor='#eeeeec' align='right'>373144</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'D:\OneDrive\html\copilot-cms\router.php</font> )</td><td title='D:\OneDrive\html\copilot-cms\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>25</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>11.6879</td><td bgcolor='#eeeeec' align='right'>373768</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'D:\OneDrive\html\copilot-cms\templates\default\homepage.php</font> )</td><td title='D:\OneDrive\html\copilot-cms\router.php' bgcolor='#eeeeec'>...\router.php<b>:</b>16</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>28.6326</td><td bgcolor='#eeeeec' align='right'>460096</td><td bgcolor='#eeeeec'>renderBlocks( <span>$region = </span><span>&#39;sidebar_left&#39;</span> )</td><td title='D:\OneDrive\html\copilot-cms\templates\default\homepage.php' bgcolor='#eeeeec'>...\homepage.php<b>:</b>35</td></tr>
+</table></font>
+<br />
+<font size='1'><table class='xdebug-error xe-warning' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Warning: include(): Failed opening 'modules/articles_of_categories565786548.php' for inclusion (include_path='.;C:\php\pear') in D:\OneDrive\html\copilot-cms\templates\template_content.php on line <i>508</i></th></tr>
+<tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
+<tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
+<tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>7.8377</td><td bgcolor='#eeeeec' align='right'>354040</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='D:\OneDrive\html\copilot-cms\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>0</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>2</td><td bgcolor='#eeeeec' align='center'>10.6445</td><td bgcolor='#eeeeec' align='right'>373144</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'D:\OneDrive\html\copilot-cms\router.php</font> )</td><td title='D:\OneDrive\html\copilot-cms\index.php' bgcolor='#eeeeec'>...\index.php<b>:</b>25</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>3</td><td bgcolor='#eeeeec' align='center'>11.6879</td><td bgcolor='#eeeeec' align='right'>373768</td><td bgcolor='#eeeeec'>include( <font color='#00bb00'>'D:\OneDrive\html\copilot-cms\templates\default\homepage.php</font> )</td><td title='D:\OneDrive\html\copilot-cms\router.php' bgcolor='#eeeeec'>...\router.php<b>:</b>16</td></tr>
+<tr><td bgcolor='#eeeeec' align='center'>4</td><td bgcolor='#eeeeec' align='center'>28.6326</td><td bgcolor='#eeeeec' align='right'>460096</td><td bgcolor='#eeeeec'>renderBlocks( <span>$region = </span><span>&#39;sidebar_left&#39;</span> )</td><td title='D:\OneDrive\html\copilot-cms\templates\default\homepage.php' bgcolor='#eeeeec'>...\homepage.php<b>:</b>35</td></tr>
+</table></font>
+</div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Archive</h2><div class='block-content'></div>
+<div class="block" style="">
+
+<div dir='ltr'><p>No articles found.</p></div><p><a href='/monthly'>More</a></p></div></div></div>
+<div id="sidebar-right">
+	<div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Articles Random</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/article/urdu-mazmoon'>اردو مضمون عنوان</a></li><li><a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'>True strength begins with self-awareness and the emotional connection</a></li><li><a href='/article/content-snippets'>Content Snippets</a></li><li><a href='/article/assignment-ux'>Content Assignment UX</a></li><li><a href='/article/phpmysql-combination'>PHP+MySQL Combination</a></li><li><a href='/article/editorial-workflows'>Editorial Workflows</a></li><li><a href='/article/modal-editing'>Modal-Based Editing</a></li></ul></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Content Types</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/content-type/article'>Article</a></li><li><a href='/content-type/biography'>Biography</a></li><li><a href='/content-type/blog-post'>Blog Post</a></li><li><a href='/content-type/interview'>Interview</a></li><li><a href='/content-type/opinion'>Opinion</a></li></ul><p><a href='/content-types'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Topics</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/category/advanced-filter'>Advanced Filters</a></li><li><a href='/category/content-curation'>Content Curation</a></li><li><a href='/category/content-strategy'>Content Strategy</a></li><li><a href='/category/desktop-ui'>Desktop UI</a></li><li><a href='/category/editorial-design'>Editorial Design</a></li><li><a href='/category/category/education'>Education</a></li><li><a href='/category/legacy-systems-legacy'>Legacy Systems</a></li><li><a href='/category/modern-architecture'>Modern Architecture</a></li><li><a href='/category/modular-design'>Modular Design</a></li><li><a href='/category/php-development'>PHP Development</a></li></ul><p><a href='/categories'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Tags</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/tag/afghanistan'>Afghanistan</a></li><li><a href='/tag/egypt'>Egypt</a></li><li><a href='/tag/france'>France</a></li><li><a href='/tag/india'>India</a></li><li><a href='/tag/iran'>Iran</a></li></ul><p><a href='/tags'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Articles</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/article/urdu-mazmoon'>اردو مضمون عنوان</a></li><li><a href='/article/phpmysql-combination'>PHP+MySQL Combination</a></li><li><a href='/article/true-strength-begins-with-self-awareness-and-emotional-connection'>True strength begins with self-awareness and the emotional connection</a></li><li><a href='/article/editorial-ui'>Designing for Editors</a></li><li><a href='/article/php-native'>PHP Without Frameworks</a></li></ul><p><a href='/articles'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Books</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/book/pink-flowers-in-the-world'>Pink Flowers in the World</a></li><li><a href='/book/php-for-non-publishers'>PHP for Non Publisher</a></li><li><a href='/book/new-world-of-app-dev-with-ai'>New World of App Dev with A-I</a></li><li><a href='/book/designing-editorial-systems'>Designing Editorial Syste</a></li><li><a href='/book/php-for-publishers'>PHP for Publisher</a></li></ul><p><a href='/books'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Youtube Gallery</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li>Best Goals in Football</li><li>England vs South Africa - Highlights</li><li>The Big Swimming Race</li><li>Best Set of the Year</li></ul><p><a href='/youtube-gallery'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Photo Gallery</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li>Articles</li><li>Books to Check</li><li>Authors</li><li>Books</li><li>Topics</li></ul><p><a href='/photo-gallery'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet'><h2>Authors</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'><li><a href='/author/imran-qureshi'>Imran Qureshi</a></li><li><a href='/author/ikram-mughal'>Ikram Mughal</a></li><li><a href='/author/haseena-imtiaz'>Haseena Imtiaz</a></li><li><a href='/author/hina-javed'>Hina Javed</a></li><li><a href='/author/zeeshan-ali'>Zeeshan Ali</a></li></ul><p><a href='/authors'>More</a></p></div></div></div>
+</main><div id='above-footer'></div><div id='footer'><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><div class='block-content'><div style='text-align:center;'><a href="/page/privacy-policy">Privacy Policy</a> | <a href="/page/terms-of-use">Term of Use</a> — Default Template © Powered by CopilotCMS </div></div></div></div><div id='below-footer'></div></body></html>
+	<script src='/templates/carousel.js'></script>
+	

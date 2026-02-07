@@ -16,5 +16,5 @@ foreach ($author_ids as $aid) {
                   VALUES ($article_id, $aid, '$label')");
 }
 
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 ?>

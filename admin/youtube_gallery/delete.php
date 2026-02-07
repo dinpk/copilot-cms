@@ -10,6 +10,6 @@ if (isset($_GET['id'])) {
 	$id = $_GET['id'];
 	$conn->query("DELETE FROM youtube_gallery WHERE key_youtube_gallery=$id");
 }
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 exit;
 ?>

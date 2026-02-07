@@ -9,5 +9,5 @@ foreach ($article_ids as $aid) {
 	$aid = intval($aid);
 	$conn->query("INSERT INTO book_articles (key_books, key_articles) VALUES ($book_id, $aid)");
 }
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 ?>

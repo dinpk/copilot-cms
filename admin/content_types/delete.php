@@ -11,6 +11,6 @@ if (isset($_GET['id'])) {
   $sql = "DELETE FROM content_types WHERE key_content_types = $id";
   $conn->query($sql);
 }
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 exit;
 ?>

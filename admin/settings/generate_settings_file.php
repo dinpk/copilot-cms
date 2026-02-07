@@ -12,7 +12,7 @@ $generatedCSS = "";
 $googleFontsArray = [];
 
 
-$result = $conn->query("SELECT setting_key, setting_value, setting_group FROM settings");
+$result = $conn->query("SELECT setting_key, setting_value, setting_group FROM settings_key_value");
 while ($row = $result->fetch_assoc()) {
 	if (strpos($row['setting_group'], 'css_') > -1) {
 		$generatedCSS .= "--" . str_replace("_", "-", $row['setting_key']) . ":" . $row['setting_value'] . ";\n	";
@@ -24,10 +24,20 @@ while ($row = $result->fetch_assoc()) {
 }
 
 
-// settings.css
+$result = $conn->query("SELECT * FROM settings WHERE key_settings = 1");
+if ($row = $result->fetch_assoc()) {
+	$settingsArray["template_folder"] = $row['template_folder'];
+	$customCSS = $row['custom_css'];
+}
+
+
+// ---------------------------- settings.css
+
 $generatedCSS = ":root {
 	$generatedCSS
 }
+
+$customCSS
 ";
 $googleFonts = "";
 foreach ($googleFontsArray as $font) {
@@ -43,7 +53,10 @@ while ($row = $result->fetch_assoc()) {
 file_put_contents('../../templates/settings.css', $googleFonts . $uploadedFonts . "\n" . $generatedCSS);
 
 
-// settings.php
+
+// --------------------------- settings.php
+
+
 foreach ($settingsArray as $key => $value) {
 	$escapedValue = var_export($value, true);
 	$lines[] = "\$settings['{$key}'] = {$escapedValue};";

@@ -13,10 +13,11 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$createdBy = $_SESSION['key_user'];
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	blocks (block_name, title, block_content, show_on_pages, show_in_region, sort, css, module_file, visible_on, number_of_records, is_dynamic, is_active, created_by, key_media_banner, key_photo_gallery) 
-	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+	blocks (block_name, title, block_content, show_on_pages, show_in_region, sort, css, module_file, visible_on, number_of_records, is_dynamic, is_active, created_by, 
+	key_media_banner, key_photo_gallery, key_content_types, key_categories, key_tags) 
+	VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('sssssisssiiiiii',
+	$stmt->bind_param('sssssisssiiiiiiiii',
 	$_POST['block_name'],
 	$_POST['title'],
 	$_POST['block_content'],
@@ -31,7 +32,10 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$isActive,
 	$createdBy,
 	$_POST['key_media_banner'],
-	$_POST['key_photo_gallery']
+	$_POST['key_photo_gallery'],
+	$_POST['key_content_types'],
+	$_POST['key_categories'],
+	$_POST['key_tags']
 	);
 	$stmt->execute();
 }

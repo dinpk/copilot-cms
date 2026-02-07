@@ -28,9 +28,9 @@ startLayout(htmlspecialchars($article['title']));
 
 	<?php
 	if ($article['banner_image_url']) { // full link url
-		echo "<div id='content-banner' style='background-image:url(" . $article['banner_image_url'] . ")'></div>";
+		echo "<div id='content-banner'><img src='" . $article['banner_image_url'] . "'></div>";
 	} else if ($article['banner_url']) { // media library file
-		echo "<div id='content-banner' style='background-image:url(" . $article['banner_url'] . ")'></div>";
+		echo "<div id='content-banner'><img src='" . $article['banner_url'] . "'></div>";
 	}
 	echo "<div>" . $article['article_content'] . "</div>";
 	?>

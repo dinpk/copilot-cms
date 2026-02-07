@@ -30,7 +30,7 @@ startLayout("Content: " . htmlspecialchars($content_type['name']));
 		$article_snippet = (empty($record['article_snippet']) ? firstWords($record['article_content'], getSetting('snippet_words')) : firstWords($record['article_snippet'], getSetting('snippet_words')));
 		echo "<div class='snippet-card'>
   			  <div><a href='/article/{$record['url']}'><img src='$banner_url' data-animate='fade'></a></div>
-			  <div class='snippet-content'>
+			  <div class='snippet-content " . $record['content_direction'] . "'>
 			  <h2><a href='/article/{$record['url']}'>{$record['title']}</a></h2>
 			  <div>$article_snippet <a href='/article/{$record['url']}'>" . getSetting('readmore_label') . "</a></div>
 			  </div>

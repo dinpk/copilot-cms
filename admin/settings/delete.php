@@ -8,8 +8,8 @@ if ($_SESSION["role"] != "admin") {
 }
 if (isset($_GET['id'])) {
 	$id = intval($_GET['id']);
-	$conn->query("DELETE FROM settings WHERE key_settings = $id");
+	$conn->query("DELETE FROM settings_key_value WHERE key_settings = $id");
 }
-header("Location: list.php");
+header("Location: " .  $_SERVER['HTTP_REFERER']);
 exit;
 ?>

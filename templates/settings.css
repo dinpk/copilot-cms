@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family= Gulzar:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family= Noto Kufi Arabic:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family= Noto Naskh Arabic:wght@400&display=swap');
-@font-face {font-family:'Alqalam';font-style:normal;font-weight:400;src:url(/fonts/Alqalam_1766253707.ttf) format('truetype');}
+@font-face {font-family:'Asmaak';font-style:normal;font-weight:400;src:url(/fonts/Asmaak_1770460266.ttf) format('truetype');}
 
 :root {
 	--template-text-color:black;
@@ -23,5 +23,14 @@
 	--template-font-rtl:Noto Kufi Arabic;
 	--template-font-ltr:calibri;
 	--template-font-family:calibri;
+	--template-font-rtl-line-height:1.5;
+	--template-font-ltr-line-height:1.5;
+	--template-font-rtl-size:1em;
+	--template-font-ltr-size:1em;
 	
+}
+
+.eng-references {
+   font-family:times new roman;
+   font-size:90%;
 }

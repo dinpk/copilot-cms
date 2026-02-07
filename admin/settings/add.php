@@ -7,17 +7,15 @@ if ('admin' != $_SESSION['role'] && 'creaditor' != $_SESSION['role']) {
 	exit;
 }
 if ('POST' === $_SERVER['REQUEST_METHOD']) {
-	$isPermanent = isset($_POST['is_permanent']) ? 1 : 0;
 	$stmt = $conn->prepare('
 	INSERT INTO 
-	settings (setting_key, setting_value, setting_group, is_permanent) 
-	VALUES (?, ?, ?, ?)
+	settings_key_value (setting_key, setting_value, setting_group) 
+	VALUES (?, ?, ?)
 	');
-	$stmt->bind_param('sssi',
+	$stmt->bind_param('sss',
 	$_POST['setting_key'],
 	$_POST['setting_value'],
-	$_POST['setting_group'],
-	$isPermanent
+	$_POST['setting_group']
 	);
 	$stmt->execute();
 }

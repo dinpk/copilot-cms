@@ -220,7 +220,7 @@ include_once('../layout.php');
 		
 		<label><input type="checkbox" name="is_featured" id="is_featured"> Featured</label><br>
 		<label><input type="checkbox" name="show_in_listing" id="show_in_listing" checked> Show in Listing</label><br>
-		<label><input type="checkbox" name="show_on_home" id="show_on_home" checked> Show i Home</label><br>
+		<label><input type="checkbox" name="show_on_home" id="show_on_home" checked> Show on Home</label><br>
 		<select name="is_active" id="is_active">
 			<option value="1">Published</option>
 			<option value="0">Not Published</option>
