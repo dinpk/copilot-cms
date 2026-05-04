@@ -25,13 +25,18 @@ document.addEventListener('DOMContentLoaded', function () {
 			document.getElementById('modal-form').addEventListener('submit', function(e) {
 				if (e.target.classList.contains('skip-submit-listener')) return; // #modal-form that submits using its action attribute
 				e.preventDefault();
-
+				
+				
+				if (document.getElementById('article_content_editable')) {
+					document.getElementById('article_content').value = document.getElementById('article_content_editable').innerHTML;
+				}
+				
 				const form = e.target;
 				const formData = new FormData(form);
 
 				fetch(form.action, {
-				method: 'POST',
-				body: formData
+					method: 'POST',
+					body: formData
 				})
 				.then(response => response.text())
 				.then(data => {
@@ -195,6 +200,15 @@ function editItem(id, endpoint, fields) {
 			// Set parent_id if used
 			if (document.getElementById('parent_id') && data.parent_id !== undefined) {
 				document.getElementById('parent_id').value = data.parent_id;
+			}
+
+			if (document.getElementById('content_direction')) {
+				changeArticleDirection(document.getElementById('content_direction').value);
+			}
+			
+			if (document.getElementById('article_content') && document.getElementById('article_content_editable')) {
+				document.getElementById('article_content').value = data.article_content;
+				document.getElementById('article_content_editable').innerHTML = data.article_content;
 			}
 
 			document.getElementById('modal').style.display = "block";

@@ -166,7 +166,18 @@ include_once('../layout.php');
 		<input type="text" name="title_sub" id="title_sub" placeholder="Subtitle" maxlength="300"> <label>Sub Title</label><br>
 		<input type="text" name="url" id="url" placeholder="Slug" maxlength="200" pattern="^[a-z0-9\-\/]+$" title="Lowercase letters, numbers, and hyphens only" required> <label>Slug</label><br>
 		<textarea name="article_snippet" id="article_snippet" placeholder="Snippet" maxlength="1000"></textarea><br>
-		<textarea name="article_content" id="article_content" placeholder="Content"></textarea><br>
+		
+		<div name="article_content_editable" id="article_content_editable" contenteditable="true" 
+				onblur="let articlecontent = document.getElementById('article_content'); articlecontent.value=this.innerHTML.replaceAll('</p><p>', '</p>\n\n<p>');;"
+		>
+		<p>&nbsp;</p>
+		</div>
+		
+		<details>
+			<summary>Code</summary>
+			<textarea name="article_content" id="article_content" placeholder="Content" onblur="document.getElementById('article_content_editable').innerHTML=this.value"></textarea><br>
+		</details>
+		
 		<input type="number" name="book_indent_level" id="book_indent_level" value="0" min="0" max="3000"> <label>Book Indent Level</label><br>
 		<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"> <label>URL</label><br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
@@ -270,7 +281,10 @@ function changeArticleDirection(direction) {
 	document.getElementById("title_sub").style.direction = direction;
 	document.getElementById("article_snippet").style.direction = direction;
 	document.getElementById("article_content").style.direction = direction;
+	document.getElementById("article_content_editable").style.direction = direction;
 }
+
+
 
 </script>
 

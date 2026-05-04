@@ -190,6 +190,20 @@ form textarea {
 	min-height:100px;
 }
 
+#title, #sub_title, #article_content, #article_content_editable, #article_snippet {
+	font-family: calibri;
+	font-size: 1.3em;
+}
+
+textarea#article_content, 
+#article_content_editable {
+	line-height: 2;
+	height: 35vh;
+	border:1px solid #000;
+	padding:10px;
+	overflow:auto;
+}
+
 form input[type="submit"] {
 	background:seagreen;
 	color:#fff;
