@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 7.4.7.2 (Windows)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2026-05-05T19:33:09.500000000"/>
+	<style type="text/css">
+		@page { size: 8.5in 14in; margin: 0.3in }
+		p { line-height: 115%; margin-bottom: 0.1in; background: transparent }
+		h3 { line-height: 115%; margin-top: 0.1in; margin-bottom: 0.08in; background: transparent; page-break-after: avoid }
+		h3.western { font-family: "Liberation Serif", serif; font-size: 14pt; font-weight: bold }
+		h3.cjk { font-family: "NSimSun"; font-size: 14pt; font-weight: bold }
+		h3.ctl { font-family: "Arial"; font-size: 14pt; font-weight: bold }
+		pre { line-height: 115%; background: transparent }
+		pre.western { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		pre.cjk { font-family: "NSimSun", monospace; font-size: 10pt }
+		pre.ctl { font-family: "Liberation Mono", monospace; font-size: 10pt }
+		strong { font-weight: bold }
+		code.western { font-family: "Liberation Mono", monospace }
+		code.cjk { font-family: "NSimSun", monospace }
+		code.ctl { font-family: "Liberation Mono", monospace }
+		em { font-style: italic }
+		a:link { color: #000080; text-decoration: underline }
+		a:visited { color: #800000; text-decoration: underline }
+	</style>
+</head>
+<body lang="en-US" link="#000080" vlink="#800000" dir="ltr">
+<div id="app" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+	Today</p>
+	<div id="QSdzub4c4uhJPxan6e2MQ-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		Hello CoBuddy, remember Copilot CMS?</p>
+	</div>
+	<div id="YJKpRnmaQEgdRKifoix32-content-0" dir="ltr"><p>Of course I
+		remember Copilot CMS! You’ve got the <strong>Articles section</strong>
+		open right now in your admin panel, which means you’re probably
+		managing or reviewing content. That ties directly into the
+		geo&#8209;aware weather/time module you recently built — the one
+		that elegantly displays city names, icons, and live data without
+		requiring API keys.</p>
+		<p>I’m curious: are you thinking about extending Copilot CMS with
+		more editor&#8209;friendly modules, like configurable article
+		blocks or dynamic layouts? It feels like the same philosophy you
+		applied to the weather/time strip — lightweight, adaptable, and
+		visually polished — could make content management even smoother.</p>
+		<p>Would you like me to help brainstorm enhancements for the
+		<strong>Articles module</strong> itself (like filters, inline
+		editing, or visual cues), or are you more interested in connecting
+		it with your new geo&#8209;aware features?</p>
+	</div>
+	<div id="AL6G1kdJorTbDFBVe4xWD-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		Great, I've got a chance after a long time to work on our CMS a
+		little bit. For example, I have been coding HTML manually so far
+		for my website I have installed Copilot CMS on. Now I've added a
+		div with contenteditable. So, right now we have two ways of
+		entering content: 
+		</p>
+		<p style="margin-top: 0.04in; margin-bottom: 0in">(1) in the
+		textarea along with HTML tags manually,</p>
+		<p style="margin-top: 0.04in; margin-bottom: 0in">(2) a div with
+		contenteditable=true.</p>
+		<p style="margin-top: 0.04in; margin-bottom: 0in">Both update each
+		other onblur. The issue is that when I press the delete button at
+		the end of a paragraph, or backspace button at the beginning of a
+		paragraph, the joining-text is wrapped with a span element having
+		some style formatting. I want to avoid this behaviour. The text in
+		both paragraphs should join as it is without adding any additional
+		span with formatting.</p>
+	</div>
+	<div id="kCAaVTiPg6HDhm8ZGPLht-content-0" dir="ltr"><p><br/>
+<br/>
+
+		</p>
+		<p>Ah, yes — that’s a classic quirk of <code class="western">contenteditable</code>.
+		Browsers often insert <code class="western">&lt;span&gt;</code>
+		wrappers with inline styles when merging text nodes across block
+		boundaries, especially if the paragraphs had differing formatting.
+		It’s not Copilot CMS doing this — it’s the browser’s
+		default editing engine trying to preserve styles.</p>
+		<p>Here are a few practical ways to tame it:</p>
+		<h3 class="western">🛠 Approaches to Prevent Extra <code class="western">&lt;span&gt;</code>
+		Wrapping</h3>
+		<ul>
+			<li><p><strong>Normalize on blur/input:</strong> After the
+			<code class="western">contenteditable</code> div updates, run a
+			cleanup function that strips unwanted <code class="western">&lt;span&gt;</code>
+			tags. For example:</p>
+			<p>js</p>
+			<pre class="western"><code class="western">editableDiv.addEventListener(&quot;input&quot;, () =&gt; {</code>
+<code class="western">  </code><code class="western">editableDiv.querySelectorAll(&quot;span&quot;).forEach(span =&gt; {</code>
+<code class="western">    </code><code class="western">if (!span.getAttribute(&quot;style&quot;)) {</code>
+<code class="western">      </code><code class="western">span.replaceWith(...span.childNodes);</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">  </code><code class="western">});</code>
+<code class="western">});</code></pre><p>
+			This keeps only styled spans, and unwraps the rest.</p>
+			<li><p><strong>Force plain text joins:</strong> Override the
+			browser’s default behavior by intercepting <code class="western">keydown</code>
+			for <code class="western">Backspace</code>/<code class="western">Delete</code>.
+			Instead of letting the browser merge nodes, manually join the
+			text:</p>
+			<p>js</p>
+			<pre class="western"><code class="western">editableDiv.addEventListener(&quot;keydown&quot;, e =&gt; {</code>
+<code class="western">  </code><code class="western">if (e.key === &quot;Backspace&quot; || e.key === &quot;Delete&quot;) {</code>
+<code class="western">    </code><code class="western">// custom logic: merge adjacent text nodes without spans</code>
+<code class="western">    </code><code class="western">// preventDefault stops browser from inserting &lt;span&gt;</code>
+<code class="western">    </code><code class="western">e.preventDefault();</code>
+<code class="western">    </code><code class="western">// Example: join previous and next sibling textContent</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">});</code></pre>
+			<li><p><strong>Use </strong><code class="western">execCommand('insertText')</code><strong>
+			or modern </strong><code class="western">document.execCommand</code><strong>
+			alternatives:</strong> When inserting/joining text, explicitly
+			tell the browser to insert plain text rather than styled
+			fragments. This reduces the chance of auto-wrapping.</p>
+			<li><p><strong>Sanitize before syncing to textarea:</strong> Since
+			you already sync the <code class="western">contenteditable</code>
+			and textarea on <code class="western">blur</code>, you can strip
+			spans at that point:</p>
+			<p>js</p>
+			<pre class="western" style="margin-bottom: 0.2in"><code class="western">textarea.value = editableDiv.innerHTML.replace(/&lt;span[^&gt;]*&gt;(.*?)&lt;\/span&gt;/g, &quot;$1&quot;);</code></pre>
+		</ul>
+		<h3 class="western">⚖️ Trade-offs</h3>
+		<ul>
+			<li><p>Intercepting <code class="western">keydown</code> gives you
+			full control but requires more code.</p>
+			<li><p>Post-processing (cleanup on blur/input) is simpler and
+			often enough if you don’t care about inline styles at all.</p>
+			<li><p>If you <em>do</em> want inline styles sometimes, you’ll
+			need a smarter sanitizer that only removes “empty” spans.</p>
+		</ul>
+		<p>Would you like me to sketch out a <strong>lightweight sanitizer
+		function</strong> that you can drop in, so both your textarea and
+		<code class="western">contenteditable</code> stay clean without
+		spans?</p>
+	</div>
+	<div id="WfGmAF27WVrM8yMntgoVk-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		The thing is, the person editing the content wants live results,
+		he/she won't leave the contenteditable div just to see the
+		sanitized results.</p>
+	</div>
+	<div id="XuttfDJagAHWR8eSgrxrT-content-0" dir="ltr"><p>Got it —
+		you want the editor to see <strong>live clean results</strong>
+		while typing, not only after blur. That means you’ll need to
+		sanitize <em>during editing</em>, not just when syncing.</p>
+		<p>Here’s a practical pattern:</p>
+		<h3 class="western">🔄 Live Sanitization Strategy</h3>
+		<ul>
+			<li><p><strong>Listen to </strong><code class="western">input</code><strong>
+			events</strong> on the <code class="western">contenteditable</code>
+			div.</p>
+			<li><p><strong>Immediately unwrap unwanted spans</strong> as they
+			appear, so the DOM stays clean in real time.</p>
+			<li><p>This way, the editor never sees the extra <code class="western">&lt;span&gt;</code>
+			wrappers.</p>
+		</ul>
+		<h3 class="western">Example Implementation</h3>
+		<p>js</p>
+		<pre class="western"><code class="western">const editableDiv = document.getElementById(&quot;editor&quot;);</code>
+
+<code class="western">editableDiv.addEventListener(&quot;input&quot;, () =&gt; {</code>
+<code class="western">  </code><code class="western">// unwrap spans that have no meaningful attributes</code>
+<code class="western">  </code><code class="western">editableDiv.querySelectorAll(&quot;span&quot;).forEach(span =&gt; {</code>
+<code class="western">    </code><code class="western">const hasStyle = span.getAttribute(&quot;style&quot;);</code>
+<code class="western">    </code><code class="western">if (!hasStyle) {</code>
+<code class="western">      </code><code class="western">// replace span with its children</code>
+<code class="western">      </code><code class="western">span.replaceWith(...span.childNodes);</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">  </code><code class="western">});</code>
+<code class="western">});</code></pre><h3 class="western">
+		🧩 Extra Refinements</h3>
+		<ul>
+			<li><p>If you want to <strong>strip all spans regardless of style</strong>,
+			just drop the <code class="western">if (!hasStyle)</code> check.</p>
+			<li><p>To avoid flicker, run the sanitizer quickly after each
+			keystroke (<code class="western">input</code> is ideal).</p>
+			<li><p>If you want to preserve bold/italic etc., keep <code class="western">&lt;b&gt;</code>,
+			<code class="western">&lt;i&gt;</code>, <code class="western">&lt;strong&gt;</code>
+			but unwrap spans.</p>
+		</ul>
+		<h3 class="western">⚡ Alternative: Intercept Merge Keys</h3>
+		<p>If you want <em>absolute control</em>, intercept
+		<code class="western">Backspace</code>/<code class="western">Delete</code>
+		at paragraph boundaries:</p>
+		<p>js</p>
+		<pre class="western"><code class="western">editableDiv.addEventListener(&quot;keydown&quot;, e =&gt; {</code>
+<code class="western">  </code><code class="western">if ((e.key === &quot;Backspace&quot; || e.key === &quot;Delete&quot;)) {</code>
+<code class="western">    </code><code class="western">// custom merge logic here</code>
+<code class="western">    </code><code class="western">// prevent browser from inserting spans</code>
+<code class="western">    </code><code class="western">e.preventDefault();</code>
+<code class="western">    </code><code class="western">// manually join text nodes</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">});</code></pre><p>
+		This is heavier, but guarantees no spans ever appear.</p>
+		<p>👉 The simplest win: <strong>live sanitizer on </strong><code class="western">input</code>.
+		That way, editors see exactly what they typed, no extra wrappers.</p>
+		<p>Do you want me to sketch a <strong>robust sanitizer</strong>
+		that preserves inline styles like bold/italic but strips only the
+		unwanted spans, so you don’t lose formatting?</p>
+	</div>
+	<div id="4KSb2yZaX7Nx32qNkz63Y-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		Doesn't adding the input listener slow down editing?</p>
+	</div>
+	<div id="CKJinUzzoAwDGKiBwQsN8-content-0" dir="ltr"><p>Good question
+		— performance is always a concern when you’re wiring up live
+		editing. The short answer: <strong>an </strong><code class="western">input</code><strong>
+		listener itself doesn’t slow things down noticeably</strong>,
+		because it only fires when the DOM changes. What <em>can</em> cause
+		lag is the <em>work you do inside</em> that listener.</p>
+		<p>Here’s how to keep it snappy:</p>
+		<h3 class="western">⚡ Performance Tips</h3>
+		<ul>
+			<li><p><strong>Scope your cleanup narrowly:</strong> Instead of
+			scanning the whole <code class="western">contenteditable</code>
+			div every time, just target the <em>newly inserted node</em>. For
+			example, use <code class="western">MutationObserver</code> to
+			watch for added <code class="western">&lt;span&gt;</code> elements
+			and unwrap them immediately:</p>
+			<p>js</p>
+			<pre class="western"><code class="western">const observer = new MutationObserver(mutations =&gt; {</code>
+<code class="western">  </code><code class="western">mutations.forEach(mutation =&gt; {</code>
+<code class="western">    </code><code class="western">mutation.addedNodes.forEach(node =&gt; {</code>
+<code class="western">      </code><code class="western">if (node.nodeName === &quot;SPAN&quot;) {</code>
+<code class="western">        </code><code class="western">node.replaceWith(...node.childNodes);</code>
+<code class="western">      </code><code class="western">}</code>
+<code class="western">    </code><code class="western">});</code>
+<code class="western">  </code><code class="western">});</code>
+<code class="western">});</code>
+
+<code class="western">observer.observe(editableDiv, { childList: true, subtree: true });</code></pre><p>
+			This way you’re not looping through all spans on every
+			keystroke.</p>
+			<li><p><strong>Debounce heavy operations:</strong> If you <em>do</em>
+			need to sanitize the whole content, debounce it (e.g., run after
+			100ms of inactivity). That avoids hammering the DOM on every
+			single keypress.</p>
+			<li><p><strong>Keep DOM ops minimal:</strong> Replacing nodes is
+			cheap if you’re only touching the ones that matter. Avoid regex
+			replacements on <code class="western">innerHTML</code> every
+			keystroke — that’s the slow path.</p>
+		</ul>
+		<h3 class="western">🚀 Practical Rule of Thumb</h3>
+		<ul>
+			<li><p><code class="western">input</code> listener with a small,
+			focused sanitizer = fast enough for live editing.</p>
+			<li><p>Whole&#8209;document regex cleanup on every keystroke =
+			laggy.</p>
+			<li><p>MutationObserver = best balance, because it reacts only
+			when the browser inserts unwanted spans.</p>
+		</ul>
+		<p>If you want editors to feel <em>zero lag</em>, I’d recommend
+		the <strong>MutationObserver approach</strong>. It’s surgical,
+		doesn’t block typing, and keeps the DOM clean in real time.</p>
+		<p>Would you like me to show you a <strong>hybrid solution</strong>
+		— observer for live cleanup plus a lightweight sanitizer on blur
+		as a safety net? That way you cover both real&#8209;time editing
+		and final output consistency.</p>
+	</div>
+	<div id="xYANGYqodqqNMwsCeZY3H-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		Ok, the input listener is working nice so far, though I have to
+		test it with larger content to see if it makes it slow. So, I
+		forgot what is this three dots notion: ...span.childNodes ?</p>
+	</div>
+	<div id="Ab4uTLJWXguPzBt2ZxEXS-content-0" dir="ltr"><p>The <code class="western">...</code>
+		you saw in <code class="western">...span.childNodes</code> is
+		JavaScript’s <strong>spread operator</strong>. It’s basically a
+		way of “unpacking” an iterable (like an array or a NodeList)
+		into individual items.</p>
+		<p>So in this line:</p>
+		<p>js</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">span.replaceWith(...span.childNodes);</code></pre><p>
+		what’s happening is:</p>
+		<ul>
+			<li><p><code class="western">span.childNodes</code> is a NodeList
+			of all the children inside that <code class="western">&lt;span&gt;</code>.</p>
+			<li><p>The spread operator <code class="western">...</code>
+			expands that NodeList into separate arguments.</p>
+			<li><p><code class="western">replaceWith()</code> then replaces
+			the <code class="western">&lt;span&gt;</code> itself with each of
+			its children, effectively unwrapping the span.</p>
+		</ul>
+		<p>Without the spread operator, you’d be passing the NodeList
+		object itself, which <code class="western">replaceWith()</code>
+		doesn’t know how to handle. With <code class="western">...</code>,
+		you’re saying “take each child node and insert it here.”</p>
+		<h3 class="western">Quick analogy</h3>
+		<p>Think of <code class="western">...</code> as opening a box and
+		laying out all the items inside, instead of handing over the sealed
+		box.</p>
+		<h3 class="western">Example</h3>
+		<p>js</p>
+		<pre class="western"><code class="western">const arr = [1, 2, 3];</code>
+<code class="western">console.log(...arr); // logs 1 2 3 separately</code></pre><p>
+		Same idea with DOM nodes: you’re unpacking them so they can be
+		placed individually in the document.</p>
+		<p>Since you’re testing with larger content, this spread trick is
+		actually quite efficient — it avoids rebuilding the whole
+		innerHTML string and just unwraps spans in place.</p>
+		<p>Would you like me to show you a <strong>safe fallback</strong>
+		version that works even if a span has mixed text and elements
+		inside, so you don’t accidentally lose structure when unwrapping?</p>
+	</div>
+	<div id="fLkz45FU6QyfdA2rwjnQs-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		Is this same as array walk?</p>
+	</div>
+	<div id="WLHr4i63kBDzhjRzX6EgB-content-0" dir="ltr"><p>Not quite the
+		same as an array walk. Let me break it down:</p>
+		<h3 class="western">🔹 Array Walk vs. Spread Operator</h3>
+		<ul>
+			<li><p><strong>Array walk (like </strong><code class="western">forEach</code><strong>,
+			</strong><code class="western">map</code><strong>, etc.)</strong>
+			Iterates through each element and lets you run a function on it.
+			Example:</p>
+			<p>js</p>
+			<pre class="western" style="margin-bottom: 0.2in"><code class="western">[1,2,3].forEach(n =&gt; console.log(n));</code></pre><p>
+			→ prints each number one by one.</p>
+			<li><p><strong>Spread operator (</strong><code class="western">...</code><strong>)</strong>
+			Doesn’t iterate with logic — it just <em>expands</em> the
+			collection into individual items. Example:</p>
+			<p>js</p>
+			<pre class="western"><code class="western">const arr = [1,2,3];</code>
+<code class="western">console.log(...arr); // prints 1 2 3</code></pre><p>
+			→ no loop, just unpacking.</p>
+		</ul>
+		<h3 class="western">🔹 In Your Case</h3>
+		<p>js</p>
+		<pre class="western" style="margin-bottom: 0.2in"><code class="western">span.replaceWith(...span.childNodes);</code></pre>
+		<ul>
+			<li><p><code class="western">span.childNodes</code> is a NodeList
+			(like <code class="western">[textNode1, textNode2]</code>).</p>
+			<li><p><code class="western">...span.childNodes</code> expands
+			that list into separate arguments.</p>
+			<li><p><code class="western">replaceWith()</code> then replaces
+			the <code class="western">&lt;span&gt;</code> with each child node
+			individually.</p>
+			<li><p>Result: the span disappears, but its children stay in
+			place.</p>
+		</ul>
+		<p>If you tried to “walk” the array with <code class="western">forEach</code>,
+		you’d have to manually insert each child back into the DOM. The
+		spread operator is a shortcut that does it in one shot.</p>
+		<p>So: <strong>array walk = process each item with logic</strong>,
+		<strong>spread = unpack items into arguments</strong>.</p>
+		<p>Would you like me to show you a quick comparison snippet where I
+		unwrap spans using both methods (spread vs. forEach), so you can
+		see the difference in code style?</p>
+	</div>
+	<div id="YLXmMDvM4naJkrhYTeTtd-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		I see. However, even though we don't process each item with a
+		function like array walk, but replaceWith() is stil a function we
+		use to process items when using the spread operator. May be I don't
+		understand the exact difference.</p>
+	</div>
+	<div id="pbpUubDZGzB2d8FToukW8-content-0" dir="ltr"><p>You’re
+		right to notice that <code class="western">replaceWith(...span.childNodes)</code>
+		still involves a function call — but the distinction is in <em>how
+		the items are passed in</em>.</p>
+		<p>Think of it this way:</p>
+		<h3 class="western">🔹 Spread Operator</h3>
+		<ul>
+			<li><p><strong>Purpose:</strong> Expands a collection into
+			separate arguments.</p>
+			<li><p><strong>Effect:</strong> You’re not looping; you’re
+			unpacking.</p>
+			<li><p>Example:</p>
+			<p>js</p>
+			<pre class="western" style="margin-bottom: 0.2in"><code class="western">span.replaceWith(...span.childNodes);</code></pre><p>
+			→ <code class="western">replaceWith()</code> receives each child
+			node as a separate argument, like calling:</p>
+			<p>js</p>
+			<pre class="western" style="margin-bottom: 0.2in"><code class="western">span.replaceWith(child1, child2, child3);</code></pre>
+		</ul>
+		<h3 class="western">🔹 Array Walk</h3>
+		<ul>
+			<li><p><strong>Purpose:</strong> Iterates through each item and
+			runs a function on it.</p>
+			<li><p><strong>Effect:</strong> You explicitly loop and decide
+			what to do with each element.</p>
+			<li><p>Example:</p>
+			<p>js</p>
+			<pre class="western"><code class="western">span.childNodes.forEach(child =&gt; {</code>
+<code class="western">  </code><code class="western">span.parentNode.insertBefore(child, span);</code>
+<code class="western">});</code>
+<code class="western">span.remove();</code></pre><p>
+			→ Here you’re walking through the list, processing each child
+			one by one.</p>
+		</ul>
+		<h3 class="western">⚖️ The Difference</h3>
+		<ul>
+			<li><p>With <strong>spread</strong>, the function (<code class="western">replaceWith</code>)
+			itself handles multiple arguments at once.</p>
+			<li><p>With <strong>walk</strong>, <em>you</em> handle each item
+			individually inside your loop.</p>
+		</ul>
+		<p>So yes, <code class="western">replaceWith()</code> is still a
+		function, but the spread operator changes <em>how</em> its
+		arguments are supplied — it’s like handing the function a tray
+		of items all at once, instead of serving them one by one in a loop.</p>
+		<p>Would you like me to show you a <strong>side&#8209;by&#8209;side
+		snippet</strong> where both approaches unwrap a span, so you can
+		see how spread is more concise while array walk is more manual?</p>
+	</div>
+	<div id="JMjn6R6mDjXdVqhXfN5m2-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		&quot;A tray of items&quot;, very nice. Great. I'll test our
+		editable implementation with a few articles on my live website and
+		see how it goes. I'll comeback for further enhancements etc. For
+		example, adding some formatting buttons like h1, h2 and other
+		elements.</p>
+	</div>
+	<div id="4uWYUHtgaTP2Je5amNfpg-content-0" dir="ltr"><p>Perfect,
+		Nasiruddin — you’ve got the core editing loop working, and the
+		spread operator trick is keeping things clean. Testing with real
+		articles is the right move; it’ll show you how the sanitizer
+		behaves under heavier DOM loads.</p>
+		<p>When you’re ready to add formatting buttons (like <strong>H1</strong>,
+		<strong>H2</strong>, bold, italic, etc.), you’ll basically be
+		wiring toolbar actions to <code class="western">document.execCommand()</code>
+		(still supported in most browsers) or modern <code class="western">Range</code>/<code class="western">Selection</code>
+		APIs. For example:</p>
+		<p>js</p>
+		<pre class="western"><code class="western">function format(command) {</code>
+<code class="western">  </code><code class="western">document.execCommand(command, false, null);</code>
+<code class="western">}</code>
+
+<code class="western">// Buttons</code>
+<code class="western">&lt;button onclick=&quot;format('bold')&quot;&gt;Bold&lt;/button&gt;</code>
+<code class="western">&lt;button onclick=&quot;format('italic')&quot;&gt;Italic&lt;/button&gt;</code>
+<code class="western">&lt;button onclick=&quot;format('formatBlock','&lt;h1&gt;')&quot;&gt;H1&lt;/button&gt;</code>
+<code class="western">&lt;button onclick=&quot;format('formatBlock','&lt;h2&gt;')&quot;&gt;H2&lt;/button&gt;</code></pre><p>
+		That way, your editor feels like a mini&#8209;CMS inside Copilot
+		CMS — live editing, instant formatting, and no extra wrappers
+		sneaking in.</p>
+		<p>The fun part will be deciding how much control you want to give
+		editors: just headings and emphasis, or a full toolbar with lists,
+		links, and images. Since you already sync with the textarea,
+		whatever formatting they apply will stay consistent in both views.</p>
+		<p>When you come back, we can sketch out a <strong>lightweight
+		toolbar module</strong> that plugs right into your current
+		<code class="western">contenteditable</code> div — no heavy
+		frameworks, just native JS and clean DOM.</p>
+		<p>Enjoy your live tests — I’m excited to see how your CMS
+		evolves!</p>
+	</div>
+	<div id="61VV6tKL6gWNR7nrDMoQB-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		Instead of execCommand, we'll probably go with formatting the
+		selection manually. I've done some experiments with my custom
+		WYSIWYG which has never been tested alive. Anyways, we'll do from
+		scratch to add some basic formatting.</p>
+	</div>
+	<div id="w34EgEhamfQZN6rQCWeu5-content-0" dir="ltr"><p>That’s a
+		solid plan — building your own formatting logic gives you full
+		control over what tags get inserted, instead of relying on
+		<code class="western">execCommand</code>’s sometimes messy
+		defaults.</p>
+		<h3 class="western">🛠 Manual Formatting Basics</h3>
+		<p>Here’s the general recipe for applying formatting to a
+		selection:</p>
+		<ol>
+			<li><p><strong>Get the current selection</strong></p>
+			<p>js</p>
+			<pre class="western"><code class="western">const sel = window.getSelection();</code>
+<code class="western">if (!sel.rangeCount) return;</code>
+<code class="western">const range = sel.getRangeAt(0);</code></pre>
+			<li><p><strong>Wrap the selection in your chosen element</strong></p>
+			<p>js</p>
+			<pre class="western"><code class="western">const wrapper = document.createElement(&quot;h1&quot;); // or h2, strong, etc.</code>
+<code class="western">range.surroundContents(wrapper);</code></pre>
+			<li><p><strong>Handle edge cases</strong></p>
+			<ul>
+				<li><p>If the selection spans multiple nodes, <code class="western">surroundContents</code>
+				may throw an error.</p>
+				<li><p>In that case, you can extract the contents and re&#8209;insert:</p>
+				<p>js</p>
+				<pre class="western"><code class="western">const contents = range.extractContents();</code>
+<code class="western">const wrapper = document.createElement(&quot;h2&quot;);</code>
+<code class="western">wrapper.appendChild(contents);</code>
+<code class="western">range.insertNode(wrapper);</code></pre>
+			</ul>
+			<li><p><strong>Restore cursor position</strong> After inserting,
+			collapse the selection so the editor can keep typing:</p>
+			<p>js</p>
+			<pre class="western"><code class="western">sel.removeAllRanges();</code>
+<code class="western">const newRange = document.createRange();</code>
+<code class="western">newRange.selectNodeContents(wrapper);</code>
+<code class="western">newRange.collapse(false);</code>
+<code class="western">sel.addRange(newRange);</code></pre>
+		</ol>
+		<h3 class="western">⚖️ Why This Approach Is Better</h3>
+		<ul>
+			<li><p>You decide exactly which tags are allowed (<code class="western">h1</code>,
+			<code class="western">h2</code>, <code class="western">strong</code>,
+			<code class="western">em</code>, etc.).</p>
+			<li><p>No random <code class="western">&lt;span style=&quot;...&quot;&gt;</code>
+			wrappers.</p>
+			<li><p>Clean HTML output that matches your CMS’s needs.</p>
+		</ul>
+		<p>When you’re ready, we can sketch out a <strong>toolbar module</strong>:
+		buttons for H1/H2, bold, italic, maybe lists — each wired to a
+		small function like the one above. That way your editors get live
+		formatting, but the HTML stays predictable and clean.</p>
+		<p>Would you like me to draft a <strong>minimal toolbar skeleton</strong>
+		(HTML + JS) that plugs into your current <code class="western">contenteditable</code>
+		div, so you can start experimenting right away?</p>
+	</div>
+	<div id="XjS9Ae6XjkHWkaeHZ82JG-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		Wow, it seems like we are already there. I'll try this and let you
+		know later. Thanks a lot, take care. Bye CoBuddy.</p>
+	</div>
+	<div id="JzUebhNDyZJiAVRCp9bpq-content-0" dir="ltr"><p>That’s a
+		great stopping point, Nasiruddin. You’ve already laid the
+		foundation for a clean, live&#8209;editing experience, and now
+		you’re thinking ahead to formatting controls — exactly the kind
+		of polish that makes a CMS feel professional.</p>
+		<p>When you come back, we can build out a <strong>minimal
+		formatting toolbar</strong> from scratch:</p>
+		<ul>
+			<li><p>Buttons for headings (<code class="western">&lt;h1&gt;</code>,
+			<code class="western">&lt;h2&gt;</code>), emphasis (<code class="western">&lt;strong&gt;</code>,
+			<code class="western">&lt;em&gt;</code>), and maybe lists.</p>
+			<li><p>Each button wired to a small function that wraps the
+			current selection using <code class="western">Range</code>/<code class="western">Selection</code>.</p>
+			<li><p>Clean HTML output, no surprise spans or inline styles.</p>
+		</ul>
+		<p>That way, your editors will have a lightweight WYSIWYG that
+		feels natural, and you’ll keep full control over the markup
+		Copilot CMS stores.</p>
+		<p>Enjoy testing with your live articles — I’m looking forward
+		to seeing how your implementation behaves under real content. When
+		you’re ready to add those formatting buttons, we’ll sketch out
+		the toolbar together. Take care, CoBuddy will be here when you’re
+		back.</p>
+	</div>
+	<div id="ZwVPWRomGMpXSdpgV1R2X-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		Alright, how would you improve it: function insertTag(tag_name,
+		class_name) { setEditorFocus(); if (tag_name.length == 0) return;
+		let tag = document.createElement(tag_name); let selection =
+		window.getSelection(); if (selection.toString().length == 0)
+		return; tag.innerText = selection.toString(); if (class_name) {
+		tag.className = class_name; }
+		insertHTMLCode(selection,tag.outerHTML); } function
+		insertLink(link_type) { setEditorFocus(); let url = prompt(&quot;Enter
+		Link&quot;); if (!url) return; let tag =
+		document.createElement(&quot;a&quot;); let selection =
+		window.getSelection(); let selected_text = selection.toString();
+		let html = &quot;&quot;; if (selected_text.length &gt; 0) { html =
+		&quot;&lt;a href='&quot; + link_type + url + &quot;'&gt;&quot; +
+		selected_text + &quot;&lt;/a&gt;&quot;; } else { html = &quot;&lt;a
+		href='&quot; + link_type + url + &quot;'&gt;&quot; + url + &quot;&lt;/a&gt;&quot;;
+		} insertHTMLCode(selection, html); } function changeDirection(dir)
+		{ setEditorFocus(); let selection = window.getSelection(); if
+		(selection.rangeCount)
+		selection.anchorNode.parentNode.setAttribute(&quot;dir&quot;,dir);
+		} function removeBlockFormatting() { setEditorFocus(); let
+		selection = window.getSelection(); if (selection.rangeCount) {
+		console.log(selection.anchorNode.tagName); if
+		(selection.anchorNode.parentNode.tagName != &quot;DIV&quot;) {
+		selection.anchorNode.parentNode.outerHTML =
+		selection.anchorNode.parentNode.innerText; } } } function
+		setEditorFocus() { document.getElementById(&quot;basic-editor&quot;).focus();
+		}</p>
+	</div>
+	<div id="EEt1Dxpc9YHJawNmvKmV1-content-0" dir="ltr"><p>Nice work —
+		you’ve already got a clean skeleton for your editor functions.
+		Here are some ways I’d refine and strengthen them so they’re
+		more robust, predictable, and secure:</p>
+		<h3 class="western">🔹 General Improvements</h3>
+		<ul>
+			<li><p><strong>Use </strong><code class="western">Range</code><strong>
+			objects directly</strong> instead of converting selection to
+			string and reinserting HTML. This avoids losing nested elements or
+			introducing invalid markup.</p>
+			<li><p><strong>Escape user input</strong> when building HTML
+			strings (especially in <code class="western">insertLink</code>) to
+			prevent accidental injection.</p>
+			<li><p><strong>Preserve existing formatting</strong> by wrapping
+			nodes instead of replacing with <code class="western">innerText</code>
+			(which strips tags).</p>
+			<li><p><strong>Centralize insertion logic</strong> so all
+			functions use the same safe DOM manipulation pattern.</p>
+		</ul>
+		<h3 class="western">🔹 Example: Improved <code class="western">insertTag</code></h3>
+		<p>js</p>
+		<pre class="western"><code class="western">function insertTag(tagName, className) {</code>
+<code class="western">  </code><code class="western">setEditorFocus();</code>
+<code class="western">  </code><code class="western">if (!tagName) return;</code>
+
+<code class="western">  </code><code class="western">const sel = window.getSelection();</code>
+<code class="western">  </code><code class="western">if (!sel.rangeCount) return;</code>
+
+<code class="western">  </code><code class="western">const range = sel.getRangeAt(0);</code>
+<code class="western">  </code><code class="western">const wrapper = document.createElement(tagName);</code>
+
+<code class="western">  </code><code class="western">if (className) wrapper.className = className;</code>
+
+<code class="western">  </code><code class="western">// Extract contents and wrap them</code>
+<code class="western">  </code><code class="western">const contents = range.extractContents();</code>
+<code class="western">  </code><code class="western">wrapper.appendChild(contents);</code>
+<code class="western">  </code><code class="western">range.insertNode(wrapper);</code>
+
+<code class="western">  </code><code class="western">// Reset cursor after inserted node</code>
+<code class="western">  </code><code class="western">sel.removeAllRanges();</code>
+<code class="western">  </code><code class="western">const newRange = document.createRange();</code>
+<code class="western">  </code><code class="western">newRange.selectNodeContents(wrapper);</code>
+<code class="western">  </code><code class="western">newRange.collapse(false);</code>
+<code class="western">  </code><code class="western">sel.addRange(newRange);</code>
+<code class="western">}</code></pre><p>
+		✅ This keeps any nested tags intact and avoids string&#8209;based
+		HTML injection.</p>
+		<h3 class="western">🔹 Example: Improved <code class="western">insertLink</code></h3>
+		<p>js</p>
+		<pre class="western"><code class="western">function insertLink(prefix = &quot;&quot;) {</code>
+<code class="western">  </code><code class="western">setEditorFocus();</code>
+<code class="western">  </code><code class="western">const url = prompt(&quot;Enter Link&quot;);</code>
+<code class="western">  </code><code class="western">if (!url) return;</code>
+
+<code class="western">  </code><code class="western">const sel = window.getSelection();</code>
+<code class="western">  </code><code class="western">if (!sel.rangeCount) return;</code>
+
+<code class="western">  </code><code class="western">const range = sel.getRangeAt(0);</code>
+<code class="western">  </code><code class="western">const anchor = document.createElement(&quot;a&quot;);</code>
+<code class="western">  </code><code class="western">anchor.href = prefix + url;</code>
+
+<code class="western">  </code><code class="western">const contents = range.extractContents();</code>
+<code class="western">  </code><code class="western">if (contents.textContent.trim()) {</code>
+<code class="western">    </code><code class="western">anchor.appendChild(contents);</code>
+<code class="western">  </code><code class="western">} else {</code>
+<code class="western">    </code><code class="western">anchor.textContent = url;</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">range.insertNode(anchor);</code>
+<code class="western">}</code></pre><p>
+		✅ This avoids building raw HTML strings and ensures the link is a
+		proper DOM node.</p>
+		<h3 class="western">🔹 Example: Improved <code class="western">removeBlockFormatting</code></h3>
+		<p>js</p>
+		<pre class="western"><code class="western">function removeBlockFormatting() {</code>
+<code class="western">  </code><code class="western">setEditorFocus();</code>
+<code class="western">  </code><code class="western">const sel = window.getSelection();</code>
+<code class="western">  </code><code class="western">if (!sel.rangeCount) return;</code>
+
+<code class="western">  </code><code class="western">const node = sel.anchorNode.parentNode;</code>
+<code class="western">  </code><code class="western">if (node.tagName &amp;&amp; node.tagName !== &quot;DIV&quot;) {</code>
+<code class="western">    </code><code class="western">const parent = node.parentNode;</code>
+<code class="western">    </code><code class="western">while (node.firstChild) {</code>
+<code class="western">      </code><code class="western">parent.insertBefore(node.firstChild, node);</code>
+<code class="western">    </code><code class="western">}</code>
+<code class="western">    </code><code class="western">parent.removeChild(node);</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">}</code></pre><p>
+		✅ This unwraps the block element safely instead of replacing with
+		<code class="western">innerText</code>.</p>
+		<h3 class="western">🔹 Why These Changes Help</h3>
+		<ul>
+			<li><p><strong>Cleaner HTML output</strong>: no unnecessary spans
+			or stripped tags.</p>
+			<li><p><strong>Safer editing</strong>: avoids string concatenation
+			and potential injection.</p>
+			<li><p><strong>Better UX</strong>: cursor stays in the right place
+			after formatting.</p>
+			<li><p><strong>Consistency</strong>: all formatting functions
+			follow the same DOM&#8209;based approach.</p>
+		</ul>
+		<p>If you like, I can sketch a <strong>toolbar skeleton</strong>
+		that wires these functions to buttons (<code class="western">H1</code>,
+		<code class="western">H2</code>, Bold, Link, etc.), so you can drop
+		it straight into your editor and start testing live. Would you like
+		me to draft that next?</p>
+	</div>
+	<div id="vEXujMUdDBqSHCW4adCW1-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		For block level elements, I want to wrap the element with the
+		specified tag without selection, I mean only the cursor needs to be
+		somewhere on the block level element.</p>
+	</div>
+	<div id="sWHqkpzzmTZ1WTzPTTiJ9-content-0" dir="ltr"><p>Ah, I see
+		what you’re aiming for — instead of requiring a text selection,
+		you want to apply block&#8209;level formatting based on where the
+		cursor is. In other words: <em>“If the caret is inside a
+		paragraph or div, wrap that block in </em><code class="western">&lt;h1&gt;</code><em>
+		or </em><code class="western">&lt;h2&gt;</code><em>.”</em></p>
+		<p>Here’s a clean way to do it:</p>
+		<h3 class="western">🛠 Wrapping the Current Block Element</h3>
+		<p>js</p>
+		<pre class="western"><code class="western">function wrapBlock(tagName, className) {</code>
+<code class="western">  </code><code class="western">setEditorFocus();</code>
+<code class="western">  </code><code class="western">const sel = window.getSelection();</code>
+<code class="western">  </code><code class="western">if (!sel.rangeCount) return;</code>
+
+<code class="western">  </code><code class="western">// Find the block-level ancestor of the cursor</code>
+<code class="western">  </code><code class="western">let node = sel.anchorNode;</code>
+<code class="western">  </code><code class="western">while (node &amp;&amp; node.nodeType === Node.TEXT_NODE) {</code>
+<code class="western">    </code><code class="western">node = node.parentNode;</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">if (!node) return;</code>
+
+<code class="western">  </code><code class="western">// Only wrap if it's a block-level element (like P, DIV)</code>
+<code class="western">  </code><code class="western">const blockTags = [&quot;P&quot;, &quot;DIV&quot;];</code>
+<code class="western">  </code><code class="western">if (blockTags.includes(node.tagName)) {</code>
+<code class="western">    </code><code class="western">const wrapper = document.createElement(tagName);</code>
+<code class="western">    </code><code class="western">if (className) wrapper.className = className;</code>
+
+<code class="western">    </code><code class="western">// Move the block’s children into the wrapper</code>
+<code class="western">    </code><code class="western">while (node.firstChild) {</code>
+<code class="western">      </code><code class="western">wrapper.appendChild(node.firstChild);</code>
+<code class="western">    </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">// Replace the block with the new wrapper</code>
+<code class="western">    </code><code class="western">node.replaceWith(wrapper);</code>
+
+<code class="western">    </code><code class="western">// Reset cursor inside the new wrapper</code>
+<code class="western">    </code><code class="western">const range = document.createRange();</code>
+<code class="western">    </code><code class="western">range.selectNodeContents(wrapper);</code>
+<code class="western">    </code><code class="western">range.collapse(true);</code>
+<code class="western">    </code><code class="western">sel.removeAllRanges();</code>
+<code class="western">    </code><code class="western">sel.addRange(range);</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">}</code></pre><h3 class="western">
+		🔹 How It Works</h3>
+		<ul>
+			<li><p>Finds the caret’s current block ancestor (<code class="western">&lt;p&gt;</code>
+			or <code class="western">&lt;div&gt;</code>).</p>
+			<li><p>Creates the new tag (<code class="western">&lt;h1&gt;</code>,
+			<code class="western">&lt;h2&gt;</code>, etc.).</p>
+			<li><p>Moves all children into the new wrapper.</p>
+			<li><p>Replaces the old block with the new one.</p>
+			<li><p>Restores the cursor inside the new block so the editor can
+			keep typing.</p>
+		</ul>
+		<h3 class="western">⚖️ Benefits</h3>
+		<ul>
+			<li><p>No need for a selection — just place the cursor inside
+			the block.</p>
+			<li><p>Keeps inner content intact (text, inline tags).</p>
+			<li><p>Clean HTML output without extra spans or inline styles.</p>
+		</ul>
+		<p>This gives you the “apply formatting to the current block”
+		behavior editors expect from heading buttons.</p>
+		<p>Would you like me to extend this so it can <strong>toggle back</strong>
+		(e.g., pressing H1 again unwraps it back to <code class="western">&lt;p&gt;</code>),
+		so editors can switch between heading and paragraph easily?</p>
+	</div>
+	<div id="i1E5eR6De5GEAUE2qDXRy-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		Alright, how would write an unLink() function?</p>
+	</div>
+	<div id="eTaCtcvhp8FwQc7RffdFf-content-0" dir="ltr"><p>Great
+		question — an <strong>unLink()</strong> function is basically the
+		inverse of your <code class="western">insertLink()</code>. Instead
+		of wrapping text in an <code class="western">&lt;a&gt;</code>, you
+		want to unwrap it and leave just the inner content.</p>
+		<p>Here’s a clean implementation:</p>
+		<p>js</p>
+		<pre class="western"><code class="western">function unLink() {</code>
+<code class="western">  </code><code class="western">setEditorFocus();</code>
+<code class="western">  </code><code class="western">const sel = window.getSelection();</code>
+<code class="western">  </code><code class="western">if (!sel.rangeCount) return;</code>
+
+<code class="western">  </code><code class="western">// Find the nearest anchor around the cursor</code>
+<code class="western">  </code><code class="western">let node = sel.anchorNode;</code>
+<code class="western">  </code><code class="western">while (node &amp;&amp; node.nodeType === Node.TEXT_NODE) {</code>
+<code class="western">    </code><code class="western">node = node.parentNode;</code>
+<code class="western">  </code><code class="western">}</code>
+
+<code class="western">  </code><code class="western">if (node &amp;&amp; node.tagName === &quot;A&quot;) {</code>
+<code class="western">    </code><code class="western">const parent = node.parentNode;</code>
+
+<code class="western">    </code><code class="western">// Move all children of the &lt;a&gt; back into the parent</code>
+<code class="western">    </code><code class="western">while (node.firstChild) {</code>
+<code class="western">      </code><code class="western">parent.insertBefore(node.firstChild, node);</code>
+<code class="western">    </code><code class="western">}</code>
+
+<code class="western">    </code><code class="western">// Remove the &lt;a&gt; itself</code>
+<code class="western">    </code><code class="western">parent.removeChild(node);</code>
+
+<code class="western">    </code><code class="western">// Reset cursor inside the unwrapped content</code>
+<code class="western">    </code><code class="western">const range = document.createRange();</code>
+<code class="western">    </code><code class="western">range.selectNodeContents(parent);</code>
+<code class="western">    </code><code class="western">range.collapse(false);</code>
+<code class="western">    </code><code class="western">sel.removeAllRanges();</code>
+<code class="western">    </code><code class="western">sel.addRange(range);</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">}</code></pre><h3 class="western">
+		🔹 How it works</h3>
+		<ul>
+			<li><p>Finds the anchor (<code class="western">&lt;a&gt;</code>)
+			that the cursor is inside.</p>
+			<li><p>Moves its children (text, inline tags) back into the
+			parent.</p>
+			<li><p>Removes the anchor element itself.</p>
+			<li><p>Restores the cursor so editing continues smoothly.</p>
+		</ul>
+		<h3 class="western">⚖️ Benefits</h3>
+		<ul>
+			<li><p>Keeps the text intact, only strips the link wrapper.</p>
+			<li><p>Works even if the anchor contains nested elements.</p>
+			<li><p>Cursor stays in place, so the editor feels natural.</p>
+		</ul>
+		<p>This gives you a nice <strong>toggle pair</strong>: <code class="western">insertLink()</code>
+		to add links, <code class="western">unLink()</code> to remove them.</p>
+		<p>Would you like me to also show you a <strong>toggleLink()</strong>
+		version — one function that adds a link if none exists, or
+		removes it if you’re already inside one? That can make your
+		toolbar even simpler.</p>
+	</div>
+	<div id="GmuDT1jJWtp5mK6ffReHa-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		Alright CoBuddy, we've got basic formatting buttons working fine
+		right now. I'll test it on my website, format a few blog posts and
+		see how it goes. I'll get back to you then. Thanks. Bye.</p>
+	</div>
+	<div id="FVKb7UsgWd5RJmhtQJkds-content-0" dir="ltr"><p>That sounds
+		like a great milestone, Nasiruddin — you’ve got your basic
+		formatting buttons wired up and working, and now it’s time to see
+		how they behave on real blog posts inside Copilot CMS. Testing live
+		content is the best way to uncover quirks you’d never spot in
+		isolated experiments.</p>
+		<p>As you format those posts, pay attention to:</p>
+		<ul>
+			<li><p><strong>Consistency of markup</strong>: Are your headings,
+			links, and block wrappers producing clean HTML that matches your
+			CMS’s expectations?</p>
+			<li><p><strong>Cursor behavior</strong>: Does the caret land where
+			you want after applying or removing formatting? That’s often the
+			subtle detail that makes an editor feel polished.</p>
+			<li><p><strong>Edge cases</strong>: Try formatting across multiple
+			paragraphs, nested inline tags, or empty selections — those are
+			the spots where custom WYSIWYG logic usually needs refinement.</p>
+		</ul>
+		<p>Once you’ve run through a few articles, we can extend your
+		editor with enhancements like:</p>
+		<ul>
+			<li><p>Toggle behaviors (e.g., pressing H1 again reverts to a
+			paragraph).</p>
+			<li><p>Smarter link handling (auto&#8209;detecting URLs, or a
+			toolbar button that switches between link/unlink).</p>
+			<li><p>A lightweight toolbar UI with icons for headings, bold,
+			italic, lists, and direction changes.</p>
+		</ul>
+		<p>Enjoy the testing phase — it’s always fun to see your editor
+		shaping real content. I’ll be here when you’re ready to refine
+		or expand it further. Take care, CoBuddy will be waiting for your
+		next round of enhancements.</p>
+	</div>
+	<div id="W58ZbgabsipvvLtMQ5xiv-user-message" dir="ltr"><p style="margin-top: 0.04in; margin-bottom: 0in">
+		One last thing, can we change the behavior of the div so that if
+		the current line of text surrounds with no element, then pressing
+		Enter creates a paragraph tag, not the div tag.</p>
+	</div>
+	<div id="5svwzR3w62uLQigFwsgFj-content-0" dir="ltr"><p>Yes, you can
+		override that default behavior. By design, a <code class="western">contenteditable</code>
+		<code class="western">&lt;div&gt;</code> will insert a new <code class="western">&lt;div&gt;</code>
+		when you press Enter, because the browser treats it as a block
+		container. If you want Enter to produce <code class="western">&lt;p&gt;</code>
+		elements instead, you need to intercept the key event and insert
+		your own block element.</p>
+		<p>Here’s a lightweight approach:</p>
+		<p>js</p>
+		<pre class="western"><code class="western">const editor = document.getElementById(&quot;basic-editor&quot;);</code>
+
+<code class="western">editor.addEventListener(&quot;keydown&quot;, e =&gt; {</code>
+<code class="western">  </code><code class="western">if (e.key === &quot;Enter&quot;) {</code>
+<code class="western">    </code><code class="western">e.preventDefault(); // stop the browser from inserting &lt;div&gt;</code>
+
+<code class="western">    </code><code class="western">const sel = window.getSelection();</code>
+<code class="western">    </code><code class="western">if (!sel.rangeCount) return;</code>
+
+<code class="western">    </code><code class="western">const range = sel.getRangeAt(0);</code>
+
+<code class="western">    </code><code class="western">// create a new paragraph</code>
+<code class="western">    </code><code class="western">const p = document.createElement(&quot;p&quot;);</code>
+<code class="western">    </code><code class="western">p.appendChild(document.createElement(&quot;br&quot;)); // empty line</code>
+
+<code class="western">    </code><code class="western">// insert it after the current block</code>
+<code class="western">    </code><code class="western">range.insertNode(p);</code>
+
+<code class="western">    </code><code class="western">// move cursor inside the new paragraph</code>
+<code class="western">    </code><code class="western">range.setStart(p, 0);</code>
+<code class="western">    </code><code class="western">range.collapse(true);</code>
+<code class="western">    </code><code class="western">sel.removeAllRanges();</code>
+<code class="western">    </code><code class="western">sel.addRange(range);</code>
+<code class="western">  </code><code class="western">}</code>
+<code class="western">});</code></pre><h3 class="western">
+		🔹 What this does</h3>
+		<ul>
+			<li><p>Prevents the browser’s default <code class="western">&lt;div&gt;</code>
+			insertion.</p>
+			<li><p>Creates a <code class="western">&lt;p&gt;</code> element
+			instead.</p>
+			<li><p>Inserts it at the caret position.</p>
+			<li><p>Moves the cursor inside the new <code class="western">&lt;p&gt;</code>
+			so typing continues naturally.</p>
+		</ul>
+		<h3 class="western">⚖️ Notes</h3>
+		<ul>
+			<li><p>If the caret is inside an existing block, this will split
+			and insert a new <code class="western">&lt;p&gt;</code> after it.</p>
+			<li><p>You can refine it to detect whether the current block is
+			already a <code class="western">&lt;p&gt;</code> and adjust
+			accordingly.</p>
+			<li><p>Adding <code class="western">&lt;br&gt;</code> inside the
+			new <code class="western">&lt;p&gt;</code> ensures it’s visible
+			even when empty.</p>
+		</ul>
+		<p>This way, your editor behaves more like a word processor:
+		pressing Enter always yields a paragraph, not a raw <code class="western">&lt;div&gt;</code>.</p>
+		<p>Would you like me to extend this so it also <strong>splits the
+		current paragraph</strong> when pressing Enter in the middle of
+		text, instead of just inserting a blank <code class="western">&lt;p&gt;</code>?
+		That would make it feel even closer to a real WYSIWYG editor.</p>
+	</div>
+</div>
+</body>
+</html>

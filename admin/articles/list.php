@@ -167,16 +167,41 @@ include_once('../layout.php');
 		<input type="text" name="url" id="url" placeholder="Slug" maxlength="200" pattern="^[a-z0-9\-\/]+$" title="Lowercase letters, numbers, and hyphens only" required> <label>Slug</label><br>
 		<textarea name="article_snippet" id="article_snippet" placeholder="Snippet" maxlength="1000"></textarea><br>
 		
-		<div name="article_content_editable" id="article_content_editable" contenteditable="true" 
-				onblur="let articlecontent = document.getElementById('article_content'); articlecontent.value=this.innerHTML.replaceAll('</p><p>', '</p>\n\n<p>');;"
-		>
-		<p>&nbsp;</p>
+		
+		
+		
+		<!-- content editable -->
+		<div class='wysiwyg'>
+			<img src="../assets/images/wysiwyg_h1.png" onclick="convertBlock('h1');"> 
+			<img src="../assets/images/wysiwyg_h2.png" onclick="convertBlock('h2');"> 
+			<img src="../assets/images/wysiwyg_h3.png" onclick="convertBlock('h3');"> 
+			<img src="../assets/images/wysiwyg_h4.png" onclick="convertBlock('h4');"> 
+			<img src="../assets/images/wysiwyg_h5.png" onclick="convertBlock('h5');"> 
+			<img src="../assets/images/wysiwyg_h6.png" onclick="convertBlock('h6');"> 
+			<img src="../assets/images/wysiwyg_p.png" onclick="convertBlock('p');"> 
+			<img src="../assets/images/wysiwyg_blockquote.png" onclick="convertBlock('blockquote');"> 
+			<img src="../assets/images/wysiwyg_link.png" onclick="insertLink();"> 
+			<img src="../assets/images/wysiwyg_unlink.png" onclick="unLink();"> 
+			<img src="../assets/images/wysiwyg_remove_formatting.png" onclick="removeBlockFormatting();" title="Remove internal formatting"> 
 		</div>
+		
+		<div name="article_content_editable" id="article_content_editable" contenteditable="true"
+				onblur="updateCodeTextarea('article_content_editable', 'article_content');"
+		>
+		<p> <br></p>
+		</div>
+		
+		<!-- code editor -->
 		
 		<details>
 			<summary>Code</summary>
-			<textarea name="article_content" id="article_content" placeholder="Content" onblur="document.getElementById('article_content_editable').innerHTML=this.value"></textarea><br>
+			<textarea name="article_content" id="article_content" placeholder="Content" 
+				onblur="updateContentEditableDiv('article_content_editable', 'article_content');">
+			</textarea><br>
 		</details>
+		
+		
+		
 		
 		<input type="number" name="book_indent_level" id="book_indent_level" value="0" min="0" max="3000"> <label>Book Indent Level</label><br>
 		<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"> <label>URL</label><br>
@@ -280,13 +305,170 @@ function changeArticleDirection(direction) {
 	document.getElementById("title").style.direction = direction;
 	document.getElementById("title_sub").style.direction = direction;
 	document.getElementById("article_snippet").style.direction = direction;
-	document.getElementById("article_content").style.direction = direction;
+	//document.getElementById("article_content").style.direction = direction;
 	document.getElementById("article_content_editable").style.direction = direction;
 }
 
 
 
+// ---------------- WYSIWYG
+
+function updateContentEditableDiv(contenteditable, textarea) {
+	document.getElementById(contenteditable).innerHTML = document.getElementById(textarea).value;
+}
+
+function updateCodeTextarea(contenteditable, textarea) {
+	document.getElementById(textarea).value = document.getElementById(contenteditable).innerHTML.replaceAll('</p><p>', '</p>\n\n<p>');
+}
+
+
+
+
+const editable = document.getElementById("article_content_editable");
+
+
+editable.addEventListener("input", () => { // avoid <span> insertion
+  editable.querySelectorAll("span").forEach(span => {
+      span.replaceWith(...span.childNodes); // replace span with its children
+    
+  });
+});
+
+
+editable.addEventListener("keydown", e => { // insert <p>, not <div>
+  if (e.key === "Enter") {
+    e.preventDefault(); // stop the browser from inserting <div>
+
+    const sel = window.getSelection();
+    if (!sel.rangeCount) return;
+
+    const range = sel.getRangeAt(0);
+
+    // create a new paragraph
+    const p = document.createElement("p");
+    p.appendChild(document.createElement("br")); // empty line
+
+    // insert it after the current block
+    range.insertNode(p);
+
+    // move cursor inside the new paragraph
+    range.setStart(p, 0);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+});
+
+
+function setEditorFocus() {
+	document.getElementById("article_content_editable").focus();
+}
+
+
+function convertBlock(tagName, className) {
+  setEditorFocus();
+  const sel = window.getSelection();
+  if (!sel.rangeCount) return;
+
+  // Find the block-level ancestor of the cursor
+  let node = sel.anchorNode;
+  while (node && node.nodeType === Node.TEXT_NODE) {
+    node = node.parentNode;
+  }
+
+  if (!node) return;
+
+  // Only convert the following blocks (avoid replacing div (contenteditable))
+  const blockTags = ["P", "H1", "H2", "H3", "H4", "H5", "H6", "BLOCKQUOTE"];
+  if (blockTags.includes(node.tagName)) {
+    const wrapper = document.createElement(tagName);
+    if (className) wrapper.className = className;
+
+    // Move the block’s children into the wrapper
+    while (node.firstChild) {
+      wrapper.appendChild(node.firstChild);
+    }
+
+    // Replace the block with the new wrapper
+    node.replaceWith(wrapper);
+
+    // Reset cursor inside the new wrapper
+    const range = document.createRange();
+    range.selectNodeContents(wrapper);
+    range.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+}
+
+
+function insertLink(prefix = "") {
+  setEditorFocus();
+  const url = prompt("Enter Link");
+  if (!url) return;
+
+  const sel = window.getSelection();
+  if (!sel.rangeCount) return;
+
+  const range = sel.getRangeAt(0);
+  const anchor = document.createElement("a");
+  anchor.href = prefix + url;
+
+  const contents = range.extractContents();
+  if (contents.textContent.trim()) {
+    anchor.appendChild(contents);
+  } else {
+    anchor.textContent = url;
+  }
+
+  range.insertNode(anchor);
+}
+
+
+function unLink() {
+  setEditorFocus();
+  const sel = window.getSelection();
+  if (!sel.rangeCount) return;
+
+  // Find the nearest anchor around the cursor
+  let node = sel.anchorNode;
+  while (node && node.nodeType === Node.TEXT_NODE) {
+    node = node.parentNode;
+  }
+
+  if (node && node.tagName === "A") {
+    const parent = node.parentNode;
+
+    // Move all children of the <a> back into the parent
+    while (node.firstChild) {
+      parent.insertBefore(node.firstChild, node);
+    }
+
+    // Remove the <a> itself
+    parent.removeChild(node);
+
+    // Reset cursor inside the unwrapped content
+    const range = document.createRange();
+    range.selectNodeContents(parent);
+    range.collapse(false);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+}
+
+
+function removeBlockFormatting() {
+	setEditorFocus();
+	let selection = window.getSelection();
+	if (selection.rangeCount) {
+		if (selection.anchorNode.parentNode.tagName != "DIV") {
+			selection.anchorNode.parentNode.outerHTML = selection.anchorNode.parentNode.innerText;
+		}
+	}
+}
+
 </script>
+
 
 
 <?php endLayout(); ?>
