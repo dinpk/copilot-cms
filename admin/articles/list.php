@@ -172,17 +172,53 @@ include_once('../layout.php');
 		
 		<!-- content editable -->
 		<div class='wysiwyg'>
-			<img src="../assets/images/wysiwyg_h1.png" onclick="convertBlock('h1');"> 
-			<img src="../assets/images/wysiwyg_h2.png" onclick="convertBlock('h2');"> 
-			<img src="../assets/images/wysiwyg_h3.png" onclick="convertBlock('h3');"> 
-			<img src="../assets/images/wysiwyg_h4.png" onclick="convertBlock('h4');"> 
-			<img src="../assets/images/wysiwyg_h5.png" onclick="convertBlock('h5');"> 
-			<img src="../assets/images/wysiwyg_h6.png" onclick="convertBlock('h6');"> 
-			<img src="../assets/images/wysiwyg_p.png" onclick="convertBlock('p');"> 
-			<img src="../assets/images/wysiwyg_blockquote.png" onclick="convertBlock('blockquote');"> 
+			<select id="wysiwyg_block_elements" title="Block Elements">
+				<option value="p"></option>
+				<option value="p">Paragraph</option>
+				<option value="blockquote">Quote</option>
+				<option value="h1">Heading 1</option>
+				<option value="h2">Heading 2</option>
+				<option value="h3">Heading 3</option>
+				<option value="h4">Heading 4</option>
+				<option value="h5">Heading 5</option>
+				<option value="h6">Heading 6</option>
+				<option value="address">Address</option>
+				<option value="pre">Pre</option>
+				<option value="hr">Rule</option>
+			</select> 
+			<input type="button" onclick="convertBlock();" value="Set">
+			
+			<select id="wysiwyg_inline_elements" title="Inline Elements">
+				<option value=""></option>
+				<option value="abbr">Abbreviation</option>
+				<option value="acronym">Acronym</option>
+				<option value="bdo">Bi-directional</option>
+				<option value="big">Big</option>
+				<option value="cite">Citation</option>
+				<option value="code">Code</option>
+				<option value="dfn">Definition</option>
+				<option value="em">Emphasis</option>
+				<option value="i">Italic</option>
+				<option value="kbd">Keyboard</option>
+				<option value="output">Output</option>
+				<option value="q">Short quote</option>
+				<option value="samp">Sample</option>
+				<option value="small">Small</option>
+				<option value="span">Span</option>
+				<option value="strike">Strikethrough</option>
+				<option value="strong">Strong</option>
+				<option value="sup">Superscript</option>
+				<option value="sub">Subscript</option>
+				<option value="time">Time</option>
+				<option value="u">Underline</option>
+				<option value="var">Var</option>
+			</select> 
+			<input type="button" onclick="convertSelection();" value="Set">
+
 			<img src="../assets/images/wysiwyg_link.png" onclick="insertLink();"> 
 			<img src="../assets/images/wysiwyg_unlink.png" onclick="unLink();"> 
 			<img src="../assets/images/wysiwyg_remove_formatting.png" onclick="removeBlockFormatting();" title="Remove internal formatting"> 
+
 		</div>
 		
 		<div name="article_content_editable" id="article_content_editable" contenteditable="true"
@@ -365,9 +401,44 @@ function setEditorFocus() {
 }
 
 
-function convertBlock(tagName, className) {
+function convertSelection(className) {
+
+	setEditorFocus();
+
+	const tagName = document.getElementById("wysiwyg_inline_elements").value;
+
+	if (!tagName) return;
+
+	const sel = window.getSelection();
+	if (!sel.rangeCount || sel.toString().length < 1) return;
+
+	const range = sel.getRangeAt(0);
+	const wrapper = document.createElement(tagName);
+	
+	if (className) wrapper.className = className;
+
+	// Extract contents and wrap them
+	const contents = range.extractContents();
+	wrapper.appendChild(contents);
+	range.insertNode(wrapper);
+
+	// Reset cursor after inserted node
+	sel.removeAllRanges();
+	const newRange = document.createRange();
+	newRange.selectNodeContents(wrapper);
+	newRange.collapse(false);
+	sel.addRange(newRange);
+}
+
+
+
+function convertBlock() {
+	
   setEditorFocus();
+  
+  const tagName = document.getElementById("wysiwyg_block_elements").value;
   const sel = window.getSelection();
+  
   if (!sel.rangeCount) return;
 
   // Find the block-level ancestor of the cursor
@@ -379,10 +450,9 @@ function convertBlock(tagName, className) {
   if (!node) return;
 
   // Only convert the following blocks (avoid replacing div (contenteditable))
-  const blockTags = ["P", "H1", "H2", "H3", "H4", "H5", "H6", "BLOCKQUOTE"];
+  const blockTags = ["H1", "H2", "H3", "H4", "H5", "H6", "P", "BLOCKQUOTE", "ADDRESS", "PRE"];
   if (blockTags.includes(node.tagName)) {
     const wrapper = document.createElement(tagName);
-    if (className) wrapper.className = className;
 
     // Move the block’s children into the wrapper
     while (node.firstChild) {
@@ -462,7 +532,7 @@ function removeBlockFormatting() {
 	let selection = window.getSelection();
 	if (selection.rangeCount) {
 		if (selection.anchorNode.parentNode.tagName != "DIV") {
-			selection.anchorNode.parentNode.outerHTML = selection.anchorNode.parentNode.innerText;
+			selection.anchorNode.parentNode.innerHTML = selection.anchorNode.parentNode.innerText;
 		}
 	}
 }

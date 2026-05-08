@@ -155,8 +155,8 @@ form input[type="checkbox"] {
 	margin:8px 0;
 }
 
-form select,
-form input[type="number"],
+form > select,
+form > input[type="number"],
 #username,
 #password
 {
@@ -371,8 +371,19 @@ summary {
 }
 
 
+.wysiwyg {
+	line-height:2;
+}
+
+.wysiwyg input,
+.wysiwyg select {
+	border:1px solid seagreen;
+	color:seagreen;
+}
+
 .wysiwyg img {
 	cursor:pointer;
+	vertical-align:middle;
 }
 
 /* Footer */
