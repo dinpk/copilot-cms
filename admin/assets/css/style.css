@@ -204,6 +204,16 @@ textarea#article_content,
 	overflow:auto;
 }
 
+#article_content_editable h2 {color:navy}
+#article_content_editable h3 {color:maroon}
+#article_content_editable h4 {color:darkgreen}
+
+#article_content_editable h3,
+#article_content_editable h4,
+#article_content_editable p  {
+	text-indent:20px
+}
+
 form input[type="submit"] {
 	background:seagreen;
 	color:#fff;
@@ -247,15 +257,14 @@ label span {
 .modal {
 	display:none;
 	position:fixed;
-	top:3vh;
-	left:50%;
-	transform:translateX(-50%);
-	width:800px;
-	height:94vh;
+	top:0;
+	left:4%;
+	/*transform:translateX(-20%);*/
+	width:92%;
+	height:100vh;
 	overflow-y:auto;
 	background:#fff;
 	border:15px solid #EEE;
-	border-radius:10px;
 	box-shadow:0 4px 12px rgba(0,0,0,0.2);
 	padding:40px;
 	z-index:1000;

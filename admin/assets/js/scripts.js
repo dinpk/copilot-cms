@@ -324,6 +324,82 @@ function closeAuthorModal() {
 }
 
 
+
+
+// --------------------- Article Author Assignment Modal
+
+function openWorkerModal(articleId, articleTitle) {
+  document.getElementById('worker_article_id').value = articleId;
+  document.getElementById('worker-modal').style.display = 'block';
+  document.getElementById('worker-article-title').textContent = articleTitle;
+  
+  // initial load: show already assigned workers
+  fetch('get_workers.php?article_id=' + articleId)
+    .then(res => res.json())
+    .then(data => {
+      let html = '';
+      data.assigned.forEach(a => {
+        html += `
+          <div class="worker-item">
+            <label>
+              <input type="checkbox" name="worker_ids[]" value="${a.key_workers}" checked>
+              ${a.name}
+            </label>
+            <input type="text" name="work_labels[${a.key_workers}]" list="work-labels" value="${a.article_work_label}" placeholder="Work label">
+          </div>
+        `;
+      });
+      document.getElementById('worker-list').innerHTML = html;
+    });
+
+  // attach search handler
+	document.getElementById('worker-search').oninput = function() {
+	  const query = this.value;
+	  fetch('get_workers.php?article_id=' + articleId + '&search=' + encodeURIComponent(query))
+		.then(res => res.json())
+		.then(data => {
+		  let html = '';
+
+		  // Always show assigned workers first
+		  data.assigned.forEach(a => {
+			html += `
+			  <div class="worker-item">
+				<label>
+				  <input type="checkbox" name="worker_ids[]" value="${a.key_workers}" checked>
+				  ${a.name}
+				</label>
+				<input type="text" name="work_labels[${a.key_workers}]" list="work-labels" value="${a.article_work_label}" placeholder="Work label">
+			  </div>
+			`;
+		  });
+
+		  // Then show search results, skipping ones already assigned
+		  data.workers.forEach(worker => {
+			const assigned = data.assigned.find(a => a.key_workers == worker.key_workers);
+			if (assigned) return; // skip duplicates
+
+			html += `
+			  <div class="worker-item">
+				<label>
+				  <input type="checkbox" name="worker_ids[]" value="${worker.key_workers}">
+				  ${worker.name}
+				</label>
+				<input type="text" name="work_labels[${worker.key_workers}]" list="work-labels" placeholder="Work label">
+			  </div>
+			`;
+		  });
+
+		  document.getElementById('worker-list').innerHTML = html;
+		});
+	};
+
+}
+
+
+function closeWorkerModal() {
+	document.getElementById('worker-modal').style.display = 'none';
+}
+
 // --------------------- Book Article Assignment Modal
 
 function openAssignModal(bookId) {

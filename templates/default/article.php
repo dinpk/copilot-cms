@@ -49,6 +49,15 @@ startLayout(htmlspecialchars($article['title']));
 	if (!empty($author_names)) echo "<b>" . getSetting('article_authors_label') . "</b>";
 	echo "<p>" . implode(', ', $author_names) . "</p>";
 
+	$workers = getWorkersForArticle($conn, $article['key_articles']);
+	$worker_names = [];
+	while ($worker = $workers->fetch_assoc()) {
+		$worker_names[] = "<a href='/worker/{$worker['url']}'>" . htmlspecialchars($worker['name']) . "</a>";
+	}
+	if (!empty($worker_names)) echo "<b>" . getSetting('article_workers_label') . "</b>";
+	echo "<p>" . implode(', ', $worker_names) . "</p>";
+
+
 	$content_types = getContentTypesForArticle($conn, $article['key_articles']);
 	$content_type_names = [];
 	while ($content_type = $content_types->fetch_assoc()) {
@@ -82,8 +91,9 @@ startLayout(htmlspecialchars($article['title']));
 		<div class='date_time'>
 		Created: " . articleCreatedUpdated($article['entry_date_time']) . 
 		"<br>Updated: " . articleCreatedUpdated($article['update_date_time']) . 
-		"<br>"  . $locale['language_name'] . " – " . $locale['country_name'] . 
 		"</div>";
+		
+		// "<br>"  . $locale['language_name'] . " – " . $locale['country_name'] . 
 	}
 
 	?>

@@ -30,6 +30,7 @@ include_once('../layout.php');
 		<tr>
 			<th><?= sortLink('Title', 'title', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th>Authors</th>
+			<th>Workers</th>
 			<th><?= sortLink('Created', 'entry_date_time', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th><?= sortLink('Updated', 'update_date_time', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
 			<th><?= sortLink('Status', 'is_active', $_GET['sort'] ?? '', $_GET['dir'] ?? '') ?></th>
@@ -50,7 +51,7 @@ include_once('../layout.php');
 	if (!in_array($sort, $allowedSorts)) $sort = 'entry_date_time';
 	if (!in_array($dir, $allowedDirs)) $dir = 'desc';
 	
-	$sql = "SELECT key_articles, title, article_snippet, entry_date_time, update_date_time, is_active 
+	$sql = "SELECT key_articles, title, article_snippet, url, entry_date_time, update_date_time, is_active 
 			FROM articles";
 
 	$whereClauses = [];
@@ -95,6 +96,7 @@ include_once('../layout.php');
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
 		$keyArticles = $row['key_articles'];
+		$url = $row['url'];
 		// display created/updated by
 		$createdUpdated = $conn->query("SELECT
 			a.key_articles,
@@ -112,21 +114,34 @@ include_once('../layout.php');
 		  $authorNames[] = $a['name'];
 		}
 		$authorDisplay = implode(', ', $authorNames);
+
+		// display workers
+		$authRes = $conn->query("SELECT a.name FROM workers a JOIN article_workers aa ON a.key_workers = aa.key_workers WHERE aa.key_articles = $keyArticles");
+		$workerNames = [];
+		while ($a = $authRes->fetch_assoc()) {
+		  $workerNames[] = $a['name'];
+		}
+		$workerDisplay = implode(', ', $workerNames);
+		
+		
 		$date_created = date_format(date_create($row["entry_date_time"]), "d M, Y - H:i a");
 		$date_updated = date_format(date_create($row["update_date_time"]), "d M, Y - H:i a");
-		echo "<tr>
-		<td>{$row['title']}</td>
-		<td>" . htmlspecialchars($authorDisplay) . "</td>
-		<td><small>{$createdUpdated['creator']} $date_created</small></td>
-		<td><small>{$createdUpdated['updater']} $date_updated</small></td>
-		<td>{$row['is_active']}</td>
-		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"content_direction\",\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"book_indent_level\",\"banner_image_url\",\"key_media_banner\",\"sort\",\"entry_date_time\",\"update_date_time\",\"is_featured\",\"show_in_listing\",\"show_on_home\",\"is_active\"])'>Edit</a> 
-		  <a href='#' onclick='openAuthorModal({$row['key_articles']},\"{$row['title']}\")'>Authors</a> 
-		  <a href='preview.php?id={$row['key_articles']}' target='_blank'>Preview</a> 
-		  <a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'>Delete</a>
-		</td>
-		</tr>";
+		echo "<tr>";
+		echo "<td>{$row['title']}</td>";
+		echo "<td>" . htmlspecialchars($authorDisplay) . "</td>";
+		echo "<td>" . htmlspecialchars($workerDisplay) . "</td>";
+		echo "<td><small>{$createdUpdated['creator']} $date_created</small></td>";
+		echo "<td><small>{$createdUpdated['updater']} $date_updated</small></td>";
+		echo "<td>{$row['is_active']}</td>";
+		echo "<td class='record-action-links'>";
+		echo "<a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"content_direction\",\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"book_indent_level\",\"banner_image_url\",\"key_media_banner\",\"sort\",\"entry_date_time\",\"update_date_time\",\"is_featured\",\"show_in_listing\",\"show_on_home\",\"is_active\"])'>Edit</a> ";
+		echo "<a href='#' onclick='openAuthorModal(" . $row['key_articles'] . "," . htmlspecialchars(json_encode($row['title']), ENT_QUOTES, 'UTF-8') . ")'>Authors</a> ";
+		echo "<a href='#' onclick='openWorkerModal(" . $row['key_articles'] . "," . htmlspecialchars(json_encode($row['title']), ENT_QUOTES, 'UTF-8') . ")'>Workers</a> ";
+		echo "<a href='preview.php?id={$row['key_articles']}' target='_blank'>Preview</a> ";
+		echo "<a href='/article/$url' target='_blank'>View</a> ";
+		echo "<a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'>Delete</a>";
+		echo "</td>";
+		echo "</tr>";
 	}
 
 	$countSql = "SELECT COUNT(*) AS total FROM articles";
@@ -224,7 +239,7 @@ include_once('../layout.php');
 		<div name="article_content_editable" id="article_content_editable" contenteditable="true"
 				onblur="updateCodeTextarea('article_content_editable', 'article_content');"
 		>
-		<p> <br></p>
+		<p>Placeholder</p>
 		</div>
 		
 		<!-- code editor -->
@@ -332,6 +347,40 @@ include_once('../layout.php');
   </form>
 </div>
 
+
+<div id="worker-modal" class="modal">
+  <a href="#" onclick="document.getElementById('worker-modal').style.display='none'" class="close-icon">✖</a>
+
+  <h3>Assign Workers for:</h3>
+  <div id="worker-article-title"></div>
+  <br>
+
+  <form id="worker-form" method="post" action="assign_workers.php">
+
+    <input type="hidden" name="key_articles" id="worker_article_id">
+
+    <!-- Search box -->
+    <input type="text" id="worker-search" placeholder="Search worker by name">
+
+    <div id="worker-list">
+      <!-- JS will populate this with checkboxes + work label fields -->
+    </div>
+
+    <!-- datalist for work labels -->
+    <datalist id="work-labels">
+      <option value="Translation">
+      <option value="Review">
+      <option value="Editing">
+      <option value="Proofreading">
+      <option value="Contribution">
+    </datalist>
+
+    <input type="submit" value="Assign">
+  </form>
+</div>
+
+
+
 <div id="media-library-modal" class="modal modal-90"></div>
 
 
@@ -359,7 +408,6 @@ function updateCodeTextarea(contenteditable, textarea) {
 
 
 
-
 const editable = document.getElementById("article_content_editable");
 
 
@@ -371,29 +419,6 @@ editable.addEventListener("input", () => { // avoid <span> insertion
 });
 
 
-editable.addEventListener("keydown", e => { // insert <p>, not <div>
-  if (e.key === "Enter") {
-    e.preventDefault(); // stop the browser from inserting <div>
-
-    const sel = window.getSelection();
-    if (!sel.rangeCount) return;
-
-    const range = sel.getRangeAt(0);
-
-    // create a new paragraph
-    const p = document.createElement("p");
-    p.appendChild(document.createElement("br")); // empty line
-
-    // insert it after the current block
-    range.insertNode(p);
-
-    // move cursor inside the new paragraph
-    range.setStart(p, 0);
-    range.collapse(true);
-    sel.removeAllRanges();
-    sel.addRange(range);
-  }
-});
 
 
 function setEditorFocus() {

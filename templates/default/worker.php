@@ -4,31 +4,31 @@ include(__DIR__ . '/../template_content.php');
 include(__DIR__ . '/layout.php');
 
 $slug = $_GET['slug'] ?? '';
-$author = getAuthorBySlug($conn, $slug);
-if (!$author) {
-	echo "⚠ Author not found.";
+$worker = getWorkerBySlug($conn, $slug);
+if (!$worker) {
+	echo "⚠ Worker not found.";
 	exit;
 }
-startLayout("Author: " . htmlspecialchars($author['name']));
+startLayout("Worker: " . htmlspecialchars($worker['name']));
 ?>
 <div id="content">
 	<div id="above-content">
 		<?php renderBlocks("above_content"); ?>
 	</div>
 	<?php
-	echo "<h1>" . getSetting('articles_by_author_label') . " " . htmlspecialchars($author['name']) . "</h1>";
-	if (!empty($author['description'])) {
-	  echo "<p><em>" . $author['description'] . "</em></p>";
+	echo "<h1>" . getSetting('articles_by_worker_label') . " " . htmlspecialchars($worker['name']) . "</h1>";
+	if (!empty($worker['description'])) {
+	  echo "<p><em>" . $worker['description'] . "</em></p>";
 	}
-	if ($author['banner_url']) { // from media_library table
-		echo "<div id='content-banner' style='background-image:url(" . $author['banner_url'] . ")'></div>";
-	} else if ($author['banner_image_url']) { // from articles table
-		echo "<div id='content-banner' style='background-image:url(" . $author['banner_image_url'] . ")'></div>";
+	if ($worker['banner_url']) { // from media_library table
+		echo "<div id='content-banner' style='background-image:url(" . $worker['banner_url'] . ")'></div>";
+	} else if ($worker['banner_image_url']) { // from articles table
+		echo "<div id='content-banner' style='background-image:url(" . $worker['banner_image_url'] . ")'></div>";
 	}
-
-
+	
+	
 	$page = intval($_GET['page'] ?? 1);
-	$data = getPaginatedArticlesForAuthor($conn, $author['key_authors'], $page, getSetting('snippets_per_page'));
+	$data = getPaginatedArticlesForWorker($conn, $worker['key_workers'], $page, getSetting('snippets_per_page'));
 	$records = $data['records'];
 	$pagination = $data['pagination'];
 

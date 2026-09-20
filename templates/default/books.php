@@ -26,7 +26,7 @@ startLayout(getSetting('books_label'));
 	}
 	echo $pagination['html'];
 	?>
-	<div id="below-content">
+	<div id="below-content" style="display:none">
 		<?php renderBlocks("below_content"); ?>
 	</div>
 </div>

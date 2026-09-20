@@ -1,4 +1,5 @@
 <?php
+
 include_once('../../dbconnection.php');
 include_once('../functions.php');
 include_once('../users/auth.php');
@@ -50,7 +51,11 @@ while ($row = $result->fetch_assoc()) {
 	$uploadedFonts .= "@font-face {font-family:'" . $row['font_label'] . "';font-style:normal;font-weight:400;src:url(/fonts/" . $row['file_name'] . ") format('truetype');}\n";
 }
 
-file_put_contents('../../templates/settings.css', $googleFonts . $uploadedFonts . "\n" . $generatedCSS);
+
+
+if (file_put_contents('../../templates/settings.css', $googleFonts . $uploadedFonts . "\n" . $generatedCSS)) {
+	//echo 'generated settings.css';
+}
 
 
 

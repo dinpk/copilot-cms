@@ -75,6 +75,13 @@ function getAuthorsForArticle($conn, $key) {
 	return $conn->query($sql);
 }
 
+function getWorkersForArticle($conn, $key) {
+	$sql = "SELECT name, url FROM workers
+			JOIN article_workers ON workers.key_workers = article_workers.key_workers
+			WHERE article_workers.key_articles = $key";
+	return $conn->query($sql);
+}
+
 function getContentTypesForArticle($conn, $key) {
 	$sql = "SELECT name, content_types.url FROM content_types
 			JOIN article_content_types ON content_types.key_content_types = article_content_types.key_content_types
@@ -123,16 +130,85 @@ function getAuthorBySlug($conn, $slug) {
 	return $conn->query($sql)->fetch_assoc();
 }
 
-function getArticlesForAuthor($conn, $key) {
-	$sql = "SELECT a.title, a.article_snippet, a.url, m.file_url_thumbnail AS banner 
-			FROM articles a 
-			JOIN article_authors aa ON a.key_articles = aa.key_articles 
-			LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
-			WHERE aa.key_authors = $key AND a.is_active = 1 
-			ORDER BY a.sort";
-	return $conn->query($sql);
+function getPaginatedArticlesForAuthor($conn, $authorKey, $page = 1, $limit = 10) {
+    $offset = ($page - 1) * $limit;
+
+    // Count total articles for this author
+    $countSql = "SELECT COUNT(*) AS total
+                 FROM articles a
+                 JOIN article_authors aa ON a.key_articles = aa.key_articles
+                 WHERE aa.key_authors = $authorKey AND a.is_active = 1";
+    $total = $conn->query($countSql)->fetch_assoc()['total'];
+
+    // Fetch paginated records
+    $sql = "SELECT a.title, a.article_snippet, a.url, m.file_url_thumbnail AS banner
+            FROM articles a
+            JOIN article_authors aa ON a.key_articles = aa.key_articles
+            LEFT JOIN media_library m ON a.key_media_banner = m.key_media
+            WHERE aa.key_authors = $authorKey AND a.is_active = 1
+            ORDER BY a.entry_date_time DESC
+            LIMIT $limit OFFSET $offset";
+    $records = $conn->query($sql);
+
+    return [
+        'records' => $records,
+        'pagination' => getPagination($total, $page, $limit, "?page=")
+    ];
 }
 
+
+/* --------------------- WORKERS ---------------------- */
+
+function getPaginatedWorkers($conn, $page = 1, $limit = 10) {
+	$offset = ($page - 1) * $limit;
+
+	$countSql = "SELECT COUNT(*) AS total FROM workers WHERE is_active = 1";
+	$total = $conn->query($countSql)->fetch_assoc()['total'];
+
+	$sql = "SELECT workers.*, m.file_url_thumbnail AS banner FROM workers 
+			LEFT JOIN media_library m ON workers.key_media_banner = m.key_media 
+			WHERE workers.is_active = 1 ORDER BY entry_date_time DESC LIMIT $limit OFFSET $offset";
+	$records = $conn->query($sql);
+
+	return [
+		'records' => $records,
+		'pagination' => getPagination($total, $page, $limit, "?page=")
+	];
+}
+
+function getWorkerBySlug($conn, $slug) {
+	$slug = $conn->real_escape_string($slug);
+	$sql = "SELECT workers.*, m.file_url AS banner_url FROM workers 
+			LEFT JOIN media_library m ON workers.key_media_banner = m.key_media 
+			WHERE workers.url = '$slug'";
+	return $conn->query($sql)->fetch_assoc();
+}
+
+function getPaginatedArticlesForWorker($conn, $workerKey, $page = 1, $limit = 10) {
+    $offset = ($page - 1) * $limit;
+
+    // Count total articles for this worker
+    $countSql = "SELECT COUNT(*) AS total
+                 FROM articles a
+                 JOIN article_workers aa ON a.key_articles = aa.key_articles
+                 WHERE aa.key_workers = $workerKey AND a.is_active = 1";
+    $total = $conn->query($countSql)->fetch_assoc()['total'];
+
+    // Fetch paginated records
+    $sql = "SELECT a.title, a.article_snippet, a.url, m.file_url_thumbnail AS banner
+            FROM articles a
+            JOIN article_workers aa ON a.key_articles = aa.key_articles
+            LEFT JOIN media_library m ON a.key_media_banner = m.key_media
+            WHERE aa.key_workers = $workerKey AND a.is_active = 1
+            ORDER BY a.entry_date_time DESC
+            LIMIT $limit OFFSET $offset";
+    $records = $conn->query($sql);
+
+    return [
+        'records' => $records,
+        'pagination' => getPagination($total, $page, $limit, "?page=")
+    ];
+}
 /* --------------------- BOOKS ---------------------- */
 
 function getPaginatedBooks($conn, $page = 1, $limit = 10) {
@@ -252,6 +328,7 @@ function getPaginatedArticlesForTag($conn, $key, $page = 1, $limit = 10) {
 	JOIN article_tags ac ON a.key_articles = ac.key_articles 
 	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
 	WHERE ac.key_tags = $key AND a.is_active = 1 
+	ORDER BY entry_date_time DESC 
 	LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);
 
@@ -298,6 +375,7 @@ function getPaginatedArticlesForCategory($conn, $key, $page = 1, $limit = 10) {
 	JOIN article_categories ac ON a.key_articles = ac.key_articles 
 	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
 	WHERE ac.key_categories = $key AND a.is_active = 1 
+	ORDER BY entry_date_time DESC 
 	LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);
 
@@ -346,7 +424,7 @@ function getPageBySlug($conn, $slug) {
 function getMenuItems() {
     global $conn;
     $items = [];
-    $res = $conn->query("SELECT key_main_menu, parent_id, title, url_link FROM main_menu WHERE is_active = 1 ORDER BY sort");
+    $res = $conn->query("SELECT key_main_menu, parent_id, title, url_link, css_class FROM main_menu WHERE is_active = 1 ORDER BY sort");
     while ($row = $res->fetch_assoc()) {
         $items[$row['parent_id']][] = $row;
     }
@@ -357,7 +435,7 @@ function renderMenuTree($items, $parent_id = 0) {
 
     echo "<ul>";
     foreach ($items[$parent_id] as $item) {
-        echo "<li><a href='" . htmlspecialchars($item['url_link']) . "'>" . htmlspecialchars($item['title']) . "</a>";
+        echo "<li><a href='" . htmlspecialchars($item['url_link']) . "' class='" . htmlspecialchars($item['css_class']) . "'>" . htmlspecialchars($item['title']) . "</a>";
         renderMenuTree($items, $item['key_main_menu']); // Recursion for children
         echo "</li>";
     }
@@ -400,6 +478,8 @@ function generateBreadcrumb($segments) {
         'page' => 'Page',
         'authors' => 'Authors',
         'author' => 'Author',
+        'workers' => 'Workers',
+        'worker' => 'Worker',
         'youtube-gallery' => 'YouTube Gallery',
         'photo-gallery' => 'Photo Gallery',
         'search' => 'Search Results'

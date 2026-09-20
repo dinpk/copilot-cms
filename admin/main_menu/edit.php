@@ -12,12 +12,13 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$parent_id = isset($_POST['parent_id']) ? intval($_POST['parent_id']) : 0;
 	$stmt = $conn->prepare('
 	UPDATE main_menu 
-	SET title = ?, url_link = ?, sort = ?, parent_id = ?, is_active = ? 
+	SET title = ?, url_link = ?, css_class = ?, sort = ?, parent_id = ?, is_active = ? 
 	WHERE key_main_menu = ?
 	');
-	$stmt->bind_param('ssiiii',
+	$stmt->bind_param('sssiiii',
 	$_POST['title'],
 	$_POST['url_link'],
+	$_POST['css_class'],
 	$_POST['sort'],
 	$parent_id,
 	$isActive,

@@ -79,6 +79,7 @@ $recentTags = getRecent("tags", "name", "entry_date_time", 5);
 		<a href="tags/list.php"><img src="assets/images/icon-categories.png" class="sidebar-icon"> Tags</a>
 		<a href="pages/list.php"><img src="assets/images/icon-pages.png" class="sidebar-icon"> Pages</a>
 		<a href="authors/list.php"><img src="assets/images/icon-authors.png" class="sidebar-icon"> Authors</a>
+		<a href="workers/list.php"><img src="assets/images/icon-workers.png" class="sidebar-icon"> Workers</a>
 		<a href="books/list.php"><img src="assets/images/icon-books.png" class="sidebar-icon"> Books</a>
 		<a href="photo_gallery/list.php"><img src="assets/images/icon-photo-gallery.png" class="sidebar-icon"> Photo Gallery</a>
 		<a href="youtube_gallery/list.php"><img src="assets/images/icon-youtube-gallery.png" class="sidebar-icon"> YouTube Gallery</a>

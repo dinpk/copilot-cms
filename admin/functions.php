@@ -31,6 +31,7 @@ function isUrlTaken($slug, $excludeTable = '', $excludeKey = 0) {
 	'books' => 'key_books',
 	'products' => 'key_product',
 	'authors' => 'key_authors',
+	'workers' => 'key_workers',
 	'photo_gallery' => 'key_photo_gallery',
 	'youtube_gallery' => 'key_youtube_gallery',
 	'book_categories' => 'key_book_categories',
@@ -49,6 +50,7 @@ function isUrlTaken($slug, $excludeTable = '', $excludeKey = 0) {
 	  $query .= " AND `$keyField` != " . intval($excludeKey);
 	}
 
+	
 	$result = $conn->query($query);
 	if ($result) {
 	  $row = $result->fetch_assoc();

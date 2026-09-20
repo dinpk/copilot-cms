@@ -10,12 +10,13 @@ if ('POST' === $_SERVER['REQUEST_METHOD']) {
 	$parent_id = isset($_POST['parent_id']) ? intval($_POST['parent_id']) : 0;
 	$isActive = isset($_POST['is_active']) ? '1' : '0';
 	$stmt = $conn->prepare('
-	INSERT INTO main_menu (title, url_link, sort, parent_id, is_active) 
-	VALUES (?, ?, ?, ?, ?)
+	INSERT INTO main_menu (title, url_link, css_class, sort, parent_id, is_active) 
+	VALUES (?, ?, ?, ?, ?, ?)
 	');
-	$stmt->bind_param('ssiii',
+	$stmt->bind_param('sssiii',
 	$_POST['title'],
 	$_POST['url_link'],
+	$_POST['css_class'],
 	$_POST['sort'],
 	$parent_id,
 	$isActive

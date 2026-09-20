@@ -22,7 +22,7 @@ startLayout(getSetting('content_types_label'));
 	<hr>";
 	?>
 	</article>
-	<div id="below-content">
+	<div id="below-content" style="display:none">
 		<?php renderBlocks("below_content"); ?>
 	</div>
 </div>

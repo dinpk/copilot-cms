@@ -1,16 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto Nastaliq Urdu:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family= Gulzar:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family= Noto Kufi Arabic:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family= Noto Naskh Arabic:wght@400&display=swap');
-@font-face {font-family:'Asmaak';font-style:normal;font-weight:400;src:url(/fonts/Asmaak_1770460266.ttf) format('truetype');}
+@import url('https://fonts.googleapis.com/css2?family=Noto Kufi Arabic:wght@400&display=swap');
 
 :root {
+	--template-default-color:#0055aa;
 	--template-text-color:black;
 	--template-background-color:#FFF;
-	--items-brand-color:SeaGreen;
-	--sidebar-background-color:#F4F4F4;
+	--items-brand-color:#049b5c;
+	--sidebar-background-color:#F6F6F6;
 	--site-direction:ltr;
-	--google-fonts:Noto Nastaliq Urdu, Gulzar, Noto Kufi Arabic, Noto Naskh Arabic;
+	--google-fonts:Noto Kufi Arabic;
 	--template-max-width:1300px;
 	--main-menu-font:Arial;
 	--breadcrumb-font:Arial;
@@ -19,7 +16,7 @@
 	--footer-font:Arial;
 	--template-font-size:15px;
 	--content-banner-height:20vh;
-	--css-version:1;
+	--css-version:43;
 	--template-font-rtl:Noto Kufi Arabic;
 	--template-font-ltr:calibri;
 	--template-font-family:calibri;
@@ -30,7 +27,4 @@
 	
 }
 
-.eng-references {
-   font-family:times new roman;
-   font-size:90%;
-}
+

@@ -1,4 +1,4 @@
-<div class="articles-featured" style="display:flex;overflow:hidden;white-space:nowrap;height:400px;<?= $css ?>">
+<div class="articles-featured" style="display:flex;overflow:hidden;white-space:nowrap;height:30vh;<?= $css ?>">
 
     <?php
     $sql = "SELECT a.*, m.file_url AS banner

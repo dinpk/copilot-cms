@@ -282,7 +282,7 @@ $message = '';
 			}
 			$settings_row = $conn->query("SELECT custom_css FROM settings WHERE key_settings = 1")->fetch_assoc();
 			$custom_css = $settings_row["custom_css"];
-
+			
 		?>
 		<legend>Custom CSS</legend>	
 			<form method="post">
@@ -293,6 +293,7 @@ $message = '';
 	
 	
 <?php 
+
 
 endLayout(); 
 

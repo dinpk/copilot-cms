@@ -7,7 +7,7 @@ $q = $_GET['q'] ?? '';
 $q = $conn->real_escape_string(trim($q));
 
 $page = max(1, intval($_GET['page'] ?? 1));
-$limit = 5;
+$limit = getSetting('search_results_per_page');
 $offset = ($page - 1) * $limit;
 
 startLayout(getSetting('search_label') . ": " . htmlspecialchars($q));
@@ -28,8 +28,7 @@ startLayout(getSetting('search_label') . ": " . htmlspecialchars($q));
 	while ($a = $res->fetch_assoc()) {
 		echo "<div>
 			<h3><a href='/article/{$a['url']}'>{$a['title']}</a></h3>
-			<p>{$a['article_snippet']}</p>
-			<a href='/article/{$a['url']}'>" . getSetting('readmore_label') . "</a>
+			<p>{$a['article_snippet']} <a href='/article/{$a['url']}'>" . getSetting('readmore_label') . "</a></p>
 			</div>";
 	}
 	echo "</div>";

@@ -92,12 +92,14 @@ while ($g = $groupResult->fetch_assoc()) {
 		<label>Group</label><br>
 		<select name="setting_group" id="setting_group">
 			<option value="php_template">PHP Template</option>
+			<option value="template_labels">Template Labels</option>
 			<option value="css_template">CSS Template</option>
 			<option value="css_fonts">CSS Fonts</option>
 			<option value="css_colors">CSS Colors</option>
 			<option value="media_library">Media Library</option>
 			<option value="general">General</option>
 			<option value="cache">Cache</option>
+			<option value="search">Search</option>
 		</select><br>
 
 		<input type="submit" value="Save">

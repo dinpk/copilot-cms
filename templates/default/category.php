@@ -26,16 +26,19 @@ startLayout("Category: " . htmlspecialchars($category['name']));
 	$records = $data['records'];
 	$pagination = $data['pagination'];
 	while ($record = $records->fetch_assoc()) {
-	  echo "<div class='article-card'>
-			  <img src='{$record['banner']}' width='300'>
-			  <h2>{$record['title']}</h2>
-			  <p>{$record['article_snippet']}</p>
-			  <a href='/article/{$record['url']}'>" . getSetting('readmore_label') . "</a>
+		$banner_url = empty($record['banner_image_url']) ? $record['banner'] : $record['banner_image_url'];
+		$article_snippet = (empty($record['article_snippet']) ? firstWords($record['article_content'], getSetting('snippet_words')) : firstWords($record['article_snippet'], getSetting('snippet_words')));
+		echo "<div class='snippet-card'>
+  			  <div><a href='/article/{$record['url']}'><img src='$banner_url' data-animate='fade'></a></div>
+			  <div class='snippet-content " . $record['content_direction'] . "'>
+			  <h2><a href='/article/{$record['url']}'>{$record['title']}</a></h2>
+			  <div>$article_snippet <a href='/article/{$record['url']}'>" . getSetting('readmore_label') . "</a></div>
+			  </div>
 			</div>";
 	}
 	echo $pagination['html'];
 	?>
-	<div id="below-content">
+	<div id="below-content" style="display:none">
 		<?php renderBlocks("below_content"); ?>
 	</div>
 </div>
