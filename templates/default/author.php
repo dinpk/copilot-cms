@@ -20,12 +20,12 @@ startLayout("Author: " . htmlspecialchars($author['name']));
 	if (!empty($author['description'])) {
 	  echo "<p><em>" . $author['description'] . "</em></p>";
 	}
-	if ($author['banner_url']) { // from media_library table
-		echo "<div id='content-banner' style='background-image:url(" . $author['banner_url'] . ")'></div>";
-	} else if ($author['banner_image_url']) { // from articles table
-		echo "<div id='content-banner' style='background-image:url(" . $author['banner_image_url'] . ")'></div>";
-	}
 
+	if ($author['banner_image_url']) { // full link url
+		echo "<div id='content-banner'><img src='" . $author['banner_image_url'] . "'></div>";
+	} else if ($author['banner_url']) { // media library file
+		echo "<div id='content-banner'><img src='" . $author['banner_url'] . "'></div>";
+	}
 
 	$page = intval($_GET['page'] ?? 1);
 	$data = getPaginatedArticlesForAuthor($conn, $author['key_authors'], $page, getSetting('snippets_per_page'));

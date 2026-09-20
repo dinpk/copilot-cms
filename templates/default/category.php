@@ -16,11 +16,13 @@ startLayout("Category: " . htmlspecialchars($category['name']));
 	</div>
 	<?php
 	echo "<h1>Category: " . htmlspecialchars($category['name']) . "</h1>";
-	if ($category['banner_image_url']) {
-		echo "<div id='content-banner' style='background-image:url(" . $category['banner_image_url'] . ")'></div>";
-	} else if ($category['banner_url']) {
-		echo "<div id='content-banner' style='background-image:url(" . $category['banner_url'] . ")'></div>";
+
+	if ($category['banner_image_url']) { // full link url
+		echo "<div id='content-banner'><img src='" . $category['banner_image_url'] . "'></div>";
+	} else if ($category['banner_url']) { // media library file
+		echo "<div id='content-banner'><img src='" . $category['banner_url'] . "'></div>";
 	}
+
 	$page = intval($_GET['page'] ?? 1);
 	$data = getPaginatedArticlesForCategory($conn, $category['key_categories'], $page, getSetting('snippets_per_page'));
 	$records = $data['records'];

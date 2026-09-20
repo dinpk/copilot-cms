@@ -19,12 +19,13 @@ startLayout(htmlspecialchars($page['title']));
 	<article>
 	<?php
 	echo "<h1>" . htmlspecialchars($page['title']) . "</h1>";
-	if (!empty($page['title_sub'])) echo "<h3>" . htmlspecialchars($page['title_sub']) . "</h3>";
-	if ($page['banner_image_url']) {
-		echo "<div id='content-banner' style='background-image:url(" . $page['banner_image_url'] . ")'></div>";
-	} else if ($page['banner_url']) {
-		echo "<div id='content-banner' style='background-image:url(" . $page['banner_url'] . ")'></div>";
+
+	if ($page['banner_image_url']) { // full link url
+		echo "<div id='content-banner'><img src='" . $page['banner_image_url'] . "'></div>";
+	} else if ($page['banner_url']) { // media library file
+		echo "<div id='content-banner'><img src='" . $page['banner_url'] . "'></div>";
 	}
+
 	echo "<div>" . $page['page_content'] . "</div>";
 	?>
 	</article>

@@ -13,11 +13,13 @@ startLayout("Tag: " . htmlspecialchars($tag['name']));
 <div id="content">
 	<?php
 	echo "<h1>Tag: " . htmlspecialchars($tag['name']) . "</h1>";
-	if ($tag['banner_image_url']) {
-		echo "<div id='content-banner' style='background-image:url(" . $tag['banner_image_url'] . ")'></div>";
-	} else if ($tag['banner_url']) {
-		echo "<div id='content-banner' style='background-image:url(" . $tag['banner_url'] . ")'></div>";
+
+	if ($tag['banner_image_url']) { // full link url
+		echo "<div id='content-banner'><img src='" . $tag['banner_image_url'] . "'></div>";
+	} else if ($tag['banner_url']) { // media library file
+		echo "<div id='content-banner'><img src='" . $tag['banner_url'] . "'></div>";
 	}
+
 	$page = intval($_GET['page'] ?? 1);
 	$data = getPaginatedArticlesForTag($conn, $tag['key_tags'], $page, getSetting('snippets_per_page'));
 	$records = $data['records'];

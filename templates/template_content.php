@@ -408,6 +408,12 @@ function getPaginatedPages($conn, $page = 1, $limit = 10) {
 	];
 }
 
+
+	$sql = "SELECT workers.*, m.file_url AS banner_url FROM workers 
+			LEFT JOIN media_library m ON workers.key_media_banner = m.key_media 
+			WHERE workers.url = '$slug'";
+
+
 function getPageBySlug($conn, $slug) {
 	$slug = $conn->real_escape_string($slug);
 	$sql = "SELECT p.*, m.file_url AS banner_url 

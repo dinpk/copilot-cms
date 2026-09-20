@@ -1,0 +1,49 @@
+
+
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Home</title>
+			<meta charset='utf-8'>
+			<meta name='viewport' content='width=device-width, initial-scale=1'>
+			<link rel='stylesheet' href='/templates/default/style.css?version=43'>
+			<link rel='stylesheet' href='/templates/settings.css?version=43'>
+			<link rel='stylesheet' href='/templates/carousel.css'>
+        </head>
+	<body><div id='above-header'></div><header data-animate='fade'><div id='site-logo'><a href='/home'><img src='/templates/default/images/copilogcms.png'></a></div><button class='menu-toggle' onclick="document.querySelector('.main-menu').classList.toggle('open')">☰ Menu</button><nav class='main-menu'><ul><li><a href='https://copilotcms.org' class=''>Home</a></li></ul></nav></header><div id='below_header'></div><main><div id="content">
+	<div id="above-content">
+			</div>
+	<div class='snippet-card'>
+  			  <div><a href='/article/an-introduction-to-javascript'><img src='' data-animate='fade'></a></div>
+			  <div class='snippet-content ltr'>
+			  <h2><a href='/article/an-introduction-to-javascript'>An Introduction to Javascript</a></h2>
+			  <div>    
+      JavaScript is one of the most important and widely used programming
+      languages in the world. Originally created to make web pages interactive,
+      JavaScript has evolved into a powerful, versatile language used for
+      websites, web applications, servers, mobile applications, desktop
+      software, games, and even artificial intelligence tools.
+    
+
+ …<br><a class='full-content-link' href='/article/an-introduction-to-javascript'>Read more</a></div>
+			  </div>
+			</div><div id='pager'>Page 1 of 1 </div>	<div id="below-content" style="display:none">
+			</div>
+</div>
+<div id="sidebar-left">
+	<div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Search</h2><div class='block-content'></div>
+<div class="block" style="">
+	<form method="get" action="/search" class="search-form">
+		<input type="text" name="q"> &nbsp; 
+		<input type="submit" value="Go">
+	</form>
+</div></div></div>
+<div id="sidebar-right">
+	<div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Content Types</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'></ul><p><a href='/content-types'>More</a></p></div></div><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><h2>Categories</h2><div class='block-content'></div>
+<div class="block" style="">
+	<ul class='category-list'></ul><p><a href='/categories'>More</a></p></div></div></div>
+</main><div id='above-footer'></div><div id='footer'><div class='block  visible-on-large-desktop visible-on-desktop visible-on-tablet visible-on-mobile'><div class='block-content'>&copy; www.mywebsite.com</div></div></div><div id='below-footer'></div></body></html>
+	<script src='/templates/carousel.js'></script>
+	

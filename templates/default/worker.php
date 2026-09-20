@@ -20,11 +20,14 @@ startLayout("Worker: " . htmlspecialchars($worker['name']));
 	if (!empty($worker['description'])) {
 	  echo "<p><em>" . $worker['description'] . "</em></p>";
 	}
-	if ($worker['banner_url']) { // from media_library table
-		echo "<div id='content-banner' style='background-image:url(" . $worker['banner_url'] . ")'></div>";
-	} else if ($worker['banner_image_url']) { // from articles table
-		echo "<div id='content-banner' style='background-image:url(" . $worker['banner_image_url'] . ")'></div>";
+
+	// banner image from media_library table
+	if ($worker['banner_image_url']) { // full link url
+		echo "<div id='content-banner'><img src='" . $worker['banner_image_url'] . "'></div>";
+	} else if ($worker['banner_url']) { // media library file
+		echo "<div id='content-banner'><img src='" . $worker['banner_url'] . "'></div>";
 	}
+
 	
 	
 	$page = intval($_GET['page'] ?? 1);

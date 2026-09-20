@@ -16,11 +16,13 @@ startLayout("Content: " . htmlspecialchars($content_type['name']));
 	</div>
 	<?php
 	echo "<h1>" . htmlspecialchars($content_type['name']) . "</h1>";
-	if ($content_type['banner_image_url']) {
-		echo "<div id='content-banner' style='background-image:url(" . $content_type['banner_image_url'] . ")'></div>";
-	} else if ($content_type['banner_url']) {
-		echo "<div id='content-banner' style='background-image:url(" . $content_type['banner_url'] . ")'></div>";
+
+	if ($content_type['banner_image_url']) { // full link url
+		echo "<div id='content-banner'><img src='" . $content_type['banner_image_url'] . "'></div>";
+	} else if ($content_type['banner_url']) { // media library file
+		echo "<div id='content-banner'><img src='" . $content_type['banner_url'] . "'></div>";
 	}
+
 	$page = intval($_GET['page'] ?? 1);
 	$data = getPaginatedArticlesForContentType($conn, $content_type['key_content_types'], $page, getSetting('snippets_per_page'));
 	$records = $data['records'];

@@ -17,11 +17,13 @@ startLayout("Book: " . htmlspecialchars($book['title']));
 	</div>
 	<?php
 	echo "<h1>Book:" . htmlspecialchars($book['title']) . "<div>" . htmlspecialchars($book['subtitle']) . "</div></h1>";
-	if ($book['banner_image_url']) {
-		echo "<div id='content-banner' style='background-image:url(" . $book['banner_image_url'] . ")'></div>";
-	} else if ($book['banner_url']) {
-		echo "<div id='content-banner' style='background-image:url(" . $book['banner_url'] . ")'></div>";
+
+	if ($book['banner_image_url']) { // full link url
+		echo "<div id='content-banner'><img src='" . $book['banner_image_url'] . "'></div>";
+	} else if ($book['banner_url']) { // media library file
+		echo "<div id='content-banner'><img src='" . $book['banner_url'] . "'></div>";
 	}
+
 	if (!empty($book['author_name'])) {
 		echo "<div><b>Author:</b> " . htmlspecialchars($book['author_name']) .  "</div>";
 	}
