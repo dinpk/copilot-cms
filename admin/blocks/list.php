@@ -8,10 +8,15 @@ $regionOptions = [
 	"above_header"   => "Above Header",
 	"header"         => "Header",
 	"below_header"   => "Below Header",
-	"sidebar_right"  => "Sidebar Right",
 	"above_content"  => "Above Content",
 	"below_content"  => "Below Content",
+	"sidebar_right"  => "Sidebar Right",
 	"sidebar_left"   => "Sidebar Left",
+	"sidebar_pages"   => "Sidebar Pages",
+	"sidebar_books"   => "Sidebar Books",
+	"sidebar_photos"   => "Sidebar Photos",
+	"sidebar_videos"   => "Sidebar Videos",
+	"sidebar_search"   => "Sidebar Search",
 	"above_footer"   => "Above Footer",
 	"footer"         => "Footer",
 	"below_footer"   => "Below Footer"
@@ -152,8 +157,12 @@ $regionOptions = [
 				?>
 			</select> <label>Module File</label><br>
 
+			<br>
+			
 			<input type="number" name="number_of_records" id="number_of_records" value="5" min="0" max="1000"> <label>Number of Records</label><br>
 
+			<br>
+			
 			<?php
 			// Photo galleries available for blocks
 			$galleryQuery = "SELECT key_photo_gallery, title FROM photo_gallery WHERE is_active = 1 AND available_for_blocks = 1 ORDER BY entry_date_time DESC";
@@ -169,6 +178,8 @@ $regionOptions = [
 				<?php endwhile; ?>
 			</select> <label>Photo Gallery</label><br>
 
+			<br>
+			
 			<?php
 			$attachQuery = "SELECT key_content_types, name FROM content_types WHERE is_active = 1 ORDER BY name";
 			$attachResult = mysqli_query($conn, $attachQuery);
@@ -183,6 +194,8 @@ $regionOptions = [
 				<?php endwhile; ?>
 			</select> <label>Content Type</label><br>
 
+			<br>
+			
 			<?php
 			$attachQuery = "SELECT key_categories, name FROM categories WHERE is_active = 1 ORDER BY name";
 			$attachResult = mysqli_query($conn, $attachQuery);
@@ -197,6 +210,8 @@ $regionOptions = [
 				<?php endwhile; ?>
 			</select> <label>Category</label><br>
 
+			<br>
+			
 			<?php
 			$attachQuery = "SELECT key_tags, name FROM tags WHERE is_active = 1 ORDER BY name";
 			$attachResult = mysqli_query($conn, $attachQuery);

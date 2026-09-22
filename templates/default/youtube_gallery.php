@@ -92,7 +92,9 @@ startLayout(getSetting('youtube_gallery_label'));
 	}
 	echo "</div>";
 	?>	
-
+</div>
+<div id="sidebar-right">
+	<?php renderBlocks("sidebar_videos"); ?>
 </div>
 
 

@@ -52,7 +52,7 @@ startLayout(getSetting('search_label') . ": " . htmlspecialchars($q));
 	</div>
 </div>
 <div id="sidebar-right">
-	<?php renderBlocks("sidebar_right"); ?>
+	<?php renderBlocks("sidebar_search"); ?>
 </div>
 <?php
 endLayout();

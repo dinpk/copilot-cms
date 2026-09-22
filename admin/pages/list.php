@@ -68,7 +68,7 @@ include_once('../layout.php');
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
 		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_pages').value)">Select Banner Image from Media Library</button><br>
-		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
+		<input type="number" name="sort" id="sort" value="0" min="-100" max="2000"> <label>Sort</label><br>
 		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		<input type="submit" value="Save">
 	</form>

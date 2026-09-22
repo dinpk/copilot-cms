@@ -89,6 +89,9 @@ startLayout(getSetting('photo_gallery_label'));
 	?>
 
 </div>
+<div id="sidebar-right">
+	<?php renderBlocks("sidebar_photos"); ?>
+</div>
 
 
 

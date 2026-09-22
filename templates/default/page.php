@@ -34,6 +34,6 @@ startLayout(htmlspecialchars($page['title']));
 	</div>
 </div>
 <div id="sidebar-right">
-	<?php renderBlocks("sidebar_right"); ?>
+	<?php renderBlocks("sidebar_pages"); ?>
 </div>
 <?php endLayout(); ?>

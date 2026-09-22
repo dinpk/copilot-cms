@@ -31,6 +31,6 @@ startLayout(getSetting('books_label'));
 	</div>
 </div>
 <div id="sidebar-right">
-	<?php renderBlocks("sidebar_right"); ?>
+	<?php renderBlocks("sidebar_books"); ?>
 </div>
 <?php endLayout();?>

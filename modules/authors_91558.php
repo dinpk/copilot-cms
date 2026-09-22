@@ -3,7 +3,7 @@
 	<?php
 	$cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
-	$sql = "SELECT key_authors, name, url FROM authors ORDER BY RAND() LIMIT $number_of_records";
+	$sql = "SELECT key_authors, name, url FROM authors WHERE is_active = 1 ORDER BY name LIMIT $number_of_records";
 	$authors = $conn->query($sql);
 	echo "<ul class='category-list'>";
 	while ($c = $authors->fetch_assoc()) {

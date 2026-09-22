@@ -6,13 +6,13 @@
 			LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
 			WHERE a.is_active = 1 AND key_media_banner != 0 
 			ORDER BY RAND()  
-			LIMIT $number_of_records";
+			LIMIT 1";
 	$articles = $conn->query($sql);
 	while ($record = $articles->fetch_assoc()) {
 		$banner_url = empty($record['banner_image_url']) ? $record['banner'] : $record['banner_image_url'];
 		echo "<div style='margin-bottom:10px;'>
 				<a href='/article/{$record['url']}'>
-				<div style='line-height:1;'><img src='$banner_url' data-animate='fade' style='width:100%'></div>
+				<div style='line-height:1'><img src='$banner_url' data-animate='fade' style='width:100%'></div>
 				<div style='background:#FFF;padding:3px;'>{$record['title']}</div>
 				</a>
 			</div>";

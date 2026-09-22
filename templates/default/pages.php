@@ -18,7 +18,7 @@ include(__DIR__ . '/layout.php');
 		echo "<div class='snippet-card'>
 				<div><img src='{$record['banner']}' width='300'></div>
 				<div class='snippet-content'>
-					<h2>{$record['title']}</h2>
+					<h2><a href='/page/{$record['url']}'>{$record['title']}</a></h2>
 					<p>" . firstWords($record['page_content'], getSetting('snippet_words')) . "…" . "</p>
 					<a href='/page/{$record['url']}'>" . getSetting('readmore_label') . "</a>
 				</div>
@@ -31,6 +31,6 @@ include(__DIR__ . '/layout.php');
 	</div>
 </div>
 <div id="sidebar-right">
-	<?php renderBlocks("sidebar_right"); ?>
+	<?php renderBlocks("sidebar_pages"); ?>
 </div>
 <?php endLayout(); ?>

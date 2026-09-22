@@ -419,7 +419,9 @@ function getPageBySlug($conn, $slug) {
 	$sql = "SELECT p.*, m.file_url AS banner_url 
 			FROM pages p 
 			LEFT JOIN media_library m ON p.key_media_banner = m.key_media 
-			WHERE p.url = '$slug' AND p.is_active = 1";
+			WHERE p.url = '$slug' AND p.is_active = 1
+			ORDER BY sort
+			";
 	return $conn->query($sql)->fetch_assoc();
 }
 
