@@ -42,7 +42,7 @@ include_once('../layout.php');
 	while ($row = $result->fetch_assoc()) {
 	  echo "<tr>
 			<td>{$row['name']}</td>
-			<td>{$row['url']}</td>
+			<td>content-type/{$row['url']}</td>
 			<td>{$row['sort']}</td>
 			<td>{$row['is_active']}</td>
 			<td class='record-action-links'>

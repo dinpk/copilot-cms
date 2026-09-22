@@ -8,6 +8,7 @@ if ($_SESSION["role"] != "admin") {
 }
 if (isset($_GET['id'])) {
 	$id = intval($_GET['id']);
+	$conn->query("DELETE FROM photo_gallery_images WHERE key_photo_gallery=$id");
 	$conn->query("DELETE FROM photo_gallery WHERE key_photo_gallery=$id");
 }
 header("Location: " .  $_SERVER['HTTP_REFERER']);

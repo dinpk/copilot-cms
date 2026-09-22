@@ -81,33 +81,40 @@ function sortLink($label, $column, $currentSort, $currentDir) {
 
 
 function resizeImage($sourcePath, $targetPath, $maxWidth, $maxHeight) {
-  list($width, $height, $type) = getimagesize($sourcePath);
+	list($width, $height, $type) = getimagesize($sourcePath);
 
-  // Skip if already within limits
-  if ($width <= $maxWidth && $height <= $maxHeight) {
+	// Skip if already within limits
+	if ($width <= $maxWidth && $height <= $maxHeight) {
 	return copy($sourcePath, $targetPath); // Just duplicate
-  }
+	}
 
-  $src = imagecreatefromstring(file_get_contents($sourcePath));
-  if (!$src) return false;
+	$src = imagecreatefromstring(file_get_contents($sourcePath));
+	if (!$src) return false;
 
-  $ratio = min($maxWidth / $width, $maxHeight / $height);
-  $newWidth = intval($width * $ratio);
-  $newHeight = intval($height * $ratio);
+	$ratio = min($maxWidth / $width, $maxHeight / $height);
+	$newWidth = intval($width * $ratio);
+	$newHeight = intval($height * $ratio);
 
-  $dst = imagecreatetruecolor($newWidth, $newHeight);
-  imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
+	$dst = imagecreatetruecolor($newWidth, $newHeight);
+	imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
-  $success = false;
-  switch ($type) {
-	case IMAGETYPE_JPEG: $success = imagejpeg($dst, $targetPath, 90); break;
-	case IMAGETYPE_PNG: $success = imagepng($dst, $targetPath); break;
-	case IMAGETYPE_WEBP: $success = imagewebp($dst, $targetPath); break;
-  }
+	$success = false;
+	switch ($type) {
+	  case IMAGETYPE_JPEG:
+		$success = imagejpeg($dst, $targetPath, 85); // lower quality for smaller size
+		break;
+	  case IMAGETYPE_PNG:
+		$success = imagepng($dst, $targetPath, 7); // compression level 0–9
+		break;
+	  case IMAGETYPE_WEBP:
+		$success = imagewebp($dst, $targetPath, 80);
+		break;
+	}
 
-  imagedestroy($src);
-  imagedestroy($dst);
-  return $success;
+
+	imagedestroy($src);
+	imagedestroy($dst);
+	return $success;
 }
 
 

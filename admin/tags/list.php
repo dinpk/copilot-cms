@@ -43,7 +43,7 @@ include_once('../layout.php');
 	  echo "<tr>
 			<td>{$row['name']}</td>
 			<td>{$row['description']}</td>
-			<td>{$row['url']}</td>
+			<td>tag/{$row['url']}</td>
 			<td>{$row['is_active']}</td>
 			<td class='record-action-links'>
 				<a href='#' onclick='editItem({$row['key_tags']}, \"get_tag.php\", [\"name\",\"description\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"is_active\"]); return false;'>Edit</a> 

@@ -126,7 +126,7 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 					if (el.type === 'checkbox') {
 						el.checked = data[field] == '1';
 					} else {
-						el.value = data[field] || '0';
+						el.value = data[field];
 					}
 				});
 				document.getElementById('photo-gallery-image-modal').style.display = 'block';

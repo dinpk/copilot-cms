@@ -58,7 +58,7 @@ include_once('../layout.php');
 	  echo "<tr>
 			<td>{$row['name']}</td>
 			<td>{$row['description']}</td>
-			<td>{$row['url']}</td>
+			<td>category/{$row['url']}</td>
 			<td>{$row['category_type']}</td>
 			<td>{$row['is_active']}</td>
 			<td class='record-action-links'>
