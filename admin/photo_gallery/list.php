@@ -5,7 +5,7 @@ include_once('../users/auth.php');
 include('../layout.php'); 
 ?>
 
-<?php startLayout("Photo Gallery"); ?>
+<?php startLayout("Photo Galleries"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add Photo Gallery</a></p>
 
@@ -44,6 +44,8 @@ include('../layout.php');
 	$sql .= " ORDER BY $sort $dir LIMIT $limit OFFSET $offset";
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
+		$media = $row['key_media_banner'] ? $conn->query("SELECT file_url_thumbnail FROM media_library WHERE key_media = {$row['key_media_banner']}")->fetch_assoc() : null;
+		if ($media) $media_image_url = $media['file_url_thumbnail'];
 		$keyPhotoGallery = $row["key_photo_gallery"];
 		$createdUpdated = $conn->query("SELECT p.key_photo_gallery, u1.username AS creator, u2.username AS updater 
 			FROM photo_gallery p 
@@ -51,12 +53,12 @@ include('../layout.php');
 			LEFT JOIN users u2 ON p.updated_by = u2.key_user 
 			WHERE key_photo_gallery = $keyPhotoGallery")->fetch_assoc();		
 	  echo "<tr>
-		<td><img src='{$row['image_url']}' width='120'></td>
+		<td><img src='$media_image_url' width='120'></td>
 		<td>{$row['title']}</td>
 		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
 		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo_gallery.php\", [\"title\",\"url\",\"image_url\",\"description\",\"navigation_type\",\"css\",\"available_for_blocks\",\"is_active\"])'>Edit</a> 
+		  <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo_gallery.php\", [\"title\",\"url\",\"image_url\",\"description\",\"navigation_type\",\"css\",\"available_for_blocks\",\"key_media_banner\",\"is_active\"])'>Edit</a> 
 		  <a href='photo_gallery_delete.php?id={$row['key_photo_gallery']}' onclick='return confirm(\"Delete this photo?\")'>Delete</a> 
 		  <a href='photo_gallery_images_list.php?gallery_id={$row['key_photo_gallery']}' target='_blank'>Assign Images</a>
 
@@ -91,11 +93,15 @@ include('../layout.php');
 		<input type="hidden" name="key_photo_gallery" id="key_photo_gallery">
 		<input type="text" name="title" id="title" onchange="setCleanURL(this.value)" required maxlength="255"> <label>Title</label><br>
 		<input type="text" name="url" id="url" required maxlength="200" pattern="^[a-z0-9\-\/]+$" title="Lowercase letters, numbers, and hyphens only"> <label>Slug</label><br>
+
+
 		<input type="text" name="image_url" id="image_url" maxlength="2000"> <label>Image URL</label><br>
 		<br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
-		<button type="button" onclick="openMediaModal()">Select Banner Image from Media Library</button><br><br>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_photo_gallery').value)">Select Banner Image from Media Library</button><br>
+		
+		
 		<textarea name="description" id="description" placeholder="Description"></textarea><br>
 		<select name="navigation_type" id="navigation_type">
 			<option value="arrows">Arrows</option>
@@ -114,7 +120,7 @@ include('../layout.php');
 			  echo "<h4>" . ucfirst(str_replace('_', ' ', $type)) . "</h4>";
 			  $catResult = $conn->query("SELECT key_categories, name FROM categories WHERE category_type = '$type' AND is_active = 1 ORDER BY sort");
 			  while ($cat = $catResult->fetch_assoc()) {
-				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label>";
+				echo "<label><input type='checkbox' name='categories[]' value='{$cat['key_categories']}'> {$cat['name']}</label> &nbsp; ";
 			  }
 			}
 			?>
@@ -124,20 +130,6 @@ include('../layout.php');
 	</form>
 </div>
 
-<div id="media-modal" class="modal">
-	<a href="#" onclick="closeMediaModal();" class="close-icon">✖</a>
-	<h3>Select Banner Image</h3>
-	<div id="media-grid">
-		<?php
-	$mediaRes = $conn->query("SELECT key_media, file_url, alt_text FROM media_library WHERE file_type='images' ORDER BY entry_date_time DESC");
-	while ($media = $mediaRes->fetch_assoc()) {
-	  echo "<div class='media-thumb' onclick='selectMedia({$media['key_media']}, \"{$media['file_url']}\", \"image_url\")'>
-			  <img src='{$media['file_url']}' width='100'><br>
-			  <small>" . htmlspecialchars($media['alt_text']) . "</small>
-			</div>";
-	}
-	?>
-	</div>
-</div>
+<div id="media-library-modal" class="modal modal-90"></div>
 
 <?php endLayout(); ?>

@@ -5,7 +5,7 @@ include_once('../users/auth.php');
 include_once('../layout.php'); 
 ?>
 
-<?php startLayout("Books List"); ?>
+<?php startLayout("Books"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Book</a></p>
 

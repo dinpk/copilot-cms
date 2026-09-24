@@ -5,7 +5,7 @@ include_once('../users/auth.php');
 include_once('../layout.php'); 
 ?>
 
-<?php startLayout("Categories List"); ?>
+<?php startLayout("Categories"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Category</a></p>
 

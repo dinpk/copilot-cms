@@ -116,38 +116,6 @@ $recentTags = getRecent("tags", "name", "entry_date_time", 5);
 				</ul>
 			</div>
 			<div class="recent-activity">
-				<h3>🕒 Recent Books</h3>
-				<ul>
-				<?php foreach ($recentBooks as $item): ?>
-					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-				<?php endforeach; ?>
-				</ul>
-			</div>
-			<div class="recent-activity">
-				<h3>🕒 Recent Pages</h3>
-				<ul>
-				<?php foreach ($recentPages as $item): ?>
-					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-				<?php endforeach; ?>
-				</ul>
-			</div>
-			<div class="recent-activity">
-				<h3>🕒 Recent Authors</h3>
-				<ul>
-				<?php foreach ($recentAuthors as $item): ?>
-					<li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-				<?php endforeach; ?>
-				</ul>
-			</div>
-			<div class="recent-activity" style="display:none;">
-				<h3>🕒 Recent Products</h3>
-				<ul>
-				<?php foreach ($recentProducts	as $item): ?>
-					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
-				<?php endforeach; ?>
-				</ul>
-			</div>
-			<div class="recent-activity">
 				<h3>🕒 Recent Content Types</h3>
 				<ul>
 				<?php foreach ($recentContentTypes as $item): ?>
@@ -168,6 +136,38 @@ $recentTags = getRecent("tags", "name", "entry_date_time", 5);
 				<ul>
 				<?php foreach ($recentTags as $item): ?>
 					<li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Pages</h3>
+				<ul>
+				<?php foreach ($recentPages as $item): ?>
+					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Authors</h3>
+				<ul>
+				<?php foreach ($recentAuthors as $item): ?>
+					<li><?= htmlspecialchars($item['name']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity">
+				<h3>🕒 Recent Books</h3>
+				<ul>
+				<?php foreach ($recentBooks as $item): ?>
+					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
+				<?php endforeach; ?>
+				</ul>
+			</div>
+			<div class="recent-activity" style="display:none;">
+				<h3>🕒 Recent Products</h3>
+				<ul>
+				<?php foreach ($recentProducts	as $item): ?>
+					<li><?= htmlspecialchars($item['title']) ?><br> <small><?= date_format(date_create($item["entry_date_time"]), "d M, Y - H:i a") ?></small></li>
 				<?php endforeach; ?>
 				</ul>
 			</div>

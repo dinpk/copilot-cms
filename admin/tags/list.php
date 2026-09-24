@@ -5,7 +5,7 @@ include_once('../users/auth.php');
 include_once('../layout.php'); 
 ?>
 
-<?php startLayout("Tags List"); ?>
+<?php startLayout("Tags"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Tag</a></p>
 

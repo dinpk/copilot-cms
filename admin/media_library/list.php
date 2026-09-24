@@ -54,7 +54,7 @@ include_once('../layout.php');
 	// Output rows
 	while ($row = $result->fetch_assoc()) {
 		echo "<tr>
-			<td><img src='" . ($row['file_url_thumbnail'] ?: $row['file_url']) . "' width='100'></td>
+			<td><img src='" . ($row['file_url_thumbnail'] ?: $row['file_url']) . "'  title='" . ($row['file_url_thumbnail'] ?: $row['file_url']) . "' width='100'></td>
 			<td>{$row['file_type']}</td>
 			<td>{$row['tags']}</td>
 			<td>{$row['alt_text']}</td>

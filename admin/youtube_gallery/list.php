@@ -5,7 +5,7 @@ include_once('../users/auth.php');
 include_once('../layout.php'); 
 ?>
 
-<?php startLayout("YouTube Gallery"); ?>
+<?php startLayout("YouTube Galleries"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Video</a></p>
 

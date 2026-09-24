@@ -5,7 +5,7 @@ include_once('../users/auth.php');
 include_once('../layout.php'); 
 ?>
 
-<?php startLayout("Pages List"); ?>
+<?php startLayout("Pages"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Page</a></p>
 
@@ -65,9 +65,11 @@ include_once('../layout.php');
 		<textarea name="page_content" id="page_content" placeholder="Content" title="Content"></textarea><br>
 		<input type="text" name="url" id="url" maxlength="200" pattern="^[a-z0-9\-\/]+$" title="Lowercase letters, numbers, hyphens, forward slashes"> <label>Slug</label><br>
 		<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"> <label>URL</label><br><br>
+
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
 		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_pages').value)">Select Banner Image from Media Library</button><br>
+
 		<input type="number" name="sort" id="sort" value="0" min="-100" max="2000"> <label>Sort</label><br>
 		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		<input type="submit" value="Save">

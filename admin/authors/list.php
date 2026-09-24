@@ -5,7 +5,7 @@ include_once('../users/auth.php');
 include_once('../layout.php'); 
 ?>
 
-<?php startLayout("Authors List"); ?>
+<?php startLayout("Authors"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Author</a></p>
 

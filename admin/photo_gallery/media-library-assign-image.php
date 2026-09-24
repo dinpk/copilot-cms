@@ -27,7 +27,7 @@ $total_pages = ceil($total / $limit);
 	</form>
 	<div style="display:flex;flex-wrap:wrap;gap:10px;">
 		<?php while ($media = $result->fetch_assoc()): ?>
-			<div style="width:120px;text-align:center;">
+			<div style="width:120px;text-align:center;" title="<?= $media['file_url_thumbnail'] ?>" >
 				<img src="<?= $media['file_url_thumbnail'] ?>" width="100" style="cursor:pointer;border:1px solid #ccc;" 
 						 onclick="selectMediaLibraryImage('<?= $media['key_media'] ?>','<?= $media['file_url_thumbnail'] ?>')">
 				<div style="font-size:12px;"><?= htmlspecialchars($media['alt_text']) ?></div>

@@ -5,7 +5,7 @@ include_once('../users/auth.php');
 include_once('../layout.php'); 
 ?>
 
-<?php startLayout("Settings List"); ?>
+<?php startLayout("Settings"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Setting</a> &nbsp;  📁 <a href="settings_misc.php">Misc Settings</a></p>
 

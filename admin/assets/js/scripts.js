@@ -558,6 +558,7 @@ document.addEventListener('submit', function(e) {
 function selectMediaLibraryImage(id, url) {
 	document.getElementById('key_media_banner').value = id;
 	document.getElementById('media-preview').innerHTML = "<img src='" + url + "' width='100'>";
+	if (document.getElementById('image_url')) document.getElementById('image_url').value = url;
 	document.getElementById('media-library-modal').style.display = 'none';
 }
 

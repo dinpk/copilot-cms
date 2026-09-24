@@ -52,16 +52,14 @@ startLayout(getSetting('photo_gallery_label'));
 	$res = $conn->query($sql);
 
 	echo "<div class='flex-wrap-center'>";
-	while ($a = $res->fetch_assoc()) {
-		echo '<div>';
-		$thumb = $a['image_url'];
-		$title = htmlspecialchars($a['title']);
-		$id = $a['key_photo_gallery'];
-		echo "<div class='album-card'>
-				<img src='$thumb' width='300' onclick=\"loadAlbum($id, '$title')\">
-				<h3>$title</h3>
-			</div>";
-		echo '</div>';
+	while ($row = $res->fetch_assoc()) {
+		$thumb = $row['image_url'];
+		$title = htmlspecialchars($row['title']);
+		$id = $row['key_photo_gallery'];
+		echo "<table class='album-card' onclick=\"loadAlbum($id, '$title')\" >
+				<tr><td><img src='$thumb'></td></tr>
+				<tr><td><h3>$title</h3></td></tr>
+			</table>";
 	}
 	echo "</div>";
 

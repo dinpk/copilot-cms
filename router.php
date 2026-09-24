@@ -64,11 +64,11 @@ switch ($segments[0]) {
 	case 'worker':
 	  include("templates/$template/worker.php");
 	  break;
-	case 'youtube-gallery':
-	  include("templates/$template/youtube_gallery.php");
+	case 'youtube-galleries':
+	  include("templates/$template/youtube_galleries.php");
 	  break;
-	case 'photo-gallery':
-	  include("templates/$template/photo_gallery.php");
+	case 'photo-galleries':
+	  include("templates/$template/photo_galleries.php");
 	  break;
 	case 'monthly':
 		include("templates/$template/monthly.php");

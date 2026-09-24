@@ -24,7 +24,7 @@ $regionOptions = [
 
 ?>
 
-<?php startLayout('Blocks List'); ?>
+<?php startLayout('Blocks'); ?>
 
 <a href="#" onclick="openModal()">➕ Add New Block</a><br><br>
 

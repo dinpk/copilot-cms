@@ -5,7 +5,7 @@ include_once('../users/auth.php');
 include_once('../layout.php'); 
 ?>
 
-<?php startLayout("Content Type List"); ?>
+<?php startLayout("Content Types"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Content Type</a></p>
 

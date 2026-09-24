@@ -57,15 +57,13 @@ startLayout(getSetting('youtube_gallery_label'));
 
 	echo "<div class='flex-wrap-center'>";
 	while ($v = $res->fetch_assoc()) {
-		echo '<div>';
 		$thumb = "https://img.youtube.com/vi/{$v['youtube_id']}/hqdefault.jpg";
 		$title = htmlspecialchars($v['title']);
 		$desc = htmlspecialchars($v['description']);
-		echo "<div class='video-card'>
-				<img src='$thumb' width='300' onclick=\"openModal('{$v['youtube_id']}', '$title', '$desc')\">
-				<h3>$title</h3>
-			</div>";
-		echo '</div>';
+		echo "<table class='album-card' onclick=\"openModal('{$v['youtube_id']}', '$title', '$desc')\">
+				<tr><td><img src='$thumb'></td></tr>
+				<tr><td><h3>$title</h3></td></tr>
+			</table>";
 	}
 	echo "</div>";
 	

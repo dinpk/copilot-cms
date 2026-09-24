@@ -5,7 +5,7 @@ include_once('../users/auth.php');
 include_once('../layout.php'); 
 ?>
 
-<?php startLayout("Workers List"); ?>
+<?php startLayout("Workers"); ?>
 
 <p><a href="#" onclick="openModal()">➕ Add New Worker</a></p>
 

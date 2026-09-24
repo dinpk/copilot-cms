@@ -32,7 +32,7 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 		<tr>
 			<td>
 				<?php if ($media): ?>
-				<img src="<?= $media['file_url_thumbnail'] ?>" width="100">
+				<img src="<?= $media['file_url_thumbnail'] ?>" title="<?= $media['file_url_thumbnail'] ?>"  width="100">
 				<?php else: ?>
 				<em>No image</em>
 				<?php endif; ?>
@@ -54,8 +54,12 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 	<a href="#" onclick="galleryImage_closeModal();" class="close-icon">✖</a>
 	<h3 id="photo-gallery-image-modal-title">Add Image</h3>
 	<form id="galleryImageForm" method="post" action="photo_gallery_image_add_edit.php">
+	
+	
 		<input type="hidden" name="key_image" id="photo_gallery_images_key_image">
 		<input type="hidden" name="key_photo_gallery" id="galleryImage_key_photo_gallery" value="<?= $key_photo_gallery ?>">
+		
+		
 		<input type="text" name="title" id="galleryImage_title"> <label>Title</label><br>
 		<textarea name="description" id="galleryImage_description" placeholder="Description" title="Description"></textarea><br>
 		<select name="text_position" id="galleryImage_text_position">
