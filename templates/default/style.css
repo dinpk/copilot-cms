@@ -8,7 +8,7 @@
 	 font-size: var(--template-font-size);
 	 color: var(--template-text-color);
 	 background: var(--template-background-color);
-	 max-width: var(--template-max-width);
+	 max-width: var(--body-max-width);
 	 margin: 0 auto;
 }
  a {
@@ -43,26 +43,12 @@
 	 border: 1px solid #ccc;
 	 padding: 0 5px 0 5px;
 }
-/* solving (main-menu li ul) issue */
+
  header {
-	 position: relative;
-	 z-index: 10;
+	position: relative;
+	z-index: 10;
 }
- #header_below {
-	 position: relative;
-	 z-index: 1;
-}
- #above-header {
-	 background: #f4f4f4;
-	 text-align: right;
-	 word-spacing: 0.3em;
-	 letter-spacing: 0.05em;
-	 font-size: 0.875em;
-}
- #above-header span {
-	 padding-right: 0.5em;
-}
- #site-logo {
+#site-logo {
 	 text-align: center;
 	 line-height: 0;
 	 padding: 0.2em 0 0.2em 0;
@@ -141,10 +127,17 @@
 	 line-height: 1.7;
 	 border-bottom: 0.1em solid var(--items-brand-color);
 }
+
+#above-main, #below-main {
+	max-width: var(--main-max-width);
+	margin:0 auto;
+}
  main {
-	 display: flex;
-	 gap: 1em;
-	 min-height: 80vh;
+	display: flex;
+	gap: 1em;
+	min-height: 80vh;
+	max-width: var(--main-max-width);
+	margin:0 auto;
 }
  main ul, main ol {
 	 margin-inline-start: 3.6em;
@@ -428,7 +421,20 @@
 	}
 }
 /* Responsive */
- @media (max-width: 768px) {
+ @media (max-width: 767px) {
+	/* a tab like ipad-mini has protrait with of 768, so snippets shouldn't collapse on it */
+	 .snippet-card {
+		 display:block;
+	}
+	 .snippet-card h2 {
+		margin: 0.8em 0 0.5em 0;
+	}
+	 .snippet-card img {
+		 width: 100%;
+	}
+}
+
+ @media (max-width: 1024px) {
 	 main {
 		 flex-direction: column;
 		 padding: 0;
@@ -463,40 +469,28 @@
 		 color: #fff;
 		 font-weight: bold;
 	}
-	 #sidebar {
-		 margin-top: 1.25em;
-	}
-	 .snippet-card {
-		 flex-direction: column;
-		 align-items: stretch;
-	}
-	 .snippet-card h2 {
-		margin: 0.8em 0 0.5em 0;
-	}
-	 .snippet-card img {
-		 width: 100%;
-	}
 }
+
 /* Block visibility */
  .visible-on-desktop, .visible-on-mobile, .visible-on-tablet, .visible-on-large-desktop, .visible-on-print {
 	 display: none;
 }
- @media (min-width: 1025px) {
+ @media (min-width: 1400px) {
 	 .visible-on-large-desktop {
 		 display: block;
 	}
 }
- @media (min-width: 768px) and (max-width: 1024px) {
-	 .visible-on-tablet {
-		 display: block;
-	}
-}
- @media (min-width: 481px) and (max-width: 767px) {
+@media (min-width: 1025px) and (max-width: 1399px) {
 	 .visible-on-desktop {
 		 display: block;
 	}
 }
- @media (min-width: 300px) and (max-width: 480px) {
+@media (min-width: 768px) and (max-width: 1024px) {
+	 .visible-on-tablet {
+		 display: block;
+	}
+}
+@media (min-width: 300px) and (max-width: 767px) {
 	 .visible-on-mobile {
 		 display: block;
 	}

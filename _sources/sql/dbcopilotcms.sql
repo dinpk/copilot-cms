@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 22, 2026 at 02:55 AM
+-- Generation Time: Oct 01, 2026 at 03:09 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -636,6 +636,8 @@ DROP TABLE IF EXISTS `settings`;
 CREATE TABLE IF NOT EXISTS `settings` (
   `key_settings` int(10) NOT NULL DEFAULT '0',
   `template_folder` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `home_page_type` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'articles',
+  `home_page_html` text COLLATE utf8_unicode_ci NOT NULL,
   `custom_css` text COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`key_settings`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -644,8 +646,8 @@ CREATE TABLE IF NOT EXISTS `settings` (
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`key_settings`, `template_folder`, `custom_css`) VALUES
-(1, 'default', '');
+INSERT INTO `settings` (`key_settings`, `template_folder`, `home_page_type`, `home_page_html`, `custom_css`) VALUES
+(1, 'default', 'articles', '<html>\r\n<head><title>Hello World</title></head>\r\n<body>\r\n<h1>Hello World!</h1>\r\n<h2>This is CopilotCMS.</h2>\r\n</body>\r\n</html>', '');
 
 -- --------------------------------------------------------
 
@@ -661,7 +663,7 @@ CREATE TABLE IF NOT EXISTS `settings_key_value` (
   `setting_group` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'general',
   `entry_date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_settings`)
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings_key_value`
@@ -696,7 +698,6 @@ INSERT INTO `settings_key_value` (`key_settings`, `setting_key`, `setting_value`
 (53, 'pager_prev_label', 'Prev', 'template_labels', '2025-11-06 19:53:02'),
 (54, 'readmore_label', 'Read more', 'template_labels', '2025-11-06 19:54:21'),
 (55, 'module_more_label', 'More', 'template_labels', '2025-11-07 16:38:31'),
-(56, 'template_max_width', '1300px', 'css_template', '2025-11-07 17:21:27'),
 (57, 'main_menu_font', 'Arial', 'css_fonts', '2025-11-07 18:40:16'),
 (58, 'breadcrumb_font', 'Arial', 'css_fonts', '2025-11-07 18:54:58'),
 (59, 'block_heading_font', 'Arial', 'css_fonts', '2025-11-07 20:10:46'),
@@ -733,7 +734,9 @@ INSERT INTO `settings_key_value` (`key_settings`, `setting_key`, `setting_value`
 (95, 'article_workers_label', 'Banner image', 'template_labels', '2026-09-11 16:18:06'),
 (96, 'articles_by_author_label', 'Author:', 'template_labels', '2026-09-18 05:52:26'),
 (97, 'articles_by_worker_label', 'Worker:', 'template_labels', '2026-09-18 05:53:00'),
-(98, 'search_results_per_page', '15', 'search', '2026-09-20 08:19:42');
+(98, 'search_results_per_page', '15', 'search', '2026-09-20 08:19:42'),
+(99, 'main_max_width', '1400px', 'css_template', '2026-10-01 20:09:12'),
+(100, 'body_max_width', '100vw', 'css_template', '2026-10-01 20:09:23');
 
 -- --------------------------------------------------------
 

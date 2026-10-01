@@ -28,7 +28,7 @@ function startLayout($title = "CopilotCMS") {
 	echo "</header>";
 
 	global $page_slug;
-	echo "<div id='below_header'>";
+	echo "<div id='below-header'>";
 	renderBlocks("below_header", $page_slug);
 	echo "</div>";
 
@@ -50,14 +50,23 @@ function startLayout($title = "CopilotCMS") {
 		echo "</div>";
 	}
 
+	echo "<div id='above-main'>";
+	renderBlocks("above_main", $page_slug);
+	echo "</div>";
 
 	echo "<main>";
 }
 
 
 function endLayout() {
+	
 	echo "</main>";
+	
 	global $page_slug;
+
+	echo "<div id='below-main'>";
+	renderBlocks("below_main", $page_slug);
+	echo "</div>";
 
 	echo "<div id='above-footer'>";
 		renderBlocks("above_footer", $page_slug);

@@ -14,7 +14,15 @@ $template = getSetting('template_folder', 'default');
 
 switch ($segments[0]) {
 	case 'home':
-		include("templates/$template/homepage.php");
+		if (getSetting('home_page_type') == "articles") {
+			include("templates/$template/homepage.php");
+		} else if (getSetting('home_page_type') == "custom") {
+			include("templates/home_page_html.php");
+		//} else if (getSetting('home_page_type') == "front") {
+			// front section
+		} else {
+			include("templates/$template/homepage.php");
+		}
 		break;
 	case 'articles':
 		include("templates/$template/articles.php");

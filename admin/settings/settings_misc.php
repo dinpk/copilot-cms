@@ -141,9 +141,7 @@ $message = '';
 	</fieldset>
 		
 	<br>
-		
-		
-		
+	<br>
 		
 		
 	<!-- ------------------------- TEMPLATE FOLDER -->
@@ -182,6 +180,53 @@ $message = '';
 	</fieldset>
 	
 	
+	<br>
+	<br>
+	
+		<!-- ------------------------- HOME PAGE TYPE -->
+		
+
+	<?php
+		if (isset($_POST['set_home_page_type'])) {
+			$home_page_type = $_POST['home_page_type'];
+			$home_page_html = $_POST['home_page_html'];
+			$sql = "UPDATE settings SET home_page_type = '$home_page_type', home_page_html = '$home_page_html' WHERE key_settings = 1";
+			$conn->query($sql);
+			file_put_contents('../../templates/home_page_html.php', $home_page_html);
+			echo "<div class='success-message'>Home Page is Set as: '$home_page_type'.</div>";
+		}
+		
+	?>
+	
+	<fieldset>
+		<legend>Home Page </legend>
+		<form method="post">
+			<?php
+				$homePageTypes = [
+					"articles"   => "Articles",
+					"front"         => "Front",
+					"custom"   => "Custom"
+				];			
+				$settings_row = $conn->query("SELECT home_page_type, home_page_html FROM settings WHERE key_settings = 1")->fetch_assoc();
+				$home_page_type = $settings_row["home_page_type"];
+				$home_page_html = $settings_row["home_page_html"];
+			?>
+			<label>Home Page Type</label><br>
+			<select name="home_page_type" id="home_page_type">
+				<?php foreach ($homePageTypes as $value => $label): ?>
+					<option value="<?= $value ?>" <?= ($home_page_type ?? '') === $value ? 'selected' : '' ?>>
+						<?= $label ?>
+					</option>
+				<?php endforeach; ?>
+			</select><br>
+			<label>Home Page HTML</label><br>
+			<textarea name="home_page_html"><?= $home_page_html ?></textarea>
+			<input name="set_home_page_type" type="submit" value="Save">
+		</form>
+	</fieldset>
+	
+		
+		
 		<!-- ------------------------- UPLOAD FONTS -->
 
 	<?php
@@ -230,7 +275,8 @@ $message = '';
 	?>
 
 	<br>
-	
+	<br>
+
 	<fieldset>
 
 		<legend>Upload Font</legend>	
@@ -267,6 +313,7 @@ $message = '';
 		</div>
 	</fieldset>
 	
+	<br>
 	<br>
 
 

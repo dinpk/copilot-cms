@@ -28,6 +28,7 @@ while ($row = $result->fetch_assoc()) {
 $result = $conn->query("SELECT * FROM settings WHERE key_settings = 1");
 if ($row = $result->fetch_assoc()) {
 	$settingsArray["template_folder"] = $row['template_folder'];
+	$settingsArray["home_page_type"] = $row['home_page_type'];
 	$customCSS = $row['custom_css'];
 }
 
