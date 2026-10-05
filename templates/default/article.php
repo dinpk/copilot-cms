@@ -11,8 +11,9 @@ if (!$article) {
 }
 startLayout(htmlspecialchars($article['title']));
 ?>
-
-
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
 <div id="content">
 
 	<div id="above-content">

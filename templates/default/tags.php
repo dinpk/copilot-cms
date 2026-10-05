@@ -5,7 +5,9 @@ include(__DIR__ . '/layout.php');
 
 startLayout(getSetting('tags_label')); 
 ?>
-
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
 <div id="content">
 	<div id="above-content">
 		<?php renderBlocks("above_content"); ?>

@@ -10,6 +10,9 @@ if (!$content_type) {
 }
 startLayout("Content: " . htmlspecialchars($content_type['name']));
 ?>
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
 <div id="content">
 	<div id="above-content">
 		<?php renderBlocks("above_content"); ?>

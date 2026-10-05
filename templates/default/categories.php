@@ -4,6 +4,9 @@ include(__DIR__ . '/../template_content.php');
 include(__DIR__ . '/layout.php');
 startLayout(getSetting('categories_label')); 
 ?>
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
 <div id="content">
 	<div id="above-content">
 		<?php renderBlocks("above_content"); ?>

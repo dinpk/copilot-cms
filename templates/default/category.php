@@ -10,6 +10,9 @@ if (!$category) {
 }
 startLayout("Category: " . htmlspecialchars($category['name']));
 ?>
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
 <div id="content">
 	<div id="above-content">
 		<?php renderBlocks("above_content"); ?>

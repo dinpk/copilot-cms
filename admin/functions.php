@@ -143,4 +143,10 @@ function titleCase($str) {
 	return ucwords(strtolower($str));
 }
 
+function updateCSSVersion() {
+	global $conn;
+	$sql = "	UPDATE settings_key_value  SET setting_value = setting_value + 1 WHERE setting_key = 'css_version'";
+	$conn->query($sql);
+}
+
 ?>

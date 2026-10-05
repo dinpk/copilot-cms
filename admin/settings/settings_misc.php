@@ -25,15 +25,11 @@ $message = '';
 		if (isset($_POST["home"])) {
 			$fileHash = md5("home");
 			$cacheFile = "$cacheFolder/$fileHash";
-			if (file_exists($cacheFile)){
-				unlink($cacheFile);
-				$message = "<div class='success-message'>Cache cleared successfully.</div>";
-			}
+			if (file_exists($cacheFile)) unlink($cacheFile);
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 			$cacheFile = "$cacheFolder/home";
-			if (file_exists($cacheFile)){
-				unlink($cacheFile);
-				$message = "<div class='success-message'>Cache cleared successfully.</div>";
-			}
+			if (file_exists($cacheFile))unlink($cacheFile);
+			$message = "<div class='success-message'>Cache cleared successfully.</div>";
 		}
 
 		if (isset($_POST["articles"])) {
@@ -114,6 +110,9 @@ $message = '';
 				$message = "<div class='failure-result'>Some error occured, could not clear cache</div>";
 			}
 		}
+		
+		
+		updateCSSVersion();
 		
 		echo $message;
 			
@@ -326,6 +325,7 @@ $message = '';
 				$sql = "UPDATE settings SET custom_css = '$custom_css' WHERE key_settings = 1";
 				$conn->query($sql);
 				echo "<div class='success-message'>Saved successfully.</div>";
+				updateCSSVersion();
 			}
 			$settings_row = $conn->query("SELECT custom_css FROM settings WHERE key_settings = 1")->fetch_assoc();
 			$custom_css = $settings_row["custom_css"];

@@ -10,6 +10,9 @@ if (!$tag) {
 }
 startLayout("Tag: " . htmlspecialchars($tag['name']));
 ?>
+<div id="sidebar-left">
+	<?php renderBlocks("sidebar_left"); ?>
+</div>
 <div id="content">
 	<?php
 	echo "<h1>Tag: " . htmlspecialchars($tag['name']) . "</h1>";
