@@ -64,7 +64,7 @@ startLayout("Contact Us");
 
 			} else {
 
-				$to = "info@copilotcms.org";
+				$to = getSetting('contact_form_receive_email');
 
 				$body =
 					"Name: {$name}\n" .

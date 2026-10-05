@@ -446,6 +446,8 @@ main ul, main ol {
 
 .contact-form {
     max-width: 700px;
+    direction: ltr;
+    margin: 0 auto 100px auto;
 }
 
 .contact-form input,
@@ -466,6 +468,7 @@ main ul, main ol {
     padding: 12px;
     margin-bottom: 15px;
     border-radius: 4px;
+    direction:ltr;
 }
 
 .error-message {
@@ -474,6 +477,7 @@ main ul, main ol {
     padding: 12px;
     margin-bottom: 15px;
     border-radius: 4px;
+    direction:ltr;
 }
 
 
