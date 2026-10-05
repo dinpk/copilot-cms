@@ -444,6 +444,39 @@ main ul, main ol {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }
 
+.contact-form {
+    max-width: 700px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.contact-form button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.error-message {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+
 [data-animate] {
 	opacity: 0;
 	transform: translateY(1.25em);

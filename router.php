@@ -84,6 +84,9 @@ switch ($segments[0]) {
 	case 'monthly-articles':
 		include("templates/$template/monthly-articles.php");
 		break;
+	case 'contact':
+		include("templates/$template/contact.php");
+		break;
 	case 'search':
 	  $_GET['q'] = $_GET['q'] ?? '';
 	  include("templates/$template/search.php");
