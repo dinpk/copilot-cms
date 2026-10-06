@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 01, 2026 at 03:09 PM
+-- Generation Time: Oct 06, 2026 at 09:06 AM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -647,7 +647,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`key_settings`, `template_folder`, `home_page_type`, `home_page_html`, `custom_css`) VALUES
-(1, 'default', 'articles', '<html>\r\n<head><title>Hello World</title></head>\r\n<body>\r\n<h1>Hello World!</h1>\r\n<h2>This is CopilotCMS.</h2>\r\n</body>\r\n</html>', '');
+(1, 'default', 'articles', '<html>\r\n<head><title>Hello World</title></head>\r\n<body>\r\n<h1>Hello World!</h1>\r\n<h2>This is CopilotCMS.</h2>\r\n</body>\r\n</html>', 'body {\r\n\r\n}');
 
 -- --------------------------------------------------------
 
@@ -663,7 +663,7 @@ CREATE TABLE IF NOT EXISTS `settings_key_value` (
   `setting_group` varchar(50) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'general',
   `entry_date_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`key_settings`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `settings_key_value`
@@ -717,7 +717,7 @@ INSERT INTO `settings_key_value` (`key_settings`, `setting_key`, `setting_value`
 (74, 'search_label', 'Search', 'template_labels', '2025-11-16 16:40:10'),
 (75, 'cache_duration_hours', '2', 'cache', '2025-12-07 18:36:21'),
 (76, 'cache_enabled', 'no', 'cache', '2025-12-07 18:36:52'),
-(77, 'css_version', '43', 'css_template', '2025-12-09 23:46:37'),
+(77, 'css_version', '70', 'css_template', '2025-12-09 23:46:37'),
 (78, 'article_authors_label', 'Article content', 'template_labels', '2025-12-13 12:54:06'),
 (79, 'article_categories_label', 'Categories', 'template_labels', '2025-12-13 12:57:00'),
 (80, 'article_content_types_label', 'Article Series', 'template_labels', '2025-12-13 12:57:20'),
@@ -736,7 +736,10 @@ INSERT INTO `settings_key_value` (`key_settings`, `setting_key`, `setting_value`
 (97, 'articles_by_worker_label', 'Worker:', 'template_labels', '2026-09-18 05:53:00'),
 (98, 'search_results_per_page', '15', 'search', '2026-09-20 08:19:42'),
 (99, 'main_max_width', '1400px', 'css_template', '2026-10-01 20:09:12'),
-(100, 'body_max_width', '100vw', 'css_template', '2026-10-01 20:09:23');
+(100, 'body_max_width', '100vw', 'css_template', '2026-10-01 20:09:23'),
+(101, 'contact_form_receive_email', 'info@mysite.com', 'general', '2026-10-05 18:43:36'),
+(102, 'header_max_width', '1400px', 'css_template', '2026-10-06 13:42:31'),
+(103, 'nav_max_width', '100vw', 'css_template', '2026-10-06 13:42:41');
 
 -- --------------------------------------------------------
 
