@@ -1,6 +1,6 @@
 <?php
 
-Locale::setDefault('ur_PK');
+Locale::setDefault(getSetting("site_locale"));
 
 $page_slug = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
@@ -24,14 +24,14 @@ function startLayout($title = "CopilotCMS") {
 
 	echo "<header data-animate='fade'>";
 		echo "<div id='site-logo'><a href='/home'><img src='" . getSetting("template_default_logo") . "'></a></div>";
-		renderMainMenu();
 	echo "</header>";
+
+	renderMainMenu();
 
 	global $page_slug;
 	echo "<div id='below-header'>";
 	renderBlocks("below_header", $page_slug);
 	echo "</div>";
-
 
 
 	global $segments;

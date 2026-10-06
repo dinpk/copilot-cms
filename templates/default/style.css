@@ -57,6 +57,8 @@ td {
 header {
 	position: relative;
 	z-index: 10;
+	max-width: var(--header-max-width);
+	margin:0 auto;
 }
 
 #site-logo {
@@ -82,7 +84,9 @@ header {
 	text-align: left;
 }
 
-.main-menu {
+nav.main-menu {
+	max-width: var(--nav-max-width);
+	margin:0 auto;
 	font-family: var(--main-menu-font);
 }
 
