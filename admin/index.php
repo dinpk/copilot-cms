@@ -72,6 +72,7 @@ $recentTags = getRecent("tags", "name", "entry_date_time", 5);
 	<div class="sidebar">
 		<h3>Welcome, <?= $username ?></h3>
 		<a href="index.php"><img src="assets/images/icon-dashboard.png" class="sidebar-icon"> Dashboard</a>
+		<a href="home_page_sections/list.php"><img src="assets/images/icon-dashboard.png" class="sidebar-icon"> Home Page Sections</a>
 		<a href="main_menu/list.php"><img src="assets/images/icon-main-menu.png" class="sidebar-icon"> Main Menu</a>
 		<a href="articles/list.php"><img src="assets/images/icon-articles.png" class="sidebar-icon"> Articles</a>
 		<a href="content_types/list.php"><img src="assets/images/icon-categories.png" class="sidebar-icon"> Content Types</a>

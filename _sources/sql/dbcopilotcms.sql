@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 06, 2026 at 09:06 AM
+-- Generation Time: Oct 09, 2026 at 12:39 PM
 -- Server version: 5.7.40
 -- PHP Version: 8.0.26
 
@@ -372,6 +372,42 @@ CREATE TABLE IF NOT EXISTS `fonts` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `home_page_sections`
+--
+
+DROP TABLE IF EXISTS `home_page_sections`;
+CREATE TABLE IF NOT EXISTS `home_page_sections` (
+  `key_home_page_sections` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `key_media_banner` int(10) UNSIGNED NOT NULL DEFAULT '0',
+  `section_type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `content` text COLLATE utf8_unicode_ci NOT NULL,
+  `image_url` varchar(2000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `target_url` varchar(2000) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `sort` smallint(6) NOT NULL DEFAULT '0',
+  `is_active` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`key_home_page_sections`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `home_page_sections`
+--
+
+INSERT INTO `home_page_sections` (`key_home_page_sections`, `key_media_banner`, `section_type`, `title`, `content`, `image_url`, `target_url`, `sort`, `is_active`) VALUES
+(1, 0, 'hero', 'Welcome To CopilotCMS', 'Clarity. Collaboration. Control.', 'https://cdn.pixabay.com/photo/2018/02/02/17/29/nature-3125912_1280.jpg', 'https://copilot/about-us', 10, 1),
+(2, 0, 'about', 'About Us', 'Learn more about our organization.', '', '', 20, 1),
+(3, 0, 'articles', 'Featured Articles', '', '', '', 30, 1),
+(4, 0, 'authors', 'Our Authors', '', '', '', 40, 1),
+(5, 0, 'categories', 'Browse Categories', '', '', '', 25, 1),
+(6, 0, 'galleries', 'Photo Gallery', '', '', '', 60, 1),
+(7, 0, 'videos', 'Latest Videos', '', '', '', 35, 1),
+(8, 0, 'contact', 'Contact Us', 'We would love to hear from you.', '', '', 80, 1),
+(9, 0, 'footer', 'Finally', 'This is footer content', '', '', 150, 1),
+(10, 0, 'custom', '', '<div style=\"padding:50px;color:white;background:teal;text-align:center;font-size:200%;\">\r\nHello World!\r\n\r\n</div>', '', '', 100, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `main_menu`
 --
 
@@ -647,7 +683,7 @@ CREATE TABLE IF NOT EXISTS `settings` (
 --
 
 INSERT INTO `settings` (`key_settings`, `template_folder`, `home_page_type`, `home_page_html`, `custom_css`) VALUES
-(1, 'default', 'articles', '<html>\r\n<head><title>Hello World</title></head>\r\n<body>\r\n<h1>Hello World!</h1>\r\n<h2>This is CopilotCMS.</h2>\r\n</body>\r\n</html>', 'body {\r\n\r\n}');
+(1, 'default', 'sections', '<html>\r\n<head><title>Hello World</title></head>\r\n<body>\r\n<h1>Hello World!</h1>\r\n<h2>This is CopilotCMS.</h2>\r\n</body>\r\n</html>', 'body {\r\n\r\n}');
 
 -- --------------------------------------------------------
 

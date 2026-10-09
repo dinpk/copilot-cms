@@ -444,6 +444,10 @@ main ul, main ol {
 	color:#666;
 }
 
+textarea {
+	field-sizing:content;
+}
+
 .search-form input {
 	padding: 0.2em 0.5em 0.2em 0.5em;
 }

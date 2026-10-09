@@ -71,4 +71,4 @@ $settings['contact_form_receive_email'] = 'info@mysite.com';
 $settings['header_max_width'] = '1400px';
 $settings['nav_max_width'] = '100vw';
 $settings['template_folder'] = 'default';
-$settings['home_page_type'] = 'articles';
+$settings['home_page_type'] = 'sections';

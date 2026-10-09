@@ -18,8 +18,8 @@ switch ($segments[0]) {
 			include("templates/$template/homepage.php");
 		} else if (getSetting('home_page_type') == "custom") {
 			include("templates/home_page_html.php");
-		//} else if (getSetting('home_page_type') == "front") {
-			// front section
+		} else if (getSetting('home_page_type') == "sections") {
+			include("templates/$template/homepage_sections.php");
 		} else {
 			include("templates/$template/homepage.php");
 		}

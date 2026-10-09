@@ -203,7 +203,7 @@ $message = '';
 			<?php
 				$homePageTypes = [
 					"articles"   => "Articles",
-					"front"         => "Front",
+					"sections"         => "Sections",
 					"custom"   => "Custom"
 				];			
 				$settings_row = $conn->query("SELECT home_page_type, home_page_html FROM settings WHERE key_settings = 1")->fetch_assoc();
