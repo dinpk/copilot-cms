@@ -77,7 +77,7 @@ $menuTree = buildMenuTree($menuItems);
 	<form id="modal-form" method="post">
 		<input type="hidden" name="key_main_menu" id="key_main_menu">
 		<input type="text" name="title" id="title" required maxlength="200"> <label>Title</label><br>
-		<input type="url" name="url_link" id="url_link" maxlength="200"> <label>URL</label><br>
+		<input type="text" name="url_link" id="url_link" maxlength="200"> <label>URL</label><br>
 		<input type="text" name="css_class" id="css_class" maxlength="100"> <label>CSS Class</label><br>
 		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
 		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>

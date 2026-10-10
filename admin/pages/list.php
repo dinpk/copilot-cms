@@ -41,13 +41,15 @@ include_once('../layout.php');
 	$sql .= " ORDER BY $sort $dir";
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
-	  echo "<tr>
+		$url = $row['url'];
+		echo "<tr>
 			<td>{$row['title']}</td>
 			<td>page/{$row['url']}</td>
 			<td>{$row['sort']}</td>
 			<td>{$row['is_active']}</td>
 			<td class='record-action-links'>
 			  <a href='#' onclick='editItem({$row['key_pages']}, \"get_page.php\", [\"title\",\"page_content\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"is_active\"])'>Edit</a> 
+			  <a href='/page/$url' target='_blank'>View</a>
 			  <a href='delete.php?id={$row['key_pages']}' onclick='return confirm(\"Delete this page?\")'>Delete</a>
 			</td>
 		</tr>";

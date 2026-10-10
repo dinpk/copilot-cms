@@ -4,7 +4,7 @@
 	--template-default-color:#0055aa;
 	--template-text-color:black;
 	--template-background-color:#FFF;
-	--items-brand-color:#049b5c;
+	--items-brand-color:maroon;
 	--sidebar-background-color:#F6F6F6;
 	--site-direction:ltr;
 	--google-fonts:Noto Kufi Arabic;
@@ -15,7 +15,7 @@
 	--footer-font:Arial;
 	--template-font-size:15px;
 	--content-banner-height:20vh;
-	--css-version:70;
+	--css-version:73;
 	--template-font-rtl:Noto Kufi Arabic;
 	--template-font-ltr:calibri;
 	--template-font-family:calibri;
@@ -33,3 +33,4 @@
 body {
 
 }
+

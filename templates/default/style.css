@@ -18,8 +18,8 @@ a {
 	text-decoration: none;
 }
 
-a:hover {
-	filter: brightness(80%);
+a:not(:has(img)):hover {
+	filter: contrast(80%);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -49,7 +49,7 @@ thead {
 	background-color: #f2f2f2;
 }
 
-td {
+th, td {
 	border: 1px solid #ccc;
 	padding: 0 5px 0 5px;
 }
@@ -220,7 +220,7 @@ main ul, main ol {
 }
 
 #content article h2 {
-	color: navy;
+	color:var(--items-brand-color);
 	margin-inline-start: 0;
 }
 
@@ -429,6 +429,25 @@ main ul, main ol {
 
 #pager a:hover {
 	filter: brightness(90%);
+}
+
+#above-footer {
+	background-color:var(--items-brand-color);
+	color:white;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding:2em;
+	gap:5em;
+	line-height:1.4;
+}
+
+#above-footer a {
+	color:white;
+}
+
+#above-footer ul {
+	margin:1.2em;
 }
 
 #footer {
