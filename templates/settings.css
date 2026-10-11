@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto Kufi Arabic:wght@400&display=swap');
 
 :root {
-	--template-default-color:#0055aa;
 	--template-text-color:black;
 	--template-background-color:#FFF;
-	--items-brand-color:maroon;
 	--sidebar-background-color:#F6F6F6;
 	--site-direction:ltr;
 	--google-fonts:Noto Kufi Arabic;
@@ -15,7 +13,7 @@
 	--footer-font:Arial;
 	--template-font-size:15px;
 	--content-banner-height:20vh;
-	--css-version:73;
+	--css-version:76;
 	--template-font-rtl:Noto Kufi Arabic;
 	--template-font-ltr:calibri;
 	--template-font-family:calibri;
@@ -27,6 +25,9 @@
 	--body-max-width:100vw;
 	--header-max-width:1400px;
 	--nav-max-width:100vw;
+	--brand-background-color:maroon;
+	--brand-link-color:navy;
+	--brand-text-color:Maroon;
 	
 }
 

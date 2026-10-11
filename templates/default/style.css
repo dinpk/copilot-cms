@@ -14,7 +14,7 @@ body {
 }
 
 a {
-	color: var(--items-brand-color);
+	color: var(--brand-link-color);
 	text-decoration: none;
 }
 
@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 hr {
-	border-top: 0.125em solid var(--items-brand-color);
+	border-top: 0.125em solid var(--brand-background-color);
 	margin: 1em 0;
 }
 
@@ -37,7 +37,6 @@ img {
 
 blockquote {
 	margin: 0 3em 0 3em;
-	color: navy;
 }
 
 table {
@@ -74,7 +73,7 @@ header {
 
 .menu-toggle {
 	display: none;
-	background: var(--items-brand-color);
+	background: var(--brand-background-color);
 	color: #fff;
 	padding: 0.625em;
 	font-weight: bold;
@@ -96,7 +95,7 @@ nav.main-menu {
 	justify-content: center;
 	flex-wrap: wrap;
 	/* gap: 0.5em; */
-	background: var(--items-brand-color);
+	background: var(--brand-background-color);
 	/* padding: 0.4em 1.25em;*/
 	direction: var(--site-direction);
 	margin-bottom: 1px;
@@ -139,20 +138,20 @@ nav.main-menu {
 }
 
 .main-menu li ul li a {
-	color: var(--items-brand-color);
+	color: var(--brand-link-color);
 	font-weight: normal;
 }
 
 .main-menu li ul li a:hover {
 	color: #fff;
-	background: var(--items-brand-color);
+	background: var(--brand-background-color);
 }
 
 #breadcrumb {
 	font-family: var(--breadcrumb-font);
 	padding: 0.2em 1em 0.2em 1em;
 	line-height: 1.7;
-	border-bottom: 0.1em solid var(--items-brand-color);
+	border-bottom: 0.1em solid var(--brand-background-color);
 }
 
 #above-main, #below-main {
@@ -185,8 +184,8 @@ main ul, main ol {
 }
 
 #content h1 {
-	color: var(--items-brand-color);
-	border-bottom: 0.3em solid var(--items-brand-color);
+	color: var(--brand-text-color);
+	border-bottom: 0.3em solid var(--brand-background-color);
 	margin-bottom: 1.25em;
 	padding-inline-start: .3em;
 	padding-bottom: 0.3em;
@@ -220,7 +219,7 @@ main ul, main ol {
 }
 
 #content article h2 {
-	color:var(--items-brand-color);
+	color:var(--brand-text-color);
 	margin-inline-start: 0;
 }
 
@@ -271,7 +270,7 @@ main ul, main ol {
 }
 
 #sidebar-left h2,#sidebar-right h2 {
-	background: var(--items-brand-color);
+	background: var(--brand-background-color);
 	font-family: var(--block-heading-font);
 	color:#fff;
 	padding: 0.5em 0.75em;
@@ -289,7 +288,7 @@ main ul, main ol {
 }
 
 #below-content h2 {
-	background: var(--items-brand-color);
+	background: var(--brand-background-color);
 	color:#fff;
 	padding: 0 0.75em 0.2em 0;
 	border-radius: 0.25em;
@@ -306,7 +305,7 @@ main ul, main ol {
 	flex-wrap:wrap;
 	gap: 1.25em;
 	background:#fff;
-	border-bottom: 1px solid var(--items-brand-color);
+	border-bottom: 1px solid var(--brand-background-color);
 	padding: 0.2em 0 1em 0;
 	align-items: flex-start;
 	direction: ltr;
@@ -356,7 +355,7 @@ main ul, main ol {
 .snippet-content a {
 	display: inline-block;
 	margin-top: 0.3125em;
-	color: var(--items-brand-color);
+	color: var(--brand-link-color);
 }
 
 .flex-wrap-center {
@@ -418,7 +417,7 @@ main ul, main ol {
 }
 
 #pager a {
-	background: var(--items-brand-color);
+	background: var(--brand-link-color);
 	color:#fff;
 	padding: 0.375em 0.75em;
 	border-radius: 0.25em;
@@ -432,13 +431,13 @@ main ul, main ol {
 }
 
 #above-footer {
-	background-color:var(--items-brand-color);
+	background-color:var(--brand-background-color);
 	color:white;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 	padding:2em;
-	gap:5em;
+	gap:2em;
 	line-height:1.4;
 }
 
@@ -451,10 +450,10 @@ main ul, main ol {
 }
 
 #footer {
-	border-top: 1px solid var(--items-brand-color);
+	border-top: 1px solid var(--brand-background-color);
 	font-size: calc(var(--template-font-ltr-size) - 2px);
 	line-height: calc(var(--template-font-ltr-line-height) + 2);
- 	border-bottom: 1px solid var(--items-brand-color);
+ 	border-bottom: 1px solid var(--brand-background-color);
 }
 
 #footer,#below-footer {
@@ -575,7 +574,7 @@ textarea {
 	.main-menu ul {
 		display: none;
 		flex-direction: column;
-		background: var(--items-brand-color);
+		background: var(--brand-background-color);
 		padding: 0.625em;
 	}
 	.main-menu.open ul {
@@ -610,6 +609,12 @@ textarea {
 	#sidebar-right {
 		order:3
 	}
+	
+	
+	#above-footer {
+		justify-content: normal;
+		gap:0;
+	}	
 	
 }
 

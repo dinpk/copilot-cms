@@ -14,54 +14,59 @@ while ($row = $result->fetch_assoc()) {
 	$settings[$row['setting_key']] = $row['setting_value'];
 }
 
+
 function getSetting($key, $default = null) {
 	global $settings;
 	return $settings[$key] ?? $default;
 }
 
 
-function isUrlTaken($slug, $excludeTable = '', $excludeKey = 0) {
-  global $conn;
+function isUrlTaken($slug, $table, $excludeKey = 0) {
+    global $conn;
 
-  $tables = [
-	'articles' => 'key_articles',
-	'pages' => 'key_pages',
-	'categories' => 'key_categories',
-	'content_types' => 'key_content_types',
-	'books' => 'key_books',
-	'products' => 'key_product',
-	'authors' => 'key_authors',
-	'workers' => 'key_workers',
-	'photo_gallery' => 'key_photo_gallery',
-	'youtube_gallery' => 'key_youtube_gallery',
-	'book_categories' => 'key_book_categories',
-	'product_categories' => 'key_product_categories',
-	'photo_categories' => 'key_photo_categories',
-	'youtube_categories' => 'key_youtube_categories',
-	'users' => 'key_user'
-  ];
+    $tables = [
+        'articles' => 'key_articles',
+        'pages' => 'key_pages',
+        'categories' => 'key_categories',
+        'content_types' => 'key_content_types',
+        'books' => 'key_books',
+        'products' => 'key_product',
+        'authors' => 'key_authors',
+        'workers' => 'key_workers',
+        'photo_gallery' => 'key_photo_gallery',
+        'youtube_gallery' => 'key_youtube_gallery',
+        'book_categories' => 'key_book_categories',
+        'product_categories' => 'key_product_categories',
+        'photo_categories' => 'key_photo_categories',
+        'youtube_categories' => 'key_youtube_categories',
+        'users' => 'key_user'
+    ];
 
-  $slugEscaped = $conn->real_escape_string($slug);
+    if (!isset($tables[$table])) {
+        return true;
+    }
 
-  foreach ($tables as $table => $keyField) {
-	$query = "SELECT COUNT(*) AS total FROM `$table` WHERE url = '$slugEscaped'";
+    $slugEscaped = $conn->real_escape_string($slug);
+    $keyField = $tables[$table];
 
-	if ($table === $excludeTable && $excludeKey) {
-	  $query .= " AND `$keyField` != " . intval($excludeKey);
-	}
+    $query = "SELECT COUNT(*) AS total
+              FROM `$table`
+              WHERE url = '$slugEscaped'";
 
-	
-	$result = $conn->query($query);
-	if ($result) {
-	  $row = $result->fetch_assoc();
-	  if ($row['total'] > 0) {
-		return true;
-	  }
-	}
-  }
+    if ($excludeKey) {
+        $query .= " AND `$keyField` != " . intval($excludeKey);
+    }
 
-  return false;
+    $result = $conn->query($query);
+
+    if ($result) {
+        $row = $result->fetch_assoc();
+        return ($row['total'] > 0);
+    }
+
+    return false;
 }
+
 
 function sortLink($label, $column, $currentSort, $currentDir) {
 	$newDir = ($currentSort === $column && $currentDir === 'asc') ? 'desc' : 'asc';

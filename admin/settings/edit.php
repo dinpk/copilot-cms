@@ -22,6 +22,8 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$stmt->execute();
 }
 
+updateCSSVersion();
+
 include('generate_settings_file.php');
 
 ?>
