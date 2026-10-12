@@ -72,4 +72,4 @@ $settings['brand_background_color'] = 'maroon';
 $settings['brand_link_color'] = 'navy';
 $settings['brand_text_color'] = 'Maroon';
 $settings['template_folder'] = 'default';
-$settings['home_page_type'] = 'articles';
+$settings['home_page_type'] = 'sections';

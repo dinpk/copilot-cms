@@ -2,9 +2,17 @@
 include(__DIR__ . '/../../dbconnection.php');
 ?>
 
+<!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<?php
+	echo "
+	<title>Home</title>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<link rel='stylesheet' href='/templates/settings.css?version=" . getSetting("css_version") . "'>
+	";
+	?>
 </head>
 <body>
 
@@ -67,12 +75,13 @@ function renderHero($section) {
 	$title = htmlspecialchars($section['title']);
 	$content = nl2br(htmlspecialchars($section['content']));
 	$image = !empty($section['image_url']) ? htmlspecialchars($section['image_url']) : 'https://picsum.photos/1920/1080';
+	$target_url = htmlspecialchars($section['target_url']);
 	print "<div class='hero-section' style=\"background-image: url('$image');\">
         <div class='hero-overlay'></div>
         <div class='hero-inner'>
             <h1>$title</h1>
             <p>$content</p>
-            <a href='/about-us' class='home-btn'>Get Started</a>
+            <a href='$target_url' class='home-btn'>Get Started</a>
         </div>
     </div>";
 }
@@ -148,6 +157,7 @@ function renderAuthors($section) {
 }
 
 function renderCategories($section) {
+	global $conn;
 	$title = htmlspecialchars($section['title']);
 	$content = nl2br(htmlspecialchars($section['content']));
 	$image = !empty($section['image_url']) ? htmlspecialchars($section['image_url']) : 'https://picsum.photos/660/340';
@@ -157,10 +167,17 @@ function renderCategories($section) {
                 <h2 class='home-title'>Explore Categories</h2>
                 <p class='home-content'>Filter through our widely popular subjects to find exactly what you are looking for.</p>
                 <div class='categories-list'>
-                    <a href='#' class='category-pill'>Design</a>
-                    <a href='#' class='category-pill'>Development</a>
-                    <a href='#' class='category-pill'>Marketing</a>
-                    <a href='#' class='category-pill'>Business</a>
+	";
+					$result = $conn->query("
+						SELECT *
+						FROM categories 
+						WHERE is_active = 1
+						ORDER BY sort LIMIT 4;
+					");	
+					while ($row = $result->fetch_assoc()) {
+						print "<a href='category/" . $row['url'] . "' class='category-pill'>" . $row['name'] . "</a>";
+					}
+	print "
                 </div>
             </div>
         </div>
@@ -233,13 +250,14 @@ function renderContact($section) {
 	$title = htmlspecialchars($section['title']);
 	$content = nl2br(htmlspecialchars($section['content']));
 	$image = !empty($section['image_url']) ? htmlspecialchars($section['image_url']) : 'https://picsum.photos/640/320';
+	$target_url = htmlspecialchars($section['target_url']);
 	print "
         <div class='home-section light-section'>
             <div class='home-container'>
                 <div class='contact-box'>
                     <h2 class='home-title'>Get In Touch</h2>
                     <p class='home-content'>Have any questions or want to work together? Drop us a line and we will get back to you as soon as possible.</p>
-                    <a href='mailto:info@example.com' class='home-btn'>Contact Us</a>
+                    <a href='$target_url' class='home-btn'>Contact Us</a>
                 </div>
             </div>
         </div>
@@ -344,7 +362,7 @@ body {
 .home-btn {
 	display:inline-block;
 	padding:12px 24px;
-	background:#049b5c;
+	background:var(--brand-background-color);
 	color:#fff;
 	text-decoration:none;
 	border-radius:30px;
@@ -423,7 +441,7 @@ body {
 .article-meta {
 	display: inline-block;
 	font-size: 0.85rem;
-	color: #049b5c;
+	color: var(--brand-text-color);
 	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: 1px;
@@ -489,7 +507,7 @@ body {
 
 
 .dark-section {
-	background:#111;
+	background:var(--brand-background-color);
 	color:#fff;
 }
 
@@ -507,10 +525,10 @@ body {
 
 .category-pill {
 	padding:10px 20px;
-	border:2px solid #049b5c;
 	border-radius:50px;
 	text-decoration:none;
-	color:#049b5c;
+	color:var(--brand-text-color);
+	background:#fff;
 	font-weight:bold;
 }
 
@@ -569,7 +587,7 @@ body {
 }
 
 .video-card {
-	background: #1e1e1e; /* Darker tile contrasting the dark-section */
+	background: #fff;
 	border-radius: 16px;
 	overflow: hidden;
 	box-shadow: 0 4px 20px rgba(0,0,0,0.3);
@@ -599,12 +617,12 @@ body {
 .video-body h3 {
 	font-size: 1.4rem;
 	margin-bottom: 10px;
-	color: #fff;
+	color: var(--brand-text-color);
 }
 
 .video-body p {
 	font-size: 0.95rem;
-	color: #ccc;
+	color: #222;
 	line-height: 1.6;
 }
 
@@ -619,7 +637,7 @@ body {
 }
 
 .footer-home {
-	background:#222;
+	background:var(--brand-background-color);
 	color:#fff;
 	padding:60px 20px;
 }

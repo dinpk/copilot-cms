@@ -89,7 +89,7 @@ include_once('../layout.php');
 		<div id="media-preview"></div>
 		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_home_page_sections').value)">Select Banner Image from Media Library</button><br>
 
-		<input type="url" name="target_url" id="target_url" maxlength="2000"> <label>Target URL</label><br>
+		<input type="text" name="target_url" id="target_url" maxlength="2000"> <label>Target URL</label><br>
 
 
 		<input type="number" name="sort" id="sort" value="0" min="-100" max="2000"> <label>Sort</label><br>
