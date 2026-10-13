@@ -646,6 +646,17 @@ function parseLocale($locale, $displayLang = 'en') {
 }
 
 
+function trimToWords($text, $limit = 20) { // Google AI
+    if (!is_string($text)) {
+        return '';
+    }
+    $words = preg_split('/\s+/', trim($text));
+    if (count($words) <= $limit) {
+        return implode(' ', $words);
+    }
+    $trimmed = array_slice($words, 0, $limit);
+    return implode(' ', $trimmed) . '...';
+}
 
 ?>
 

@@ -1,5 +1,6 @@
 <?php 
 include(__DIR__ . '/../../dbconnection.php');
+include(__DIR__ . '/../template_content.php');
 ?>
 
 <!DOCTYPE html>
@@ -149,18 +150,42 @@ function renderArticles($section) {
 }
 
 function renderAuthors($section) {
+	global $conn;
 	$title = htmlspecialchars($section['title']);
 	$content = nl2br(htmlspecialchars($section['content']));
 	$image = !empty($section['image_url']) ? htmlspecialchars($section['image_url']) : 'https://picsum.photos/650/330';
 	print "
-        <section class='home-section light-section'>
-            <div class='home-container'>
-                <img src='$image' alt='Author's Photo' class='author-photo'>
-                <h2 class='home-title' style='margin-top: 20px;'>Meet the Author</h2>
-                <p class='home-content'>Creating meaningful web experiences with clean code, semantic structures, and modern aesthetics.</p>
-            </div>
-        </section>
+		<div class='home-section light-section'>
+			<div class='home-container'>
+				
+				<!-- Main Section Title -->
+				<h2 class='home-title'>$title</h2>
+				<p class='home-content'>$content</p>
+				<!-- Reusing your home-grid for multiple authors -->
+				<div class='home-grid'>
+	";
 	
+					$result = $conn->query("SELECT authors.*, media_library.file_url_thumbnail AS banner FROM authors 
+												LEFT JOIN media_library ON authors.key_media_banner = media_library.key_media  
+												WHERE is_active = 1 ORDER BY entry_date_time DESC LIMIT 3");
+					$count = 300;
+					while ($row = $result->fetch_assoc()) {
+						$image_url = empty($row['banner_image_url']) ? $row['banner'] : $row['banner_image_url'];
+						if (empty($image_url)) $image_url = "https://picsum.photos/" . $count++ . "/" . $count++;
+						print "
+						<div class='author-card'>
+						<img src='$image_url' alt='' class='author-photo'>
+						<h3 class='author-name'>" . $row['name'] . "</h3>
+						<p class='author-bio'>" . $row['description'] . " … <a href='/author/" . $row['url'] . "'>More</a></p>
+						</div>
+						";
+					}
+
+	print "
+				
+				</div>
+			</div>
+		</div>
 	";
 }
 
@@ -220,34 +245,37 @@ function renderGalleries($section) {
 	
 }
 function renderVideos($section) {
+	
+	global $conn;
+	$title = htmlspecialchars($section['title']);
+	$content = nl2br(htmlspecialchars($section['content']));
+	$image = !empty($section['image_url']) ? htmlspecialchars($section['image_url']) : 'https://picsum.photos/660/340';
+	
 	print "
 		<div id='videos' class='home-section dark-section'>
 			<div class='home-container'>
-				<h2 class='home-title'>Video Showcase</h2>
-				<p class='home-content'>Watch our custom cinematic edits and in-depth video tutorials directly from YouTube.</p>
-				
+				<h2 class='home-title'>$title</h2>
+				<p class='home-content'>$content</p>
 				<div class='video-grid'>
-					<!-- Video 1 -->
+				
+	";
+				$result = $conn->query("SELECT * FROM youtube_gallery WHERE is_active = 1 ORDER BY entry_date_time DESC LIMIT 2");
+				while ($row = $result->fetch_assoc()) {
+				
+					print "
 					<div class='video-card'>
 						<div class='video-wrapper'>
-							<iframe src='https://www.youtube.com/embed/ymTwVM9Tiac?si=d5yYWETyDHMRvXpe' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
+							<iframe src='https://www.youtube.com/embed/" . $row['youtube_id'] . "' title='" . $row['title'] . "' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
 						</div>
 						<div class='video-body'>
-							<h3>Featured Presentation</h3>
-							<p>An introduction to our creative workflows and community development projects.</p>
+							<h3>" . $row['title'] . "</h3>
+							<p>" . trimToWords($row['description'], 40) . "</p>
 						</div>
 					</div>
-
-					<!-- Video 2 -->
-					<div class='video-card'>
-						<div class='video-wrapper'>
-							<iframe src='https://www.youtube.com/embed/W6aOdLlEz1w?si=uTynEcl7NVbqvUCb' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>
-						</div>
-						<div class='video-body'>
-							<h3>Behind the Scenes</h3>
-							<p>A closer, raw perspective look into our team dynamic and weekly review processes.</p>
-						</div>
-					</div>
+					";
+				}
+					
+	print "				
 				</div>
 			</div>
 		</div>	
@@ -313,6 +341,11 @@ function renderFooter($section) {
 <style>
 body {
 	margin:0;
+}
+
+a {
+	text-decoration:none;
+	color:var(--brand-link-color);
 }
 
 .home-section {
