@@ -80,59 +80,67 @@ function renderHero($section) {
         <div class='hero-overlay'></div>
         <div class='hero-inner'>
             <h1>$title</h1>
-            <p>$content</p>
+            <h2>$content</h2>
             <a href='$target_url' class='home-btn'>Get Started</a>
         </div>
     </div>";
 }
 
 function renderArticles($section) {
+	global $conn;
 	$title = htmlspecialchars($section['title']);
 	$content = nl2br(htmlspecialchars($section['content']));
 	$image = !empty($section['image_url']) ? htmlspecialchars($section['image_url']) : 'https://picsum.photos/720/480';
 
+	$result = $conn->query("SELECT a.*, m.file_url AS banner
+            FROM articles a 
+            LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
+            WHERE a.is_active = 1 AND a.is_featured = 1 
+			ORDER BY entry_date_time DESC 
+            LIMIT 1");
+	if ($featured = $result->fetch_assoc()) {
+		$featured_title = $featured['title'];
+		$featured_snippet = $featured['article_snippet'];
+		$featured_url = $featured['url'];
+		$featured_entry_date = date_format(date_create($featured['entry_date_time']),"d F Y");
+		$featured_banner_url = empty($featured['banner_image_url']) ? $featured['banner'] : $featured['banner_image_url'];
+		if (empty($featured_banner_url)) $featured_banner_url = 'https://picsum.photos/720/480';
+	} else {
+		[$featured_title, $featured_snippet, $featured_url, $featured_entry_date, $featured_banner_url] = ["Featured Article", "Snippet", "", "Date", "https://picsum.photos/720/480"];
+	}
 	print "
 		<div id='articles' class='home-section light-section'>
 			<div class='home-container'>
-				<h2 class='home-title'>Latest Articles & Insights</h2>
-				<p class='home-content'>Stay up to date with the latest industry trends, design paradigms, and optimization tips.</p>
+				<h2 class='home-title'>$title</h2>
+				<p class='home-content'>$content</p>
 				
 				<div class='articles-layout'>
 					<!-- Left Side: Featured Large Article -->
 					<article class='article-featured'>
 						<div class='article-feat-img'>
-							<img src='$image' alt='Featured Article Image'>
+							<img src='$featured_banner_url' alt='Featured Article Image'>
 						</div>
 						<div class='article-feat-content'>
-							<span class='article-meta'>October 2026 • Design</span>
-							<h2>The Future of Responsive Web Design with Contemporary Layout Architectures</h2>
-							<p>Discover how engineering principles are shifting towards micro-layouts and component-driven styles that dynamically adjust without heavy reliance on media queries.</p>
-							<a href='#' class='home-btn'>Read Article</a>
+							<span class='article-meta'>$featured_entry_date</span>
+							<h2>$featured_title</h2>
+							<p>$featured_snippet</p>
+							<a href='/article/$featured_url' class='home-btn'>Read Article</a>
 						</div>
 					</article>
-
 					<!-- Right Side: Secondary Articles Column -->
 					<div class='articles-list-side'>
-						<!-- Side Item 1 -->
-						<article class='article-side-item'>
-							<span class='article-meta'>September 2026 • Tech</span>
-							<h3><a href='#'>Optimizing Render Performance for Native Video Components</a></h3>
-							<p>A deep dive into decoding cycles, asynchronous resource scheduling, and iframe optimization for smooth client interaction.</p>
-						</article>
-
-						<!-- Side Item 2 -->
-						<article class='article-side-item'>
-							<span class='article-meta'>September 2026 • Strategy</span>
-							<h3><a href='#'>Building Accessible Color Palettes for Global Target Audiences</a></h3>
-							<p>How to design high-contrast user experiences that respect regional preferences and satisfy contrast criteria gracefully.</p>
-						</article>
-
-						<!-- Side Item 3 -->
-						<article class='article-side-item'>
-							<span class='article-meta'>August 2026 • Business</span>
-							<h3><a href='#'>Scaling Content Infrastructure on Modern Cloud Networks</a></h3>
-							<p>A architectural summary outlining cloud caching techniques to distribute media files across server grids efficiently.</p>
-						</article>
+	";
+						$result = $conn->query("SELECT title, article_snippet, url, entry_date_time FROM articles WHERE is_active = 1 ORDER BY entry_date_time DESC LIMIT 3");
+						while ($featured_more = $result->fetch_assoc()) {
+							$featured_entry_date = date_format(date_create($featured_more['entry_date_time']),"d F Y");
+							print "
+							<article class='article-side-item'>
+								<span class='article-meta'>$featured_entry_date</span>
+								<h3><a href='/article/" . $featured_more['url'] . "'>" . $featured_more['title'] . "</a></h3>
+								<p>" . $featured_more['article_snippet'] . "</p>
+							</article>";
+						}
+	print "
 					</div>
 				</div>
 			</div>
@@ -491,7 +499,7 @@ body {
 }
 
 .article-side-item h3 a:hover {
-	color: #049b5c;
+	color: var(--brand-link-color);
 }
 
 .article-side-item p {
