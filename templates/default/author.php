@@ -34,7 +34,7 @@ startLayout("Author: " . htmlspecialchars($author['name']));
 
 	while ($a = $records->fetch_assoc()) {
 		echo "<div class='snippet-card'>
-				<div><a href='/article/{$a['url']}'><img src='{$a['banner']}' width='300' data-animate='fade'></a></div>
+				<div class='snippet-thumbnail'><a href='/article/{$a['url']}'><img src='{$a['banner']}' width='300' data-animate='fade'></a></div>
 				<div class='snippet-content'>
 				  <h2><a href='/article/{$a['url']}'>{$a['title']}</a></h2>
 				  <div>{$a['article_snippet']}<br><a class='full-content-link' href='/article/{$a['url']}'>" . getSetting('readmore_label') . "</a></div>

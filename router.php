@@ -78,6 +78,9 @@ switch ($segments[0]) {
 	case 'photo-galleries':
 	  include("templates/$template/photo_galleries.php");
 	  break;
+	case 'photo-gallery':
+	  include("templates/$template/photo_gallery.php");
+	  break;
 	case 'monthly':
 		include("templates/$template/monthly.php");
 		break;

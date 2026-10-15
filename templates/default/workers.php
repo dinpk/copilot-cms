@@ -16,7 +16,7 @@ startLayout(getSetting('workers_label'));
 	$pagination = $data['pagination'];
 	while ($record = $records->fetch_assoc()) {
 		echo "<div class='snippet-card'>
-				<div><img src='{$record['banner']}' width='300'></div>
+				<div class='snippet-thumbnail'><img src='{$record['banner']}' data-animate='fade'></div>
 				<div>
 					<h2><a href='/worker/{$record['url']}'>{$record['name']}</a></h2>
 					<div>

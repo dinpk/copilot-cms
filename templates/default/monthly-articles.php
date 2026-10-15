@@ -44,7 +44,7 @@ startLayout("$titlePart");
         : firstWords($record['article_snippet'], getSetting('snippet_words')));
     
     echo "<div class='snippet-card'>
-            <div><a href='/article/{$record['url']}'><img src='$banner_url' data-animate='fade'></a></div>
+            <div class='snippet-thumbnail'><a href='/article/{$record['url']}'><img src='$banner_url' data-animate='fade'></a></div>
             <div class='snippet-content'>
               <h2><a href='/article/{$record['url']}'>" . htmlspecialchars($record['title']) . "</a></h2>
               <div>$article_snippet <a href='/article/{$record['url']}'>" . getSetting('readmore_label') . "</a></div>

@@ -79,7 +79,7 @@ $menuTree = buildMenuTree($menuItems);
 		<input type="text" name="title" id="title" required maxlength="200"> <label>Title</label><br>
 		<input type="text" name="url_link" id="url_link" maxlength="200"> <label>URL</label><br>
 		<input type="text" name="css_class" id="css_class" maxlength="100"> <label>CSS Class</label><br>
-		<input type="number" name="sort" id="sort" value="0" min="0" max="2000"> <label>Sort</label><br>
+		<input type="number" name="sort" id="sort" value="0" max="2000"> <label>Sort</label><br>
 		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
 		<select name="parent_id" id="parent_id">
 			<option value="0">Top Level</option>

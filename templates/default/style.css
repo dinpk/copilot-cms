@@ -358,6 +358,11 @@ main ul, main ol {
 	color: var(--brand-link-color);
 }
 
+ .snippet-thumbnail {
+	 max-width:40%;
+ }
+
+
 .flex-wrap-center {
 	display: flex;
 	justify-content: center;

@@ -218,26 +218,31 @@ function renderCategories($section) {
 }
 
 function renderGalleries($section) {
-	
+	global $conn;
+	$title = htmlspecialchars($section['title']);
+	$content = nl2br(htmlspecialchars($section['content']));
+	$image = !empty($section['image_url']) ? htmlspecialchars($section['image_url']) : 'https://picsum.photos/660/340';
 	print "
 		<div id='gallery' class='home-section light-section'>
 			<div class='home-container'>
-				<h2 class='home-title'>Photo Gallery</h2>
-				<p class='home-content'>Take a visual tour through our recent projects and favorite captures from around the world.</p>
+				<h2 class='home-title'>$title</h2>
+				<p class='home-content'>$content</p>
 				
 				<div class='gallery-grid'>
-					<div class='gallery-item'>
-						<img src='https://picsum.photos/640/320' alt='Sample Landscape 1'>
-					</div>
-					<div class='gallery-item'>
-						<img src='https://picsum.photos/639/319' alt='Sample Landscape 2'>
-					</div>
-					<div class='gallery-item'>
-						<img src='https://picsum.photos/638/318' alt='Sample Forest'>
-					</div>
-					<div class='gallery-item'>
-						<img src='https://picsum.photos/637/317' alt='Sample Mountain Trek'>
-					</div>
+	";
+					$result = $conn->query("
+						SELECT a.*, m.file_url AS banner_url FROM photo_gallery a
+							LEFT JOIN media_library m ON a.key_media_banner = m.key_media
+								WHERE a.is_active = 1;
+					");	
+					while ($row = $result->fetch_assoc()) {
+						if ($row['image_url']) { // full link url
+							echo "<div class='gallery-item'><a href='/photo-gallery/" . $row['url'] . "'><img src='" . $row['image_url'] . "'></a></div>";
+						} else if ($row['banner_url']) { // media library file
+							echo "<div class='gallery-item'><a href='/photo-gallery/" . $row['url'] . "'><img src='" . $row['banner_url'] . "'></a></div>";
+						}
+					}	
+	print "				
 				</div>
 			</div>
 		</div>	
@@ -269,7 +274,7 @@ function renderVideos($section) {
 						</div>
 						<div class='video-body'>
 							<h3>" . $row['title'] . "</h3>
-							<p>" . trimToWords($row['description'], 40) . "</p>
+							<p>" . firstWords($row['description'], 40) . "</p>
 						</div>
 					</div>
 					";
@@ -301,37 +306,33 @@ function renderContact($section) {
 }
 
 function renderFooter($section) {
+	global $conn;
+	$title = htmlspecialchars($section['title']);
+	$content = nl2br(htmlspecialchars($section['content']));
+	$image = !empty($section['image_url']) ? htmlspecialchars($section['image_url']) : 'https://picsum.photos/640/320';
+	$target_url = htmlspecialchars($section['target_url']);
 	print "
 		<div class='footer-home'>
 			<div class='footer-grid'>
-				<!-- Column 1 -->
-				<div>
-					<h3>About Us</h3>
-					<p style='opacity: 0.8; line-height: 1.6; margin-top: 15px;'>Building responsive, accessible, and fast layout solutions for the web environment.</p>
-				</div>
-				<!-- Column 2 -->
-				<div>
-					<h3>Quick Links</h3>
-					<div style='margin-top: 15px;'>
-						<a href='#'>Home</a>
-						<a href='#'>Services</a>
-						<a href='#'>Portfolio</a>
-						<a href='#'>Blog</a>
-					</div>
-				</div>
-				<!-- Column 3 -->
-				<div>
-					<h3>Resources</h3>
-					<div style='margin-top: 15px;'>
-						<a href='#'>Documentation</a>
-						<a href='#'>Support Center</a>
-						<a href='#'>Privacy Policy</a>
-						<a href='#'>Terms of Use</a>
-					</div>
-				</div>
+	";		
+				$result = $conn->query("SELECT title, block_content FROM blocks WHERE show_in_region = 'above_footer' AND is_active = 1 ORDER BY sort;");	
+				while ($row = $result->fetch_assoc()) {
+					print "
+					<div>
+					<h2>" . $row['title'] . "</h2>
+					<div>" . $row['block_content'] . "</div>
+					</div>";
+				}
+				
+				
+	print "			
 			</div>
 		</div>
 	";
+	$result = $conn->query("SELECT title, block_content FROM blocks WHERE show_in_region = 'footer' AND is_active = 1 ORDER BY sort;");	
+	if ($row = $result->fetch_assoc()) {
+		print "<div id='footer'>" . $row['block_content'] . "</div>";
+	}
 }
 
 
@@ -675,6 +676,13 @@ a {
 	border-radius:20px;
 	background:#fff;
 	box-shadow:0 0 20px rgba(0,0,0,.1);
+}
+
+#footer, #below-footer {
+    font-family: var(--footer-font);
+    text-align: center;
+    color: #666;
+	padding:20px;
 }
 
 .footer-home {

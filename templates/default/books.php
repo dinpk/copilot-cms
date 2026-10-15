@@ -16,7 +16,7 @@ startLayout(getSetting('books_label'));
 	$pagination = $data['pagination'];
 	while ($record = $records->fetch_assoc()) {
 		echo "<div class='snippet-card'>
-				<div><img src='{$record['banner_url']}' width='300'></div>
+				<div class='snippet-thumbnail'><img src='{$record['banner_url']}' data-animate='fade'></div>
 				<div>
 					<h2><a href='/book/{$record['url']}'>{$record['title']}</a></h2>
 					<div>" . firstWords($record['description'], getSetting('snippet_words')) . "…" . " 

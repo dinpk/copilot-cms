@@ -16,7 +16,7 @@ include(__DIR__ . '/layout.php');
 	$pagination = $data['pagination'];
 	while ($record = $records->fetch_assoc()) {
 		echo "<div class='snippet-card'>
-				<div><img src='{$record['banner']}' width='300'></div>
+				<div class='snippet-thumbnail'><img src='{$record['banner']}' data-animate='fade'></div>
 				<div class='snippet-content'>
 					<h2><a href='/page/{$record['url']}'>{$record['title']}</a></h2>
 					<p>" . firstWords($record['page_content'], getSetting('snippet_words')) . "…" . "</p>

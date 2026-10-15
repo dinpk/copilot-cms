@@ -103,6 +103,7 @@ function getTagsForArticle($conn, $key) {
 	return $conn->query($sql);
 }
 
+
 /* --------------------- AUTHORS ---------------------- */
 
 function getPaginatedAuthors($conn, $page = 1, $limit = 10) {
@@ -426,6 +427,8 @@ function getPageBySlug($conn, $slug) {
 }
 
 
+
+
 /* --------------------- MAIN MENU ---------------------- */
 
 
@@ -498,6 +501,7 @@ function generateBreadcrumb($segments) {
 		'article' => 'articles',
 		'book' => 'books',
 		'author' => 'authors',
+		'photo-gallery' => 'photo-galleries',
 		'category' => 'categories',
 		'content-type' => 'content-types',
 		'tag' => 'tags',
@@ -646,17 +650,6 @@ function parseLocale($locale, $displayLang = 'en') {
 }
 
 
-function trimToWords($text, $limit = 20) { // Google AI
-    if (!is_string($text)) {
-        return '';
-    }
-    $words = preg_split('/\s+/', trim($text));
-    if (count($words) <= $limit) {
-        return implode(' ', $words);
-    }
-    $trimmed = array_slice($words, 0, $limit);
-    return implode(' ', $trimmed) . '...';
-}
 
 ?>
 

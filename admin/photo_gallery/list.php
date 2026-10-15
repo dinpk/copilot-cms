@@ -45,7 +45,7 @@ include('../layout.php');
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
 		$media = $row['key_media_banner'] ? $conn->query("SELECT file_url_thumbnail FROM media_library WHERE key_media = {$row['key_media_banner']}")->fetch_assoc() : null;
-		if ($media) $media_image_url = $media['file_url_thumbnail'];
+		$media_image_url = ($media) ? $media['file_url_thumbnail'] : "";
 		$keyPhotoGallery = $row["key_photo_gallery"];
 		$createdUpdated = $conn->query("SELECT p.key_photo_gallery, u1.username AS creator, u2.username AS updater 
 			FROM photo_gallery p 
