@@ -93,8 +93,8 @@ $regionOptions = [
 		<td>{$row['number_of_records']}</td>
 		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-			<a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"block_name\",\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"visible_on\",\"css\",\"sort\",\"module_file\",\"number_of_records\",\"key_photo_gallery\",\"key_content_types\",\"key_categories\",\"key_tags\",\"is_dynamic\",\"is_active\"])'>Edit</a> 
-			<a href='delete.php?id={$row['key_blocks']}' onclick='return confirm(\"Delete this block?\")'>Delete</a>
+			<a href='#' onclick='editItem({$row['key_blocks']}, \"get_block.php\", [\"block_name\",\"title\",\"block_content\",\"show_on_pages\",\"show_in_region\",\"visible_on\",\"css\",\"sort\",\"module_file\",\"number_of_records\",\"key_photo_gallery\",\"key_content_types\",\"key_categories\",\"key_tags\",\"is_dynamic\",\"is_active\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+			<a href='delete.php?id={$row['key_blocks']}' onclick='return confirm(\"Delete this block?\")'><img src='/admin/assets/images/content-icon-delete.png'></a>
 		</td>
 		</tr>";
 	}

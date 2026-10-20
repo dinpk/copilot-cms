@@ -61,8 +61,8 @@ include_once('../layout.php');
 		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
 		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_product']}, \"get_product.php\", [\"title\",\"description\",\"price\",\"stock_quantity\",\"sku\",\"product_type\",\"url\",\"is_active\"])'>Edit</a> 
-		  <a href='delete.php?id={$row['key_product']}' onclick='return confirm(\"Delete this product?\")' style='display:none'>Delete</a> 
+		  <a href='#' onclick='editItem({$row['key_product']}, \"get_product.php\", [\"title\",\"description\",\"price\",\"stock_quantity\",\"sku\",\"product_type\",\"url\",\"is_active\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+		  <a href='delete.php?id={$row['key_product']}' onclick='return confirm(\"Delete this product?\")' style='display:none'><img src='/admin/assets/images/content-icon-delete.png'></a> 
 		  <a href='#' onclick='loadPriceHistory({$row['key_product']})'>Price History</a> 
 			<a href='#' onclick='openImageModal({$row['key_product']})'>Assign Images</a>
 		</td>

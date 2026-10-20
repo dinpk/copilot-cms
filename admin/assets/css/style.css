@@ -76,20 +76,21 @@ header {
 }
 
 .metric-box {
-	background:#fff;
-	border:1px solid #ddd;
+	background:#f4fdeb;
+
 	padding:1em;
 	border-radius:8px;
 	text-align:center;
 	width:150px;
-	box-shadow:0 2px 4px rgba(0,0,0,0.05);
+	box-shadow:0 2px 10px rgba(0,0,0,0.15);
+	font-size:1.2em;
+	line-height:1.7;
 }
 
 .metric-box span {
 	display:block;
 	font-size:2em;
 	color:seagreen;
-	margin-top:0.5em;
 }
 
 .recents {
@@ -107,6 +108,17 @@ header {
 	border-radius:8px;
 	box-shadow:0 2px 4px rgba(0,0,0,0.05);
 	max-width:400px;
+}
+
+.recent-activity h3 {
+	color:#555;
+	font-size:1.3em;
+}
+
+.recent-activity h3 img {
+	margin-right:5px;
+	max-height:32px;
+	vertical-align:sub;
 }
 
 .recent-activity ul {
@@ -241,16 +253,14 @@ label span {
 	font-size:.55em;
 	font-weight:bold;
 	word-spacing:3px;
-	line-height:250%;
+	line-height:0;
 	max-width:150px;
 }
 
 
 .record-action-links a {
-	background-color:seagreen;
-	color:#FFF;
-	border-radius:30px;
-	padding:2px 6px 2px 6px;
+	color:seagreen;
+	margin-right:2px;
 }
 
 /* Modal Styling */

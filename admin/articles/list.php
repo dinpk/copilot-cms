@@ -134,12 +134,12 @@ include_once('../layout.php');
 		echo "<td><small>{$createdUpdated['updater']} $date_updated</small></td>";
 		echo "<td>{$row['is_active']}</td>";
 		echo "<td class='record-action-links'>";
-		echo "<a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"content_direction\",\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"book_indent_level\",\"banner_image_url\",\"key_media_banner\",\"sort\",\"entry_date_time\",\"update_date_time\",\"is_featured\",\"show_in_listing\",\"show_on_home\",\"is_active\"])'>Edit</a> ";
-		echo "<a href='#' onclick='openAuthorModal(" . $row['key_articles'] . "," . htmlspecialchars(json_encode($row['title']), ENT_QUOTES, 'UTF-8') . ")'>Authors</a> ";
-		echo "<a href='#' onclick='openWorkerModal(" . $row['key_articles'] . "," . htmlspecialchars(json_encode($row['title']), ENT_QUOTES, 'UTF-8') . ")'>Workers</a> ";
-		echo "<a href='preview.php?id={$row['key_articles']}' target='_blank'>Preview</a> ";
-		echo "<a href='/article/$url' target='_blank'>View</a> ";
-		echo "<a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'>Delete</a>";
+		echo "<a href='#' onclick='editItem({$row['key_articles']}, \"get_article.php\", [\"content_direction\",\"title\",\"title_sub\",\"article_snippet\",\"article_content\",\"url\",\"book_indent_level\",\"banner_image_url\",\"key_media_banner\",\"sort\",\"entry_date_time\",\"update_date_time\",\"is_featured\",\"show_in_listing\",\"show_on_home\",\"is_active\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> ";
+		echo "<a href='#' onclick='openAuthorModal(" . $row['key_articles'] . "," . htmlspecialchars(json_encode($row['title']), ENT_QUOTES, 'UTF-8') . ")'><img src='/admin/assets/images/content-icon-authors.png'></a> ";
+		echo "<a href='#' onclick='openWorkerModal(" . $row['key_articles'] . "," . htmlspecialchars(json_encode($row['title']), ENT_QUOTES, 'UTF-8') . ")'><img src='/admin/assets/images/content-icon-workers.png'></a> ";
+		echo "<a href='preview.php?id={$row['key_articles']}' target='_blank'><img src='/admin/assets/images/content-icon-preview.png'></a> ";
+		echo "<a href='/article/$url' target='_blank'><img src='/admin/assets/images/content-icon-view.png'></a> ";
+		echo "<a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'><img src='/admin/assets/images/content-icon-delete.png'></a>";
 		echo "</td>";
 		echo "</tr>";
 	}

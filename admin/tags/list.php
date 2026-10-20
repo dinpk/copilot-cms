@@ -46,8 +46,8 @@ include_once('../layout.php');
 			<td>tag/{$row['url']}</td>
 			<td>{$row['is_active']}</td>
 			<td class='record-action-links'>
-				<a href='#' onclick='editItem({$row['key_tags']}, \"get_tag.php\", [\"name\",\"description\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"is_active\"]); return false;'>Edit</a> 
-				<a href='delete.php?id={$row['key_tags']}' onclick='return confirm(\"Delete this tag?\")' >Delete</a>
+				<a href='#' onclick='editItem({$row['key_tags']}, \"get_tag.php\", [\"name\",\"description\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"is_active\"]); return false;'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+				<a href='delete.php?id={$row['key_tags']}' onclick='return confirm(\"Delete this tag?\")' ><img src='/admin/assets/images/content-icon-delete.png'></a>
 			</td>
 	  </tr>";
 	}

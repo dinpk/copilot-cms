@@ -53,9 +53,8 @@ include_once('../layout.php');
 		<td class='record-action-links'>
 		<a href='#' onclick='editItem({$row['key_user']},\"get_user.php\",
 		  [\"name\", \"username\", \"email\", \"role\", \"is_active\",
-			\"phone\", \"address\", \"city\", \"state\", \"country\", \"url\", \"banner_image_url\", \"key_media_banner\", \"description\"]
-		)'>Edit</a> 
-		  <a href='delete.php?id={$row['key_user']}' onclick='return confirm(\"Delete this user?\")' style='display:none'>Delete</a>
+			\"phone\", \"address\", \"city\", \"state\", \"country\", \"url\", \"banner_image_url\", \"key_media_banner\", \"description\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+		  <a href='delete.php?id={$row['key_user']}' onclick='return confirm(\"Delete this user?\")' style='display:none'><img src='/admin/assets/images/content-icon-delete.png'></a>
 		</td>
 	  </tr>";
 	}

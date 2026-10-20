@@ -41,9 +41,9 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 			<td><?= $row['sort'] ?></td>
 			<td><?= $row['is_active'] ?></td>
 			<td class='record-action-links'>
-				<a href="#" onclick="galleryImage_editItem(<?= $row['key_image'] ?>)">Edit</a> 
+				<a href="#" onclick="galleryImage_editItem(<?= $row['key_image'] ?>)"><img src='/admin/assets/images/content-icon-edit.png'></a> 
 				<!-- <a href="#" onclick="galleryImage_openMediaModal(<?= $row['key_image'] ?>)">Assign Image</a> -->
-				<a href="photo_gallery_image_delete.php?image_id=<?= $row['key_image'] ?>" onclick="return confirm('Delete this image?')">Delete</a>
+				<a href="photo_gallery_image_delete.php?image_id=<?= $row['key_image'] ?>" onclick="return confirm('Delete this image?')"><img src='/admin/assets/images/content-icon-delete.png'></a>
 			</td>
 		</tr>
 		<?php endwhile; ?>

@@ -57,8 +57,8 @@ $menuTree = buildMenuTree($menuItems);
 			<td>{$item['sort']}</td>
 			<td>{$item['is_active']}</td>
 			<td class='record-action-links'>
-			<a href='#' onclick='editItem({$item['key_main_menu']}, \"get_menu.php\", [\"title\",\"url_link\",\"css_class\",\"sort\",\"is_active\",\"parent_id\"])'>Edit</a> 
-			<a href='delete.php?id={$item['key_main_menu']}' onclick='return confirm(\"Delete this menu item?\")' style='display:none'>Delete</a>
+			<a href='#' onclick='editItem({$item['key_main_menu']}, \"get_menu.php\", [\"title\",\"url_link\",\"css_class\",\"sort\",\"is_active\",\"parent_id\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+			<a href='delete.php?id={$item['key_main_menu']}' onclick='return confirm(\"Delete this menu item?\")' style='display:none'><img src='/admin/assets/images/content-icon-delete.png'></a>
 			</td>
 		</tr>";
 			if (!empty($item['children'])) {

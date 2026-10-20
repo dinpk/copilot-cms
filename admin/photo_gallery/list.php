@@ -58,9 +58,9 @@ include('../layout.php');
 		<td>{$createdUpdated['creator']} / {$createdUpdated['updater']}</td>
 		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo_gallery.php\", [\"title\",\"url\",\"image_url\",\"description\",\"navigation_type\",\"css\",\"available_for_blocks\",\"key_media_banner\",\"is_active\"])'>Edit</a> 
-		  <a href='photo_gallery_delete.php?id={$row['key_photo_gallery']}' onclick='return confirm(\"Delete this photo?\")'>Delete</a> 
-		  <a href='photo_gallery_images_list.php?gallery_id={$row['key_photo_gallery']}' target='_blank'>Assign Images</a>
+		  <a href='#' onclick='editItem({$row['key_photo_gallery']}, \"get_photo_gallery.php\", [\"title\",\"url\",\"image_url\",\"description\",\"navigation_type\",\"css\",\"available_for_blocks\",\"key_media_banner\",\"is_active\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+		  <a href='photo_gallery_delete.php?id={$row['key_photo_gallery']}' onclick='return confirm(\"Delete this photo?\")'><img src='/admin/assets/images/content-icon-delete.png'></a> 
+		  <a href='photo_gallery_images_list.php?gallery_id={$row['key_photo_gallery']}' target='_blank'><img src='/admin/assets/images/content-icon-assign-images.png'></a>
 
 		</td>
 	  </tr>";

@@ -69,8 +69,8 @@ while ($g = $groupResult->fetch_assoc()) {
 			<td>{$row['setting_value']}</td>
 			<td>{$row['setting_group']}</td>
 			<td class='record-action-links'>
-				<a href='#' onclick='editItem({$row['key_settings']}, \"get_setting.php\", [\"setting_key\",\"setting_value\",\"setting_group\"])'>Edit</a>
-				<a href='delete.php?id={$row['key_settings']}' onclick='return confirm(\"Delete this setting?\")'>Delete</a>
+				<a href='#' onclick='editItem({$row['key_settings']}, \"get_setting.php\", [\"setting_key\",\"setting_value\",\"setting_group\"])'><img src='/admin/assets/images/content-icon-edit.png'></a>
+				<a href='delete.php?id={$row['key_settings']}' onclick='return confirm(\"Delete this setting?\")'><img src='/admin/assets/images/content-icon-delete.png'></a>
 			</td>
 		</tr>";
 	}

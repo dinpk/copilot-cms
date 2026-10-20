@@ -60,8 +60,8 @@ include_once('../layout.php');
 			<td>{$row['alt_text']}</td>
 			<td>{$row['username']}</td>
 			<td class='record-action-links'>
-			  <a href='#' onclick='editItem({$row['key_media']}, \"get_media.php\", [\"file_url\",\"file_type\",\"alt_text\",\"tags\"])'>Edit</a> 
-			  <a href='delete.php?id={$row['key_media']}' onclick='return confirm(\"Delete this media item?\")'>Delete</a>
+			  <a href='#' onclick='editItem({$row['key_media']}, \"get_media.php\", [\"file_url\",\"file_type\",\"alt_text\",\"tags\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+			  <a href='delete.php?id={$row['key_media']}' onclick='return confirm(\"Delete this media item?\")'><img src='/admin/assets/images/content-icon-delete.png'></a>
 			</td>
 		  </tr>";
 	}

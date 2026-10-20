@@ -58,8 +58,8 @@ include_once('../layout.php');
 		<td>{$createdUpdated['updater']}</td>
 		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_youtube_gallery']}, \"get_video.php\", [\"title\",\"youtube_id\",\"thumbnail_url\",\"url\",\"description\",\"is_active\"])'>Edit</a> 
-		  <a href='delete.php?id={$row['key_youtube_gallery']}' onclick='return confirm(\"Delete this video?\")' style='display:none'>Delete</a>
+		  <a href='#' onclick='editItem({$row['key_youtube_gallery']}, \"get_video.php\", [\"title\",\"youtube_id\",\"thumbnail_url\",\"url\",\"description\",\"is_active\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+		  <a href='delete.php?id={$row['key_youtube_gallery']}' onclick='return confirm(\"Delete this video?\")' style='display:none'><img src='/admin/assets/images/content-icon-delete.png'></a>
 		</td>
 	  </tr>";
 	}

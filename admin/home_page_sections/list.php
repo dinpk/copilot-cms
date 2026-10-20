@@ -42,8 +42,8 @@ include_once('../layout.php');
 			<td>{$row['sort']}</td>
 			<td>{$row['is_active']}</td>
 			<td class='record-action-links'>
-			  <a href='#' onclick='editItem({$row['key_home_page_sections']}, \"get_home_page_section.php\", [\"title\",\"content\",\"image_url\",\"target_url\",\"section_type\",\"sort\",\"key_media_banner\",\"is_active\"])'>Edit</a> 
-			  <a href='delete.php?id={$row['key_home_page_sections']}' onclick='return confirm(\"Delete this page?\")'>Delete</a>
+			  <a href='#' onclick='editItem({$row['key_home_page_sections']}, \"get_home_page_section.php\", [\"title\",\"content\",\"image_url\",\"target_url\",\"section_type\",\"sort\",\"key_media_banner\",\"is_active\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+			  <a href='delete.php?id={$row['key_home_page_sections']}' onclick='return confirm(\"Delete this page?\")'><img src='/admin/assets/images/content-icon-delete.png'></a>
 			</td>
 		</tr>";
 	}

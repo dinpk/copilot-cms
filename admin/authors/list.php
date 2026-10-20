@@ -62,8 +62,8 @@ include_once('../layout.php');
 		<td>{$createdUpdated['updater']}</td>
 		<td>{$row['is_active']}</td>
 		<td class='record-action-links'>
-		  <a href='#' onclick='editItem({$row['key_authors']}, \"get_author.php\", [\"name\",\"email\",\"phone\",\"website\",\"url\",\"banner_image_url\",\"social_url_media1\",\"social_url_media2\",\"social_url_media3\",\"city\",\"state\",\"key_media_banner\",\"country\",\"description\",\"is_active\"])'>Edit</a> 
-		  <a href='delete.php?id={$row['key_authors']}' onclick='return confirm(\"Delete this author?\")' style='display:none'>Delete</a>
+		  <a href='#' onclick='editItem({$row['key_authors']}, \"get_author.php\", [\"name\",\"email\",\"phone\",\"website\",\"url\",\"banner_image_url\",\"social_url_media1\",\"social_url_media2\",\"social_url_media3\",\"city\",\"state\",\"key_media_banner\",\"country\",\"description\",\"is_active\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+		  <a href='delete.php?id={$row['key_authors']}' onclick='return confirm(\"Delete this author?\")' style='display:none'><img src='/admin/assets/images/content-icon-delete.png'></a>
 		</td>
 	  </tr>";
 	}
