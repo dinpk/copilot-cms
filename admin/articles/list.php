@@ -139,7 +139,7 @@ include_once('../layout.php');
 		echo "<a href='#' onclick='openWorkerModal(" . $row['key_articles'] . "," . htmlspecialchars(json_encode($row['title']), ENT_QUOTES, 'UTF-8') . ")'><img src='/admin/assets/images/content-icon-workers.png'></a> ";
 		echo "<a href='preview.php?id={$row['key_articles']}' target='_blank'><img src='/admin/assets/images/content-icon-preview.png'></a> ";
 		echo "<a href='/article/$url' target='_blank'><img src='/admin/assets/images/content-icon-view.png'></a> ";
-		echo "<a href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'><img src='/admin/assets/images/content-icon-delete.png'></a>";
+		echo "<a style='display:none' href='delete.php?id={$row['key_articles']}' onclick='return confirm(\"Delete this article?\")'><img src='/admin/assets/images/content-icon-delete.png'></a>";
 		echo "</td>";
 		echo "</tr>";
 	}
@@ -386,6 +386,11 @@ include_once('../layout.php');
 
 <script>
 
+
+// const editableDiv = document.querySelector('div[contenteditable="true"]'); use this to make the editor reuseable on pages, descriptions etc.
+
+
+
 function changeArticleDirection(direction) {
 	document.getElementById("title").style.direction = direction;
 	document.getElementById("title_sub").style.direction = direction;
@@ -416,6 +421,22 @@ editable.addEventListener("input", () => { // avoid <span> insertion
       span.replaceWith(...span.childNodes); // replace span with its children
     
   });
+});
+
+
+editable.addEventListener('paste', (event) => {
+    event.preventDefault();
+    const plainText = (event.clipboardData || window.clipboardData).getData('text/plain');
+    // Get the current cursor selection context
+    const selection = window.getSelection();
+    if (!selection.rangeCount) return;
+    // Delete any currently highlighted text before inserting
+    selection.deleteFromDocument();
+    // Safely insert the plain text exactly at the cursor position
+    const textNode = document.createTextNode(plainText);
+    selection.getRangeAt(0).insertNode(textNode);
+    // 6. Move the cursor to the end of the newly pasted text
+    selection.collapseToEnd();
 });
 
 

@@ -17,8 +17,12 @@ startLayout("Content: " . htmlspecialchars($content_type['name']));
 	<div id="above-content">
 		<?php renderBlocks("above_content"); ?>
 	</div>
+	
 	<?php
-	echo "<h1>" . htmlspecialchars($content_type['name']) . "</h1>";
+	echo "<h1>";
+	echo htmlspecialchars($content_type['name']);
+	echo "<div>" . htmlspecialchars($content_type['description']) . "</div>";
+	echo "</h1>";
 
 	if ($content_type['banner_image_url']) { // full link url
 		echo "<div id='content-banner'><img src='" . $content_type['banner_image_url'] . "'></div>";
