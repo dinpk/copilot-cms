@@ -4,7 +4,7 @@ Locale::setDefault(getSetting("site_locale"));
 
 $page_slug = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 
-function startLayout($title = "CopilotCMS") {
+function startLayout($title = "CopilotCMS", $banner = "") {
 	echo "
 	<!DOCTYPE html>
 	<html>
@@ -33,6 +33,9 @@ function startLayout($title = "CopilotCMS") {
 	renderBlocks("below_header", $page_slug);
 	echo "</div>";
 
+	if (!empty($banner)) {
+		echo "<div id='page-banner'><img src='$banner'></div>";
+	}
 
 	global $segments;
 	if (sizeof($segments) != 1) {

@@ -179,6 +179,13 @@ main ul, main ol {
 	direction: var(--site-direction);
 }
 
+
+#page-banner img {
+	width:100%;
+	object-fit:cover;
+	height:40vh;
+}
+
 #content-banner {
 	margin: 1.25em 0;
 }

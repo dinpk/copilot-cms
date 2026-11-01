@@ -10,7 +10,15 @@ if (!$page) {
   echo "⚠ Page not found.";
   exit;
 }
-startLayout(htmlspecialchars($page['title']));
+
+$banner = "";
+if ($page['banner_image_url']) { // full link url
+	$banner = $page['banner_image_url'];
+} else if ($page['banner_url']) { // media library file
+	$banner = $page['banner_url'];
+}
+
+startLayout(htmlspecialchars($page['title']), $banner);
 ?>
 <div id="content">
 	<div id="above-content">
@@ -19,12 +27,6 @@ startLayout(htmlspecialchars($page['title']));
 	<article>
 	<?php
 	echo "<h1>" . htmlspecialchars($page['title']) . "</h1>";
-
-	if ($page['banner_image_url']) { // full link url
-		echo "<div id='content-banner'><img src='" . $page['banner_image_url'] . "'></div>";
-	} else if ($page['banner_url']) { // media library file
-		echo "<div id='content-banner'><img src='" . $page['banner_url'] . "'></div>";
-	}
 
 	echo "<div>" . $page['page_content'] . "</div>";
 	?>
