@@ -99,7 +99,9 @@ include('../layout.php');
 		<br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
-		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_photo_gallery').value)">Select Banner Image from Media Library</button><br>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_photo_gallery').value)">Select Banner Image from Media Library</button>
+		<button type="button" onclick="removeBannerImage()">X</button>
+		<br>
 		
 		
 		<textarea name="description" id="description" placeholder="Description"></textarea><br>

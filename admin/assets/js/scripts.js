@@ -562,6 +562,11 @@ function selectMediaLibraryImage(id, url) {
 	document.getElementById('media-library-modal').style.display = 'none';
 }
 
+function removeBannerImage() {
+	document.getElementById('media-preview').innerHTML = "";
+	document.getElementById('key_media_banner').value = 0;
+}
+
 
 // --------------------- Misc
 

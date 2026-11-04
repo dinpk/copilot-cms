@@ -258,7 +258,9 @@ include_once('../layout.php');
 		<input type="url" name="banner_image_url" id="banner_image_url" placeholder="Full Banner Image URL"> <label>URL</label><br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
-		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_articles').value)">Select Banner Image from Media Library</button><br>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_articles').value)">Select Banner Image from Media Library</button>
+		<button type="button" onclick="removeBannerImage()">X</button>
+		<br>
 		<!-- 
 		<input type="date" name="entry_date_time" id="entry_date_time" required> <label>Published</label><br>
 		<input type="date" name="update_date_time" id="update_date_time" required> <label>Updated</label><br>

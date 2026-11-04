@@ -89,6 +89,7 @@ startLayout("Images for: " . htmlspecialchars($gallery['title']));
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
 		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#photo_gallery_images_key_image').value)">Select Banner Image</button>
+		<button type="button" onclick="removeBannerImage()">X</button>
 		<br><br>
 		
 		<input type="submit" value="Save">

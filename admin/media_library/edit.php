@@ -12,6 +12,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 	$altText = $_POST['alt_text'];
 	$tags = $_POST['tags'];
 	$manualUrl = trim($_POST['file_url'] ?? '');
+	$thumbnailPath = trim($_POST['file_url_thumbnail'] ?? '');
 	$finalUrl = '';
 	if (isset($_FILES['media_file']) && UPLOAD_ERR_OK === $_FILES['media_file']['error']) {
 		$year = date('Y');
@@ -37,7 +38,7 @@ if ('POST' === $_SERVER['REQUEST_METHOD'] && isset($_GET['id'])) {
 			}
 			$thumbPath = $thumbDir.$safeName;
 			$thumbnailPath = "/media/thumbnails/$fileType/$year/$safeName";
-			resizeImage($targetPath, $thumbPath, 300, 300); // Create thumbnail
+			resizeImage($targetPath, $thumbPath, 500, 500); // Create thumbnail
 		}
 	} elseif ('' !== $manualUrl) {
 		$finalUrl = $manualUrl;

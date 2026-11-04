@@ -134,7 +134,9 @@ include_once('../layout.php');
 		<input type="hidden" name="key_product" id="image_hidden_key">
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
-		<button type="button" onclick="openMediaModal()">Select Banner Image</button><br>
+		<button type="button" onclick="openMediaModal()">Select Banner Image</button>
+		<button type="button" onclick="removeBannerImage()">X</button>
+		<br>
 		<input type="number" name="sort_order" placeholder="Sort Order" value="0"><br>
 		<input type="submit" value="Add Image">
 	</form>

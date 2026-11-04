@@ -157,6 +157,7 @@ nav.main-menu {
 #above-main, #below-main {
 	max-width: var(--main-max-width);
 	margin:20px auto;
+	padding: 0 1em 0 1em;
 }
 
 main {
@@ -165,6 +166,7 @@ main {
 	min-height: 80vh;
 	max-width: var(--main-max-width);
 	margin:0 auto;
+	padding: 0 1em 0 1em;
 }
 
 main ul, main ol {
@@ -365,9 +367,9 @@ main ul, main ol {
 	color: var(--brand-link-color);
 }
 
- .snippet-thumbnail {
+.snippet-thumbnail {
 	 max-width:40%;
- }
+}
 
 
 .flex-wrap-center {
@@ -571,7 +573,10 @@ textarea {
 	.snippet-card img {
 		width: 100%;
 	}
-	
+
+	.snippet-thumbnail {
+		max-width:none;
+	}
 	
 }
 

@@ -87,7 +87,9 @@ include_once('../layout.php');
 		<input type="text" name="image_url" id="image_url" maxlength="2000"> <label>Image URL</label><br>
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
-		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_home_page_sections').value)">Select Banner Image from Media Library</button><br>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_home_page_sections').value)">Select Banner Image from Media Library</button>
+		<button type="button" onclick="removeBannerImage()">X</button>
+		<br>
 
 		<input type="text" name="target_url" id="target_url" maxlength="2000"> <label>Target URL</label><br>
 

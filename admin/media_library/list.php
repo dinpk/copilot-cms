@@ -60,8 +60,8 @@ include_once('../layout.php');
 			<td>{$row['alt_text']}</td>
 			<td>{$row['username']}</td>
 			<td class='record-action-links'>
-			  <a href='#' onclick='editItem({$row['key_media']}, \"get_media.php\", [\"file_url\",\"file_type\",\"alt_text\",\"tags\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
-			  <a style='display:none;' href='delete.php?id={$row['key_media']}' onclick='return confirm(\"Delete this media item?\")'><img src='/admin/assets/images/content-icon-delete.png'></a>
+			  <a href='#' onclick='editItem({$row['key_media']}, \"get_media.php\", [\"file_url\",\"file_url_thumbnail\",\"file_type\",\"alt_text\",\"tags\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+			  <a href='delete.php?id={$row['key_media']}' onclick='return confirm(\"Delete this media item?\")'><img src='/admin/assets/images/content-icon-delete.png'></a>
 			</td>
 		  </tr>";
 	}
@@ -93,7 +93,8 @@ include_once('../layout.php');
 	<h3 id="modal-title">Upload Media</h3>
 	<form id="modal-form" method="post" enctype="multipart/form-data" action="add.php" class="skip-submit-listener">
 		<input type="file" name="media_file"> <label>Select File</label><br>
-		<input type="text" name="file_url" id="file_url" maxlength="2000"> <label>Or Paste URL</label><br>
+		<input type="text" name="file_url" id="file_url" maxlength="2000"> <label>File URL</label><br>
+		<input type="text" name="file_url_thumbnail" id="file_url_thumbnail" maxlength="2000"> <label>Thumbnail URL</label><br>
 		<select name="file_type" id="file_type" required>
 			<option value="images">Image</option>
 			<!--

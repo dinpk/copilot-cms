@@ -120,6 +120,8 @@ $regionOptions = [
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
 		<button type="button" onclick="openMediaModal()" style="display:none;">Select Banner Image</button>
+		<button type="button" onclick="removeBannerImage()" style="display:none;">X</button>
+
 		<input type="text" name="css" id="css"> <label>CSS</label><br>
 		<input type="number" name="sort" id="sort" value="0" min="-200" max="2000"> <label>Sort</label><br>
 		<div style="display:none;"><label> <input type="checkbox" name="is_dynamic" id="is_dynamic"> Dynamic</label><br></div>
@@ -168,11 +170,11 @@ $regionOptions = [
 			<?php
 			// Photo galleries available for blocks
 			$galleryQuery = "SELECT key_photo_gallery, title FROM photo_gallery WHERE is_active = 1 AND available_for_blocks = 1 ORDER BY entry_date_time DESC";
-			$galleryResult = mysqli_query($conn, $galleryQuery);
+			$galleryResult = $conn->query($galleryQuery);
 			?>
 			<select name="key_photo_gallery" id="key_photo_gallery" class="form-control">
 				<option value="0"></option>
-				<?php while ($gallery = mysqli_fetch_assoc($galleryResult)): ?>
+				<?php while ($gallery = $galleryResult->fetch_assoc()): ?>
 				<option value="<?= $gallery['key_photo_gallery']; ?>"
 					<?= ($block['key_photo_gallery'] ?? '') == $gallery['key_photo_gallery'] ? 'selected' : ''; ?>>
 					<?= htmlspecialchars($gallery['title']); ?>
@@ -184,11 +186,11 @@ $regionOptions = [
 			
 			<?php
 			$attachQuery = "SELECT key_content_types, name FROM content_types WHERE is_active = 1 ORDER BY name";
-			$attachResult = mysqli_query($conn, $attachQuery);
+			$attachResult = $conn->query($attachQuery);
 			?>
 			<select name="key_content_types" id="key_content_types" class="form-control">
 				<option value="0"></option>
-				<?php while ($record = mysqli_fetch_assoc($attachResult)): ?>
+				<?php while ($record = $attachResult->fetch_assoc()): ?>
 				<option value="<?= $record['key_content_types']; ?>"
 					<?= ($block['key_content_types'] ?? '') == $record['key_content_types'] ? 'selected' : ''; ?>>
 					<?= htmlspecialchars($record['name']); ?>
@@ -200,11 +202,11 @@ $regionOptions = [
 			
 			<?php
 			$attachQuery = "SELECT key_categories, name FROM categories WHERE is_active = 1 ORDER BY name";
-			$attachResult = mysqli_query($conn, $attachQuery);
+			$attachResult = $conn->query($attachQuery);
 			?>
 			<select name="key_categories" id="key_categories" class="form-control">
 				<option value="0"></option>
-				<?php while ($record = mysqli_fetch_assoc($attachResult)): ?>
+				<?php while ($record = $attachResult->fetch_assoc()): ?>
 				<option value="<?= $record['key_categories']; ?>"
 					<?= ($block['key_categories'] ?? '') == $record['key_categories'] ? 'selected' : ''; ?>>
 					<?= htmlspecialchars($record['name']); ?>
@@ -216,11 +218,11 @@ $regionOptions = [
 			
 			<?php
 			$attachQuery = "SELECT key_tags, name FROM tags WHERE is_active = 1 ORDER BY name";
-			$attachResult = mysqli_query($conn, $attachQuery);
+			$attachResult = $conn->query($attachQuery);
 			?>
 			<select name="key_tags" id="key_tags" class="form-control">
 				<option value="0"></option>
-				<?php while ($record = mysqli_fetch_assoc($attachResult)): ?>
+				<?php while ($record = $attachResult->fetch_assoc()): ?>
 				<option value="<?= $record['key_tags']; ?>"
 					<?= ($block['key_tags'] ?? '') == $record['key_tags'] ? 'selected' : ''; ?>>
 					<?= htmlspecialchars($record['name']); ?>

@@ -48,7 +48,7 @@ include_once('../layout.php');
 			<td>{$row['sort']}</td>
 			<td>{$row['is_active']}</td>
 			<td class='record-action-links'>
-			  <a href='#' onclick='editItem({$row['key_pages']}, \"get_page.php\", [\"title\",\"page_content\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"is_active\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
+			  <a href='#' onclick='editItem({$row['key_pages']}, \"get_page.php\", [\"key_pages\",\"title\",\"page_content\",\"url\",\"banner_image_url\",\"sort\",\"key_media_banner\",\"is_active\"])'><img src='/admin/assets/images/content-icon-edit.png'></a> 
 			  <a href='/page/$url' target='_blank'><img src='/admin/assets/images/content-icon-view.png'></a>
 			  <a href='delete.php?id={$row['key_pages']}' onclick='return confirm(\"Delete this page?\")'><img src='/admin/assets/images/content-icon-delete.png'></a>
 			</td>
@@ -70,7 +70,10 @@ include_once('../layout.php');
 
 		<input type="hidden" name="key_media_banner" id="key_media_banner">
 		<div id="media-preview"></div>
-		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_pages').value)">Select Banner Image from Media Library</button><br>
+		<button type="button" onclick="galleryImage_openMediaModal(document.querySelector('#key_pages').value)">Select Banner Image from Media Library</button>
+		<button type="button" onclick="removeBannerImage()">X</button>
+		
+		<br>
 
 		<input type="number" name="sort" id="sort" value="0" min="-100" max="2000"> <label>Sort</label><br>
 		<input type="checkbox" name="is_active" id="is_active" checked> <label>Active</label><br>
