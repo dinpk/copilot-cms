@@ -3,7 +3,7 @@
 	<?php
 	$cat_id = isset($_GET['cat']) ? intval($_GET['cat']) : null;
 
-	$sql = "SELECT key_pages, title, url FROM pages ORDER BY RAND() LIMIT $number_of_records";
+	$sql = "SELECT key_pages, title, url FROM pages WHERE is_active = 1 ORDER BY sort LIMIT $number_of_records";
 	$pages = $conn->query($sql);
 	echo "<ul class='category-list'>";
 	while ($c = $pages->fetch_assoc()) {

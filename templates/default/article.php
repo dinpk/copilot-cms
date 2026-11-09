@@ -26,6 +26,9 @@ startLayout(htmlspecialchars($article['title']));
 		<div><?= htmlspecialchars($article['title_sub']) ?></div>
 	</h1>
 	
+	<div>
+	<?php renderBlocks("below_content_title"); ?>
+	</div>
 
 	<?php
 	if ($article['banner_image_url']) { // full link url
@@ -33,6 +36,14 @@ startLayout(htmlspecialchars($article['title']));
 	} else if ($article['banner_url']) { // media library file
 		echo "<div id='content-banner'><img src='" . $article['banner_url'] . "'></div>";
 	}
+	?>
+
+	<div>
+	<?php renderBlocks("below_content_banner"); ?>
+	</div>
+
+	<?php
+
 	echo "<div>" . $article['article_content'] . "</div>";
 	?>
 	</article>

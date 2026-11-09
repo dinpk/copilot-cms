@@ -44,13 +44,23 @@ function getPaginatedArticles($conn, $page = 1, $limit = 10) {
 
 	$countSql = "SELECT COUNT(*) AS total FROM articles WHERE is_active = 1 AND show_on_home = 1";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
-
+	
+	$sql = "SELECT 
+			a.show_on_home, a.content_direction, a.title, a.banner_image_url, a.url, a.article_snippet, SUBSTRING_INDEX(a.article_content, ' ', 30) AS article_content, 
+			m.file_url_thumbnail AS banner
+			FROM articles a LEFT JOIN media_library m 
+				ON a.key_media_banner = m.key_media
+			WHERE a.is_active = 1 AND a.show_on_home = 1 
+			ORDER BY a.entry_date_time DESC
+			LIMIT $limit OFFSET $offset";
+	/*
 	$sql = "SELECT a.*, m.file_url_thumbnail AS banner
 			FROM articles a 
 			LEFT JOIN media_library m ON a.key_media_banner = m.key_media
 			WHERE a.is_active = 1 AND show_on_home = 1 
 			ORDER BY entry_date_time DESC
 			LIMIT $limit OFFSET $offset";
+	*/
 	$records = $conn->query($sql);
 
 	return [
@@ -142,7 +152,9 @@ function getPaginatedArticlesForAuthor($conn, $authorKey, $page = 1, $limit = 10
     $total = $conn->query($countSql)->fetch_assoc()['total'];
 
     // Fetch paginated records
-    $sql = "SELECT a.title, a.article_snippet, a.url, m.file_url_thumbnail AS banner
+    $sql = "SELECT 
+			a.show_on_home, a.content_direction, a.title, a.banner_image_url, a.url, a.article_snippet, SUBSTRING_INDEX(a.article_content, ' ', 30) AS article_content, 
+			m.file_url_thumbnail AS banner
             FROM articles a
             JOIN article_authors aa ON a.key_articles = aa.key_articles
             LEFT JOIN media_library m ON a.key_media_banner = m.key_media
@@ -196,7 +208,9 @@ function getPaginatedArticlesForWorker($conn, $workerKey, $page = 1, $limit = 10
     $total = $conn->query($countSql)->fetch_assoc()['total'];
 
     // Fetch paginated records
-    $sql = "SELECT a.title, a.article_snippet, a.url, m.file_url_thumbnail AS banner
+    $sql = "SELECT 
+			a.show_on_home, a.content_direction, a.title, a.banner_image_url, a.url, a.article_snippet, SUBSTRING_INDEX(a.article_content, ' ', 30) AS article_content, 
+			m.file_url_thumbnail AS banner
             FROM articles a
             JOIN article_workers aa ON a.key_articles = aa.key_articles
             LEFT JOIN media_library m ON a.key_media_banner = m.key_media
@@ -278,12 +292,14 @@ function getPaginatedArticlesForContentType($conn, $key, $page = 1, $limit = 10)
 				WHERE ac.key_content_types = $key AND a.is_active = 1 AND a.show_in_listing = 1";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
 
-	$sql = "SELECT a.*, m.file_url_thumbnail AS banner 
+	$sql = "SELECT 
+	a.show_on_home, a.content_direction, a.title, a.banner_image_url, a.url, a.article_snippet, SUBSTRING_INDEX(a.article_content, ' ', 30) AS article_content, 
+	m.file_url_thumbnail AS banner 
 	FROM articles a 
 	JOIN article_content_types ac ON a.key_articles = ac.key_articles 
 	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
 	WHERE ac.key_content_types = $key AND a.is_active = 1 AND a.show_in_listing = 1 
-	ORDER BY entry_date_time DESC 
+	ORDER BY a.entry_date_time DESC 
 	LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);
 
@@ -324,12 +340,14 @@ function getPaginatedArticlesForTag($conn, $key, $page = 1, $limit = 10) {
 				WHERE ac.key_tags = $key AND a.is_active = 1";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
 
-	$sql = "SELECT a.*, m.file_url_thumbnail AS banner 
+	$sql = "SELECT 
+	a.show_on_home, a.content_direction, a.title, a.banner_image_url, a.url, a.article_snippet, SUBSTRING_INDEX(a.article_content, ' ', 30) AS article_content, 
+	m.file_url_thumbnail AS banner 
 	FROM articles a 
 	JOIN article_tags ac ON a.key_articles = ac.key_articles 
 	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
 	WHERE ac.key_tags = $key AND a.is_active = 1 
-	ORDER BY entry_date_time DESC 
+	ORDER BY a.entry_date_time DESC 
 	LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);
 
@@ -371,12 +389,14 @@ function getPaginatedArticlesForCategory($conn, $key, $page = 1, $limit = 10) {
 				WHERE ac.key_categories = $key AND a.is_active = 1";
 	$total = $conn->query($countSql)->fetch_assoc()['total'];
 
-	$sql = "SELECT a.*, m.file_url_thumbnail AS banner 
+	$sql = "SELECT 
+	a.show_on_home, a.content_direction, a.title, a.banner_image_url, a.url, a.article_snippet, SUBSTRING_INDEX(a.article_content, ' ', 30) AS article_content, 
+	m.file_url_thumbnail AS banner 
 	FROM articles a 
 	JOIN article_categories ac ON a.key_articles = ac.key_articles 
 	LEFT JOIN media_library m ON a.key_media_banner = m.key_media 
 	WHERE ac.key_categories = $key AND a.is_active = 1 
-	ORDER BY entry_date_time DESC 
+	ORDER BY a.entry_date_time DESC 
 	LIMIT $limit OFFSET $offset";
 	$records = $conn->query($sql);
 

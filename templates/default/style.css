@@ -189,16 +189,14 @@ main ul, main ol {
 }
 
 #content-banner {
-	margin: 1.25em 0;
+	margin: .5em 0 .5em 0;
 }
 
 #content h1 {
 	color: var(--brand-text-color);
 	border-bottom: 0.3em solid var(--brand-background-color);
-	margin-bottom: 1.25em;
 	padding-inline-start: .3em;
 	padding-bottom: 0.3em;
-	
 	line-height: calc(var(--template-font-ltr-line-height) - 0.3);
 }
 
@@ -266,9 +264,14 @@ main ul, main ol {
 	direction: ltr;
 }
 
+
+#content ul.category-list {
+	margin-top:1em;
+}
+
 #content ul.category-list li {
-    line-height: 2;
-    font-size: 1.1em;
+	line-height: 2;
+	font-size: 1.1em;
 }
 
 #sidebar-left,#sidebar-right {
